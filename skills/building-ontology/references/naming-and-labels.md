@@ -27,6 +27,16 @@ embedded spaces (`E-SPACE-1`). Do not fix typos, expand abbreviations, reorder
 segments, or swap underscores for dashes. Labels are where the cleanup happens -
 the label rule below applies regardless of how the identifier is spelled.
 
+### The building code goes in front, on everything
+
+QF SSC prefixes every subject with the building code - `entity:SSC_FCU0001`,
+`entity:SSC_01_001_CORRIDOR`. Follow it: `entity:QNL_FCU_1F_056`,
+`entity:QNL_AHUB011`. Rooms usually arrive with the code already in the source
+entity name; asset registers usually do not, because the BMS only needs the tag
+unique within one building. **Add the code, leave the tag itself alone** - it
+stays the join key - and carry the same prefixed form into `rdfs:label_en` and
+`ref:ifcName`, as SSC does.
+
 ### Audit the source identifiers for consistency, and report what you find
 
 **"Keep them verbatim" assumes they are internally consistent. Check that they
@@ -35,10 +45,20 @@ work out the shape the majority follow; then list every row that departs from it
 A schedule maintained by hand over years drifts, and a sheet that inherits the
 drift is harder to query than the source was.
 
-QNL: 285 of 336 rooms wrote the level and the room number as separate segments,
+**Audit the asset register the same way, family by family.** Reduce every tag to
+a shape (digits to `#`), count the shapes, and name the families that do not
+match the others. QNL's assets: VAV `VAV_<level>_S<system>_<count>` and CAV the
+same, FCU `FCU_<level>_<count>` with no system segment, and AHUB `AHUB<count>`
+with no separators and no level segment at all - one family out of four with a
+different structure, plus a single tag, `VAV_1F_S15_039S`, breaking its own
+family with a trailing letter. Asset tags are usually the BMS join key, so
+expect the answer to be "report it, change nothing"; report it anyway, because
+the register's owner is the one who can fix the register.
+
+QNL's rooms: 285 of 336 wrote the level and the room number as separate segments,
 `QNL_B_034_MEETING_ROOM`. The other 51 ran them together or used a different
-separator - `QNL_B036_REST_...`, `QNL_B-ST-01_...`, `QNL_L1023_1_...`. The whole
-column had to be rebuilt to one shape.
+separator - `QNL_B036_REST_...`, `QNL_B-ST-01_...`, `QNL_L1023_1_...`. There the
+answer was to rebuild the whole column to one shape.
 
 **Report the exceptions and ask; do not silently normalise, and do not silently
 keep them.**

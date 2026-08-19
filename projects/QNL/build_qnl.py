@@ -111,8 +111,13 @@ LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
 def equip_id(tag):
-    """Asset tags come from the register verbatim - they are the BMS join key."""
-    return tag
+    """Prefix the register tag with the building code, QF SSC style.
+
+    SSC subjects read entity:SSC_FCU0001 - building code, then the register tag.
+    QNL follows: FCU_1F_056 becomes entity:QNL_FCU_1F_056. The tag itself is not
+    touched, so it stays the BMS join key; only the building code is added.
+    """
+    return "QNL_" + tag
 
 
 wb = openpyxl.load_workbook(ASSETS_XLSX, read_only=True, data_only=True)

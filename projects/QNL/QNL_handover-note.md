@@ -47,8 +47,12 @@ by you as the terrace level. No
 `rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel`; the other three are
 `rec:Level`.
 
-**Identifiers taken from the source, regularised to one shape.** Every asset keeps its
-register tag untouched: `entity:AHUB011`, `entity:VAV_B_S11_024`, `entity:FCU_1F_055`.
+**Identifiers taken from the source, regularised to one shape.** Every asset carries the
+building code in front of its register tag, QF SSC style — SSC subjects read
+`entity:SSC_FCU0001`, so QNL reads `entity:QNL_FCU_1F_056`, `entity:QNL_AHUB011`,
+`entity:QNL_VAV_B_S11_024`. **The tag itself is untouched**; only `QNL_` was added, so it
+remains the BMS join key. `ref:ifcName` and `rdfs:label_en` carry the same prefixed form,
+as SSC does with `SSC_AHUB0001`.
 
 Rooms keep their name text but are rebuilt to a single shape,
 `entity:QNL_<level>_<number>_<name>`, because the schedule was not consistent about it.
@@ -161,6 +165,31 @@ rule objecting to the SSC label style, and it is expected.
 - **IFC references on rooms.** Requested for equipment only, so rooms have none.
 - **Parts.** No `brick:hasPart` breakdown (fans, coils, VFDs) — not requested, and no
   part-level source was supplied.
+
+## The asset register is not internally consistent
+
+You asked me not to change the tags, so nothing below has been changed — this is the
+audit, for the register's owner to decide on. All 449 tags are unique.
+
+| Family | Shape | n |
+|---|---|---|
+| VAV | `VAV_<level>_S<system>_<count>` | 246 |
+| CAV | `CAV_<level>_S<system>_<count>` | 51 |
+| FCU | `FCU_<level>_<count>` | 137 |
+| AHUB | `AHUB<count>` | 15 |
+
+1. **AHUB is the odd family out.** It carries no separators and no level segment, where
+   the other three are all `TYPE_LEVEL_…`. `AHUB` also packs the type and the level into
+   one token — AHU on level B. The consistent form would be `AHU_B_011`.
+2. **FCU has no system segment** where VAV and CAV do. That may be correct — FCUs are fed
+   by the chilled water loop, not by an AHU, so there is no `S##` to name — but it means
+   the four families cannot be parsed by one rule.
+3. **One tag breaks its own family: `VAV_1F_S15_039S`** — a trailing `S` that no other
+   tag carries. Either a variant marker that should be a separate segment, or a typo.
+4. **Level tokens use a different vocabulary from the rooms.** Assets say `B`, `1F`, `2F`;
+   the room schedule and the level entities say `B`, `L1`, `L2`, `T1`. Nothing joins on
+   them today, so nothing breaks, but the two vocabularies will need reconciling if a
+   query ever tries.
 
 ## Things to check in the source data
 

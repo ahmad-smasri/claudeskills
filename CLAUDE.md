@@ -87,9 +87,14 @@ The QF SSC draft breaks this throughout; disregard it there.
 the join key to SCADA and to every other sheet on the project. Strip whitespace,
 change nothing else. Ask the user at intake whether to keep them or normalise to
 the convention; default to keeping. **Verbatim assumes the source is internally
-consistent - audit the whole column, find the majority shape, and report every
-row that departs from it before writing rows.** On QNL 51 of 336 rooms ran the
-level into the room number where 285 kept them separate. For identifiers the sheet has to invent:
+consistent - audit the whole column, rooms and assets alike, find the majority
+shape, and report every row that departs from it before writing rows.** On QNL 51
+of 336 rooms ran the level into the room number where 285 kept them separate, and
+one asset family of four, AHUB, carried neither separators nor a level segment.
+Asset tags are the BMS join key, so expect to report rather than change them.
+**Every subject carries the building code in front**, QF SSC style -
+`entity:SSC_FCU0001`, so `entity:QNL_FCU_1F_056`. Add the code; leave the tag
+itself alone. For identifiers the sheet has to invent:
 dashes separate words inside a segment, underscores separate segments, no spaces,
 case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
