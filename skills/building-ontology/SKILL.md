@@ -33,6 +33,11 @@ Read every source the user supplied, then run `references/intake.md` and ask for
 what is missing. Eight inputs are needed, and every one of them comes from the
 user:
 
+0. **Whether to keep the identifiers the source already carries, or normalise
+   them to the PARA convention.** Room schedules and asset registers usually
+   arrive with identifiers assigned, and those strings are the join key to SCADA
+   and to every other sheet on the project. Default to keeping them; ask before
+   writing a row, because re-identifying a finished sheet means regenerating it.
 1. Building name
 2. Levels
 3. Rooms and spaces - names, numbers, tags or IDs
@@ -50,6 +55,14 @@ user:
 Most of this arrives as spreadsheets, and several facts are usually packed into
 one identifier. `entity:QNL_B_063_PLANT_ROOM_01` carries building `QNL`, level
 `B` (basement), room ID `063` and room name `PLANT ROOM 01`.
+
+**Ask about anything in the source that reads like a contradiction, before
+writing rows rather than in the handover note.** The recurring one: an asset
+whose level token disagrees with the level of the room it is tagged against. That
+is usually a double-height or open-roof space, where the unit hangs a level above
+what it conditions and `rec:locatedIn` and `rec:feeds` correctly name the same
+room - but it can equally mean the room column is the served space only. One
+question decides which sheet you write. See `references/intake.md`.
 
 **When an identifier's structure is not obvious, ask the user to decode one
 example rather than guessing.** Guessing the segment order silently corrupts
@@ -99,9 +112,13 @@ The QF SSC draft breaks this rule throughout; do not copy it.
 
 ## 3. Naming and labels
 
-Identifiers follow the PARA convention exactly - `references/naming-and-labels.md`.
-Dashes separate words inside a segment, underscores separate segments, no spaces
-anywhere, case is significant.
+**Identifiers the source supplies are kept as the source wrote them**, unless the
+user asked for normalisation - see the first section of
+`references/naming-and-labels.md`. Strip whitespace; change nothing else.
+
+Identifiers this sheet has to invent - site, building, levels, systems, parts,
+points - follow the PARA convention exactly. Dashes separate words inside a
+segment, underscores separate segments, no spaces anywhere, case is significant.
 
 Labels are the one place spaces are allowed. **A label may contain letters,
 digits and spaces, and a decimal point between two digits. Every other
@@ -131,7 +148,9 @@ reference.
 ## 5. Deliver
 
 Ship the `.xlsx` with the 27-column header from `assets/ontology-template.csv`,
-plus a short note listing: every new `para:` class proposed for review, every
+plus a crosswalk file (`source_identifier, ontology_identifier, label`) whenever
+any identifier changed shape, plus a short note listing: whether source
+identifiers were kept or normalised, every new `para:` class proposed for review, every
 property left empty for want of a datasheet, every piece of equipment with no IO
 list and therefore no points, anything deliberately left out because it was
 outside the requested scope, and the validator's remaining warnings with reasons.

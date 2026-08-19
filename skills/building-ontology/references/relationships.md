@@ -76,6 +76,24 @@ must have a feeds row. The validator errors (`E-FEED-1`) when one does not.
 Upstream chains use the same predicate: switchgear feeds transformer feeds main
 breaker feeds distribution board.
 
+### When the unit's level disagrees with the room's level
+
+An asset register that names one room per asset usually means that room is both
+where the unit sits and what it serves - so `rec:locatedIn` and `rec:feeds` take
+the same object. Fine, until the asset's own tag says it is on a different level
+from that room.
+
+**That is not automatically an error, and it is not yours to resolve.** Ask the
+user. Double-height rooms, atria, mezzanines and open-roof spaces put the
+terminal unit on the level above the space it conditions, and both rows are then
+correct as written. QNL had 53 of them: VAVs tagged `2F` feeding `L1` reading
+areas with an open roof between the two.
+
+The alternative reading - the room column is the served space only, and the
+physical location lives in a column nobody sent - produces a different sheet
+entirely. One question decides it. Ask before writing the rows, not in the
+handover note afterwards.
+
 ## `hasPart` or `locatedIn`?
 
 Brick's test: **is the containment fundamental to the container's identity?**
