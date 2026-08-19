@@ -32,12 +32,6 @@ def clean_label(text):
     return " ".join("".join(out).split())
 
 
-def seg(text):
-    """Normalise one identifier segment: words joined by dashes, nothing else survives."""
-    words = [w for w in re.split(r"[^A-Za-z0-9]+", text) if w]
-    return "-".join(words)
-
-
 def row(subject, stype, pred, obj, otype="", props=()):
     """props is a sequence of (side, name, value); side is 's' or 'o'."""
     cells = [subject, stype, pred, obj, otype] + [""] * 22
@@ -79,9 +73,10 @@ for src_entity, number, name in room_src:
         level, num = "B", number
         notes.append(f"room number {number!r} carries no level prefix; placed on level B "
                      f"because its ST-nn siblings are all basement rooms")
-    num_seg, name_seg = seg(num), seg(name)
-    ident = "entity:QNL_%s_%s_%s" % (level, name_seg, num_seg) if num_seg \
-        else "entity:QNL_%s_%s" % (level, name_seg)
+    # Identifiers come from the source sheet verbatim - the client's SCADA, the
+    # assets register and the room schedule all already join on these strings.
+    # The only change is stripping whitespace, which the validator rejects.
+    ident = src_entity
     rooms[src_entity] = {
         "id": ident, "level": level,
         "label": clean_label("%s %s" % (number, name)),
@@ -98,16 +93,13 @@ CLASS = {"AHUB": "brick:Air_Handling_Unit",
          "CAV": "brick:Constant_Air_Volume_Box",
          "FCU": "brick:Fan_Coil_Unit"}
 TERMINAL = {"VAV", "CAV", "FCU"}
-LOOP = "entity:QNL_Chilled-Water-Loop"
+LOOP = "entity:QNL_CHILLED_WATER_LOOP"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
 def equip_id(tag):
-    """AHUB002 -> AHU-B-002 ; VAV_B_S11_024 -> VAV-B-S11-024."""
-    m = re.match(r"^AHUB0*(\d+)$", tag)
-    if m:
-        return "AHU-B-%03d" % int(m.group(1))
-    return seg(tag)
+    """Asset tags come from the register verbatim - they are the BMS join key."""
+    return tag
 
 
 wb = openpyxl.load_workbook(ASSETS_XLSX, read_only=True, data_only=True)
@@ -169,7 +161,7 @@ for d in rooms.values():
 
 # Chilled water loop ---------------------------------------------------------
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL Chilled Water Loop")]))
+               [("s", "rdfs:label_en", "QNL CHILLED WATER LOOP")]))
 
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):

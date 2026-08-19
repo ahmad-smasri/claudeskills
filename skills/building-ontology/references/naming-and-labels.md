@@ -1,5 +1,36 @@
 # Naming and labels
 
+## First: source identifiers, or the convention? Ask.
+
+Source sheets usually arrive with identifiers already assigned - a room schedule
+column literally headed `Room Entity Name`, an asset register whose tags match
+the BMS. **Those strings are a join key.** SCADA, the assets register, the room
+schedule and the client's own drawings all key off them; rename them and every
+one of those joins has to be rebuilt by hand.
+
+So before naming anything, ask:
+
+> Your rooms/assets already carry identifiers - `entity:QNL_B_063_PLANT_ROOM_01`,
+> `VAV_B_S11_024`. Do you want those kept exactly as they are, or normalised to
+> the PARA convention (`QNL_B_PLANT-ROOM-01_063`, `VAV-B-S11-024`)? Keeping them
+> preserves the join back to your source sheets and SCADA; normalising matches
+> the documentation.
+
+**Default to keeping the source identifiers** when the source supplies them.
+That is the house preference: the convention below governs identifiers *this
+sheet has to invent* - site, building, levels, systems, virtual meters, parts and
+points - not identifiers the client already owns.
+
+When keeping source identifiers, the only permitted edits are the ones the
+validator forces: strip leading and trailing whitespace (`E-WS-1`) and remove
+embedded spaces (`E-SPACE-1`). Do not fix typos, expand abbreviations, reorder
+segments, or swap underscores for dashes. Labels are where the cleanup happens -
+the label rule below applies regardless of how the identifier is spelled.
+
+Record the answer in the handover note, and ship a crosswalk file
+(`source_identifier, ontology_identifier, label`) whenever any identifier
+changed shape.
+
 ## Identifiers
 
 | Level | Pattern | Example |
@@ -13,6 +44,9 @@
 | Equipment | `Equipment-Type-Floor-Count` | `AHU-B1-02`, `CHWP-B1-1-PUMP-7-LEFT` |
 | Equipment part | `Equipment_Part` | `AHU-B1-02_SF` |
 | Point | `Equipment_Part_Point` | `AHU-B1-02_SF_VFD_Elec-Demand` |
+
+This table is what to use when **no source identifier exists**. When one does,
+see the section above.
 
 Worked breakdowns:
 

@@ -11,6 +11,15 @@ If the answer names a part - "just the spatial hierarchy", "the AHUs on level 3"
 "electrical only" - build exactly that. If there is no answer, build everything
 the building requires.
 
+## Ask the identifier question next
+
+> Your source sheets already carry identifiers. Keep them exactly as they are, or
+> normalise them to the PARA naming convention?
+
+Default to keeping them - they are the join key to SCADA, the assets register and
+the room schedule. See `naming-and-labels.md`. Ask before writing a single row;
+re-identifying a finished sheet means regenerating all of it.
+
 ## The mandatory inputs
 
 | # | Input | Usually arrives as | Blocks |
@@ -77,6 +86,36 @@ corrupts every calculation downstream of it.
 - Which applications must this model support? Completeness is defined by the
   applications, not in the abstract. Ask this early - it decides how deep the
   point list has to go.
+
+## Confirm anything that looks like a contradiction in the source
+
+Source data throws up combinations that read as errors and are not. **Ask; do not
+resolve them silently, and do not resolve them in the handover note after the
+fact.** A one-line question before writing rows is cheaper than a reviewer
+re-deriving your reasoning afterwards.
+
+The one that comes up on every building:
+
+**Equipment whose level does not match the level of the room it serves.** On QNL,
+53 VAVs tagged `2F` served `L1` rooms. That is not a data error - the rooms are
+double-height with an open roof, so the box hangs at level 2 over a level 1 space
+and `rec:locatedIn` and `rec:feeds` legitimately name the same room. Mezzanines,
+atria, voids and plant platforms all produce it.
+
+> 53 of your VAVs carry a level token that differs from the level of the room in
+> the Room Tag column - e.g. `VAV_2F_S12_001` against `QNL_L1_001_OPEN_READING_AREA`.
+> Are those double-height or open-roof spaces, so the unit is genuinely located in
+> and feeding the same room? Or is the Room Tag the space served only, with the
+> physical location held somewhere else?
+
+Others in the same family, all worth one question rather than one assumption:
+
+- one room column in an asset register, when the model needs both a location and
+  a served space - is it one, the other, or both?
+- an asset whose type prefix disagrees with its class column
+- rooms present in the asset register but absent from the room schedule, or the
+  reverse
+- a room number carrying no level prefix when every sibling has one
 
 ## Decoding packed identifiers
 

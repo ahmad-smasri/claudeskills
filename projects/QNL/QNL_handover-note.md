@@ -1,8 +1,8 @@
 # QNL ontology — handover note
 
 **Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,124 rows on the
-27-column PARA header. Supporting file: `QNL_identifier_crosswalk.csv`, mapping every
-source identifier to the identifier used in the sheet.
+27-column PARA header. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
+source identifier against the identifier used in the sheet and its label.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
 `QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU).
@@ -13,7 +13,7 @@ source identifier to the identifier used in the sheet.
 |---|---|---|
 | Extensions | 1 | `para:Chilled_Water_Loop_Network` |
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:Qatar-Foundation` |
-| Levels | 4 | `QNL_B` (`rec:BasementLevel`), `QNL_L1`, `QNL_L2`, `QNL_T1` (`rec:Level`) |
+| Levels | 4 | `entity:QNL_B` (`rec:BasementLevel`), `_L1`, `_L2`, `_T1` (`rec:Level`) |
 | Rooms | 336 | each `rec:isPartOf` its level |
 | Chilled water loop | 1 | `rec:locatedIn` the building |
 | Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
@@ -29,36 +29,41 @@ see "one direction" below.
 are always stated as `rec:isFedBy` (downstream names its source); equipment-to-space
 links are always stated as `rec:feeds` (terminal unit names the room it serves). No link
 is stated twice. The AHU → VAV/CAV chain therefore appears once, on the VAV/CAV row:
-`entity:VAV-B-S11-024 rec:isFedBy entity:AHU-B-011`. AHUs have no `rec:feeds` row
+`entity:VAV_B_S11_024 rec:isFedBy entity:AHUB011`. AHUs have no `rec:feeds` row
 because they do not serve a room directly — the 297 VAV/CAV rows carry that chain.
 
 **Room Tag used for both `rec:locatedIn` and `rec:feeds`** on terminal units; for AHUs
-it is a plant room, so `rec:locatedIn` only. Note this means 53 VAVs are recorded as
-located in a room on a different level from their own tag (e.g. `VAV-2F-S12-001` is
-located in `QNL_L1_OPEN-READING-AREA_001`). That follows directly from the single Room
-Tag column in the source; if the tag is the space served rather than the physical
-location, the `rec:locatedIn` rows for those 53 need a second source column to correct.
+it is a plant room, so `rec:locatedIn` only. 53 VAVs carry a level token that differs
+from the level of their room — e.g. `entity:VAV_2F_S12_001` against
+`entity:QNL_L1_001_OPEN_READING_AREA`. You confirmed these are open-roof spaces running
+from the served level up to the level the box sits on, so the unit is genuinely located
+in and feeding the same volume. Both rows stand as written.
 
 **Level codes kept as-is** — `B`, `L1`, `L2`, `T1`, with those exact strings as labels.
 No `rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel` (every asset on it
 sits in a plant, riser or storage room); the other three are `rec:Level`.
 
-**Room identifiers normalised to the PARA convention, names unchanged.**
-`QNL_<Level>_<Room-Name>_<Number>`, words inside a segment joined by dashes, segments by
-underscores. The name text itself is untouched — no typo fixes, no expanded
-abbreviations. So `entity:QNL_B_063_PLANT_ROOM_01` becomes
-`entity:QNL_B_PLANT-ROOM-01_063`, and `SPRIMKLERS`, `DISH_WASING`, `ITTIGATION`,
-`CTRCULATION`, `GREEM`, `CARRLES` all survive as written. `&` is dropped, matching how
-the label rule treats it: `TRANSL_SPC_&_EDI_PUBLICATIONS_SPC` →
-`TRANSL-SPC-EDI-PUBLICATIONS-SPC`. Room labels are `<number> <name>` cleaned per the
-label rule — `B 063 PLANT ROOM 01` — which keeps the 30-odd corridors distinguishable in
-the front end.
+**Identifiers taken from the source verbatim.** Every room keeps the entity name your
+room schedule assigned — `entity:QNL_B_063_PLANT_ROOM_01` — and every asset keeps its
+register tag: `entity:AHUB011`, `entity:VAV_B_S11_024`, `entity:FCU_1F_055`. Nothing is
+reordered, respelled or re-cased, `&` survives, and the typos survive with it. The only
+edit anywhere is stripping the trailing space from
+`entity:QNL_L2_018_GROUP_STUDY_ROOM_8`, which the validator rejects outright
+(`E-WS-1`). The sheet therefore joins directly to SCADA, to the assets register and to
+the room schedule with no mapping step.
 
-**Equipment identifiers** follow the same convention: `AHUB002` → `entity:AHU-B-002`,
-`VAV_B_S11_024` → `entity:VAV-B-S11-024`. Level tokens inside asset tags (`B`, `1F`,
-`2F`) are left exactly as the source wrote them, so they do not match the level codes
-`B` / `L1` / `L2` used for the level entities. `QNL_identifier_crosswalk.csv` maps every
-old identifier to the new one, both directions of the join.
+Seven identifiers had to be invented, because no source supplies them:
+`entity:Qatar-Foundation`, `entity:QNL`, the four levels `entity:QNL_B` / `_L1` / `_L2`
+/ `_T1` (matching the level segment inside your room tags), and
+`entity:QNL_CHILLED_WATER_LOOP` for the `CHILLED WATER LOOP` value in the Fed By column.
+
+Labels are the one place cleanup happens, per the PARA label rule. Rooms read
+`<number> <name>` — `B 063 PLANT ROOM 01`, `B 237 CORRIDOR` — which keeps the 30-odd
+corridors distinguishable in the front end. Assets read `AHUB011`, `VAV B S11 024`.
+
+`QNL_identifier_crosswalk.csv` lists every source identifier against the identifier used
+in the sheet and its label. They are identical apart from that one trailing space; the
+file is there so the join is documented rather than assumed.
 
 ## Classes used
 

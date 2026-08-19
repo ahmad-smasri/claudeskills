@@ -83,8 +83,12 @@ a placeholder, not a representative room, not the zone when the room is known.
 Terminal units - VAV, FCU, PIM, CRAC, exhaust fan - must have a feeds row.
 The QF SSC draft breaks this throughout; disregard it there.
 
-**Naming.** Dashes separate words inside a segment, underscores separate
-segments, no spaces, case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
+**Naming.** Identifiers the source already supplies are kept verbatim - they are
+the join key to SCADA and to every other sheet on the project. Strip whitespace,
+change nothing else. Ask the user at intake whether to keep them or normalise to
+the convention; default to keeping. For identifiers the sheet has to invent:
+dashes separate words inside a segment, underscores separate segments, no spaces,
+case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
 **Labels.** Spaces are allowed. Letters, digits and spaces only, plus a decimal
 point between two digits. Every other punctuation mark is removed.
@@ -102,6 +106,12 @@ a line in the handover note.
 **Nameplate properties come from manufacturer datasheets.** Ask for them. If a
 datasheet was not submitted, leave the property out - never a typical value,
 never a placeholder.
+
+**Source contradictions are questions, not judgement calls.** An asset whose
+level token disagrees with the level of the room it is tagged against is the
+recurring one - usually a double-height or open-roof space where the unit hangs a
+level above what it conditions, so `rec:locatedIn` and `rec:feeds` correctly name
+the same room. Ask before writing the rows, not in the handover note afterwards.
 
 **Packed identifiers.** Source sheets pack several facts into one string:
 `entity:QNL_B_063_PLANT_ROOM_01` is building `QNL`, level `B`, room ID `063`,
