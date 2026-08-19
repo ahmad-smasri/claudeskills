@@ -49,9 +49,13 @@ by you as the terrace level. No
 
 **Identifiers taken from the source, regularised to one shape.** Every asset carries the
 building code in front of its register tag, QF SSC style — SSC subjects read
-`entity:SSC_FCU0001`, so QNL reads `entity:QNL_FCU_1F_056`, `entity:QNL_AHUB011`,
-`entity:QNL_VAV_B_S11_024`. **The tag itself is untouched**; only `QNL_` was added, so it
-remains the BMS join key. `ref:ifcName` and `rdfs:label_en` carry the same prefixed form,
+`entity:SSC_FCU0001`, so QNL reads `entity:QNL_FCU_1F_056` and
+`entity:QNL_VAV_B_S11_024`. **Tags are otherwise untouched**; only `QNL_` was added, so
+they remain the BMS join key.
+
+The one exception is the AHUB family, at your direction: `AHUB002` becomes
+`entity:QNL_AHU_B_002`, so all four families now parse as `TYPE_LEVEL_COUNT`. All 15 are
+in the crosswalk, and the 297 VAV and CAV `rec:isFedBy` rows point at the new form. `ref:ifcName` and `rdfs:label_en` carry the same prefixed form,
 as SSC does with `SSC_AHUB0001`.
 
 Rooms keep their name text but are rebuilt to a single shape,
@@ -176,11 +180,12 @@ audit, for the register's owner to decide on. All 449 tags are unique.
 | VAV | `VAV_<level>_S<system>_<count>` | 246 |
 | CAV | `CAV_<level>_S<system>_<count>` | 51 |
 | FCU | `FCU_<level>_<count>` | 137 |
-| AHUB | `AHUB<count>` | 15 |
+| AHUB | `AHUB<count>` → written `AHU_B_<count>` | 15 |
 
-1. **AHUB is the odd family out.** It carries no separators and no level segment, where
-   the other three are all `TYPE_LEVEL_…`. `AHUB` also packs the type and the level into
-   one token — AHU on level B. The consistent form would be `AHU_B_011`.
+1. ~~**AHUB is the odd family out.**~~ **Fixed at your direction** — `AHUB011` is now
+   `QNL_AHU_B_011`, matching the `TYPE_LEVEL_COUNT` shape of the other three. This is the
+   only asset tag that was reshaped. Your BMS still knows these units as `AHUB011`, so
+   the crosswalk is the join for them.
 2. **FCU has no system segment** where VAV and CAV do. That may be correct — FCUs are fed
    by the chilled water loop, not by an AHU, so there is no `S##` to name — but it means
    the four families cannot be parsed by one rule.

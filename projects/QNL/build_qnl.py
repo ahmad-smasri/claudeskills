@@ -114,9 +114,17 @@ def equip_id(tag):
     """Prefix the register tag with the building code, QF SSC style.
 
     SSC subjects read entity:SSC_FCU0001 - building code, then the register tag.
-    QNL follows: FCU_1F_056 becomes entity:QNL_FCU_1F_056. The tag itself is not
-    touched, so it stays the BMS join key; only the building code is added.
+    QNL follows: FCU_1F_056 becomes entity:QNL_FCU_1F_056. Tags are otherwise not
+    touched, so they stay the BMS join key.
+
+    The one exception is the AHUB family, at the user's direction. AHUB002 packs
+    type and level into a single token and carries no separators, where VAV, CAV
+    and FCU are all TYPE_LEVEL_COUNT; it is rewritten AHU_B_002 so all four
+    families parse by one rule.
     """
+    m = re.match(r"^AHUB(\d+)$", tag)
+    if m:
+        tag = "AHU_B_%s" % m.group(1)
     return "QNL_" + tag
 
 
