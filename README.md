@@ -1,16 +1,20 @@
 # claudeskills
 
-Claude Code skills.
+Claude Code skills. **Start with `CLAUDE.md`** - it maps every file here and
+states the rules that are already settled, so a session does not have to re-read
+the source documents.
 
 ## `skills/building-ontology`
 
 Authoring skill for PARA/Brick building ontology spreadsheets - the 9-column
 sheet of RDF triples that the backend converts to `.ttl`.
 
-It carries the naming and modelling rules, the class-resolution ladder (Dar Cairo
-first, then Brick, then a `para:` subclass), an intake checklist for what to
-request when inputs are missing, a lookup tool for finding precedent in the
-reference models, and a validator with 30 rule codes.
+It carries the scope and modelling rules, the class-resolution ladder (Dar Cairo
+first, then Brick, then a `para:` subclass, and ask before rooting orphan
+equipment), an intake checklist covering the eight inputs to request - including
+IO lists for points and manufacturer datasheets for nameplate properties - a
+lookup tool for finding precedent in the reference models, and a validator with
+30 rule codes.
 
 ```
 python3 skills/building-ontology/scripts/lookup_reference.py --template brick:Fan_Coil_Unit

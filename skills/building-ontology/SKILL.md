@@ -12,10 +12,26 @@ Turtle; the front end reads the labels; the 3D viewer reads the IFC references.
 Work in this order. Do not skip the intake step - most bad sheets come from
 guessing at inputs rather than from getting the modelling wrong.
 
+## Scope: build what was asked for, and no more
+
+**If the user named what to create, create exactly that.** A request for the
+spatial hierarchy is not an invitation to model the chiller plant; a request for
+AHUs does not extend to the VAVs they feed. Extra rows are not a bonus - they are
+unreviewed content in a deliverable someone has to check.
+
+**If the user did not narrow the scope, build everything the building requires**:
+the full spatial hierarchy, every asset in the register, its parts, its points,
+its references and its extensions.
+
+When the requested scope leaves an obvious gap - AHUs modelled but nothing to
+receive their air - finish what was asked, then say what is missing and let the
+user decide.
+
 ## 0. Intake, before writing any rows
 
 Read every source the user supplied, then run `references/intake.md` and ask for
-what is missing. Six things are always needed:
+what is missing. Eight inputs are needed, and every one of them comes from the
+user:
 
 1. Building name
 2. Levels
@@ -23,6 +39,13 @@ what is missing. Six things are always needed:
 4. Equipment
 5. Location of each piece of equipment
 6. What each piece of equipment feeds, and what feeds it
+7. **IO lists** - equipment carries data points, and the IO list is where the
+   point names, signal types, units and telemetry IDs come from. Ask for it
+   before modelling any points. No IO list means no points for that equipment.
+8. **Manufacturer standards and datasheets** - the source of nameplate
+   properties: rated power, voltage, phase count, capacity, flow rates, head,
+   model number, manufacturer. **Leave the property out when the datasheet was
+   not submitted.** An empty cell is recoverable; a guessed rating is not.
 
 Most of this arrives as spreadsheets, and several facts are usually packed into
 one identifier. `entity:QNL_B_063_PLANT_ROOM_01` carries building `QNL`, level
@@ -45,8 +68,10 @@ For every piece of equipment, part and point, in this order - see
 3. **Not in Brick?** Define a `para:` subclass of the closest Brick parent.
 4. **No sensible parent either?** Define a new `owl:Class` as
    `rdfs:subClassOf brick:Point`. Dar Cairo has precedent for this shape too.
-   If the orphan is equipment rather than a point, stop and ask - `brick:Point`
-   is the wrong root for it.
+
+**Step 4 applies to points only.** If the orphan is a piece of equipment, stop
+and ask the user which root to put it under. Do not guess, and do not file
+equipment under `brick:Point` to make the row validate.
 
 Never invent a `brick:` or `rec:` term. Anything the team coins is `para:`.
 
@@ -59,10 +84,10 @@ review is tractable.
 |---|---|---|
 | Spatial | Site, Building, Levels, Parent Zones, HVAC Zones, Rooms | `references/relationships.md` |
 | Systems | HVAC, Electrical, Water - the systems equipment belongs to | |
-| Equipment | Type, `rec:locatedIn`, `brick:isPartOf` its system, nameplate properties | |
+| Equipment | Type, `rec:locatedIn`, `brick:isPartOf` its system, nameplate properties from the manufacturer datasheet | |
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
-| Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit` | |
+| Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, from the IO list | |
 | References | `ref:hasExternalReference` for timeseries IDs and IFC names | |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
@@ -107,8 +132,9 @@ reference.
 
 Ship the `.xlsx` with the 27-column header from `assets/ontology-template.csv`,
 plus a short note listing: every new `para:` class proposed for review, every
-input that was assumed rather than supplied, and the validator's remaining
-warnings with reasons.
+property left empty for want of a datasheet, every piece of equipment with no IO
+list and therefore no points, anything deliberately left out because it was
+outside the requested scope, and the validator's remaining warnings with reasons.
 
 New `para:` classes are reviewed by the PARA team before they enter the shared
 extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.

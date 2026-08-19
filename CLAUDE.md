@@ -1,0 +1,144 @@
+# CLAUDE.md
+
+Read this file first. It maps everything in the repo and states the rules that
+are already settled, so a session does not have to re-read the source documents
+to start work.
+
+## What this repo is for
+
+Building ontologies. The deliverable for any project is **one spreadsheet of RDF
+triples** - the PARA/Brick CSV or Excel that the backend team converts to `.ttl`,
+the front end reads labels from, and the 3D viewer reads IFC references from.
+Every row is one triple.
+
+The work is done through `skills/building-ontology`. Invoke that skill for any
+ontology task; this file is the index, the skill is the procedure.
+
+## File map
+
+### The skill - `skills/building-ontology/`
+
+| Path | What it holds | Open it when |
+|---|---|---|
+| `SKILL.md` | the workflow, scope rule, class ladder, feeds rule, label rule | always, first |
+| `references/intake.md` | the 8 mandatory inputs, how to ask for them, decoding packed identifiers | starting a building, or something is missing |
+| `references/csv-contract.md` | the 9 columns, the 27-column layout, six row shapes, property names, units | unsure which column a value belongs in |
+| `references/naming-and-labels.md` | identifier patterns per level, character rules, the label rule, IFC references | naming anything |
+| `references/relationships.md` | predicate families, what Dar Cairo actually uses and how often, the spatial hierarchy, feeds, hasPart vs locatedIn | choosing a predicate |
+| `references/class-resolution.md` | the four-step ladder, extension rules, where the vocabularies come from | a class is missing or ambiguous |
+| `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
+| `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
+| `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
+| `references/data/para-classes.csv` | 228 `para:` classes and their parents | generated |
+| `references/data/para-properties.csv` | 13 `para:` entity properties | generated |
+| `references/data/units.csv` | 41 units seen with `brick:hasUnit`, with usage counts | generated |
+| `assets/ontology-template.csv` | the empty 27-column header | starting a sheet |
+| `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
+| `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
+| `scripts/validate_ontology.py` | the validator, 30 rule codes | before every handover |
+| `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
+| `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
+| `tests/run_tests.sh` | checks the validator still catches what it should | after touching the validator |
+
+### Reference models - `reference-models/`
+
+| File | What it is |
+|---|---|
+| `DarCairo_V93.csv` | **the primary reference for any ontology we build.** 26,173 rows, 27 columns. Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
+| `QF_SSC_Ontology_draft0.4.xlsx` | a recent completed sample, 4,994 rows. Useful for VAV and CRAC point sets. **Has 1,040 validator errors** - its feeds rows are placeholders and must not be copied. |
+| `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
+
+### Source documents - repo root
+
+| File | What it is |
+|---|---|
+| `PARA Ontology Workflow Documentation 11.pdf` | the in-house spec, Rev 0.0, June 2025, 19 pages. Prepared by Sara A. Medhat, reviewed by Majdi Saadeddine, approved by Faysal Shair. Background, the 9-column CSV structure, BIM naming, Ch.1 site/building/zones/equipment, Ch.2 extending Brick, Ch.3 properties and data points. Rev 0.0 contradicts itself in several places - see `known-issues.md` before trusting a passage. |
+| `Ontology Webinar.pdf` | 2 pages of notes from the Brick webinar: OWL to SHACL, semantic sufficiency, BuildingMOTIF templates. Context, no rules. |
+| `BrickSchema.md` | 3,117 lines of brickschema.org docs: concepts, the four relationship families, units, aliases, inference, external references, tooling |
+| `ontologyprimer.md` | 657-line primer distilled from the three above. `docs/ontology-primer.md` is an identical copy. |
+
+The skill's reference files supersede all four documents where they disagree -
+they carry the resolutions.
+
+## The settled rules
+
+**Scope.** If the user named what to create, create exactly that and nothing
+more. If they did not narrow it, build everything the building requires. Say
+what was left out rather than filling it in.
+
+**Class resolution ladder**, for every equipment, part and point:
+
+1. Is it in Dar Cairo? `lookup_reference.py --class "..."` - reuse that exact class.
+2. Is it in Brick? `lookup_reference.py --term ...` or ontology.brickschema.org -
+   use the preferred class, never an alias.
+3. Not in Brick? Define a `para:` subclass of the closest Brick parent.
+4. No sensible parent either? For a **point**, `owl:Class rdfs:subClassOf brick:Point`.
+   For **equipment, ask the user which root to use** - never guess, never file
+   equipment under `brick:Point`.
+
+Never invent a `brick:` or `rec:` term. Everything the team coins is `para:`.
+
+**Feeds.** When equipment feeds a room, the `rec:feeds` object is that room. Not
+a placeholder, not a representative room, not the zone when the room is known.
+Terminal units - VAV, FCU, PIM, CRAC, exhaust fan - must have a feeds row.
+The QF SSC draft breaks this throughout; disregard it there.
+
+**Naming.** Dashes separate words inside a segment, underscores separate
+segments, no spaces, case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
+
+**Labels.** Spaces are allowed. Letters, digits and spaces only, plus a decimal
+point between two digits. Every other punctuation mark is removed.
+`1.001_CORRIDOR` becomes `1.001 CORRIDOR`.
+
+**Spatial vs system.** `rec:isPartOf` for spatial containment,
+`brick:isPartOf` for system membership. Both appear in Dar Cairo and they mean
+different things. Spatial classes are `rec:`, never the deprecated `brick:`
+location classes.
+
+**Points come from IO lists.** Ask the user for the IO list; do not infer a point
+list from the equipment type. No IO list means no points for that equipment, and
+a line in the handover note.
+
+**Nameplate properties come from manufacturer datasheets.** Ask for them. If a
+datasheet was not submitted, leave the property out - never a typical value,
+never a placeholder.
+
+**Packed identifiers.** Source sheets pack several facts into one string:
+`entity:QNL_B_063_PLANT_ROOM_01` is building `QNL`, level `B`, room ID `063`,
+room name `PLANT ROOM 01`. Ask the user to confirm the segment order on one
+example rather than inferring it, and ask them to expand abbreviations at the
+same time - those become labels users read.
+
+## Commands worth remembering
+
+```
+# what does a complete FCU look like in Dar Cairo - parts, points, properties
+python3 skills/building-ontology/scripts/lookup_reference.py --template brick:Fan_Coil_Unit
+
+# does this term exist in Brick 1.4, and is it preferred
+python3 skills/building-ontology/scripts/lookup_reference.py --term Heat_Wheel
+
+# validate before handover
+python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx
+
+# after touching the validator
+skills/building-ontology/tests/run_tests.sh
+```
+
+`.xlsx` input needs `openpyxl`. `.csv` input needs nothing beyond the standard
+library.
+
+## Open questions for the PARA team
+
+Recorded with the resolution currently followed in
+`references/known-issues.md`. The ones most likely to change rows:
+
+1. The PARA doc puts Room under HVAC Zone; Dar Cairo puts Room under a per-floor
+   parent Zone and HVAC Zone under the Level. Dar Cairo is followed.
+2. Chapter Two's PIM example disagrees with its own prose on prefix, name and
+   parent class. The CSV form is followed, and Dar Cairo agrees.
+3. `rdfs:label_en` is not standard RDFS. It is used anyway, as both reference
+   models and the converter do.
+4. Brick version target is 1.4; the term list is generated from the 1.4 ontology.
+5. The shared `para:` extension `.ttl` has not been supplied - new classes are
+   listed in the handover note for review instead.

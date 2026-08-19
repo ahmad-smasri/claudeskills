@@ -77,9 +77,16 @@ When the thing has no superclass anywhere in Brick, define a new `owl:Class` as
 `rdfs:subClassOf brick:Point`. Dar Cairo has precedent for this shape, so check
 there for a match before adding one.
 
-This applies to **points**. If the orphan is a piece of equipment rather than a
-point, `brick:Point` is the wrong root - stop and ask which root to use rather
-than filing equipment under Point.
+**This applies to points only.** If the orphan is a piece of equipment, stop and
+ask the user which root to put it under:
+
+> `<name>` has no equivalent in Brick 1.4 and no obvious parent class. It is
+> equipment, not a point, so `brick:Point` is the wrong root. Which should it sit
+> under - `brick:Equipment`, `brick:HVAC_Equipment`, `brick:Electrical_Equipment`,
+> or something else?
+
+Do not pick a root to make the row validate. A piece of equipment filed under
+`brick:Point` breaks every application that queries equipment.
 
 ## Where the classes came from
 
