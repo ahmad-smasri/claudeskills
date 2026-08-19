@@ -97,6 +97,15 @@ instances" where the real figure is 100% of the equipment and 0% of the
 mistyped parts. Read the worked example at the bottom of the template output,
 not just the percentages.
 
+### Not a conflict: where timeseries references live
+
+Worth stating because it is easy to get wrong. `ref:TimeseriesReference` belongs
+to a **point**, never to equipment - all 1,767 in QF SSC have a `brick:hasPoint`
+object as their subject and none has a piece of equipment. `ref:IFCReference` is
+the opposite: it goes on the physical thing, equipment or room. Where no IO list
+was supplied there are no points and therefore no timeseries references; do not
+add equipment-level stubs to fill the gap.
+
 ### QF SSC draft 0.4 (`QF_SSC_Ontology_draft0.4.xlsx`, 4,994 rows)
 
 A recent sample, useful for point-set patterns on VAVs and CRACs. It has 1,040

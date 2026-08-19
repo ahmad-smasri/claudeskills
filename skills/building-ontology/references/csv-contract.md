@@ -101,19 +101,32 @@ entity:UPS-02 | brick:Energy_Storage | ref:hasExternalReference | <blanknode> |
 ref:IFCReference | | | ref:ifcName | UPS-02
 ```
 
-An entity can carry more than one external reference - one `ref:IFCReference` row
-and one `ref:TimeseriesReference` row are independent rows on the same subject.
-Where the telemetry IDs are not yet known but the SCADA entity is, the
-timeseries row is still worth writing with `ref:hasTimeseriesId` left empty:
+An entity can carry more than one external reference - they are independent rows
+on the same subject.
+
+### Timeseries references go on points, never on equipment
+
+**A `ref:TimeseriesReference` attaches to a data point.** A point is a
+measurement with a key in the telemetry database; a piece of equipment is not,
+so it has no timeseries to reference. Both reference models are unanimous: all
+1,767 timeseries-reference rows in QF SSC have a `brick:hasPoint` object as their
+subject, and not one has a piece of equipment.
 
 ```
-entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference |
-<blanknode> | ref:TimeseriesReference |
-| | ref:hasTimeseriesId | | | | para:hasEntityId | AHUB011
+entity:SSC_FCU0001_Room_Temperature | brick:Room_Air_Temperature_Sensor |
+ref:hasExternalReference | <blanknode> | ref:TimeseriesReference |
+| | ref:hasTimeseriesId | ROOMTEMP_DEGC | | | para:hasEntityId | SSC_FCU0001
 ```
 
-`para:hasEntityId` is the entity the telemetry database groups the keys under -
-in both reference models, the parent equipment's own tag.
+`ref:hasTimeseriesId` is the point's key in the telemetry database and comes from
+the IO list. `para:hasEntityId` is the entity those keys are grouped under - the
+**parent equipment's** tag, which is how the point row carries its owner.
+
+So no IO list means no points, and no points means no timeseries references at
+all. Do not put a stub `ref:TimeseriesReference` on the equipment to stand in for
+the missing points: it asserts a telemetry key the equipment does not have, and
+neither reference model has a single instance of it. Record the gap in the
+handover note instead.
 
 **E - defining a new class.** The only shape where `subject` is not an `entity:`.
 

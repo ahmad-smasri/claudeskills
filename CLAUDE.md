@@ -100,7 +100,9 @@ mark removed, so `1.001_CORRIDOR` becomes `1.001 CORRIDOR`. Pass the matching
 **External references.** One row per reference, and an entity can carry several.
 IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
 (the entity name, derivable) - the QF SSC shape. Timeseries:
-`ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId`.
+`ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
+**on the point, never on the equipment.** No IO list means no points, so no
+timeseries references at all; never stub one onto equipment to fill the gap.
 
 **Spatial vs system.** `rec:isPartOf` for spatial containment,
 `brick:isPartOf` for system membership. Both appear in Dar Cairo and they mean

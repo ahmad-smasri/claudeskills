@@ -103,7 +103,7 @@ review is tractable.
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
 | Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, from the IO list | |
-| References | `ref:hasExternalReference`, one row per reference: `ref:IFCReference` carrying `para:IFC_ID` and `ref:ifcName`, `ref:TimeseriesReference` carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
+| References | `ref:hasExternalReference`, one row per reference. `ref:IFCReference` on the physical thing, carrying `para:IFC_ID` and `ref:ifcName`. `ref:TimeseriesReference` **on the point, never on the equipment**, carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
 **The feeds rule: when equipment feeds a room, the `rec:feeds` object must be

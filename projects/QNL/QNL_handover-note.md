@@ -1,6 +1,6 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,573 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,124 rows on the
 27-column PARA header. Validate with
 `validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
 source identifier against the identifier used in the sheet and its label.
@@ -14,15 +14,15 @@ source identifier against the identifier used in the sheet and its label.
 |---|---|---|
 | Extensions | 1 | `para:Chilled_Water_Loop_Network` |
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:Qatar-Foundation` |
-| Levels | 4 | `entity:QNL_B` (`rec:BasementLevel`), `_L1`, `_L2`, `_T1` (`rec:Level`) |
+| Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
 | Chilled water loop | 1 | `rec:locatedIn` the building |
-| Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
+| Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
-Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source, two
-`ref:hasExternalReference` rows (one `ref:IFCReference`, one `ref:TimeseriesReference`),
-and for the terminal units (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no
-`rec:feeds` row — see "one direction" below.
+Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source,
+`ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal units
+(VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row — see "one
+direction" below.
 
 ## Decisions taken, per your answers
 
@@ -40,9 +40,11 @@ from the level of their room — e.g. `entity:VAV_2F_S12_001` against
 from the served level up to the level the box sits on, so the unit is genuinely located
 in and feeding the same volume. Both rows stand as written.
 
-**Level codes kept as-is** — `B`, `L1`, `L2`, `T1`, with those exact strings as labels.
-No `rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel` (every asset on it
-sits in a plant, riser or storage room); the other three are `rec:Level`.
+**Level identifiers keep the source codes; labels spell them out.** The identifiers stay
+`entity:QNL_B` / `_L1` / `_L2` / `_T1`, matching the level segment your room tags carry,
+but `rdfs:label_en` reads "Basement", "Level 1", "Level 2", "Terrace 1". No
+`rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel`; the other three are
+`rec:Level`.
 
 **Identifiers taken from the source verbatim.** Every room keeps the entity name your
 room schedule assigned — `entity:QNL_B_063_PLANT_ROOM_01` — and every asset keeps its
@@ -87,33 +89,33 @@ first time this house has used them.
 
 ## External references — the SSC shape
 
-Each asset carries two `ref:hasExternalReference` rows, matching QF SSC:
+Each asset carries one `ref:hasExternalReference` row, matching QF SSC's IFC shape:
 
 ```
 entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference | <blanknode> |
-ref:IFCReference        | | | para:IFC_ID          |         | | | ref:ifcName      | AHUB011
-entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference | <blanknode> |
-ref:TimeseriesReference | | | ref:hasTimeseriesId  |         | | | para:hasEntityId | AHUB011
+ref:IFCReference | | | para:IFC_ID | <empty> | | | ref:ifcName | AHUB011
 ```
 
 `para:IFC_ID` is the slot for the real BIM GUID and is empty, as you asked.
 `ref:ifcName` is filled with the entity name, which is derivable and is what both
-reference models put there. `ref:hasTimeseriesId` is empty because point-level telemetry
-IDs come from the IO list, which has not been supplied; `para:hasEntityId` is filled with
-the asset's own tag, which is what both reference models use.
+reference models put there.
+
+**No `ref:TimeseriesReference` rows.** A timeseries reference belongs to a point, not to
+the equipment — every one of SSC's 1,767 sits on a `brick:hasPoint` object and none on a
+piece of equipment. QNL has no points because no IO list was supplied, so it has no
+timeseries references. They arrive with the IO list, on the point rows.
 
 ## Validator result
 
 ```
 python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-2573 rows, 792 typed entities, 1 para: definitions
-898 errors, 0 warnings
+2124 rows, 792 typed entities, 1 para: definitions
+449 errors, 0 warnings
 ```
 
-**All 898 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
-two empty ID slots on each of the 449 assets, `para:IFC_ID` and `ref:hasTimeseriesId`.
-Paste the IFC GUIDs and the telemetry IDs into `object_prop_val` on those rows and the
-sheet validates clean. Nothing else is outstanding: zero warnings, so every entity is
+**All 449 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
+empty `para:IFC_ID` on each of the 449 assets. Paste the IFC GUIDs into
+`object_prop_val` on those rows and the sheet validates clean. Nothing else is outstanding: zero warnings, so every entity is
 labelled, every terminal unit has a feeds row and a location, and every spatial entity
 connects up to `rec:Building`.
 
@@ -122,11 +124,10 @@ rule objecting to the SSC label style, and it is expected.
 
 ## Left out, and why
 
-- **Points.** No IO list was supplied, so no equipment carries a `brick:hasPoint` row.
-  Note that in both reference models the timeseries reference belongs on the *point*,
-  not on the equipment — the per-asset `ref:TimeseriesReference` rows here are stubs
-  registering each asset's SCADA entity, ready for the point rows to hang off once the
-  IO list lands.
+- **Points, and with them every timeseries reference.** No IO list was supplied, so no
+  equipment carries a `brick:hasPoint` row and nothing carries a
+  `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
+  Send the IO list and both layers land together.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **System membership.** No `brick:isPartOf entity:HVAC` rows — you asked for site,
@@ -146,7 +147,9 @@ rule objecting to the SSC label style, and it is expected.
    modelled on level `B` alongside `ST-01`, `ST-02`, `ST-03`, `ST-05`. Confirm.
 2. **`entity:QNL_L2_018_GROUP_STUDY_ROOM_8` has a trailing space** in the room list.
    Matched on the stripped value; the space is gone from the ontology identifier.
-3. **`T1` has 7 rooms and no equipment** — 2 open terraces and 5 IDF rooms. Confirm
+3. **`T1` is labelled "Terrace 1" — confirm.** Its 7 rooms are 2 open terraces and 5 IDF
+   rooms, which is what the expansion is inferred from; you have not confirmed it. `B`,
+   `L1` and `L2` are unambiguous. **`T1` has 7 rooms and no equipment** — 2 open terraces and 5 IDF rooms. Confirm
    nothing is missing rather than the level being genuinely unserved.
 4. **Typos preserved as instructed** — `SPRIMKLERS_PUMPS_&_ZONES_VALVES`, `DISH_WASING`,
    `ITTIGATION_CONTROL_ROOM`, `CTRCULATION_OFFICE`, `GREEM_ROOM`, `STUDENT_CARRLES`,

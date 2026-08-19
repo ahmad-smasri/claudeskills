@@ -53,6 +53,10 @@ def row(subject, stype, pred, obj, otype="", props=()):
 LEVEL_RE = re.compile(r"^(B|L1|L2|T1)[_-]?(.*)$")
 LEVEL_TYPE = {"B": "rec:BasementLevel", "L1": "rec:Level",
               "L2": "rec:Level", "T1": "rec:Level"}
+# Identifiers keep the source level codes - they are the segment the room tags
+# carry. Labels spell the level out, because that is what the front end shows.
+LEVEL_LABEL = {"B": "Basement", "L1": "Level 1", "L2": "Level 2",
+               "T1": "Terrace 1"}
 
 wb = openpyxl.load_workbook(ROOMS_XLSX, read_only=True, data_only=True)
 room_src = []
@@ -150,7 +154,8 @@ out.append(row("entity:QNL", "rec:Building", "rec:isPartOf",
 levels_used = sorted({d["level"] for d in rooms.values()})
 for lvl in levels_used:
     out.append(row("entity:QNL_%s" % lvl, LEVEL_TYPE[lvl], "rec:isPartOf",
-                   "entity:QNL", "rec:Building", [("s", "rdfs:label_en", lvl)]))
+                   "entity:QNL", "rec:Building",
+                   [("s", "rdfs:label_en", LEVEL_LABEL[lvl])]))
 
 for d in rooms.values():
     out.append(row(d["id"], "rec:Room", "rec:isPartOf",
@@ -176,12 +181,10 @@ for kind in ("AHUB", "VAV", "CAV", "FCU"):
         out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
                        "<blanknode>", "ref:IFCReference",
                        [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
-        # Telemetry reference. ref:hasTimeseriesId is per point and arrives with
-        # the IO list, so it is empty; para:hasEntityId is the asset's SCADA
-        # entity, which both reference models populate with the equipment tag.
-        out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
-                       "<blanknode>", "ref:TimeseriesReference",
-                       [("o", "ref:hasTimeseriesId", ""), ("o", "para:hasEntityId", bare)]))
+        # No timeseries reference row here. A ref:TimeseriesReference belongs to a
+        # POINT, never to the equipment: all 1,767 of them in QF SSC hang off a
+        # brick:hasPoint object and none off a piece of equipment. QNL has no
+        # points because no IO list was supplied, so it has no timeseries refs.
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
