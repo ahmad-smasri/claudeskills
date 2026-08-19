@@ -23,7 +23,8 @@ re-identifying a finished sheet means regenerating all of it.
 ## And the label question, in the same breath
 
 > Labels: strip the punctuation per the PARA label rule (`1.001 CORRIDOR`), or
-> carry the source text verbatim the way QF SSC does (`1.001_CORRIDOR`)?
+> carry the source text verbatim the way QF SSC does (`1.001_CORRIDOR` - a dot
+> between level and room number, an underscore before the name)?
 
 Neither reference model settles it - SSC is verbatim, Dar Cairo is a third style,
 and the label rule is newer than both. Ask, then run the validator with the
@@ -116,6 +117,18 @@ atria, voids and plant platforms all produce it.
 > Are those double-height or open-roof spaces, so the unit is genuinely located in
 > and feeding the same room? Or is the Room Tag the space served only, with the
 > physical location held somewhere else?
+
+**Identifiers that do not all follow the same shape** is the other recurring one,
+and it is why "keep the source verbatim" is not the end of the identifier
+question. Read the whole column, work out the majority shape, list the
+departures, and ask. On QNL, 51 of 336 room identifiers ran the level into the
+room number (`QNL_B036_REST_...`) where the other 285 kept them as separate
+segments (`QNL_B_034_MEETING_ROOM`).
+
+> 51 of your 336 room identifiers use a different shape from the other 285 -
+> `QNL_B036_REST_REST_ROOM_WOMEN`, `QNL_B-ST-01_ST-01`, `QNL_L1023_1_CORRIDOR`.
+> Regularise them to the majority shape, or keep them exactly as the schedule
+> has them?
 
 Others in the same family, all worth one question rather than one assumption:
 

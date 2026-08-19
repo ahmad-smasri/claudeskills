@@ -75,13 +75,24 @@ for src_entity, number, name in room_src:
         level, num = "B", number
         notes.append(f"room number {number!r} carries no level prefix; placed on level B "
                      f"because its ST-nn siblings are all basement rooms")
-    # Identifiers come from the source sheet verbatim - the client's SCADA, the
-    # assets register and the room schedule all already join on these strings.
-    # The only change is stripping whitespace, which the validator rejects.
-    ident = src_entity
+    # The source room schedule is inconsistent about how the level is joined to
+    # the room number: most rows write B_034, a minority write B036_REST,
+    # B-ST-01, L1023_1. The user asked for one shape throughout, so both the
+    # identifier and the label are rebuilt from the same (level, num, name)
+    # triple and cannot drift apart:
+    #
+    #   identifier  entity:QNL_<level>_<num>_<name>     QNL_B_063_PLANT_ROOM_01
+    #   label             <level>.<num>_<name>          B.063_PLANT_ROOM_01
+    #
+    # The dot between level and room number is the QF SSC label shape - SSC
+    # writes 1.001_CORRIDOR for room 001 on level 1. Nothing inside <num> or
+    # <name> is touched; only the join between the segments is regularised.
+    if not num:
+        sys.exit("room %r has a level but no room number" % number)
+    ident = "entity:QNL_%s_%s_%s" % (level, num, name)
     rooms[src_entity] = {
         "id": ident, "level": level,
-        "label": label("%s_%s" % (number, name)),   # SSC shape: 1.001_CORRIDOR
+        "label": label("%s.%s_%s" % (level, num, name)),
         "number": number, "name": name,
     }
 

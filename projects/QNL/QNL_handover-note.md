@@ -42,35 +42,56 @@ in and feeding the same volume. Both rows stand as written.
 
 **Level identifiers keep the source codes; labels spell them out.** The identifiers stay
 `entity:QNL_B` / `_L1` / `_L2` / `_T1`, matching the level segment your room tags carry,
-but `rdfs:label_en` reads "Basement", "Level 1", "Level 2", "Terrace 1". No
+but `rdfs:label_en` reads "Basement", "Level 1", "Level 2", "Terrace 1" — `T1` confirmed
+by you as the terrace level. No
 `rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel`; the other three are
 `rec:Level`.
 
-**Identifiers taken from the source verbatim.** Every room keeps the entity name your
-room schedule assigned — `entity:QNL_B_063_PLANT_ROOM_01` — and every asset keeps its
-register tag: `entity:AHUB011`, `entity:VAV_B_S11_024`, `entity:FCU_1F_055`. Nothing is
-reordered, respelled or re-cased, `&` survives, and the typos survive with it. The only
-edit anywhere is stripping the trailing space from
-`entity:QNL_L2_018_GROUP_STUDY_ROOM_8`, which the validator rejects outright
-(`E-WS-1`). The sheet therefore joins directly to SCADA, to the assets register and to
-the room schedule with no mapping step.
+**Identifiers taken from the source, regularised to one shape.** Every asset keeps its
+register tag untouched: `entity:AHUB011`, `entity:VAV_B_S11_024`, `entity:FCU_1F_055`.
+
+Rooms keep their name text but are rebuilt to a single shape,
+`entity:QNL_<level>_<number>_<name>`, because the schedule was not consistent about it.
+285 of the 336 rooms already wrote the level and the room number as separate segments
+(`QNL_B_034_MEETING_ROOM`); **51 did not** and have been brought into line:
+
+| Source | In the sheet |
+|---|---|
+| `entity:QNL_B036_REST_REST_ROOM_WOMEN` | `entity:QNL_B_036_REST_REST_ROOM_WOMEN` |
+| `entity:QNL_B-ST-01_ST-01` | `entity:QNL_B_ST-01_ST-01` |
+| `entity:QNL_L1023_1_CORRIDOR` | `entity:QNL_L1_023_1_CORRIDOR` |
+| `entity:QNL_L2-L-1_1_L-1` | `entity:QNL_L2_L-1_1_L-1` |
+| `entity:QNL_ST-04_ST-04` | `entity:QNL_B_ST-04_ST-04` |
+
+Only the join between segments changed — no name text, no room number, no disambiguating
+tag (`REST`, `COR`, `BOH`) was altered, and no typo was fixed. The other edit anywhere is
+stripping the trailing space from `entity:QNL_L2_018_GROUP_STUDY_ROOM_8`, which the
+validator rejects outright (`E-WS-1`).
+
+**Only one of the 51 is referenced by your assets sheet** —
+`entity:QNL_L1023_2_CORRIDOR`, now `entity:QNL_L1_023_2_CORRIDOR` — so the join to the
+register survives almost untouched. All 51 are listed in
+`QNL_identifier_crosswalk.csv`, which is where the source→ontology mapping lives.
 
 Seven identifiers had to be invented, because no source supplies them:
 `entity:Qatar-Foundation`, `entity:QNL`, the four levels `entity:QNL_B` / `_L1` / `_L2`
 / `_T1` (matching the level segment inside your room tags), and
 `entity:QNL_CHILLED_WATER_LOOP` for the `CHILLED WATER LOOP` value in the Fed By column.
 
-**Labels follow QF SSC — the source text, verbatim.** SSC labels rooms
-`1.001_CORRIDOR` and equipment `SSC_FCU0001`; QNL now does the same. Rooms read
-`<number>_<name>` — `B_063_PLANT_ROOM_01`, `B_237_CORRIDOR` — and assets read their raw
-register tag, `AHUB011`, `VAV_B_S11_024`. No punctuation is stripped and no typo is
-fixed. This is not the PARA label rule, which would give `B 063 PLANT ROOM 01`; the
-validator's `E-LBL-1` is therefore switched off with `--label-style verbatim`, and every
-other rule stays in force.
+**Labels follow QF SSC, including its dot.** SSC writes `1.001_CORRIDOR` — a dot between
+the level and the room number, an underscore before the name. QNL rooms now read
+`<level>.<number>_<name>`: `B.063_PLANT_ROOM_01`, `B.237_CORRIDOR`,
+`L1.023_1_CORRIDOR`, `B.ST-01_ST-01`. Assets read their raw register tag, `AHUB011`,
+`VAV_B_S11_024`, exactly as SSC does with `SSC_FCU0001`.
+
+Label and identifier are built from the same parsed `(level, number, name)` triple, so
+they cannot drift apart. No punctuation is stripped and no typo is fixed. This is not the
+PARA label rule, which would give `B 063 PLANT ROOM 01`; `E-LBL-1` is therefore switched
+off with `--label-style verbatim`, and every other rule stays in force.
 
 `QNL_identifier_crosswalk.csv` lists every source identifier against the identifier used
-in the sheet and its label. They are identical apart from that one trailing space; the
-file is there so the join is documented rather than assumed.
+in the sheet and its label — 336 rooms and 449 assets. 51 room identifiers differ; every
+asset identifier is unchanged.
 
 ## Classes used
 
@@ -147,9 +168,7 @@ rule objecting to the SSC label style, and it is expected.
    modelled on level `B` alongside `ST-01`, `ST-02`, `ST-03`, `ST-05`. Confirm.
 2. **`entity:QNL_L2_018_GROUP_STUDY_ROOM_8` has a trailing space** in the room list.
    Matched on the stripped value; the space is gone from the ontology identifier.
-3. **`T1` is labelled "Terrace 1" — confirm.** Its 7 rooms are 2 open terraces and 5 IDF
-   rooms, which is what the expansion is inferred from; you have not confirmed it. `B`,
-   `L1` and `L2` are unambiguous. **`T1` has 7 rooms and no equipment** — 2 open terraces and 5 IDF rooms. Confirm
+3. **`T1` has 7 rooms and no equipment** — 2 open terraces and 5 IDF rooms. Confirm
    nothing is missing rather than the level being genuinely unserved.
 4. **Typos preserved as instructed** — `SPRIMKLERS_PUMPS_&_ZONES_VALVES`, `DISH_WASING`,
    `ITTIGATION_CONTROL_ROOM`, `CTRCULATION_OFFICE`, `GREEM_ROOM`, `STUDENT_CARRLES`,

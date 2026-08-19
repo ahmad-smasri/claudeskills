@@ -27,6 +27,31 @@ embedded spaces (`E-SPACE-1`). Do not fix typos, expand abbreviations, reorder
 segments, or swap underscores for dashes. Labels are where the cleanup happens -
 the label rule below applies regardless of how the identifier is spelled.
 
+### Audit the source identifiers for consistency, and report what you find
+
+**"Keep them verbatim" assumes they are internally consistent. Check that they
+are, before writing rows.** Read the whole column, not the first ten values, and
+work out the shape the majority follow; then list every row that departs from it.
+A schedule maintained by hand over years drifts, and a sheet that inherits the
+drift is harder to query than the source was.
+
+QNL: 285 of 336 rooms wrote the level and the room number as separate segments,
+`QNL_B_034_MEETING_ROOM`. The other 51 ran them together or used a different
+separator - `QNL_B036_REST_...`, `QNL_B-ST-01_...`, `QNL_L1023_1_...`. The whole
+column had to be rebuilt to one shape.
+
+**Report the exceptions and ask; do not silently normalise, and do not silently
+keep them.**
+
+> 51 of your 336 room identifiers use a different shape from the other 285:
+> `QNL_B036_REST_REST_ROOM_WOMEN` and `QNL_B-ST-01_ST-01` against the majority
+> `QNL_B_034_MEETING_ROOM`. Do you want them regularised to the majority shape,
+> or kept exactly as the schedule has them?
+
+Give the count, one example of each variant, and the majority shape. When they
+choose regularisation, rebuild the identifier and the label from the same parsed
+segments so the two cannot drift apart, and ship the crosswalk.
+
 Record the answer in the handover note, and ship a crosswalk file
 (`source_identifier, ontology_identifier, label`) whenever any identifier
 changed shape.
@@ -80,8 +105,14 @@ ask about identifiers:
 
 | Style | `rdfs:label_en` for room `B_063` / `PLANT_ROOM_01` | Validator |
 |---|---|---|
-| `verbatim` - QF SSC house style | `B_063_PLANT_ROOM_01` | `--label-style verbatim`, `E-LBL-1` off |
+| `verbatim` - QF SSC house style | `B.063_PLANT_ROOM_01` | `--label-style verbatim`, `E-LBL-1` off |
 | `para` - the label rule below | `B 063 PLANT ROOM 01` | default, `E-LBL-1` enforced |
+
+**The SSC room-label shape is `<level>.<number>_<name>`** - a dot between the
+level and the room number, an underscore before the name. SSC writes
+`1.001_CORRIDOR` for room 001 on level 1; QNL writes `B.063_PLANT_ROOM_01` for
+room 063 in the basement. Equipment carries its raw register tag with no
+reshaping: `SSC_FCU0001`, `VAV_B_S11_024`.
 
 **QF SSC is the recent completed sample and it uses `verbatim` throughout** -
 rooms labelled `1.001_CORRIDOR`, `1.008_A / V ROOM`, equipment labelled with the

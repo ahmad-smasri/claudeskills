@@ -86,13 +86,18 @@ The QF SSC draft breaks this throughout; disregard it there.
 **Naming.** Identifiers the source already supplies are kept verbatim - they are
 the join key to SCADA and to every other sheet on the project. Strip whitespace,
 change nothing else. Ask the user at intake whether to keep them or normalise to
-the convention; default to keeping. For identifiers the sheet has to invent:
+the convention; default to keeping. **Verbatim assumes the source is internally
+consistent - audit the whole column, find the majority shape, and report every
+row that departs from it before writing rows.** On QNL 51 of 336 rooms ran the
+level into the room number where 285 kept them separate. For identifiers the sheet has to invent:
 dashes separate words inside a segment, underscores separate segments, no spaces,
 case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
 **Labels.** Two styles; ask at intake, because neither reference model settles it.
 `verbatim` keeps the source text as written - the QF SSC house style,
-`1.001_CORRIDOR`, `SSC_FCU0001`. `para` applies the label rule: letters, digits
+`1.001_CORRIDOR`, `SSC_FCU0001`. SSC's room-label shape is
+`<level>.<number>_<name>`: a dot between level and room number, an underscore
+before the name. `para` applies the label rule: letters, digits
 and spaces only, plus a decimal point between two digits, every other punctuation
 mark removed, so `1.001_CORRIDOR` becomes `1.001 CORRIDOR`. Pass the matching
 `--label-style` to the validator; `verbatim` turns `E-LBL-1` off.
