@@ -76,12 +76,57 @@ entity:..._Total-Elec-Demand | brick:Electric_Power_Sensor | ref:hasExternalRefe
 | | ref:hasTimeseriesId | ELEC_KW_CALC | para:hasEntityId | Smart Village
 ```
 
-IFC references use the same shape with `ref:IFCReference` and `ref:ifcName`:
+IFC references use the same shape with `ref:IFCReference`. **The two reference
+models carry different properties on it, so decide which and hold it.** QF SSC -
+the recent completed sample - carries **both**, and that is the fuller shape:
+
+```
+entity:SSC_AHUB0001 | brick:Air_Handling_Unit | ref:hasExternalReference |
+<blanknode> | ref:IFCReference |
+| | para:IFC_ID | <the IFC GUID> | | | ref:ifcName | SSC_AHUB0001
+```
+
+`para:IFC_ID` is the slot for the real IFC identifier from the BIM model;
+`ref:ifcName` is the subject name without the `entity:` prefix and without
+spaces, so it is always derivable. Dar Cairo writes `ref:ifcName` alone (535
+rows) and defines `para:IFC_ID` once without using it; SSC writes both on all 167
+of its IFC rows. Carry both unless the user says otherwise, and leave
+`para:IFC_ID` empty rather than inventing a GUID - that is a known, accepted
+`E-PAIR-1`, noted in the handover.
+
+Dar Cairo's shorter form, still valid:
 
 ```
 entity:UPS-02 | brick:Energy_Storage | ref:hasExternalReference | <blanknode> |
 ref:IFCReference | | | ref:ifcName | UPS-02
 ```
+
+An entity can carry more than one external reference - they are independent rows
+on the same subject.
+
+### Timeseries references go on points, never on equipment
+
+**A `ref:TimeseriesReference` attaches to a data point.** A point is a
+measurement with a key in the telemetry database; a piece of equipment is not,
+so it has no timeseries to reference. Both reference models are unanimous: all
+1,767 timeseries-reference rows in QF SSC have a `brick:hasPoint` object as their
+subject, and not one has a piece of equipment.
+
+```
+entity:SSC_FCU0001_Room_Temperature | brick:Room_Air_Temperature_Sensor |
+ref:hasExternalReference | <blanknode> | ref:TimeseriesReference |
+| | ref:hasTimeseriesId | ROOMTEMP_DEGC | | | para:hasEntityId | SSC_FCU0001
+```
+
+`ref:hasTimeseriesId` is the point's key in the telemetry database and comes from
+the IO list. `para:hasEntityId` is the entity those keys are grouped under - the
+**parent equipment's** tag, which is how the point row carries its owner.
+
+So no IO list means no points, and no points means no timeseries references at
+all. Do not put a stub `ref:TimeseriesReference` on the equipment to stand in for
+the missing points: it asserts a telemetry key the equipment does not have, and
+neither reference model has a single instance of it. Record the gap in the
+handover note instead.
 
 **E - defining a new class.** The only shape where `subject` is not an `entity:`.
 

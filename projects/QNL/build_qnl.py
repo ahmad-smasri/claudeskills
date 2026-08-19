@@ -19,17 +19,15 @@ HEADER = ["subject", "subjectType", "predicate", "object", "objectType"] + \
 assert len(HEADER) == 27
 
 
-def clean_label(text):
-    """PARA label rule: letters, digits, spaces; a decimal point between two digits."""
-    out = []
-    for i, ch in enumerate(text):
-        if ch.isalnum():
-            out.append(ch)
-        elif ch == "." and 0 < i < len(text) - 1 and text[i - 1].isdigit() and text[i + 1].isdigit():
-            out.append(ch)
-        else:
-            out.append(" ")
-    return " ".join("".join(out).split())
+def label(text):
+    """Label style: QF SSC. The source text survives verbatim, punctuation and all.
+
+    SSC labels rooms `1.001_CORRIDOR` and equipment `SSC_FCU0001` - the raw
+    schedule and register strings, not the cleaned form the PARA label rule
+    produces. Whitespace is stripped because the validator rejects it (E-WS-1);
+    nothing else is touched.
+    """
+    return " ".join(text.split())
 
 
 def row(subject, stype, pred, obj, otype="", props=()):
@@ -55,6 +53,10 @@ def row(subject, stype, pred, obj, otype="", props=()):
 LEVEL_RE = re.compile(r"^(B|L1|L2|T1)[_-]?(.*)$")
 LEVEL_TYPE = {"B": "rec:BasementLevel", "L1": "rec:Level",
               "L2": "rec:Level", "T1": "rec:Level"}
+# Identifiers keep the source level codes - they are the segment the room tags
+# carry. Labels spell the level out, because that is what the front end shows.
+LEVEL_LABEL = {"B": "Basement", "L1": "Level 1", "L2": "Level 2",
+               "T1": "Terrace 1"}
 
 wb = openpyxl.load_workbook(ROOMS_XLSX, read_only=True, data_only=True)
 room_src = []
@@ -73,13 +75,24 @@ for src_entity, number, name in room_src:
         level, num = "B", number
         notes.append(f"room number {number!r} carries no level prefix; placed on level B "
                      f"because its ST-nn siblings are all basement rooms")
-    # Identifiers come from the source sheet verbatim - the client's SCADA, the
-    # assets register and the room schedule all already join on these strings.
-    # The only change is stripping whitespace, which the validator rejects.
-    ident = src_entity
+    # The source room schedule is inconsistent about how the level is joined to
+    # the room number: most rows write B_034, a minority write B036_REST,
+    # B-ST-01, L1023_1. The user asked for one shape throughout, so both the
+    # identifier and the label are rebuilt from the same (level, num, name)
+    # triple and cannot drift apart:
+    #
+    #   identifier  entity:QNL_<level>_<num>_<name>     QNL_B_063_PLANT_ROOM_01
+    #   label             <level>.<num>_<name>          B.063_PLANT_ROOM_01
+    #
+    # The dot between level and room number is the QF SSC label shape - SSC
+    # writes 1.001_CORRIDOR for room 001 on level 1. Nothing inside <num> or
+    # <name> is touched; only the join between the segments is regularised.
+    if not num:
+        sys.exit("room %r has a level but no room number" % number)
+    ident = "entity:QNL_%s_%s_%s" % (level, num, name)
     rooms[src_entity] = {
         "id": ident, "level": level,
-        "label": clean_label("%s %s" % (number, name)),
+        "label": label("%s.%s_%s" % (level, num, name)),
         "number": number, "name": name,
     }
 
@@ -98,8 +111,21 @@ LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
 def equip_id(tag):
-    """Asset tags come from the register verbatim - they are the BMS join key."""
-    return tag
+    """Prefix the register tag with the building code, QF SSC style.
+
+    SSC subjects read entity:SSC_FCU0001 - building code, then the register tag.
+    QNL follows: FCU_1F_056 becomes entity:QNL_FCU_1F_056. Tags are otherwise not
+    touched, so they stay the BMS join key.
+
+    The one exception is the AHUB family, at the user's direction. AHUB002 packs
+    type and level into a single token and carries no separators, where VAV, CAV
+    and FCU are all TYPE_LEVEL_COUNT; it is rewritten AHU_B_002 so all four
+    families parse by one rule.
+    """
+    m = re.match(r"^AHUB(\d+)$", tag)
+    if m:
+        tag = "AHU_B_%s" % m.group(1)
+    return "QNL_" + tag
 
 
 wb = openpyxl.load_workbook(ASSETS_XLSX, read_only=True, data_only=True)
@@ -152,7 +178,8 @@ out.append(row("entity:QNL", "rec:Building", "rec:isPartOf",
 levels_used = sorted({d["level"] for d in rooms.values()})
 for lvl in levels_used:
     out.append(row("entity:QNL_%s" % lvl, LEVEL_TYPE[lvl], "rec:isPartOf",
-                   "entity:QNL", "rec:Building", [("s", "rdfs:label_en", lvl)]))
+                   "entity:QNL", "rec:Building",
+                   [("s", "rdfs:label_en", LEVEL_LABEL[lvl])]))
 
 for d in rooms.values():
     out.append(row(d["id"], "rec:Room", "rec:isPartOf",
@@ -161,20 +188,27 @@ for d in rooms.values():
 
 # Chilled water loop ---------------------------------------------------------
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL CHILLED WATER LOOP")]))
+               [("s", "rdfs:label_en", "QNL_CHILLED_WATER_LOOP")]))
 
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):
     for a in [x for x in assets if x["kind"] == kind]:
-        lbl = clean_label(a["id"].replace("entity:", ""))
+        bare = a["id"].replace("entity:", "")
         out.append(row(a["id"], a["cls"], "rec:locatedIn", a["room"], "rec:Room",
-                       [("s", "rdfs:label_en", lbl)]))
+                       [("s", "rdfs:label_en", label(bare))]))
         out.append(row(a["id"], a["cls"], "rec:isFedBy", a["src"], a["src_cls"]))
         if kind in TERMINAL:
             out.append(row(a["id"], a["cls"], "rec:feeds", a["room"], "rec:Room"))
+        # SSC shape: the IFC reference carries both properties. para:IFC_ID is the
+        # slot for the real IFC GUID and is left empty until BIM supplies it;
+        # ref:ifcName is the entity name, which is derivable.
         out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
                        "<blanknode>", "ref:IFCReference",
-                       [("o", "ref:ifcName", "")]))
+                       [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
+        # No timeseries reference row here. A ref:TimeseriesReference belongs to a
+        # POINT, never to the equipment: all 1,767 of them in QF SSC hang off a
+        # brick:hasPoint object and none off a piece of equipment. QNL has no
+        # points because no IO list was supplied, so it has no timeseries refs.
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
@@ -197,7 +231,7 @@ with open(OUT + "QNL_identifier_crosswalk.csv", "w", newline="") as fh:
         w.writerow(["room", src_entity, d["id"], d["label"]])
     for a in assets:
         w.writerow([a["kind"], a["tag"], a["id"],
-                    clean_label(a["id"].replace("entity:", ""))])
+                    label(a["id"].replace("entity:", ""))])
 
 print("rows      :", len(out))
 print("rooms     :", len(rooms), "levels:", levels_used)

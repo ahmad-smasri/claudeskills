@@ -1,7 +1,8 @@
 # QNL ontology — handover note
 
 **Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,124 rows on the
-27-column PARA header. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
+27-column PARA header. Validate with
+`validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
 source identifier against the identifier used in the sheet and its label.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
@@ -13,15 +14,15 @@ source identifier against the identifier used in the sheet and its label.
 |---|---|---|
 | Extensions | 1 | `para:Chilled_Water_Loop_Network` |
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:Qatar-Foundation` |
-| Levels | 4 | `entity:QNL_B` (`rec:BasementLevel`), `_L1`, `_L2`, `_T1` (`rec:Level`) |
+| Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
 | Chilled water loop | 1 | `rec:locatedIn` the building |
 | Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
 Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source,
-`ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal
-units (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row —
-see "one direction" below.
+`ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal units
+(VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row — see "one
+direction" below.
 
 ## Decisions taken, per your answers
 
@@ -39,31 +40,66 @@ from the level of their room — e.g. `entity:VAV_2F_S12_001` against
 from the served level up to the level the box sits on, so the unit is genuinely located
 in and feeding the same volume. Both rows stand as written.
 
-**Level codes kept as-is** — `B`, `L1`, `L2`, `T1`, with those exact strings as labels.
-No `rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel` (every asset on it
-sits in a plant, riser or storage room); the other three are `rec:Level`.
+**Level identifiers keep the source codes; labels spell them out.** The identifiers stay
+`entity:QNL_B` / `_L1` / `_L2` / `_T1`, matching the level segment your room tags carry,
+but `rdfs:label_en` reads "Basement", "Level 1", "Level 2", "Terrace 1" — `T1` confirmed
+by you as the terrace level. No
+`rec:levelNumber` is asserted. `B` is typed `rec:BasementLevel`; the other three are
+`rec:Level`.
 
-**Identifiers taken from the source verbatim.** Every room keeps the entity name your
-room schedule assigned — `entity:QNL_B_063_PLANT_ROOM_01` — and every asset keeps its
-register tag: `entity:AHUB011`, `entity:VAV_B_S11_024`, `entity:FCU_1F_055`. Nothing is
-reordered, respelled or re-cased, `&` survives, and the typos survive with it. The only
-edit anywhere is stripping the trailing space from
-`entity:QNL_L2_018_GROUP_STUDY_ROOM_8`, which the validator rejects outright
-(`E-WS-1`). The sheet therefore joins directly to SCADA, to the assets register and to
-the room schedule with no mapping step.
+**Identifiers taken from the source, regularised to one shape.** Every asset carries the
+building code in front of its register tag, QF SSC style — SSC subjects read
+`entity:SSC_FCU0001`, so QNL reads `entity:QNL_FCU_1F_056` and
+`entity:QNL_VAV_B_S11_024`. **Tags are otherwise untouched**; only `QNL_` was added, so
+they remain the BMS join key.
+
+The one exception is the AHUB family, at your direction: `AHUB002` becomes
+`entity:QNL_AHU_B_002`, so all four families now parse as `TYPE_LEVEL_COUNT`. All 15 are
+in the crosswalk, and the 297 VAV and CAV `rec:isFedBy` rows point at the new form. `ref:ifcName` and `rdfs:label_en` carry the same prefixed form,
+as SSC does with `SSC_AHUB0001`.
+
+Rooms keep their name text but are rebuilt to a single shape,
+`entity:QNL_<level>_<number>_<name>`, because the schedule was not consistent about it.
+285 of the 336 rooms already wrote the level and the room number as separate segments
+(`QNL_B_034_MEETING_ROOM`); **51 did not** and have been brought into line:
+
+| Source | In the sheet |
+|---|---|
+| `entity:QNL_B036_REST_REST_ROOM_WOMEN` | `entity:QNL_B_036_REST_REST_ROOM_WOMEN` |
+| `entity:QNL_B-ST-01_ST-01` | `entity:QNL_B_ST-01_ST-01` |
+| `entity:QNL_L1023_1_CORRIDOR` | `entity:QNL_L1_023_1_CORRIDOR` |
+| `entity:QNL_L2-L-1_1_L-1` | `entity:QNL_L2_L-1_1_L-1` |
+| `entity:QNL_ST-04_ST-04` | `entity:QNL_B_ST-04_ST-04` |
+
+Only the join between segments changed — no name text, no room number, no disambiguating
+tag (`REST`, `COR`, `BOH`) was altered, and no typo was fixed. The other edit anywhere is
+stripping the trailing space from `entity:QNL_L2_018_GROUP_STUDY_ROOM_8`, which the
+validator rejects outright (`E-WS-1`).
+
+**Only one of the 51 is referenced by your assets sheet** —
+`entity:QNL_L1023_2_CORRIDOR`, now `entity:QNL_L1_023_2_CORRIDOR` — so the join to the
+register survives almost untouched. All 51 are listed in
+`QNL_identifier_crosswalk.csv`, which is where the source→ontology mapping lives.
 
 Seven identifiers had to be invented, because no source supplies them:
 `entity:Qatar-Foundation`, `entity:QNL`, the four levels `entity:QNL_B` / `_L1` / `_L2`
 / `_T1` (matching the level segment inside your room tags), and
 `entity:QNL_CHILLED_WATER_LOOP` for the `CHILLED WATER LOOP` value in the Fed By column.
 
-Labels are the one place cleanup happens, per the PARA label rule. Rooms read
-`<number> <name>` — `B 063 PLANT ROOM 01`, `B 237 CORRIDOR` — which keeps the 30-odd
-corridors distinguishable in the front end. Assets read `AHUB011`, `VAV B S11 024`.
+**Labels follow QF SSC, including its dot.** SSC writes `1.001_CORRIDOR` — a dot between
+the level and the room number, an underscore before the name. QNL rooms now read
+`<level>.<number>_<name>`: `B.063_PLANT_ROOM_01`, `B.237_CORRIDOR`,
+`L1.023_1_CORRIDOR`, `B.ST-01_ST-01`. Assets read their raw register tag, `AHUB011`,
+`VAV_B_S11_024`, exactly as SSC does with `SSC_FCU0001`.
+
+Label and identifier are built from the same parsed `(level, number, name)` triple, so
+they cannot drift apart. No punctuation is stripped and no typo is fixed. This is not the
+PARA label rule, which would give `B 063 PLANT ROOM 01`; `E-LBL-1` is therefore switched
+off with `--label-style verbatim`, and every other rule stays in force.
 
 `QNL_identifier_crosswalk.csv` lists every source identifier against the identifier used
-in the sheet and its label. They are identical apart from that one trailing space; the
-file is there so the join is documented rather than assumed.
+in the sheet and its label — 336 rooms and 449 assets. 51 room identifiers differ; every
+asset identifier is unchanged.
 
 ## Classes used
 
@@ -80,24 +116,47 @@ of the sheet for readability, but it is an existing registry class, not a new co
 1,188 `I-TYP-6` info lines are the VAV and CAV classes — valid Brick 1.4, simply the
 first time this house has used them.
 
+## External references — the SSC shape
+
+Each asset carries one `ref:hasExternalReference` row, matching QF SSC's IFC shape:
+
+```
+entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference | <blanknode> |
+ref:IFCReference | | | para:IFC_ID | <empty> | | | ref:ifcName | AHUB011
+```
+
+`para:IFC_ID` is the slot for the real BIM GUID and is empty, as you asked.
+`ref:ifcName` is filled with the entity name, which is derivable and is what both
+reference models put there.
+
+**No `ref:TimeseriesReference` rows.** A timeseries reference belongs to a point, not to
+the equipment — every one of SSC's 1,767 sits on a `brick:hasPoint` object and none on a
+piece of equipment. QNL has no points because no IO list was supplied, so it has no
+timeseries references. They arrive with the IO list, on the point rows.
+
 ## Validator result
 
 ```
+python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
 2124 rows, 792 typed entities, 1 para: definitions
 449 errors, 0 warnings
 ```
 
-**All 449 errors are the same rule, `E-PAIR-1`, and all of them are deliberate.** Each
-is a `ref:ifcName` property with an empty value, on the IFC reference row of one asset —
-exactly what you asked for: create the reference row, leave the ID blank until the real
-IFC values are available. Paste the IFC names into `object_prop_val` on those rows and
-the sheet validates clean. Nothing else is outstanding: zero warnings, so every entity
-is labelled, every terminal unit has a feeds row and a location, and every spatial
-entity connects up to `rec:Building`.
+**All 449 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
+empty `para:IFC_ID` on each of the 449 assets. Paste the IFC GUIDs into
+`object_prop_val` on those rows and the sheet validates clean. Nothing else is outstanding: zero warnings, so every entity is
+labelled, every terminal unit has a feeds row and a location, and every spatial entity
+connects up to `rec:Building`.
+
+Without `--label-style verbatim` you also get 771 `E-LBL-1` — that is the PARA label
+rule objecting to the SSC label style, and it is expected.
 
 ## Left out, and why
 
-- **Points.** No IO list was supplied, so no equipment carries a `brick:hasPoint` row.
+- **Points, and with them every timeseries reference.** No IO list was supplied, so no
+  equipment carries a `brick:hasPoint` row and nothing carries a
+  `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
+  Send the IO list and both layers land together.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **System membership.** No `brick:isPartOf entity:HVAC` rows — you asked for site,
@@ -110,6 +169,32 @@ entity connects up to `rec:Building`.
 - **IFC references on rooms.** Requested for equipment only, so rooms have none.
 - **Parts.** No `brick:hasPart` breakdown (fans, coils, VFDs) — not requested, and no
   part-level source was supplied.
+
+## The asset register is not internally consistent
+
+You asked me not to change the tags, so nothing below has been changed — this is the
+audit, for the register's owner to decide on. All 449 tags are unique.
+
+| Family | Shape | n |
+|---|---|---|
+| VAV | `VAV_<level>_S<system>_<count>` | 246 |
+| CAV | `CAV_<level>_S<system>_<count>` | 51 |
+| FCU | `FCU_<level>_<count>` | 137 |
+| AHUB | `AHUB<count>` → written `AHU_B_<count>` | 15 |
+
+1. ~~**AHUB is the odd family out.**~~ **Fixed at your direction** — `AHUB011` is now
+   `QNL_AHU_B_011`, matching the `TYPE_LEVEL_COUNT` shape of the other three. This is the
+   only asset tag that was reshaped. Your BMS still knows these units as `AHUB011`, so
+   the crosswalk is the join for them.
+2. **FCU has no system segment** where VAV and CAV do. That may be correct — FCUs are fed
+   by the chilled water loop, not by an AHU, so there is no `S##` to name — but it means
+   the four families cannot be parsed by one rule.
+3. **One tag breaks its own family: `VAV_1F_S15_039S`** — a trailing `S` that no other
+   tag carries. Either a variant marker that should be a separate segment, or a typo.
+4. **Level tokens use a different vocabulary from the rooms.** Assets say `B`, `1F`, `2F`;
+   the room schedule and the level entities say `B`, `L1`, `L2`, `T1`. Nothing joins on
+   them today, so nothing breaks, but the two vocabularies will need reconciling if a
+   query ever tries.
 
 ## Things to check in the source data
 

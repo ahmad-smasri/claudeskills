@@ -86,13 +86,33 @@ The QF SSC draft breaks this throughout; disregard it there.
 **Naming.** Identifiers the source already supplies are kept verbatim - they are
 the join key to SCADA and to every other sheet on the project. Strip whitespace,
 change nothing else. Ask the user at intake whether to keep them or normalise to
-the convention; default to keeping. For identifiers the sheet has to invent:
+the convention; default to keeping. **Verbatim assumes the source is internally
+consistent - audit the whole column, rooms and assets alike, find the majority
+shape, and report every row that departs from it before writing rows.** On QNL 51
+of 336 rooms ran the level into the room number where 285 kept them separate, and
+one asset family of four, AHUB, carried neither separators nor a level segment.
+Asset tags are the BMS join key, so expect to report rather than change them.
+**Every subject carries the building code in front**, QF SSC style -
+`entity:SSC_FCU0001`, so `entity:QNL_FCU_1F_056`. Add the code; leave the tag
+itself alone. For identifiers the sheet has to invent:
 dashes separate words inside a segment, underscores separate segments, no spaces,
 case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
-**Labels.** Spaces are allowed. Letters, digits and spaces only, plus a decimal
-point between two digits. Every other punctuation mark is removed.
-`1.001_CORRIDOR` becomes `1.001 CORRIDOR`.
+**Labels.** Two styles; ask at intake, because neither reference model settles it.
+`verbatim` keeps the source text as written - the QF SSC house style,
+`1.001_CORRIDOR`, `SSC_FCU0001`. SSC's room-label shape is
+`<level>.<number>_<name>`: a dot between level and room number, an underscore
+before the name. `para` applies the label rule: letters, digits
+and spaces only, plus a decimal point between two digits, every other punctuation
+mark removed, so `1.001_CORRIDOR` becomes `1.001 CORRIDOR`. Pass the matching
+`--label-style` to the validator; `verbatim` turns `E-LBL-1` off.
+
+**External references.** One row per reference, and an entity can carry several.
+IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
+(the entity name, derivable) - the QF SSC shape. Timeseries:
+`ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
+**on the point, never on the equipment.** No IO list means no points, so no
+timeseries references at all; never stub one onto equipment to fill the gap.
 
 **Spatial vs system.** `rec:isPartOf` for spatial containment,
 `brick:isPartOf` for system membership. Both appear in Dar Cairo and they mean

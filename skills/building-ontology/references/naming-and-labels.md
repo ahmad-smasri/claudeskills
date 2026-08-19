@@ -27,6 +27,51 @@ embedded spaces (`E-SPACE-1`). Do not fix typos, expand abbreviations, reorder
 segments, or swap underscores for dashes. Labels are where the cleanup happens -
 the label rule below applies regardless of how the identifier is spelled.
 
+### The building code goes in front, on everything
+
+QF SSC prefixes every subject with the building code - `entity:SSC_FCU0001`,
+`entity:SSC_01_001_CORRIDOR`. Follow it: `entity:QNL_FCU_1F_056`,
+`entity:QNL_AHUB011`. Rooms usually arrive with the code already in the source
+entity name; asset registers usually do not, because the BMS only needs the tag
+unique within one building. **Add the code, leave the tag itself alone** - it
+stays the join key - and carry the same prefixed form into `rdfs:label_en` and
+`ref:ifcName`, as SSC does.
+
+### Audit the source identifiers for consistency, and report what you find
+
+**"Keep them verbatim" assumes they are internally consistent. Check that they
+are, before writing rows.** Read the whole column, not the first ten values, and
+work out the shape the majority follow; then list every row that departs from it.
+A schedule maintained by hand over years drifts, and a sheet that inherits the
+drift is harder to query than the source was.
+
+**Audit the asset register the same way, family by family.** Reduce every tag to
+a shape (digits to `#`), count the shapes, and name the families that do not
+match the others. QNL's assets: VAV `VAV_<level>_S<system>_<count>` and CAV the
+same, FCU `FCU_<level>_<count>` with no system segment, and AHUB `AHUB<count>`
+with no separators and no level segment at all - one family out of four with a
+different structure, plus a single tag, `VAV_1F_S15_039S`, breaking its own
+family with a trailing letter. Asset tags are usually the BMS join key, so
+expect the answer to be "report it, change nothing"; report it anyway, because
+the register's owner is the one who can fix the register.
+
+QNL's rooms: 285 of 336 wrote the level and the room number as separate segments,
+`QNL_B_034_MEETING_ROOM`. The other 51 ran them together or used a different
+separator - `QNL_B036_REST_...`, `QNL_B-ST-01_...`, `QNL_L1023_1_...`. There the
+answer was to rebuild the whole column to one shape.
+
+**Report the exceptions and ask; do not silently normalise, and do not silently
+keep them.**
+
+> 51 of your 336 room identifiers use a different shape from the other 285:
+> `QNL_B036_REST_REST_ROOM_WOMEN` and `QNL_B-ST-01_ST-01` against the majority
+> `QNL_B_034_MEETING_ROOM`. Do you want them regularised to the majority shape,
+> or kept exactly as the schedule has them?
+
+Give the count, one example of each variant, and the majority shape. When they
+choose regularisation, rebuild the identifier and the label from the same parsed
+segments so the two cannot drift apart, and ship the crosswalk.
+
 Record the answer in the handover note, and ship a crosswalk file
 (`source_identifier, ontology_identifier, label`) whenever any identifier
 changed shape.
@@ -71,6 +116,37 @@ dashes. Follow the examples: dashes.
 `rdfs:label_en` is what the front end displays. Every entity a user will see
 needs one.
 
+**Two styles are in use. Ask which one before writing rows**, the same way you
+ask about identifiers:
+
+> Labels: the PARA label rule strips punctuation, so `1.001_CORRIDOR` becomes
+> `1.001 CORRIDOR`. QF SSC instead carries the source text verbatim -
+> `1.001_CORRIDOR`, `SSC_FCU0001`. Which do you want?
+
+| Style | `rdfs:label_en` for room `B_063` / `PLANT_ROOM_01` | Validator |
+|---|---|---|
+| `verbatim` - QF SSC house style | `B.063_PLANT_ROOM_01` | `--label-style verbatim`, `E-LBL-1` off |
+| `para` - the label rule below | `B 063 PLANT ROOM 01` | default, `E-LBL-1` enforced |
+
+**The SSC room-label shape is `<level>.<number>_<name>`** - a dot between the
+level and the room number, an underscore before the name. SSC writes
+`1.001_CORRIDOR` for room 001 on level 1; QNL writes `B.063_PLANT_ROOM_01` for
+room 063 in the basement. Equipment carries its raw register tag with no
+reshaping: `SSC_FCU0001`, `VAV_B_S11_024`.
+
+**QF SSC is the recent completed sample and it uses `verbatim` throughout** -
+rooms labelled `1.001_CORRIDOR`, `1.008_A / V ROOM`, equipment labelled with the
+raw register tag `SSC_FCU0001`. Dar Cairo is a third thing again
+(`Mechanical-Area-2-R014`). Neither reference model satisfies the label rule, so
+do not infer the answer from precedent - ask, then pass the matching
+`--label-style` to the validator and say which style the sheet uses in the
+handover note.
+
+In `verbatim` style the only edit is stripping whitespace, which the validator
+rejects regardless (`E-WS-1`).
+
+### The PARA label rule
+
 **The rule: letters, digits and spaces. A decimal point survives between two
 digits. Every other punctuation mark is removed.**
 
@@ -85,7 +161,8 @@ digits. Every other punctuation mark is removed.**
 Separators - `_ - . / \` - become a single space; everything else non-alphanumeric
 is dropped; runs of spaces collapse. `scripts/validate_ontology.py` reports the
 offending characters and the corrected string (`E-LBL-1`), and
-`clean_label()` in that script is the reference implementation.
+`clean_label()` in that script is the reference implementation. Under
+`--label-style verbatim` the rule is not applied and `E-LBL-1` never fires.
 
 This rule is newer than Dar Cairo, so the primary reference does not satisfy it -
 about 3,200 of its labels carry dashes, underscores or brackets. Follow the rule

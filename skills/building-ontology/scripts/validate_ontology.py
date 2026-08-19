@@ -3,6 +3,7 @@
 
     python3 validate_ontology.py MyBuilding.xlsx
     python3 validate_ontology.py MyBuilding.csv --strict --max 5
+    python3 validate_ontology.py MyBuilding.xlsx --label-style verbatim
 
 Exit status: 0 clean (warnings allowed), 1 errors found, 2 with --strict if
 anything at all was reported, 3 if the file could not be read.
@@ -154,7 +155,7 @@ class Report:
         return errors, warns
 
 
-def validate(path: Path, report: Report):
+def validate(path: Path, report: Report, label_style: str = "para"):
     header, body = read_sheet(path)
     low = [h.lower() for h in header]
 
@@ -314,7 +315,7 @@ def validate(path: Path, report: Report):
                     object_props += 1
                 if pname in ("rdfs:label_en", "skos:prefLabel"):
                     labelled.add(target)
-                    bad = label_issues(pval)
+                    bad = label_issues(pval) if label_style == "para" else []
                     if bad:
                         report.add("ERROR", "E-LBL-1", rownum,
                                    f"label {pval!r} contains {bad} - use {clean_label(pval)!r}")
@@ -392,6 +393,11 @@ def main():
     ap.add_argument("--max", type=int, default=15, help="max findings shown per rule code")
     ap.add_argument("--strict", action="store_true", help="fail on warnings too")
     ap.add_argument("--ignore", default="", help="comma-separated rule codes to suppress")
+    ap.add_argument("--label-style", choices=("para", "verbatim"), default="para",
+                    help="para (default): enforce the PARA label rule - letters, digits "
+                         "and spaces only. verbatim: labels carry the source text as "
+                         "written, the QF SSC house style; E-LBL-1 is not applied. Pick "
+                         "the one the user chose at intake and say which in the handover.")
     args = ap.parse_args()
 
     if not args.sheet.exists():
@@ -399,7 +405,7 @@ def main():
         return 3
 
     report = Report(args.max)
-    validate(args.sheet, report)
+    validate(args.sheet, report, args.label_style)
     errors, warns = report.emit({c.strip() for c in args.ignore.split(",") if c.strip()})
 
     print(f"\n{errors} errors, {warns} warnings")
