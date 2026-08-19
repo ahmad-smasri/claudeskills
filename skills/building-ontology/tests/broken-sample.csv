@@ -1,0 +1,10 @@
+subject,subjectType,predicate,object,objectType,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val
+entity:P-01,brick:Water_PUMP,rec:locatedIn,entity:B_Basement,rec:BasementLevel,rdfs:label_en,Pump 01,,,,,,,,,,,,,,,,,,,,
+entity:B_01_002_SHELL_SPACE,rec:Room,rec:isPartOf,entity:B_Floor-1,rec:Level,rdfs:label_en,1.002_SHELL SPACE,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Fan_Coil_Unit,rec:feeds,entity:<FCU_Serving_Location>,rec:Room,rdfs:label_en,FCU 01,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Motor,brick:isPartOf,entity:HVAC,brick:HVAC_System,,,,,,,,,,,,,,,,,,,,,,
+entity:VFD-01,brick:VFD,brick:hasPoint,entity:VFD-01_Speed,brick:Speed_Command,,,,Speed Command ,,,,,,,,,,,,,,,,,,
+entity:VFD-01,brick:VFD,brick:ratedPowerInput,<blanknode>,<blanknode>,,,,,,,,,,,,,,,,,,,,,,
+entity:Orphan-Room,rec:Room,rec:isPartOf,entity:Nowhere,rec:Zone,rdfs:label_en,Orphan Room,,,,,,,,,,,,,,,,,,,,
+entity:M-01,brick:Electrical_Meter,brick:hasPoint,entity:M-01_KW,brick:Electric_Power_Sensor,,,rdfs:label_en,Meter Demand,,,brick:hasUnit,KiloW,,,,,,,,,,,,,,
+entity:B_Floor-2,brick:Floor,rec:isPartOf,entity:B,rec:Building,rdfs:label_en,Floor 2,,,,,,,,,,,,,,,,,,,,

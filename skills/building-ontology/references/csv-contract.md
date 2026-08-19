@@ -1,0 +1,127 @@
+# The CSV contract
+
+## Columns
+
+The canonical nine, from `reference-models/Ontology_headers.xlsx`:
+
+| # | Column | Holds |
+|---|---|---|
+| 1 | `subject` | the thing being described |
+| 2 | `subjectType` | its class - this is the `rdf:type` triple, folded into the row |
+| 3 | `predicate` | the relationship or property |
+| 4 | `object` | an entity, a class, or `<blanknode>` |
+| 5 | `objectType` | the object's class, when the object is an entity |
+| 6 | `subject_prop_name` | a metadata property **about the subject** |
+| 7 | `subject_prop_val` | its value |
+| 8 | `object_prop_name` | a metadata property **about the object** |
+| 9 | `object_prop_val` | its value |
+
+Columns 6-9 repeat. Both reference models use **27 columns**: the 5 core columns,
+then five `subject_prop_name, subject_prop_val, object_prop_name, object_prop_val`
+groups, then one final `subject_prop_name, subject_prop_val` pair. Use
+`assets/ontology-template.csv` - it is that header, ready to fill.
+
+Leave a cell blank when it does not apply. Getting subject props and object props
+backwards is the single most common authoring mistake: if the row is
+`Meter hasPoint Sensor`, the sensor's label and unit are **object** props.
+
+## One row, three triples
+
+| subject | subjectType | predicate | object | objectType |
+|---|---|---|---|---|
+| `entity:Dar-Cairo` | `rec:Building` | `rec:isPartOf` | `entity:Smart-Village` | `rec:Site` |
+
+```turtle
+entity:Dar-Cairo     a rec:Building .
+entity:Smart-Village a rec:Site .
+entity:Dar-Cairo     rec:isPartOf entity:Smart-Village .
+```
+
+## The row shapes
+
+**A - relationship between two entities**
+
+```
+entity:Zone-A | rec:Zone | rec:isPartOf | entity:Dar-Cairo | rec:Building | rdfs:label_en | Zone A
+```
+
+**B - attaching a data point.** Label and unit describe the point, so they are
+object props.
+
+```
+entity:Dar-Cairo_Electrical-Virtual-Meter | brick:Electrical_Meter | brick:hasPoint |
+entity:Dar-Cairo_Electrical-Virtual-Meter_Avg-Elec-Demand | brick:Electric_Power_Sensor |
+| | rdfs:label_en | Dar Cairo Avg Electricity Demand | brick:hasUnit | unit:KiloW
+```
+
+**C - a property carrying a value and a unit.** A literal cannot hold a unit, so
+the pair lives in an unnamed node.
+
+```
+entity:AHU-B1-01_SF_Motor | brick:Motor | brick:ratedPowerInput | <blanknode> | <blanknode> |
+| | brick:value | 5.5 | brick:hasUnit | unit:KiloW
+```
+
+```turtle
+entity:AHU-B1-01_SF_Motor a brick:Motor ;
+    brick:ratedPowerInput [ brick:value 5.5 ; brick:hasUnit unit:KiloW ] .
+```
+
+**D - external reference.** The blank node is anonymous but **typed**, so the
+type goes in `objectType` - not `<blanknode>`.
+
+```
+entity:..._Total-Elec-Demand | brick:Electric_Power_Sensor | ref:hasExternalReference |
+<blanknode> | ref:TimeseriesReference |
+| | ref:hasTimeseriesId | ELEC_KW_CALC | para:hasEntityId | Smart Village
+```
+
+IFC references use the same shape with `ref:IFCReference` and `ref:ifcName`:
+
+```
+entity:UPS-02 | brick:Energy_Storage | ref:hasExternalReference | <blanknode> |
+ref:IFCReference | | | ref:ifcName | UPS-02
+```
+
+**E - defining a new class.** The only shape where `subject` is not an `entity:`.
+
+```
+para:Pressure_Independent_Module | owl:Class | rdfs:subClassOf | brick:Terminal_Unit |
+| rdfs:label_en | Pressure Independent Module
+```
+
+**F - aggregation.**
+
+```
+entity:..._Avg-Elec-Demand | brick:Electric_Power_Sensor | brick:aggregate | <blanknode> |
+<blanknode> | | | brick:aggregationFunction | mean | brick:aggregationInterval | RPT1H
+```
+
+If the aggregation has its own `TimeseriesId` in the external database, it is a
+**separate data point** with the same class, its own name and its own external
+reference - not a property of the raw point.
+
+## Property names in use
+
+Observed across the reference models, most frequent first:
+
+`rdfs:label_en`, `brick:hasUnit`, `ref:hasTimeseriesId`, `para:hasEntityId`,
+`brick:value`, `ref:ifcName`, `rec:installationDate`, `rec:manufacturedBy`,
+`brick:aliasOf`, `rec:modelNumber`, `para:format`, `brick:aggregationInterval`,
+`brick:aggregationFunction`, `rec:grossArea`, `qudt:symbol`, `rec:levelNumber`,
+`rec:seatingCapacity`.
+
+## Units
+
+Units come from QUDT: <https://ontology.brickschema.org/qudt/Unit.html>. The
+common set is `unit:UNITLESS`, `unit:KiloW`, `unit:KiloW-HR`, `unit:DEG_C`,
+`unit:M2`, `unit:PERCENT`, `unit:HR`, `unit:L-PER-SEC`, `unit:V`, `unit:A`,
+`unit:PPM`, `unit:PA`, `unit:LUX`, `unit:MicroGM-PER-M3`, `unit:EPOCH`.
+
+Where QUDT genuinely has none - tariffs, emission factors, degree-days - PARA
+mints one under `para:`: `para:EGP-PER-KiloW-HR`, `para:USD-PER-EGP`,
+`para:KiloGM-CO2-PER-KiloW-HR`, `para:CDD_DEGC_CALC`. Check
+`references/data/units.csv` before minting another.
+
+Use `unit:UNITLESS` for dimensionless quantities. Never leave the unit blank on
+something quantitative.
