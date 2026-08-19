@@ -19,17 +19,15 @@ HEADER = ["subject", "subjectType", "predicate", "object", "objectType"] + \
 assert len(HEADER) == 27
 
 
-def clean_label(text):
-    """PARA label rule: letters, digits, spaces; a decimal point between two digits."""
-    out = []
-    for i, ch in enumerate(text):
-        if ch.isalnum():
-            out.append(ch)
-        elif ch == "." and 0 < i < len(text) - 1 and text[i - 1].isdigit() and text[i + 1].isdigit():
-            out.append(ch)
-        else:
-            out.append(" ")
-    return " ".join("".join(out).split())
+def label(text):
+    """Label style: QF SSC. The source text survives verbatim, punctuation and all.
+
+    SSC labels rooms `1.001_CORRIDOR` and equipment `SSC_FCU0001` - the raw
+    schedule and register strings, not the cleaned form the PARA label rule
+    produces. Whitespace is stripped because the validator rejects it (E-WS-1);
+    nothing else is touched.
+    """
+    return " ".join(text.split())
 
 
 def row(subject, stype, pred, obj, otype="", props=()):
@@ -79,7 +77,7 @@ for src_entity, number, name in room_src:
     ident = src_entity
     rooms[src_entity] = {
         "id": ident, "level": level,
-        "label": clean_label("%s %s" % (number, name)),
+        "label": label("%s_%s" % (number, name)),   # SSC shape: 1.001_CORRIDOR
         "number": number, "name": name,
     }
 
@@ -161,20 +159,29 @@ for d in rooms.values():
 
 # Chilled water loop ---------------------------------------------------------
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL CHILLED WATER LOOP")]))
+               [("s", "rdfs:label_en", "QNL_CHILLED_WATER_LOOP")]))
 
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):
     for a in [x for x in assets if x["kind"] == kind]:
-        lbl = clean_label(a["id"].replace("entity:", ""))
+        bare = a["id"].replace("entity:", "")
         out.append(row(a["id"], a["cls"], "rec:locatedIn", a["room"], "rec:Room",
-                       [("s", "rdfs:label_en", lbl)]))
+                       [("s", "rdfs:label_en", label(bare))]))
         out.append(row(a["id"], a["cls"], "rec:isFedBy", a["src"], a["src_cls"]))
         if kind in TERMINAL:
             out.append(row(a["id"], a["cls"], "rec:feeds", a["room"], "rec:Room"))
+        # SSC shape: the IFC reference carries both properties. para:IFC_ID is the
+        # slot for the real IFC GUID and is left empty until BIM supplies it;
+        # ref:ifcName is the entity name, which is derivable.
         out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
                        "<blanknode>", "ref:IFCReference",
-                       [("o", "ref:ifcName", "")]))
+                       [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
+        # Telemetry reference. ref:hasTimeseriesId is per point and arrives with
+        # the IO list, so it is empty; para:hasEntityId is the asset's SCADA
+        # entity, which both reference models populate with the equipment tag.
+        out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
+                       "<blanknode>", "ref:TimeseriesReference",
+                       [("o", "ref:hasTimeseriesId", ""), ("o", "para:hasEntityId", bare)]))
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
@@ -197,7 +204,7 @@ with open(OUT + "QNL_identifier_crosswalk.csv", "w", newline="") as fh:
         w.writerow(["room", src_entity, d["id"], d["label"]])
     for a in assets:
         w.writerow([a["kind"], a["tag"], a["id"],
-                    clean_label(a["id"].replace("entity:", ""))])
+                    label(a["id"].replace("entity:", ""))])
 
 print("rows      :", len(out))
 print("rooms     :", len(rooms), "levels:", levels_used)

@@ -76,12 +76,44 @@ entity:..._Total-Elec-Demand | brick:Electric_Power_Sensor | ref:hasExternalRefe
 | | ref:hasTimeseriesId | ELEC_KW_CALC | para:hasEntityId | Smart Village
 ```
 
-IFC references use the same shape with `ref:IFCReference` and `ref:ifcName`:
+IFC references use the same shape with `ref:IFCReference`. **The two reference
+models carry different properties on it, so decide which and hold it.** QF SSC -
+the recent completed sample - carries **both**, and that is the fuller shape:
+
+```
+entity:SSC_AHUB0001 | brick:Air_Handling_Unit | ref:hasExternalReference |
+<blanknode> | ref:IFCReference |
+| | para:IFC_ID | <the IFC GUID> | | | ref:ifcName | SSC_AHUB0001
+```
+
+`para:IFC_ID` is the slot for the real IFC identifier from the BIM model;
+`ref:ifcName` is the subject name without the `entity:` prefix and without
+spaces, so it is always derivable. Dar Cairo writes `ref:ifcName` alone (535
+rows) and defines `para:IFC_ID` once without using it; SSC writes both on all 167
+of its IFC rows. Carry both unless the user says otherwise, and leave
+`para:IFC_ID` empty rather than inventing a GUID - that is a known, accepted
+`E-PAIR-1`, noted in the handover.
+
+Dar Cairo's shorter form, still valid:
 
 ```
 entity:UPS-02 | brick:Energy_Storage | ref:hasExternalReference | <blanknode> |
 ref:IFCReference | | | ref:ifcName | UPS-02
 ```
+
+An entity can carry more than one external reference - one `ref:IFCReference` row
+and one `ref:TimeseriesReference` row are independent rows on the same subject.
+Where the telemetry IDs are not yet known but the SCADA entity is, the
+timeseries row is still worth writing with `ref:hasTimeseriesId` left empty:
+
+```
+entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference |
+<blanknode> | ref:TimeseriesReference |
+| | ref:hasTimeseriesId | | | | para:hasEntityId | AHUB011
+```
+
+`para:hasEntityId` is the entity the telemetry database groups the keys under -
+in both reference models, the parent equipment's own tag.
 
 **E - defining a new class.** The only shape where `subject` is not an `entity:`.
 

@@ -16,7 +16,7 @@
 | `E-PH-1` | an unresolved `<placeholder>` cell |
 | `E-PAIR-1` | a prop name with no value |
 | `E-PAIR-2` | a prop value with no name - usually a pair shifted one column left |
-| `E-LBL-1` | a label contains punctuation the label rule strips; the message shows the fix |
+| `E-LBL-1` | a label contains punctuation the label rule strips; the message shows the fix. Not applied under `--label-style verbatim` |
 | `E-TYP-1` | one entity declared with more than one type |
 | `E-TYP-2` | a `brick:`/`rec:`/`ref:` term that does not exist in Brick 1.4 - almost always a typo |
 | `E-TYP-3` | a `para:` term used but never defined here and absent from the registry |
@@ -65,6 +65,8 @@ with the PARA team.
 | 7 | The doc targets Brick 1.4; some terms in circulation are 1.5 | Brick 1.4 - the term list is generated from the 1.4 ontology |
 | 8 | `rec:feeds` is referenced by Brick 1.4 but not defined as a REC term in it | `rec:feeds`, following Dar Cairo's 278 rows |
 | 9 | Dar Cairo's header row starts `Subject`; `Ontology_headers.xlsx` says `subject` | lowercase `subject`; the validator compares case-insensitively |
+| 10 | The label rule strips punctuation (`1.001 CORRIDOR`); QF SSC carries the source text verbatim (`1.001_CORRIDOR`, `SSC_FCU0001`); Dar Cairo is a third style again (`Mechanical-Area-2-R014`) | **ask the user** - `naming-and-labels.md` documents both, and `validate_ontology.py --label-style verbatim` turns `E-LBL-1` off for the SSC style. QNL was built `verbatim` at the user's direction |
+| 11 | The IFC reference property: Dar Cairo writes `ref:ifcName` (535 rows) and defines `para:IFC_ID` once without using it; QF SSC writes **both** `para:IFC_ID` and `ref:ifcName` on all 167 of its IFC rows | both, the SSC shape - `para:IFC_ID` for the BIM GUID, `ref:ifcName` for the derivable entity name |
 
 ## Known defects in the reference models
 

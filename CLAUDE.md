@@ -90,9 +90,17 @@ the convention; default to keeping. For identifiers the sheet has to invent:
 dashes separate words inside a segment, underscores separate segments, no spaces,
 case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
-**Labels.** Spaces are allowed. Letters, digits and spaces only, plus a decimal
-point between two digits. Every other punctuation mark is removed.
-`1.001_CORRIDOR` becomes `1.001 CORRIDOR`.
+**Labels.** Two styles; ask at intake, because neither reference model settles it.
+`verbatim` keeps the source text as written - the QF SSC house style,
+`1.001_CORRIDOR`, `SSC_FCU0001`. `para` applies the label rule: letters, digits
+and spaces only, plus a decimal point between two digits, every other punctuation
+mark removed, so `1.001_CORRIDOR` becomes `1.001 CORRIDOR`. Pass the matching
+`--label-style` to the validator; `verbatim` turns `E-LBL-1` off.
+
+**External references.** One row per reference, and an entity can carry several.
+IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
+(the entity name, derivable) - the QF SSC shape. Timeseries:
+`ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId`.
 
 **Spatial vs system.** `rec:isPartOf` for spatial containment,
 `brick:isPartOf` for system membership. Both appear in Dar Cairo and they mean

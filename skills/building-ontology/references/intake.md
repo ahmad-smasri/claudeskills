@@ -20,6 +20,15 @@ Default to keeping them - they are the join key to SCADA, the assets register an
 the room schedule. See `naming-and-labels.md`. Ask before writing a single row;
 re-identifying a finished sheet means regenerating all of it.
 
+## And the label question, in the same breath
+
+> Labels: strip the punctuation per the PARA label rule (`1.001 CORRIDOR`), or
+> carry the source text verbatim the way QF SSC does (`1.001_CORRIDOR`)?
+
+Neither reference model settles it - SSC is verbatim, Dar Cairo is a third style,
+and the label rule is newer than both. Ask, then run the validator with the
+matching `--label-style` and name the choice in the handover note.
+
 ## The mandatory inputs
 
 | # | Input | Usually arrives as | Blocks |

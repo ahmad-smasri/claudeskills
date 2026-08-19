@@ -71,6 +71,31 @@ dashes. Follow the examples: dashes.
 `rdfs:label_en` is what the front end displays. Every entity a user will see
 needs one.
 
+**Two styles are in use. Ask which one before writing rows**, the same way you
+ask about identifiers:
+
+> Labels: the PARA label rule strips punctuation, so `1.001_CORRIDOR` becomes
+> `1.001 CORRIDOR`. QF SSC instead carries the source text verbatim -
+> `1.001_CORRIDOR`, `SSC_FCU0001`. Which do you want?
+
+| Style | `rdfs:label_en` for room `B_063` / `PLANT_ROOM_01` | Validator |
+|---|---|---|
+| `verbatim` - QF SSC house style | `B_063_PLANT_ROOM_01` | `--label-style verbatim`, `E-LBL-1` off |
+| `para` - the label rule below | `B 063 PLANT ROOM 01` | default, `E-LBL-1` enforced |
+
+**QF SSC is the recent completed sample and it uses `verbatim` throughout** -
+rooms labelled `1.001_CORRIDOR`, `1.008_A / V ROOM`, equipment labelled with the
+raw register tag `SSC_FCU0001`. Dar Cairo is a third thing again
+(`Mechanical-Area-2-R014`). Neither reference model satisfies the label rule, so
+do not infer the answer from precedent - ask, then pass the matching
+`--label-style` to the validator and say which style the sheet uses in the
+handover note.
+
+In `verbatim` style the only edit is stripping whitespace, which the validator
+rejects regardless (`E-WS-1`).
+
+### The PARA label rule
+
 **The rule: letters, digits and spaces. A decimal point survives between two
 digits. Every other punctuation mark is removed.**
 
@@ -85,7 +110,8 @@ digits. Every other punctuation mark is removed.**
 Separators - `_ - . / \` - become a single space; everything else non-alphanumeric
 is dropped; runs of spaces collapse. `scripts/validate_ontology.py` reports the
 offending characters and the corrected string (`E-LBL-1`), and
-`clean_label()` in that script is the reference implementation.
+`clean_label()` in that script is the reference implementation. Under
+`--label-style verbatim` the rule is not applied and `E-LBL-1` never fires.
 
 This rule is newer than Dar Cairo, so the primary reference does not satisfy it -
 about 3,200 of its labels carry dashes, underscores or brackets. Follow the rule

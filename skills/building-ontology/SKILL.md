@@ -33,8 +33,10 @@ Read every source the user supplied, then run `references/intake.md` and ask for
 what is missing. Eight inputs are needed, and every one of them comes from the
 user:
 
-0. **Whether to keep the identifiers the source already carries, or normalise
-   them to the PARA convention.** Room schedules and asset registers usually
+0. **Two conventions to settle before any row is written: whether to keep the
+   identifiers the source already carries or normalise them to the PARA
+   convention, and whether labels carry the source text verbatim (the QF SSC
+   style) or are cleaned by the PARA label rule.** On identifiers: Room schedules and asset registers usually
    arrive with identifiers assigned, and those strings are the join key to SCADA
    and to every other sheet on the project. Default to keeping them; ask before
    writing a row, because re-identifying a finished sheet means regenerating it.
@@ -101,7 +103,7 @@ review is tractable.
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
 | Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, from the IO list | |
-| References | `ref:hasExternalReference` for timeseries IDs and IFC names | |
+| References | `ref:hasExternalReference`, one row per reference: `ref:IFCReference` carrying `para:IFC_ID` and `ref:ifcName`, `ref:TimeseriesReference` carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
 **The feeds rule: when equipment feeds a room, the `rec:feeds` object must be
@@ -120,16 +122,24 @@ Identifiers this sheet has to invent - site, building, levels, systems, parts,
 points - follow the PARA convention exactly. Dashes separate words inside a
 segment, underscores separate segments, no spaces anywhere, case is significant.
 
-Labels are the one place spaces are allowed. **A label may contain letters,
-digits and spaces, and a decimal point between two digits. Every other
-punctuation mark is removed.** `1.001_CORRIDOR` becomes `1.001 CORRIDOR`;
-`Coefficient of Performance (COP)` becomes `Coefficient of Performance COP`.
+Labels come in two styles and **the user picks one at intake** - neither
+reference model settles it. `verbatim` carries the source text as written, the
+QF SSC house style: `1.001_CORRIDOR`, `SSC_FCU0001`. `para` applies the label
+rule - **letters, digits and spaces, and a decimal point between two digits;
+every other punctuation mark is removed** - so `1.001_CORRIDOR` becomes
+`1.001 CORRIDOR` and `Coefficient of Performance (COP)` becomes
+`Coefficient of Performance COP`. Run the validator with the matching
+`--label-style` and name the choice in the handover.
 
 ## 4. Validate before handing over
 
 ```
 python3 scripts/validate_ontology.py MyBuilding.xlsx
+python3 scripts/validate_ontology.py MyBuilding.xlsx --label-style verbatim
 ```
+
+Pass `--label-style verbatim` when the user chose source-verbatim labels; it
+turns `E-LBL-1` off and leaves every other rule in force.
 
 `.xlsx` input needs `openpyxl`; `.csv` input needs nothing beyond the standard
 library.
@@ -150,7 +160,7 @@ reference.
 Ship the `.xlsx` with the 27-column header from `assets/ontology-template.csv`,
 plus a crosswalk file (`source_identifier, ontology_identifier, label`) whenever
 any identifier changed shape, plus a short note listing: whether source
-identifiers were kept or normalised, every new `para:` class proposed for review, every
+identifiers were kept or normalised and which label style was used, every new `para:` class proposed for review, every
 property left empty for want of a datasheet, every piece of equipment with no IO
 list and therefore no points, anything deliberately left out because it was
 outside the requested scope, and the validator's remaining warnings with reasons.

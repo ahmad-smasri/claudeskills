@@ -1,7 +1,8 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,124 rows on the
-27-column PARA header. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,573 rows on the
+27-column PARA header. Validate with
+`validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
 source identifier against the identifier used in the sheet and its label.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
@@ -16,12 +17,12 @@ source identifier against the identifier used in the sheet and its label.
 | Levels | 4 | `entity:QNL_B` (`rec:BasementLevel`), `_L1`, `_L2`, `_T1` (`rec:Level`) |
 | Rooms | 336 | each `rec:isPartOf` its level |
 | Chilled water loop | 1 | `rec:locatedIn` the building |
-| Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
+| Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
-Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source,
-`ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal
-units (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row —
-see "one direction" below.
+Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source, two
+`ref:hasExternalReference` rows (one `ref:IFCReference`, one `ref:TimeseriesReference`),
+and for the terminal units (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no
+`rec:feeds` row — see "one direction" below.
 
 ## Decisions taken, per your answers
 
@@ -57,9 +58,13 @@ Seven identifiers had to be invented, because no source supplies them:
 / `_T1` (matching the level segment inside your room tags), and
 `entity:QNL_CHILLED_WATER_LOOP` for the `CHILLED WATER LOOP` value in the Fed By column.
 
-Labels are the one place cleanup happens, per the PARA label rule. Rooms read
-`<number> <name>` — `B 063 PLANT ROOM 01`, `B 237 CORRIDOR` — which keeps the 30-odd
-corridors distinguishable in the front end. Assets read `AHUB011`, `VAV B S11 024`.
+**Labels follow QF SSC — the source text, verbatim.** SSC labels rooms
+`1.001_CORRIDOR` and equipment `SSC_FCU0001`; QNL now does the same. Rooms read
+`<number>_<name>` — `B_063_PLANT_ROOM_01`, `B_237_CORRIDOR` — and assets read their raw
+register tag, `AHUB011`, `VAV_B_S11_024`. No punctuation is stripped and no typo is
+fixed. This is not the PARA label rule, which would give `B 063 PLANT ROOM 01`; the
+validator's `E-LBL-1` is therefore switched off with `--label-style verbatim`, and every
+other rule stays in force.
 
 `QNL_identifier_crosswalk.csv` lists every source identifier against the identifier used
 in the sheet and its label. They are identical apart from that one trailing space; the
@@ -80,24 +85,48 @@ of the sheet for readability, but it is an existing registry class, not a new co
 1,188 `I-TYP-6` info lines are the VAV and CAV classes — valid Brick 1.4, simply the
 first time this house has used them.
 
+## External references — the SSC shape
+
+Each asset carries two `ref:hasExternalReference` rows, matching QF SSC:
+
+```
+entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference | <blanknode> |
+ref:IFCReference        | | | para:IFC_ID          |         | | | ref:ifcName      | AHUB011
+entity:AHUB011 | brick:Air_Handling_Unit | ref:hasExternalReference | <blanknode> |
+ref:TimeseriesReference | | | ref:hasTimeseriesId  |         | | | para:hasEntityId | AHUB011
+```
+
+`para:IFC_ID` is the slot for the real BIM GUID and is empty, as you asked.
+`ref:ifcName` is filled with the entity name, which is derivable and is what both
+reference models put there. `ref:hasTimeseriesId` is empty because point-level telemetry
+IDs come from the IO list, which has not been supplied; `para:hasEntityId` is filled with
+the asset's own tag, which is what both reference models use.
+
 ## Validator result
 
 ```
-2124 rows, 792 typed entities, 1 para: definitions
-449 errors, 0 warnings
+python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
+2573 rows, 792 typed entities, 1 para: definitions
+898 errors, 0 warnings
 ```
 
-**All 449 errors are the same rule, `E-PAIR-1`, and all of them are deliberate.** Each
-is a `ref:ifcName` property with an empty value, on the IFC reference row of one asset —
-exactly what you asked for: create the reference row, leave the ID blank until the real
-IFC values are available. Paste the IFC names into `object_prop_val` on those rows and
-the sheet validates clean. Nothing else is outstanding: zero warnings, so every entity
-is labelled, every terminal unit has a feeds row and a location, and every spatial
-entity connects up to `rec:Building`.
+**All 898 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
+two empty ID slots on each of the 449 assets, `para:IFC_ID` and `ref:hasTimeseriesId`.
+Paste the IFC GUIDs and the telemetry IDs into `object_prop_val` on those rows and the
+sheet validates clean. Nothing else is outstanding: zero warnings, so every entity is
+labelled, every terminal unit has a feeds row and a location, and every spatial entity
+connects up to `rec:Building`.
+
+Without `--label-style verbatim` you also get 771 `E-LBL-1` — that is the PARA label
+rule objecting to the SSC label style, and it is expected.
 
 ## Left out, and why
 
 - **Points.** No IO list was supplied, so no equipment carries a `brick:hasPoint` row.
+  Note that in both reference models the timeseries reference belongs on the *point*,
+  not on the equipment — the per-asset `ref:TimeseriesReference` rows here are stubs
+  registering each asset's SCADA entity, ready for the point rows to hang off once the
+  IO list lands.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **System membership.** No `brick:isPartOf entity:HVAC` rows — you asked for site,
