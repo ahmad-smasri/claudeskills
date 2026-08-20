@@ -216,8 +216,11 @@ finding standing.
 python3 scripts/highlight_findings.py In.xlsx --out Reviewed.xlsx --label-style verbatim
 ```
 
-writes a copy with every still-flagged row filled `#FFFF00` and the finding text
-attached as a cell comment, so the reviewer works where the data is. File-level
+writes a copy with every still-flagged row filled `#FFFF00`, the finding written
+into two columns past the data - `validator_code` and `validator_finding`, so it
+can be read, sorted and filtered - and the full text on a cell comment for rows
+carrying several. The reviewer works where the data is. **Delete both columns and
+the fills before handover**: the deliverable holds triples and nothing else. File-level
 findings - a type clash, a terminal unit with no feeds - are placed on the
 entity's **defining row only**: marking every row an entity owns paints hundreds
 of cells yellow for a handful of findings and buries the ones that point at a

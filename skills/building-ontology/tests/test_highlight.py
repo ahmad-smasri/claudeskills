@@ -39,4 +39,9 @@ with tempfile.TemporaryDirectory() as tmp:
     assert lit, "nothing was highlighted"
     assert any(ws.cell(x, 1).comment for x in lit), "no finding comments attached"
     assert got.sheetnames == wb.sheetnames, "the highlighter added a sheet"
+    # the finding must be readable in the row, not only on hover
+    assert ws.cell(1, ws.max_column - 1).value == "validator_code"
+    assert ws.cell(1, ws.max_column).value == "validator_finding"
+    assert all(ws.cell(x, ws.max_column).value for x in lit), \
+        "a highlighted row carries no finding text"
 print(f"({len(lit)} rows highlighted)")

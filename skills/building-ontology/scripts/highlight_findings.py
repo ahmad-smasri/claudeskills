@@ -8,9 +8,15 @@ Some findings need a human. This writes a copy of the workbook with those rows
 filled `#FFFF00` and the finding text attached as a cell comment on the subject,
 so the reviewer works in the sheet rather than alongside a separate report.
 
+Each flagged row also gets the finding written into two columns past the data -
+`validator_code` and `validator_finding` - so the reviewer can read, sort and
+filter on it instead of hovering over every cell. They sit beyond the 27-column
+contract, so the converter still reads the sheet, but **delete them and the fills
+before handover**: the deliverable holds triples and nothing else.
+
 **It writes a copy and never touches the input**, and it adds no sheet: the
-highlight lives on the ontology rows themselves, which is the one place review
-marks belong. Clear the fills before handover.
+review marks live on the ontology rows themselves, which is the one place they
+belong.
 
 File-level findings - a type clash, a terminal unit with no feeds - name an
 entity rather than a row. Those are resolved to every row where that entity is
@@ -75,6 +81,9 @@ def main():
                     help="comma-separated rule codes to leave unhighlighted")
     ap.add_argument("--severity", default="ERROR,WARN",
                     help="which severities to highlight (default ERROR,WARN)")
+    ap.add_argument("--no-annotate", action="store_true",
+                    help="fill the rows but do not add the validator_code and "
+                         "validator_finding columns")
     args = ap.parse_args()
 
     if not args.sheet.exists():
@@ -83,7 +92,8 @@ def main():
     try:
         import openpyxl
         from openpyxl.comments import Comment
-        from openpyxl.styles import PatternFill
+        from openpyxl.styles import Alignment, Font, PatternFill
+        from openpyxl.utils import get_column_letter
     except ImportError:
         sys.exit("openpyxl is needed - pip install openpyxl")
 
@@ -119,14 +129,37 @@ def main():
     ws = pick_ontology_sheet(wb, args.sheet)
     fill = PatternFill(start_color=YELLOW, end_color=YELLOW, fill_type="solid")
     width = min(ws.max_column, 27)
+
+    # Two columns past the data, so the 27-column contract still holds.
+    col_code, col_text = width + 1, width + 2
+    if not args.no_annotate:
+        ws.cell(1, col_code, "validator_code").font = Font(bold=True)
+        ws.cell(1, col_text, "validator_finding").font = Font(bold=True)
+        ws.column_dimensions[get_column_letter(col_code)].width = 12
+        ws.column_dimensions[get_column_letter(col_text)].width = 110
+
     for row, notes in sorted(marks.items()):
         if row > ws.max_row:
             continue
         for col in range(1, width + 1):
             ws.cell(row, col).fill = fill
-        text = "\n".join(sorted(set(notes))[:12])
-        c = ws.cell(row, 1)
-        c.comment = Comment(text[:3000], "ontology validator", height=220, width=520)
+        seen = sorted(set(notes))
+        text = "\n".join(seen[:12])
+        ws.cell(row, 1).comment = Comment(text[:3000], "ontology validator",
+                                          height=220, width=520)
+        if args.no_annotate:
+            continue
+        codes = sorted({n.split(":", 1)[0] for n in seen})
+        # Strip the repeated "CODE: " prefix - the code has its own column - and
+        # the family prefix the consistency checker adds, which is already
+        # obvious from the row.
+        bodies = [re.sub(r"^[EWI]-[A-Z]+-\d+:\s*(?:[a-z]+:[A-Za-z_]+:\s*)?", "", n)
+                  for n in seen]
+        for col, val in ((col_code, ", ".join(codes)),
+                         (col_text, "  |  ".join(bodies)[:2000])):
+            c = ws.cell(row, col, val)
+            c.fill = fill
+            c.alignment = Alignment(vertical="top", wrap_text=(col == col_text))
     wb.save(args.out)
 
     codes = collections.Counter(
