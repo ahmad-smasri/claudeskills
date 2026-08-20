@@ -48,6 +48,32 @@ SPATIAL_CLASSES = {
 PLACEHOLDER = re.compile(r"<(?!blanknode>)[^>]*>")
 
 
+def house_alternative(term: str, precedent: set[str]) -> str:
+    """The class Dar Cairo already uses for something like this term, if any.
+
+    Step 1 of the class ladder is "is it in Dar Cairo?", so a term that is not in
+    Brick is worth checking against the primary reference before anyone goes
+    looking on brickschema.org. `brick:Supply_Air_Flow` is not a Brick 1.4 term;
+    `brick:Supply_Air_Flow_Sensor`, which Dar Cairo uses 38 times, is - and that
+    is a far more useful thing to be told.
+    """
+    local = term.split(":", 1)[-1]
+    for cand in sorted(precedent, key=len):
+        cl = cand.split(":", 1)[-1]
+        if cl == local:
+            continue
+        if cl.startswith(local + "_") or local.startswith(cl + "_") or \
+                cl.lstrip("_") == local.lstrip("_") or \
+                cl.lower().replace("_", "") == local.lower().replace("_", ""):
+            return cand
+    # a dropped leading character - brick:ccupied_... for brick:Occupied_...
+    for cand in sorted(precedent):
+        cl = cand.split(":", 1)[-1]
+        if len(cl) == len(local) + 1 and cl.endswith(local):
+            return cand
+    return ""
+
+
 def label_issues(text: str) -> list[str]:
     """Return the characters in a label that the PARA label rule disallows.
 
@@ -299,7 +325,11 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
             if val.startswith(("brick:", "rec:", "ref:")) and vocab:
                 status, note = vocab.get(val, ("MISSING", ""))
                 if status == "MISSING":
+                    alt = house_alternative(val, precedent)
                     report.add("ERROR", "E-TYP-2", rownum,
+                               f"{col} {val} is not a term in Brick 1.4 - Dar Cairo "
+                               f"uses {alt} for this; confirm before substituting"
+                               if alt else
                                f"{col} {val} is not a term in Brick 1.4 - "
                                "check the spelling on ontology.brickschema.org")
                 elif status == "ALIAS":
@@ -429,10 +459,14 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
                        f"blank-node objectType should be <blanknode> or a ref: class, found {otype!r}")
 
     # ---- whole-file checks ---------------------------------------------------
+    # When an entity carries two classes, say which of them the house already
+    # uses: that is usually the whole answer, and it saves the reader a lookup.
     for entity, ts in sorted(types.items()):
         if len(ts) > 1:
+            marked = [f"{t} (in Dar Cairo)" if t in precedent else f"{t} (no precedent)"
+                      for t in sorted(ts)]
             report.add("ERROR", "E-TYP-1", 0,
-                       f"{entity} is typed {len(ts)} different ways: {sorted(ts)}")
+                       f"{entity} is typed {len(ts)} different ways: {', '.join(marked)}")
 
     # A dangling reference is an entity that is mentioned and never given a
     # class - a typo, a renamed entity, or a placeholder resolved on one row and

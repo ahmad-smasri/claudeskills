@@ -21,8 +21,8 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `E-PAIR-1` | a prop name with no value |
 | `E-PAIR-2` | a prop value with no name - usually a pair shifted one column left |
 | `E-LBL-1` | a label contains punctuation the label rule strips; the message shows the fix. Not applied under `--label-style verbatim` |
-| `E-TYP-1` | one entity declared with more than one type |
-| `E-TYP-2` | a `brick:`/`rec:`/`ref:` term that does not exist in Brick 1.4 - almost always a typo |
+| `E-TYP-1` | one entity declared with more than one type. Each type is annotated with whether Dar Cairo uses it, which usually settles which one is right |
+| `E-TYP-2` | a `brick:`/`rec:`/`ref:` term that does not exist in Brick 1.4 - almost always a typo. **Where Dar Cairo has a near-miss term, the message names it**, since step 1 of the ladder is the primary reference, not brickschema.org |
 | `E-TYP-3` | a `para:` term used but never defined here and absent from the registry |
 | `E-EXT-1` | a `rdfs:subClassOf` row whose `subjectType` is not `owl:Class` |
 | `E-EXT-2` | a new class with no `brick:`/`rec:`/`para:` parent |
