@@ -47,6 +47,13 @@ SPATIAL_CLASSES = {
 
 PLACEHOLDER = re.compile(r"<(?!blanknode>)[^>]*>")
 
+# Placeholders that are deliberate and mean something, so they are reported as
+# open work rather than as a defect. `<AliasOf>` marks a point whose telemetry
+# key exists in the database under a name the ontology does not yet know - see
+# references/csv-contract.md. The rest of the row is finished; only the mapping
+# is outstanding, and it cannot be filled until the data lands.
+KNOWN_PLACEHOLDERS = {"<AliasOf>"}
+
 
 def house_alternative(term: str, precedent: set[str]) -> str:
     """The class Dar Cairo already uses for something like this term, if any.
@@ -290,8 +297,14 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
                 report.add("ERROR", "E-WS-1", rownum,
                            f"{header[i] or f'col{i + 1}'} has padding whitespace: {cell!r}")
             if PLACEHOLDER.search(cell.strip()):
-                report.add("ERROR", "E-PH-1", rownum,
-                           f"{header[i] or f'col{i + 1}'} still holds a placeholder: {cell.strip()!r}")
+                if cell.strip() in KNOWN_PLACEHOLDERS:
+                    report.add("INFO", "I-PH-2", rownum,
+                               f"{cell.strip()} is a deliberate placeholder - the alias "
+                               f"is filled once the database entity name is known")
+                else:
+                    report.add("ERROR", "E-PH-1", rownum,
+                               f"{header[i] or f'col{i + 1}'} still holds a "
+                               f"placeholder: {cell.strip()!r}")
 
         if not subj or not pred or not obj:
             report.add("ERROR", "E-CORE-1", rownum,

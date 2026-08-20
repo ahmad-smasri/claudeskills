@@ -17,7 +17,7 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `E-SPACE-1` | an identifier contains a space |
 | `E-PFX-1` | a prefix outside `entity brick rec ref unit qudt para rdf rdfs owl xsd skos bacnet` |
 | `E-PFX-2` | a type or predicate with no prefix at all |
-| `E-PH-1` | an unresolved `<placeholder>` cell |
+| `E-PH-1` | an unresolved `<placeholder>` cell. `<AliasOf>` is exempt - it is deliberate, and reported as `I-PH-2` |
 | `E-PAIR-1` | a prop name with no value |
 | `E-PAIR-2` | a prop value with no name - usually a pair shifted one column left |
 | `E-LBL-1` | a label contains punctuation the label rule strips; the message shows the fix. Not applied under `--label-style verbatim` |
@@ -101,6 +101,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `I-CON-13` | an identifier repeats a token, `..._REST_REST_ROOM_WOMEN` |
 | `I-CON-14` | two children of the same class whose names differ only by a trailing token |
 | `I-CON-15` | a class with one instance, so no cross-unit comparison is possible. Said explicitly rather than reported as a vacuous pass |
+| `I-PH-2` | a `<AliasOf>` placeholder: the point is modelled, and its database entity name is still to come. Open work, not a defect - see `csv-contract.md` |
 | `I-CON-16` | an entity reference that lacks the prefix every subject in its family carries. Objects of `brick:isPartOf` and `rec:isFedBy` are exempt - they name shared plant, which both reference models deliberately write without a building code |
 
 ### How it decides what is expected
@@ -190,6 +191,27 @@ Two entries today, both settled by the PARA team on 2026-08-20:
 
 **Never add a line without a reason.** The file is the only thing standing
 between an accepted term and a typo somebody waved through.
+
+## How the SSC findings were resolved
+
+The review pass on the finalized SSC sheet, 2026-08-20. These are worth copying
+because each is a *shape* of fix, not a one-off:
+
+| Finding | What it turned out to be | The fix |
+|---|---|---|
+| `E-CON-10` one point, two external references | two different sensors sharing one identifier | **split the entity**: `_SA_P-Static` became `_SA_P-Static-1` and `-2`, typed `para:Static_Pressure_Sensor_01` / `_02`. Two keys means two points |
+| `E-TYP-1` `_RA_P-Static` typed two ways | the generic and the specific class both in use | **keep the more specific one everywhere**: `para:Return_Air_Static_Pressure_Sensor`, not `para:Static_Pressure_Sensor` |
+| `E-CON-5` `_RF` point typed under two fans | a return fan modelled as a supply fan | retyped `brick:Return_Fan`. The suffix in the identifier was right and the class was wrong |
+| `E-FEED-1` on 14 CRACs | genuinely missing rows | added `rec:feeds` to the room each serves |
+| `E-TYP-2` `brick:Heater` | not a Brick term, and Dar Cairo has no heaters at all | `brick:Heating_Coil` - the entity is a `brick:hasPart` of an AHU carrying a `brick:Heating_Command`, SCADA key `..._SupHtr.HtrCtrl`. That is a heating element inside an air handler, and the sibling of the `brick:Chilled_Water_Coil` the same AHUs use on the cooling side. `brick:Space_Heater` is a standalone room heater and `brick:Water_Heater` is domestic hot water |
+
+**One lesson from the pass itself.** Two search-and-replace turns resolved
+`brick:Alarm` and `brick:Fault_Status` on the CRAC alarm points, but each ran
+over one column at a time: the `_General_Fault` entities ended up
+`brick:Alarm` in `subjectType` and `brick:Communication_Loss_Alarm` in
+`objectType` - a new `E-TYP-1` on 14 entities, created by the fix. **A class
+change has to move every cell that names the entity, subject side and object
+side together**, and `check_consistency.py` is what catches it when it does not.
 
 ## Where the sources disagree
 

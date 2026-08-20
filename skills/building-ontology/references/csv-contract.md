@@ -146,6 +146,29 @@ If the aggregation has its own `TimeseriesId` in the external database, it is a
 **separate data point** with the same class, its own name and its own external
 reference - not a property of the raw point.
 
+## `brick:aliasOf`: the ontology name against the database name
+
+A point's identifier in this sheet is invented - you name it when you model the
+equipment, long before anyone can see what the telemetry database calls it. The
+database stores its own entity names, and `ref:hasTimeseriesId` is only
+resolvable by hitting the database's entity, not the one named here. `brick:aliasOf`
+carries that mapping:
+
+```
+entity:SSC_AHUB0001_SF_Status | brick:On_Off_Status | ... | brick:aliasOf | AHU-1-SF-RUN
+```
+
+**Why the two are not the same from the start**: they should be, and where the
+data already exists they are. But the ontology is usually built before the data
+lands - sometimes long before - and waiting for it would stop the work. So the
+sheet names entities freely, and the alias reconciles them afterwards.
+
+`<AliasOf>` in a `subject_prop_val` is therefore a **deliberate** placeholder,
+not an unresolved one: the row is finished apart from a name nobody has yet. The
+validator reports it as `I-PH-2` rather than failing it, and it stays in the
+handover note under open work. Every other `<placeholder>` is still an error
+(`E-PH-1`) - `<FedByASSET>` and `entity:<Location>` are simply unfinished rows.
+
 ## Property names in use
 
 Observed across the reference models, most frequent first:
