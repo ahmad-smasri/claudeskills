@@ -116,6 +116,25 @@ TERMINAL = {"VAV", "CAV", "FCU"}
 # graph. Site-level systems - entity:HVAC, entity:QF - are genuinely shared and
 # rightly bare; a per-building main loop is not. Flagged in the handover note.
 LOOP = "entity:QNL_CHWS-MAIN-LOOP"
+
+# The systems layer, which is what the front end's system tree is built from.
+#
+# Dar Cairo's shape: a top-level system is a subject carrying brick:isPartOf the
+# SITE and a label; a sub-system is declared only as the object of its parent's
+# brick:hasPart row, with its class in objectType and its label in an object
+# prop; equipment points up with brick:isPartOf. No link is ever stated twice.
+# QF SSC 0.5 agrees - entity:HVAC brick:isPartOf entity:QF.
+#
+# QNL declares entity:HVAC and nothing below it. A CHW-System node was
+# considered and rejected: the only child it could hold is the loop, because
+# every AHU and FCU relation to chilled water is already stated by rec:isFedBy.
+# A tree node with one child costs the user a click and tells them nothing. Add
+# it when the chilled water plant - chillers, pumps, heat exchangers - arrives.
+# Both reference models type it brick:HVAC_System, which Brick 1.4 lists as an
+# alias; the class ladder says use the preferred term, and assets/example-minimal.csv
+# already does. Noted in the handover as a divergence from house precedent.
+HVAC = "entity:HVAC"
+HVAC_CLASS = "brick:Heating_Ventilation_Air_Conditioning_System"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
@@ -203,6 +222,10 @@ for d in rooms.values():
                    [("s", "rdfs:label_en", d["label"])]))
 
 # Chilled water loop ---------------------------------------------------------
+out.append(row(HVAC, HVAC_CLASS, "brick:isPartOf", "entity:QF", "rec:Site",
+               [("s", "rdfs:label_en", "HVAC System")]))
+
+out.append(row(LOOP, LOOP_CLASS, "brick:isPartOf", HVAC, HVAC_CLASS))
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
                [("s", "rdfs:label_en", "QNL_CHWS-MAIN-LOOP")]))
 out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
@@ -216,6 +239,7 @@ for kind in ("AHUB", "VAV", "CAV", "FCU"):
         bare = a["id"].replace("entity:", "")
         out.append(row(a["id"], a["cls"], "rec:locatedIn", a["room"], "rec:Room",
                        [("s", "rdfs:label_en", label(bare))]))
+        out.append(row(a["id"], a["cls"], "brick:isPartOf", HVAC, HVAC_CLASS))
         out.append(row(a["id"], a["cls"], "rec:isFedBy", a["src"], a["src_cls"]))
         if kind in TERMINAL:
             out.append(row(a["id"], a["cls"], "rec:feeds", a["room"], "rec:Room"))

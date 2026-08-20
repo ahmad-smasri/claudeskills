@@ -1,6 +1,6 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,124 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,576 rows on the
 27-column PARA header. Validate with
 `validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
 source identifier against the identifier used in the sheet and its label.
@@ -16,10 +16,12 @@ source identifier against the identifier used in the sheet and its label.
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:QF` |
 | Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
-| Chilled water loop | 2 | `entity:QNL_CHWS-MAIN-LOOP`, `rec:locatedIn` the building, + IFC reference |
-| Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
+| Systems | 1 | `entity:HVAC` `brick:isPartOf` `entity:QF` |
+| Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` HVAC, `rec:locatedIn` the building, + IFC reference |
+| Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
-Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source,
+Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
+`rec:isFedBy` → its upstream source,
 `ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal units
 (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row — see "one
 direction" below.
@@ -137,6 +139,28 @@ of the sheet for readability, but it is an existing registry class, not a new co
 1,188 `I-TYP-6` info lines are the VAV and CAV classes — valid Brick 1.4, simply the
 first time this house has used them.
 
+## The systems layer
+
+`entity:HVAC` `brick:isPartOf` `entity:QF`, labelled "HVAC System", and all 449 assets
+plus the chilled water loop `brick:isPartOf` it. This is what the front end builds its
+system tree from — the `brick:isPartOf` chain here, plus Brick's own class hierarchy for
+the layer below, since `brick:Air_Handling_Unit` is already declared under
+`brick:HVAC_Equipment` in the ontology the viewer loads. No `entity:Air_Handling_Unit`
+was minted between the two: neither reference model has one, and it would restate what
+Brick already says.
+
+**One system, deliberately.** A `CHW-System` node beneath HVAC was considered and
+rejected: the only child it could hold is the loop, because every AHU and FCU relation to
+chilled water is already carried by `rec:isFedBy`. A tree node with one child costs the
+user a click and tells them nothing. Add it when the chilled water plant — chillers,
+pumps, heat exchangers — arrives.
+
+**One divergence from house precedent.** Both reference models type the system
+`brick:HVAC_System`, which Brick 1.4 lists as an alias. The class ladder says use the
+preferred term and `assets/example-minimal.csv` already does, so QNL writes
+`brick:Heating_Ventilation_Air_Conditioning_System`. Say the word if you would rather
+match the reference models and take the `W-TYP-5` warnings.
+
 ## External references — the SSC shape
 
 Each asset carries one `ref:hasExternalReference` row, matching QF SSC's IFC shape:
@@ -159,13 +183,20 @@ timeseries references. They arrive with the IO list, on the point rows.
 
 ```
 python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-2124 rows, 792 typed entities, 1 para: definitions
-449 errors, 0 warnings
+2576 rows, 792 typed entities, 1 para: definitions
+450 errors, 1 warnings, 1936 advisories
 ```
 
-**All 449 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
-empty `para:IFC_ID` on each of the 449 assets. Paste the IFC GUIDs into
-`object_prop_val` on those rows and the sheet validates clean. Nothing else is outstanding: zero warnings, so every entity is
+**All 450 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
+empty `para:IFC_ID` on each of the 449 assets and on the loop. Paste the IFC GUIDs into
+`object_prop_val` on those rows and the sheet validates clean.
+
+**The one warning is worth your attention.** `W-REF-1` reports that `entity:QF` is
+referenced as an object but never given a row of its own. QF SSC 0.5 does the same — it
+declares `entity:SSC` but never `entity:QF` — so as things stand *no* sheet declares the
+site. Its label reaches the graph through the object prop on QNL's building row, so
+nothing breaks today, but somebody should own a `entity:QF rec:Site` row. Tell me if that
+should be QNL and I will add it. Nothing else is outstanding: zero warnings, so every entity is
 labelled, every terminal unit has a feeds row and a location, and every spatial entity
 connects up to `rec:Building`.
 
@@ -177,12 +208,11 @@ rule objecting to the SSC label style, and it is expected.
 - **Points, and with them every timeseries reference.** No IO list was supplied, so no
   equipment carries a `brick:hasPoint` row and nothing carries a
   `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
-  Send the IO list and both layers land together.
+  Send the IO list and both layers land together. When you do,
+  `check_io_list.py` will cross-check the two in both directions before handover, so no
+  point ships that the BMS does not publish.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
-- **System membership.** No `brick:isPartOf entity:HVAC` rows — you asked for site,
-  building, floors, rooms and equipment, and a systems layer was not part of that. It is
-  five rows plus one per asset whenever you want it.
 - **Zones.** No `rec:Zone` or `rec:HVACZone` layer; no zone data was supplied. Rooms sit
   directly under their level, which satisfies the spatial-connectivity rule. Dar Cairo
   normally interposes a per-floor parent zone — worth adding if the QNL zoning drawings

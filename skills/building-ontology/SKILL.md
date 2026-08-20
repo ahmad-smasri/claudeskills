@@ -33,14 +33,7 @@ Read every source the user supplied, then run `references/intake.md` and ask for
 what is missing. Eight inputs are needed, and every one of them comes from the
 user:
 
-0. **Two conventions to settle before any row is written: whether to keep the
-   identifiers the source already carries or normalise them to the PARA
-   convention, and whether labels carry the source text verbatim (the QF SSC
-   style) or are cleaned by the PARA label rule.** On identifiers: Room schedules and asset registers usually
-   arrive with identifiers assigned, and those strings are the join key to SCADA
-   and to every other sheet on the project. Default to keeping them; ask before
-   writing a row, because re-identifying a finished sheet means regenerating it.
-1. Building name
+1. Building name, and the **site entity the client already uses**
 2. Levels
 3. Rooms and spaces - names, numbers, tags or IDs
 4. Equipment
@@ -48,28 +41,46 @@ user:
 6. What each piece of equipment feeds, and what feeds it
 7. **IO lists** - equipment carries data points, and the IO list is where the
    point names, signal types, units and telemetry IDs come from. Ask for it
-   before modelling any points. No IO list means no points for that equipment.
+   before modelling any points. No IO list means no points for that equipment
 8. **Manufacturer standards and datasheets** - the source of nameplate
    properties: rated power, voltage, phase count, capacity, flow rates, head,
    model number, manufacturer. **Leave the property out when the datasheet was
-   not submitted.** An empty cell is recoverable; a guessed rating is not.
+   not submitted.** An empty cell is recoverable; a guessed rating is not
 
-Most of this arrives as spreadsheets, and several facts are usually packed into
-one identifier. `entity:QNL_B_063_PLANT_ROOM_01` carries building `QNL`, level
-`B` (basement), room ID `063` and room name `PLANT ROOM 01`.
+Two conventions have to be settled in the same message, because both are
+expensive to change once rows exist: whether **identifiers** keep the form the
+source gave them or are normalised to the PARA convention, and whether **labels**
+carry the source text verbatim (the QF SSC style) or are cleaned by the PARA
+label rule. `references/naming-and-labels.md` has the wording for both.
 
-**Ask about anything in the source that reads like a contradiction, before
-writing rows rather than in the handover note.** The recurring one: an asset
-whose level token disagrees with the level of the room it is tagged against. That
-is usually a double-height or open-roof space, where the unit hangs a level above
-what it conditions and `rec:locatedIn` and `rec:feeds` correctly name the same
-room - but it can equally mean the room column is the served space only. One
-question decides which sheet you write. See `references/intake.md`.
+## Ask. Do not resolve a confusion on your own.
 
-**When an identifier's structure is not obvious, ask the user to decode one
-example rather than guessing.** Guessing the segment order silently corrupts
-every room row. Ask about unfamiliar abbreviations at the same time - they become
-`rdfs:label_en` values, and a wrong expansion is visible to end users.
+**Anything you cannot settle from the sources is a question for the user, asked
+before the rows are written and not explained in the handover note afterwards.**
+A one-line question costs a reply; a wrong assumption silently corrupts every row
+that depends on it, and the sheet still validates clean. This applies to every
+confusion, not only the recurring ones below.
+
+The ones that come up on every building, all worked through in
+`references/intake.md`:
+
+- **A packed identifier whose segment order is not obvious.** Ask the user to
+  decode one example. Ask about unfamiliar abbreviations at the same time - they
+  become `rdfs:label_en` values, and a wrong expansion is visible to end users.
+- **Identifiers that do not all follow one shape.** Read the whole column, work
+  out the majority shape, list the departures, ask whether to regularise.
+- **An asset whose level disagrees with the level of the room it is tagged
+  against.** Usually a double-height or open-roof space, where the unit hangs a
+  level above what it conditions and `rec:locatedIn` and `rec:feeds` correctly
+  name the same room - but it can equally mean the room column is the served
+  space only.
+- **An IO list whose point names do not obviously map onto the equipment
+  entities.** Never guess the join. Ask which column is the telemetry key and
+  which the point name; `scripts/check_io_list.py` stops and says so rather than
+  matching on a guess.
+- **A source column whose meaning is ambiguous** - one room column serving as
+  both location and served space, a type prefix disagreeing with a class column,
+  rooms in one sheet but not the other.
 
 ## 1. Resolve every class through the ladder
 
@@ -98,11 +109,11 @@ review is tractable.
 | Layer | What goes in | Detail |
 |---|---|---|
 | Spatial | Site, Building, Levels, Parent Zones, HVAC Zones, Rooms | `references/relationships.md` |
-| Systems | HVAC, Electrical, Water - the systems equipment belongs to | |
+| Systems | the system tree the front end renders: a top-level system per discipline, sub-systems below it, and every asset pointing up | `references/relationships.md` |
 | Equipment | Type, `rec:locatedIn`, `brick:isPartOf` its system, nameplate properties from the manufacturer datasheet | |
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
-| Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, from the IO list | |
+| Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, **from the IO list and nowhere else** | below |
 | References | `ref:hasExternalReference`, one row per reference. `ref:IFCReference` on the physical thing, carrying `para:IFC_ID` and `ref:ifcName`. `ref:TimeseriesReference` **on the point, never on the equipment**, carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
@@ -110,7 +121,20 @@ review is tractable.
 that room.** Not a placeholder, not a representative room, not the zone when the
 room is known. A terminal unit - VAV, FCU, PIM, CRAC, exhaust fan - with no
 `rec:feeds` is an incomplete model, and the validator fails it (`E-FEED-1`).
-The QF SSC draft breaks this rule throughout; do not copy it.
+
+**The systems layer is what the front end's tree is built from**, so it is not
+optional decoration - see `references/relationships.md` for the row shapes.
+Declare each system before the equipment that points at it, and **only declare a
+system that earns its place**: a node whose only child is one asset costs the
+user a click and tells them nothing. QNL declares `entity:HVAC` and stops,
+because a `CHW-System` beneath it would hold the loop and nothing else.
+
+**The points rule: every point traces back to a row in the IO list.** A point the
+BMS does not publish resolves to an empty timeseries - the front end draws a tile
+with no data behind it, and nobody can tell whether the sensor is broken or was
+never real. Over-inclusion is worse than omission here. Cross-check with
+`scripts/check_io_list.py` before handover, and never infer a point list from the
+equipment type.
 
 ## 3. Naming and labels
 
@@ -136,9 +160,17 @@ every other punctuation mark is removed** - so `1.001_CORRIDOR` becomes
 Two passes, and both matter. Neither writes anything into the sheet.
 
 ```
+python3 scripts/validate_ontology.py MyBuilding.xlsx --preflight
 python3 scripts/validate_ontology.py MyBuilding.xlsx --label-style verbatim
 python3 scripts/check_consistency.py MyBuilding.xlsx
+python3 scripts/check_io_list.py MyBuilding.xlsx --io IO_List.xlsx
 ```
+
+**`--preflight` first.** It prints what the sheet actually contains - prefixes,
+classes by kind, predicates, properties, units - and stops. Read it and confirm
+the picture before trusting a single finding: a sheet can validate clean and
+still model the wrong building. Nothing downstream carries one building's facts
+into another; every rule runs against what preflight found.
 
 **`validate_ontology.py` reads one row at a time.** Header contract, prefixes,
 whitespace, unresolved `<placeholder>` cells, label punctuation,
@@ -159,6 +191,13 @@ are `-CON-` and are explained in `references/known-issues.md`.
 
 Run it on a family at a time while building (`--family brick:Fan_Coil_Unit`), and
 on the whole sheet before handover.
+
+**`check_io_list.py` compares the sheet's points against the IO list they came
+from**, in both directions: a point with no IO row (`E-IO-1`) would resolve to an
+empty timeseries and must come out; an IO row with no point (`W-IO-2`) is usually
+a scope decision worth confirming. It matches on the telemetry id, falls back to
+the point name, and **stops and asks rather than guessing** when it cannot tell
+which column of the IO list is which.
 
 **Neither script writes to the ontology workbook.** Findings go to stdout, or to
 a file of their own with `--report findings.xlsx`. The deliverable stays one

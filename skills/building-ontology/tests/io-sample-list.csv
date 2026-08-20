@@ -1,0 +1,5 @@
+Equipment,Point Name,TimeseriesId
+FCU-01,Run,FCU01_RUN
+FCU-01,Drift,FCU01_DRIFT
+FCU-01,Setpoint,FCU01_SP
+FCU-01,NoKey,

@@ -72,17 +72,23 @@ neither model gives it a building code:
 |---|---|
 | QF SSC | `entity:HVAC`, `entity:CHW-System` |
 | Dar Cairo | `entity:CHWS-LOOP-1`, `entity:CHWS-LOOP-2`, `entity:Water_System` |
-| QNL | `entity:CHW-Loop` |
+| QNL | `entity:QNL_CHWS-MAIN-LOOP` |
 
-Bare name, dashes, no prefix. The building code marks what is *in* this building;
-a chilled water loop feeding it is not. `check_consistency.py` knows this and
+Bare name, dashes, no prefix - a system serves the site or the building rather
+than sitting in it. **The exception is a per-building asset that would collide
+across sheets.** QF SSC 0.5 writes `entity:CHWS-MAIN-LOOP` bare while also
+declaring it `rec:locatedIn entity:SSC`; a second building reusing that name
+yields one loop located in two buildings the moment both sheets load into one
+graph. QNL therefore prefixes its own: `entity:QNL_CHWS-MAIN-LOOP`. Prefix when
+the entity is per-building, leave bare when it is genuinely shared, and say which
+you did. `check_consistency.py` knows this and
 exempts the objects of `brick:isPartOf` and `rec:isFedBy` from its
 missing-prefix check.
 
-Dar Cairo declares the loop with a `rec:locatedIn` row pointing at the building,
-which is worth copying - it is where the loop's label lives. QF SSC never
-declares `entity:HVAC` or `entity:CHW-System` as a subject at all, so they carry
-no label and `W-LBL-2` fires on them.
+Dar Cairo and QF SSC 0.5 both declare the loop with a `rec:locatedIn` row
+pointing at the building, which is worth copying - it is where the loop's label
+lives. Neither declares `entity:HVAC` or `entity:CHW-System` with a label of its
+own, so `W-LBL-2` fires on them; give yours a label.
 
 ### Audit the source identifiers for consistency, and report what you find
 

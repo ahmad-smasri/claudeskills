@@ -27,6 +27,9 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `E-EXT-1` | a `rdfs:subClassOf` row whose `subjectType` is not `owl:Class` |
 | `E-EXT-2` | a new class with no `brick:`/`rec:`/`para:` parent |
 | `E-EXT-3` | a class declared as its own parent |
+| `E-CELL-1` | a namespaced cell holds a control character or an invisible space (non-breaking, zero-width, BOM) |
+| `E-CELL-2` | a namespaced cell has more than one colon; a term is `prefix:localName` |
+| `E-CELL-3` | a prefix is not lower case |
 | `E-BN-1` | a `<blanknode>` object with no object prop pairs to hold |
 | `E-FEED-1` | a terminal unit that never says what it feeds |
 | `E-GR-1` | a spatial entity whose containment chain never reaches a `rec:Building` |
@@ -46,6 +49,14 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `W-DUP-1` | a row identical to an earlier one |
 | `W-EXT-4` | a property declared as its own super-property |
 | `W-EXT-5` | a property related with `rdfs:subClassOf`; properties take `rdfs:subPropertyOf` |
+| `W-BN-4` | `brick:value` with no `brick:hasUnit` - use `unit:UNITLESS` if the quantity really is dimensionless |
+| `W-BN-5` | `ref:hasTimeseriesId` with no `para:hasEntityId` - the key has nothing saying which entity it groups under |
+| `W-AGG-1` | `brick:aggregate` with no `brick:aggregationFunction` or no `brick:aggregationInterval` |
+| `W-REF-1` | an entity referenced as an object but never given a row of its own - a dangling reference, or an entity another sheet declares |
+
+The `E-CELL-` rules apply to **namespaced cells only** - subject, subjectType,
+predicate, object, objectType - and never to a `*_prop_val` literal. A label may
+contain anything a label may contain.
 
 ### Info
 
@@ -108,6 +119,25 @@ object is supposed to be. There is no expected point list to maintain.
   `brick:isPartOf` are excluded from the structural comparison, because their
   objects are meant to differ per unit. They are checked separately for
   cardinality and placeholder smells.
+
+## IO cross-check rule codes
+
+From `check_io_list.py`, which compares the points in a sheet against the IO list
+they came from. A point the BMS does not publish resolves to an empty timeseries,
+so over-inclusion is the failure mode this exists to catch.
+
+| Code | Means |
+|---|---|
+| `E-IO-1` | a point in the sheet matches no IO row - it would resolve empty |
+| `W-IO-2` | an IO row with no point in the sheet - usually a scope decision, worth confirming |
+| `E-IO-3` | two points claiming the same timeseries id |
+| `W-IO-4` | a point whose `ref:hasTimeseriesId` differs from the IO list's id for the same point name |
+| `W-IO-5` | an IO row whose timeseries id is blank, so nothing can match it |
+
+Matching is on the timeseries id first - the only value both sides genuinely
+share - falling back to the point name. **When it cannot tell which column of the
+IO list is the telemetry key, it stops and says so** rather than matching on a
+guess and reporting every point as unmatched.
 
 ## Where the sources disagree
 
