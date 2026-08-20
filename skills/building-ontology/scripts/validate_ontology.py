@@ -128,13 +128,49 @@ def read_sheet(path: Path):
 class Report:
     def __init__(self, max_per_code: int):
         self.findings: list[tuple[str, str, int, str]] = []
+        self.all: list[tuple[str, str, int, str]] = []
         self.max = max_per_code
         self.counts: collections.Counter = collections.Counter()
 
     def add(self, severity: str, code: str, row: int, message: str):
         self.counts[code] += 1
+        self.all.append((severity, code, row, message))
         if self.counts[code] <= self.max:
             self.findings.append((severity, code, row, message))
+
+    def write(self, path: Path, source: Path, ignore: set[str]) -> int:
+        """Write every finding to a file of its own.
+
+        Never into the ontology workbook. The deliverable is one sheet of
+        triples and nothing else - a converter that meets a second sheet has to
+        be told which one to read, and a reviewer diffing two versions has to
+        skip it. Findings go somewhere separate or they go to stdout.
+        """
+        rows = [f for f in self.all if f[1] not in ignore]
+        if not rows:
+            return 0
+        rows.sort(key=lambda f: (f[1], f[2]))
+        header = ["severity", "code", "row", "finding", "source"]
+        body = [[sev, code, row or "", msg, source.name] for sev, code, row, msg in rows]
+
+        if path.suffix.lower() in (".xlsx", ".xlsm"):
+            try:
+                import openpyxl
+            except ImportError:
+                sys.exit("openpyxl is needed to write .xlsx - pip install openpyxl")
+            wb = openpyxl.Workbook()
+            ws = wb.active
+            ws.title = "Findings"
+            ws.append(header)
+            for r in body:
+                ws.append(r)
+            wb.save(path)
+        else:
+            with open(path, "w", newline="", encoding="utf-8") as fh:
+                w = csv.writer(fh)
+                w.writerow(header)
+                w.writerows(body)
+        return len(rows)
 
     def emit(self, ignore: set[str]) -> tuple[int, int]:
         for severity, code, row, message in sorted(
@@ -393,6 +429,9 @@ def main():
     ap.add_argument("--max", type=int, default=15, help="max findings shown per rule code")
     ap.add_argument("--strict", action="store_true", help="fail on warnings too")
     ap.add_argument("--ignore", default="", help="comma-separated rule codes to suppress")
+    ap.add_argument("--report", type=Path, metavar="PATH",
+                    help="also write every finding to PATH (.xlsx or .csv), a file of "
+                         "its own. Nothing is ever written into the ontology sheet.")
     ap.add_argument("--label-style", choices=("para", "verbatim"), default="para",
                     help="para (default): enforce the PARA label rule - letters, digits "
                          "and spaces only. verbatim: labels carry the source text as "
@@ -406,9 +445,16 @@ def main():
 
     report = Report(args.max)
     validate(args.sheet, report, args.label_style)
-    errors, warns = report.emit({c.strip() for c in args.ignore.split(",") if c.strip()})
+    ignore = {c.strip() for c in args.ignore.split(",") if c.strip()}
+    errors, warns = report.emit(ignore)
 
-    print(f"\n{errors} errors, {warns} warnings")
+    infos = sum(n for c, n in report.counts.items()
+                if c not in ignore and c.startswith("I-"))
+    print(f"\n{errors} errors, {warns} warnings, {infos} advisories")
+    if args.report:
+        n = report.write(args.report, args.sheet, ignore)
+        print(f"{n} findings written to {args.report}" if n
+              else "nothing to report, no file written")
     if errors:
         return 1
     if args.strict and warns:

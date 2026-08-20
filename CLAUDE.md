@@ -35,10 +35,11 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/ontology-template.csv` | the empty 27-column header | starting a sheet |
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
-| `scripts/validate_ontology.py` | the validator, 30 rule codes | before every handover |
+| `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
+| `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
-| `tests/run_tests.sh` | checks the validator still catches what it should | after touching the validator |
+| `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
 
 ### Reference models - `reference-models/`
 
@@ -119,6 +120,11 @@ timeseries references at all; never stub one onto equipment to fill the gap.
 different things. Spatial classes are `rec:`, never the deprecated `brick:`
 location classes.
 
+**One sheet out.** The deliverable workbook holds the triples and nothing else.
+Validation output never goes into it - findings print to stdout, or to a file of
+their own via `--report`. A second sheet means the converter has to be told which
+one to read.
+
 **Points come from IO lists.** Ask the user for the IO list; do not infer a point
 list from the equipment type. No IO list means no points for that equipment, and
 a line in the handover note.
@@ -148,8 +154,13 @@ python3 skills/building-ontology/scripts/lookup_reference.py --template brick:Fa
 # does this term exist in Brick 1.4, and is it preferred
 python3 skills/building-ontology/scripts/lookup_reference.py --term Heat_Wheel
 
-# validate before handover
+# validate before handover - row by row, then unit against unit
 python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx
+python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx
+
+# one family at a time while building, and findings to their own file
+python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
+    --family brick:Fan_Coil_Unit --report findings.xlsx
 
 # after touching the validator
 skills/building-ontology/tests/run_tests.sh

@@ -1,5 +1,9 @@
 # Rule codes, source conflicts, and defects in the reference models
 
+Two scripts report codes. `validate_ontology.py` reads one row at a time and
+carries the `E-`/`W-`/`I-` codes below. `check_consistency.py` compares every
+unit of a class against its siblings and carries the `-CON-` codes further down.
+
 ## Validator rule codes
 
 ### Errors - fix before handover
@@ -48,6 +52,63 @@
 `I-TYP-6` - a valid Brick term with no precedent in Dar Cairo. Not a defect;
 worth checking that no existing house class covers the same thing.
 
+## Consistency rule codes
+
+From `check_consistency.py`. Everything it reports is inferred from the sheet -
+the families, what a complete unit looks like in each, and what each predicate's
+object is supposed to be. There is no expected point list to maintain.
+
+### Errors
+
+| Code | Means |
+|---|---|
+| `E-CON-1` | a unit has more or fewer rows than the modal count for its class |
+| `E-CON-2` | a relation most units of the class carry is absent on the rest |
+| `E-CON-3` | a relation appears more than once on the same unit |
+| `E-CON-4` | an object's shape contradicts what the family does with that predicate - a number where the family writes `<blanknode>`, an `#N/A` where it writes an entity. **The check a row count cannot make**: a unit can carry every row its siblings carry and still be broken because a value was pasted over the object column |
+| `E-CON-5` | the same relation is typed differently across units - one VAV's status is `brick:On_Off_Status`, another's is `brick:Fan_Status` |
+| `E-CON-6` | a unit has two `rec:locatedIn`, two `rec:feeds` or two `rec:isFedBy` rows |
+| `E-CON-10` | one point carries more than one external reference |
+| `E-CON-17` | a child's identifier differs from its parent's only in separators - `Floor-1_A` owning a point named `Floor-1A_...`, so nothing that keys off the parent will find it |
+
+### Warnings
+
+| Code | Means |
+|---|---|
+| `W-CON-7` | every unit in a class shares one `rec:locatedIn` or `rec:feeds` target - usually placeholder data rather than 137 FCUs serving one room |
+| `W-CON-9` | a declared point has no `ref:hasExternalReference`. Points only; a part needs no reference of its own |
+| `W-CON-11` | something carries an external reference but is never declared with `brick:hasPoint` or `brick:hasPart` |
+| `W-CON-12` | a unit's rows are scattered instead of sitting together; the stray rows are named |
+
+### Info
+
+| Code | Means |
+|---|---|
+| `I-CON-8` | every unit's `rec:feeds` target equals its `rec:locatedIn` target - right for a unit that conditions the room it sits in, wrong when one source column was reused for two questions |
+| `I-CON-13` | an identifier repeats a token, `..._REST_REST_ROOM_WOMEN` |
+| `I-CON-14` | two children of the same class whose names differ only by a trailing token |
+| `I-CON-15` | a class with one instance, so no cross-unit comparison is possible. Said explicitly rather than reported as a vacuous pass |
+| `I-CON-16` | an entity reference that lacks the prefix every subject in its family carries |
+
+### How it decides what is expected
+
+- **Units** are entities that are the subject of triples and never the object of
+  `brick:hasPoint` or `brick:hasPart`. Working it out this way rather than from
+  the identifier means non-sequential ids, mixed naming schemes and prefix
+  collisions all handle themselves. Class-definition rows are excluded, or they
+  appear as phantom units.
+- **Structure** is compared by replacing the unit's own id with `{U}` and
+  collapsing non-entity objects to a shape token. Without the second collapse,
+  per-unit literals - rated flow rates, room names - each become their own
+  single-unit "pattern" and the comparison is worthless.
+- **Object shapes** are learned per family from the majority of its rows, at 60%
+  confidence. The same predicate legitimately differs between families, so it is
+  never inferred globally.
+- `rec:locatedIn`, `rec:feeds`, `rec:isFedBy`, `rec:isPartOf` and
+  `brick:isPartOf` are excluded from the structural comparison, because their
+  objects are meant to differ per unit. They are checked separately for
+  cardinality and placeholder smells.
+
 ## Where the sources disagree
 
 The PARA document is Rev 0.0 and contradicts itself and Dar Cairo in several
@@ -89,6 +150,12 @@ blindly. Current validator output:
 | 3 | `E-EXT-3` | `para:HighPowerFan`, `para:MediumPowerFan`, `para:LowPowerFan` declared as their own parents |
 | 1 | `E-TYP-2` | `brick:Water_PUMP` - should be `brick:Water_Pump` |
 
+`check_consistency.py` adds 3,966 errors and 3,836 warnings on top, dominated by
+`E-CON-1` and `E-CON-2` - Dar Cairo's families genuinely differ unit to unit. The
+15 `E-CON-17` findings are unambiguous though: `entity:Dar-Cairo_Floor-1_A_Occupancy-Virtual-Sensor`
+owns a point named `entity:Dar-Cairo_Floor-1A_Occupancy-Virtual-Sensor_Arrival-Time`,
+one underscore apart, on every one of the A/B/C zone sensors.
+
 Also: `unit:KiloWHR` (12 rows) should be `unit:KiloW-HR`; `unit:REV-PER-MIN` and
 `unit:RPM` are used interchangeably.
 
@@ -121,3 +188,18 @@ errors and should not be treated as a model of correctness. Specifically:
 - 343 labels carrying the raw source punctuation (`1.001_CORRIDOR`).
 - `brick:Air_Static_Pressure_Sensor ` with a trailing space.
 - 1,512 VAV rows and not one `rec:feeds` row among them.
+
+`check_consistency.py` reports 132 errors and 290 warnings, and these are the
+ones worth knowing about, because none of them are visible one row at a time:
+
+- **`#N/A` sitting in the object column of `rec:isFedBy`** on VAV rows - a lookup
+  formula saved as values (`E-CON-4`).
+- `brick:ccupied_Air_Temperature_Setpoint` shows up a second way, as the same
+  point typed two different ways across AHUs (`E-CON-5`).
+- Exhaust fans `SSC_KEF0103` and `SSC_KEF0303` carry a doubled `brick:hasPart`,
+  doubled `brick:hasPoint` rows, two `rec:locatedIn` and two `rec:feeds`
+  (`E-CON-3`, `E-CON-6`), and a point with two external references (`E-CON-10`).
+- `_Motor_Running_Status` is `brick:Fan_Status` on some exhaust fans and
+  `brick:On_Off_Status` on others (`E-CON-5`).
+- 4 of the 10 `para:DXUnit` instances have a humidity sensor; the other 6 do not
+  (`E-CON-2`).
