@@ -199,6 +199,17 @@ a scope decision worth confirming. It matches on the telemetry id, falls back to
 the point name, and **stops and asks rather than guessing** when it cannot tell
 which column of the IO list is which.
 
+**Pass `--io` to the other two as well, and they use the list as evidence rather
+than reporting round it.** A point with no timeseries reference is a defect if
+the BMS publishes a key for it and a fact if it does not; a point on 4 of 10
+units is a defect if the other 6 should have it and a fact if they never did.
+With the list to hand those findings are resolved and reported as confirmed -
+`E-CON-1` becomes `I-CON-1`, `E-CON-2` becomes `I-CON-2`, `W-CON-9` becomes
+`I-CON-9`, `W-PT-1` becomes `I-PT-3` - and where the list says a key exists that
+the sheet is missing, the finding is promoted instead (`E-PT-4`, `E-CON-18`).
+Silence is not confirmation: a unit the list says nothing about leaves its
+finding standing.
+
 **Neither script writes to the ontology workbook.** Findings go to stdout, or to
 a file of their own with `--report findings.xlsx`. The deliverable stays one
 sheet of triples: a converter that meets a second sheet has to be told which one

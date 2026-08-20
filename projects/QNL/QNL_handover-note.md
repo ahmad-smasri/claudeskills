@@ -1,6 +1,6 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,576 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,577 rows on the
 27-column PARA header. Validate with
 `validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
 source identifier against the identifier used in the sheet and its label.
@@ -16,8 +16,8 @@ source identifier against the identifier used in the sheet and its label.
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:QF` |
 | Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
-| Systems | 1 | `entity:HVAC` `brick:isPartOf` `entity:QF` |
-| Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` HVAC, `rec:locatedIn` the building, + IFC reference |
+| Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
+| Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
 Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
@@ -149,11 +149,18 @@ the layer below, since `brick:Air_Handling_Unit` is already declared under
 was minted between the two: neither reference model has one, and it would restate what
 Brick already says.
 
-**One system, deliberately.** A `CHW-System` node beneath HVAC was considered and
-rejected: the only child it could hold is the loop, because every AHU and FCU relation to
-chilled water is already carried by `rec:isFedBy`. A tree node with one child costs the
-user a click and tells them nothing. Add it when the chilled water plant — chillers,
-pumps, heat exchangers — arrives.
+**The loop sits under `entity:CHW-System`.** I said last round that a CHW-System node
+would hold only the loop and so would not earn its place. That was wrong on a fact I
+should have checked: **QF SSC 0.5 already declares `entity:CHW-System`**, bare and
+site-level under `entity:HVAC`, holding its four chilled water booster pumps and five
+heat exchangers. QNL is not creating a node — it is joining one that has nine members,
+the same way both buildings already share `entity:QF` and `entity:HVAC`. Once the
+converter loads both sheets, the group has ten.
+
+Worth flagging back to the SSC side: **SSC leaves its own `entity:CHWS-MAIN-LOOP` outside
+`CHW-System`**, attached only by `rec:locatedIn`. A distribution loop is part of the
+chilled water system by any reading, so that looks like an oversight rather than a
+decision.
 
 **One divergence from house precedent.** Both reference models type the system
 `brick:HVAC_System`, which Brick 1.4 lists as an alias. The class ladder says use the
@@ -183,7 +190,7 @@ timeseries references. They arrive with the IO list, on the point rows.
 
 ```
 python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-2576 rows, 792 typed entities, 1 para: definitions
+2577 rows, 793 typed entities, 1 para: definitions
 450 errors, 1 warnings, 1936 advisories
 ```
 
@@ -208,9 +215,10 @@ rule objecting to the SSC label style, and it is expected.
 - **Points, and with them every timeseries reference.** No IO list was supplied, so no
   equipment carries a `brick:hasPoint` row and nothing carries a
   `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
-  Send the IO list and both layers land together. When you do,
-  `check_io_list.py` will cross-check the two in both directions before handover, so no
-  point ships that the BMS does not publish.
+  Send the IO list and both layers land together. When you do, `check_io_list.py`
+  cross-checks the two in both directions so no point ships that the BMS does not
+  publish — and passing `--io` to the other two checkers lets them settle the findings
+  the list can adjudicate instead of leaving them for someone to work through by hand.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **Zones.** No `rec:Zone` or `rec:HVACZone` layer; no zone data was supplied. Rooms sit

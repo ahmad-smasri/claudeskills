@@ -210,7 +210,7 @@ class Report:
         return errors, warns
 
 
-def validate(path: Path, report: Report, label_style: str = "para"):
+def validate(path: Path, report: Report, label_style: str = "para", io=None):
     header, body = read_sheet(path)
     low = [h.lower() for h in header]
 
@@ -461,8 +461,26 @@ def validate(path: Path, report: Report, label_style: str = "para"):
         if stype in TERMINAL_EQUIPMENT and entity not in located:
             report.add("WARN", "W-GR-2", 0, f"{entity} has no rec:locatedIn")
 
+    # A point with no external reference is a defect when the BMS publishes a key
+    # for it and a fact when it does not. With an IO list to hand, ask rather
+    # than flag - that is the pass a reviewer would otherwise do by hand.
     for point in sorted(points):
-        if point not in has_ext_ref:
+        if point in has_ext_ref:
+            continue
+        verdict = None
+        if io is not None:
+            local = point.split(":", 1)[-1]
+            parent, _, suffix = local.rpartition("_")
+            verdict = io.timeseries_id(parent, suffix)
+        if verdict == "":
+            report.add("INFO", "I-PT-3", 0,
+                       f"{point} has no ref:hasExternalReference, and the IO list has "
+                       f"no timeseries id for it either - confirmed, not a defect")
+        elif verdict:
+            report.add("ERROR", "E-PT-4", 0,
+                       f"{point} has no ref:hasExternalReference but the IO list gives "
+                       f"it {verdict!r} - the reference is missing from the sheet")
+        else:
             report.add("WARN", "W-PT-1", 0,
                        f"{point} is a data point with no ref:hasExternalReference")
 
@@ -550,6 +568,9 @@ def main():
     ap.add_argument("sheet", type=Path)
     ap.add_argument("--max", type=int, default=15, help="max findings shown per rule code")
     ap.add_argument("--strict", action="store_true", help="fail on warnings too")
+    ap.add_argument("--io", type=Path, metavar="PATH",
+                    help="the IO list. Supplied, it is used as evidence: findings it "
+                         "can adjudicate are resolved against it instead of flagged.")
     ap.add_argument("--preflight", action="store_true",
                     help="print what the sheet contains - prefixes, classes, predicates, "
                          "properties, units - and stop. Discover and show: run this "
@@ -573,8 +594,17 @@ def main():
         preflight(args.sheet)
         return 0
 
+    io = None
+    if args.io:
+        if not args.io.exists():
+            print(f"no such file: {args.io}", file=sys.stderr)
+            return 3
+        import io_list
+        io = io_list.load(args.io)
+        print(f"IO list: {io.describe()}")
+
     report = Report(args.max)
-    validate(args.sheet, report, args.label_style)
+    validate(args.sheet, report, args.label_style, io)
     ignore = {c.strip() for c in args.ignore.split(",") if c.strip()}
     errors, warns = report.emit(ignore)
 

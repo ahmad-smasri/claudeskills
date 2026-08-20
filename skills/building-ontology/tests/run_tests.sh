@@ -41,6 +41,31 @@ for code in E-IO-1 E-IO-3 W-IO-2 W-IO-4 W-IO-5; do
     fi
 done
 
+echo "== an IO list must resolve the findings it can adjudicate"
+before=$("$PY" scripts/check_consistency.py tests/io-evidence-ontology.csv 2>&1 | tail -1)
+after=$("$PY" scripts/check_consistency.py tests/io-evidence-ontology.csv \
+          --io tests/io-evidence-list.csv 2>&1)
+if grep -q "^5 errors, 1 warnings" <<<"$before"; then
+    echo "   ok   5 errors, 1 warning without the IO list"
+else
+    echo "   FAIL expected 5 errors and 1 warning without the IO list, got: $before"
+    fail=1
+fi
+if grep -q "^0 errors, 0 warnings" <<<"$(tail -1 <<<"$after")"; then
+    echo "   ok   0 errors, 0 warnings with it"
+else
+    echo "   FAIL the IO list did not resolve them: $(tail -1 <<<"$after")"
+    fail=1
+fi
+for code in I-CON-1 I-CON-2 I-CON-9; do
+    if grep -q "$code" <<<"$after"; then
+        echo "   ok   $code"
+    else
+        echo "   FAIL $code was not reported"
+        fail=1
+    fi
+done
+
 echo "== preflight must run on the worked example"
 "$PY" scripts/validate_ontology.py assets/example-minimal.csv --preflight >/dev/null 2>&1 \
     && echo "   ok" || { echo "   FAIL"; fail=1; }

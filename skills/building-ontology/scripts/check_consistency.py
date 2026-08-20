@@ -244,18 +244,59 @@ def units_phrase(units: list[str], limit: int = 3) -> str:
 
 # -------------------------------------------------------------------- checks
 
-def check_row_counts(fam, expected, report):
-    """A unit with fewer rows than its siblings is missing something."""
+# Populated by check_pattern_presence when an IO list resolves a missing point,
+# and read by check_row_counts so a row-count gap the IO list already explained
+# is not reported a second time in another shape. Reset per family.
+io_explained: dict[str, set] = collections.defaultdict(set)
+
+
+def io_confirms_absent(io, units, pat) -> bool:
+    """True only when the IO list positively says none of these units has the
+    point. A unit the list says nothing about is not evidence, so one unknown
+    unit is enough to leave the finding standing.
+
+    The point is named by the object on a `brick:hasPoint` row and by the subject
+    on the rows that hang off it - a confirmed-absent point takes its external
+    reference and its own property rows with it, and all of them show up here as
+    separate missing patterns.
+    """
+    subj, pred, obj = pat
+    src = obj if pred == "brick:hasPoint" else subj
+    point = src.replace("{U}", "").lstrip("_-.")
+    if not point or "{U}" not in src:
+        return False
+    for u in units:
+        if io.has_point(u.split(":", 1)[-1], point) is not False:
+            return False
+    return True
+
+
+def check_row_counts(fam, expected, report, io=None):
+    """A unit with fewer rows than its siblings is missing something - unless the
+    IO list already explained every one of the relations it is missing."""
     counts = {u: len(rows) for u, rows in fam.triples.items()}
     modal = collections.Counter(counts.values()).most_common(1)[0][0]
     for u, n in sorted(counts.items()):
-        if n != modal:
+        if n == modal:
+            continue
+        short = modal - n
+        if short > 0 and len(io_explained.get(u, ())) >= short:
+            report.add("INFO", "I-CON-1", 0,
+                       f"{fam.cls}: {u} has {n} rows against the typical {modal}, and "
+                       f"the IO list accounts for all {short} - confirmed, not a defect")
+        else:
             report.add("ERROR", "E-CON-1", fam.triples[u][0].row if fam.triples[u] else 0,
                        f"{fam.cls}: {u} has {n} rows, {modal} is typical ({n - modal:+d})")
 
 
-def check_pattern_presence(fam, expected, report):
-    """Relations present on most units and absent - or doubled - on the rest."""
+def check_pattern_presence(fam, expected, report, io=None):
+    """Relations present on most units and absent - or doubled - on the rest.
+
+    With an IO list, a missing point is adjudicated rather than flagged: if the
+    list confirms none of the units has that point, the gap is a fact about the
+    building and reported as one. This is what turns a per-family review from a
+    list of questions into a list of answers.
+    """
     per_unit = {u: collections.Counter(pattern(t, u) for t in rows)
                 for u, rows in fam.triples.items()}
     seen = {p for c in per_unit.values() for p in c}
@@ -269,17 +310,26 @@ def check_pattern_presence(fam, expected, report):
         missing = [u for u, n in counts.items() if n == 0]
         dupes = [u for u, n in counts.items() if n > 1]
         if missing and len(missing) < len(fam.units):
-            report.add("ERROR", "E-CON-2", 0,
-                       f"{fam.cls}: `{show(pat)}` is on "
-                       f"{len(fam.units) - len(missing)}/{len(fam.units)} units, "
-                       f"absent on {units_phrase(missing)}")
+            resolved = io is not None and io_confirms_absent(io, missing, pat)
+            if resolved:
+                report.add("INFO", "I-CON-2", 0,
+                           f"{fam.cls}: `{show(pat)}` is absent on "
+                           f"{len(missing)} unit(s) and the IO list confirms none of "
+                           f"them has it - {units_phrase(missing)}")
+                for u in missing:
+                    io_explained[u].add(pat)
+            else:
+                report.add("ERROR", "E-CON-2", 0,
+                           f"{fam.cls}: `{show(pat)}` is on "
+                           f"{len(fam.units) - len(missing)}/{len(fam.units)} units, "
+                           f"absent on {units_phrase(missing)}")
         if dupes:
             report.add("ERROR", "E-CON-3", 0,
                        f"{fam.cls}: `{show(pat)}` appears more than once on "
                        f"{units_phrase(dupes)}")
 
 
-def check_object_corruption(fam, expected, report):
+def check_object_corruption(fam, expected, report, io=None):
     """The check a row count cannot make.
 
     A unit can carry every row its siblings carry and still be broken, because a
@@ -296,7 +346,7 @@ def check_object_corruption(fam, expected, report):
                            f"({t.obj!r}), the family uses {want}")
 
 
-def check_type_consistency(fam, expected, report):
+def check_type_consistency(fam, expected, report, io=None):
     """The same relation must carry the same classes on every unit."""
     seen: dict[tuple, set] = collections.defaultdict(set)
     for u, rows in fam.triples.items():
@@ -309,7 +359,7 @@ def check_type_consistency(fam, expected, report):
                        f"{len(pairs)} different ways: {sorted(pairs)}")
 
 
-def check_varying_predicates(fam, expected, report):
+def check_varying_predicates(fam, expected, report, io=None):
     """Excluded from the structural comparison, still worth checking.
 
     Each unit should carry exactly one of each; and when every unit in a family
@@ -335,7 +385,7 @@ def check_varying_predicates(fam, expected, report):
                        f"placeholder data")
 
 
-def check_feeds_equals_located(fam, expected, report):
+def check_feeds_equals_located(fam, expected, report, io=None):
     """Worth confirming rather than fixing: it is right for a unit that
     conditions the room it sits in, and wrong when the room column was reused
     for two different questions."""
@@ -351,7 +401,7 @@ def check_feeds_equals_located(fam, expected, report):
                    f"rec:locatedIn target - confirm the source column means both")
 
 
-def check_reference_pairing(fam, expected, report):
+def check_reference_pairing(fam, expected, report, io=None):
     """Every declared point should have one external reference, and every
     reference should belong to something the sheet declares.
 
@@ -370,9 +420,21 @@ def check_reference_pairing(fam, expected, report):
                                    if t.predicate == "ref:hasExternalReference")
         for child in declared:
             if refs.get(child, 0) == 0 and child in points:
-                report.add("WARN", "W-CON-9", 0,
-                           f"{fam.cls}: {child} is declared but has no "
-                           f"ref:hasExternalReference")
+                local = child.split(":", 1)[-1]
+                parent, _, suffix = local.rpartition("_")
+                key = io.timeseries_id(parent, suffix) if io is not None else None
+                if key == "":
+                    report.add("INFO", "I-CON-9", 0,
+                               f"{fam.cls}: {child} has no ref:hasExternalReference and "
+                               f"the IO list has no timeseries id for it - confirmed")
+                elif key:
+                    report.add("ERROR", "E-CON-18", 0,
+                               f"{fam.cls}: {child} has no ref:hasExternalReference but "
+                               f"the IO list gives it {key!r}")
+                else:
+                    report.add("WARN", "W-CON-9", 0,
+                               f"{fam.cls}: {child} is declared but has no "
+                               f"ref:hasExternalReference")
             elif refs[child] > 1:
                 report.add("ERROR", "E-CON-10", 0,
                            f"{fam.cls}: {child} has {refs[child]} external references")
@@ -383,7 +445,7 @@ def check_reference_pairing(fam, expected, report):
                            f"never declared with {' or '.join(CHILD_PREDICATES)}")
 
 
-def check_contiguity(fam, expected, report):
+def check_contiguity(fam, expected, report, io=None):
     """A unit's rows should sit together. One stranded row hundreds of rows from
     the rest is easy to lose on the next edit."""
     for u, rows in sorted(fam.triples.items()):
@@ -399,7 +461,7 @@ def check_contiguity(fam, expected, report):
                        f"stray rows {strays[:8]}")
 
 
-def check_naming(fam, expected, report):
+def check_naming(fam, expected, report, io=None):
     """Naming hygiene inside a family. Advisory - it never blocks a handover."""
     suffix_class: dict[str, set[str]] = collections.defaultdict(set)
     for u, rows in sorted(fam.triples.items()):
@@ -440,7 +502,7 @@ def squash(name: str) -> str:
     return re.sub(r"[^A-Za-z0-9]", "", name)
 
 
-def check_child_separator_drift(fam, expected, report):
+def check_child_separator_drift(fam, expected, report, io=None):
     """A child whose name matches its parent's except for the separators.
 
     `Dar-Cairo_Floor-1_A_Occupancy-Virtual-Sensor` owns a point named
@@ -463,7 +525,7 @@ def check_child_separator_drift(fam, expected, report):
                            f"misspelled")
 
 
-def check_single_instance(fam, expected, report):
+def check_single_instance(fam, expected, report, io=None):
     """With one unit there is no peer to compare against. Say so rather than
     reporting a vacuous pass."""
     if len(fam.units) == 1:
@@ -472,7 +534,7 @@ def check_single_instance(fam, expected, report):
                    f"comparison is possible - integrity checks still applied")
 
 
-def check_prefix(fam, expected, report):
+def check_prefix(fam, expected, report, io=None):
     """Entity references that lack the building code every subject carries.
 
     Objects of `brick:isPartOf` and `rec:isFedBy` are exempt: those name shared
@@ -496,7 +558,9 @@ def check_prefix(fam, expected, report):
                            f"every subject in this family uses")
 
 
-CHECKS = (check_single_instance, check_row_counts, check_pattern_presence,
+# check_pattern_presence runs before check_row_counts: it is what fills
+# io_explained, which check_row_counts then reads.
+CHECKS = (check_single_instance, check_pattern_presence, check_row_counts,
           check_child_separator_drift,
           check_object_corruption, check_type_consistency,
           check_varying_predicates, check_feeds_equals_located,
@@ -505,7 +569,7 @@ CHECKS = (check_single_instance, check_row_counts, check_pattern_presence,
 
 # --------------------------------------------------------------------- driver
 
-def run(path: Path, report: Report, only: str | None = None):
+def run(path: Path, report: Report, only: str | None = None, io=None):
     triples = load_triples(path)
     families = [f for f in discover_families(triples)
                 if only is None or f.cls == only]
@@ -523,8 +587,9 @@ def run(path: Path, report: Report, only: str | None = None):
 
     for fam in families:
         expected = infer_expected_shapes(fam)
+        io_explained.clear()
         for check in CHECKS:
-            check(fam, expected, report)
+            check(fam, expected, report, io)
 
 
 def main():
@@ -535,6 +600,9 @@ def main():
     ap.add_argument("--max", type=int, default=15, help="max findings shown per rule code")
     ap.add_argument("--strict", action="store_true", help="fail on warnings too")
     ap.add_argument("--ignore", default="", help="comma-separated rule codes to suppress")
+    ap.add_argument("--io", type=Path, metavar="PATH",
+                    help="the IO list. Supplied, it is used as evidence: a missing "
+                         "point the list confirms is reported as a fact, not a defect.")
     ap.add_argument("--report", type=Path, metavar="PATH",
                     help="also write every finding to PATH (.xlsx or .csv), a file of "
                          "its own. Nothing is ever written into the ontology sheet.")
@@ -544,8 +612,17 @@ def main():
         print(f"no such file: {args.sheet}", file=sys.stderr)
         return 3
 
+    io = None
+    if args.io:
+        if not args.io.exists():
+            print(f"no such file: {args.io}", file=sys.stderr)
+            return 3
+        import io_list
+        io = io_list.load(args.io)
+        print(f"IO list: {io.describe()}")
+
     report = Report(args.max)
-    run(args.sheet, report, args.family)
+    run(args.sheet, report, args.family, io)
     ignore = {c.strip() for c in args.ignore.split(",") if c.strip()}
     errors, warns = report.emit(ignore)
 

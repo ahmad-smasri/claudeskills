@@ -53,6 +53,7 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `W-BN-5` | `ref:hasTimeseriesId` with no `para:hasEntityId` - the key has nothing saying which entity it groups under |
 | `W-AGG-1` | `brick:aggregate` with no `brick:aggregationFunction` or no `brick:aggregationInterval` |
 | `W-REF-1` | an entity referenced as an object but never given a row of its own - a dangling reference, or an entity another sheet declares |
+| `E-PT-4` | a point with no `ref:hasExternalReference` that the IO list gives a timeseries id - only with `--io` |
 
 The `E-CELL-` rules apply to **namespaced cells only** - subject, subjectType,
 predicate, object, objectType - and never to a `*_prop_val` literal. A label may
@@ -80,6 +81,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `E-CON-5` | the same relation is typed differently across units - one VAV's status is `brick:On_Off_Status`, another's is `brick:Fan_Status` |
 | `E-CON-6` | a unit has two `rec:locatedIn`, two `rec:feeds` or two `rec:isFedBy` rows |
 | `E-CON-10` | one point carries more than one external reference |
+| `E-CON-18` | a declared point with no external reference that the IO list gives a timeseries id - only with `--io` |
 | `E-CON-17` | a child's identifier differs from its parent's only in separators - `Floor-1_A` owning a point named `Floor-1A_...`, so nothing that keys off the parent will find it |
 
 ### Warnings
@@ -119,6 +121,32 @@ object is supposed to be. There is no expected point list to maintain.
   `brick:isPartOf` are excluded from the structural comparison, because their
   objects are meant to differ per unit. They are checked separately for
   cardinality and placeholder smells.
+
+## The IO list is evidence, not just a comparison target
+
+Several findings are suspicious only until the IO list adjudicates them. A point
+with no timeseries reference is a defect if the BMS publishes a key for it and a
+fact if it does not. A point present on 4 of 10 units is a defect if the other 6
+should have it and a fact if they never did. **Pass `--io` and the checks resolve
+those findings instead of flagging them** - which is the pass a reviewer would
+otherwise do by hand, and is exactly how the QF SSC review exercise cleared its
+own findings.
+
+| Without `--io` | With `--io`, when the list confirms the absence |
+|---|---|
+| `E-CON-1` a unit is short some rows | `I-CON-1` short, and the IO list accounts for all of them |
+| `E-CON-2` a relation absent on some units | `I-CON-2` absent, and the IO list confirms none of them has it |
+| `W-CON-9` a declared point with no reference | `I-CON-9` no reference, and no timeseries id in the list either |
+| `W-PT-1` a point with no reference | `I-PT-3` same, confirmed by the list |
+
+And it cuts the other way. Where the IO list says a point **does** have a key
+that the sheet is missing, the finding is promoted rather than dismissed:
+`E-PT-4` and `E-CON-18` both say "the IO list gives it `<id>`, and the sheet has
+no reference row".
+
+**A unit the IO list says nothing about is not evidence.** One unknown unit is
+enough to leave a finding standing - silence is not confirmation, and resolving
+on silence would quietly clear the findings the list never spoke to.
 
 ## IO cross-check rule codes
 

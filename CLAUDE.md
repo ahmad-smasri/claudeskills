@@ -36,6 +36,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
 | `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
+| `scripts/io_list.py` | shared IO-list loader; answers "does this unit have this point" and "what is its key" for all three checkers | changing how an IO list is read |
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
@@ -157,6 +158,10 @@ line in the handover note. **Cross-check both directions before handover** with
 `check_io_list.py`: a point with no IO row resolves to an empty timeseries, so
 the front end draws a tile with no data behind it and nobody can tell whether the
 sensor is broken or was never real. Over-inclusion is worse than omission.
+**The IO list is also evidence for the other two checkers** - pass `--io` and
+findings it can adjudicate are resolved rather than flagged, which is the pass a
+reviewer would otherwise do by hand. Silence is not confirmation: a unit the list
+says nothing about leaves its finding standing.
 
 **Nameplate properties come from manufacturer datasheets.** Ask for them. If a
 datasheet was not submitted, leave the property out - never a typical value,
@@ -183,6 +188,9 @@ python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx --
 python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx
 python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx
 python3 skills/building-ontology/scripts/check_io_list.py MyBuilding.xlsx --io IO_List.xlsx
+
+# with an IO list to hand, let it settle the findings it can adjudicate
+python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx --io IO_List.xlsx
 
 # one family at a time while building, and findings to their own file
 python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \

@@ -125,15 +125,19 @@ LOOP = "entity:QNL_CHWS-MAIN-LOOP"
 # prop; equipment points up with brick:isPartOf. No link is ever stated twice.
 # QF SSC 0.5 agrees - entity:HVAC brick:isPartOf entity:QF.
 #
-# QNL declares entity:HVAC and nothing below it. A CHW-System node was
-# considered and rejected: the only child it could hold is the loop, because
-# every AHU and FCU relation to chilled water is already stated by rec:isFedBy.
-# A tree node with one child costs the user a click and tells them nothing. Add
-# it when the chilled water plant - chillers, pumps, heat exchangers - arrives.
+# entity:CHW-System is not a node QNL invents - QF SSC 0.5 already declares it,
+# bare and site-level under entity:HVAC, holding SSC's four chilled water booster
+# pumps and five heat exchangers. QNL reusing it puts its loop in that same
+# group rather than creating a one-child node, the same way both buildings share
+# entity:QF and entity:HVAC. SSC leaves its own loop outside CHW-System, which
+# looks like an oversight: a distribution loop is part of the chilled water
+# system by any reading.
 # Both reference models type it brick:HVAC_System, which Brick 1.4 lists as an
 # alias; the class ladder says use the preferred term, and assets/example-minimal.csv
 # already does. Noted in the handover as a divergence from house precedent.
 HVAC = "entity:HVAC"
+CHW = "entity:CHW-System"
+CHW_CLASS = "brick:Chilled_Water_System"
 HVAC_CLASS = "brick:Heating_Ventilation_Air_Conditioning_System"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
@@ -225,7 +229,9 @@ for d in rooms.values():
 out.append(row(HVAC, HVAC_CLASS, "brick:isPartOf", "entity:QF", "rec:Site",
                [("s", "rdfs:label_en", "HVAC System")]))
 
-out.append(row(LOOP, LOOP_CLASS, "brick:isPartOf", HVAC, HVAC_CLASS))
+out.append(row(CHW, CHW_CLASS, "brick:isPartOf", HVAC, HVAC_CLASS,
+               [("s", "rdfs:label_en", "Chilled Water System")]))
+out.append(row(LOOP, LOOP_CLASS, "brick:isPartOf", CHW, CHW_CLASS))
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
                [("s", "rdfs:label_en", "QNL_CHWS-MAIN-LOOP")]))
 out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
