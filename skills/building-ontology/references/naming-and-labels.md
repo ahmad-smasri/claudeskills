@@ -178,14 +178,25 @@ ask about identifiers:
 
 | Style | `rdfs:label_en` for room `B_063` / `PLANT_ROOM_01` | Validator |
 |---|---|---|
-| `verbatim` - QF SSC house style | `B.063_PLANT_ROOM_01` | `--label-style verbatim`, `E-LBL-1` off |
+| `verbatim` - QF SSC house style | `B.063 PLANT ROOM 01` | `--label-style verbatim`, `E-LBL-1` off |
 | `para` - the label rule below | `B 063 PLANT ROOM 01` | default, `E-LBL-1` enforced |
 
-**The SSC room-label shape is `<level>.<number>_<name>`** - a dot between the
-level and the room number, an underscore before the name. SSC writes
-`1.001_CORRIDOR` for room 001 on level 1; QNL writes `B.063_PLANT_ROOM_01` for
-room 063 in the basement. Equipment carries its raw register tag with no
-reshaping: `SSC_FCU0001`, `VAV_B_S11_024`.
+**`verbatim` is the source text with underscores read as word breaks, and every
+other mark left alone.** That is the one edit: `_` becomes a space. The dot
+between the level and the room number survives, and so do dashes and slashes -
+SSC keeps `A / V ROOM` exactly as the schedule wrote it. The room-label shape is
+therefore `<level>.<number> <name>`: SSC writes `1.001 CORRIDOR` for room 001 on
+level 1, QNL writes `B.063 PLANT ROOM 01` for room 063 in the basement.
+Equipment keeps its register tag with the same treatment: `SSC_CHW_CHWP01 Motor`,
+`QNL VAV B S11 024`.
+
+The two styles differ in how much they remove, not in kind. `verbatim` removes
+one character class; `para` removes every punctuation mark except a decimal point
+between two digits. On a label with no underscores the two agree.
+
+**Route every label through one function.** QNL's loop label kept its
+underscores for a build because it was written as a literal instead of passing
+through the labeller - a rule applied in one place is a rule with a hole in it.
 
 **QF SSC is the recent completed sample and it uses `verbatim` throughout** -
 rooms labelled `1.001_CORRIDOR`, `1.008_A / V ROOM`, equipment labelled with the

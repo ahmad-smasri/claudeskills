@@ -20,14 +20,16 @@ assert len(HEADER) == 27
 
 
 def label(text):
-    """Label style: QF SSC. The source text survives verbatim, punctuation and all.
+    """Label style: QF SSC. The source text, with underscores as spaces.
 
-    SSC labels rooms `1.001_CORRIDOR` and equipment `SSC_FCU0001` - the raw
-    schedule and register strings, not the cleaned form the PARA label rule
-    produces. Whitespace is stripped because the validator rejects it (E-WS-1);
-    nothing else is touched.
+    The current SSC sheet labels rooms `1.001 CORRIDOR` and its own assets
+    `SSC_CHW_CHWP01 Motor` - the raw schedule and register strings with `_`
+    read as a word break, and every other mark left alone: the dot between
+    level and room number survives, and so do dashes and slashes (`A / V ROOM`).
+    That is the difference from the PARA label rule, which strips punctuation
+    outright.
     """
-    return " ".join(text.split())
+    return " ".join(text.replace("_", " ").split())
 
 
 def row(subject, stype, pred, obj, otype="", props=()):
@@ -82,11 +84,12 @@ for src_entity, number, name in room_src:
     # triple and cannot drift apart:
     #
     #   identifier  entity:QNL_<level>_<num>_<name>     QNL_B_063_PLANT_ROOM_01
-    #   label             <level>.<num>_<name>          B.063_PLANT_ROOM_01
+    #   label             <level>.<num> <name>          B.063 PLANT ROOM 01
     #
     # The dot between level and room number is the QF SSC label shape - SSC
-    # writes 1.001_CORRIDOR for room 001 on level 1. Nothing inside <num> or
-    # <name> is touched; only the join between the segments is regularised.
+    # writes 1.001 CORRIDOR for room 001 on level 1 - and label() turns the
+    # remaining underscores into spaces. Nothing inside <num> or <name> is
+    # touched; only the join between the segments is regularised.
     if not num:
         sys.exit("room %r has a level but no room number" % number)
     ident = "entity:QNL_%s_%s_%s" % (level, num, name)
@@ -236,7 +239,7 @@ out.append(row(CHW, CHW_CLASS, "brick:isPartOf", HVAC, HVAC_CLASS,
                [("s", "rdfs:label_en", "Chilled Water System")]))
 out.append(row(LOOP, LOOP_CLASS, "brick:isPartOf", CHW, CHW_CLASS))
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL_CHWS-MAIN-LOOP")]))
+               [("s", "rdfs:label_en", label(LOOP.replace("entity:", "")))]))
 out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
                "<blanknode>", "ref:IFCReference",
                [("o", "para:IFC_ID", ""),

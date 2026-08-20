@@ -125,8 +125,9 @@ Never invent a `brick:` or `rec:` term. Everything the team coins is `para:`.
   `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
 **Labels.** Two styles; ask at intake, because neither reference model settles it.
-`verbatim` keeps the source text as written - the QF SSC house style, whose room
-shape is `<level>.<number>_<name>`: `1.001_CORRIDOR`, `SSC_FCU0001`. `para`
+`verbatim` is the source text with underscores read as word breaks and every
+other mark left alone - the QF SSC house style, whose room shape is
+`<level>.<number> <name>`: `1.001 CORRIDOR`, `B.063 PLANT ROOM 01`. `para`
 applies the label rule: letters, digits and spaces only, plus a decimal point
 between two digits, every other punctuation mark removed. Pass the matching
 `--label-style` to the validator; `verbatim` turns `E-LBL-1` off.

@@ -109,11 +109,11 @@ per building main loop is not. QNL therefore writes `entity:QNL_CHWS-MAIN-LOOP`.
 treats this as one shared district loop rather than one per building, say so and I will
 drop the prefix** — but then SSC's `rec:locatedIn entity:SSC` row needs revisiting too.
 
-**Labels follow QF SSC, including its dot.** SSC writes `1.001_CORRIDOR` — a dot between
-the level and the room number, an underscore before the name. QNL rooms now read
-`<level>.<number>_<name>`: `B.063_PLANT_ROOM_01`, `B.237_CORRIDOR`,
-`L1.023_1_CORRIDOR`, `B.ST-01_ST-01`. Assets read their raw register tag, `AHUB011`,
-`VAV_B_S11_024`, exactly as SSC does with `SSC_FCU0001`.
+**Labels follow QF SSC: the source text with underscores read as word breaks.** SSC
+writes `1.001 CORRIDOR` — the dot between level and room number survives, and so do
+dashes and slashes; only `_` becomes a space. QNL rooms read `<level>.<number> <name>`:
+`B.063 PLANT ROOM 01`, `B.237 CORRIDOR`, `L1.023 1 CORRIDOR`, `B.ST-01 ST-01`. Assets
+read their register tag under the same rule: `QNL AHU B 011`, `QNL VAV B S11 024`.
 
 Label and identifier are built from the same parsed `(level, number, name)` triple, so
 they cannot drift apart. No punctuation is stripped and no typo is fixed. This is not the

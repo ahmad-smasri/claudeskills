@@ -147,8 +147,9 @@ points - follow the PARA convention exactly. Dashes separate words inside a
 segment, underscores separate segments, no spaces anywhere, case is significant.
 
 Labels come in two styles and **the user picks one at intake** - neither
-reference model settles it. `verbatim` carries the source text as written, the
-QF SSC house style: `1.001_CORRIDOR`, `SSC_FCU0001`. `para` applies the label
+reference model settles it. `verbatim` carries the source text with underscores as spaces and
+everything else untouched, the QF SSC house style: `1.001 CORRIDOR`,
+`B.063 PLANT ROOM 01`. `para` applies the label
 rule - **letters, digits and spaces, and a decimal point between two digits;
 every other punctuation mark is removed** - so `1.001_CORRIDOR` becomes
 `1.001 CORRIDOR` and `Coefficient of Performance (COP)` becomes
