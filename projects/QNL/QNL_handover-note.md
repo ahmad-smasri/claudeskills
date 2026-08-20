@@ -13,7 +13,7 @@ source identifier against the identifier used in the sheet and its label.
 | Layer | Rows | Content |
 |---|---|---|
 | Extensions | 1 | `para:Chilled_Water_Loop_Network` |
-| Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:Qatar-Foundation` |
+| Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:QF` |
 | Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
 | Chilled water loop | 1 | `entity:CHW-Loop`, `rec:locatedIn` the building |
@@ -82,9 +82,17 @@ register survives almost untouched. All 51 are listed in
 `QNL_identifier_crosswalk.csv`, which is where the source→ontology mapping lives.
 
 Seven identifiers had to be invented, because no source supplies them:
-`entity:Qatar-Foundation`, `entity:QNL`, the four levels `entity:QNL_B` / `_L1` / `_L2`
+`entity:QF`, `entity:QNL`, the four levels `entity:QNL_B` / `_L1` / `_L2`
 / `_T1` (matching the level segment inside your room tags), and `entity:CHW-Loop` for the
 `CHILLED WATER LOOP` value in the Fed By column.
+
+**The site is `entity:QF`, the same entity QF SSC uses**, not a second name for the
+same place — SSC's current sheet writes
+`entity:SSC rec:Building rec:isPartOf entity:QF rec:Site`, labelled `SSC Building` and
+`Qatar Foundation`. QNL follows exactly: `entity:QNL` labelled `QNL Building`, pointing
+at the same `entity:QF`. Sharing the site entity is what lets the two buildings' sheets
+join when the converter loads them into one graph; spelling it differently in each would
+silently produce two unrelated sites.
 
 **`entity:CHW-Loop` deliberately carries no building code**, matching both reference
 models: SSC writes `entity:CHW-System` and `entity:HVAC`, Dar Cairo writes

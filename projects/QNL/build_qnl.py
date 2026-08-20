@@ -175,9 +175,16 @@ out.append(row(LOOP_CLASS, "owl:Class", "rdfs:subClassOf", "brick:HVAC_Equipment
                [("s", "rdfs:label_en", "Chilled Water Loop Network")]))
 
 # Spatial --------------------------------------------------------------------
+# The site is the organisation's code, not its spelled-out name, and the current
+# QF SSC sheet writes exactly this row for its own building:
+#   entity:SSC | rec:Building | rec:isPartOf | entity:QF | rec:Site
+#              | rdfs:label_en | SSC Building | rdfs:label_en | Qatar Foundation
+# QNL sits under the same site, so it reuses entity:QF rather than minting a
+# second name for it - that is what lets the two buildings' sheets join.
 out.append(row("entity:QNL", "rec:Building", "rec:isPartOf",
-               "entity:Qatar-Foundation", "rec:Site",
-               [("s", "rdfs:label_en", "QNL"), ("o", "rdfs:label_en", "Qatar Foundation")]))
+               "entity:QF", "rec:Site",
+               [("s", "rdfs:label_en", "QNL Building"),
+                ("o", "rdfs:label_en", "Qatar Foundation")]))
 
 levels_used = sorted({d["level"] for d in rooms.values()})
 for lvl in levels_used:

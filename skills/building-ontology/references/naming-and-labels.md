@@ -37,6 +37,33 @@ unique within one building. **Add the code, leave the tag itself alone** - it
 stays the join key - and carry the same prefixed form into `rdfs:label_en` and
 `ref:ifcName`, as SSC does.
 
+### The site is the organisation's code, and buildings share it
+
+QF SSC's current sheet opens with one row for the whole spatial hierarchy above
+the levels:
+
+```
+entity:SSC | rec:Building | rec:isPartOf | entity:QF | rec:Site
+           | rdfs:label_en | SSC Building | rdfs:label_en | Qatar Foundation
+```
+
+Three things to copy. The **site identifier is the organisation's code**,
+`entity:QF`, not its spelled-out name - the name lives in the label. The
+**building label is `<code> Building`**, so `SSC Building`, `QNL Building`. And
+**every building under the same client reuses the same site entity**: QNL is in
+Qatar Foundation too, so it points at `entity:QF` rather than minting a second
+name for the same site. Mint a second one and the two sheets no longer join when
+the converter loads them into one graph.
+
+```
+entity:QNL | rec:Building | rec:isPartOf | entity:QF | rec:Site
+           | rdfs:label_en | QNL Building | rdfs:label_en | Qatar Foundation
+```
+
+**Ask which site entity the client already uses** before inventing one. It is
+the one identifier in the sheet that is shared across projects, so it is the one
+most likely to already exist somewhere you cannot see.
+
 **Shared plant is the exception, and both reference models agree on it.** A
 system, a loop or a riser serves the building rather than sitting inside it, and
 neither model gives it a building code:

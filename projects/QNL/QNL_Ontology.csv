@@ -1,6 +1,6 @@
 subject,subjectType,predicate,object,objectType,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val
 para:Chilled_Water_Loop_Network,owl:Class,rdfs:subClassOf,brick:HVAC_Equipment,,rdfs:label_en,Chilled Water Loop Network,,,,,,,,,,,,,,,,,,,,
-entity:QNL,rec:Building,rec:isPartOf,entity:Qatar-Foundation,rec:Site,rdfs:label_en,QNL,rdfs:label_en,Qatar Foundation,,,,,,,,,,,,,,,,,,
+entity:QNL,rec:Building,rec:isPartOf,entity:QF,rec:Site,rdfs:label_en,QNL Building,rdfs:label_en,Qatar Foundation,,,,,,,,,,,,,,,,,,
 entity:QNL_B,rec:BasementLevel,rec:isPartOf,entity:QNL,rec:Building,rdfs:label_en,Basement,,,,,,,,,,,,,,,,,,,,
 entity:QNL_L1,rec:Level,rec:isPartOf,entity:QNL,rec:Building,rdfs:label_en,Level 1,,,,,,,,,,,,,,,,,,,,
 entity:QNL_L2,rec:Level,rec:isPartOf,entity:QNL,rec:Building,rdfs:label_en,Level 2,,,,,,,,,,,,,,,,,,,,

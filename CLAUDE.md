@@ -46,7 +46,7 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V93.csv` | **the primary reference for any ontology we build.** 26,173 rows, 27 columns. Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_draft0.4.xlsx` | a recent completed sample, 4,994 rows. Useful for VAV and CRAC point sets. **Has 1,040 validator errors** - its feeds rows are placeholders and must not be copied. |
+| `QF_SSC_Ontology_draft0.4.xlsx` | a recent completed sample, 4,994 rows. Useful for VAV and CRAC point sets. **Has 1,040 validator errors** - its feeds rows are placeholders and must not be copied. **Stale**: a newer SSC sheet exists that carries the site and building row draft 0.4 lacks, so check before treating anything missing here as a convention. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
 ### Source documents - repo root
@@ -93,6 +93,11 @@ shape, and report every row that departs from it before writing rows.** On QNL 5
 of 336 rooms ran the level into the room number where 285 kept them separate, and
 one asset family of four, AHUB, carried neither separators nor a level segment.
 Asset tags are the BMS join key, so expect to report rather than change them.
+**The site is the organisation's code and is shared between buildings** -
+`entity:SSC rec:isPartOf entity:QF`, so `entity:QNL rec:isPartOf entity:QF`, with
+the building labelled `<code> Building`. Ask which site entity the client already
+uses; it is the one identifier shared across projects.
+
 **Every subject carries the building code in front**, QF SSC style -
 `entity:SSC_FCU0001`, so `entity:QNL_FCU_1F_056`. Add the code; leave the tag
 itself alone. **Shared plant is the exception** - a system, loop or riser serves
