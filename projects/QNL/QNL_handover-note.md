@@ -16,7 +16,7 @@ source identifier against the identifier used in the sheet and its label.
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:QF` |
 | Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
-| Chilled water loop | 1 | `entity:CHW-Loop`, `rec:locatedIn` the building |
+| Chilled water loop | 2 | `entity:QNL_CHWS-MAIN-LOOP`, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
 Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source,
@@ -83,8 +83,8 @@ register survives almost untouched. All 51 are listed in
 
 Seven identifiers had to be invented, because no source supplies them:
 `entity:QF`, `entity:QNL`, the four levels `entity:QNL_B` / `_L1` / `_L2`
-/ `_T1` (matching the level segment inside your room tags), and `entity:CHW-Loop` for the
-`CHILLED WATER LOOP` value in the Fed By column.
+/ `_T1` (matching the level segment inside your room tags), and `entity:QNL_CHWS-MAIN-LOOP` for
+the `CHILLED WATER LOOP` value in the Fed By column.
 
 **The site is `entity:QF`, the same entity QF SSC uses**, not a second name for the
 same place — SSC's current sheet writes
@@ -94,13 +94,18 @@ at the same `entity:QF`. Sharing the site entity is what lets the two buildings'
 join when the converter loads them into one graph; spelling it differently in each would
 silently produce two unrelated sites.
 
-**`entity:CHW-Loop` deliberately carries no building code**, matching both reference
-models: SSC writes `entity:CHW-System` and `entity:HVAC`, Dar Cairo writes
-`entity:CHWS-LOOP-1` and `entity:Water_System`. The code marks what is inside this
-building; a chilled water loop feeding it is not. Its declaring row —
-`rec:locatedIn entity:QNL` — follows Dar Cairo, which declares `entity:CHWS-LOOP-1` the
-same way; SSC never declares its shared plant as a subject at all, so `entity:HVAC` and
-`entity:CHW-System` carry no label.
+**The chilled water loop follows SSC 0.5's shape, with one deliberate departure.** 0.5
+writes `entity:CHWS-MAIN-LOOP`, types it `para:Chilled_Water_Loop_Network`, gives it a
+`rec:locatedIn` row pointing at the building and an IFC reference, and has terminal units
+name it with `rec:isFedBy`. QNL copies all of that.
+
+The departure is the building code. **SSC's loop carries none, yet is
+`rec:locatedIn entity:SSC`** — so if QNL reused the bare name, the converter would load
+one loop located in two buildings the moment both sheets went into the same graph. Site
+level systems like `entity:HVAC` and `entity:QF` are genuinely shared and rightly bare; a
+per building main loop is not. QNL therefore writes `entity:QNL_CHWS-MAIN-LOOP`. **If QF
+treats this as one shared district loop rather than one per building, say so and I will
+drop the prefix** — but then SSC's `rec:locatedIn entity:SSC` row needs revisiting too.
 
 **Labels follow QF SSC, including its dot.** SSC writes `1.001_CORRIDOR` — a dot between
 the level and the room number, an underscore before the name. QNL rooms now read

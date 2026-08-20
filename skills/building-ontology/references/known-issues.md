@@ -127,7 +127,7 @@ with the PARA team.
 | 8 | `rec:feeds` is referenced by Brick 1.4 but not defined as a REC term in it | `rec:feeds`, following Dar Cairo's 278 rows |
 | 9 | Dar Cairo's header row starts `Subject`; `Ontology_headers.xlsx` says `subject` | lowercase `subject`; the validator compares case-insensitively |
 | 10 | The label rule strips punctuation (`1.001 CORRIDOR`); QF SSC carries the source text verbatim (`1.001_CORRIDOR`, `SSC_FCU0001`); Dar Cairo is a third style again (`Mechanical-Area-2-R014`) | **ask the user** - `naming-and-labels.md` documents both, and `validate_ontology.py --label-style verbatim` turns `E-LBL-1` off for the SSC style. QNL was built `verbatim` at the user's direction |
-| 12 | `QF_SSC_Ontology_draft0.4.xlsx` in this repo has no `rec:Site` and no `rec:Building` row - rooms attach straight to `entity:SSC_Level-01` and the levels are never subjects. **The repo's copy is stale.** The current SSC sheet does carry the row: `entity:SSC rec:Building rec:isPartOf entity:QF rec:Site`, labelled `SSC Building` and `Qatar Foundation` | build the full chain. Site identifier is the organisation's code, building label is `<code> Building`, and buildings under one client share the site entity. See `naming-and-labels.md`. **Ask for a newer SSC export before treating draft 0.4's absences as conventions** |
+| 12 | Draft 0.4 had no `rec:Site` and no `rec:Building` row, which read as a convention. It was not - it was an unfinished sheet. Draft 0.5 carries `entity:SSC rec:Building rec:isPartOf entity:QF rec:Site`, labelled `SSC Building` and `Qatar Foundation` | build the full chain, as 0.5 and Dar Cairo both do. **The lesson: an absence in a reference model is not a convention until a current export confirms it** |
 | 11 | The IFC reference property: Dar Cairo writes `ref:ifcName` (535 rows) and defines `para:IFC_ID` once without using it; QF SSC writes **both** `para:IFC_ID` and `ref:ifcName` on all 167 of its IFC rows | both, the SSC shape - `para:IFC_ID` for the BIM GUID, `ref:ifcName` for the derivable entity name |
 
 ## Known defects in the reference models
@@ -174,33 +174,66 @@ the opposite: it goes on the physical thing, equipment or room. Where no IO list
 was supplied there are no points and therefore no timeseries references; do not
 add equipment-level stubs to fill the gap.
 
-### QF SSC draft 0.4 (`QF_SSC_Ontology_draft0.4.xlsx`, 4,994 rows)
+### QF SSC draft 0.5 review (`QF_SSC_Ontology_draft0.5_review.xlsx`, 5,119 rows)
 
-A recent sample, useful for point-set patterns on VAVs and CRACs. It has 1,040
-errors and should not be treated as a model of correctness. Specifically:
+Replaces draft 0.4, which is gone from the repo. Eleven sheets:
+`SSC_Ontology_Ver0.5` holds the triples, `Claude Log` records the review
+exercise that produced `check_consistency.py`, and nine `*_Comparison` /
+`*_Check` sheets hold its per-family findings.
 
-- **Feeds are placeholders.** Eleven FCUs feed `entity:<FCU_Serving_Location>`;
-  nine exhaust fans all feed the same dummy room `entity:Level7_Office0367`;
-  `<FedByASSET>` and `entity:<Fedby>` survive on AHUs and CRACs. The user's
-  instruction is explicit: disregard this and point `rec:feeds` at the real room.
-- `brick:ccupied_Air_Temperature_Setpoint` - a dropped leading `O`.
-- `entity:HVAC` typed three ways, including `entity:Electrical_System` used as a
-  class.
-- 343 labels carrying the raw source punctuation (`1.001_CORRIDOR`).
-- `brick:Air_Static_Pressure_Sensor ` with a trailing space.
-- 1,512 VAV rows and not one `rec:feeds` row among them.
+**The workbook opens on `VAV_Comparison`, not on the ontology.** Every script
+here picks the sheet by the header contract rather than by `.active` for exactly
+this reason. Any new tool that reads a reference model must do the same or it
+will silently read a review sheet.
 
-`check_consistency.py` reports 132 errors and 290 warnings, and these are the
-ones worth knowing about, because none of them are visible one row at a time:
+Much improved on 0.4 - 451 errors against 1,040, and the feeds placeholders that
+made 0.4 unusable as a feeds reference are largely gone. Still not clean, so do
+not copy blindly:
 
-- **`#N/A` sitting in the object column of `rec:isFedBy`** on VAV rows - a lookup
-  formula saved as values (`E-CON-4`).
-- `brick:ccupied_Air_Temperature_Setpoint` shows up a second way, as the same
-  point typed two different ways across AHUs (`E-CON-5`).
-- Exhaust fans `SSC_KEF0103` and `SSC_KEF0303` carry a doubled `brick:hasPart`,
-  doubled `brick:hasPoint` rows, two `rec:locatedIn` and two `rec:feeds`
-  (`E-CON-3`, `E-CON-6`), and a point with two external references (`E-CON-10`).
-- `_Motor_Running_Status` is `brick:Fan_Status` on some exhaust fans and
-  `brick:On_Off_Status` on others (`E-CON-5`).
-- 4 of the 10 `para:DXUnit` instances have a humidity sensor; the other 6 do not
-  (`E-CON-2`).
+| Count | Code | What it is |
+|---|---|---|
+| 2,940 | `I-TYP-6` | valid Brick terms with no Dar Cairo precedent - advisory |
+| 320 | `W-TYP-5` | alias classes |
+| 260 | `E-TYP-2` | terms not in Brick 1.4, e.g. `brick:Heater`; `brick:ccupied_Air_Temperature_Setpoint` still carries its dropped leading `O` |
+| 96 | `E-LBL-1` | labels carrying source punctuation - expected under SSC's verbatim label style, so run it with `--label-style verbatim` |
+| 55 | `E-TYP-1` | entities typed more than one way |
+| 53 | `W-DUP-1` | duplicate rows |
+| 20 | `W-LBL-2` | entities with no label, `entity:CHWS-MAIN-LOOP` among them |
+| 15 | `E-FEED-1` | terminal units with no feeds row, all CRACs |
+| 9 | `E-PH-1` | surviving placeholders, all `<AliasOf>` |
+| 8 | `E-WS-1` | padded cells |
+| 4 | `E-TYP-3` | `para:inletSize`, `para:outletSize` and two others used but never defined |
+| 3 | `E-PAIR-1` | prop names with no value |
+| 1 | `E-GR-1` | `entity:Level7_Office0367` still hanging off nothing |
+
+`check_consistency.py` adds 174 errors and 123 warnings over the same ground the
+review sheets cover: 75 `E-CON-2` missing relations, 27 `E-CON-4` corrupted
+object cells, 25 `E-CON-3` duplicated relations, 23 `E-CON-10` points with two
+external references, and 116 `W-CON-12` units whose rows are split across the
+sheet rather than sitting together.
+
+### What 0.5 settles
+
+The top of its spatial and system hierarchy, which is the current house shape:
+
+```
+entity:SSC             | rec:Building                    | rec:isPartOf   | entity:QF             | rec:Site
+entity:HVAC            | brick:HVAC_System               | brick:isPartOf | entity:QF             | rec:Site
+entity:CHWS-MAIN-LOOP  | para:Chilled_Water_Loop_Network | rec:locatedIn  | entity:SSC            | rec:Building
+entity:SSC_FCU0001     | brick:Fan_Coil_Unit             | rec:isFedBy    | entity:CHWS-MAIN-LOOP | para:Chilled_Water_Loop_Network
+```
+
+- the site is the organisation's code, `entity:QF`, labelled Qatar Foundation
+- the building is labelled `<code> Building`
+- site-level systems (`entity:HVAC`, `entity:Electrical_System`) are
+  `brick:isPartOf` the **site**, not the building
+- the chilled water loop is `para:Chilled_Water_Loop_Network`, `rec:locatedIn`
+  the building, carries an IFC reference, and terminal units name it with
+  `rec:isFedBy`
+
+**One open question it raises.** `entity:CHWS-MAIN-LOOP` carries no building code
+yet is `rec:locatedIn entity:SSC`. A second building reusing that bare name
+yields one loop located in two buildings the moment both sheets load into one
+graph. Site-level systems are genuinely shared and rightly bare; a per-building
+main loop is not. QNL therefore writes `entity:QNL_CHWS-MAIN-LOOP`, and the
+question is on the open list for the PARA team.

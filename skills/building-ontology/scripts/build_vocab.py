@@ -31,6 +31,24 @@ PRIMARY = {"DarCairo_V93.csv"}
 BOGUS_UNIT = re.compile(r"^unit:MicroGM-PER-M(?!3$)\d+$")
 
 
+def pick_ontology_sheet(wb, path):
+    """Choose the sheet holding the triples.
+
+    A reference model can carry review and comparison sheets alongside the
+    ontology, and the workbook's *active* sheet is simply whichever tab was
+    open when it was last saved - `QF_SSC_Ontology_draft0.5_review.xlsx` saves
+    with `VAV_Comparison` selected. Reading `.active` therefore reads a random
+    sheet. Pick by the header contract instead: the first sheet whose first row
+    starts with the five core columns.
+    """
+    for ws in wb.worksheets:
+        head = [str(c).strip().lower() if c is not None else ""
+                for c in next(ws.iter_rows(max_row=1, values_only=True), ())][:5]
+        if head == ["subject", "subjecttype", "predicate", "object", "objecttype"]:
+            return ws
+    return wb.active
+
+
 def read_rows(path):
     """Yield (header, rows) from a .csv or .xlsx reference model."""
     if path.suffix.lower() == ".csv":
@@ -39,7 +57,8 @@ def read_rows(path):
     else:
         import openpyxl
 
-        ws = openpyxl.load_workbook(path, data_only=True).active
+        ws = pick_ontology_sheet(
+            openpyxl.load_workbook(path, data_only=True), path)
         rows = [
             ["" if c is None else str(c) for c in r]
             for r in ws.iter_rows(values_only=True)

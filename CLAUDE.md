@@ -46,7 +46,7 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V93.csv` | **the primary reference for any ontology we build.** 26,173 rows, 27 columns. Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_draft0.4.xlsx` | a recent completed sample, 4,994 rows. Useful for VAV and CRAC point sets. **Has 1,040 validator errors** - its feeds rows are placeholders and must not be copied. **Stale**: a newer SSC sheet exists that carries the site and building row draft 0.4 lacks, so check before treating anything missing here as a convention. |
+| `QF_SSC_Ontology_draft0.5_review.xlsx` | the current SSC sheet, 5,119 rows, plus the `Claude Log` and nine `*_Comparison` sheets from the consistency review. **Opens on `VAV_Comparison`, not on the ontology** - pick the sheet by its header, never by `.active`. 451 validator errors, so still not a model of correctness, but its site, building, systems and chilled-water-loop rows are the current house shape. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
 ### Source documents - repo root

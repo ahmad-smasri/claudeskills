@@ -214,5 +214,6 @@ timeseries references, an aggregation and two `para:` classes - that validates
 clean. Copy its shapes rather than reinventing them.
 
 `reference-models/` holds the source of truth: `DarCairo_V93.csv` (primary),
-`QF_SSC_Ontology_draft0.4.xlsx` (recent sample, has known defects) and
+`QF_SSC_Ontology_draft0.5_review.xlsx` (the current sample, 451 errors, and it
+opens on a review sheet rather than on the ontology) and
 `Ontology_headers.xlsx` (the 9 canonical column names).

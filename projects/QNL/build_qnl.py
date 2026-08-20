@@ -106,11 +106,16 @@ CLASS = {"AHUB": "brick:Air_Handling_Unit",
          "CAV": "brick:Constant_Air_Volume_Box",
          "FCU": "brick:Fan_Coil_Unit"}
 TERMINAL = {"VAV", "CAV", "FCU"}
-# Shared plant carries no building code, in both reference models: QF SSC writes
-# entity:CHW-System and entity:HVAC, Dar Cairo writes entity:CHWS-LOOP-1 and
-# entity:Water_System. The code goes on things inside the building - rooms and
-# assets - not on the loop that serves it.
-LOOP = "entity:CHW-Loop"
+# QF SSC 0.5 names its loop entity:CHWS-MAIN-LOOP, types it
+# para:Chilled_Water_Loop_Network and gives it two subject rows - rec:locatedIn
+# the building, and an IFC reference. QNL follows that shape.
+#
+# The building code is the one departure. SSC's loop carries none, but it is
+# rec:locatedIn entity:SSC, so a QNL loop under the same bare name would be one
+# entity located in two buildings once the converter loads both sheets into one
+# graph. Site-level systems - entity:HVAC, entity:QF - are genuinely shared and
+# rightly bare; a per-building main loop is not. Flagged in the handover note.
+LOOP = "entity:QNL_CHWS-MAIN-LOOP"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
@@ -199,7 +204,11 @@ for d in rooms.values():
 
 # Chilled water loop ---------------------------------------------------------
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "CHW-Loop")]))
+               [("s", "rdfs:label_en", "QNL_CHWS-MAIN-LOOP")]))
+out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
+               "<blanknode>", "ref:IFCReference",
+               [("o", "para:IFC_ID", ""),
+                ("o", "ref:ifcName", LOOP.replace("entity:", ""))]))
 
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):
