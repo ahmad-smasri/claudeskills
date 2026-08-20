@@ -191,19 +191,19 @@ timeseries references. They arrive with the IO list, on the point rows.
 ```
 python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
 2577 rows, 793 typed entities, 1 para: definitions
-450 errors, 1 warnings, 1936 advisories
+450 errors, 0 warnings, 1936 advisories
 ```
 
 **All 450 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
 empty `para:IFC_ID` on each of the 449 assets and on the loop. Paste the IFC GUIDs into
 `object_prop_val` on those rows and the sheet validates clean.
 
-**The one warning is worth your attention.** `W-REF-1` reports that `entity:QF` is
-referenced as an object but never given a row of its own. QF SSC 0.5 does the same — it
-declares `entity:SSC` but never `entity:QF` — so as things stand *no* sheet declares the
-site. Its label reaches the graph through the object prop on QNL's building row, so
-nothing breaks today, but somebody should own a `entity:QF rec:Site` row. Tell me if that
-should be QNL and I will add it. Nothing else is outstanding: zero warnings, so every entity is
+**Zero warnings.** An earlier version of this note said `W-REF-1` flagged `entity:QF` as
+undeclared. That was my check being too strict, not a defect in the sheet: `entity:QF` is
+typed `rec:Site` and labelled "Qatar Foundation" on QNL's building row, which is exactly
+how the house style declares a site, a sub-system or a part — on the row that references
+it, class in `objectType` and label in an object prop. The rule now flags only an entity
+that is never given a class anywhere, which is a real dangling reference. Nothing else is outstanding: zero warnings, so every entity is
 labelled, every terminal unit has a feeds row and a location, and every spatial entity
 connects up to `rec:Building`.
 

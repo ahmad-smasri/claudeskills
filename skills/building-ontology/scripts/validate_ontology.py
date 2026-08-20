@@ -434,14 +434,16 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
             report.add("ERROR", "E-TYP-1", 0,
                        f"{entity} is typed {len(ts)} different ways: {sorted(ts)}")
 
-    # An entity referenced but never given a row of its own is a dangling
-    # reference - a typo, a renamed entity, or a placeholder that got resolved
-    # on one row and not the others. Warning, not error: a shared site or system
-    # supplied by another building's sheet is legitimately object-only.
-    for entity in sorted(referenced - subjects):
+    # A dangling reference is an entity that is mentioned and never given a
+    # class - a typo, a renamed entity, or a placeholder resolved on one row and
+    # not the others. Being object-only is not itself a defect: the house style
+    # declares sub-systems, parts and the site entirely on the row that
+    # references them, with the class in objectType and the label in an object
+    # prop. Requiring a subject row would flag every one of those.
+    for entity in sorted(referenced - subjects - set(types)):
         report.add("WARN", "W-REF-1", 0,
-                   f"{entity} is referenced as an object but never appears as a "
-                   f"subject - dangling reference, or declared in another sheet?")
+                   f"{entity} is referenced but never given a class, on this row or "
+                   f"any other - dangling reference")
 
     for term in sorted(mentioned):
         if term.startswith("para:") and term not in para_defined and term not in para_known:
