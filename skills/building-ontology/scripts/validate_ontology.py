@@ -4,6 +4,7 @@
     python3 validate_ontology.py MyBuilding.xlsx
     python3 validate_ontology.py MyBuilding.csv --strict --max 5
     python3 validate_ontology.py MyBuilding.xlsx --label-style verbatim
+    python3 validate_ontology.py MyBuilding.xlsx --preflight
 
 Exit status: 0 clean (warnings allowed), 1 errors found, 2 with --strict if
 anything at all was reported, 3 if the file could not be read.
@@ -46,6 +47,39 @@ SPATIAL_CLASSES = {
 
 PLACEHOLDER = re.compile(r"<(?!blanknode>)[^>]*>")
 
+# Placeholders that are deliberate and mean something, so they are reported as
+# open work rather than as a defect. `<AliasOf>` marks a point whose telemetry
+# key exists in the database under a name the ontology does not yet know - see
+# references/csv-contract.md. The rest of the row is finished; only the mapping
+# is outstanding, and it cannot be filled until the data lands.
+KNOWN_PLACEHOLDERS = {"<AliasOf>"}
+
+
+def house_alternative(term: str, precedent: set[str]) -> str:
+    """The class Dar Cairo already uses for something like this term, if any.
+
+    Step 1 of the class ladder is "is it in Dar Cairo?", so a term that is not in
+    Brick is worth checking against the primary reference before anyone goes
+    looking on brickschema.org. `brick:Supply_Air_Flow` is not a Brick 1.4 term;
+    `brick:Supply_Air_Flow_Sensor`, which Dar Cairo uses 38 times, is - and that
+    is a far more useful thing to be told.
+    """
+    local = term.split(":", 1)[-1]
+    for cand in sorted(precedent, key=len):
+        cl = cand.split(":", 1)[-1]
+        if cl == local:
+            continue
+        if cl.startswith(local + "_") or local.startswith(cl + "_") or \
+                cl.lstrip("_") == local.lstrip("_") or \
+                cl.lower().replace("_", "") == local.lower().replace("_", ""):
+            return cand
+    # a dropped leading character - brick:ccupied_... for brick:Occupied_...
+    for cand in sorted(precedent):
+        cl = cand.split(":", 1)[-1]
+        if len(cl) == len(local) + 1 and cl.endswith(local):
+            return cand
+    return ""
+
 
 def label_issues(text: str) -> list[str]:
     """Return the characters in a label that the PARA label rule disallows.
@@ -77,7 +111,12 @@ def clean_label(text: str) -> str:
 
 
 def load_vocab() -> dict[str, tuple[str, str]]:
-    """Load the Brick/REC term list: term -> (status, note)."""
+    """Load the Brick/REC term list: term -> (status, note).
+
+    `accepted-terms.txt` is layered on top: terms confirmed valid that the
+    pinned Brick extract predates. Without it, moving the pin is the only way to
+    stop a real term reading as a typo.
+    """
     path = DATA / "brick-vocab.txt"
     if not path.exists():
         return {}
@@ -88,6 +127,16 @@ def load_vocab() -> dict[str, tuple[str, str]]:
         parts = line.split("\t")
         out[parts[0]] = (parts[1] if len(parts) > 1 else "OK",
                          parts[2] if len(parts) > 2 else "")
+
+    # These override the extract rather than filling gaps in it: a term can be
+    # accepted here precisely because the extract calls it an alias.
+    extra = DATA / "accepted-terms.txt"
+    if extra.exists():
+        for line in extra.read_text().splitlines():
+            if not line.strip() or line.startswith("#"):
+                continue
+            term, _, reason = line.partition("\t")
+            out[term.strip()] = ("OK", reason.strip())
     return out
 
 
@@ -209,7 +258,7 @@ class Report:
         return errors, warns
 
 
-def validate(path: Path, report: Report, label_style: str = "para"):
+def validate(path: Path, report: Report, label_style: str = "para", io=None):
     header, body = read_sheet(path)
     low = [h.lower() for h in header]
 
@@ -229,6 +278,8 @@ def validate(path: Path, report: Report, label_style: str = "para"):
     types: dict[str, set[str]] = collections.defaultdict(set)
     labelled: set[str] = set()
     mentioned: set[str] = set()
+    subjects: set[str] = set()
+    referenced: set[str] = set()
     para_defined: set[str] = set()
     parent_of: dict[str, str] = {}
     feeds: dict[str, list[str]] = collections.defaultdict(list)
@@ -246,8 +297,14 @@ def validate(path: Path, report: Report, label_style: str = "para"):
                 report.add("ERROR", "E-WS-1", rownum,
                            f"{header[i] or f'col{i + 1}'} has padding whitespace: {cell!r}")
             if PLACEHOLDER.search(cell.strip()):
-                report.add("ERROR", "E-PH-1", rownum,
-                           f"{header[i] or f'col{i + 1}'} still holds a placeholder: {cell.strip()!r}")
+                if cell.strip() in KNOWN_PLACEHOLDERS:
+                    report.add("INFO", "I-PH-2", rownum,
+                               f"{cell.strip()} is a deliberate placeholder - the alias "
+                               f"is filled once the database entity name is known")
+                else:
+                    report.add("ERROR", "E-PH-1", rownum,
+                               f"{header[i] or f'col{i + 1}'} still holds a "
+                               f"placeholder: {cell.strip()!r}")
 
         if not subj or not pred or not obj:
             report.add("ERROR", "E-CORE-1", rownum,
@@ -274,6 +331,20 @@ def validate(path: Path, report: Report, label_style: str = "para"):
                 report.add("ERROR", "E-PFX-1", rownum, f"{col} uses unknown prefix {prefix!r}")
             if " " in val:
                 report.add("ERROR", "E-SPACE-1", rownum, f"{col} {val!r} contains a space")
+            # These apply to namespaced cells only, never to a *_prop_val literal:
+            # a label may legitimately contain anything a label may contain.
+            bad = [c for c in val if ord(c) < 32 or c in "\u00a0\u200b\u2060\ufeff"]
+            if bad:
+                report.add("ERROR", "E-CELL-1", rownum,
+                           f"{col} {val!r} contains {[hex(ord(c)) for c in bad]} - a "
+                           f"control character or invisible space")
+            if val.count(":") > 1:
+                report.add("ERROR", "E-CELL-2", rownum,
+                           f"{col} {val!r} has {val.count(':')} colons; a term is "
+                           f"prefix:localName")
+            if prefix != prefix.lower():
+                report.add("ERROR", "E-CELL-3", rownum,
+                           f"{col} prefix {prefix!r} must be lower case")
 
         # --- vocabulary ------------------------------------------------------
         for col, val in (("subjectType", stype), ("predicate", pred), ("objectType", otype)):
@@ -282,7 +353,11 @@ def validate(path: Path, report: Report, label_style: str = "para"):
             if val.startswith(("brick:", "rec:", "ref:")) and vocab:
                 status, note = vocab.get(val, ("MISSING", ""))
                 if status == "MISSING":
+                    alt = house_alternative(val, precedent)
                     report.add("ERROR", "E-TYP-2", rownum,
+                               f"{col} {val} is not a term in Brick 1.4 - Dar Cairo "
+                               f"uses {alt} for this; confirm before substituting"
+                               if alt else
                                f"{col} {val} is not a term in Brick 1.4 - "
                                "check the spelling on ontology.brickschema.org")
                 elif status == "ALIAS":
@@ -322,7 +397,9 @@ def validate(path: Path, report: Report, label_style: str = "para"):
         if subj.startswith("entity:") and stype:
             types[subj].add(stype)
             mentioned.add(subj)
+        subjects.add(subj)
         if obj.startswith("entity:"):
+            referenced.add(obj)
             mentioned.add(obj)
             if otype and otype != "<blanknode>":
                 types[obj].add(otype)
@@ -350,6 +427,7 @@ def validate(path: Path, report: Report, label_style: str = "para"):
 
         # --- property pairs ------------------------------------------------------
         object_props = 0
+        row_props: set[str] = set()
         i = 5
         while i + 1 < len(header) + 1 and i < len(header):
             name_col = header[i].lower()
@@ -363,6 +441,7 @@ def validate(path: Path, report: Report, label_style: str = "para"):
             if pval and not pname:
                 report.add("ERROR", "E-PAIR-2", rownum, f"value {pval!r} has no property name")
             if pname:
+                row_props.add(pname)
                 side = "subject" if name_col.startswith("subject") else "object"
                 target = subj if side == "subject" else obj
                 if side == "object":
@@ -388,16 +467,45 @@ def validate(path: Path, report: Report, label_style: str = "para"):
         if obj == "<blanknode>" and object_props == 0:
             report.add("ERROR", "E-BN-1", rownum,
                        "<blanknode> object carries no object_prop pairs")
+        # A half-filled blank node is worse than an empty one: it looks finished.
+        if "brick:value" in row_props and "brick:hasUnit" not in row_props:
+            report.add("WARN", "W-BN-4", rownum,
+                       "brick:value with no brick:hasUnit - use unit:UNITLESS if the "
+                       "quantity is genuinely dimensionless")
+        if "ref:hasTimeseriesId" in row_props and "para:hasEntityId" not in row_props:
+            report.add("WARN", "W-BN-5", rownum,
+                       "ref:hasTimeseriesId with no para:hasEntityId - the telemetry "
+                       "key has nothing to say which entity it is grouped under")
+        if pred == "brick:aggregate":
+            for want in ("brick:aggregationFunction", "brick:aggregationInterval"):
+                if want not in row_props:
+                    report.add("WARN", "W-AGG-1", rownum,
+                               f"brick:aggregate with no {want}")
         if obj == "<blanknode>" and otype not in ("<blanknode>", "ref:TimeseriesReference",
                                                   "ref:IFCReference", "ref:BACnetReference"):
             report.add("WARN", "W-BN-2", rownum,
                        f"blank-node objectType should be <blanknode> or a ref: class, found {otype!r}")
 
     # ---- whole-file checks ---------------------------------------------------
+    # When an entity carries two classes, say which of them the house already
+    # uses: that is usually the whole answer, and it saves the reader a lookup.
     for entity, ts in sorted(types.items()):
         if len(ts) > 1:
+            marked = [f"{t} (in Dar Cairo)" if t in precedent else f"{t} (no precedent)"
+                      for t in sorted(ts)]
             report.add("ERROR", "E-TYP-1", 0,
-                       f"{entity} is typed {len(ts)} different ways: {sorted(ts)}")
+                       f"{entity} is typed {len(ts)} different ways: {', '.join(marked)}")
+
+    # A dangling reference is an entity that is mentioned and never given a
+    # class - a typo, a renamed entity, or a placeholder resolved on one row and
+    # not the others. Being object-only is not itself a defect: the house style
+    # declares sub-systems, parts and the site entirely on the row that
+    # references them, with the class in objectType and the label in an object
+    # prop. Requiring a subject row would flag every one of those.
+    for entity in sorted(referenced - subjects - set(types)):
+        report.add("WARN", "W-REF-1", 0,
+                   f"{entity} is referenced but never given a class, on this row or "
+                   f"any other - dangling reference")
 
     for term in sorted(mentioned):
         if term.startswith("para:") and term not in para_defined and term not in para_known:
@@ -417,8 +525,26 @@ def validate(path: Path, report: Report, label_style: str = "para"):
         if stype in TERMINAL_EQUIPMENT and entity not in located:
             report.add("WARN", "W-GR-2", 0, f"{entity} has no rec:locatedIn")
 
+    # A point with no external reference is a defect when the BMS publishes a key
+    # for it and a fact when it does not. With an IO list to hand, ask rather
+    # than flag - that is the pass a reviewer would otherwise do by hand.
     for point in sorted(points):
-        if point not in has_ext_ref:
+        if point in has_ext_ref:
+            continue
+        verdict = None
+        if io is not None:
+            local = point.split(":", 1)[-1]
+            parent, _, suffix = local.rpartition("_")
+            verdict = io.timeseries_id(parent, suffix)
+        if verdict == "":
+            report.add("INFO", "I-PT-3", 0,
+                       f"{point} has no ref:hasExternalReference, and the IO list has "
+                       f"no timeseries id for it either - confirmed, not a defect")
+        elif verdict:
+            report.add("ERROR", "E-PT-4", 0,
+                       f"{point} has no ref:hasExternalReference but the IO list gives "
+                       f"it {verdict!r} - the reference is missing from the sheet")
+        else:
             report.add("WARN", "W-PT-1", 0,
                        f"{point} is a data point with no ref:hasExternalReference")
 
@@ -440,12 +566,79 @@ def validate(path: Path, report: Report, label_style: str = "para"):
           f"{len(para_defined)} para: definitions\n")
 
 
+def preflight(path: Path):
+    """Discover and show: print what this sheet actually contains, before judging it.
+
+    Every rule below runs against what was found here, not against a list of one
+    building's facts carried in from another. Read this first and confirm
+    anything that looks wrong - a class you do not recognise, a unit nobody
+    uses, a prefix that should not be there - because a sheet can validate clean
+    and still model the wrong building.
+    """
+    header, body = read_sheet(path)
+    low = [h.strip().lower() for h in header]
+    idx = [low.index(c) for c in CORE]
+
+    prefixes = collections.Counter()
+    classes = collections.defaultdict(collections.Counter)
+    predicates = collections.Counter()
+    props = collections.Counter()
+    units = collections.Counter()
+    entities = set()
+
+    for _, r in body:
+        cells = [r[i].strip() if i < len(r) else "" for i in idx]
+        subj, stype, pred, obj, otype = cells
+        for v in (subj, stype, pred, obj, otype):
+            if v and ":" in v and v != "<blanknode>":
+                prefixes[v.split(":", 1)[0]] += 1
+        if subj.startswith("entity:"):
+            entities.add(subj)
+        if pred:
+            predicates[pred] += 1
+        for v in (stype, otype):
+            if v and v != "<blanknode>":
+                kind = ("spatial" if v in SPATIAL_CLASSES else
+                        "extension" if v.startswith("para:") else
+                        "schema" if v.startswith(("owl:", "rdfs:")) else
+                        "reference" if v.startswith("ref:") else "equipment or point")
+                classes[kind][v] += 1
+        for i in range(5, len(header) - 1, 2):
+            if i + 1 < len(r) and r[i].strip():
+                props[r[i].strip()] += 1
+                if r[i].strip() == "brick:hasUnit":
+                    units[r[i + 1].strip()] += 1
+
+    print(f"\n{path.name}: {len(body)} rows, {len(entities)} entities\n")
+    print("prefixes  ", ", ".join(f"{k}({v})" for k, v in prefixes.most_common()))
+    print("predicates", ", ".join(f"{k}({v})" for k, v in predicates.most_common(12)))
+    print("properties", ", ".join(f"{k}({v})" for k, v in props.most_common(12)))
+    print("units     ", ", ".join(f"{k}({v})" for k, v in units.most_common(12)) or "none")
+    for kind in ("spatial", "equipment or point", "extension", "reference", "schema"):
+        got = classes.get(kind)
+        if got:
+            print(f"\n{kind} classes ({len(got)})")
+            for cls, n in got.most_common(15):
+                print(f"  {n:>6}  {cls}")
+            if len(got) > 15:
+                print(f"         ... and {len(got) - 15} more")
+    print("\nConfirm anything above that does not look like this building before "
+          "reading the findings.\n")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("sheet", type=Path)
     ap.add_argument("--max", type=int, default=15, help="max findings shown per rule code")
     ap.add_argument("--strict", action="store_true", help="fail on warnings too")
+    ap.add_argument("--io", type=Path, metavar="PATH",
+                    help="the IO list. Supplied, it is used as evidence: findings it "
+                         "can adjudicate are resolved against it instead of flagged.")
+    ap.add_argument("--preflight", action="store_true",
+                    help="print what the sheet contains - prefixes, classes, predicates, "
+                         "properties, units - and stop. Discover and show: run this "
+                         "first and confirm the picture before trusting any finding.")
     ap.add_argument("--ignore", default="", help="comma-separated rule codes to suppress")
     ap.add_argument("--report", type=Path, metavar="PATH",
                     help="also write every finding to PATH (.xlsx or .csv), a file of "
@@ -461,8 +654,21 @@ def main():
         print(f"no such file: {args.sheet}", file=sys.stderr)
         return 3
 
+    if args.preflight:
+        preflight(args.sheet)
+        return 0
+
+    io = None
+    if args.io:
+        if not args.io.exists():
+            print(f"no such file: {args.io}", file=sys.stderr)
+            return 3
+        import io_list
+        io = io_list.load(args.io)
+        print(f"IO list: {io.describe()}")
+
     report = Report(args.max)
-    validate(args.sheet, report, args.label_style)
+    validate(args.sheet, report, args.label_style, io)
     ignore = {c.strip() for c in args.ignore.split(",") if c.strip()}
     errors, warns = report.emit(ignore)
 

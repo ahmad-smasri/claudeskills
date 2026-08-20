@@ -40,6 +40,21 @@ Neither reference model settles it - SSC is verbatim, Dar Cairo is a third style
 and the label rule is newer than both. Ask, then run the validator with the
 matching `--label-style` and name the choice in the handover note.
 
+## And whether to correct the schedule's spelling
+
+Keeping the source text verbatim keeps its typing errors too, and they do not
+stay hidden in the identifier - the same string becomes the label a user reads:
+
+> Your room schedule has misspellings - `STUDENT_CARRLES` for CARRELS,
+> `LOBY_&_CSECURITY` for LOBBY & SECURITY, `REST_ROOMMEN` run together. They
+> will show on screen as written. Correct the ones the schedule itself proves,
+> or keep every name exactly as typed and take the list in the handover note?
+
+Ask it separately from the identifier question - the answers are often different,
+and were on QNL, where the shape was kept and the spelling corrected. Default to
+keeping and reporting. `naming-and-labels.md` has the rules that apply once the
+answer is to correct, and the reason asset tags stay untouched either way.
+
 ## The mandatory inputs
 
 | # | Input | Usually arrives as | Blocks |

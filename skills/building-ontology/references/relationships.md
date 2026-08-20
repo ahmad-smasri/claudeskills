@@ -49,6 +49,58 @@ discrepancy in the handover note.** See `known-issues.md`.
 
 Levels carry `rec:levelNumber` - `0` for ground, negatives for basements.
 
+## The system tree
+
+The front end renders a tree - building, then a node per discipline, then a node
+per equipment class, then the units - and it builds that tree from two things:
+the `brick:isPartOf` chain in this sheet, and the Brick class hierarchy for the
+layer below it. **You supply the system chain. Brick supplies the class layer**,
+because `brick:Air_Handling_Unit` is already declared under `brick:HVAC_Equipment`
+in the ontology the front end loads. Do not mint an `entity:Air_Handling_Unit` to
+sit between the two: neither reference model has one, and it restates what Brick
+already says.
+
+Dar Cairo's row shapes, which QF SSC 0.5 matches:
+
+```
+# a top-level system: a subject, isPartOf the SITE, with a label
+entity:Water_System | brick:Water_System | brick:isPartOf | entity:Smart-Village | rec:Site
+                    | rdfs:label_en | Water System
+
+# a sub-system: declared ONLY as the object of its parent's hasPart row -
+# class in objectType, label in an object prop. It is never a subject.
+entity:Water_System | brick:Water_System | brick:hasPart | entity:Sump-System | para:Sump_System
+                    | | | rdfs:label_en | Sump System
+
+# equipment points up
+entity:EXT-FOUNT-SUMP-PUMP-2 | brick:Water_Pump | brick:isPartOf | entity:Sump-System | para:Sump_System
+```
+
+Note the direction discipline: parent-to-child is `brick:hasPart`,
+child-to-parent is `brick:isPartOf`, and **not one of Dar Cairo's system links is
+stated both ways**.
+
+System entities carry no building code - `entity:HVAC`, `entity:Water_System`,
+`entity:CHW-System` - because a system serves the site or the building rather
+than sitting inside it.
+
+### Only declare a system that earns its place
+
+A tree node exists to let someone narrow a long list. A node with one child
+narrows nothing; it costs a click and adds a row to every review. Before
+declaring a sub-system, ask what it will hold once the sheet is complete:
+
+- **Yes** where the discipline has real internal structure - Dar Cairo's
+  `Water_System` splits into domestic hot, domestic, grey water and sump, each
+  with its own pumps.
+- **No** where the layer would hold a single asset, or where the relationship it
+  expresses is already stated another way. QNL declares `entity:HVAC` and stops:
+  a `CHW-System` beneath it could hold only the chilled water loop, because every
+  AHU and FCU relation to chilled water is already carried by `rec:isFedBy`.
+
+Say in the handover which systems you declared and which you considered and
+rejected, so the next person does not re-litigate it.
+
 ## Feeds
 
 `rec:feeds` points downstream; `rec:isFedBy` points upstream. Dar Cairo uses both

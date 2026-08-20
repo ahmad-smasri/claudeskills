@@ -20,14 +20,16 @@ assert len(HEADER) == 27
 
 
 def label(text):
-    """Label style: QF SSC. The source text survives verbatim, punctuation and all.
+    """Label style: QF SSC. The source text, with underscores as spaces.
 
-    SSC labels rooms `1.001_CORRIDOR` and equipment `SSC_FCU0001` - the raw
-    schedule and register strings, not the cleaned form the PARA label rule
-    produces. Whitespace is stripped because the validator rejects it (E-WS-1);
-    nothing else is touched.
+    The current SSC sheet labels rooms `1.001 CORRIDOR` and its own assets
+    `SSC_CHW_CHWP01 Motor` - the raw schedule and register strings with `_`
+    read as a word break, and every other mark left alone: the dot between
+    level and room number survives, and so do dashes and slashes (`A / V ROOM`).
+    That is the difference from the PARA label rule, which strips punctuation
+    outright.
     """
-    return " ".join(text.split())
+    return " ".join(text.replace("_", " ").split())
 
 
 def row(subject, stype, pred, obj, otype="", props=()):
@@ -58,6 +60,57 @@ LEVEL_TYPE = {"B": "rec:BasementLevel", "L1": "rec:Level",
 LEVEL_LABEL = {"B": "Basement", "L1": "Level 1", "L2": "Level 2",
                "T1": "Terrace 1"}
 
+# The room schedule was typed by hand and carries misspellings that would
+# otherwise ride into both the identifier and the label a user reads. Each
+# entry below was settled against the rest of the schedule, not guessed: the
+# correct spelling appears on a sibling room, or the token is a run-together
+# pair whose separator convention every other room follows. The map is applied
+# to the underscore-separated tokens of the room *name* only - never to the
+# level or the room number, which are the join key back to the drawings.
+#
+# Whole-word misspellings; the evidence for each is in QNL_handover-note.md.
+TYPO_FIXES = {
+    "CARRLES": "CARRELS",              # CARRELS on 15 other rooms
+    "CTRCULATION": "CIRCULATION",
+    "GREEM": "GREEN",
+    "SPRIMKLERS": "SPRINKLERS",
+    "ITTIGATION": "IRRIGATION",
+    "WASING": "WASHING",
+    "CONTOL": "CONTROL",               # CONTROL on 8 other rooms
+    "LEVLEL": "LEVEL",
+    "LOBY": "LOBBY",                   # L1_042_LOBBY
+    "VENTILATON": "VENTILATION",
+    "VENTLATON": "VENTILATION",
+    "LIBRARIA": "LIBRARIAN",           # 14 LIBRARIAN rooms
+    "PANKING": "PARKING",
+    "WATING": "WAITING",
+    "MULTPURPOSE": "MULTIPURPOSE",
+    "ANGUAGE": "LANGUAGE",
+    "BIBLIOGRANHER1": "BIBLIOGRAPHER1",   # L1_082_BIBLIOGRAPHER2 next door
+    "PUBLIS": "PUBLIC",                # L1_080_PUBLIC_SERVICE
+    "CSECURITY": "SECURITY",           # 8 SECURITY rooms, stray leading C
+    "TRANSH": "TRASH",                 # only waste room in the building
+    "PRESEARCHERS": "RESEARCHERS",     # stray leading P; B_151 RESEARCH
+    # Run-together pairs. The separator, not the wording, is what is restored -
+    # every sibling room writes these two tokens apart.
+    "ROOMMEN": "ROOM_MEN",             # 9 x REST_ROOM_MEN
+    "ABLUTIONMEN": "ABLUTION_MEN",
+    "ABLUTIONWOMEN": "ABLUTION_WOMEN",
+    "ADPUBLIC": "AD_PUBLIC",           # AD_COLLECTIONS, AD_OFFICE, AD_ADMIN
+    "LIBDIRECTORS": "LIB_DIRECTORS",
+    "INDIVISTUDY": "INDIVI_STUDY",     # sibling shape is GROUP_STUDY_ROOM
+}
+
+
+def fix_spelling(name):
+    """Correct the schedule's typing errors in a room name, token by token.
+
+    Whole tokens only, so a correction can never fire inside a longer word,
+    and abbreviations the schedule uses deliberately - AD, SEC, RES, LIBR,
+    PERS, ITT and the rest - are left exactly as the source wrote them.
+    """
+    return "_".join(TYPO_FIXES.get(t, t) for t in name.split("_"))
+
 wb = openpyxl.load_workbook(ROOMS_XLSX, read_only=True, data_only=True)
 room_src = []
 for r in list(wb.worksheets[0].iter_rows(values_only=True))[1:]:
@@ -82,13 +135,18 @@ for src_entity, number, name in room_src:
     # triple and cannot drift apart:
     #
     #   identifier  entity:QNL_<level>_<num>_<name>     QNL_B_063_PLANT_ROOM_01
-    #   label             <level>.<num>_<name>          B.063_PLANT_ROOM_01
+    #   label             <level>.<num> <name>          B.063 PLANT ROOM 01
     #
     # The dot between level and room number is the QF SSC label shape - SSC
-    # writes 1.001_CORRIDOR for room 001 on level 1. Nothing inside <num> or
-    # <name> is touched; only the join between the segments is regularised.
+    # writes 1.001 CORRIDOR for room 001 on level 1 - and label() turns the
+    # remaining underscores into spaces. Nothing inside <num> or <name> is
+    # touched; only the join between the segments is regularised.
     if not num:
         sys.exit("room %r has a level but no room number" % number)
+    fixed = fix_spelling(name)
+    if fixed != name:
+        notes.append(f"room name {name!r} corrected to {fixed!r}")
+    name = fixed
     ident = "entity:QNL_%s_%s_%s" % (level, num, name)
     rooms[src_entity] = {
         "id": ident, "level": level,
@@ -116,6 +174,32 @@ TERMINAL = {"VAV", "CAV", "FCU"}
 # graph. Site-level systems - entity:HVAC, entity:QF - are genuinely shared and
 # rightly bare; a per-building main loop is not. Flagged in the handover note.
 LOOP = "entity:QNL_CHWS-MAIN-LOOP"
+
+# The systems layer, which is what the front end's system tree is built from.
+#
+# Dar Cairo's shape: a top-level system is a subject carrying brick:isPartOf the
+# SITE and a label; a sub-system is declared only as the object of its parent's
+# brick:hasPart row, with its class in objectType and its label in an object
+# prop; equipment points up with brick:isPartOf. No link is ever stated twice.
+# QF SSC 0.5 agrees - entity:HVAC brick:isPartOf entity:QF.
+#
+# entity:CHW-System is not a node QNL invents - QF SSC 0.5 already declares it,
+# bare and site-level under entity:HVAC, holding SSC's four chilled water booster
+# pumps and five heat exchangers. QNL reusing it puts its loop in that same
+# group rather than creating a one-child node, the same way both buildings share
+# entity:QF and entity:HVAC. SSC leaves its own loop outside CHW-System, which
+# looks like an oversight: a distribution loop is part of the chilled water
+# system by any reading.
+# brick:HVAC_System is a Brick 1.4 alias for
+# brick:Heating_Ventilation_Air_Conditioning_System, and the ladder would take the
+# preferred term. The house overrides that: both reference models write
+# brick:HVAC_System and the front end keys off it, so consistency across the
+# estate wins over the preferred spelling. The W-TYP-5 alias warning is accepted
+# and recorded in the handover.
+HVAC = "entity:HVAC"
+CHW = "entity:CHW-System"
+CHW_CLASS = "brick:Chilled_Water_System"
+HVAC_CLASS = "brick:HVAC_System"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
@@ -203,8 +287,14 @@ for d in rooms.values():
                    [("s", "rdfs:label_en", d["label"])]))
 
 # Chilled water loop ---------------------------------------------------------
+out.append(row(HVAC, HVAC_CLASS, "brick:isPartOf", "entity:QF", "rec:Site",
+               [("s", "rdfs:label_en", "HVAC System")]))
+
+out.append(row(CHW, CHW_CLASS, "brick:isPartOf", HVAC, HVAC_CLASS,
+               [("s", "rdfs:label_en", "Chilled Water System")]))
+out.append(row(LOOP, LOOP_CLASS, "brick:isPartOf", CHW, CHW_CLASS))
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL_CHWS-MAIN-LOOP")]))
+               [("s", "rdfs:label_en", label(LOOP.replace("entity:", "")))]))
 out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
                "<blanknode>", "ref:IFCReference",
                [("o", "para:IFC_ID", ""),
@@ -216,6 +306,7 @@ for kind in ("AHUB", "VAV", "CAV", "FCU"):
         bare = a["id"].replace("entity:", "")
         out.append(row(a["id"], a["cls"], "rec:locatedIn", a["room"], "rec:Room",
                        [("s", "rdfs:label_en", label(bare))]))
+        out.append(row(a["id"], a["cls"], "brick:isPartOf", HVAC, HVAC_CLASS))
         out.append(row(a["id"], a["cls"], "rec:isFedBy", a["src"], a["src_cls"]))
         if kind in TERMINAL:
             out.append(row(a["id"], a["cls"], "rec:feeds", a["room"], "rec:Room"))

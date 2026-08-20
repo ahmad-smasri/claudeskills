@@ -21,11 +21,51 @@ That is the house preference: the convention below governs identifiers *this
 sheet has to invent* - site, building, levels, systems, virtual meters, parts and
 points - not identifiers the client already owns.
 
-When keeping source identifiers, the only permitted edits are the ones the
+When keeping source identifiers, the only edits taken unasked are the ones the
 validator forces: strip leading and trailing whitespace (`E-WS-1`) and remove
-embedded spaces (`E-SPACE-1`). Do not fix typos, expand abbreviations, reorder
-segments, or swap underscores for dashes. Labels are where the cleanup happens -
-the label rule below applies regardless of how the identifier is spelled.
+embedded spaces (`E-SPACE-1`). Do not expand abbreviations, reorder segments, or
+swap underscores for dashes. Labels are where the cleanup happens - the label
+rule below applies regardless of how the identifier is spelled.
+
+### Misspellings are a separate question, and the user's to answer
+
+A schedule typed by hand carries typing errors, and an identifier is not the
+only thing they damage: the same string becomes the `rdfs:label_en` a user reads
+on screen, so `STUDENT CARRLES` and `L1.130 PUBLIS SPACE` ship to the front end.
+Correcting them is not the same decision as normalising an identifier's shape,
+so **ask about it separately at intake** - the intake question is in
+`intake.md`. On QNL the answer was to correct them; the default until asked is
+to leave them and report them.
+
+When the answer is to correct:
+
+- **Only where the sheet itself proves the correction.** The right spelling
+  already appears on a sibling (`CARRELS` on 15 other rooms, `L1_042_LOBBY`
+  against `B_145_LOBY`), or the token is two words run together whose separator
+  every other room writes (`REST_ROOMMEN` against nine `REST_ROOM_MEN`).
+  Anything you are reasoning towards rather than reading off another row is a
+  question for the user, not a fix.
+- **Whole tokens only**, so a correction cannot fire inside a longer word, and
+  the abbreviations the schedule uses deliberately - `AD`, `SEC`, `RES`, `LIBR`,
+  `PERS` - survive untouched. Correcting a misspelling is not the same as
+  expanding an abbreviation; the second is a rewrite and needs asking.
+- **The name segment only.** Never the level or the room number, and never an
+  asset tag: those are the join key back to the drawings and to the BMS.
+- **From one map, in the build script**, so identifier and label are still
+  derived from the same corrected string and cannot drift apart. Every entry
+  carries the evidence beside it as a comment.
+- **Never a `ref:hasTimeseriesId`, a `rec:modelNumber`, or any other database
+  key.** Building vocabularies are full of strings that read as typos and are
+  not - `NBONEOB` is a Nuaire model number, `SupPreFlt` and `MinFALoocupTb` are
+  SCADA keys that must match the historian character for character. Pair every
+  candidate with its property name before touching it.
+- **Record the whole list in the handover note**, and regenerate the identifier
+  crosswalk. The source's own strings no longer match the ontology, so the
+  crosswalk is what keeps that join documented rather than lost.
+
+Find them by extracting the distinct word tokens across every subject, object
+and label - a few hundred, for a building - and reading each non-word token back
+in its own row. A dictionary is the wrong tool: it drowns in the abbreviations.
 
 ### The building code goes in front, on everything
 
@@ -72,17 +112,23 @@ neither model gives it a building code:
 |---|---|
 | QF SSC | `entity:HVAC`, `entity:CHW-System` |
 | Dar Cairo | `entity:CHWS-LOOP-1`, `entity:CHWS-LOOP-2`, `entity:Water_System` |
-| QNL | `entity:CHW-Loop` |
+| QNL | `entity:QNL_CHWS-MAIN-LOOP` |
 
-Bare name, dashes, no prefix. The building code marks what is *in* this building;
-a chilled water loop feeding it is not. `check_consistency.py` knows this and
+Bare name, dashes, no prefix - a system serves the site or the building rather
+than sitting in it. **The exception is a per-building asset that would collide
+across sheets.** QF SSC 0.5 writes `entity:CHWS-MAIN-LOOP` bare while also
+declaring it `rec:locatedIn entity:SSC`; a second building reusing that name
+yields one loop located in two buildings the moment both sheets load into one
+graph. QNL therefore prefixes its own: `entity:QNL_CHWS-MAIN-LOOP`. Prefix when
+the entity is per-building, leave bare when it is genuinely shared, and say which
+you did. `check_consistency.py` knows this and
 exempts the objects of `brick:isPartOf` and `rec:isFedBy` from its
 missing-prefix check.
 
-Dar Cairo declares the loop with a `rec:locatedIn` row pointing at the building,
-which is worth copying - it is where the loop's label lives. QF SSC never
-declares `entity:HVAC` or `entity:CHW-System` as a subject at all, so they carry
-no label and `W-LBL-2` fires on them.
+Dar Cairo and QF SSC 0.5 both declare the loop with a `rec:locatedIn` row
+pointing at the building, which is worth copying - it is where the loop's label
+lives. Neither declares `entity:HVAC` or `entity:CHW-System` with a label of its
+own, so `W-LBL-2` fires on them; give yours a label.
 
 ### Audit the source identifiers for consistency, and report what you find
 
@@ -172,14 +218,25 @@ ask about identifiers:
 
 | Style | `rdfs:label_en` for room `B_063` / `PLANT_ROOM_01` | Validator |
 |---|---|---|
-| `verbatim` - QF SSC house style | `B.063_PLANT_ROOM_01` | `--label-style verbatim`, `E-LBL-1` off |
+| `verbatim` - QF SSC house style | `B.063 PLANT ROOM 01` | `--label-style verbatim`, `E-LBL-1` off |
 | `para` - the label rule below | `B 063 PLANT ROOM 01` | default, `E-LBL-1` enforced |
 
-**The SSC room-label shape is `<level>.<number>_<name>`** - a dot between the
-level and the room number, an underscore before the name. SSC writes
-`1.001_CORRIDOR` for room 001 on level 1; QNL writes `B.063_PLANT_ROOM_01` for
-room 063 in the basement. Equipment carries its raw register tag with no
-reshaping: `SSC_FCU0001`, `VAV_B_S11_024`.
+**`verbatim` is the source text with underscores read as word breaks, and every
+other mark left alone.** That is the one edit: `_` becomes a space. The dot
+between the level and the room number survives, and so do dashes and slashes -
+SSC keeps `A / V ROOM` exactly as the schedule wrote it. The room-label shape is
+therefore `<level>.<number> <name>`: SSC writes `1.001 CORRIDOR` for room 001 on
+level 1, QNL writes `B.063 PLANT ROOM 01` for room 063 in the basement.
+Equipment keeps its register tag with the same treatment: `SSC_CHW_CHWP01 Motor`,
+`QNL VAV B S11 024`.
+
+The two styles differ in how much they remove, not in kind. `verbatim` removes
+one character class; `para` removes every punctuation mark except a decimal point
+between two digits. On a label with no underscores the two agree.
+
+**Route every label through one function.** QNL's loop label kept its
+underscores for a build because it was written as a literal instead of passing
+through the labeller - a rule applied in one place is a rule with a hole in it.
 
 **QF SSC is the recent completed sample and it uses `verbatim` throughout** -
 rooms labelled `1.001_CORRIDOR`, `1.008_A / V ROOM`, equipment labelled with the

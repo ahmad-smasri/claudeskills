@@ -1,0 +1,10 @@
+subject,subjectType,predicate,object,objectType,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val
+entity:FCU-01,brick:Fan_Coil_Unit,rec:locatedIn,entity:B_Room-001,rec:Room,rdfs:label_en,FCU 01,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Fan_Coil_Unit,brick:hasPoint,entity:FCU-01_Run,brick:On_Off_Status,rdfs:label_en,Run,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01_Run,brick:On_Off_Status,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,ref:hasTimeseriesId,FCU01_RUN,para:hasEntityId,FCU-01,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Fan_Coil_Unit,brick:hasPoint,entity:FCU-01_Ghost,brick:On_Off_Status,rdfs:label_en,Ghost,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01_Ghost,brick:On_Off_Status,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,ref:hasTimeseriesId,FCU01_GHOST,para:hasEntityId,FCU-01,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Fan_Coil_Unit,brick:hasPoint,entity:FCU-01_Twin,brick:On_Off_Status,rdfs:label_en,Twin,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01_Twin,brick:On_Off_Status,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,ref:hasTimeseriesId,FCU01_RUN,para:hasEntityId,FCU-01,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Fan_Coil_Unit,brick:hasPoint,entity:FCU-01_Drift,brick:On_Off_Status,rdfs:label_en,Drift,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01_Drift,brick:On_Off_Status,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,ref:hasTimeseriesId,FCU01_WRONG,para:hasEntityId,FCU-01,,,,,,,,,,,,,,,,,,

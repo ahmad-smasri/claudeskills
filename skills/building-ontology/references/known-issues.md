@@ -17,16 +17,19 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `E-SPACE-1` | an identifier contains a space |
 | `E-PFX-1` | a prefix outside `entity brick rec ref unit qudt para rdf rdfs owl xsd skos bacnet` |
 | `E-PFX-2` | a type or predicate with no prefix at all |
-| `E-PH-1` | an unresolved `<placeholder>` cell |
+| `E-PH-1` | an unresolved `<placeholder>` cell. `<AliasOf>` is exempt - it is deliberate, and reported as `I-PH-2` |
 | `E-PAIR-1` | a prop name with no value |
 | `E-PAIR-2` | a prop value with no name - usually a pair shifted one column left |
 | `E-LBL-1` | a label contains punctuation the label rule strips; the message shows the fix. Not applied under `--label-style verbatim` |
-| `E-TYP-1` | one entity declared with more than one type |
-| `E-TYP-2` | a `brick:`/`rec:`/`ref:` term that does not exist in Brick 1.4 - almost always a typo |
+| `E-TYP-1` | one entity declared with more than one type. Each type is annotated with whether Dar Cairo uses it, which usually settles which one is right |
+| `E-TYP-2` | a `brick:`/`rec:`/`ref:` term that does not exist in Brick 1.4 - almost always a typo. **Where Dar Cairo has a near-miss term, the message names it**, since step 1 of the ladder is the primary reference, not brickschema.org |
 | `E-TYP-3` | a `para:` term used but never defined here and absent from the registry |
 | `E-EXT-1` | a `rdfs:subClassOf` row whose `subjectType` is not `owl:Class` |
 | `E-EXT-2` | a new class with no `brick:`/`rec:`/`para:` parent |
 | `E-EXT-3` | a class declared as its own parent |
+| `E-CELL-1` | a namespaced cell holds a control character or an invisible space (non-breaking, zero-width, BOM) |
+| `E-CELL-2` | a namespaced cell has more than one colon; a term is `prefix:localName` |
+| `E-CELL-3` | a prefix is not lower case |
 | `E-BN-1` | a `<blanknode>` object with no object prop pairs to hold |
 | `E-FEED-1` | a terminal unit that never says what it feeds |
 | `E-GR-1` | a spatial entity whose containment chain never reaches a `rec:Building` |
@@ -46,6 +49,15 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `W-DUP-1` | a row identical to an earlier one |
 | `W-EXT-4` | a property declared as its own super-property |
 | `W-EXT-5` | a property related with `rdfs:subClassOf`; properties take `rdfs:subPropertyOf` |
+| `W-BN-4` | `brick:value` with no `brick:hasUnit` - use `unit:UNITLESS` if the quantity really is dimensionless |
+| `W-BN-5` | `ref:hasTimeseriesId` with no `para:hasEntityId` - the key has nothing saying which entity it groups under |
+| `W-AGG-1` | `brick:aggregate` with no `brick:aggregationFunction` or no `brick:aggregationInterval` |
+| `W-REF-1` | an entity referenced as an object but never given a row of its own - a dangling reference, or an entity another sheet declares |
+| `E-PT-4` | a point with no `ref:hasExternalReference` that the IO list gives a timeseries id - only with `--io` |
+
+The `E-CELL-` rules apply to **namespaced cells only** - subject, subjectType,
+predicate, object, objectType - and never to a `*_prop_val` literal. A label may
+contain anything a label may contain.
 
 ### Info
 
@@ -69,6 +81,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `E-CON-5` | the same relation is typed differently across units - one VAV's status is `brick:On_Off_Status`, another's is `brick:Fan_Status` |
 | `E-CON-6` | a unit has two `rec:locatedIn`, two `rec:feeds` or two `rec:isFedBy` rows |
 | `E-CON-10` | one point carries more than one external reference |
+| `E-CON-18` | a declared point with no external reference that the IO list gives a timeseries id - only with `--io` |
 | `E-CON-17` | a child's identifier differs from its parent's only in separators - `Floor-1_A` owning a point named `Floor-1A_...`, so nothing that keys off the parent will find it |
 
 ### Warnings
@@ -88,6 +101,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `I-CON-13` | an identifier repeats a token, `..._REST_REST_ROOM_WOMEN` |
 | `I-CON-14` | two children of the same class whose names differ only by a trailing token |
 | `I-CON-15` | a class with one instance, so no cross-unit comparison is possible. Said explicitly rather than reported as a vacuous pass |
+| `I-PH-2` | a `<AliasOf>` placeholder: the point is modelled, and its database entity name is still to come. Open work, not a defect - see `csv-contract.md` |
 | `I-CON-16` | an entity reference that lacks the prefix every subject in its family carries. Objects of `brick:isPartOf` and `rec:isFedBy` are exempt - they name shared plant, which both reference models deliberately write without a building code |
 
 ### How it decides what is expected
@@ -108,6 +122,96 @@ object is supposed to be. There is no expected point list to maintain.
   `brick:isPartOf` are excluded from the structural comparison, because their
   objects are meant to differ per unit. They are checked separately for
   cardinality and placeholder smells.
+
+## The IO list is evidence, not just a comparison target
+
+Several findings are suspicious only until the IO list adjudicates them. A point
+with no timeseries reference is a defect if the BMS publishes a key for it and a
+fact if it does not. A point present on 4 of 10 units is a defect if the other 6
+should have it and a fact if they never did. **Pass `--io` and the checks resolve
+those findings instead of flagging them** - which is the pass a reviewer would
+otherwise do by hand, and is exactly how the QF SSC review exercise cleared its
+own findings.
+
+| Without `--io` | With `--io`, when the list confirms the absence |
+|---|---|
+| `E-CON-1` a unit is short some rows | `I-CON-1` short, and the IO list accounts for all of them |
+| `E-CON-2` a relation absent on some units | `I-CON-2` absent, and the IO list confirms none of them has it |
+| `W-CON-9` a declared point with no reference | `I-CON-9` no reference, and no timeseries id in the list either |
+| `W-PT-1` a point with no reference | `I-PT-3` same, confirmed by the list |
+
+And it cuts the other way. Where the IO list says a point **does** have a key
+that the sheet is missing, the finding is promoted rather than dismissed:
+`E-PT-4` and `E-CON-18` both say "the IO list gives it `<id>`, and the sheet has
+no reference row".
+
+**A unit the IO list says nothing about is not evidence.** One unknown unit is
+enough to leave a finding standing - silence is not confirmation, and resolving
+on silence would quietly clear the findings the list never spoke to.
+
+## IO cross-check rule codes
+
+From `check_io_list.py`, which compares the points in a sheet against the IO list
+they came from. A point the BMS does not publish resolves to an empty timeseries,
+so over-inclusion is the failure mode this exists to catch.
+
+| Code | Means |
+|---|---|
+| `E-IO-1` | a point in the sheet matches no IO row - it would resolve empty |
+| `W-IO-2` | an IO row with no point in the sheet - usually a scope decision, worth confirming |
+| `E-IO-3` | two points claiming the same timeseries id |
+| `W-IO-4` | a point whose `ref:hasTimeseriesId` differs from the IO list's id for the same point name |
+| `W-IO-5` | an IO row whose timeseries id is blank, so nothing can match it |
+
+Matching is on the timeseries id first - the only value both sides genuinely
+share - falling back to the point name. **When it cannot tell which column of the
+IO list is the telemetry key, it stops and says so** rather than matching on a
+guess and reporting every point as unmatched.
+
+## Accepting a term the Brick extract rejects
+
+`brick-vocab.txt` is generated from a pinned `Brick.ttl`, so it cannot carry a
+decision: a term added to Brick after the pin reads as `E-TYP-2`, and a term the
+house keeps deliberately reads as `W-TYP-5` on every row that uses it.
+`references/data/accepted-terms.txt` overrides the extract for named terms, one
+per line with the reason it is there. It survives regeneration.
+
+Two entries today, both settled by the PARA team on 2026-08-20:
+
+- **`brick:Apparent_Power_Sensor`** - confirmed on ontology.brickschema.org.
+  Absent from the pinned 1.4 extract, which has `brick:Active_Power_Sensor` and
+  `brick:Power_Sensor` but no apparent-power sibling. Dar Cairo's own precedent
+  is `para:Apparent_Power_Usage_Sensor`, so revisit if the pin moves and the
+  term is still missing.
+- **`brick:HVAC_System`** - a Brick 1.4 alias for
+  `brick:Heating_Ventilation_Air_Conditioning_System`, kept because both
+  reference models write it and the front end keys off it. Consistency across
+  the estate beats the preferred spelling here. Without the override, QNL alone
+  carries 451 `W-TYP-5` rows, which buries the alias warnings that do matter.
+
+**Never add a line without a reason.** The file is the only thing standing
+between an accepted term and a typo somebody waved through.
+
+## How the SSC findings were resolved
+
+The review pass on the finalized SSC sheet, 2026-08-20. These are worth copying
+because each is a *shape* of fix, not a one-off:
+
+| Finding | What it turned out to be | The fix |
+|---|---|---|
+| `E-CON-10` one point, two external references | two different sensors sharing one identifier | **split the entity**: `_SA_P-Static` became `_SA_P-Static-1` and `-2`, typed `para:Static_Pressure_Sensor_01` / `_02`. Two keys means two points |
+| `E-TYP-1` `_RA_P-Static` typed two ways | the generic and the specific class both in use | **keep the more specific one everywhere**: `para:Return_Air_Static_Pressure_Sensor`, not `para:Static_Pressure_Sensor` |
+| `E-CON-5` `_RF` point typed under two fans | a return fan modelled as a supply fan | retyped `brick:Return_Fan`. The suffix in the identifier was right and the class was wrong |
+| `E-FEED-1` on 14 CRACs | genuinely missing rows | added `rec:feeds` to the room each serves |
+| `E-TYP-2` `brick:Heater` | not a Brick term, and Dar Cairo has no heaters at all | `brick:Heating_Coil` - the entity is a `brick:hasPart` of an AHU carrying a `brick:Heating_Command`, SCADA key `..._SupHtr.HtrCtrl`. That is a heating element inside an air handler, and the sibling of the `brick:Chilled_Water_Coil` the same AHUs use on the cooling side. `brick:Space_Heater` is a standalone room heater and `brick:Water_Heater` is domestic hot water |
+
+**One lesson from the pass itself.** Two search-and-replace turns resolved
+`brick:Alarm` and `brick:Fault_Status` on the CRAC alarm points, but each ran
+over one column at a time: the `_General_Fault` entities ended up
+`brick:Alarm` in `subjectType` and `brick:Communication_Loss_Alarm` in
+`objectType` - a new `E-TYP-1` on 14 entities, created by the fix. **A class
+change has to move every cell that names the entity, subject side and object
+side together**, and `check_consistency.py` is what catches it when it does not.
 
 ## Where the sources disagree
 

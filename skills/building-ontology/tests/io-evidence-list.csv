@@ -1,0 +1,10 @@
+Equipment,Point Name,TimeseriesId
+FCU-01,Run,FCU01_RUN
+FCU-01,Temp,FCU01_T
+FCU-01,Humidity,FCU01_RH
+FCU-02,Run,FCU02_RUN
+FCU-02,Temp,FCU02_T
+FCU-02,Humidity,FCU02_RH
+FCU-03,Run,FCU03_RUN
+FCU-03,Temp,FCU03_T
+FCU-01,Setpoint,

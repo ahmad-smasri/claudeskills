@@ -1,6 +1,6 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,124 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,577 rows on the
 27-column PARA header. Validate with
 `validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
 source identifier against the identifier used in the sheet and its label.
@@ -16,10 +16,12 @@ source identifier against the identifier used in the sheet and its label.
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:QF` |
 | Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
 | Rooms | 336 | each `rec:isPartOf` its level |
-| Chilled water loop | 2 | `entity:QNL_CHWS-MAIN-LOOP`, `rec:locatedIn` the building, + IFC reference |
-| Equipment | 1,781 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
+| Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
+| Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
+| Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
 
-Per asset: `rec:locatedIn` → its room, `rec:isFedBy` → its upstream source,
+Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
+`rec:isFedBy` → its upstream source,
 `ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal units
 (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row — see "one
 direction" below.
@@ -107,11 +109,11 @@ per building main loop is not. QNL therefore writes `entity:QNL_CHWS-MAIN-LOOP`.
 treats this as one shared district loop rather than one per building, say so and I will
 drop the prefix** — but then SSC's `rec:locatedIn entity:SSC` row needs revisiting too.
 
-**Labels follow QF SSC, including its dot.** SSC writes `1.001_CORRIDOR` — a dot between
-the level and the room number, an underscore before the name. QNL rooms now read
-`<level>.<number>_<name>`: `B.063_PLANT_ROOM_01`, `B.237_CORRIDOR`,
-`L1.023_1_CORRIDOR`, `B.ST-01_ST-01`. Assets read their raw register tag, `AHUB011`,
-`VAV_B_S11_024`, exactly as SSC does with `SSC_FCU0001`.
+**Labels follow QF SSC: the source text with underscores read as word breaks.** SSC
+writes `1.001 CORRIDOR` — the dot between level and room number survives, and so do
+dashes and slashes; only `_` becomes a space. QNL rooms read `<level>.<number> <name>`:
+`B.063 PLANT ROOM 01`, `B.237 CORRIDOR`, `L1.023 1 CORRIDOR`, `B.ST-01 ST-01`. Assets
+read their register tag under the same rule: `QNL AHU B 011`, `QNL VAV B S11 024`.
 
 Label and identifier are built from the same parsed `(level, number, name)` triple, so
 they cannot drift apart. No punctuation is stripped and no typo is fixed. This is not the
@@ -137,6 +139,36 @@ of the sheet for readability, but it is an existing registry class, not a new co
 1,188 `I-TYP-6` info lines are the VAV and CAV classes — valid Brick 1.4, simply the
 first time this house has used them.
 
+## The systems layer
+
+`entity:HVAC` `brick:isPartOf` `entity:QF`, labelled "HVAC System", and all 449 assets
+plus the chilled water loop `brick:isPartOf` it. This is what the front end builds its
+system tree from — the `brick:isPartOf` chain here, plus Brick's own class hierarchy for
+the layer below, since `brick:Air_Handling_Unit` is already declared under
+`brick:HVAC_Equipment` in the ontology the viewer loads. No `entity:Air_Handling_Unit`
+was minted between the two: neither reference model has one, and it would restate what
+Brick already says.
+
+**The loop sits under `entity:CHW-System`.** I said last round that a CHW-System node
+would hold only the loop and so would not earn its place. That was wrong on a fact I
+should have checked: **QF SSC 0.5 already declares `entity:CHW-System`**, bare and
+site-level under `entity:HVAC`, holding its four chilled water booster pumps and five
+heat exchangers. QNL is not creating a node — it is joining one that has nine members,
+the same way both buildings already share `entity:QF` and `entity:HVAC`. Once the
+converter loads both sheets, the group has ten.
+
+Worth flagging back to the SSC side: **SSC leaves its own `entity:CHWS-MAIN-LOOP` outside
+`CHW-System`**, attached only by `rec:locatedIn`. A distribution loop is part of the
+chilled water system by any reading, so that looks like an oversight rather than a
+decision.
+
+**The system is typed `brick:HVAC_System`**, matching both reference models. Brick 1.4
+lists it as an alias for `brick:Heating_Ventilation_Air_Conditioning_System` and the class
+ladder would take the preferred term, but consistency across the estate wins: the front
+end keys off `HVAC_System`. The override is recorded in
+`references/data/accepted-terms.txt` with its reason, so the alias no longer raises a
+warning on every system row.
+
 ## External references — the SSC shape
 
 Each asset carries one `ref:hasExternalReference` row, matching QF SSC's IFC shape:
@@ -159,13 +191,20 @@ timeseries references. They arrive with the IO list, on the point rows.
 
 ```
 python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-2124 rows, 792 typed entities, 1 para: definitions
-449 errors, 0 warnings
+2577 rows, 793 typed entities, 1 para: definitions
+450 errors, 0 warnings, 1936 advisories
 ```
 
-**All 449 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
-empty `para:IFC_ID` on each of the 449 assets. Paste the IFC GUIDs into
-`object_prop_val` on those rows and the sheet validates clean. Nothing else is outstanding: zero warnings, so every entity is
+**All 450 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
+empty `para:IFC_ID` on each of the 449 assets and on the loop. Paste the IFC GUIDs into
+`object_prop_val` on those rows and the sheet validates clean.
+
+**Zero warnings.** An earlier version of this note said `W-REF-1` flagged `entity:QF` as
+undeclared. That was my check being too strict, not a defect in the sheet: `entity:QF` is
+typed `rec:Site` and labelled "Qatar Foundation" on QNL's building row, which is exactly
+how the house style declares a site, a sub-system or a part — on the row that references
+it, class in `objectType` and label in an object prop. The rule now flags only an entity
+that is never given a class anywhere, which is a real dangling reference. Nothing else is outstanding: zero warnings, so every entity is
 labelled, every terminal unit has a feeds row and a location, and every spatial entity
 connects up to `rec:Building`.
 
@@ -177,12 +216,12 @@ rule objecting to the SSC label style, and it is expected.
 - **Points, and with them every timeseries reference.** No IO list was supplied, so no
   equipment carries a `brick:hasPoint` row and nothing carries a
   `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
-  Send the IO list and both layers land together.
+  Send the IO list and both layers land together. When you do, `check_io_list.py`
+  cross-checks the two in both directions so no point ships that the BMS does not
+  publish — and passing `--io` to the other two checkers lets them settle the findings
+  the list can adjudicate instead of leaving them for someone to work through by hand.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
-- **System membership.** No `brick:isPartOf entity:HVAC` rows — you asked for site,
-  building, floors, rooms and equipment, and a systems layer was not part of that. It is
-  five rows plus one per asset whenever you want it.
 - **Zones.** No `rec:Zone` or `rec:HVACZone` layer; no zone data was supplied. Rooms sit
   directly under their level, which satisfies the spatial-connectivity rule. Dar Cairo
   normally interposes a per-floor parent zone — worth adding if the QNL zoning drawings
@@ -231,3 +270,78 @@ audit, for the register's owner to decide on. All 449 tags are unique.
    they are a one-line change.
 5. **172 rooms carry no equipment.** They are in the sheet because rooms were in scope;
    whether they should have terminal units is a question for the mechanical drawings.
+
+## Spelling corrections to room names
+
+The room schedule was typed by hand and carries misspellings. Left alone they
+ride into both the identifier and the label a user reads on screen, so at your
+request they are corrected. The corrections live in `TYPO_FIXES` in
+`build_qnl.py` and are applied to the underscore-separated tokens of the room
+**name** only — never to the level or the room number, which are the join key
+back to the drawings. Identifier and label are still built from the same
+corrected string, so they cannot drift.
+
+Every entry was settled against the rest of the schedule rather than guessed:
+either the correct spelling already appears on a sibling room, or the token is
+a run-together pair whose separator every other room writes.
+
+**Misspelled words, 24 rooms**
+
+| Room | Was | Now | Evidence |
+|---|---|---|---|
+| `L1_007` | `STUDENT_CARRLES` | `STUDENT_CARRELS` | `CARRELS` on 15 other rooms |
+| `L2_011` | `CTRCULATION_OFFICE` | `CIRCULATION_OFFICE` | |
+| `L1_002A` | `GREEM_ROOM` | `GREEN_ROOM` | |
+| `B_072` | `SPRIMKLERS_PUMPS…` | `SPRINKLERS_PUMPS…` | |
+| `B046_ITT` | `ITTIGATION_CONTROL_ROOM` | `IRRIGATION_CONTROL_ROOM` | |
+| `B_231` | `DISH_WASING` | `DISH_WASHING` | |
+| `B_105` | `SECURITY_CONTOL_ROOM` | `SECURITY_CONTROL_ROOM` | `CONTROL` on 8 other rooms |
+| `L2_087` | `…HIGH_LEVLEL_IN_CEILING_VOID` | `…HIGH_LEVEL_IN_CEILING_VOID` | |
+| `B_145` | `LOBY_&_CSECURITY` | `LOBBY_&_SECURITY` | `L1_042_LOBBY`; 8 `SECURITY` rooms |
+| `B_223`, `B_225` | `VENTILATON` | `VENTILATION` | |
+| `B_065`, `B_067`, `B_114`, `B_116` | `VENTLATON` | `VENTILATION` | |
+| `L2_022` | `ACADEMIC_PERS_LIBRARIA` | `…_LIBRARIAN` | 14 `LIBRARIAN` rooms |
+| `B_0924` | `…CHERRY_PICKER_PANKING` | `…CHERRY_PICKER_PARKING` | |
+| `L2_048` | `VIP_WATING` | `VIP_WAITING` | |
+| `L1_041` | `MULTPURPOSE_ROOM` | `MULTIPURPOSE_ROOM` | |
+| `B_029` | `LITERATURE_&_ANGUAGE` | `LITERATURE_&_LANGUAGE` | |
+| `L1_081` | `BIBLIOGRANHER1` | `BIBLIOGRAPHER1` | `L1_082_BIBLIOGRAPHER2` next door |
+| `L1_130` | `PUBLIS_SPACE` | `PUBLIC_SPACE` | `L1_080_PUBLIC_SERVICE` |
+| `B_093` | `TRANSH_CHAMBER` | `TRASH_CHAMBER` | only waste room in the building |
+| `B_207` | `PRESEARCHERS_READING_AREA` | `RESEARCHERS_READING_AREA` | stray leading `P`; `B_151_RESEARCH…` |
+
+**Run-together words, 11 rooms.** The separator is restored, the wording is not
+changed:
+
+| Room | Was | Now | Evidence |
+|---|---|---|---|
+| `L1_101` | `REST_ROOMMEN` | `REST_ROOM_MEN` | 9 × `REST_ROOM_MEN` |
+| `L1_105`, `L1_106` | `ABLUTIONMEN`, `ABLUTIONWOMEN` | `ABLUTION_MEN`, `ABLUTION_WOMEN` | the `_MEN` / `_WOMEN` split is universal here |
+| `L1_085` | `ADPUBLIC_SERVICE` | `AD_PUBLIC_SERVICE` | `AD_COLLECTIONS`, `AD_OFFICE`, `AD_ADMIN` |
+| `L2_044` | `LIBDIRECTORS_ROOM` | `LIB_DIRECTORS_ROOM` | |
+| `L2_070`–`L2_075` | `INDIVISTUDY_ROOM` | `INDIVI_STUDY_ROOM` | sibling shape is `GROUP_STUDY_ROOM` |
+
+**Two things I did not do, because they are your call, not a typing error.**
+
+1. `INDIVI` almost certainly stands for **INDIVIDUAL** — those six rooms sit
+   beside `GROUP_STUDY_ROOM` on the same floor. Expanding an abbreviation is a
+   rewrite rather than a correction, and the schedule's other abbreviations
+   (`AD`, `SEC`, `RES`, `LIBR`, `PERS`) are all kept as written, so only the
+   missing separator was restored. Say the word and it becomes
+   `INDIVIDUAL_STUDY_ROOM`.
+2. Room `B046_ITT` becomes `entity:QNL_B_046_ITT_IRRIGATION_CONTROL_ROOM`. The
+   word was corrected; the `ITT` sitting in the *room number* segment was left
+   alone, because a segment like that is usually a drawing code and may be a
+   join key. If it is just the same misspelling abbreviated, it should read
+   `IRR` — your call.
+
+**What this costs.** These are subjects, so the raw room strings in the source
+schedule no longer match the ontology character for character.
+`QNL_identifier_crosswalk.csv` carries the mapping — its `source_identifier`
+column is still the schedule's own text — so the join is documented rather than
+lost. This reverses the earlier *names cannot be changed* instruction for room
+names only; **asset tags were left untouched**, since they are the BMS join key.
+
+Validator after the pass: **450 errors** (all the deliberately empty
+`para:IFC_ID` cells), **0 warnings**, **0 consistency errors** — identical to
+before it.
