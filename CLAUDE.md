@@ -37,6 +37,8 @@ ontology task; this file is the index, the skill is the procedure.
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
 | `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
 | `scripts/io_list.py` | shared IO-list loader; answers "does this unit have this point" and "what is its key" for all three checkers | changing how an IO list is read |
+| `scripts/highlight_findings.py` | writes a copy of a workbook with unresolved findings filled yellow and attached as cell comments, for a manual pass | findings need a human |
+| `references/data/accepted-terms.txt` | terms that override the generated Brick extract, each with the reason it is there | a real term reads as a typo, or a deliberate alias floods the warnings |
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
@@ -195,6 +197,10 @@ python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx --
 # one family at a time while building, and findings to their own file
 python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
     --family brick:Fan_Coil_Unit --report findings.xlsx
+
+# hand the remaining findings to a human, in the sheet itself
+python3 skills/building-ontology/scripts/highlight_findings.py In.xlsx \
+    --out Reviewed.xlsx --label-style verbatim --severity ERROR
 
 # after touching any script
 skills/building-ontology/tests/run_tests.sh

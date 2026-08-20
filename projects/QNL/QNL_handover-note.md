@@ -162,11 +162,12 @@ Worth flagging back to the SSC side: **SSC leaves its own `entity:CHWS-MAIN-LOOP
 chilled water system by any reading, so that looks like an oversight rather than a
 decision.
 
-**One divergence from house precedent.** Both reference models type the system
-`brick:HVAC_System`, which Brick 1.4 lists as an alias. The class ladder says use the
-preferred term and `assets/example-minimal.csv` already does, so QNL writes
-`brick:Heating_Ventilation_Air_Conditioning_System`. Say the word if you would rather
-match the reference models and take the `W-TYP-5` warnings.
+**The system is typed `brick:HVAC_System`**, matching both reference models. Brick 1.4
+lists it as an alias for `brick:Heating_Ventilation_Air_Conditioning_System` and the class
+ladder would take the preferred term, but consistency across the estate wins: the front
+end keys off `HVAC_System`. The override is recorded in
+`references/data/accepted-terms.txt` with its reason, so the alias no longer raises a
+warning on every system row.
 
 ## External references — the SSC shape
 

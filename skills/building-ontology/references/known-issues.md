@@ -167,6 +167,30 @@ share - falling back to the point name. **When it cannot tell which column of th
 IO list is the telemetry key, it stops and says so** rather than matching on a
 guess and reporting every point as unmatched.
 
+## Accepting a term the Brick extract rejects
+
+`brick-vocab.txt` is generated from a pinned `Brick.ttl`, so it cannot carry a
+decision: a term added to Brick after the pin reads as `E-TYP-2`, and a term the
+house keeps deliberately reads as `W-TYP-5` on every row that uses it.
+`references/data/accepted-terms.txt` overrides the extract for named terms, one
+per line with the reason it is there. It survives regeneration.
+
+Two entries today, both settled by the PARA team on 2026-08-20:
+
+- **`brick:Apparent_Power_Sensor`** - confirmed on ontology.brickschema.org.
+  Absent from the pinned 1.4 extract, which has `brick:Active_Power_Sensor` and
+  `brick:Power_Sensor` but no apparent-power sibling. Dar Cairo's own precedent
+  is `para:Apparent_Power_Usage_Sensor`, so revisit if the pin moves and the
+  term is still missing.
+- **`brick:HVAC_System`** - a Brick 1.4 alias for
+  `brick:Heating_Ventilation_Air_Conditioning_System`, kept because both
+  reference models write it and the front end keys off it. Consistency across
+  the estate beats the preferred spelling here. Without the override, QNL alone
+  carries 451 `W-TYP-5` rows, which buries the alias warnings that do matter.
+
+**Never add a line without a reason.** The file is the only thing standing
+between an accepted term and a typo somebody waved through.
+
 ## Where the sources disagree
 
 The PARA document is Rev 0.0 and contradicts itself and Dar Cairo in several

@@ -210,7 +210,21 @@ the sheet is missing, the finding is promoted instead (`E-PT-4`, `E-CON-18`).
 Silence is not confirmation: a unit the list says nothing about leaves its
 finding standing.
 
-**Neither script writes to the ontology workbook.** Findings go to stdout, or to
+**When findings need a human, hand them the sheet, not a report.**
+
+```
+python3 scripts/highlight_findings.py In.xlsx --out Reviewed.xlsx --label-style verbatim
+```
+
+writes a copy with every still-flagged row filled `#FFFF00` and the finding text
+attached as a cell comment, so the reviewer works where the data is. File-level
+findings - a type clash, a terminal unit with no feeds - are placed on the
+entity's **defining row only**: marking every row an entity owns paints hundreds
+of cells yellow for a handful of findings and buries the ones that point at a
+single cell. It writes a copy, adds no sheet, and never touches the input. Clear
+the fills before handover.
+
+**Neither of the two checkers writes to the ontology workbook.** Findings go to stdout, or to
 a file of their own with `--report findings.xlsx`. The deliverable stays one
 sheet of triples: a converter that meets a second sheet has to be told which one
 to read, and a reviewer diffing two versions has to skip it.
@@ -252,6 +266,7 @@ extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.
 |---|---|
 | `scripts/lookup_reference.py` | Finds precedent in Dar Cairo; checks a term against Brick 1.4 |
 | `scripts/validate_ontology.py` | Validates a sheet row by row |
+| `scripts/highlight_findings.py` | Writes a copy with unresolved findings filled yellow, for a manual pass |
 | `scripts/check_consistency.py` | Compares every unit of a class against its siblings |
 | `scripts/build_vocab.py` | Rebuilds the para registry after a new reference model lands |
 | `scripts/build_brick_vocab.py` | Rebuilds the Brick 1.4 term list from `Brick.ttl` |

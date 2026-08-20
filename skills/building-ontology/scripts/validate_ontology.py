@@ -104,7 +104,12 @@ def clean_label(text: str) -> str:
 
 
 def load_vocab() -> dict[str, tuple[str, str]]:
-    """Load the Brick/REC term list: term -> (status, note)."""
+    """Load the Brick/REC term list: term -> (status, note).
+
+    `accepted-terms.txt` is layered on top: terms confirmed valid that the
+    pinned Brick extract predates. Without it, moving the pin is the only way to
+    stop a real term reading as a typo.
+    """
     path = DATA / "brick-vocab.txt"
     if not path.exists():
         return {}
@@ -115,6 +120,16 @@ def load_vocab() -> dict[str, tuple[str, str]]:
         parts = line.split("\t")
         out[parts[0]] = (parts[1] if len(parts) > 1 else "OK",
                          parts[2] if len(parts) > 2 else "")
+
+    # These override the extract rather than filling gaps in it: a term can be
+    # accepted here precisely because the extract calls it an alias.
+    extra = DATA / "accepted-terms.txt"
+    if extra.exists():
+        for line in extra.read_text().splitlines():
+            if not line.strip() or line.startswith("#"):
+                continue
+            term, _, reason = line.partition("\t")
+            out[term.strip()] = ("OK", reason.strip())
     return out
 
 

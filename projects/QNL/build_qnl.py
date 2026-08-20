@@ -132,13 +132,16 @@ LOOP = "entity:QNL_CHWS-MAIN-LOOP"
 # entity:QF and entity:HVAC. SSC leaves its own loop outside CHW-System, which
 # looks like an oversight: a distribution loop is part of the chilled water
 # system by any reading.
-# Both reference models type it brick:HVAC_System, which Brick 1.4 lists as an
-# alias; the class ladder says use the preferred term, and assets/example-minimal.csv
-# already does. Noted in the handover as a divergence from house precedent.
+# brick:HVAC_System is a Brick 1.4 alias for
+# brick:Heating_Ventilation_Air_Conditioning_System, and the ladder would take the
+# preferred term. The house overrides that: both reference models write
+# brick:HVAC_System and the front end keys off it, so consistency across the
+# estate wins over the preferred spelling. The W-TYP-5 alias warning is accepted
+# and recorded in the handover.
 HVAC = "entity:HVAC"
 CHW = "entity:CHW-System"
 CHW_CLASS = "brick:Chilled_Water_System"
-HVAC_CLASS = "brick:Heating_Ventilation_Air_Conditioning_System"
+HVAC_CLASS = "brick:HVAC_System"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 

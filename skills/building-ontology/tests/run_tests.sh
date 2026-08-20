@@ -92,6 +92,13 @@ for code in E-CON-1 E-CON-2 E-CON-3 E-CON-4 E-CON-5 E-CON-6 E-CON-10 E-CON-17 \
     fi
 done
 
+echo "== highlighting must mark findings and leave the input alone"
+if out=$("$PY" tests/test_highlight.py 2>&1); then
+    echo "   ok   $out"
+else
+    echo "   FAIL"; echo "$out" | sed 's/^/   /'; fail=1
+fi
+
 echo "== an empty template must validate"
 "$PY" scripts/validate_ontology.py assets/ontology-template.csv >/dev/null 2>&1 \
     && echo "   ok" || { echo "   FAIL"; fail=1; }
