@@ -110,6 +110,13 @@ Never invent a `brick:` or `rec:` term. Everything the team coins is `para:`.
   number where 285 kept them separate, and one asset family of four carried
   neither separators nor a level segment. Asset tags are the BMS join key, so
   expect to report rather than change them.
+- **Misspellings are a separate question from shape, asked separately at
+  intake**, because a source name is also the label a user reads. Default to
+  keeping and reporting. When the answer is to correct: only where a sibling row
+  proves the correction, whole tokens only, on the name segment and never on an
+  asset tag or a database key, from one map in the build script so identifier
+  and label cannot drift, and listed in the handover note with the crosswalk
+  regenerated. On QNL the shape was kept and 35 room names corrected.
 - **Every subject carries the building code in front** - `entity:SSC_FCU0001`,
   so `entity:QNL_FCU_1F_056`. Add the code; leave the tag itself alone.
 - **The site is the organisation's code, and buildings share it** -

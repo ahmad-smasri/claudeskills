@@ -21,11 +21,51 @@ That is the house preference: the convention below governs identifiers *this
 sheet has to invent* - site, building, levels, systems, virtual meters, parts and
 points - not identifiers the client already owns.
 
-When keeping source identifiers, the only permitted edits are the ones the
+When keeping source identifiers, the only edits taken unasked are the ones the
 validator forces: strip leading and trailing whitespace (`E-WS-1`) and remove
-embedded spaces (`E-SPACE-1`). Do not fix typos, expand abbreviations, reorder
-segments, or swap underscores for dashes. Labels are where the cleanup happens -
-the label rule below applies regardless of how the identifier is spelled.
+embedded spaces (`E-SPACE-1`). Do not expand abbreviations, reorder segments, or
+swap underscores for dashes. Labels are where the cleanup happens - the label
+rule below applies regardless of how the identifier is spelled.
+
+### Misspellings are a separate question, and the user's to answer
+
+A schedule typed by hand carries typing errors, and an identifier is not the
+only thing they damage: the same string becomes the `rdfs:label_en` a user reads
+on screen, so `STUDENT CARRLES` and `L1.130 PUBLIS SPACE` ship to the front end.
+Correcting them is not the same decision as normalising an identifier's shape,
+so **ask about it separately at intake** - the intake question is in
+`intake.md`. On QNL the answer was to correct them; the default until asked is
+to leave them and report them.
+
+When the answer is to correct:
+
+- **Only where the sheet itself proves the correction.** The right spelling
+  already appears on a sibling (`CARRELS` on 15 other rooms, `L1_042_LOBBY`
+  against `B_145_LOBY`), or the token is two words run together whose separator
+  every other room writes (`REST_ROOMMEN` against nine `REST_ROOM_MEN`).
+  Anything you are reasoning towards rather than reading off another row is a
+  question for the user, not a fix.
+- **Whole tokens only**, so a correction cannot fire inside a longer word, and
+  the abbreviations the schedule uses deliberately - `AD`, `SEC`, `RES`, `LIBR`,
+  `PERS` - survive untouched. Correcting a misspelling is not the same as
+  expanding an abbreviation; the second is a rewrite and needs asking.
+- **The name segment only.** Never the level or the room number, and never an
+  asset tag: those are the join key back to the drawings and to the BMS.
+- **From one map, in the build script**, so identifier and label are still
+  derived from the same corrected string and cannot drift apart. Every entry
+  carries the evidence beside it as a comment.
+- **Never a `ref:hasTimeseriesId`, a `rec:modelNumber`, or any other database
+  key.** Building vocabularies are full of strings that read as typos and are
+  not - `NBONEOB` is a Nuaire model number, `SupPreFlt` and `MinFALoocupTb` are
+  SCADA keys that must match the historian character for character. Pair every
+  candidate with its property name before touching it.
+- **Record the whole list in the handover note**, and regenerate the identifier
+  crosswalk. The source's own strings no longer match the ontology, so the
+  crosswalk is what keeps that join documented rather than lost.
+
+Find them by extracting the distinct word tokens across every subject, object
+and label - a few hundred, for a building - and reading each non-word token back
+in its own row. A dictionary is the wrong tool: it drowns in the abbreviations.
 
 ### The building code goes in front, on everything
 

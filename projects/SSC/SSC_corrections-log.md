@@ -128,3 +128,49 @@ python3 skills/building-ontology/scripts/validate_ontology.py \
 python3 skills/building-ontology/scripts/check_consistency.py \
     projects/SSC/QF_SSC_Ontology_ver01_reviewed.xlsx
 ```
+
+## Section 4 — spelling pass over subjects and labels
+
+Applied after the pass above, at your request, over the reviewed sheet. The
+search was a word-token extraction across every `Subject`, `object` and
+`rdfs:label_en` cell — 378 distinct tokens — followed by reading each
+non-word token back in its own row before deciding anything.
+
+**Entity names (subject and object columns), 14 entities / 28 cells**
+
+| Was | Now | Why it is not a guess |
+|---|---|---|
+| `entity:SSC_<unit>_Dehumidifcation_On_Status` | `..._Dehumidification_On_Status` | the class on the same row already reads `para:Dehumidification_On_Status` — the entity name was the only cell spelling it wrong |
+
+Their `ref:hasTimeseriesId` values were **not** touched, so the database join
+is unchanged.
+
+**Labels (`rdfs:label_en` only), 58 cells**
+
+| Was | Now | Count |
+|---|---|---|
+| `Electrcial Power Meter` | `Electrical Power Meter` | 10 |
+| `Garauge Exhaust Fan Motor` | `Garage Exhaust Fan Motor` | 7 |
+| `Scheduled Hours  Mannual`, `Unscheduled Hours  Mannual` | `… Manual` | 22 |
+| `Humidification Statu` | `Humidification Status` | 14 |
+| `Supplu Fan Trip Alarm` | `Supply Fan Trip Alarm` | 5 |
+
+**Doubled spaces collapsed in 28 labels** — `Scheduled Hours  Mannual`,
+`Dehumidification  Setpoint`, `B1.025 MAIN SEC.  CONTROL ROOM`. A doubled
+space is what a source `__` turns into under the SSC label rule; the wording
+is untouched, only the run of whitespace.
+
+**Deliberately not touched.** Tokens that read as misspellings but are not:
+`NBONEOB` is a `rec:modelNumber` (the Nuaire box model, 108 rows);
+`AirFlwLoss`, `SupPreFlt`, `MinFALoocupTb`, `ReCr` are inside
+`ref:hasTimeseriesId` strings, which are the SCADA keys and must match the
+database character for character.
+
+**One thing found that is not spelling, and is left for you.** All 14
+`..._Dehumidification_On_Status` points carry `rdfs:label_en` = **`Cooling
+Mode Status`**. The name, the class and the label disagree about what the
+point is. That is a semantic question, not a typing error, so nothing was
+changed.
+
+Validator after the pass: **17 errors, 44 consistency errors** — the same
+counts as before it, so nothing regressed and nothing new was introduced.

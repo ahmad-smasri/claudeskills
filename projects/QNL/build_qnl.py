@@ -60,6 +60,57 @@ LEVEL_TYPE = {"B": "rec:BasementLevel", "L1": "rec:Level",
 LEVEL_LABEL = {"B": "Basement", "L1": "Level 1", "L2": "Level 2",
                "T1": "Terrace 1"}
 
+# The room schedule was typed by hand and carries misspellings that would
+# otherwise ride into both the identifier and the label a user reads. Each
+# entry below was settled against the rest of the schedule, not guessed: the
+# correct spelling appears on a sibling room, or the token is a run-together
+# pair whose separator convention every other room follows. The map is applied
+# to the underscore-separated tokens of the room *name* only - never to the
+# level or the room number, which are the join key back to the drawings.
+#
+# Whole-word misspellings; the evidence for each is in QNL_handover-note.md.
+TYPO_FIXES = {
+    "CARRLES": "CARRELS",              # CARRELS on 15 other rooms
+    "CTRCULATION": "CIRCULATION",
+    "GREEM": "GREEN",
+    "SPRIMKLERS": "SPRINKLERS",
+    "ITTIGATION": "IRRIGATION",
+    "WASING": "WASHING",
+    "CONTOL": "CONTROL",               # CONTROL on 8 other rooms
+    "LEVLEL": "LEVEL",
+    "LOBY": "LOBBY",                   # L1_042_LOBBY
+    "VENTILATON": "VENTILATION",
+    "VENTLATON": "VENTILATION",
+    "LIBRARIA": "LIBRARIAN",           # 14 LIBRARIAN rooms
+    "PANKING": "PARKING",
+    "WATING": "WAITING",
+    "MULTPURPOSE": "MULTIPURPOSE",
+    "ANGUAGE": "LANGUAGE",
+    "BIBLIOGRANHER1": "BIBLIOGRAPHER1",   # L1_082_BIBLIOGRAPHER2 next door
+    "PUBLIS": "PUBLIC",                # L1_080_PUBLIC_SERVICE
+    "CSECURITY": "SECURITY",           # 8 SECURITY rooms, stray leading C
+    "TRANSH": "TRASH",                 # only waste room in the building
+    "PRESEARCHERS": "RESEARCHERS",     # stray leading P; B_151 RESEARCH
+    # Run-together pairs. The separator, not the wording, is what is restored -
+    # every sibling room writes these two tokens apart.
+    "ROOMMEN": "ROOM_MEN",             # 9 x REST_ROOM_MEN
+    "ABLUTIONMEN": "ABLUTION_MEN",
+    "ABLUTIONWOMEN": "ABLUTION_WOMEN",
+    "ADPUBLIC": "AD_PUBLIC",           # AD_COLLECTIONS, AD_OFFICE, AD_ADMIN
+    "LIBDIRECTORS": "LIB_DIRECTORS",
+    "INDIVISTUDY": "INDIVI_STUDY",     # sibling shape is GROUP_STUDY_ROOM
+}
+
+
+def fix_spelling(name):
+    """Correct the schedule's typing errors in a room name, token by token.
+
+    Whole tokens only, so a correction can never fire inside a longer word,
+    and abbreviations the schedule uses deliberately - AD, SEC, RES, LIBR,
+    PERS, ITT and the rest - are left exactly as the source wrote them.
+    """
+    return "_".join(TYPO_FIXES.get(t, t) for t in name.split("_"))
+
 wb = openpyxl.load_workbook(ROOMS_XLSX, read_only=True, data_only=True)
 room_src = []
 for r in list(wb.worksheets[0].iter_rows(values_only=True))[1:]:
@@ -92,6 +143,10 @@ for src_entity, number, name in room_src:
     # touched; only the join between the segments is regularised.
     if not num:
         sys.exit("room %r has a level but no room number" % number)
+    fixed = fix_spelling(name)
+    if fixed != name:
+        notes.append(f"room name {name!r} corrected to {fixed!r}")
+    name = fixed
     ident = "entity:QNL_%s_%s_%s" % (level, num, name)
     rooms[src_entity] = {
         "id": ident, "level": level,

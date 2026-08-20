@@ -270,3 +270,78 @@ audit, for the register's owner to decide on. All 449 tags are unique.
    they are a one-line change.
 5. **172 rooms carry no equipment.** They are in the sheet because rooms were in scope;
    whether they should have terminal units is a question for the mechanical drawings.
+
+## Spelling corrections to room names
+
+The room schedule was typed by hand and carries misspellings. Left alone they
+ride into both the identifier and the label a user reads on screen, so at your
+request they are corrected. The corrections live in `TYPO_FIXES` in
+`build_qnl.py` and are applied to the underscore-separated tokens of the room
+**name** only — never to the level or the room number, which are the join key
+back to the drawings. Identifier and label are still built from the same
+corrected string, so they cannot drift.
+
+Every entry was settled against the rest of the schedule rather than guessed:
+either the correct spelling already appears on a sibling room, or the token is
+a run-together pair whose separator every other room writes.
+
+**Misspelled words, 24 rooms**
+
+| Room | Was | Now | Evidence |
+|---|---|---|---|
+| `L1_007` | `STUDENT_CARRLES` | `STUDENT_CARRELS` | `CARRELS` on 15 other rooms |
+| `L2_011` | `CTRCULATION_OFFICE` | `CIRCULATION_OFFICE` | |
+| `L1_002A` | `GREEM_ROOM` | `GREEN_ROOM` | |
+| `B_072` | `SPRIMKLERS_PUMPS…` | `SPRINKLERS_PUMPS…` | |
+| `B046_ITT` | `ITTIGATION_CONTROL_ROOM` | `IRRIGATION_CONTROL_ROOM` | |
+| `B_231` | `DISH_WASING` | `DISH_WASHING` | |
+| `B_105` | `SECURITY_CONTOL_ROOM` | `SECURITY_CONTROL_ROOM` | `CONTROL` on 8 other rooms |
+| `L2_087` | `…HIGH_LEVLEL_IN_CEILING_VOID` | `…HIGH_LEVEL_IN_CEILING_VOID` | |
+| `B_145` | `LOBY_&_CSECURITY` | `LOBBY_&_SECURITY` | `L1_042_LOBBY`; 8 `SECURITY` rooms |
+| `B_223`, `B_225` | `VENTILATON` | `VENTILATION` | |
+| `B_065`, `B_067`, `B_114`, `B_116` | `VENTLATON` | `VENTILATION` | |
+| `L2_022` | `ACADEMIC_PERS_LIBRARIA` | `…_LIBRARIAN` | 14 `LIBRARIAN` rooms |
+| `B_0924` | `…CHERRY_PICKER_PANKING` | `…CHERRY_PICKER_PARKING` | |
+| `L2_048` | `VIP_WATING` | `VIP_WAITING` | |
+| `L1_041` | `MULTPURPOSE_ROOM` | `MULTIPURPOSE_ROOM` | |
+| `B_029` | `LITERATURE_&_ANGUAGE` | `LITERATURE_&_LANGUAGE` | |
+| `L1_081` | `BIBLIOGRANHER1` | `BIBLIOGRAPHER1` | `L1_082_BIBLIOGRAPHER2` next door |
+| `L1_130` | `PUBLIS_SPACE` | `PUBLIC_SPACE` | `L1_080_PUBLIC_SERVICE` |
+| `B_093` | `TRANSH_CHAMBER` | `TRASH_CHAMBER` | only waste room in the building |
+| `B_207` | `PRESEARCHERS_READING_AREA` | `RESEARCHERS_READING_AREA` | stray leading `P`; `B_151_RESEARCH…` |
+
+**Run-together words, 11 rooms.** The separator is restored, the wording is not
+changed:
+
+| Room | Was | Now | Evidence |
+|---|---|---|---|
+| `L1_101` | `REST_ROOMMEN` | `REST_ROOM_MEN` | 9 × `REST_ROOM_MEN` |
+| `L1_105`, `L1_106` | `ABLUTIONMEN`, `ABLUTIONWOMEN` | `ABLUTION_MEN`, `ABLUTION_WOMEN` | the `_MEN` / `_WOMEN` split is universal here |
+| `L1_085` | `ADPUBLIC_SERVICE` | `AD_PUBLIC_SERVICE` | `AD_COLLECTIONS`, `AD_OFFICE`, `AD_ADMIN` |
+| `L2_044` | `LIBDIRECTORS_ROOM` | `LIB_DIRECTORS_ROOM` | |
+| `L2_070`–`L2_075` | `INDIVISTUDY_ROOM` | `INDIVI_STUDY_ROOM` | sibling shape is `GROUP_STUDY_ROOM` |
+
+**Two things I did not do, because they are your call, not a typing error.**
+
+1. `INDIVI` almost certainly stands for **INDIVIDUAL** — those six rooms sit
+   beside `GROUP_STUDY_ROOM` on the same floor. Expanding an abbreviation is a
+   rewrite rather than a correction, and the schedule's other abbreviations
+   (`AD`, `SEC`, `RES`, `LIBR`, `PERS`) are all kept as written, so only the
+   missing separator was restored. Say the word and it becomes
+   `INDIVIDUAL_STUDY_ROOM`.
+2. Room `B046_ITT` becomes `entity:QNL_B_046_ITT_IRRIGATION_CONTROL_ROOM`. The
+   word was corrected; the `ITT` sitting in the *room number* segment was left
+   alone, because a segment like that is usually a drawing code and may be a
+   join key. If it is just the same misspelling abbreviated, it should read
+   `IRR` — your call.
+
+**What this costs.** These are subjects, so the raw room strings in the source
+schedule no longer match the ontology character for character.
+`QNL_identifier_crosswalk.csv` carries the mapping — its `source_identifier`
+column is still the schedule's own text — so the join is documented rather than
+lost. This reverses the earlier *names cannot be changed* instruction for room
+names only; **asset tags were left untouched**, since they are the BMS join key.
+
+Validator after the pass: **450 errors** (all the deliberately empty
+`para:IFC_ID` cells), **0 warnings**, **0 consistency errors** — identical to
+before it.
