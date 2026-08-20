@@ -37,6 +37,26 @@ unique within one building. **Add the code, leave the tag itself alone** - it
 stays the join key - and carry the same prefixed form into `rdfs:label_en` and
 `ref:ifcName`, as SSC does.
 
+**Shared plant is the exception, and both reference models agree on it.** A
+system, a loop or a riser serves the building rather than sitting inside it, and
+neither model gives it a building code:
+
+| | Shared plant |
+|---|---|
+| QF SSC | `entity:HVAC`, `entity:CHW-System` |
+| Dar Cairo | `entity:CHWS-LOOP-1`, `entity:CHWS-LOOP-2`, `entity:Water_System` |
+| QNL | `entity:CHW-Loop` |
+
+Bare name, dashes, no prefix. The building code marks what is *in* this building;
+a chilled water loop feeding it is not. `check_consistency.py` knows this and
+exempts the objects of `brick:isPartOf` and `rec:isFedBy` from its
+missing-prefix check.
+
+Dar Cairo declares the loop with a `rec:locatedIn` row pointing at the building,
+which is worth copying - it is where the loop's label lives. QF SSC never
+declares `entity:HVAC` or `entity:CHW-System` as a subject at all, so they carry
+no label and `W-LBL-2` fires on them.
+
 ### Audit the source identifiers for consistency, and report what you find
 
 **"Keep them verbatim" assumes they are internally consistent. Check that they

@@ -88,7 +88,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `I-CON-13` | an identifier repeats a token, `..._REST_REST_ROOM_WOMEN` |
 | `I-CON-14` | two children of the same class whose names differ only by a trailing token |
 | `I-CON-15` | a class with one instance, so no cross-unit comparison is possible. Said explicitly rather than reported as a vacuous pass |
-| `I-CON-16` | an entity reference that lacks the prefix every subject in its family carries |
+| `I-CON-16` | an entity reference that lacks the prefix every subject in its family carries. Objects of `brick:isPartOf` and `rec:isFedBy` are exempt - they name shared plant, which both reference models deliberately write without a building code |
 
 ### How it decides what is expected
 
@@ -127,6 +127,7 @@ with the PARA team.
 | 8 | `rec:feeds` is referenced by Brick 1.4 but not defined as a REC term in it | `rec:feeds`, following Dar Cairo's 278 rows |
 | 9 | Dar Cairo's header row starts `Subject`; `Ontology_headers.xlsx` says `subject` | lowercase `subject`; the validator compares case-insensitively |
 | 10 | The label rule strips punctuation (`1.001 CORRIDOR`); QF SSC carries the source text verbatim (`1.001_CORRIDOR`, `SSC_FCU0001`); Dar Cairo is a third style again (`Mechanical-Area-2-R014`) | **ask the user** - `naming-and-labels.md` documents both, and `validate_ontology.py --label-style verbatim` turns `E-LBL-1` off for the SSC style. QNL was built `verbatim` at the user's direction |
+| 12 | QF SSC has no `rec:Site` and no `rec:Building` row at all - rooms attach straight to `entity:SSC_Level-01`, and the levels are never declared as subjects either | build the full `rec:Site` → `rec:Building` → level chain, as Dar Cairo does. SSC's omission is a gap, not a convention |
 | 11 | The IFC reference property: Dar Cairo writes `ref:ifcName` (535 rows) and defines `para:IFC_ID` once without using it; QF SSC writes **both** `para:IFC_ID` and `ref:ifcName` on all 167 of its IFC rows | both, the SSC shape - `para:IFC_ID` for the BIM GUID, `ref:ifcName` for the derivable entity name |
 
 ## Known defects in the reference models

@@ -106,7 +106,11 @@ CLASS = {"AHUB": "brick:Air_Handling_Unit",
          "CAV": "brick:Constant_Air_Volume_Box",
          "FCU": "brick:Fan_Coil_Unit"}
 TERMINAL = {"VAV", "CAV", "FCU"}
-LOOP = "entity:QNL_CHILLED_WATER_LOOP"
+# Shared plant carries no building code, in both reference models: QF SSC writes
+# entity:CHW-System and entity:HVAC, Dar Cairo writes entity:CHWS-LOOP-1 and
+# entity:Water_System. The code goes on things inside the building - rooms and
+# assets - not on the loop that serves it.
+LOOP = "entity:CHW-Loop"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
@@ -188,7 +192,7 @@ for d in rooms.values():
 
 # Chilled water loop ---------------------------------------------------------
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL_CHILLED_WATER_LOOP")]))
+               [("s", "rdfs:label_en", "CHW-Loop")]))
 
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):

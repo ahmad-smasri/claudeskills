@@ -95,7 +95,10 @@ one asset family of four, AHUB, carried neither separators nor a level segment.
 Asset tags are the BMS join key, so expect to report rather than change them.
 **Every subject carries the building code in front**, QF SSC style -
 `entity:SSC_FCU0001`, so `entity:QNL_FCU_1F_056`. Add the code; leave the tag
-itself alone. For identifiers the sheet has to invent:
+itself alone. **Shared plant is the exception** - a system, loop or riser serves
+the building rather than sitting in it, and neither reference model gives it a
+code: `entity:HVAC`, `entity:CHW-System`, `entity:CHWS-LOOP-1`, so
+`entity:CHW-Loop`. For identifiers the sheet has to invent:
 dashes separate words inside a segment, underscores separate segments, no spaces,
 case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 

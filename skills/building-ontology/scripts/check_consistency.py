@@ -62,6 +62,13 @@ SHARED_TARGET_PREDICATES = ("rec:locatedIn", "rec:feeds")
 # a sign of placeholder data.
 SHARED_TARGET_MIN_UNITS = 3
 
+# Predicates whose object is shared plant rather than something inside the
+# building - a system, a loop, a riser. Both reference models write those
+# without a building code: QF SSC has entity:HVAC and entity:CHW-System, Dar
+# Cairo has entity:CHWS-LOOP-1 and entity:Water_System. So the missing-prefix
+# check does not apply to them.
+SHARED_PLANT_PREDICATES = ("brick:isPartOf", "rec:isFedBy")
+
 
 # Excel error literals, which reach the sheet when a formula is saved as values.
 EXCEL_ERRORS = frozenset((
@@ -466,7 +473,12 @@ def check_single_instance(fam, expected, report):
 
 
 def check_prefix(fam, expected, report):
-    """Entity references that lack the building code every subject carries."""
+    """Entity references that lack the building code every subject carries.
+
+    Objects of `brick:isPartOf` and `rec:isFedBy` are exempt: those name shared
+    plant that serves the building rather than something inside it, and both
+    reference models deliberately leave the building code off them.
+    """
     prefixes = {u.split("_", 1)[0] for u in fam.units if "_" in u}
     if len(prefixes) != 1:
         return
@@ -474,6 +486,8 @@ def check_prefix(fam, expected, report):
     seen = set()
     for rows in fam.triples.values():
         for t in rows:
+            if t.predicate in SHARED_PLANT_PREDICATES:
+                continue
             if object_shape(t.obj) == "entity" and not t.obj.startswith(prefix) \
                     and t.obj not in seen:
                 seen.add(t.obj)
