@@ -37,6 +37,53 @@ unique within one building. **Add the code, leave the tag itself alone** - it
 stays the join key - and carry the same prefixed form into `rdfs:label_en` and
 `ref:ifcName`, as SSC does.
 
+### The site is the organisation's code, and buildings share it
+
+QF SSC's current sheet opens with one row for the whole spatial hierarchy above
+the levels:
+
+```
+entity:SSC | rec:Building | rec:isPartOf | entity:QF | rec:Site
+           | rdfs:label_en | SSC Building | rdfs:label_en | Qatar Foundation
+```
+
+Three things to copy. The **site identifier is the organisation's code**,
+`entity:QF`, not its spelled-out name - the name lives in the label. The
+**building label is `<code> Building`**, so `SSC Building`, `QNL Building`. And
+**every building under the same client reuses the same site entity**: QNL is in
+Qatar Foundation too, so it points at `entity:QF` rather than minting a second
+name for the same site. Mint a second one and the two sheets no longer join when
+the converter loads them into one graph.
+
+```
+entity:QNL | rec:Building | rec:isPartOf | entity:QF | rec:Site
+           | rdfs:label_en | QNL Building | rdfs:label_en | Qatar Foundation
+```
+
+**Ask which site entity the client already uses** before inventing one. It is
+the one identifier in the sheet that is shared across projects, so it is the one
+most likely to already exist somewhere you cannot see.
+
+**Shared plant is the exception, and both reference models agree on it.** A
+system, a loop or a riser serves the building rather than sitting inside it, and
+neither model gives it a building code:
+
+| | Shared plant |
+|---|---|
+| QF SSC | `entity:HVAC`, `entity:CHW-System` |
+| Dar Cairo | `entity:CHWS-LOOP-1`, `entity:CHWS-LOOP-2`, `entity:Water_System` |
+| QNL | `entity:CHW-Loop` |
+
+Bare name, dashes, no prefix. The building code marks what is *in* this building;
+a chilled water loop feeding it is not. `check_consistency.py` knows this and
+exempts the objects of `brick:isPartOf` and `rec:isFedBy` from its
+missing-prefix check.
+
+Dar Cairo declares the loop with a `rec:locatedIn` row pointing at the building,
+which is worth copying - it is where the loop's label lives. QF SSC never
+declares `entity:HVAC` or `entity:CHW-System` as a subject at all, so they carry
+no label and `W-LBL-2` fires on them.
+
 ### Audit the source identifiers for consistency, and report what you find
 
 **"Keep them verbatim" assumes they are internally consistent. Check that they

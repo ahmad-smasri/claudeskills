@@ -106,7 +106,16 @@ CLASS = {"AHUB": "brick:Air_Handling_Unit",
          "CAV": "brick:Constant_Air_Volume_Box",
          "FCU": "brick:Fan_Coil_Unit"}
 TERMINAL = {"VAV", "CAV", "FCU"}
-LOOP = "entity:QNL_CHILLED_WATER_LOOP"
+# QF SSC 0.5 names its loop entity:CHWS-MAIN-LOOP, types it
+# para:Chilled_Water_Loop_Network and gives it two subject rows - rec:locatedIn
+# the building, and an IFC reference. QNL follows that shape.
+#
+# The building code is the one departure. SSC's loop carries none, but it is
+# rec:locatedIn entity:SSC, so a QNL loop under the same bare name would be one
+# entity located in two buildings once the converter loads both sheets into one
+# graph. Site-level systems - entity:HVAC, entity:QF - are genuinely shared and
+# rightly bare; a per-building main loop is not. Flagged in the handover note.
+LOOP = "entity:QNL_CHWS-MAIN-LOOP"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
 
 
@@ -171,9 +180,16 @@ out.append(row(LOOP_CLASS, "owl:Class", "rdfs:subClassOf", "brick:HVAC_Equipment
                [("s", "rdfs:label_en", "Chilled Water Loop Network")]))
 
 # Spatial --------------------------------------------------------------------
+# The site is the organisation's code, not its spelled-out name, and the current
+# QF SSC sheet writes exactly this row for its own building:
+#   entity:SSC | rec:Building | rec:isPartOf | entity:QF | rec:Site
+#              | rdfs:label_en | SSC Building | rdfs:label_en | Qatar Foundation
+# QNL sits under the same site, so it reuses entity:QF rather than minting a
+# second name for it - that is what lets the two buildings' sheets join.
 out.append(row("entity:QNL", "rec:Building", "rec:isPartOf",
-               "entity:Qatar-Foundation", "rec:Site",
-               [("s", "rdfs:label_en", "QNL"), ("o", "rdfs:label_en", "Qatar Foundation")]))
+               "entity:QF", "rec:Site",
+               [("s", "rdfs:label_en", "QNL Building"),
+                ("o", "rdfs:label_en", "Qatar Foundation")]))
 
 levels_used = sorted({d["level"] for d in rooms.values()})
 for lvl in levels_used:
@@ -188,7 +204,11 @@ for d in rooms.values():
 
 # Chilled water loop ---------------------------------------------------------
 out.append(row(LOOP, LOOP_CLASS, "rec:locatedIn", "entity:QNL", "rec:Building",
-               [("s", "rdfs:label_en", "QNL_CHILLED_WATER_LOOP")]))
+               [("s", "rdfs:label_en", "QNL_CHWS-MAIN-LOOP")]))
+out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
+               "<blanknode>", "ref:IFCReference",
+               [("o", "para:IFC_ID", ""),
+                ("o", "ref:ifcName", LOOP.replace("entity:", ""))]))
 
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):

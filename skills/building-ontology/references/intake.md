@@ -20,6 +20,16 @@ Default to keeping them - they are the join key to SCADA, the assets register an
 the room schedule. See `naming-and-labels.md`. Ask before writing a single row;
 re-identifying a finished sheet means regenerating all of it.
 
+### Which site entity, exactly
+
+> Which site does this building sit under, and does that site already have an
+> identifier in another building's sheet? QF SSC uses `entity:QF` labelled
+> Qatar Foundation.
+
+The site is the one identifier shared across projects. Two sheets that spell it
+differently do not join when the converter loads them into one graph, and
+nothing in either sheet reveals the clash. Ask rather than mint.
+
 ## And the label question, in the same breath
 
 > Labels: strip the punctuation per the PARA label rule (`1.001 CORRIDOR`), or
@@ -34,7 +44,7 @@ matching `--label-style` and name the choice in the handover note.
 
 | # | Input | Usually arrives as | Blocks |
 |---|---|---|---|
-| 1 | Building name (and site, if the building sits under one) | a sentence | every row |
+| 1 | Building name, and **the site entity the client already uses** | a sentence, or an existing sheet | every row |
 | 2 | Levels - full list, including basements and roof | floor schedule | spatial layer |
 | 3 | Rooms and spaces - name, number, and any tag or ID | room schedule / BIM export | spatial layer |
 | 4 | Equipment - the asset register | equipment schedule | equipment layer |

@@ -35,17 +35,18 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/ontology-template.csv` | the empty 27-column header | starting a sheet |
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
-| `scripts/validate_ontology.py` | the validator, 30 rule codes | before every handover |
+| `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
+| `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
-| `tests/run_tests.sh` | checks the validator still catches what it should | after touching the validator |
+| `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
 
 ### Reference models - `reference-models/`
 
 | File | What it is |
 |---|---|
 | `DarCairo_V93.csv` | **the primary reference for any ontology we build.** 26,173 rows, 27 columns. Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_draft0.4.xlsx` | a recent completed sample, 4,994 rows. Useful for VAV and CRAC point sets. **Has 1,040 validator errors** - its feeds rows are placeholders and must not be copied. |
+| `QF_SSC_Ontology_draft0.5_review.xlsx` | the current SSC sheet, 5,119 rows, plus the `Claude Log` and nine `*_Comparison` sheets from the consistency review. **Opens on `VAV_Comparison`, not on the ontology** - pick the sheet by its header, never by `.active`. 451 validator errors, so still not a model of correctness, but its site, building, systems and chilled-water-loop rows are the current house shape. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
 ### Source documents - repo root
@@ -92,9 +93,17 @@ shape, and report every row that departs from it before writing rows.** On QNL 5
 of 336 rooms ran the level into the room number where 285 kept them separate, and
 one asset family of four, AHUB, carried neither separators nor a level segment.
 Asset tags are the BMS join key, so expect to report rather than change them.
+**The site is the organisation's code and is shared between buildings** -
+`entity:SSC rec:isPartOf entity:QF`, so `entity:QNL rec:isPartOf entity:QF`, with
+the building labelled `<code> Building`. Ask which site entity the client already
+uses; it is the one identifier shared across projects.
+
 **Every subject carries the building code in front**, QF SSC style -
 `entity:SSC_FCU0001`, so `entity:QNL_FCU_1F_056`. Add the code; leave the tag
-itself alone. For identifiers the sheet has to invent:
+itself alone. **Shared plant is the exception** - a system, loop or riser serves
+the building rather than sitting in it, and neither reference model gives it a
+code: `entity:HVAC`, `entity:CHW-System`, `entity:CHWS-LOOP-1`, so
+`entity:CHW-Loop`. For identifiers the sheet has to invent:
 dashes separate words inside a segment, underscores separate segments, no spaces,
 case is significant. `Dar-Cairo_Basement-3_Pump-Room_B331`.
 
@@ -118,6 +127,11 @@ timeseries references at all; never stub one onto equipment to fill the gap.
 `brick:isPartOf` for system membership. Both appear in Dar Cairo and they mean
 different things. Spatial classes are `rec:`, never the deprecated `brick:`
 location classes.
+
+**One sheet out.** The deliverable workbook holds the triples and nothing else.
+Validation output never goes into it - findings print to stdout, or to a file of
+their own via `--report`. A second sheet means the converter has to be told which
+one to read.
 
 **Points come from IO lists.** Ask the user for the IO list; do not infer a point
 list from the equipment type. No IO list means no points for that equipment, and
@@ -148,8 +162,13 @@ python3 skills/building-ontology/scripts/lookup_reference.py --template brick:Fa
 # does this term exist in Brick 1.4, and is it preferred
 python3 skills/building-ontology/scripts/lookup_reference.py --term Heat_Wheel
 
-# validate before handover
+# validate before handover - row by row, then unit against unit
 python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx
+python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx
+
+# one family at a time while building, and findings to their own file
+python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
+    --family brick:Fan_Coil_Unit --report findings.xlsx
 
 # after touching the validator
 skills/building-ontology/tests/run_tests.sh

@@ -133,27 +133,46 @@ every other punctuation mark is removed** - so `1.001_CORRIDOR` becomes
 
 ## 4. Validate before handing over
 
+Two passes, and both matter. Neither writes anything into the sheet.
+
 ```
-python3 scripts/validate_ontology.py MyBuilding.xlsx
 python3 scripts/validate_ontology.py MyBuilding.xlsx --label-style verbatim
+python3 scripts/check_consistency.py MyBuilding.xlsx
 ```
 
-Pass `--label-style verbatim` when the user chose source-verbatim labels; it
-turns `E-LBL-1` off and leaves every other rule in force.
+**`validate_ontology.py` reads one row at a time.** Header contract, prefixes,
+whitespace, unresolved `<placeholder>` cells, label punctuation,
+one-type-per-entity, Brick 1.4 term existence, deprecated and alias terms, units,
+blank-node shape, spatial connectivity, terminal units with no feeds, points with
+no external reference. Pass `--label-style verbatim` when the user chose
+source-verbatim labels; it turns `E-LBL-1` off and leaves every other rule in
+force.
+
+**`check_consistency.py` puts every unit of a class beside its siblings.** That
+is where the defects a row-level read cannot see live: the FCU missing a point
+its 136 siblings all have, the VAV whose status is typed differently from every
+other VAV, the `#N/A` a lookup formula left in an object column, the child whose
+identifier drifted one separator from its parent's. It infers the families, what
+a complete unit looks like in each, and what each predicate's object should be,
+all from the sheet - there is no expected point list to keep up to date. Codes
+are `-CON-` and are explained in `references/known-issues.md`.
+
+Run it on a family at a time while building (`--family brick:Fan_Coil_Unit`), and
+on the whole sheet before handover.
+
+**Neither script writes to the ontology workbook.** Findings go to stdout, or to
+a file of their own with `--report findings.xlsx`. The deliverable stays one
+sheet of triples: a converter that meets a second sheet has to be told which one
+to read, and a reviewer diffing two versions has to skip it.
 
 `.xlsx` input needs `openpyxl`; `.csv` input needs nothing beyond the standard
 library.
 
-Fix every `ERROR`. Read every `WARN` and either fix it or be able to say why it
-stands. `INFO` lines flag valid Brick terms with no precedent in Dar Cairo -
-worth a second look, not a defect. Rule codes are explained in
-`references/known-issues.md`.
-
-The validator checks the header contract, prefixes, whitespace, unresolved
-`<placeholder>` cells, label punctuation, one-type-per-entity, Brick 1.4 term
-existence, deprecated and alias terms, units, blank-node shape, spatial
-connectivity, terminal units with no feeds, and points with no external
-reference.
+Fix every `ERROR` from both scripts. Read every `WARN` and either fix it or be
+able to say why it stands. `INFO` lines are advisories - a valid Brick term with
+no precedent in Dar Cairo, a class with only one instance, a `rec:feeds` target
+that equals `rec:locatedIn`. Worth a second look and a line in the handover, not
+a defect.
 
 ## 5. Deliver
 
@@ -182,7 +201,8 @@ extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.
 | Script | Does |
 |---|---|
 | `scripts/lookup_reference.py` | Finds precedent in Dar Cairo; checks a term against Brick 1.4 |
-| `scripts/validate_ontology.py` | Validates a sheet |
+| `scripts/validate_ontology.py` | Validates a sheet row by row |
+| `scripts/check_consistency.py` | Compares every unit of a class against its siblings |
 | `scripts/build_vocab.py` | Rebuilds the para registry after a new reference model lands |
 | `scripts/build_brick_vocab.py` | Rebuilds the Brick 1.4 term list from `Brick.ttl` |
 | `tests/run_tests.sh` | Checks the validator still catches what it should |
@@ -194,5 +214,6 @@ timeseries references, an aggregation and two `para:` classes - that validates
 clean. Copy its shapes rather than reinventing them.
 
 `reference-models/` holds the source of truth: `DarCairo_V93.csv` (primary),
-`QF_SSC_Ontology_draft0.4.xlsx` (recent sample, has known defects) and
+`QF_SSC_Ontology_draft0.5_review.xlsx` (the current sample, 451 errors, and it
+opens on a review sheet rather than on the ontology) and
 `Ontology_headers.xlsx` (the 9 canonical column names).
