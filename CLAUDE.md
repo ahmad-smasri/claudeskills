@@ -177,6 +177,15 @@ says nothing about leaves its finding standing.
 datasheet was not submitted, leave the property out - never a typical value,
 never a placeholder.
 
+**A source workbook can lie quietly** - `references/known-issues.md`. A formula
+cell whose workbook was saved without a cache reads back as `None`, so the sheet
+looks empty rather than wrong and every check passes over it; the QNL register
+arrived this way and a naive read dropped 297 `rec:isFedBy` rows. All four
+scripts now refuse such a file. Where a source is formula-driven and cannot be
+re-saved, derive the value and **prove the derivation against a version that
+stored the column as text**. And pick the sheet by its header contract, never by
+`.active` or position.
+
 **One sheet out.** The deliverable workbook holds the triples and nothing else.
 Validation output never goes into it - findings print to stdout, or to a file of
 their own via `--report`. A second sheet means the converter has to be told which

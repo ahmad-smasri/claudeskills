@@ -99,6 +99,25 @@ else
     echo "   FAIL"; echo "$out" | sed 's/^/   /'; fail=1
 fi
 
+echo "== a sheet whose cells are uncached formulas must be refused, not read as blank"
+"$PY" - <<'PYEOF'
+import openpyxl, csv
+rows = list(csv.reader(open("assets/example-minimal.csv")))
+wb = openpyxl.Workbook(); ws = wb.active; ws.title = "Ontology"
+for r in rows:
+    ws.append(r)
+ws.cell(row=3, column=4).value = '=CONCATENATE("entity:","X")'
+wb.save("/tmp/ontology-formula-sample.xlsx")
+PYEOF
+out=$("$PY" scripts/validate_ontology.py /tmp/ontology-formula-sample.xlsx 2>&1)
+if echo "$out" | grep -q "formula cells with no cached value"; then
+    echo "   ok"
+else
+    echo "   FAIL - a formula-only sheet was read as blank"; fail=1
+    echo "$out" | sed 's/^/   /'
+fi
+rm -f /tmp/ontology-formula-sample.xlsx
+
 echo "== an empty template must validate"
 "$PY" scripts/validate_ontology.py assets/ontology-template.csv >/dev/null 2>&1 \
     && echo "   ok" || { echo "   FAIL"; fail=1; }

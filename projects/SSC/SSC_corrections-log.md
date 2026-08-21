@@ -174,3 +174,12 @@ changed.
 
 Validator after the pass: **17 errors, 44 consistency errors** — the same
 counts as before it, so nothing regressed and nothing new was introduced.
+
+## The 21 August upload — no change
+
+`QF_SSC_Ontology_ver01_1.xlsx` was compared row by row against
+`QF_SSC_Ontology_ver01_reviewed.xlsx` across all 27 columns: **5,083 rows on
+each side, zero differences either way.** It is the reviewed file round-tripped
+through Excel, so nothing was replaced and nothing regenerated.
+`sources/QF_SSC_Ontology_ver01.xlsx` stays the original as received, which is
+what makes `fix_ssc.py` reproducible.

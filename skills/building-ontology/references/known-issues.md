@@ -168,6 +168,35 @@ share - falling back to the point name. **When it cannot tell which column of th
 IO list is the telemetry key, it stops and says so** rather than matching on a
 guess and reporting every point as unmatched.
 
+## Reading a source workbook: two ways it lies quietly
+
+Both were hit on real files, and both fail *silently* - the sheet reads as
+merely empty rather than wrong, so every check passes over it and reports
+nothing. All four scripts now refuse the file instead.
+
+**Formula cells with no cached value.** openpyxl's `data_only=True` returns the
+value Excel last *saved* for a formula cell. A workbook written by a tool that
+does not evaluate formulas carries no cached values at all, so every formula
+cell reads back as `None`. The QNL asset register arrived this way: its `Fed By`
+column had become a lookup formula deriving the AHU from the equipment tag, and
+a naive read dropped all 297 `rec:isFedBy` relationships while still validating
+clean. `uncached_formulas()` in `validate_ontology.py` detects it by loading the
+sheet a second time with `data_only=False` and comparing; `read_sheet` and the
+shared IO-list loader both exit with an explanation naming the columns.
+
+When a source *is* formula-driven and cannot be re-saved, derive the value in
+the build script and **prove the derivation against a version that stored the
+column as text** - QNL's `derive_fed_by()` reproduces all 297 old literals
+exactly. A derivation nobody checked is a guess with a function around it.
+
+**The sheet you get is not the sheet you want.** Reference workbooks carry
+review sheets, logs and pivots, and `.active` is whichever sheet was selected
+when the file was last saved - `QF_SSC_Ontology_draft0.5_review.xlsx` opens on
+`VAV_Comparison`. Pick the sheet by its header contract, never by position or
+`.active`: `pick_ontology_sheet()`. The same applies to an asset register, which
+may carry the reviewer's own working sheets alongside the equipment families -
+skip any sheet that is not one of the families rather than assuming sheet order.
+
 ## Accepting a term the Brick extract rejects
 
 `brick-vocab.txt` is generated from a pinned `Brick.ttl`, so it cannot carry a

@@ -170,6 +170,33 @@ def pick_ontology_sheet(wb, path):
             return ws
     return wb.active
 
+def uncached_formulas(path, title, rows):
+    """Cells that hold a formula but no cached result, as (row, column) pairs.
+
+    openpyxl's data_only read returns the value Excel last *saved* for a formula
+    cell. A workbook written by a tool that does not evaluate formulas - most
+    scripted writers, and some exports - carries no cached values at all, so
+    every formula cell reads back as None. Nothing then looks wrong: the sheet
+    is simply blank where its data used to be, and every check passes over it.
+
+    Seen on the QNL asset register, whose Fed By column became a lookup formula.
+    297 rec:isFedBy relationships read as empty and would have been dropped
+    silently. Cheap to detect, so it is always checked.
+    """
+    import openpyxl
+    wb = openpyxl.load_workbook(path, data_only=False)
+    if title not in wb.sheetnames:
+        return []
+    ws = wb[title]
+    out = []
+    for i, r in enumerate(ws.iter_rows()):
+        for j, c in enumerate(r):
+            if isinstance(c.value, str) and c.value.startswith("="):
+                if i >= len(rows) or j >= len(rows[i]) or not rows[i][j]:
+                    out.append((i + 1, c.column_letter))
+    return out
+
+
 def read_sheet(path: Path):
     if path.suffix.lower() in (".xlsx", ".xlsm"):
         try:
@@ -182,6 +209,17 @@ def read_sheet(path: Path):
             ["" if c is None else str(c) for c in r]
             for r in ws.iter_rows(values_only=True)
         ]
+        blank = uncached_formulas(path, ws.title, rows)
+        if blank:
+            cols = sorted({c for _, c in blank})
+            sys.exit(
+                f"{path}: sheet {ws.title!r} has {len(blank)} formula cells with no "
+                f"cached value, in column(s) {', '.join(cols)}.\n"
+                "They read back as empty, so validating this file would check "
+                "blanks and report nothing.\n"
+                "Open it in Excel and save it, or export the sheet to CSV, then "
+                "run again."
+            )
     else:
         with open(path, encoding="utf-8-sig", newline="") as fh:
             rows = list(csv.reader(fh))

@@ -15,7 +15,7 @@ source identifier against the identifier used in the sheet and its label.
 | Extensions | 1 | `para:Chilled_Water_Loop_Network` |
 | Site + Building | 1 | `entity:QNL` `rec:isPartOf` `entity:QF` |
 | Levels | 4 | `entity:QNL_B` → "Basement", `_L1` → "Level 1", `_L2` → "Level 2", `_T1` → "Terrace 1" |
-| Rooms | 336 | each `rec:isPartOf` its level |
+| Rooms | 341 | each `rec:isPartOf` its level |
 | Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
 | Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
@@ -345,3 +345,41 @@ names only; **asset tags were left untouched**, since they are the BMS join key.
 Validator after the pass: **450 errors** (all the deliberately empty
 `para:IFC_ID` cells), **0 warnings**, **0 consistency errors** — identical to
 before it.
+
+## Rebuild against the revised register — 21 August
+
+You supplied a revised room schedule and asset register. Rebuilt from them:
+**2,577 → 2,582 rows, 336 → 341 rooms**, equipment unchanged at 449.
+
+**The bridge rooms.** Nine rooms added on level 1 — `L1_BR1`–`BR6`
+`BRIDGE_CEILING_VOID`, `L1_BC1`/`BC2` `BRIDGE_CEILING`, `L1_BI` `BRIDGE_IDF` —
+and four removed: `L1_141_CAFE`, `L1_143_ACCESS_SERVICE`, `L1_146_LOUNGE`,
+`L1_147_LOUNGE`. **52 FCUs moved with them**, off `LEARNING_COMMONS`,
+`ACCESS_SERVICE`, `CAFE` and the two `LOUNGE` rooms and onto the bridge spaces,
+which changed 104 rows — a `rec:locatedIn` and a `rec:feeds` for each. Nothing
+else in the register moved: all 449 `rec:isFedBy` rows are identical, and no
+equipment was added, removed or reclassified.
+
+**One trap in the new register, worth knowing about.** Its `Fed By` column is no
+longer text. Columns C of the VAV and CAV sheets now hold a formula that reads
+the `S<nn>` segment out of the equipment tag and looks up `AHUB<nnn>`, and the
+workbook was saved without a formula cache — so a plain `data_only` read returns
+**None for all 297 of them**. Read naively, the rebuild would have silently
+dropped every VAV and CAV `rec:isFedBy` row and still validated clean, because
+nothing in the sheet would have been *wrong*, only missing.
+
+`derive_fed_by()` in `build_qnl.py` recovers the value from the tag instead. It
+was checked against the previous register, which stored the same column as
+literals: **the derivation reproduces all 297 values exactly** — no
+disagreements, no unresolved tags. So the feeds layer is unchanged from the
+version you already reviewed.
+
+The register also now carries your `Claude Log` and `AHU-VAV Check` sheets. The
+build skips any sheet that is not one of the four equipment families and says so.
+
+**The room-name misspellings are still in the schedule**, so the `TYPO_FIXES`
+pass from the previous build still applies unchanged — all 26 entries still fire,
+now across 35 of the 341 rooms. The nine new bridge rooms need no correction.
+
+Validator after the rebuild: **450 errors** (the deliberately empty
+`para:IFC_ID` cells), **0 warnings**, **0 consistency errors**.

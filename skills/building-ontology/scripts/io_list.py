@@ -113,6 +113,20 @@ def load(path: Path, on_blank_key=None) -> IOList:
         ws = openpyxl.load_workbook(path, data_only=True).worksheets[0]
         rows = [["" if c is None else str(c).strip() for c in r]
                 for r in ws.iter_rows(values_only=True)]
+        # An IO list is a natural place for lookup formulas, and a workbook saved
+        # without a formula cache reads back blank rather than wrong - the list
+        # would silently confirm nothing and every point would look unmatched.
+        from validate_ontology import uncached_formulas
+        blank = uncached_formulas(path, ws.title, rows)
+        if blank:
+            cols = sorted({c for _, c in blank})
+            sys.exit(
+                f"{path}: sheet {ws.title!r} has {len(blank)} formula cells with no "
+                f"cached value, in column(s) {', '.join(cols)}.\n"
+                "They read back as empty, so this IO list would confirm nothing.\n"
+                "Open it in Excel and save it, or export the sheet to CSV, then "
+                "run again."
+            )
     else:
         with open(path, encoding="utf-8-sig", newline="") as fh:
             rows = [[c.strip() for c in r] for r in csv.reader(fh)]

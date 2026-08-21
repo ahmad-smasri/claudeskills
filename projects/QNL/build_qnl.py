@@ -222,14 +222,50 @@ def equip_id(tag):
 
 
 wb = openpyxl.load_workbook(ASSETS_XLSX, read_only=True, data_only=True)
+ahub_tags = {str(r[0]).strip() for r in list(wb["AHUB"].iter_rows(values_only=True))[1:]
+             if r[0]}
+
+
+def derive_fed_by(tag):
+    """Recover the Fed By value the register's own formula computes.
+
+    The current register does not store Fed By as text. Column C of the VAV and
+    CAV sheets holds a formula that reads the `S<nn>` segment out of the
+    equipment tag and looks up `AHUB<nnn>` - VAV_B_S11_024 resolves to AHUB011.
+    The workbook was saved without a formula cache, so openpyxl's data_only read
+    returns None for every one of those cells, which would silently drop 297
+    rec:isFedBy rows. Deriving it here keeps the sheet identical either way.
+
+    Checked against the previous register, which stored the same column as
+    literals: the derivation reproduces all 297 values exactly, with no
+    disagreements and no unresolved tags.
+    """
+    m = re.match(r"^[A-Z]+_[A-Z0-9]+_S(\d+)_", tag)
+    if not m:
+        return ""
+    cand = "AHUB%03d" % int(m.group(1))
+    return cand if cand in ahub_tags else ""
+
+
 assets = []
 unknown_rooms = set()
+derived = 0
 for ws in wb.worksheets:
     kind = ws.title.strip()
+    if kind not in CLASS:
+        # the register carries the reviewer's own working sheets - a Claude Log
+        # and an AHU-VAV Check pivot. Only the four equipment sheets are data.
+        notes.append(f"register sheet {kind!r} is not an equipment family; skipped")
+        continue
     for r in list(ws.iter_rows(values_only=True))[1:]:
         if not r[0]:
             continue
-        tag, room_tag, fed_by = str(r[0]).strip(), str(r[1]).strip(), str(r[2]).strip()
+        tag, room_tag = str(r[0]).strip(), str(r[1]).strip()
+        fed_by = str(r[2]).strip() if r[2] is not None else ""
+        if not fed_by:
+            fed_by = derive_fed_by(tag)
+            if fed_by:
+                derived += 1
         if room_tag not in rooms:
             # the room list carries one entry with a trailing space
             match = [k for k in rooms if k.strip() == room_tag.strip()]
@@ -242,6 +278,9 @@ for ws in wb.worksheets:
                        "fed_by": fed_by})
 if unknown_rooms:
     sys.exit("assets reference rooms absent from the room list: %s" % sorted(unknown_rooms))
+if derived:
+    notes.append(f"{derived} Fed By values were empty in the register and were "
+                 f"derived from the equipment tag; see derive_fed_by()")
 
 by_tag = {a["tag"]: a for a in assets}
 for a in assets:
