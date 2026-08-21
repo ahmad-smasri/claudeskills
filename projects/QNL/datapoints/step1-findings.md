@@ -6,11 +6,17 @@
 | Historian tags | 11601 (5574 analog, 6027 discrete) |
 | Register assets, 4 families | 449 |
 
+## 0. Only column A of the selected-points file is usable
+
+The file holds **two independent lists side by side**, not one list with seven columns. Column A/B (`TagName`, `DP Integration`) runs to 2,769 rows and is the selected list. Columns C-G (`DP Name`, `Units`, `Tag-Reference`, `Equip-Name`, `Point-Name`) stop at row 2,435, cover a different set of tags, and are sorted independently - of the 2,434 rows where both blocks have values, the `DP Name` agrees with the `Point-Name` on **15**. Row 26 reads `QNL_AHUB002_RtnAirDuctPrs.PV` against a `DP Name` of `RtnFan1_AutoManCmd`.
+
+So the equipment/part/point split is taken from column A's tag, resolved against the asset register, and the unit of measure and description are taken from the historian. Nothing here reads columns C-G. Reconstructing tags from `Equip-Name` + `Point-Name` also produces 51 tags that are in no other source, some visibly corrupt (`QNL_CCU_B01..unSts`).
+
 ## 1. Every selected datapoint is in the historian
 
 2769 of 2769 selected tags matched a historian tag exactly - no normalising, no case folding.
 
-**15 tags appear twice in the selected list**, all the same point: `RtnAirDuctPrs.PV`. Deduplicate before writing rows, or each affected unit gets the point twice.
+**15 tags appear twice in column A** - one per AHU, all `RtnAirDuctPrs.PV`, once in the main block and once in the 335-row addendum below it. Confirmed with you as an artefact of appending the addendum, not two distinct points: deduplicate on the tag, so each AHU gets the point once.
 
 ## 2. The join to the asset register
 
@@ -28,8 +34,8 @@
 
 **Register assets with no selected datapoints (2).**
 
-  - `QNL_CAV_B_S13_050` (CAV) — 0 historian tags, so it has no telemetry at all
-  - `QNL_VAV_1F_S15_039S` (VAV) — 8 historian tags, so it is available but was not selected
+  - `QNL_CAV_B_S13_050` (CAV) — 0 historian tags, no telemetry at all. **Highlight its row and note that it can carry no points**
+  - `QNL_VAV_1F_S15_039S` (VAV) — 8 historian tags, available but not selected. Confirmed a real distinct asset, not a typo of its sibling: **highlight its row and note that it has telemetry nobody selected**
 
 ## 3. What each family actually carries
 
@@ -41,14 +47,14 @@ A unit only gets the points its own tags prove it has, so these counts are the i
 |---|---|---|---|
 | `CHWRtnTemp.PV` | 15/15 | °C | Process Value |
 | `CHWSupTemp.PV` | 15/15 | °C | Process Value |
-| `CoolVlv.PosFbk` | 15/15 | % | QNL AHU-B0005 Cooling Valve TV-2200 |
+| `CoolVlv.PosFbk` | 15/15 | % | QNL AHU-B0007 Cooling Valve TV-2300 |
 | `EnableDisableCmd` | 15/15 | — | Enable/Disable Command (1=Enable, 0=Disable) |
 | `FrshAirTemp.PV` | 15/15 | °C | Process Value |
 | `MixAirTemp.PV` | 15/15 | °C | Process Value |
 | `RtnAirDuctPrs.PV` | 15/15 | Pa | Process Value |
 | `RtnAirHumd.PV` | 15/15 | %rH | Process Value |
 | `RtnAirTemp.PV` | 15/15 | °C | Process Value |
-| `RtnHumiditySP` | 15/15 | %rH | QNL AHU-B0005 Basement Level AHU Plant Room B04 |
+| `RtnHumiditySP` | 15/15 | %rH | QNL AHU-B0007 Basement Level AHU Plant Room B04 |
 | `SupAirDuctPrs.PV` | 15/15 | Pa | Process Value |
 | `SupAirFlow.PV` | 15/15 | m/s | Process Value |
 | `SupAirHumd.PV` | 15/15 | %rH | Process Value |
@@ -62,8 +68,8 @@ A unit only gets the points its own tags prove it has, so these counts are the i
 | `SupFan.kWH` | 14/15 | kWh | Energy |
 | `AvgSpcHumd.PV` | 9/15 | %rH | Process Value |
 | `AvgSpcTemp.PV` | 9/15 | °C | Process Value |
-| `IntrnlEADmpr.PositionCtrl` | 7/15 | % | Damper1 Percent Position Control |
-| `IntrnlFADmpr.PositionCtrl` | 7/15 | % | Percent Position Control |
+| `IntrnlEADmpr.PositionCtrl` | 7/15 | % | QNL AHU-B0012 Internal Exhaust Air Damper MD-2651F |
+| `IntrnlFADmpr.PositionCtrl` | 7/15 | % | QNL AHU-B0012 Internal Fresh Air Damper MD-2651B |
 | … 61 more | | | |
 
 ### VAV — 246 units, 4 distinct points, 1 distinct part tokens
@@ -90,9 +96,9 @@ A unit only gets the points its own tags prove it has, so these counts are the i
 |---|---|---|---|
 | `CalcEntryScheduledHrs` | 137/137 | hrs | ScheduledPM Hours (Manual Entry) |
 | `CalcEntryUnscheduledHrs` | 137/137 | hrs | UnScheduled Outage Hours (Manual Entry) |
-| `EffectiveSP` | 137/137 | °C | QNL 1F-Z2 P1 Restaurant FCU-0060 |
-| `ValveFbk` | 137/137 | % | QNL 1F-Z2 P1 Restaurant FCU-0060 |
+| `EffectiveSP` | 137/137 | °C | QNL 1F-Z3 P2 Bridge Ceiling Void BR5 FCU-0041 |
+| `ValveFbk` | 137/137 | % | QNL 1F-Z3 P2 Bridge Ceiling Void BR5 FCU-0041 |
 | `RtnAirTemp` | 82/137 | °C | Return Air Temperature |
 | `RtnTempSP` | 82/137 | °C | Return Air Temperature SetPoint |
-| `RmTemp` | 59/137 | °C | QNL BF-Z4 P2 Plant Room4 FCU-0018 |
+| `RmTemp` | 59/137 | °C | QNL BF-Z2 P2 S1 Security Stores FCU-0010 |
 

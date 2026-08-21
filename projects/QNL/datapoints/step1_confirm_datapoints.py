@@ -160,6 +160,25 @@ def main():
     missing = [s for s in selected if s["tag"] not in hist]
     dupes = [t for t, n in collections.Counter(s["tag"] for s in selected).items()
              if n > 1]
+    say("## 0. Only column A of the selected-points file is usable")
+    say()
+    say("The file holds **two independent lists side by side**, not one list with "
+        "seven columns. Column A/B (`TagName`, `DP Integration`) runs to 2,769 "
+        "rows and is the selected list. Columns C-G (`DP Name`, `Units`, "
+        "`Tag-Reference`, `Equip-Name`, `Point-Name`) stop at row 2,435, cover a "
+        "different set of tags, and are sorted independently - of the 2,434 rows "
+        "where both blocks have values, the `DP Name` agrees with the "
+        "`Point-Name` on **15**. Row 26 reads `QNL_AHUB002_RtnAirDuctPrs.PV` "
+        "against a `DP Name` of `RtnFan1_AutoManCmd`.")
+    say()
+    say("So the equipment/part/point split is taken from column A's tag, "
+        "resolved against the asset register, and the unit of measure and "
+        "description are taken from the historian. Nothing here reads columns "
+        "C-G. Reconstructing tags from `Equip-Name` + `Point-Name` also produces "
+        "51 tags that are in no other source, some visibly corrupt "
+        "(`QNL_CCU_B01..unSts`).")
+    say()
+
     say("## 1. Every selected datapoint is in the historian")
     say()
     say("%d of %d selected tags matched a historian tag exactly - no "
@@ -171,9 +190,11 @@ def main():
             say("  - `%s`" % s["tag"])
     say()
     if dupes:
-        say("**%d tags appear twice in the selected list**, all the same point: "
-            "`%s`. Deduplicate before writing rows, or each affected unit gets "
-            "the point twice." % (len(dupes), dupes[0].split("_")[-1]))
+        say("**%d tags appear twice in column A** - one per AHU, all "
+            "`RtnAirDuctPrs.PV`, once in the main block and once in the 335-row "
+            "addendum below it. Confirmed with you as an artefact of appending "
+            "the addendum, not two distinct points: deduplicate on the tag, so "
+            "each AHU gets the point once." % len(dupes))
         say()
 
     # 2 -------------------------------------------------- selected vs register
@@ -221,8 +242,11 @@ def main():
             n = sum(1 for t in hist if t.startswith(e + ".") or t.startswith(e + "_"))
             say("  - `%s` (%s) — %d historian tags%s" % (
                 e, reg[e], n,
-                ", so it is available but was not selected" if n else
-                ", so it has no telemetry at all"))
+                ", available but not selected. Confirmed a real distinct asset, "
+                "not a typo of its sibling: **highlight its row and note that it "
+                "has telemetry nobody selected**" if n else
+                ", no telemetry at all. **Highlight its row and note that it "
+                "can carry no points**"))
         say()
 
     # 3 -------------------------------------------------- what each family carries
