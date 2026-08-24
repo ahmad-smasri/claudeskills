@@ -11,6 +11,7 @@ import openpyxl
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources") + "/"
 ROOMS_XLSX = SRC + "QNL_Room_Names_for_Ontology.xlsx"
 ASSETS_XLSX = SRC + "QNL_Assets_Location_Relationships.xlsx"
+LEDGER_XLSX = os.path.dirname(os.path.abspath(__file__)) + "/QNL_datapoint_ledger_v2.xlsx"
 OUT = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 HEADER = ["subject", "subjectType", "predicate", "object", "objectType"] + \
@@ -256,6 +257,123 @@ ids = [a["id"] for a in assets]
 if len(set(ids)) != len(ids):
     sys.exit("duplicate equipment identifiers")
 
+# --------------------------------------------------------------------------- points
+# The point layer comes from the datapoint ledger (QNL_datapoint_ledger_v2.xlsx),
+# which records the reviewed class decision for every distinct point signature -
+# see the ledger's Legend sheet and QNL_handover-note.md.
+#
+# This build materialises only the UNIVERSAL signatures: those the ledger marks
+# present on every unit of their family (units == of). For those, membership is
+# certain - each unit of the family carries the point - so no IO list is needed to
+# place them. Partial-coverage signatures (units < of) name a count but not which
+# units, so they wait for the per-unit IO list rather than being guessed onto every
+# unit; over-inclusion would ship data tiles with nothing behind them.
+#
+# Timeseries ids are not yet supplied, so ref:hasTimeseriesId is left empty on each
+# point, the same deliberate-placeholder shape the IFC GUIDs already use. The point
+# still carries para:hasEntityId - its full BMS tag - so the series can be joined
+# the moment the ids arrive.
+POINT_ENABLED_FAMILIES = {"AHUB", "FCU"}
+
+# Ledger unit_of_measure -> Brick unit term. Discrete points carry unit:UNITLESS,
+# as QF SSC does for its status and mode points.
+UNIT_URI = {
+    "°c": "unit:DEG_C", "%rh": "unit:PERCENT_RH", "%": "unit:PERCENT",
+    "pa": "unit:PA", "m/s": "unit:M-PER-SEC", "hrs": "unit:HR",
+}
+
+# Human labels for the universal signatures, keyed (family, part, point). Kept
+# explicit rather than derived, so each reads the way QF SSC's point labels do
+# ("Return Air Temperature"), not the raw historian string.
+POINT_LABELS = {
+    ("AHUB", "", "EnableDisableCmd"): "Enable/Disable Command",
+    ("AHUB", "", "RtnHumiditySP"): "Return Air Humidity Setpoint",
+    ("AHUB", "CHWRtnTemp", "PV"): "Chilled Water Return Temperature",
+    ("AHUB", "CHWSupTemp", "PV"): "Chilled Water Supply Temperature",
+    ("AHUB", "CoolVlv", "PosFbk"): "Cooling Valve Position Feedback",
+    ("AHUB", "FrshAirTemp", "PV"): "Fresh Air Temperature",
+    ("AHUB", "MixAirTemp", "PV"): "Mixed Air Temperature",
+    ("AHUB", "RtnAirDuctPrs", "PV"): "Return Air Duct Pressure",
+    ("AHUB", "RtnAirHumd", "PV"): "Return Air Humidity",
+    ("AHUB", "RtnAirTemp", "PV"): "Return Air Temperature",
+    ("AHUB", "SupAirDuctPrs", "PV"): "Supply Air Duct Pressure",
+    ("AHUB", "SupAirFlow", "PV"): "Supply Air Flow",
+    ("AHUB", "SupAirHumd", "PV"): "Supply Air Humidity",
+    ("AHUB", "SupAirTemp", "PV"): "Supply Air Temperature",
+    ("FCU", "", "CalcEntryScheduledHrs"): "Scheduled PM Hours",
+    ("FCU", "", "CalcEntryUnscheduledHrs"): "Unscheduled Outage Hours",
+    ("FCU", "", "EffectiveSP"): "Effective Temperature Setpoint",
+    ("FCU", "", "ValveFbk"): "Valve Position Feedback",
+}
+
+
+def load_universal_points():
+    """Universal point signatures from the ledger, grouped by family.
+
+    Returns {family: [ {part, point, cls, unit, label}, ... ]}. A signature is
+    universal when its ledger `units` count equals `of` - present on every unit of
+    the family. Everything else is left for the per-unit IO list.
+    """
+    lw = openpyxl.load_workbook(LEDGER_XLSX, data_only=True)
+    ls = lw["Ledger"]
+    col = {ls.cell(1, c).value: c for c in range(1, ls.max_column + 1)}
+
+    def cell(r, name):
+        return ls.cell(r, col[name]).value
+
+    by_family = {}
+    deferred = []
+    for r in range(2, ls.max_row + 1):
+        fam = cell(r, "family")
+        try:
+            universal = int(cell(r, "units")) >= int(cell(r, "of"))
+        except (TypeError, ValueError):
+            continue
+        part = "" if cell(r, "part") in (None, "None") else str(cell(r, "part"))
+        point = str(cell(r, "point"))
+        cls = cell(r, "final_class")
+        if fam not in POINT_ENABLED_FAMILIES or not universal:
+            if fam in POINT_ENABLED_FAMILIES:
+                deferred.append((fam, part, point))
+            continue
+        uom = (cell(r, "unit_of_measure") or "").strip().lower()
+        unit = UNIT_URI.get(uom, "unit:UNITLESS")
+        label_txt = POINT_LABELS.get((fam, part, point)) or label(point)
+        by_family.setdefault(fam, []).append(
+            {"part": part, "point": point, "cls": cls, "unit": unit,
+             "label": label_txt})
+    return by_family, deferred
+
+
+universal_points, deferred_points = load_universal_points()
+
+
+def point_rows(a):
+    """Emit the point rows for one asset: the ledger's universal points for its
+    family, each as the QF SSC two-row shape -
+
+        equipment brick:hasPoint point   (class, label, unit)
+        point     ref:hasExternalReference <blanknode> ref:TimeseriesReference
+                  (ref:hasTimeseriesId empty, para:hasEntityId = the BMS tag)
+    """
+    fam = a["kind"]
+    rows = []
+    bms_unit = "QNL_" + a["tag"]          # original BMS tag, the historian join key
+    for p in universal_points.get(fam, []):
+        seg = (p["part"] + "_" if p["part"] else "") + p["point"]
+        pid = a["id"] + "_" + seg          # entity id: underscores, renamed unit
+        # BMS entity path mirrors the source tag: <unit>[_<part>].<point>
+        entity_id = bms_unit + ("_" + p["part"] if p["part"] else "") + "." + p["point"]
+        rows.append(row(a["id"], a["cls"], "brick:hasPoint", pid, p["cls"],
+                        [("o", "rdfs:label_en", p["label"]),
+                         ("o", "brick:hasUnit", p["unit"])]))
+        rows.append(row(pid, p["cls"], "ref:hasExternalReference",
+                        "<blanknode>", "ref:TimeseriesReference",
+                        [("o", "ref:hasTimeseriesId", ""),
+                         ("o", "para:hasEntityId", entity_id)]))
+    return rows
+
+
 # --------------------------------------------------------------------------- rows
 out = []
 
@@ -316,10 +434,11 @@ for kind in ("AHUB", "VAV", "CAV", "FCU"):
         out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
                        "<blanknode>", "ref:IFCReference",
                        [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
-        # No timeseries reference row here. A ref:TimeseriesReference belongs to a
-        # POINT, never to the equipment: all 1,767 of them in QF SSC hang off a
-        # brick:hasPoint object and none off a piece of equipment. QNL has no
-        # points because no IO list was supplied, so it has no timeseries refs.
+        # Points, from the ledger's universal signatures for this family. Each is a
+        # brick:hasPoint row plus its ref:TimeseriesReference row (empty id for now).
+        # A ref:TimeseriesReference belongs to the POINT, never to the equipment -
+        # every one of QF SSC's hangs off a brick:hasPoint object.
+        out.extend(point_rows(a))
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
@@ -344,8 +463,13 @@ with open(OUT + "QNL_identifier_crosswalk.csv", "w", newline="") as fh:
         w.writerow([a["kind"], a["tag"], a["id"],
                     label(a["id"].replace("entity:", ""))])
 
+n_points = sum(1 for r in out if r[2] == "brick:hasPoint")
 print("rows      :", len(out))
 print("rooms     :", len(rooms), "levels:", levels_used)
 print("assets    :", len(assets), {k: sum(1 for a in assets if a["kind"] == k) for k in CLASS})
+print("points    :", n_points, "(universal signatures per family:",
+      {f: len(v) for f, v in universal_points.items()}, ")")
+print("deferred  :", len({d[1:] for d in deferred_points}),
+      "partial-coverage signatures await the per-unit IO list")
 for n in sorted(set(notes)):
     print("note      :", n)

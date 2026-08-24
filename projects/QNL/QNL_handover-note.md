@@ -1,9 +1,11 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,577 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 4,093 rows on the
 27-column PARA header. Validate with
-`validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
-source identifier against the identifier used in the sheet and its label.
+`validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting files:
+`QNL_identifier_crosswalk.csv`, listing every source identifier against the
+identifier used in the sheet and its label; and `QNL_datapoint_ledger_v2.xlsx`, the
+reviewed class decision behind every point signature.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
 `QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU).
@@ -19,12 +21,18 @@ source identifier against the identifier used in the sheet and its label.
 | Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
 | Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
+| Points | 1,516 | 758 points (each a `brick:hasPoint` row + its `ref:TimeseriesReference` row) — the universal datapoint signatures, on AHU and FCU |
 
 Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
 `rec:isFedBy` → its upstream source,
 `ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal units
 (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row — see "one
 direction" below.
+
+Per point: a `brick:hasPoint` row on the equipment carrying the point's class,
+`rdfs:label_en` and `brick:hasUnit`; and a `ref:TimeseriesReference` row on the point
+carrying `para:hasEntityId` (its BMS tag) and an empty `ref:hasTimeseriesId` — see
+"The point layer" below.
 
 ## Decisions taken, per your answers
 
@@ -195,44 +203,79 @@ ref:IFCReference | | | para:IFC_ID | <empty> | | | ref:ifcName | AHUB011
 `ref:ifcName` is filled with the entity name, which is derivable and is what both
 reference models put there.
 
-**No `ref:TimeseriesReference` rows.** A timeseries reference belongs to a point, not to
-the equipment — every one of SSC's 1,767 sits on a `brick:hasPoint` object and none on a
-piece of equipment. QNL has no points because no IO list was supplied, so it has no
-timeseries references. They arrive with the IO list, on the point rows.
+**`ref:TimeseriesReference` rows now sit on the points, not the equipment** — every
+one of SSC's 1,767 does the same. Each point carries one, with `para:hasEntityId`
+set to its full BMS tag (e.g. `QNL_AHUB001_CHWRtnTemp.PV`) and `ref:hasTimeseriesId`
+left empty until the historian ids are supplied — the same deliberate-placeholder
+shape as the empty `para:IFC_ID`. See "The point layer".
 
 ## Validator result
 
 ```
 python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-2577 rows, 793 typed entities, 1 para: definitions
-450 errors, 0 warnings, 1936 advisories
+4093 rows, 1551 typed entities, 1 para: definitions
+1208 errors, 60 warnings, 1879 advisories
+check_consistency.py QNL_Ontology.xlsx  ->  0 errors, 0 warnings
 ```
 
-**All 450 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
-empty `para:IFC_ID` on each of the 449 assets and on the loop. Paste the IFC GUIDs into
-`object_prop_val` on those rows and the sheet validates clean.
+**All 1,208 errors are the same rule, `E-PAIR-1`, and all of them are deliberate
+empty-value placeholders** — 450 empty `para:IFC_ID` on the assets and loop, plus 758
+empty `ref:hasTimeseriesId`, one per point. Paste the IFC GUIDs and the historian ids
+into `object_prop_val` on those rows and the sheet validates clean.
 
-**Zero warnings.** An earlier version of this note said `W-REF-1` flagged `entity:QF` as
+**60 warnings, all `W-TYP-4`, all deliberate** — the deprecated CHW temperature classes
+kept per your decision (the 30 CHW point rows and their timeseries rows). Each carries
+Brick's own mitigation text; the ledger note names the entering/leaving replacement.
+Earlier versions of this note reported zero warnings, before the point layer existed. An earlier version of this note said `W-REF-1` flagged `entity:QF` as
 undeclared. That was my check being too strict, not a defect in the sheet: `entity:QF` is
 typed `rec:Site` and labelled "Qatar Foundation" on QNL's building row, which is exactly
 how the house style declares a site, a sub-system or a part — on the row that references
 it, class in `objectType` and label in an object prop. The rule now flags only an entity
-that is never given a class anywhere, which is a real dangling reference. Nothing else is outstanding: zero warnings, so every entity is
-labelled, every terminal unit has a feeds row and a location, and every spatial entity
-connects up to `rec:Building`.
+that is never given a class anywhere, which is a real dangling reference. Apart from
+the 60 deliberate `W-TYP-4` deprecation warnings covered above, nothing is outstanding:
+every entity is labelled, every terminal unit has a feeds row and a location, and every
+spatial entity connects up to `rec:Building`.
 
 Without `--label-style verbatim` you also get 771 `E-LBL-1` — that is the PARA label
 rule objecting to the SSC label style, and it is expected.
 
+## The point layer
+
+Points come from the datapoint ledger (`QNL_datapoint_ledger_v2.xlsx`), which carries
+the reviewed class decision for every distinct point signature — Dar Cairo → Brick 1.4
+→ previous project (SSC) → new `para:`, with each row's source and SSC cross-check
+recorded. `build_qnl.py` reads it and writes the points.
+
+**What is in this pass: the universal signatures only.** A ledger signature marks how
+many units of a family carry the point (`units` of `of`). Where that is *every* unit
+(`units == of`), membership is certain and the point is written on every unit of the
+family — no IO list needed. That is 18 signatures: 14 on the AHUs (all 15 each) and 4
+on the FCUs (all 137 each), 758 points in total.
+
+**What waits: the partial-coverage signatures.** The other 75 signatures sit on *some*
+units of their family (e.g. VAV `RmTemp`, 44 of 246). The ledger records the count but
+not which units, so placing them needs the per-unit IO list — guessing them onto every
+unit would ship data tiles with nothing behind them, the one thing worse than omission.
+Send the per-unit IO list and they land, and `check_io_list.py` will cross-check both
+directions.
+
+**Classes are taken straight from the ledger's `final_class`.** That includes the four
+reused SSC classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`,
+`para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) and the one new class,
+`para:Trip_Alarm` — though of these only `Scheduled_Hrs_Duration` and
+`UnScheduled_Hrs_Duration` (both universal FCU points) appear in this pass; the alarms
+are partial-coverage and land with the IO list.
+
+**The CHW temperature points keep their deprecated class, at your direction.** The four
+`Chilled_Water_Supply/Return_Temperature_Sensor` classes are deprecated in Brick 1.4;
+you chose to keep the Dar Cairo class as the join key and record the replacement, so
+each such point raises the expected `W-TYP-4` and the ledger note names the
+entering/leaving class that supersedes it.
+
 ## Left out, and why
 
-- **Points, and with them every timeseries reference.** No IO list was supplied, so no
-  equipment carries a `brick:hasPoint` row and nothing carries a
-  `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
-  Send the IO list and both layers land together. When you do, `check_io_list.py`
-  cross-checks the two in both directions so no point ships that the BMS does not
-  publish — and passing `--io` to the other two checkers lets them settle the findings
-  the list can adjudicate instead of leaving them for someone to work through by hand.
+- **Partial-coverage points.** Covered above — the 75 signatures that sit on only some
+  units of a family wait for the per-unit IO list. The universal points are in.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **Zones.** No `rec:Zone` or `rec:HVACZone` layer; no zone data was supplied. Rooms sit
