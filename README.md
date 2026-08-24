@@ -25,7 +25,7 @@ skills/building-ontology/tests/run_tests.sh
 ## `reference-models/`
 
 - `DarCairo_V93.csv` - the primary reference for any ontology we build
-- `QF_SSC_Ontology_draft0.5_review.xlsx` - the current SSC sample, with its review sheets
+- `QF_SSC_Ontology_ver02.xlsx` - the cleaned SSC delivery, the step-3 previous-project reference
 - `Ontology_headers.xlsx` - the nine canonical column names
 
 ## Source documents

@@ -35,8 +35,8 @@ def pick_ontology_sheet(wb, path):
 
     A reference model can carry review and comparison sheets alongside the
     ontology, and the workbook's *active* sheet is simply whichever tab was
-    open when it was last saved - `QF_SSC_Ontology_draft0.5_review.xlsx` saves
-    with `VAV_Comparison` selected. Reading `.active` therefore reads a random
+    open when it was last saved - earlier SSC drafts saved on a review tab such
+    as `VAV_Comparison`. Reading `.active` therefore risks reading the wrong
     sheet. Pick by the header contract instead: the first sheet whose first row
     starts with the five core columns.
     """
