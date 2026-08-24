@@ -258,119 +258,171 @@ if len(set(ids)) != len(ids):
     sys.exit("duplicate equipment identifiers")
 
 # --------------------------------------------------------------------------- points
-# The point layer comes from the datapoint ledger (QNL_datapoint_ledger_v2.xlsx),
-# which records the reviewed class decision for every distinct point signature -
-# see the ledger's Legend sheet and QNL_handover-note.md.
+# The point layer joins three sources:
+#   - Selected_PARA_OS_Data_Points_v4.0.xlsx : which points are selected, per unit
+#     (the per-unit membership - one row per unit x point, "Must Have")
+#   - QNL_Historian_IO_list_CP2.xlsx         : each tag's engineering unit, historian
+#     SourceTag and analog/discrete kind (the authority on units and series ids)
+#   - QNL_datapoint_ledger_v2.xlsx           : the reviewed class decision and a clean
+#     descriptor (match_phrase) per point signature
 #
-# This build materialises only the UNIVERSAL signatures: those the ledger marks
-# present on every unit of their family (units == of). For those, membership is
-# certain - each unit of the family carries the point - so no IO list is needed to
-# place them. Partial-coverage signatures (units < of) name a count but not which
-# units, so they wait for the per-unit IO list rather than being guessed onto every
-# unit; over-inclusion would ship data tiles with nothing behind them.
+# Only the four families already in the sheet are built (AHU, VAV, CAV, FCU); the
+# selected list also covers CCU, EF, DX, HEX, KEF, SEF, TEF and GEN, whose equipment
+# is not in the asset register, so those points are out of scope here.
 #
-# Timeseries ids are not yet supplied, so ref:hasTimeseriesId is left empty on each
-# point, the same deliberate-placeholder shape the IFC GUIDs already use. The point
-# still carries para:hasEntityId - its full BMS tag - so the series can be joined
-# the moment the ids arrive.
-POINT_ENABLED_FAMILIES = {"AHUB", "FCU"}
+# Engineering units come from the IO list, not the Selected sheet: the Selected sheet
+# has 30 analog rows with humidity/temperature units swapped (e.g. AvgSpcHumd as degC),
+# which the IO list gets right.
+SEL_XLSX = SRC + "Selected_PARA_OS_Data_Points_v4.0.xlsx"
+IO_XLSX = SRC + "QNL_Historian_IO_list_CP2.xlsx"
+POINT_FAMILIES = {"AHU": "AHUB", "VAV": "VAV", "CAV": "CAV", "FCU": "FCU"}
 
-# Ledger unit_of_measure -> Brick unit term. Discrete points carry unit:UNITLESS,
-# as QF SSC does for its status and mode points.
+# IO-list engineering unit -> Brick unit term. Discrete points and blanks carry
+# unit:UNITLESS, as QF SSC does for its status and mode points.
 UNIT_URI = {
-    "°c": "unit:DEG_C", "%rh": "unit:PERCENT_RH", "%": "unit:PERCENT",
-    "pa": "unit:PA", "m/s": "unit:M-PER-SEC", "hrs": "unit:HR",
+    "°c": "unit:DEG_C", "%": "unit:PERCENT", "l/s": "unit:L-PER-SEC",
+    "hrs": "unit:HR", "%rh": "unit:PERCENT_RH", "pa": "unit:PA",
+    "m/s": "unit:M-PER-SEC", "kwh": "unit:KiloW-HR", "kw": "unit:KiloW",
 }
 
-# Human labels for the universal signatures, keyed (family, part, point). Kept
-# explicit rather than derived, so each reads the way QF SSC's point labels do
-# ("Return Air Temperature"), not the raw historian string.
-POINT_LABELS = {
-    ("AHUB", "", "EnableDisableCmd"): "Enable/Disable Command",
-    ("AHUB", "", "RtnHumiditySP"): "Return Air Humidity Setpoint",
-    ("AHUB", "CHWRtnTemp", "PV"): "Chilled Water Return Temperature",
-    ("AHUB", "CHWSupTemp", "PV"): "Chilled Water Supply Temperature",
-    ("AHUB", "CoolVlv", "PosFbk"): "Cooling Valve Position Feedback",
-    ("AHUB", "FrshAirTemp", "PV"): "Fresh Air Temperature",
-    ("AHUB", "MixAirTemp", "PV"): "Mixed Air Temperature",
-    ("AHUB", "RtnAirDuctPrs", "PV"): "Return Air Duct Pressure",
-    ("AHUB", "RtnAirHumd", "PV"): "Return Air Humidity",
-    ("AHUB", "RtnAirTemp", "PV"): "Return Air Temperature",
-    ("AHUB", "SupAirDuctPrs", "PV"): "Supply Air Duct Pressure",
-    ("AHUB", "SupAirFlow", "PV"): "Supply Air Flow",
-    ("AHUB", "SupAirHumd", "PV"): "Supply Air Humidity",
-    ("AHUB", "SupAirTemp", "PV"): "Supply Air Temperature",
-    ("FCU", "", "CalcEntryScheduledHrs"): "Scheduled PM Hours",
-    ("FCU", "", "CalcEntryUnscheduledHrs"): "Unscheduled Outage Hours",
-    ("FCU", "", "EffectiveSP"): "Effective Temperature Setpoint",
-    ("FCU", "", "ValveFbk"): "Valve Position Feedback",
+# Part -> the words that give a generic point descriptor its context. Fans, dampers
+# and the cooling valve carry generic descriptors ("position feedback", "electric
+# power") that need the part to disambiguate; the air/water sensors already carry it
+# in their descriptor, so they are left out.
+PART_PREFIX = {
+    "SupFan": "Supply Fan", "RtnFan": "Return Fan",
+    "SupFan1": "Supply Fan 1", "SupFan2": "Supply Fan 2",
+    "RtnFan1": "Return Fan 1", "RtnFan2": "Return Fan 2",
+    "IntrnlEADmpr": "Exhaust Air Damper", "IntrnlFADmpr": "Fresh Air Damper",
+    "CoolVlv": "Cooling Valve",
 }
 
 
-def load_universal_points():
-    """Universal point signatures from the ledger, grouped by family.
+def point_label(part, match_phrase):
+    """A readable label from the ledger descriptor, disambiguated by part.
 
-    Returns {family: [ {part, point, cls, unit, label}, ... ]}. A signature is
-    universal when its ledger `units` count equals `of` - present on every unit of
-    the family. Everything else is left for the per-unit IO list.
+    The descriptor is the ledger's match_phrase (parenthetical stripped, title case).
+    A fan/damper/valve part prepends its context; a numbered sensor part (SpcHumd01)
+    appends its number, so the eleven space-humidity sensors read apart.
     """
+    base = re.sub(r"\s*\([^)]*\)\s*$", "", str(match_phrase)).strip().title()
+    if part in PART_PREFIX:
+        return PART_PREFIX[part] + " " + base
+    m = re.search(r"(\d+)$", part or "")
+    if m:
+        return base + " " + str(int(m.group(1)))
+    return base
+
+
+def parse_tag(tag):
+    """A historian tag -> (unit, part, point). Only AHU units carry a part."""
+    left, point = (tag.rsplit(".", 1) + [""])[:2] if "." in tag else (tag, "")
+    m = re.match(r"(QNL_AHUB\d+)_(.+)$", left)
+    if m:
+        return m.group(1), m.group(2), point
+    m = re.match(r"(QNL_AHUB\d+)$", left)
+    if m:
+        return m.group(1), "", point
+    return left, "", point
+
+
+def load_point_layer():
+    """Build {bms_unit: [point dicts]} for the four in-scope families.
+
+    Each point dict is {part, point, cls, unit, label, tsid, bms_unit}. Also returns
+    the units selected but absent from the asset register, for the handover note.
+    """
+    # ledger: (family, part, point) -> (class, match_phrase)
     lw = openpyxl.load_workbook(LEDGER_XLSX, data_only=True)
     ls = lw["Ledger"]
-    col = {ls.cell(1, c).value: c for c in range(1, ls.max_column + 1)}
-
-    def cell(r, name):
-        return ls.cell(r, col[name]).value
-
-    by_family = {}
-    deferred = []
+    lc = {ls.cell(1, c).value: c for c in range(1, ls.max_column + 1)}
+    ledger = {}
     for r in range(2, ls.max_row + 1):
-        fam = cell(r, "family")
-        try:
-            universal = int(cell(r, "units")) >= int(cell(r, "of"))
-        except (TypeError, ValueError):
+        fam = ls.cell(r, lc["family"]).value
+        part = "" if ls.cell(r, lc["part"]).value in (None, "None") \
+            else str(ls.cell(r, lc["part"]).value)
+        point = str(ls.cell(r, lc["point"]).value)
+        ledger[(fam, part, point)] = (ls.cell(r, lc["final_class"]).value,
+                                      ls.cell(r, lc["match_phrase"]).value)
+
+    # IO list: tag -> (engineering unit, historian SourceTag)
+    io = {}
+    iw = openpyxl.load_workbook(IO_XLSX, data_only=True, read_only=True)
+    for rw in iw["QNL analog cp2"].iter_rows(min_row=2, values_only=True):
+        if rw[0]:
+            io[str(rw[0])] = ((rw[4] or "").strip(), rw[7])
+    for rw in iw["QNL Descrete cp2"].iter_rows(min_row=2, values_only=True):
+        if rw[0]:
+            io[str(rw[0])] = ("", rw[4])          # discrete: unitless, SourceTag col E
+    iw.close()
+
+    known_units = {"QNL_" + a["tag"] for a in assets}
+    by_unit = {}
+    orphans = set()
+    # The Selected sheet lists 15 tags twice (RtnAirDuctPrs.PV, once per AHU). A tag
+    # names one physical point, so the repeat is a source defect: emitting it twice
+    # would put two identical rows in the sheet (W-DUP-1) and two points on one
+    # timeseries id. First occurrence wins; the repeats are counted for the note.
+    seen_tags = set()
+    duplicate_tags = []
+    sw = openpyxl.load_workbook(SEL_XLSX, data_only=True, read_only=True)
+    for rw in sw["Sheet1"].iter_rows(min_row=2, values_only=True):
+        tag = str(rw[0])
+        if tag in seen_tags:
+            duplicate_tags.append(tag)
             continue
-        part = "" if cell(r, "part") in (None, "None") else str(cell(r, "part"))
-        point = str(cell(r, "point"))
-        cls = cell(r, "final_class")
-        if fam not in POINT_ENABLED_FAMILIES or not universal:
-            if fam in POINT_ENABLED_FAMILIES:
-                deferred.append((fam, part, point))
+        seen_tags.add(tag)
+        fam_ref = rw[4]
+        unit, part, point = parse_tag(tag)
+        fam_key = fam_ref if fam_ref in POINT_FAMILIES else \
+            (re.match(r"QNL_(AHUB|VAV|CAV|FCU)", tag) and
+             {"AHUB": "AHU"}.get(re.match(r"QNL_(AHUB|VAV|CAV|FCU)", tag).group(1),
+                                 re.match(r"QNL_(AHUB|VAV|CAV|FCU)", tag).group(1)))
+        if fam_key not in POINT_FAMILIES:
+            continue                               # other families: out of scope
+        if unit not in known_units:
+            orphans.add(unit)
             continue
-        uom = (cell(r, "unit_of_measure") or "").strip().lower()
-        unit = UNIT_URI.get(uom, "unit:UNITLESS")
-        label_txt = POINT_LABELS.get((fam, part, point)) or label(point)
-        by_family.setdefault(fam, []).append(
-            {"part": part, "point": point, "cls": cls, "unit": unit,
-             "label": label_txt})
-    return by_family, deferred
+        fam = POINT_FAMILIES[fam_key]
+        sig = (fam, part, point)
+        if sig not in ledger:
+            sys.exit("selected point %r has no ledger class (%s)" % (tag, sig))
+        cls, mp = ledger[sig]
+        io_unit, tsid = io.get(tag, ("", tag))
+        unit_uri = UNIT_URI.get(io_unit.lower(), "unit:UNITLESS")
+        by_unit.setdefault(unit, []).append({
+            "part": part, "point": point, "cls": cls, "unit": unit_uri,
+            "label": point_label(part, mp), "tsid": tsid or tag, "bms_unit": unit})
+    sw.close()
+    return by_unit, sorted(orphans), sorted(set(duplicate_tags))
 
 
-universal_points, deferred_points = load_universal_points()
+points_by_unit, orphan_units, duplicate_selected = load_point_layer()
 
 
 def point_rows(a):
-    """Emit the point rows for one asset: the ledger's universal points for its
-    family, each as the QF SSC two-row shape -
+    """The point rows for one asset, each as the QF SSC two-row shape -
 
         equipment brick:hasPoint point   (class, label, unit)
         point     ref:hasExternalReference <blanknode> ref:TimeseriesReference
-                  (ref:hasTimeseriesId empty, para:hasEntityId = the BMS tag)
+                  (ref:hasTimeseriesId = historian SourceTag, para:hasEntityId = unit)
+
+    Points are ordered by their identifier so the sheet is stable across builds.
     """
-    fam = a["kind"]
     rows = []
-    bms_unit = "QNL_" + a["tag"]          # original BMS tag, the historian join key
-    for p in universal_points.get(fam, []):
+    bms_unit = "QNL_" + a["tag"]
+    pts = sorted(points_by_unit.get(bms_unit, []),
+                 key=lambda p: (p["part"], p["point"]))
+    for p in pts:
         seg = (p["part"] + "_" if p["part"] else "") + p["point"]
-        pid = a["id"] + "_" + seg          # entity id: underscores, renamed unit
-        # BMS entity path mirrors the source tag: <unit>[_<part>].<point>
-        entity_id = bms_unit + ("_" + p["part"] if p["part"] else "") + "." + p["point"]
+        pid = a["id"] + "_" + seg
         rows.append(row(a["id"], a["cls"], "brick:hasPoint", pid, p["cls"],
                         [("o", "rdfs:label_en", p["label"]),
                          ("o", "brick:hasUnit", p["unit"])]))
         rows.append(row(pid, p["cls"], "ref:hasExternalReference",
                         "<blanknode>", "ref:TimeseriesReference",
-                        [("o", "ref:hasTimeseriesId", ""),
-                         ("o", "para:hasEntityId", entity_id)]))
+                        [("o", "ref:hasTimeseriesId", p["tsid"]),
+                         ("o", "para:hasEntityId", bms_unit)]))
     return rows
 
 
@@ -380,6 +432,14 @@ out = []
 # Extensions -----------------------------------------------------------------
 out.append(row(LOOP_CLASS, "owl:Class", "rdfs:subClassOf", "brick:HVAC_Equipment", "",
                [("s", "rdfs:label_en", "Chilled Water Loop Network")]))
+# para:Trip_Alarm is the one class the datapoint layer coins. brick:Alarm is
+# reserved for a point literally named a general/summary alarm, so the fan trip
+# alarms get a class of their own rather than the bare root - SSC types its own
+# _TripAlm points brick:Alarm, which makes trips indistinguishable from every
+# other alarm. It follows SSC's own para:Fail_Start_Alarm / para:Fail_Stop_Alarm
+# pattern (both reused here as-is) and goes to the PARA team for review.
+out.append(row("para:Trip_Alarm", "owl:Class", "rdfs:subClassOf", "brick:Alarm", "",
+               [("s", "rdfs:label_en", "Trip Alarm")]))
 
 # Spatial --------------------------------------------------------------------
 # The site is the organisation's code, not its spelled-out name, and the current
@@ -464,12 +524,19 @@ with open(OUT + "QNL_identifier_crosswalk.csv", "w", newline="") as fh:
                     label(a["id"].replace("entity:", ""))])
 
 n_points = sum(1 for r in out if r[2] == "brick:hasPoint")
+per_fam = {}
+for a in assets:
+    per_fam[a["kind"]] = per_fam.get(a["kind"], 0) + len(points_by_unit.get("QNL_" + a["tag"], []))
 print("rows      :", len(out))
 print("rooms     :", len(rooms), "levels:", levels_used)
 print("assets    :", len(assets), {k: sum(1 for a in assets if a["kind"] == k) for k in CLASS})
-print("points    :", n_points, "(universal signatures per family:",
-      {f: len(v) for f, v in universal_points.items()}, ")")
-print("deferred  :", len({d[1:] for d in deferred_points}),
-      "partial-coverage signatures await the per-unit IO list")
+print("points    :", n_points, "per family:", per_fam)
+if orphan_units:
+    print("orphans   :", len(orphan_units),
+          "selected units absent from the asset register:", orphan_units)
+if duplicate_selected:
+    print("dupes     :", len(duplicate_selected),
+          "tags listed twice in the Selected sheet, emitted once:",
+          duplicate_selected[:3], "...")
 for n in sorted(set(notes)):
     print("note      :", n)

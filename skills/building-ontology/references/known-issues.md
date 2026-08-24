@@ -234,6 +234,36 @@ with the PARA team.
 | 12 | Draft 0.4 had no `rec:Site` and no `rec:Building` row, which read as a convention. It was not - it was an unfinished sheet. Draft 0.5 carries `entity:SSC rec:Building rec:isPartOf entity:QF rec:Site`, labelled `SSC Building` and `Qatar Foundation` | build the full chain, as 0.5 and Dar Cairo both do. **The lesson: an absence in a reference model is not a convention until a current export confirms it** |
 | 11 | The IFC reference property: Dar Cairo writes `ref:ifcName` (535 rows) and defines `para:IFC_ID` once without using it; QF SSC writes **both** `para:IFC_ID` and `ref:ifcName` on all 167 of its IFC rows | both, the SSC shape - `para:IFC_ID` for the BIM GUID, `ref:ifcName` for the derivable entity name |
 
+## Reading an IO list: two traps the QNL list exposed
+
+Both were live bugs in the shared loader, fixed 2026-08-24 against
+`QNL_Historian_IO_list_CP2.xlsx`. They matter because both fail *silently* -
+the checks still run and still report, they just report the wrong thing.
+
+**1. An IO list can span several sheets.** QNL splits its points across
+`QNL analog cp2` (5,574 rows) and `QNL Descrete cp2` (6,027), with different
+column layouts. `io_list.py` and `check_io_list.py` both read only
+`worksheets[0]`, so every discrete point vanished - and each one then reported as
+`E-IO-1`, "in the sheet but matches no IO row", against a sheet that was correct.
+88 phantom errors. Both loaders now read every sheet, header-match each on its
+own, and skip (by name) any tab with no key/name column.
+
+**2. "Unit" on an IO list means the engineering unit, not the unit of plant.**
+`EQUIP_HEADERS` matched the analog tab's `Unit` column, so `known_equipment`
+filled with `bar`, `kw`, `hz`, `degC` - 31 "equipment tags", none of them real.
+`has_point()` answers `None` for equipment it does not know, so every finding the
+IO list should have adjudicated came back "cannot tell", and `--io` silently
+changed nothing. `NOT_EQUIP_HEADERS` now excludes unit/uom columns, and where
+there is no usable equipment column the unit is derived from the dotted tag
+(`QNL_AHUB001_SupFan.kW` -> unit `QNL_AHUB001`, point `SupFan.kW`). Watch the
+part heuristic: a trailing numeric segment is a unit counter, not a part -
+`QNL_VAV_B_S11_026` is unit 026 of system S11.
+
+The tell for both: `check_consistency.py --io` reporting exactly what it reported
+without `--io`. If the IO list resolves nothing, check what `IOList.describe()`
+says it found before trusting any finding - on QNL the fixes took equipment tags
+from 31 to 1,755 and consistency errors from 287 to 78.
+
 ## Known defects in the reference models
 
 ### Dar Cairo (`DarCairo_V93.csv`, 26,173 rows)

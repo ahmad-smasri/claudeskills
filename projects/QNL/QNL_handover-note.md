@@ -1,6 +1,6 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 4,093 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 7,008 rows on the
 27-column PARA header. Validate with
 `validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting files:
 `QNL_identifier_crosswalk.csv`, listing every source identifier against the
@@ -8,7 +8,10 @@ identifier used in the sheet and its label; and `QNL_datapoint_ledger_v2.xlsx`, 
 reviewed class decision behind every point signature.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
-`QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU).
+`QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU),
+`Selected_PARA_OS_Data_Points_v4.0.xlsx` (the selected points, per unit) and
+`QNL_Historian_IO_list_CP2.xlsx` (engineering units and historian ids). All four are in
+`sources/`; the build reads them directly, so it is reproducible with `build_qnl.py`.
 
 ## What is in the sheet
 
@@ -21,7 +24,7 @@ reviewed class decision behind every point signature.
 | Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
 | Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
-| Points | 1,516 | 758 points (each a `brick:hasPoint` row + its `ref:TimeseriesReference` row) — the universal datapoint signatures, on AHU and FCU |
+| Points | 4,430 | 2,215 points (each a `brick:hasPoint` row + its `ref:TimeseriesReference` row) — every selected point on AHU, VAV, CAV and FCU |
 
 Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
 `rec:isFedBy` → its upstream source,
@@ -31,8 +34,8 @@ direction" below.
 
 Per point: a `brick:hasPoint` row on the equipment carrying the point's class,
 `rdfs:label_en` and `brick:hasUnit`; and a `ref:TimeseriesReference` row on the point
-carrying `para:hasEntityId` (its BMS tag) and an empty `ref:hasTimeseriesId` — see
-"The point layer" below.
+carrying `para:hasEntityId` (its unit's BMS tag) and `ref:hasTimeseriesId` (the
+historian SourceTag) — see "The point layer" below.
 
 ## Decisions taken, per your answers
 
@@ -203,30 +206,43 @@ ref:IFCReference | | | para:IFC_ID | <empty> | | | ref:ifcName | AHUB011
 `ref:ifcName` is filled with the entity name, which is derivable and is what both
 reference models put there.
 
-**`ref:TimeseriesReference` rows now sit on the points, not the equipment** — every
-one of SSC's 1,767 does the same. Each point carries one, with `para:hasEntityId`
-set to its full BMS tag (e.g. `QNL_AHUB001_CHWRtnTemp.PV`) and `ref:hasTimeseriesId`
-left empty until the historian ids are supplied — the same deliberate-placeholder
-shape as the empty `para:IFC_ID`. See "The point layer".
+**`ref:TimeseriesReference` rows sit on the points, not the equipment** — every one
+of SSC's 1,767 does the same. Each point carries one, with `ref:hasTimeseriesId` set
+to the historian `SourceTag` from the IO list (e.g. `QNL_AHUB001_CHWRtnTemp.PV`) and
+`para:hasEntityId` naming its unit. All 2,215 are filled; none is a placeholder.
 
 ## Validator result
 
 ```
-python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-4093 rows, 1551 typed entities, 1 para: definitions
-1208 errors, 60 warnings, 1879 advisories
-check_consistency.py QNL_Ontology.xlsx  ->  0 errors, 0 warnings
+python3 validate_ontology.py  QNL_Ontology.xlsx --label-style verbatim
+7008 rows, 3009 typed entities, 2 para: definitions
+450 errors, 64 warnings, 3784 advisories
+
+python3 check_io_list.py      QNL_Ontology.xlsx --io sources/QNL_Historian_IO_list_CP2.xlsx
+0 errors, 9386 warnings          <- every point traces to a real IO row
+
+python3 check_consistency.py  QNL_Ontology.xlsx --io sources/QNL_Historian_IO_list_CP2.xlsx
+78 errors, 0 warnings, 245 advisories
 ```
 
-**All 1,208 errors are the same rule, `E-PAIR-1`, and all of them are deliberate
-empty-value placeholders** — 450 empty `para:IFC_ID` on the assets and loop, plus 758
-empty `ref:hasTimeseriesId`, one per point. Paste the IFC GUIDs and the historian ids
-into `object_prop_val` on those rows and the sheet validates clean.
+**All 450 errors are `E-PAIR-1`, and all are the deliberate empty `para:IFC_ID`** on the
+449 assets and the loop. Paste the IFC GUIDs into `object_prop_val` and the sheet
+validates clean. The timeseries placeholders are gone — every point now carries a real
+historian id.
 
-**60 warnings, all `W-TYP-4`, all deliberate** — the deprecated CHW temperature classes
-kept per your decision (the 30 CHW point rows and their timeseries rows). Each carries
-Brick's own mitigation text; the ledger note names the entering/leaving replacement.
-Earlier versions of this note reported zero warnings, before the point layer existed. An earlier version of this note said `W-REF-1` flagged `entity:QF` as
+**64 warnings, all `W-TYP-4`, all deliberate** — the deprecated CHW temperature classes
+kept per your decision. Each carries Brick's own mitigation text; the ledger note names
+the entering/leaving replacement.
+
+**`check_io_list.py` reports 0 `E-IO-1`**: not one point in the sheet is invented. The
+9,386 `W-IO-2` are IO rows with no point here — the out-of-scope families and the
+unselected points, both covered under "Left out".
+
+**The 78 consistency errors are real per-unit variance, confirmed against the IO list**,
+not defects: `E-CON-1`/`E-CON-2` are the 44 VAVs that genuinely carry `RmTemp` where the
+other 202 do not, and the pointless `VAV_1F_S15_039S` described above. Passing `--io`
+resolved 209 of the original 287 findings into `I-CON-2` advisories — the IO list
+adjudicating what a row-level read could not. An earlier version of this note said `W-REF-1` flagged `entity:QF` as
 undeclared. That was my check being too strict, not a defect in the sheet: `entity:QF` is
 typed `rec:Site` and labelled "Qatar Foundation" on QNL's building row, which is exactly
 how the house style declares a site, a sub-system or a part — on the row that references
@@ -241,41 +257,70 @@ rule objecting to the SSC label style, and it is expected.
 
 ## The point layer
 
-Points come from the datapoint ledger (`QNL_datapoint_ledger_v2.xlsx`), which carries
-the reviewed class decision for every distinct point signature — Dar Cairo → Brick 1.4
-→ previous project (SSC) → new `para:`, with each row's source and SSC cross-check
-recorded. `build_qnl.py` reads it and writes the points.
+Points join three sources, all in `sources/`:
 
-**What is in this pass: the universal signatures only.** A ledger signature marks how
-many units of a family carry the point (`units` of `of`). Where that is *every* unit
-(`units == of`), membership is certain and the point is written on every unit of the
-family — no IO list needed. That is 18 signatures: 14 on the AHUs (all 15 each) and 4
-on the FCUs (all 137 each), 758 points in total.
+| Source | What it supplies |
+|---|---|
+| `Selected_PARA_OS_Data_Points_v4.0.xlsx` | **which** points are selected, per unit — one row per unit × point, all "Must Have" |
+| `QNL_Historian_IO_list_CP2.xlsx` | each tag's engineering unit, historian `SourceTag` and analog/discrete kind |
+| `QNL_datapoint_ledger_v2.xlsx` | the reviewed **class** decision per point signature, and a clean descriptor |
 
-**What waits: the partial-coverage signatures.** The other 75 signatures sit on *some*
-units of their family (e.g. VAV `RmTemp`, 44 of 246). The ledger records the count but
-not which units, so placing them needs the per-unit IO list — guessing them onto every
-unit would ship data tiles with nothing behind them, the one thing worse than omission.
-Send the per-unit IO list and they land, and `check_io_list.py` will cross-check both
-directions.
+**All 2,215 selected points on the four families are in.** Per-unit membership now
+comes from the Selected sheet rather than being inferred, so the partial-coverage
+signatures that waited for this data are placed exactly where they belong: 509 on the
+15 AHUs, 779 on the 246 VAVs, 156 on the 51 CAVs, 771 on the 137 FCUs. Every one of the
+2,236 selected 4-family tags mapped to a ledger class with nothing left over, and every
+point traces back to a real IO row (`check_io_list.py`: **0 `E-IO-1`**).
 
-**Classes are taken straight from the ledger's `final_class`.** That includes the four
+**Timeseries ids are filled.** `ref:hasTimeseriesId` carries the IO list's `SourceTag`
+for all 2,215 points — no placeholders remain in the point layer.
+
+**Scope: AHU, VAV, CAV and FCU only, at your direction.** The Selected sheet also covers
+CCU, EF, DX, HEX, KEF, SEF, TEF and GEN — 533 further points on equipment that is not in
+the asset register and so not in this sheet. Those are the bulk of the 9,386 `W-IO-2`
+warnings (IO rows with no point here), together with the unselected points; both are
+deliberate scope, not omissions.
+
+**Engineering units come from the IO list, not the Selected sheet.** The Selected sheet
+has **30 analog rows with humidity and temperature units transposed** — e.g.
+`QNL_AHUB001_AvgSpcHumd.PV` given `°C` and `AvgSpcTemp.PV` given `%rH`. The IO list has
+both right, so it is the authority for `brick:hasUnit`. Worth correcting at source.
+
+**Classes are taken straight from the ledger's `final_class`**, including the four
 reused SSC classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`,
 `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) and the one new class,
-`para:Trip_Alarm` — though of these only `Scheduled_Hrs_Duration` and
-`UnScheduled_Hrs_Duration` (both universal FCU points) appear in this pass; the alarms
-are partial-coverage and land with the IO list.
+`para:Trip_Alarm`, which is now **defined in row 3 of the sheet** as
+`rdfs:subClassOf brick:Alarm` — new `para:` classes are defined before first use.
 
-**The CHW temperature points keep their deprecated class, at your direction.** The four
+**The CHW temperature points keep their deprecated class, at your direction.** The
 `Chilled_Water_Supply/Return_Temperature_Sensor` classes are deprecated in Brick 1.4;
 you chose to keep the Dar Cairo class as the join key and record the replacement, so
 each such point raises the expected `W-TYP-4` and the ledger note names the
 entering/leaving class that supersedes it.
 
+### What the point data showed up — for the register's owner
+
+1. **Two selected units are not in the asset register:** `QNL_CAV_1F_S15_001` and
+   `QNL_VAV_B_S13_005`. Their 6 selected points are therefore not in the sheet. Either
+   the register is missing two units, or the Selected sheet names two that do not exist.
+2. **`VAV_1F_S15_039` and `VAV_1F_S15_039S` are two real units, not a typo.** The
+   handover previously flagged the trailing `S` as a possible typing error; the IO list
+   settles it — both carry a full, separate point set. But the Selected sheet selects
+   points only for `039`, so **`039S` is in the sheet with no points at all**. Confirm
+   whether `039S` should have been selected too.
+3. **15 tags are listed twice in the Selected sheet** (`RtnAirDuctPrs.PV`, once per AHU).
+   A tag names one physical point, so each is emitted once; the repeats would otherwise
+   produce duplicate rows and two points sharing one timeseries id.
+
 ## Left out, and why
 
-- **Partial-coverage points.** Covered above — the 75 signatures that sit on only some
-  units of a family wait for the per-unit IO list. The universal points are in.
+- **Equipment outside AHU / VAV / CAV / FCU.** The Selected sheet also lists points for
+  CCU, EF, DX, HEX, KEF, SEF, TEF and GEN. That equipment is not in the asset register,
+  so neither it nor its points are in this sheet — scoped out at your direction. Send an
+  asset register for those families and both layers land together.
+- **IO-list points that were not selected.** Only the "Must Have" points in
+  `Selected_PARA_OS_Data_Points_v4.0.xlsx` are modelled. The IO list carries 11,601 rows
+  in total; the rest are deliberately out of scope, and show as `W-IO-2` warnings.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **Zones.** No `rec:Zone` or `rec:HVACZone` layer; no zone data was supplied. Rooms sit
@@ -398,6 +443,5 @@ column is still the schedule's own text — so the join is documented rather tha
 lost. This reverses the earlier *names cannot be changed* instruction for room
 names only; **asset tags were left untouched**, since they are the BMS join key.
 
-Validator after the pass: **450 errors** (all the deliberately empty
-`para:IFC_ID` cells), **0 warnings**, **0 consistency errors** — identical to
-before it.
+Validator after the spelling pass: unchanged by it — the room-name corrections
+introduce no findings of their own. Current totals are in "Validator result" above.
