@@ -123,6 +123,30 @@ ask the user which root to put it under:
 Do not pick a root to make the row validate. A piece of equipment filed under
 `brick:Point` breaks every application that queries equipment.
 
+## Never use a root class as a catch-all: `brick:Alarm`
+
+`brick:Alarm` is the root of the alarm tree, not a bucket for every alarm point.
+**Only a point whose name or label is literally a general / summary / common alarm
+is typed `brick:Alarm`.** Every other alarm - trip, fail-to-start, fail-to-stop,
+overload, phase-loss, high-level, filter, communication-loss - is a specific alarm
+and runs the full ladder like any other point:
+
+1. Dar Cairo (e.g. `para:Phase_Loss_Alarm`, `para:High_Level_Alarm` already exist there);
+2. Brick 1.4 (`brick:Overload_Alarm`, `brick:Communication_Loss_Alarm`, `brick:Air_Flow_Alarm`, …);
+3. a previous project (SSC coined `para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm` under `brick:Alarm`);
+4. only if none has it, a new `para:<Name>_Alarm rdfs:subClassOf brick:Alarm`.
+
+The failure mode this prevents is real and in the reference data: SSC types its
+own `_TripAlm` points as the bare `brick:Alarm`, so a query for "trip alarms"
+cannot tell them apart from any other alarm. QNL splits them out as
+`para:Trip_Alarm` instead. Distinguish alarms by point name; reserve `brick:Alarm`
+for the one that genuinely is general.
+
+The same reasoning applies to any other root or near-root class -
+`brick:Sensor`, `brick:Setpoint`, `brick:Status`, `brick:Command`, `brick:Point`
+itself. Reach for the root only when the point really is that generic; otherwise
+resolve it to the specific class through the ladder.
+
 ## Where the classes came from
 
 | List | Contents | Rebuild with |

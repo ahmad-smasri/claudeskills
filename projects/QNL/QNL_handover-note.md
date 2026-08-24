@@ -134,10 +134,23 @@ asset identifier is unchanged.
 | CAV | `brick:Constant_Air_Volume_Box` | Brick 1.4 preferred term; no Dar Cairo precedent |
 | CHILLED WATER LOOP | `para:Chilled_Water_Loop_Network` | Dar Cairo, 127 rows; already in the para registry |
 
-No new `para:` class is proposed. `para:Chilled_Water_Loop_Network` is defined in row 2
-of the sheet for readability, but it is an existing registry class, not a new coinage.
-1,188 `I-TYP-6` info lines are the VAV and CAV classes — valid Brick 1.4, simply the
-first time this house has used them.
+`para:Chilled_Water_Loop_Network` is defined in row 2 of the sheet for readability,
+but it is an existing registry class, not a new coinage. 1,188 `I-TYP-6` info lines
+are the VAV and CAV classes — valid Brick 1.4, simply the first time this house has
+used them.
+
+### New `para:` class proposed for PARA-team review
+
+Introduced by the datapoint layer (see the datapoint ledger), one genuinely new class:
+
+| Class | Parent | Label | Why it is new |
+|---|---|---|---|
+| `para:Trip_Alarm` | `brick:Alarm` | Trip Alarm | The fan `TripAlm` points (`SupFan`/`RtnFan` trip alarms on the AHUs). No Dar Cairo, Brick 1.4 or SSC precedent for a trip-specific alarm class. It follows SSC's own alarm-splitting pattern — SSC coined `para:Fail_Start_Alarm` and `para:Fail_Stop_Alarm` under `brick:Alarm`, and QNL reuses both of those — but SSC types its own `_TripAlm` points as the bare `brick:Alarm`, which the reviewer has ruled out for anything but a literal general/summary alarm. `para:Trip_Alarm` gives the trip alarms a class of their own so they are distinguishable by point rather than lumped in with every other alarm. |
+
+Everything else in the datapoint layer resolves to an existing Dar Cairo, Brick 1.4
+or SSC class — including the reused SSC classes `para:Fail_Start_Alarm`,
+`para:Fail_Stop_Alarm`, `para:Scheduled_Hrs_Duration` and
+`para:UnScheduled_Hrs_Duration`, which are taken as-is rather than re-coined.
 
 ## The systems layer
 

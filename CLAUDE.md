@@ -104,6 +104,12 @@ onto the equipment; any source column whose meaning is ambiguous.
 Never invent a `brick:` or `rec:` term. Everything the team coins is `para:`, and a
 `para:` class a previous project already uses is reused, never re-coined.
 
+**Never use a root class as a catch-all.** `brick:Alarm` is only for a point whose
+name or label is literally a general/summary/common alarm; every other alarm (trip,
+fail-to-start, overload, …) runs the full ladder and gets its specific class - so
+`para:Trip_Alarm`, not a bare `brick:Alarm`. Same for `brick:Sensor`,
+`brick:Setpoint`, `brick:Status`, `brick:Command`. See `class-resolution.md`.
+
 **Identifiers** - `references/naming-and-labels.md`:
 
 - Identifiers the source supplies are kept as the source wrote them; they are the
