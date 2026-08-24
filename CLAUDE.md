@@ -50,7 +50,7 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V93.csv` | **the primary reference for any ontology we build.** 26,173 rows, 27 columns. Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_draft0.5_review.xlsx` | the current SSC sheet, 5,119 rows, plus the `Claude Log` and nine `*_Comparison` sheets from the consistency review. **Opens on `VAV_Comparison`, not on the ontology** - pick the sheet by its header, never by `.active`. 451 validator errors, so still not a model of correctness, but its site, building, systems and chilled-water-loop rows are the current house shape. |
+| `QF_SSC_Ontology_ver02.xlsx` | the current SSC sheet (cleaned), 5,082 rows on `SSC_Ontology_Ver0.6`, plus a `Claude Log` tab. This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
 ### Source documents - repo root
@@ -92,12 +92,23 @@ onto the equipment; any source column whose meaning is ambiguous.
 1. Is it in Dar Cairo? `lookup_reference.py --class "..."` - reuse that exact class.
 2. Is it in Brick? `lookup_reference.py --term ...` or ontology.brickschema.org -
    use the preferred class, never an alias.
-3. Not in Brick? Define a `para:` subclass of the closest Brick parent.
-4. No sensible parent either? For a **point**, `owl:Class rdfs:subClassOf brick:Point`.
+3. Is it in a previous project's ontology? Check the delivered sheets in
+   `reference-models/` (`QF_SSC_Ontology_ver02.xlsx` first) - reuse the class a
+   prior project already gave the concept, and reuse a `para:` class it already
+   coined rather than minting a parallel one.
+4. Not anywhere above? Define a `para:` subclass of the closest Brick parent.
+5. No sensible parent either? For a **point**, `owl:Class rdfs:subClassOf brick:Point`.
    For **equipment, ask the user which root to use** - never guess, never file
    equipment under `brick:Point`.
 
-Never invent a `brick:` or `rec:` term. Everything the team coins is `para:`.
+Never invent a `brick:` or `rec:` term. Everything the team coins is `para:`, and a
+`para:` class a previous project already uses is reused, never re-coined.
+
+**Never use a root class as a catch-all.** `brick:Alarm` is only for a point whose
+name or label is literally a general/summary/common alarm; every other alarm (trip,
+fail-to-start, overload, …) runs the full ladder and gets its specific class - so
+`para:Trip_Alarm`, not a bare `brick:Alarm`. Same for `brick:Sensor`,
+`brick:Setpoint`, `brick:Status`, `brick:Command`. See `class-resolution.md`.
 
 **Identifiers** - `references/naming-and-labels.md`:
 

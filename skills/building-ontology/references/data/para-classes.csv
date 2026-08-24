@@ -28,27 +28,27 @@ para:Charger_failure,brick:Failure_Alarm,Charger failure,DarCairo_V93.csv
 para:Chilled_Water_Loop_Network,brick:HVAC_Equipment,Chilled Water Loop Network,DarCairo_V93.csv
 para:Chilled_Water_Return_Temperature_Sensor_01,brick:Chilled_Water_Return_Temperature_Sensor,Chilled Water Return Temperature Sensor 01,DarCairo_V93.csv
 para:Chilled_Water_Return_Temperature_Sensor_02,brick:Chilled_Water_Return_Temperature_Sensor,Chilled Water Return Temperature Sensor 02,DarCairo_V93.csv
-para:Close_command,brick:Open_Close_Command,Close Command,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Close_command,brick:Open_Close_Command,Close Command,QF_SSC_Ontology_ver02.xlsx
 para:Command_Overriden_Status,brick:Overridden_Status,Command Overridden Status,DarCairo_V93.csv
 para:Command_Priority_Array_08,rec:PointOfInterest,Command Priority Array 08,DarCairo_V93.csv
 para:Command_Priority_Array_12,rec:PointOfInterest,Command Priority Array 12,DarCairo_V93.csv
 para:Command_Priority_Array_13,rec:PointOfInterest,Command Priority Array 13,DarCairo_V93.csv
-para:Command_Status,brick:Manual_Auto_Status,Auto Manual Command Status,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Command_Status,brick:Manual_Auto_Status,Auto Manual Command Status,QF_SSC_Ontology_ver02.xlsx
 para:Common_Util_Meter,brick:Electrical_Meter,Common Utilities Electrical Meter,DarCairo_V93.csv
 para:Coolant_Temperature_Sensor,brick:Temperature_Sensor,Coolant Temperature Sensor,DarCairo_V93.csv
 para:Cooling_Mode_Operation_Hours,para:Operation_Hours,Cooling Mode Operating Duration,DarCairo_V93.csv
 para:DC_Battery_System,brick:Energy_Storage,DC Battery System,DarCairo_V93.csv
-para:DXUnit,brick:HVAC_Equipment,DX Unit,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Damper_Position_100,brick:Valve_Position_Command,,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Damper_Position_70,brick:Valve_Position_Command,,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Damper_Position_77.5,brick:Valve_Position_Command,,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Damper_Position_85,brick:Valve_Position_Command,,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Damper_Position_92.5,brick:Valve_Position_Command,,QF_SSC_Ontology_draft0.5_review.xlsx
+para:DXUnit,brick:HVAC_Equipment,DX Unit,QF_SSC_Ontology_ver02.xlsx
+para:Damper_Position_100,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
+para:Damper_Position_70,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
+para:Damper_Position_77.5,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
+para:Damper_Position_85,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
+para:Damper_Position_92.5,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
 para:Data-Center_Meter,brick:Electrical_Meter,Data Center Electrical Meter,DarCairo_V93.csv
 para:Degree_Days,brick:Point,Degree Days,DarCairo_V93.csv
 para:Dehumid_Mode_Operation_Hours,para:Operation_Hours,Dehumidification Operationg Duration,DarCairo_V93.csv
 para:Dehumidification_Mode_Status,brick:Operating_Mode_Status,Dehumidification Mode Status,DarCairo_V93.csv
-para:Dehumidification_On_Status,brick:Operating_Mode_Status,Dehumidification On Status,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Dehumidification_On_Status,brick:Operating_Mode_Status,Dehumidification On Status,QF_SSC_Ontology_ver02.xlsx
 para:Departure_Time,brick:Point,Occupancy Departure Time,DarCairo_V93.csv
 para:Differential_Pressure_Sensor_01,brick:Differential_Pressure_Sensor,Differential Pressure Sensor 01,DarCairo_V93.csv
 para:Differential_Pressure_Sensor_02,brick:Differential_Pressure_Sensor,Differential Pressure Sensor 02,DarCairo_V93.csv
@@ -65,8 +65,8 @@ para:Emergency_Trip_Status,para:Trip_Status,Emergency Trip Status,DarCairo_V93.c
 para:Energy_Generation_Sensor_Forecast,brick:Energy_Generation_Sensor,Energy Generation Forecast,DarCairo_V93.csv
 para:Energy_KPI,para:KPI,Energy KPI,DarCairo_V93.csv
 para:Engine_Speed_Sensor,brick:Speed_Sensor,Engine Speed Sensor,DarCairo_V93.csv
-para:Fail_Start_Alarm,brick:Alarm,Fail to Start Alarm,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Fail_Stop_Alarm,brick:Alarm,Fail to Stop Alarm,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Fail_Start_Alarm,brick:Alarm,Fail to Start Alarm,QF_SSC_Ontology_ver02.xlsx
+para:Fail_Stop_Alarm,brick:Alarm,Fail to Stop Alarm,QF_SSC_Ontology_ver02.xlsx
 para:Failure_Frequency,brick:Frequency,Failure Frequency,DarCairo_V93.csv
 para:Fan_Mode_Operation_Hours,para:Operation_Hours,Fan Mode Operating Duration,DarCairo_V93.csv
 para:Feeder_Pillar,brick:Electrical_Equipment,Feeder Pillar,DarCairo_V93.csv
@@ -88,14 +88,14 @@ para:HRW_Cooling_Temperature_Setpoint,brick:Temperature_Setpoint,HRW Cooling Tem
 para:HRW_Heating_Temperature_Setpoint,brick:Temperature_Setpoint,HRW Heating Temperature Setpoint,DarCairo_V93.csv
 para:HVAC_Meter,brick:Electrical_Meter,HVAC Electrical Meter,DarCairo_V93.csv
 para:HW_Meter,brick:Thermal_Power_Meter,Hot Water Thermal Power Meter,DarCairo_V93.csv
-para:Heater_On_Status,brick:Operating_Mode_Status,Heater On Status,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Heater_On_Status,brick:Operating_Mode_Status,Heater On Status,QF_SSC_Ontology_ver02.xlsx
 para:Heating_Mode_Operation_Hours,para:Operation_Hours,Heating Mode Operating Duration,DarCairo_V93.csv
 para:HighPowerFan,para:HighPowerFan,High Power Fan,DarCairo_V93.csv
 para:High_Coolant_Temperature_Sensor,brick:Temperature_Sensor,High Coolant Temperature Sensor,DarCairo_V93.csv
 para:High_Level_Alarm,brick:Max_Water_Level_Alarm,Max Lvl Alarm,DarCairo_V93.csv
 para:Humid_Mode_Operation_Hours,para:Operation_Hours,Humidification Operationg Duration,DarCairo_V93.csv
 para:Humidification_Mode_Status,brick:Operating_Mode_Status,Humidification Mode Status,DarCairo_V93.csv
-para:Humidification_On_Status,brick:Operating_Mode_Status,Humidification On Status,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Humidification_On_Status,brick:Operating_Mode_Status,Humidification On Status,QF_SSC_Ontology_ver02.xlsx
 para:IFC_ID,ref:ifcGlobalID,IFC_Id,DarCairo_V93.csv
 para:Illuminance_KPI,para:OW_KPI,,DarCairo_V93.csv
 para:Input_Alarm,brick:Alarm,Input Alarm,DarCairo_V93.csv
@@ -138,7 +138,7 @@ para:Oil_Loop,brick:Gas_Distribution,Oil Loop,DarCairo_V93.csv
 para:Oil_Pump,brick:Pump,Oil Pump,DarCairo_V93.csv
 para:Oil_Storage_Tank,brick:Storage_Tank,Oil StorageTank,DarCairo_V93.csv
 para:Oil_Temperature_Sensor,brick:Temperature_Sensor,Oil Temperature Sensor,DarCairo_V93.csv
-para:Open_command,brick:Open_Close_Command,Open Command,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Open_command,brick:Open_Close_Command,Open Command,QF_SSC_Ontology_ver02.xlsx
 para:Operation_Above80_Hours,brick:Duration_Sensor,Operating Hours Above 80 Hours,DarCairo_V93.csv
 para:Operation_Hours,brick:Duration_Sensor,Operating Duration,DarCairo_V93.csv
 para:Outpower_L1,brick:Load_Parameter,Outpower L1%,DarCairo_V93.csv
@@ -166,31 +166,31 @@ para:Relative_Humidity_KPI,para:OW_KPI,,DarCairo_V93.csv
 para:Relative_Humidity_Sensor_Forecast,brick:Relative_Humidity_Sensor,Weather Relative Humidity Forecast,DarCairo_V93.csv
 para:Required_Operation_Hours,para:Operation_Hours,Required Operating Duration,DarCairo_V93.csv
 para:Res_Current_Sensor,brick:Current_Sensor,Residual Current,DarCairo_V93.csv
-para:Return_Air_Static_Pressure_Sensor,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Return_Air_Static_Pressure_Sensor_01,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 01,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Return_Air_Static_Pressure_Sensor_02,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 02,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Return_Air_Static_Pressure_Sensor,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure,QF_SSC_Ontology_ver02.xlsx
+para:Return_Air_Static_Pressure_Sensor_01,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 01,QF_SSC_Ontology_ver02.xlsx
+para:Return_Air_Static_Pressure_Sensor_02,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 02,QF_SSC_Ontology_ver02.xlsx
 para:Return_Smoke_Detector,brick:Smoke_Detector,Return Smoke Detector,DarCairo_V93.csv
 para:Room_Air_Temperature,brick:Temperature_Sensor,Room Air Temperature,DarCairo_V93.csv
 para:Rotate_Command,brick:Lead_Lag_Command,Rotate Command,DarCairo_V93.csv
 para:SPWR_Meter,brick:Electrical_Meter,Small Power Electrical Meter,DarCairo_V93.csv
-para:Scheduled_Hrs_Duration,brick:Duration_Sensor,Scheduled Hours of Operation,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Scheduled_Hrs_Duration,brick:Duration_Sensor,Scheduled Hours of Operation,QF_SSC_Ontology_ver02.xlsx
 para:Solar_Meter,brick:Electrical_Meter,Generator Electrical Meter,DarCairo_V93.csv
-para:Start_Command,brick:Start_Stop_Command,Start Command,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Start_Command,brick:Start_Stop_Command,Start Command,QF_SSC_Ontology_ver02.xlsx
 para:Start_Time,brick:Duration_Sensor,Start Time,DarCairo_V93.csv
 para:Start_Time_Buffer,brick:Point,Start Time Buffer,DarCairo_V93.csv
-para:Static_Pressure_Sensor,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Static_Pressure_Sensor,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor,QF_SSC_Ontology_ver02.xlsx
 para:Static_Pressure_Sensor_01,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 01,DarCairo_V93.csv
 para:Static_Pressure_Sensor_02,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 02,DarCairo_V93.csv
 para:Static_Pressure_Sensor_03,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 03,DarCairo_V93.csv
-para:Static_Pressure_Sensor_Remote_01,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Remote Sensor 01,QF_SSC_Ontology_draft0.5_review.xlsx
-para:Static_Pressure_Sensor_Remote_02,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Remote Sensor 02,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Static_Pressure_Sensor_Remote_01,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Remote Sensor 01,QF_SSC_Ontology_ver02.xlsx
+para:Static_Pressure_Sensor_Remote_02,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Remote Sensor 02,QF_SSC_Ontology_ver02.xlsx
 para:Static_Pressure_Setpoint_01,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 01,DarCairo_V93.csv
 para:Static_Pressure_Setpoint_02,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 02,DarCairo_V93.csv
 para:Static_Pressure_Setpoint_03,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 03,DarCairo_V93.csv
-para:Stop_Command,brick:Start_Stop_Command,Stop Command,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Stop_Command,brick:Start_Stop_Command,Stop Command,QF_SSC_Ontology_ver02.xlsx
 para:Stop_Time,brick:Duration_Sensor,Stop Time,DarCairo_V93.csv
 para:Sub_Main_Distribution_Board,brick:Breaker_Panel,Sub Main Distribution Panel,DarCairo_V93.csv
-para:Summary_Alarm,brick:Alarm,Summary Alarm,QF_SSC_Ontology_draft0.5_review.xlsx
+para:Summary_Alarm,brick:Alarm,Summary Alarm,QF_SSC_Ontology_ver02.xlsx
 para:Summer_Supply_Air_Temperature_Setpoint,brick:Supply_Air_Temperature_Setpoint,Summer Supply Air Temperature Setpoint,DarCairo_V93.csv
 para:Sump_Pit,brick:Tank,Sump Pit,DarCairo_V93.csv
 para:Sump_System,brick:System,Sump System,DarCairo_V93.csv
@@ -213,7 +213,7 @@ para:UPS_Off_Status,brick:Off_Status,UPS Off Status,DarCairo_V93.csv
 para:UPS_Status,brick:Status,UPS Status,DarCairo_V93.csv
 para:UPS_Temperature_Alarm,brick:Temperature_Alarm,UPS Temperature Alarm,DarCairo_V93.csv
 para:UPS_Temperature_Sensor,brick:Temperature_Sensor,UPS Temperature Sensor,DarCairo_V93.csv
-para:UnScheduled_Hrs_Duration,brick:Duration_Sensor,UnScheduled Hours of Operation,QF_SSC_Ontology_draft0.5_review.xlsx
+para:UnScheduled_Hrs_Duration,brick:Duration_Sensor,UnScheduled Hours of Operation,QF_SSC_Ontology_ver02.xlsx
 para:Unit_failure,brick:Failure_Alarm,Unit failure,DarCairo_V93.csv
 para:Util_Type,brick:Collection,,DarCairo_V93.csv
 para:Utility_Meter,brick:Electrical_Meter,Utility Electrical Meter,DarCairo_V93.csv

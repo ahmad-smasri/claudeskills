@@ -278,32 +278,40 @@ the opposite: it goes on the physical thing, equipment or room. Where no IO list
 was supplied there are no points and therefore no timeseries references; do not
 add equipment-level stubs to fill the gap.
 
-### QF SSC draft 0.5 review (`QF_SSC_Ontology_draft0.5_review.xlsx`, 5,119 rows)
+### QF SSC ver02 (`QF_SSC_Ontology_ver02.xlsx`, 5,082 rows)
 
-Replaces draft 0.4, which is gone from the repo. Eleven sheets:
-`SSC_Ontology_Ver0.5` holds the triples, `Claude Log` records the review
-exercise that produced `check_consistency.py`, and nine `*_Comparison` /
-`*_Check` sheets hold its per-family findings.
+The cleaned SSC delivery, replacing `draft0.5_review` (gone from the repo). Two
+sheets: `SSC_Ontology_Ver0.6` holds the triples and `Claude Log` records the
+last two correction turns (the CCU alarm-typing fixes of 2026-08-20). The nine
+`*_Comparison` / `*_Check` review sheets that draft 0.5 carried are gone - this
+is a delivery sheet, not a review workbook.
 
-**The workbook opens on `VAV_Comparison`, not on the ontology.** Every script
-here picks the sheet by the header contract rather than by `.active` for exactly
-this reason. Any new tool that reads a reference model must do the same or it
-will silently read a review sheet.
+The workbook now opens on the ontology sheet, but every script here still picks
+the sheet by the header contract rather than by `.active` - keep that habit, and
+any new tool that reads a reference model must do the same.
 
-Much improved on 0.4 - 451 errors against 1,040, and the feeds placeholders that
-made 0.4 unusable as a feeds reference are largely gone. Still not clean, so do
-not copy blindly:
+This is the step-3 previous-project reference in the class ladder. Much cleaner
+than draft 0.5 - **17 errors against 451** under `--label-style verbatim`:
 
 | Count | Code | What it is |
 |---|---|---|
-| 2,940 | `I-TYP-6` | valid Brick terms with no Dar Cairo precedent - advisory |
-| 320 | `W-TYP-5` | alias classes |
-| 260 | `E-TYP-2` | terms not in Brick 1.4, e.g. `brick:Heater`; `brick:ccupied_Air_Temperature_Setpoint` still carries its dropped leading `O` |
-| 96 | `E-LBL-1` | labels carrying source punctuation - expected under SSC's verbatim label style, so run it with `--label-style verbatim` |
-| 55 | `E-TYP-1` | entities typed more than one way |
-| 53 | `W-DUP-1` | duplicate rows |
-| 20 | `W-LBL-2` | entities with no label, `entity:CHWS-MAIN-LOOP` among them |
-| 15 | `E-FEED-1` | terminal units with no feeds row, all CRACs |
+| 2,799 | `I-TYP-6` | valid Brick terms with no Dar Cairo precedent - advisory |
+| 309 | `W-TYP-5` | alias classes, mostly `brick:CRAC` (prefer `brick:Computer_Room_Air_Conditioning`) |
+| 8 | `W-LBL-2` | entities with no label, `entity:CHWS-MAIN-LOOP` among them |
+| 8 | `E-WS-1` | padded cells - leading/trailing whitespace |
+| 7 | `I-PH-2` | `<AliasOf>` placeholders - open work, not defects |
+| 4 | `E-TYP-3` | a `para:` term used but not defined in-sheet and absent from the registry |
+| 3 | `E-PAIR-1` | a prop name with no value |
+| 3 | `W-PT-1` | a data point with no external reference, the `SA_P-Static` statics |
+| 1 | `E-GR-1` | a spatial entity whose containment never reaches a `rec:Building` |
+| 1 | `E-FEED-1` | a terminal unit with no feeds row |
+
+Reusable `para:` classes it coins, to take at step 3 rather than re-mint:
+`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm` (all
+`rdfs:subClassOf brick:Alarm`), and `para:Scheduled_Hrs_Duration` /
+`para:UnScheduled_Hrs_Duration` (`rdfs:subClassOf brick:Duration_Sensor`). Note
+SSC still types its `_TripAlm` points as generic `brick:Alarm` - it did not coin
+a Trip alarm class, so distinguishing those by name is new work.
 | 9 | `E-PH-1` | surviving placeholders, all `<AliasOf>` |
 | 8 | `E-WS-1` | padded cells |
 | 4 | `E-TYP-3` | `para:inletSize`, `para:outletSize` and two others used but never defined |

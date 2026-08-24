@@ -37,9 +37,44 @@ Two traps:
   The validator warns (`W-TYP-5`) and names the replacement.
 - **Deprecated terms.** 246 terms are deprecated, mostly spatial classes moved to
   REC, plus water points where supply/return became entering/leaving. `W-TYP-4`
-  carries Brick's own mitigation message.
+  carries Brick's own mitigation message. A deprecation usually ships a functional
+  replacement (supply/return → entering/leaving for water), so migrating to the
+  replacement is the default. Keeping the deprecated class is a reviewer's call -
+  when they make it, keep the class and add a `note` naming the current
+  replacement, so the row still documents the move.
 
-## 3. Not in Brick: make a `para:` subclass
+## 3. Is it in a previous project's ontology?
+
+Before coining anything, check the ontologies already delivered for other
+projects. They are in `reference-models/`:
+
+```
+python3 - <<'PY'
+import openpyxl
+wb = openpyxl.load_workbook('reference-models/QF_SSC_Ontology_ver02.xlsx', data_only=True)
+ws = wb['SSC_Ontology_Ver0.6']
+hits = {ws.cell(r,2).value for r in range(2, ws.max_row+1)
+        if 'YourKeyword' in str(ws.cell(r,2).value)}   # subjectType column
+print(sorted(hits))
+PY
+```
+
+`QF_SSC_Ontology_ver02.xlsx` (the QF SSC building) is the first to check - it is
+the current house sheet and shares Dar Cairo's 27-column shape. Later projects go
+here too as they land.
+
+Why this sits above minting a `para:` class: a previous project has usually
+already faced the same gap and coined a `para:` class for it. **Reuse that exact
+class - do not mint a parallel one.** Worked precedent from SSC: fan trip/failure
+alarms are split by point name into `para:Fail_Start_Alarm` and
+`para:Fail_Stop_Alarm`; room air temperature is `brick:Room_Air_Temperature_Sensor`;
+speed feedback is `brick:Speed_Sensor`. When SSC's class is itself `para:`, the
+row's source is the previous project, not a fresh mint - it still goes in the
+handover note, flagged as already-in-SSC rather than new.
+
+If no previous project has it either, fall through to step 4.
+
+## 4. Not anywhere above: make a `para:` subclass
 
 Pick the **most specific correct parent** - that is what makes the new class
 inherit the right properties and stay discoverable to applications.
@@ -71,7 +106,7 @@ para:ratedChilledWaterFlowrate | brick:EntityProperty | rdfs:subPropertyOf |
 brick:EntityProperty | | rdfs:label_en | Rated Chilled Water Flowrate
 ```
 
-## 4. No sensible parent: root it at `brick:Point`
+## 5. No sensible parent: root it at `brick:Point`
 
 When the thing has no superclass anywhere in Brick, define a new `owl:Class` as
 `rdfs:subClassOf brick:Point`. Dar Cairo has precedent for this shape, so check
@@ -87,6 +122,30 @@ ask the user which root to put it under:
 
 Do not pick a root to make the row validate. A piece of equipment filed under
 `brick:Point` breaks every application that queries equipment.
+
+## Never use a root class as a catch-all: `brick:Alarm`
+
+`brick:Alarm` is the root of the alarm tree, not a bucket for every alarm point.
+**Only a point whose name or label is literally a general / summary / common alarm
+is typed `brick:Alarm`.** Every other alarm - trip, fail-to-start, fail-to-stop,
+overload, phase-loss, high-level, filter, communication-loss - is a specific alarm
+and runs the full ladder like any other point:
+
+1. Dar Cairo (e.g. `para:Phase_Loss_Alarm`, `para:High_Level_Alarm` already exist there);
+2. Brick 1.4 (`brick:Overload_Alarm`, `brick:Communication_Loss_Alarm`, `brick:Air_Flow_Alarm`, …);
+3. a previous project (SSC coined `para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm` under `brick:Alarm`);
+4. only if none has it, a new `para:<Name>_Alarm rdfs:subClassOf brick:Alarm`.
+
+The failure mode this prevents is real and in the reference data: SSC types its
+own `_TripAlm` points as the bare `brick:Alarm`, so a query for "trip alarms"
+cannot tell them apart from any other alarm. QNL splits them out as
+`para:Trip_Alarm` instead. Distinguish alarms by point name; reserve `brick:Alarm`
+for the one that genuinely is general.
+
+The same reasoning applies to any other root or near-root class -
+`brick:Sensor`, `brick:Setpoint`, `brick:Status`, `brick:Command`, `brick:Point`
+itself. Reach for the root only when the point really is that generic; otherwise
+resolve it to the specific class through the ladder.
 
 ## Where the classes came from
 

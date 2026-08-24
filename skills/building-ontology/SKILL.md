@@ -91,15 +91,21 @@ For every piece of equipment, part and point, in this order - see
    If yes, reuse that exact class. Dar Cairo is the primary reference.
 2. **Is it in Brick?** `scripts/lookup_reference.py --term Heat_Wheel`, or search
    <https://ontology.brickschema.org>. Use the preferred class, never an alias.
-3. **Not in Brick?** Define a `para:` subclass of the closest Brick parent.
-4. **No sensible parent either?** Define a new `owl:Class` as
+3. **Is it in a previous project's ontology?** Check the other delivered project
+   sheets - `reference-models/QF_SSC_Ontology_*.xlsx` first. If a prior project
+   already classed this concept, reuse that class. This is where a `para:` class
+   the team already coined gets reused instead of minted a second time - always
+   reuse the prior name rather than inventing a parallel one.
+4. **Not anywhere above?** Define a `para:` subclass of the closest Brick parent.
+5. **No sensible parent either?** Define a new `owl:Class` as
    `rdfs:subClassOf brick:Point`. Dar Cairo has precedent for this shape too.
 
-**Step 4 applies to points only.** If the orphan is a piece of equipment, stop
+**Step 5 applies to points only.** If the orphan is a piece of equipment, stop
 and ask the user which root to put it under. Do not guess, and do not file
 equipment under `brick:Point` to make the row validate.
 
-Never invent a `brick:` or `rec:` term. Anything the team coins is `para:`.
+Never invent a `brick:` or `rec:` term. Anything the team coins is `para:` - and
+a `para:` class already used by a previous project is reused, never re-coined.
 
 ## 2. Build the sheet in layers
 
@@ -283,6 +289,6 @@ timeseries references, an aggregation and two `para:` classes - that validates
 clean. Copy its shapes rather than reinventing them.
 
 `reference-models/` holds the source of truth: `DarCairo_V93.csv` (primary),
-`QF_SSC_Ontology_draft0.5_review.xlsx` (the current sample, 451 errors, and it
-opens on a review sheet rather than on the ontology) and
+`QF_SSC_Ontology_ver02.xlsx` (the cleaned SSC delivery, 5,082 rows, 17 errors -
+the step-3 previous-project reference in the class ladder) and
 `Ontology_headers.xlsx` (the 9 canonical column names).
