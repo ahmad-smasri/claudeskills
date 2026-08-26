@@ -260,12 +260,16 @@ building - `SSC`, `HQ`, `QNL`, `RDC`** - so the projects stay comparable and a r
 applied on one building can be checked against the others. Columns:
 
 `ID` · `Date` · `Category` · `Layer` · `Entity / Scope` · `What the source says` ·
-`What we did` · `Why / basis` · `Rows affected` · `Status` · `Raised with client`
+`What we did` · `Why / basis` · `Rows affected`
 
 Categories in use: `Identifier`, `Location`, `Units`, `Spelling`, `Class`,
-`Structure`, `Scope`, `Source defect`. `Status` is `Accepted`, `Accepted - client
-directed`, `Accepted - source defect`, `Open`, `On hold` or `Resolved` - so the open
-items can be filtered out and chased.
+`Structure`, `Scope`, `Source defect`.
+
+**The log is hand-maintained** - it is edited in Excel as decisions are taken, so
+nothing regenerates it from a script. `projects/format_assumption_log.py` only applies
+the shared format, never row content: it reads the column set and styling off the QNL
+sheet and brings the others to match, so a column change is made once in Excel and
+propagated from there. `--add <NAME>` scaffolds an empty sheet for a new building.
 
 **What must be logged.** Anything where the sheet and the source do not match:
 
