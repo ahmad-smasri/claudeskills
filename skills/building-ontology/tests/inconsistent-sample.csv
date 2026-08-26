@@ -79,3 +79,5 @@ entity:Pad-037,rec:Room,rec:isPartOf,entity:B_Floor-1,rec:Level,rdfs:label_en,Pa
 entity:Pad-038,rec:Room,rec:isPartOf,entity:B_Floor-1,rec:Level,rdfs:label_en,Pad 38,,,,,,,,,,,,,,,,,,,,
 entity:Pad-039,rec:Room,rec:isPartOf,entity:B_Floor-1,rec:Level,rdfs:label_en,Pad 39,,,,,,,,,,,,,,,,,,,,
 entity:FCU-01,brick:Fan_Coil_Unit,brick:isPartOf,entity:HVAC,brick:System,,,,,,,,,,,,,,,,,,,,,,
+entity:FCU-01,brick:Fan_Coil_Unit,brick:hasPoint,entity:FCU-01_kW,brick:Electric_Power_Sensor,,,rdfs:label_en,Power,,,brick:hasUnit,unit:KiloW,,,,,,,,,,,,,,
+entity:FCU-02,brick:Fan_Coil_Unit,brick:hasPoint,entity:FCU-02_kW,brick:Electric_Power_Sensor,,,rdfs:label_en,Power,,,brick:hasUnit,unit:PERCENT,,,,,,,,,,,,,,

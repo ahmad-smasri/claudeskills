@@ -82,7 +82,7 @@ fi
 echo "== the inconsistent fixture must trip every consistency rule"
 out=$("$PY" scripts/check_consistency.py tests/inconsistent-sample.csv 2>&1)
 for code in E-CON-1 E-CON-2 E-CON-3 E-CON-4 E-CON-5 E-CON-6 E-CON-10 E-CON-17 \
-            W-CON-7 W-CON-9 W-CON-11 W-CON-12 \
+            W-CON-7 W-CON-9 W-CON-11 W-CON-12 W-CON-19 \
             I-CON-8 I-CON-13 I-CON-14 I-CON-15 I-CON-16; do
     if grep -q "$code" <<<"$out"; then
         echo "   ok   $code"

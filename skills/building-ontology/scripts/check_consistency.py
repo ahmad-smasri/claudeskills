@@ -85,6 +85,7 @@ class Triple:
     predicate: str
     obj: str
     object_type: str
+    props: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -110,12 +111,23 @@ def load_triples(path: Path) -> list[Triple]:
     idx = [low.index(c) for c in
            ("subject", "subjecttype", "predicate", "object", "objecttype")]
 
+    # Prop pairs live past the fifth column as (name, value) couples. They carry
+    # brick:hasUnit, which W-CON-19 needs.
+    prop_cols = [i for i in range(5, len(header) - 1)
+                 if low[i].endswith("prop_name")]
+
     out = []
     for rownum, r in body:
         cells = [r[i].strip() if i < len(r) else "" for i in idx]
         if not cells[0]:
             continue
-        out.append(Triple(rownum, *cells))
+        props = {}
+        for i in prop_cols:
+            if i + 1 < len(r):
+                name, val = r[i].strip(), r[i + 1].strip()
+                if name:
+                    props.setdefault(name, val)
+        out.append(Triple(rownum, *cells, props=props))
     return out
 
 
@@ -558,6 +570,40 @@ def check_prefix(fam, expected, report, io=None):
                            f"every subject in this family uses")
 
 
+def check_unit_per_class(triples, report):
+    """W-CON-19: one point class should carry one unit across the whole sheet.
+
+    A file-wide check, not a per-family one - a point class routinely spans
+    families (`brick:Room_Air_Temperature_Sensor` sits on VAV, CAV and FCU), and
+    a split that only shows when the families are read together is exactly the
+    one a per-family pass would miss.
+
+    The unit belongs to the physical quantity, and the class names that quantity,
+    so one class reading in two units means at least one of them is wrong. On QNL
+    this caught `brick:Electric_Power_Sensor` split 20 `unit:PERCENT` / 4
+    `unit:KiloW`: the IO list carried `%` on 20 of its 24 `.kW` tags, against a
+    description reading "Power". The split was the tell, before anyone read a tag.
+
+    A warning rather than an error: a class whose quantity genuinely admits more
+    than one unit is possible, and the reviewer is the one who can say so.
+    """
+    by_class = collections.defaultdict(collections.Counter)
+    where = {}
+    for t in triples:
+        unit = t.props.get("brick:hasUnit")
+        if not unit or not t.object_type:
+            continue
+        by_class[t.object_type][unit] += 1
+        where.setdefault((t.object_type, unit), t.row)
+    for cls, units in sorted(by_class.items()):
+        if len(units) > 1:
+            spread = ", ".join(f"{u} on {n}" for u, n in units.most_common())
+            report.add("WARN", "W-CON-19", where[(cls, units.most_common()[0][0])],
+                       f"{cls} carries {len(units)} different units - {spread}. "
+                       f"The class names the quantity, so at least one is wrong; "
+                       f"check the source's unit column against the class")
+
+
 # check_pattern_presence runs before check_row_counts: it is what fills
 # io_explained, which check_row_counts then reads.
 CHECKS = (check_single_instance, check_pattern_presence, check_row_counts,
@@ -590,6 +636,10 @@ def run(path: Path, report: Report, only: str | None = None, io=None):
         io_explained.clear()
         for check in CHECKS:
             check(fam, expected, report, io)
+
+    # File-wide checks run once, after the per-family pass.
+    if only is None:
+        check_unit_per_class(triples, report)
 
 
 def main():

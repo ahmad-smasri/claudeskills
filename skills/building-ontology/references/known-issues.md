@@ -92,6 +92,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `W-CON-9` | a declared point has no `ref:hasExternalReference`. Points only; a part needs no reference of its own |
 | `W-CON-11` | something carries an external reference but is never declared with `brick:hasPoint` or `brick:hasPart` |
 | `W-CON-12` | a unit's rows are scattered instead of sitting together; the stray rows are named |
+| `W-CON-19` | one point class carries more than one `brick:hasUnit` across the sheet. The class names the physical quantity, so a split means at least one unit is wrong. File-wide, not per-family - a point class routinely spans families. This is the check that caught `brick:Electric_Power_Sensor` split 20 `unit:PERCENT` / 4 `unit:KiloW` on QNL |
 
 ### Info
 

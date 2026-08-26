@@ -297,9 +297,32 @@ applies 20, all `brick:Electric_Power_Sensor: unit:PERCENT → unit:KiloW`. Air 
 deliberately excluded from that rule: the IO list distinguishes volumetric flow (`l/s`,
 on the VAV/CAV boxes) from velocity (`m/s`, on the AHU ducts), and both are real.
 
-After the pass, **no class in the sheet carries more than one unit** — a cheap invariant
-worth re-checking on any future build. Both source defects are worth correcting at
-source.
+After the pass, **no class in the sheet carries more than one unit**. That invariant is
+now a permanent rule in the shared checker (`W-CON-19`), so any future project gets it
+automatically rather than relying on someone thinking to look.
+
+A full audit of the remaining units came back clean: no analog point silently defaulted
+to unitless, every engineering-unit string in the IO list mapped to a Brick term (none
+fell through), all 88 discrete points are `unit:UNITLESS`, and the ontology now agrees
+with the ledger's `unit_of_measure` on **every** signature — the power rows were the only
+correction that had been lost.
+
+**One open question, reported rather than changed: the 22 AHU air-flow points.**
+`QNL_AHU*_SupAirFlow.PV` (15) and `RtnAirFlow.PV` (7) are classed
+`brick:Supply_Air_Flow_Sensor` / `brick:Return_Air_Flow_Sensor` but carry `unit:M-PER-SEC`
+— a velocity, where the class names a flow. The VAV/CAV `DuctAirFlow` points, by
+contrast, are `brick:Air_Flow_Sensor` in `unit:L-PER-SEC`, which is consistent.
+
+This is left as the IO list has it, for two reasons: Brick 1.4 has **no air-velocity
+sensor class** (only `*_Velocity_Pressure_Sensor`, a pressure quantity), so
+`Supply_Air_Flow_Sensor` remains the nearest correct class; and a duct-mounted velocity
+probe reading m/s is a normal way to measure AHU airflow, so the unit is plausibly right.
+The `MinEU`/`MaxEU` columns cannot settle it — they read 0–100 on every tag, m/s and l/s
+alike, so they are unpopulated defaults rather than real calibration.
+
+**What would settle it:** confirm with the BMS engineer whether those 22 transmitters
+output air velocity (m/s — keep as is) or volumetric flow (l/s — the unit is mislabelled
+at source and should change). Both source defects above are worth correcting at source.
 
 **Classes are taken straight from the ledger's `final_class`**, including the four
 reused SSC classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`,
