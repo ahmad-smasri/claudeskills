@@ -598,6 +598,7 @@ def build(args):
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
     from openpyxl.utils import get_column_letter
+    from openpyxl.worksheet.hyperlink import Hyperlink
 
     sheet = Path(args.sheet)
     rows, sheet_name = load_rows(sheet)
@@ -688,6 +689,21 @@ def build(args):
             cell.font, cell.fill, cell.border = COLH, HDRF, THIN
             cell.alignment = Alignment(wrap_text=True, vertical='center')
         return r + 1
+
+    LINKF = Font(color='0563C1', underline='single', size=10)
+
+    def link_to_row(cell, rownum, text=None):
+        """Make the cell a click-through to that row of the data sheet."""
+        cell.value = text if text is not None else rownum
+        cell.hyperlink = Hyperlink(ref=cell.coordinate, location="'%s'!A%d" % (sheet_name, rownum))
+        cell.font = LINKF
+        return cell
+
+    def link_to_tab(cell, tabname, text=None):
+        cell.value = text if text is not None else tabname
+        cell.hyperlink = Hyperlink(ref=cell.coordinate, location="'%s'!A1" % tabname)
+        cell.font = LINKF
+        return cell
 
     def sev_fill(cell, sev):
         if sev == 'ERROR':
@@ -783,7 +799,12 @@ def build(args):
             ws.cell(r, 3, why)
             ws.cell(r, 4, todo)
             ws.cell(r, 5, cnt)
-            ws.cell(r, 6, where(rws))
+            if rws:
+                link_to_row(ws.cell(r, 6), rws[0],
+                            'go to row %d%s' % (rws[0],
+                                                '' if len(rws) == 1 else ' (first of %d)' % len(rws)))
+            else:
+                ws.cell(r, 6, 'applies to the file as a whole')
             for k in range(1, 7):
                 ws.cell(r, k).border = THIN
                 ws.cell(r, k).alignment = Alignment(wrap_text=True, vertical='top')
@@ -791,17 +812,46 @@ def build(args):
             r += 1
 
         r += 1
-        ws.cell(r, 1, 'Examples, if you want to see actual cases').font = SECT
+        byrow = collections.defaultdict(list)
+        loose = []
+        for f in fs:
+            (byrow[f.row].append(f) if f.row else loose.append(f))
+        ws.cell(r, 1, 'Every row that needs attention - %d of them, in file order. '
+                      'Click a row number to jump straight to it.' % len(byrow)).font = SECT
         ws.cell(r, 1).fill = SECF
         r += 1
-        r = header_row(ws, r, ['What is wrong', 'Row', 'What the checker saw'])
-        for sev, code, cnt, rws, items in collapse(fs):
-            title = plain(code)[0]
-            for f in items[:3]:
-                ws.cell(r, 1, title)
-                ws.cell(r, 2, f.row if f.row else 'whole file')
-                ws.cell(r, 3, f.finding)
-                for k in range(1, 4):
+        r = header_row(ws, r, ['Go to row', 'How serious', 'What is wrong with this row',
+                               'What to do', 'Which thing'])
+        for rownum in sorted(byrow):
+            items = byrow[rownum]
+            worst = min(items, key=lambda f: SEV_ORDER[f.severity]).severity
+            titles, todos = [], []
+            for f in items:
+                t, _w, d = plain(f.code)
+                if t not in titles:
+                    titles.append(t)
+                    todos.append(d)
+            link_to_row(ws.cell(r, 1), rownum)
+            sev_fill(ws.cell(r, 2, SEVERITY_WORD[worst]), worst)
+            ws.cell(r, 3, '; '.join(titles))
+            ws.cell(r, 4, ' '.join(todos))
+            ws.cell(r, 5, next((f.entity for f in items if f.entity), ''))
+            for k in range(1, 6):
+                ws.cell(r, k).border = THIN
+                ws.cell(r, k).alignment = Alignment(wrap_text=True, vertical='top')
+            r += 1
+        if loose:
+            r += 1
+            ws.cell(r, 1, 'Not tied to one row - these are about this group as a whole').font = SECT
+            ws.cell(r, 1).fill = SECF
+            r += 1
+            r = header_row(ws, r, ['', 'How serious', 'What is wrong', 'Detail', 'Which thing'])
+            for f in sorted(loose, key=lambda f: SEV_ORDER[f.severity]):
+                sev_fill(ws.cell(r, 2, SEVERITY_WORD[f.severity]), f.severity)
+                ws.cell(r, 3, plain(f.code)[0])
+                ws.cell(r, 4, f.finding)
+                ws.cell(r, 5, f.entity)
+                for k in range(1, 6):
                     ws.cell(r, k).border = THIN
                 r += 1
 
@@ -836,9 +886,15 @@ def build(args):
         ('   Step 4', 'Send the file back to whoever built it with this workbook attached.'),
         ('', ''),
         ('The colours in the data tab',
-         'The tab named %s is the original data, untouched apart from colour. A YELLOW row has something '
-         'that must be fixed. An ORANGE row has something to check. A plain white row is fine.'
-         % sheet_name),
+         'The tab named %s is the original data. A YELLOW row has something that must be fixed. An ORANGE '
+         'row has something to check. A plain white row is fine.' % sheet_name),
+        ('', ''),
+        ('Finding your way around',
+         'The two tabs are linked, so you never have to hunt. On any tab, the blue row numbers are '
+         'clickable - click one and it jumps to that row in the data. Going the other way, scroll right on '
+         'the data tab to columns AB, AC and AD: every coloured row says there what is wrong with it, what '
+         'to do, and has a blue link back to the tab that explains it. The original 27 columns of data are '
+         'untouched.'),
         ('', ''),
         ('One thing to know',
          'The original file was saved with a filter switched on, so it opens showing only 846 of its 29,169 '
@@ -886,7 +942,11 @@ def build(args):
         ws.cell(r, 3, why)
         ws.cell(r, 4, todo)
         ws.cell(r, 5, cnt)
-        ws.cell(r, 6, ', '.join(sorted(tabs[code])[:3]))
+        tl = sorted(tabs[code])
+        if len(tl) == 1:
+            link_to_tab(ws.cell(r, 6), tl[0][:31])
+        else:
+            ws.cell(r, 6, ', '.join(tl[:3]))
         for k in range(1, 7):
             ws.cell(r, k).border = THIN
             ws.cell(r, k).alignment = Alignment(wrap_text=True, vertical='top')
@@ -899,7 +959,7 @@ def build(args):
     r = header_row(ws, r, ['Tab', 'What it covers', 'Rows', 'Must fix', 'Please check', 'How it looks'])
     for g, wsx, must, chk, info, rowsn in built:
         nm, bl = pretty(g)
-        ws.cell(r, 1, nm)
+        link_to_tab(ws.cell(r, 1), nm[:31])
         ws.cell(r, 2, bl)
         ws.cell(r, 3, rowsn if rowsn else 'whole file')
         for k, v, sev in ((4, must, 'ERROR'), (5, chk, 'WARN')):
@@ -960,6 +1020,39 @@ def build(args):
     for i, wd in enumerate([8, 12, 60, 60, 110, 90], 1):
         log.column_dimensions[get_column_letter(i)].width = wd
     log.row_dimensions[2].height = 150
+
+    # ---------------------------------------------------- annotate the data --
+    # Three columns past the data, so a reader on a coloured row can see what is
+    # wrong with it and click through to the tab that explains it. Past column AA,
+    # so the converter's 27 columns are untouched.
+    group_tab = {g: pretty(g)[0][:31] for g in by_group}
+    ann = collections.defaultdict(list)
+    for f in findings:
+        # row 1 is the header; a finding about it must not overwrite the headings
+        if isinstance(f.row, int) and f.row >= 2:
+            ann[f.row].append(f)
+    for c, head in ((28, 'REVIEW - what is wrong with this row'),
+                    (29, 'REVIEW - what to do'),
+                    (30, 'REVIEW - explained on this tab')):
+        cell = src.cell(1, c, head)
+        cell.font = COLH
+        cell.fill = PatternFill('solid', fgColor='7030A0')
+        cell.alignment = Alignment(wrap_text=True, vertical='center')
+    for rownum, items in ann.items():
+        titles, todos = [], []
+        for f in items:
+            t, _w, d = plain(f.code)
+            if t not in titles:
+                titles.append(t)
+                todos.append(d)
+        src.cell(rownum, 28, '; '.join(titles))
+        src.cell(rownum, 29, ' '.join(todos))
+        tab = group_tab.get(items[0].group)
+        if tab:
+            link_to_tab(src.cell(rownum, 30), tab)
+    for c, wd in ((28, 46), (29, 60), (30, 24)):
+        src.column_dimensions[get_column_letter(c)].width = wd
+    src.freeze_panes = 'A2'
 
     wb._sheets = ([wb['START HERE'], wb[sheet_name]]
                   + [w for _, w, *_ in built] + [wb['Technical detail'], wb['Claude Log']])
