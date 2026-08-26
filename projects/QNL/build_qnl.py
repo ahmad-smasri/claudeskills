@@ -301,6 +301,15 @@ UNIT_URI = {
 CLASS_UNIT = {
     "brick:Electric_Power_Sensor": "unit:KiloW",
     "brick:Electrical_Energy_Usage_Sensor": "unit:KiloW-HR",
+    # Air flow is settled by precedent, not by the IO list. Dar Cairo writes
+    # unit:L-PER-SEC on all 51 of its air-flow sensors (supply 18, return 15,
+    # outside 15, exhaust 3) and SSC on all 118 of its own; unit:M-PER-SEC does
+    # not occur once in either reference model, and neither has any air-velocity
+    # concept at all. The m/s on QNL's 22 AHU flow points comes only from the IO
+    # list's unit column - the same column that puts % on 20 of its 24 .kW tags.
+    # A velocity is also not a flow, so the class and the unit disagreed.
+    "brick:Supply_Air_Flow_Sensor": "unit:L-PER-SEC",
+    "brick:Return_Air_Flow_Sensor": "unit:L-PER-SEC",
 }
 
 # Part -> the words that give a generic point descriptor its context. Fans, dampers

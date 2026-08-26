@@ -307,22 +307,30 @@ fell through), all 88 discrete points are `unit:UNITLESS`, and the ontology now 
 with the ledger's `unit_of_measure` on **every** signature — the power rows were the only
 correction that had been lost.
 
-**One open question, reported rather than changed: the 22 AHU air-flow points.**
-`QNL_AHU*_SupAirFlow.PV` (15) and `RtnAirFlow.PV` (7) are classed
-`brick:Supply_Air_Flow_Sensor` / `brick:Return_Air_Flow_Sensor` but carry `unit:M-PER-SEC`
-— a velocity, where the class names a flow. The VAV/CAV `DuctAirFlow` points, by
-contrast, are `brick:Air_Flow_Sensor` in `unit:L-PER-SEC`, which is consistent.
+**The 22 AHU air-flow points now read `unit:L-PER-SEC`, settled by precedent.**
+`QNL_AHU*_SupAirFlow.PV` (15) and `RtnAirFlow.PV` (7) arrived from the IO list carrying
+`m/s` — a velocity, on a class that names a flow. The class ladder settles it at step 1:
 
-This is left as the IO list has it, for two reasons: Brick 1.4 has **no air-velocity
-sensor class** (only `*_Velocity_Pressure_Sensor`, a pressure quantity), so
-`Supply_Air_Flow_Sensor` remains the nearest correct class; and a duct-mounted velocity
-probe reading m/s is a normal way to measure AHU airflow, so the unit is plausibly right.
-The `MinEU`/`MaxEU` columns cannot settle it — they read 0–100 on every tag, m/s and l/s
-alike, so they are unpopulated defaults rather than real calibration.
+| Reference | `Supply_Air_Flow_Sensor` | `Return_Air_Flow_Sensor` |
+|---|---|---|
+| Dar Cairo (primary) | `unit:L-PER-SEC` ×18 | `unit:L-PER-SEC` ×15 |
+| QF SSC (previous project) | `unit:L-PER-SEC` ×113 | `unit:L-PER-SEC` ×5 |
 
-**What would settle it:** confirm with the BMS engineer whether those 22 transmitters
-output air velocity (m/s — keep as is) or volumetric flow (l/s — the unit is mislabelled
-at source and should change). Both source defects above are worth correcting at source.
+Dar Cairo writes `unit:L-PER-SEC` on **all 51** of its air-flow sensors (supply, return,
+outside, exhaust) and SSC on **all 118** of its own. **`unit:M-PER-SEC` does not occur
+once in either reference model**, and neither carries any air-velocity concept at all —
+Brick 1.4 has no air-velocity sensor class either, only `*_Velocity_Pressure_Sensor`,
+which is a pressure quantity. The `m/s` came solely from the IO list's unit column, the
+same column that puts `%` on 20 of its 24 `.kW` tags. `MinEU`/`MaxEU` cannot arbitrate:
+they read 0–100 on every tag, m/s and l/s alike, so they are unpopulated defaults.
+
+With this, all 317 air-flow points in the sheet — the 295 VAV/CAV `DuctAirFlow` plus
+these 22 — carry `unit:L-PER-SEC`, and no `unit:M-PER-SEC` remains anywhere.
+
+**Still worth raising at source:** if those 22 transmitters genuinely output air velocity,
+the IO list's unit column is right and its *scaling* needs stating, because the ontology
+now declares them as volumetric flow in line with the whole estate. Either way the IO
+list needs a pass — it is wrong about the power tags regardless.
 
 **Classes are taken straight from the ledger's `final_class`**, including the four
 reused SSC classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`,

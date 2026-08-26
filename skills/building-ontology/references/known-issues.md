@@ -251,10 +251,23 @@ one unit, the class decides and the source is overridden** - `brick:Electric_Pow
 takes `unit:KiloW` no matter what the IO list says. Log every override at build time;
 a silent correction is as hard to review as a silent error.
 
-Do not extend this to classes whose quantity genuinely admits more than one unit. Air
-flow is the QNL example: the IO list distinguishes volumetric flow (`l/s`, on VAV/CAV
-boxes) from velocity (`m/s`, on AHU ducts), and both are real measurements, so forcing
-one would destroy information.
+**Where the class alone does not settle it, the ladder does - check Dar Cairo.** Air flow
+was the QNL case: 22 AHU points arrived as `m/s` (a velocity) on `Supply_/Return_Air_Flow_Sensor`
+(a flow), and the class alone could not say whether the unit or the class was wrong,
+since a duct velocity probe is a normal way to measure AHU airflow. Precedent answered it
+outright:
+
+| Reference | air-flow sensors | unit |
+|---|---|---|
+| Dar Cairo | 51 (supply, return, outside, exhaust) | **all `unit:L-PER-SEC`** |
+| QF SSC | 118 | **all `unit:L-PER-SEC`** |
+| either model | `unit:M-PER-SEC` | **0 occurrences** |
+
+Neither reference model has any air-velocity concept, and Brick 1.4 has no air-velocity
+sensor class either (only `*_Velocity_Pressure_Sensor`, a pressure quantity). So the house
+answer is `unit:L-PER-SEC`, and the `m/s` was the IO list's unit column being wrong again.
+**Run the ladder on the unit, not just on the class** - a unit with no precedent anywhere
+in the estate is a finding in itself.
 
 **The cheap invariant that catches this whole class of defect: no class should carry
 more than one unit across the sheet.** Group `brick:hasUnit` by `objectType` and look for
