@@ -33,6 +33,7 @@ HERE = Path(__file__).resolve().parent
 # --------------------------------------------------------------------- rules --
 RULE = {
  'X-HDR-1': ('ERROR', 'The header row must repeat the four property-column names verbatim; numeric suffixes break the converter contract.'),
+ 'X-FILT-1': ('WARN', 'The sheet was saved with an autofilter applied, so most rows are hidden when it is opened.'),
  'E-HDR-1': ('ERROR', 'The first five columns must be subject, subjectType, predicate, object, objectType.'),
  'E-HDR-2': ('ERROR', 'A column in positions 6-27 is not one of the four permitted property column names.'),
  'E-CORE-1': ('ERROR', 'subject, predicate and object are all required on every row.'),
@@ -78,6 +79,7 @@ RULE = {
 
 ACTION = {
  'X-HDR-1': 'Rewrite the header row to the canonical 27 columns before the sheet goes to the converter.',
+ 'X-FILT-1': 'Clear the filter and save before the sheet goes out. The review copy has it cleared already.',
  'E-HDR-2': 'Restore the canonical header row: columns 6-27 repeat subject_prop_name / subject_prop_val / object_prop_name / object_prop_val with no numeric suffix.',
  'E-CORE-1': 'Put the value in the object column as <blanknode> carrying brick:value + brick:hasUnit, or delete the row.',
  'X-VAL-1': 'Put the rated figure in the object column, or delete the row - a unit with no value is not a property.',
@@ -156,6 +158,28 @@ def pick_sheet(wb):
         if head and str(head[0]).lower() == 'subject' and str(head[1] or '').lower() == 'subjecttype':
             return ws
     return wb.worksheets[0]
+
+
+def read_filter_state(path, rows):
+    """A sheet saved with a filter applied opens showing a fraction of its rows, and any
+    highlight on the rest is invisible. Returns (ref, criteria, hidden count) or None."""
+    if path.suffix.lower() not in ('.xlsx', '.xlsm'):
+        return None
+    import openpyxl
+    wb = openpyxl.load_workbook(path)
+    ws = pick_sheet(wb)
+    hidden = [r for r, d in ws.row_dimensions.items() if d.hidden]
+    state = None
+    if ws.auto_filter and ws.auto_filter.ref and hidden:
+        crit = ''
+        for fc in (ws.auto_filter.filterColumn or []):
+            vals = list(fc.filters.filter) if fc.filters and fc.filters.filter else []
+            if vals:
+                col = rows[0][fc.colId] if fc.colId < len(rows[0]) else 'column %d' % (fc.colId + 1)
+                crit = ' (%s = %s)' % (col, ', '.join(map(str, vals[:4])))
+        state = (ws.auto_filter.ref, crit, len(hidden))
+    wb.close()
+    return state
 
 
 def run_checker(script, sheet, report, extra=()):
@@ -257,8 +281,17 @@ def derive_groups(rows, overrides):
 
 
 # ------------------------------------------------------------ extra checks ---
-def extra_checks(rows, row_group, row_subject, subj_class, add):
+def extra_checks(rows, row_group, row_subject, subj_class, add, filter_state=None):
     data, hdr = rows[1:], rows[0]
+
+    if filter_state:
+        ref, crit, nhidden = filter_state
+        add('WARN', 'X-FILT-1', 1, '', 'Sheet_Structure',
+            'The sheet is saved with an autofilter over %s still applied%s, so %d of its %d rows are hidden '
+            'when it is opened - only %d show. Nothing is wrong with the hidden rows and all of them were '
+            'validated, but anyone opening the draft sees a fraction of the sheet and could take it for the '
+            'whole. The filter is cleared and every row unhidden in this review copy.'
+            % (ref, crit, nhidden, len(data), len(data) - nhidden))
 
     bad = [(i + 1, h) for i, h in enumerate(hdr)
            if isinstance(h, str) and re.search(r'\d$', h.strip())]
@@ -388,6 +421,7 @@ def build(args):
     data = rows[1:]
     overrides = [(n, re.compile(p)) for n, p in (g.split('=', 1) for g in args.group)]
     row_group, row_subject, subj_class = derive_groups(rows, overrides)
+    filter_state = read_filter_state(sheet, rows)
 
     # the two standard checkers, run against a header-normalised copy so a broken
     # header row does not drown their output in artefacts
@@ -447,7 +481,7 @@ def build(args):
             g, ent = place(text, row)
         add(sev, code, row, ent, g, text)
 
-    extra_checks(rows, row_group, row_subject, subj_class, add)
+    extra_checks(rows, row_group, row_subject, subj_class, add, filter_state)
 
     # ---- styling
     YELLOW, AMBER = PatternFill('solid', fgColor='FFFF00'), PatternFill('solid', fgColor='FFE699')
@@ -480,6 +514,12 @@ def build(args):
 
     wb = openpyxl.load_workbook(sheet)
     src = pick_sheet(wb)
+
+    # Clear the filter on the copy and unhide every row, so the fills below are visible.
+    if filter_state:
+        src.auto_filter.ref = None
+        for r, d in src.row_dimensions.items():
+            d.hidden = False
     err_rows = {f.row for f in findings if f.severity == 'ERROR' and isinstance(f.row, int) and f.row >= 1}
     warn_rows = {f.row for f in findings if f.severity == 'WARN' and isinstance(f.row, int) and f.row >= 1} - err_rows
     for rs, fill in ((err_rows, YELLOW), (warn_rows, AMBER)):
@@ -660,6 +700,12 @@ def build(args):
         'Yellow fill (columns A:E) - the row carries at least one ERROR. %d rows.' % len(err_rows),
         'Amber fill (columns A:E) - the row carries a WARN and no ERROR. %d rows.' % len(warn_rows),
         'No fill - no finding sits on that row. %d rows.' % (len(data) - len(err_rows) - len(warn_rows)),
+    ] + ([
+        '',
+        'The source sheet arrived with an autofilter applied that hid %d of its %d rows. The filter is '
+        'cleared here and every row unhidden, so the fills below are all visible. See Sheet_Structure, '
+        'X-FILT-1.' % (filter_state[2], len(data)),
+    ] if filter_state else []) + [
         '',
         'File-level findings - a class-wide pattern, a graph break, the header row - have no single row to '
         'sit on, and read "file" in the Source row column of their issue sheet.',
