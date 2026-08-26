@@ -1,11 +1,14 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 7,008 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 7,030 rows on the
 27-column PARA header. Validate with
 `validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting files:
 `QNL_identifier_crosswalk.csv`, listing every source identifier against the
-identifier used in the sheet and its label; and `QNL_datapoint_ledger_v2.xlsx`, the
-reviewed class decision behind every point signature.
+identifier used in the sheet and its label; `QNL_datapoint_ledger_v2.xlsx`, the
+reviewed class decision behind every point signature; and the **QNL sheet of
+`Assumption_Log.xlsx`**, the itemised record of every departure from what the
+sources literally say. This note summarises; the log is the register, and the two
+must not disagree.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
 `QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU),
@@ -24,7 +27,7 @@ reviewed class decision behind every point signature.
 | Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
 | Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
-| Points | 4,430 | 2,215 points (each a `brick:hasPoint` row + its `ref:TimeseriesReference` row) — every selected point on AHU, VAV, CAV and FCU |
+| Points | 4,448 | 2,224 points (each a `brick:hasPoint` row + its `ref:TimeseriesReference` row) — every selected point on AHU, VAV, CAV and FCU |
 
 Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
 `rec:isFedBy` → its upstream source,
@@ -215,8 +218,8 @@ to the historian `SourceTag` from the IO list (e.g. `QNL_AHUB001_CHWRtnTemp.PV`)
 
 ```
 python3 validate_ontology.py  QNL_Ontology.xlsx --label-style verbatim
-7008 rows, 3009 typed entities, 2 para: definitions
-450 errors, 64 warnings, 3784 advisories
+7030 rows, 3020 typed entities, 2 para: definitions
+454 errors, 66 warnings, 3803 advisories
 
 python3 check_io_list.py      QNL_Ontology.xlsx --io sources/QNL_Historian_IO_list_CP2.xlsx
 0 errors, 9386 warnings          <- every point traces to a real IO row
@@ -225,12 +228,13 @@ python3 check_consistency.py  QNL_Ontology.xlsx --io sources/QNL_Historian_IO_li
 78 errors, 0 warnings, 245 advisories
 ```
 
-**All 450 errors are `E-PAIR-1`, and all are the deliberate empty `para:IFC_ID`** on the
-449 assets and the loop. Paste the IFC GUIDs into `object_prop_val` and the sheet
+**452 of the 454 errors are `E-PAIR-1`, the deliberate empty `para:IFC_ID`** on the
+451 assets and the loop. The other 2 are `E-FEED-1` on the unregistered units above,
+accepted in the assumption log. Paste the IFC GUIDs into `object_prop_val` and the sheet
 validates clean. The timeseries placeholders are gone — every point now carries a real
 historian id.
 
-**64 warnings, all `W-TYP-4`, all deliberate** — the deprecated CHW temperature classes
+**66 warnings: 64 `W-TYP-4`, all deliberate** — the deprecated CHW temperature classes
 kept per your decision. Each carries Brick's own mitigation text; the ledger note names
 the entering/leaving replacement.
 
@@ -368,6 +372,32 @@ The 7 classes with no precedent in either model are
 `para:Trip_Alarm`. Each was checked dimensionally instead — temperature in `unit:DEG_C`,
 pressure in `unit:PA`, humidity in `unit:PERCENT_RH`, the alarm `unit:UNITLESS` — and
 each agrees with the unit its sibling classes use in the same sheet.
+
+### The three exception assets — handled under rule 1
+
+Rule 1 is that a source disagreement is modelled and logged, never silently dropped:
+an omission is invisible, an assumption in the log is reviewable. All three are in the
+assumption log.
+
+| Asset | The disagreement | What was written |
+|---|---|---|
+| `entity:QNL_CAV_1F_S15_001`<br>`entity:QNL_VAV_B_S13_005` | Named in the Selected sheet, **absent from the asset register** — so no room and no Fed By | Both units and their 3 points each are in the sheet, with **no `rec:locatedIn`, no `rec:feeds`, no `rec:isFedBy`**. Nothing about their position is asserted. |
+| `entity:QNL_VAV_1F_S15_039S` | In the register **and** the historian, but the Selected sheet lists **no** points for it | Given the 3 points its 245 siblings carry (`DmprPos`, `DuctAirFlow`, `EffectiveSP`), taken from the historian, which publishes all three for it. |
+
+For `039S` the family's own selected signature decided which points to take, so the
+unit matches its siblings rather than carrying a set nothing else in the family has.
+Its other five historian points (`CommAlm`, `ElectHtrSts`, `FltRst`, `HtrHiTempAlm`,
+`SupAirTemp`) are not selected on any sibling either, so they were not added.
+
+The two unregistered units raise **2 `E-FEED-1`** and **2 `W-GR-2`** findings. Those
+are the correct result of asserting nothing about position, and are accepted in the
+log rather than suppressed.
+
+**A validator gap this exposed:** `brick:Constant_Air_Volume_Box` was missing from the
+validator's `TERMINAL_EQUIPMENT` set, so **all 51 QNL CAVs had been escaping the
+`E-FEED-1` and `W-GR-2` checks entirely** — a class missing from that set is not a
+passing check, it is an unasked one. Fixed, along with `brick:Induction_Unit`. The 51
+registered CAVs all pass; only the unregistered one is flagged, correctly.
 
 ### What the point data showed up — for the register's owner
 

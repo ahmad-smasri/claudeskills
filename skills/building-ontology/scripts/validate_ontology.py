@@ -32,9 +32,16 @@ ALLOWED_PREFIXES = {
 }
 
 # Equipment that terminates in a conditioned space: it must declare what it feeds.
+# Equipment that serves a space directly, so it must say which space (E-FEED-1)
+# and where it sits (W-GR-2). Keep this in step with Brick's Terminal_Unit
+# subclasses: a class missing here is not a passing check, it is an unasked one -
+# brick:Constant_Air_Volume_Box was absent until 2026-08-24, and all 51 QNL CAVs
+# went unchecked for both rules as a result. Aliases (brick:VAV, brick:CAV) are
+# deliberately not listed; the ladder resolves those to the preferred form first.
 TERMINAL_EQUIPMENT = {
-    "brick:Variable_Air_Volume_Box", "brick:Fan_Coil_Unit", "brick:CRAC",
-    "brick:Exhaust_Fan", "brick:Radiator", "brick:Chilled_Beam",
+    "brick:Variable_Air_Volume_Box", "brick:Constant_Air_Volume_Box",
+    "brick:Fan_Coil_Unit", "brick:CRAC", "brick:Exhaust_Fan",
+    "brick:Radiator", "brick:Chilled_Beam", "brick:Induction_Unit",
     "brick:Terminal_Unit", "para:Pressure_Independent_Module", "para:DXUnit",
 }
 FEED_TARGETS = {"rec:Room", "rec:HVACZone", "rec:Zone", "rec:Space"}

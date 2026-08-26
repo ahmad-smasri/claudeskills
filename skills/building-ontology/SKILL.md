@@ -248,6 +248,50 @@ no precedent in Dar Cairo, a class with only one instance, a `rec:feeds` target
 that equals `rec:locatedIn`. Worth a second look and a line in the handover, not
 a defect.
 
+## 4b. The assumption log - every departure from the source is recorded
+
+**Every assumption, correction or departure from what a source literally says goes
+in the assumption log.** The log is a deliverable in its own right, not a note to
+self: it is what lets a reviewer see, months later, why the sheet differs from the
+register they are holding.
+
+The log is one workbook for the estate, `Assumption_Log.xlsx`, with **one sheet per
+building - `SSC`, `HQ`, `QNL`, `RDC`** - so the projects stay comparable and a rule
+applied on one building can be checked against the others. Columns:
+
+`ID` · `Date` · `Category` · `Layer` · `Entity / Scope` · `What the source says` ·
+`What we did` · `Why / basis` · `Rows affected` · `Status` · `Raised with client`
+
+Categories in use: `Identifier`, `Location`, `Units`, `Spelling`, `Class`,
+`Structure`, `Scope`, `Source defect`. `Status` is `Accepted`, `Accepted - client
+directed`, `Accepted - source defect`, `Open`, `On hold` or `Resolved` - so the open
+items can be filtered out and chased.
+
+**What must be logged.** Anything where the sheet and the source do not match:
+
+- a unit changed, whichever source it came from, and why the class outranked it;
+- a spelling or separator corrected, with the sibling row that proves it;
+- an identifier reshaped, prefixed or invented;
+- a class chosen against precedent, or a new `para:` class coined;
+- a deprecated term deliberately kept;
+- anything deliberately left out, and what it is waiting on;
+- a defect found in a source, even where it changed nothing in the sheet - the
+  source owner still needs to hear it.
+
+### Rule 1: model what the sources disagree about, then log it
+
+A source disagreement is never a reason to silently drop an entity. Model it, assert
+only what is actually known, and record the gap:
+
+| The source says | What to do |
+|---|---|
+| The asset has datapoints but **no location** (in the point sources, absent from the asset register) | Model the asset and its points, but write **no** `rec:locatedIn`, `rec:feeds` or `rec:isFedBy`. Inventing a location would read as surveyed fact. Log it; the resulting `W-GR-2` and `E-FEED-1` are accepted findings, named in the log. |
+| The asset is **in the register and the historian but the selected-points sheet omits it** | Take its points from the historian. Let the family's own selected signature decide which ones, so the unit matches its siblings rather than carrying a set nothing else in the family has. Log it. |
+| A source column is **internally inconsistent or misaligned** | Use the columns that agree with each other, say so in the log, and tell the source owner. Never reconstruct a corrupted column by guesswork. |
+
+The principle underneath all three: **omission is invisible, an assumption in the log
+is reviewable.** A dropped asset looks identical to an asset that never existed.
+
 ## 5. Deliver
 
 Ship the `.xlsx` with the 27-column header from `assets/ontology-template.csv`,
@@ -257,6 +301,9 @@ identifiers were kept or normalised and which label style was used, every new `p
 property left empty for want of a datasheet, every piece of equipment with no IO
 list and therefore no points, anything deliberately left out because it was
 outside the requested scope, and the validator's remaining warnings with reasons.
+
+Ship the building's sheet of `Assumption_Log.xlsx` with it. The handover note
+summarises; the log is the itemised record, and the two must not disagree.
 
 New `para:` classes are reviewed by the PARA team before they enter the shared
 extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.
