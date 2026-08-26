@@ -285,6 +285,24 @@ UNIT_URI = {
     "m/s": "unit:M-PER-SEC", "kwh": "unit:KiloW-HR", "kw": "unit:KiloW",
 }
 
+# The class is the authority on the physical quantity, and it outranks the IO list.
+#
+# The IO list gets units right far more often than the Selected sheet, but it is not
+# infallible: 20 of the 24 `.kW` tags carry `%` against a description that reads
+# "Power" - the same defect the datapoint ledger caught and corrected. Taking the IO
+# unit verbatim put unit:PERCENT on 20 brick:Electric_Power_Sensor points, which says
+# a power sensor reads a percentage.
+#
+# So where the resolved class names the quantity unambiguously, the class decides and
+# the override is logged. Only classes whose quantity admits exactly one unit here are
+# listed: air flow deliberately is not, because the IO list distinguishes volumetric
+# flow (l/s, on the VAV/CAV boxes) from velocity (m/s, on the AHU ducts) and both are
+# real measurements.
+CLASS_UNIT = {
+    "brick:Electric_Power_Sensor": "unit:KiloW",
+    "brick:Electrical_Energy_Usage_Sensor": "unit:KiloW-HR",
+}
+
 # Part -> the words that give a generic point descriptor its context. Fans, dampers
 # and the cooling valve carry generic descriptors ("position feedback", "electric
 # power") that need the part to disambiguate; the air/water sensors already carry it
@@ -359,6 +377,7 @@ def load_point_layer():
     known_units = {"QNL_" + a["tag"] for a in assets}
     by_unit = {}
     orphans = set()
+    unit_overrides = []
     # The Selected sheet lists 15 tags twice (RtnAirDuctPrs.PV, once per AHU). A tag
     # names one physical point, so the repeat is a source defect: emitting it twice
     # would put two identical rows in the sheet (W-DUP-1) and two points on one
@@ -390,14 +409,18 @@ def load_point_layer():
         cls, mp = ledger[sig]
         io_unit, tsid = io.get(tag, ("", tag))
         unit_uri = UNIT_URI.get(io_unit.lower(), "unit:UNITLESS")
+        forced = CLASS_UNIT.get(cls)
+        if forced and forced != unit_uri:
+            unit_overrides.append((tag, cls, unit_uri, forced))
+            unit_uri = forced
         by_unit.setdefault(unit, []).append({
             "part": part, "point": point, "cls": cls, "unit": unit_uri,
             "label": point_label(part, mp), "tsid": tsid or tag, "bms_unit": unit})
     sw.close()
-    return by_unit, sorted(orphans), sorted(set(duplicate_tags))
+    return by_unit, sorted(orphans), sorted(set(duplicate_tags)), unit_overrides
 
 
-points_by_unit, orphan_units, duplicate_selected = load_point_layer()
+points_by_unit, orphan_units, duplicate_selected, unit_overrides = load_point_layer()
 
 
 def point_rows(a):
@@ -534,6 +557,11 @@ print("points    :", n_points, "per family:", per_fam)
 if orphan_units:
     print("orphans   :", len(orphan_units),
           "selected units absent from the asset register:", orphan_units)
+if unit_overrides:
+    from collections import Counter as _C
+    print("units     :", len(unit_overrides),
+          "class-driven unit overrides (IO list contradicted the class):",
+          dict(_C(f"{c}: {was}->{now}" for _, c, was, now in unit_overrides)))
 if duplicate_selected:
     print("dupes     :", len(duplicate_selected),
           "tags listed twice in the Selected sheet, emitted once:",

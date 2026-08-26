@@ -281,10 +281,25 @@ the asset register and so not in this sheet. Those are the bulk of the 9,386 `W-
 warnings (IO rows with no point here), together with the unselected points; both are
 deliberate scope, not omissions.
 
-**Engineering units come from the IO list, not the Selected sheet.** The Selected sheet
-has **30 analog rows with humidity and temperature units transposed** — e.g.
-`QNL_AHUB001_AvgSpcHumd.PV` given `°C` and `AvgSpcTemp.PV` given `%rH`. The IO list has
-both right, so it is the authority for `brick:hasUnit`. Worth correcting at source.
+**Engineering units: the IO list beats the Selected sheet, and the class beats both.**
+The Selected sheet has **30 analog rows with humidity and temperature units transposed**
+— e.g. `QNL_AHUB001_AvgSpcHumd.PV` given `°C` and `AvgSpcTemp.PV` given `%rH`. The IO
+list has those right, so it supplies `brick:hasUnit`.
+
+But the IO list is not infallible either: **20 of its 24 `.kW` tags carry `%`** against a
+description that reads "Power" — the same defect the datapoint ledger caught and
+corrected on its own rows. Taking the IO unit verbatim would put `unit:PERCENT` on 20
+`brick:Electric_Power_Sensor` points, i.e. a power sensor reading a percentage.
+
+So where the resolved class names the quantity unambiguously, **the class decides**
+(`CLASS_UNIT` in `build_qnl.py`) and each override is logged at build time. This build
+applies 20, all `brick:Electric_Power_Sensor: unit:PERCENT → unit:KiloW`. Air flow is
+deliberately excluded from that rule: the IO list distinguishes volumetric flow (`l/s`,
+on the VAV/CAV boxes) from velocity (`m/s`, on the AHU ducts), and both are real.
+
+After the pass, **no class in the sheet carries more than one unit** — a cheap invariant
+worth re-checking on any future build. Both source defects are worth correcting at
+source.
 
 **Classes are taken straight from the ledger's `final_class`**, including the four
 reused SSC classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`,

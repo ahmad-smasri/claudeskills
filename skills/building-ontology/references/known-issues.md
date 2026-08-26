@@ -234,6 +234,32 @@ with the PARA team.
 | 12 | Draft 0.4 had no `rec:Site` and no `rec:Building` row, which read as a convention. It was not - it was an unfinished sheet. Draft 0.5 carries `entity:SSC rec:Building rec:isPartOf entity:QF rec:Site`, labelled `SSC Building` and `Qatar Foundation` | build the full chain, as 0.5 and Dar Cairo both do. **The lesson: an absence in a reference model is not a convention until a current export confirms it** |
 | 11 | The IFC reference property: Dar Cairo writes `ref:ifcName` (535 rows) and defines `para:IFC_ID` once without using it; QF SSC writes **both** `para:IFC_ID` and `ref:ifcName` on all 167 of its IFC rows | both, the SSC shape - `para:IFC_ID` for the BIM GUID, `ref:ifcName` for the derivable entity name |
 
+## Units: the class outranks every source column
+
+A source's unit column is a free-text field nobody validates, and every QNL source got
+some of it wrong in a different way:
+
+| Source | Defect |
+|---|---|
+| `Selected_PARA_OS_Data_Points_v4.0.xlsx` | 30 analog rows with humidity and temperature units transposed (`AvgSpcHumd` as `°C`, `AvgSpcTemp` as `%rH`) |
+| `QNL_Historian_IO_list_CP2.xlsx` | 20 of its 24 `.kW` tags carry `%`, against a description reading "Power" |
+
+Preferring one column over another only moves the error around. The reliable rule is
+that **the resolved class names the physical quantity, so where the class admits exactly
+one unit, the class decides and the source is overridden** - `brick:Electric_Power_Sensor`
+takes `unit:KiloW` no matter what the IO list says. Log every override at build time;
+a silent correction is as hard to review as a silent error.
+
+Do not extend this to classes whose quantity genuinely admits more than one unit. Air
+flow is the QNL example: the IO list distinguishes volumetric flow (`l/s`, on VAV/CAV
+boxes) from velocity (`m/s`, on AHU ducts), and both are real measurements, so forcing
+one would destroy information.
+
+**The cheap invariant that catches this whole class of defect: no class should carry
+more than one unit across the sheet.** Group `brick:hasUnit` by `objectType` and look for
+a class with two. On QNL that surfaced `brick:Electric_Power_Sensor` split 20 `PERCENT` /
+4 `KiloW` - the split itself was the tell, before anyone read a single tag.
+
 ## Reading an IO list: two traps the QNL list exposed
 
 Both were live bugs in the shared loader, fixed 2026-08-24 against
