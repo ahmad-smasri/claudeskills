@@ -344,6 +344,31 @@ you chose to keep the Dar Cairo class as the join key and record the replacement
 each such point raises the expected `W-TYP-4` and the ledger note names the
 entering/leaving class that supersedes it.
 
+### Units cross-checked against Dar Cairo, class by class
+
+Every point class in the sheet was compared with the unit Dar Cairo gives that class,
+falling back to QF SSC where Dar Cairo has no instance. **23 of 34 classes match a
+reference model outright, 7 have no precedent in either, and 4 differ deliberately.**
+
+The two corrections already described — power to `unit:KiloW`, AHU air flow to
+`unit:L-PER-SEC` — were both *made* to bring the sheet into line with Dar Cairo. What
+follows are the four places the sheet still departs from it, each on purpose:
+
+| Class | QNL | Dar Cairo | Why QNL differs |
+|---|---|---|---|
+| `brick:Air_Flow_Sensor` (295) | `unit:L-PER-SEC` | `unit:UNITLESS` ×23 | A flow is not dimensionless, so Dar Cairo's value is a **missing unit, not a convention** — and its own specific flow classes (supply, return, outside, exhaust: 51 points) all carry `unit:L-PER-SEC`. QNL has a real unit from the IO list and follows the specific-class convention. |
+| `brick:Damper_Position_Command` (14) | `unit:PERCENT` | `unit:UNITLESS` ×28, `unit:PERCENT` ×1 | Dar Cairo is mixed here, and the unitless ones read as binary open/close commands. Its analog commands do carry percent — `brick:Speed_Command` is `unit:PERCENT` on all 88 — and its `Damper_Position_Sensor` is `unit:PERCENT` on all 74. QNL's `PositionCtrl` points are analog and pair with `PositionFbk` in percent. |
+| `brick:Relative_Humidity_Sensor` (64) | `unit:PERCENT` ×110 | **Dar Cairo contradicts itself**: its `Return_Air_Humidity_Sensor` (20) and `Supply_Air_Humidity_Sensor` (3) both use `unit:PERCENT_RH`, only the generic class uses bare `unit:PERCENT`. SSC uses `unit:PERCENT_RH` (18), and the IO list says `%rH`. Taking `PERCENT_RH` keeps every humidity point in the sheet on one unit. |
+| `brick:Speed_Sensor` (22) | none; SSC `unit:RPM` ×14 | SSC's are named `..._Motor_Speed_Fbk` — motor shaft speed, genuinely RPM. QNL's are fan VFD `SpeedFbk`, which the IO list gives as `%` (speed as a fraction of maximum). Dar Cairo has no `Speed_Sensor`, but its `brick:Speed_Command` is `unit:PERCENT` on all 88, so percent for a speed point is house precedent. |
+
+The 7 classes with no precedent in either model are
+`Average_Zone_Air_Temperature_Sensor`, `Effective_Air_Temperature_Setpoint`,
+`Return_Air_Differential_Pressure_Sensor`, `Return_Air_Humidity_Setpoint`,
+`Return_Air_Temperature_Setpoint`, `Supply_Air_Differential_Pressure_Sensor` and
+`para:Trip_Alarm`. Each was checked dimensionally instead — temperature in `unit:DEG_C`,
+pressure in `unit:PA`, humidity in `unit:PERCENT_RH`, the alarm `unit:UNITLESS` — and
+each agrees with the unit its sibling classes use in the same sheet.
+
 ### What the point data showed up — for the register's owner
 
 1. **Two selected units are not in the asset register:** `QNL_CAV_1F_S15_001` and
