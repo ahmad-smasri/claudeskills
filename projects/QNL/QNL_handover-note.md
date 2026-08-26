@@ -1,12 +1,20 @@
 # QNL ontology — handover note
 
-**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 2,577 rows on the
+**Deliverable:** `QNL_Ontology.xlsx` (also `QNL_Ontology.csv`) — 7,030 rows on the
 27-column PARA header. Validate with
-`validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting file: `QNL_identifier_crosswalk.csv`, listing every
-source identifier against the identifier used in the sheet and its label.
+`validate_ontology.py QNL_Ontology.xlsx --label-style verbatim`. Supporting files:
+`QNL_identifier_crosswalk.csv`, listing every source identifier against the
+identifier used in the sheet and its label; `QNL_datapoint_ledger_v2.xlsx`, the
+reviewed class decision behind every point signature; and the **QNL sheet of
+`Assumption_Log.xlsx`**, the itemised record of every departure from what the
+sources literally say. This note summarises; the log is the register, and the two
+must not disagree.
 
 **Sources:** `QNL_Room_Names_for_Ontology.xlsx` (336 rooms),
-`QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU).
+`QNL_Assets_Location_Relationships.xlsx` (449 assets across AHUB / VAV / CAV / FCU),
+`Selected_PARA_OS_Data_Points_v4.0.xlsx` (the selected points, per unit) and
+`QNL_Historian_IO_list_CP2.xlsx` (engineering units and historian ids). All four are in
+`sources/`; the build reads them directly, so it is reproducible with `build_qnl.py`.
 
 ## What is in the sheet
 
@@ -19,12 +27,18 @@ source identifier against the identifier used in the sheet and its label.
 | Systems | 2 | `entity:HVAC` `brick:isPartOf` `entity:QF`; `entity:CHW-System` under it |
 | Chilled water loop | 3 | `entity:QNL_CHWS-MAIN-LOOP` — `brick:isPartOf` CHW-System, `rec:locatedIn` the building, + IFC reference |
 | Equipment | 2,230 | 15 AHU, 246 VAV, 51 CAV, 137 FCU |
+| Points | 4,448 | 2,224 points (each a `brick:hasPoint` row + its `ref:TimeseriesReference` row) — every selected point on AHU, VAV, CAV and FCU |
 
 Per asset: `rec:locatedIn` → its room, `brick:isPartOf` → `entity:HVAC`,
 `rec:isFedBy` → its upstream source,
 `ref:hasExternalReference` → an `ref:IFCReference` blank node, and for the terminal units
 (VAV, CAV, FCU) `rec:feeds` → the room it serves. AHUs get no `rec:feeds` row — see "one
 direction" below.
+
+Per point: a `brick:hasPoint` row on the equipment carrying the point's class,
+`rdfs:label_en` and `brick:hasUnit`; and a `ref:TimeseriesReference` row on the point
+carrying `para:hasEntityId` (its unit's BMS tag) and `ref:hasTimeseriesId` (the
+historian SourceTag) — see "The point layer" below.
 
 ## Decisions taken, per your answers
 
@@ -195,44 +209,219 @@ ref:IFCReference | | | para:IFC_ID | <empty> | | | ref:ifcName | AHUB011
 `ref:ifcName` is filled with the entity name, which is derivable and is what both
 reference models put there.
 
-**No `ref:TimeseriesReference` rows.** A timeseries reference belongs to a point, not to
-the equipment — every one of SSC's 1,767 sits on a `brick:hasPoint` object and none on a
-piece of equipment. QNL has no points because no IO list was supplied, so it has no
-timeseries references. They arrive with the IO list, on the point rows.
+**`ref:TimeseriesReference` rows sit on the points, not the equipment** — every one
+of SSC's 1,767 does the same. Each point carries one, with `ref:hasTimeseriesId` set
+to the historian `SourceTag` from the IO list (e.g. `QNL_AHUB001_CHWRtnTemp.PV`) and
+`para:hasEntityId` naming its unit. All 2,215 are filled; none is a placeholder.
 
 ## Validator result
 
 ```
-python3 validate_ontology.py QNL_Ontology.xlsx --label-style verbatim
-2577 rows, 793 typed entities, 1 para: definitions
-450 errors, 0 warnings, 1936 advisories
+python3 validate_ontology.py  QNL_Ontology.xlsx --label-style verbatim
+7030 rows, 3020 typed entities, 2 para: definitions
+454 errors, 66 warnings, 3803 advisories
+
+python3 check_io_list.py      QNL_Ontology.xlsx --io sources/QNL_Historian_IO_list_CP2.xlsx
+0 errors, 9386 warnings          <- every point traces to a real IO row
+
+python3 check_consistency.py  QNL_Ontology.xlsx --io sources/QNL_Historian_IO_list_CP2.xlsx
+78 errors, 0 warnings, 245 advisories
 ```
 
-**All 450 errors are the same rule, `E-PAIR-1`, and all of them are deliberate** — the
-empty `para:IFC_ID` on each of the 449 assets and on the loop. Paste the IFC GUIDs into
-`object_prop_val` on those rows and the sheet validates clean.
+**452 of the 454 errors are `E-PAIR-1`, the deliberate empty `para:IFC_ID`** on the
+451 assets and the loop. The other 2 are `E-FEED-1` on the unregistered units above,
+accepted in the assumption log. Paste the IFC GUIDs into `object_prop_val` and the sheet
+validates clean. The timeseries placeholders are gone — every point now carries a real
+historian id.
 
-**Zero warnings.** An earlier version of this note said `W-REF-1` flagged `entity:QF` as
+**66 warnings: 64 `W-TYP-4`, all deliberate** — the deprecated CHW temperature classes
+kept per your decision. Each carries Brick's own mitigation text; the ledger note names
+the entering/leaving replacement.
+
+**`check_io_list.py` reports 0 `E-IO-1`**: not one point in the sheet is invented. The
+9,386 `W-IO-2` are IO rows with no point here — the out-of-scope families and the
+unselected points, both covered under "Left out".
+
+**The 78 consistency errors are real per-unit variance, confirmed against the IO list**,
+not defects: `E-CON-1`/`E-CON-2` are the 44 VAVs that genuinely carry `RmTemp` where the
+other 202 do not, and the pointless `VAV_1F_S15_039S` described above. Passing `--io`
+resolved 209 of the original 287 findings into `I-CON-2` advisories — the IO list
+adjudicating what a row-level read could not. An earlier version of this note said `W-REF-1` flagged `entity:QF` as
 undeclared. That was my check being too strict, not a defect in the sheet: `entity:QF` is
 typed `rec:Site` and labelled "Qatar Foundation" on QNL's building row, which is exactly
 how the house style declares a site, a sub-system or a part — on the row that references
 it, class in `objectType` and label in an object prop. The rule now flags only an entity
-that is never given a class anywhere, which is a real dangling reference. Nothing else is outstanding: zero warnings, so every entity is
-labelled, every terminal unit has a feeds row and a location, and every spatial entity
-connects up to `rec:Building`.
+that is never given a class anywhere, which is a real dangling reference. Apart from
+the 60 deliberate `W-TYP-4` deprecation warnings covered above, nothing is outstanding:
+every entity is labelled, every terminal unit has a feeds row and a location, and every
+spatial entity connects up to `rec:Building`.
 
 Without `--label-style verbatim` you also get 771 `E-LBL-1` — that is the PARA label
 rule objecting to the SSC label style, and it is expected.
 
+## The point layer
+
+Points join three sources, all in `sources/`:
+
+| Source | What it supplies |
+|---|---|
+| `Selected_PARA_OS_Data_Points_v4.0.xlsx` | **which** points are selected, per unit — one row per unit × point, all "Must Have" |
+| `QNL_Historian_IO_list_CP2.xlsx` | each tag's engineering unit, historian `SourceTag` and analog/discrete kind |
+| `QNL_datapoint_ledger_v2.xlsx` | the reviewed **class** decision per point signature, and a clean descriptor |
+
+**All 2,215 selected points on the four families are in.** Per-unit membership now
+comes from the Selected sheet rather than being inferred, so the partial-coverage
+signatures that waited for this data are placed exactly where they belong: 509 on the
+15 AHUs, 779 on the 246 VAVs, 156 on the 51 CAVs, 771 on the 137 FCUs. Every one of the
+2,236 selected 4-family tags mapped to a ledger class with nothing left over, and every
+point traces back to a real IO row (`check_io_list.py`: **0 `E-IO-1`**).
+
+**Timeseries ids are filled.** `ref:hasTimeseriesId` carries the IO list's `SourceTag`
+for all 2,215 points — no placeholders remain in the point layer.
+
+**Scope: AHU, VAV, CAV and FCU only, at your direction.** The Selected sheet also covers
+CCU, EF, DX, HEX, KEF, SEF, TEF and GEN — 533 further points on equipment that is not in
+the asset register and so not in this sheet. Those are the bulk of the 9,386 `W-IO-2`
+warnings (IO rows with no point here), together with the unselected points; both are
+deliberate scope, not omissions.
+
+**Engineering units: the IO list beats the Selected sheet, and the class beats both.**
+The Selected sheet has **30 analog rows with humidity and temperature units transposed**
+— e.g. `QNL_AHUB001_AvgSpcHumd.PV` given `°C` and `AvgSpcTemp.PV` given `%rH`. The IO
+list has those right, so it supplies `brick:hasUnit`.
+
+But the IO list is not infallible either: **20 of its 24 `.kW` tags carry `%`** against a
+description that reads "Power" — the same defect the datapoint ledger caught and
+corrected on its own rows. Taking the IO unit verbatim would put `unit:PERCENT` on 20
+`brick:Electric_Power_Sensor` points, i.e. a power sensor reading a percentage.
+
+So where the resolved class names the quantity unambiguously, **the class decides**
+(`CLASS_UNIT` in `build_qnl.py`) and each override is logged at build time. This build
+applies 20, all `brick:Electric_Power_Sensor: unit:PERCENT → unit:KiloW`. Air flow is
+deliberately excluded from that rule: the IO list distinguishes volumetric flow (`l/s`,
+on the VAV/CAV boxes) from velocity (`m/s`, on the AHU ducts), and both are real.
+
+After the pass, **no class in the sheet carries more than one unit**. That invariant is
+now a permanent rule in the shared checker (`W-CON-19`), so any future project gets it
+automatically rather than relying on someone thinking to look.
+
+A full audit of the remaining units came back clean: no analog point silently defaulted
+to unitless, every engineering-unit string in the IO list mapped to a Brick term (none
+fell through), all 88 discrete points are `unit:UNITLESS`, and the ontology now agrees
+with the ledger's `unit_of_measure` on **every** signature — the power rows were the only
+correction that had been lost.
+
+**The 22 AHU air-flow points now read `unit:L-PER-SEC`, settled by precedent.**
+`QNL_AHU*_SupAirFlow.PV` (15) and `RtnAirFlow.PV` (7) arrived from the IO list carrying
+`m/s` — a velocity, on a class that names a flow. The class ladder settles it at step 1:
+
+| Reference | `Supply_Air_Flow_Sensor` | `Return_Air_Flow_Sensor` |
+|---|---|---|
+| Dar Cairo (primary) | `unit:L-PER-SEC` ×18 | `unit:L-PER-SEC` ×15 |
+| QF SSC (previous project) | `unit:L-PER-SEC` ×113 | `unit:L-PER-SEC` ×5 |
+
+Dar Cairo writes `unit:L-PER-SEC` on **all 51** of its air-flow sensors (supply, return,
+outside, exhaust) and SSC on **all 118** of its own. **`unit:M-PER-SEC` does not occur
+once in either reference model**, and neither carries any air-velocity concept at all —
+Brick 1.4 has no air-velocity sensor class either, only `*_Velocity_Pressure_Sensor`,
+which is a pressure quantity. The `m/s` came solely from the IO list's unit column, the
+same column that puts `%` on 20 of its 24 `.kW` tags. `MinEU`/`MaxEU` cannot arbitrate:
+they read 0–100 on every tag, m/s and l/s alike, so they are unpopulated defaults.
+
+With this, all 317 air-flow points in the sheet — the 295 VAV/CAV `DuctAirFlow` plus
+these 22 — carry `unit:L-PER-SEC`, and no `unit:M-PER-SEC` remains anywhere.
+
+**Still worth raising at source:** if those 22 transmitters genuinely output air velocity,
+the IO list's unit column is right and its *scaling* needs stating, because the ontology
+now declares them as volumetric flow in line with the whole estate. Either way the IO
+list needs a pass — it is wrong about the power tags regardless.
+
+**Classes are taken straight from the ledger's `final_class`**, including the four
+reused SSC classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`,
+`para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) and the one new class,
+`para:Trip_Alarm`, which is now **defined in row 3 of the sheet** as
+`rdfs:subClassOf brick:Alarm` — new `para:` classes are defined before first use.
+
+**The CHW temperature points keep their deprecated class, at your direction.** The
+`Chilled_Water_Supply/Return_Temperature_Sensor` classes are deprecated in Brick 1.4;
+you chose to keep the Dar Cairo class as the join key and record the replacement, so
+each such point raises the expected `W-TYP-4` and the ledger note names the
+entering/leaving class that supersedes it.
+
+### Units cross-checked against Dar Cairo, class by class
+
+Every point class in the sheet was compared with the unit Dar Cairo gives that class,
+falling back to QF SSC where Dar Cairo has no instance. **23 of 34 classes match a
+reference model outright, 7 have no precedent in either, and 4 differ deliberately.**
+
+The two corrections already described — power to `unit:KiloW`, AHU air flow to
+`unit:L-PER-SEC` — were both *made* to bring the sheet into line with Dar Cairo. What
+follows are the four places the sheet still departs from it, each on purpose:
+
+| Class | QNL | Dar Cairo | Why QNL differs |
+|---|---|---|---|
+| `brick:Air_Flow_Sensor` (295) | `unit:L-PER-SEC` | `unit:UNITLESS` ×23 | A flow is not dimensionless, so Dar Cairo's value is a **missing unit, not a convention** — and its own specific flow classes (supply, return, outside, exhaust: 51 points) all carry `unit:L-PER-SEC`. QNL has a real unit from the IO list and follows the specific-class convention. |
+| `brick:Damper_Position_Command` (14) | `unit:PERCENT` | `unit:UNITLESS` ×28, `unit:PERCENT` ×1 | Dar Cairo is mixed here, and the unitless ones read as binary open/close commands. Its analog commands do carry percent — `brick:Speed_Command` is `unit:PERCENT` on all 88 — and its `Damper_Position_Sensor` is `unit:PERCENT` on all 74. QNL's `PositionCtrl` points are analog and pair with `PositionFbk` in percent. |
+| `brick:Relative_Humidity_Sensor` (64) | `unit:PERCENT` ×110 | **Dar Cairo contradicts itself**: its `Return_Air_Humidity_Sensor` (20) and `Supply_Air_Humidity_Sensor` (3) both use `unit:PERCENT_RH`, only the generic class uses bare `unit:PERCENT`. SSC uses `unit:PERCENT_RH` (18), and the IO list says `%rH`. Taking `PERCENT_RH` keeps every humidity point in the sheet on one unit. |
+| `brick:Speed_Sensor` (22) | none; SSC `unit:RPM` ×14 | SSC's are named `..._Motor_Speed_Fbk` — motor shaft speed, genuinely RPM. QNL's are fan VFD `SpeedFbk`, which the IO list gives as `%` (speed as a fraction of maximum). Dar Cairo has no `Speed_Sensor`, but its `brick:Speed_Command` is `unit:PERCENT` on all 88, so percent for a speed point is house precedent. |
+
+The 7 classes with no precedent in either model are
+`Average_Zone_Air_Temperature_Sensor`, `Effective_Air_Temperature_Setpoint`,
+`Return_Air_Differential_Pressure_Sensor`, `Return_Air_Humidity_Setpoint`,
+`Return_Air_Temperature_Setpoint`, `Supply_Air_Differential_Pressure_Sensor` and
+`para:Trip_Alarm`. Each was checked dimensionally instead — temperature in `unit:DEG_C`,
+pressure in `unit:PA`, humidity in `unit:PERCENT_RH`, the alarm `unit:UNITLESS` — and
+each agrees with the unit its sibling classes use in the same sheet.
+
+### The three exception assets — handled under rule 1
+
+Rule 1 is that a source disagreement is modelled and logged, never silently dropped:
+an omission is invisible, an assumption in the log is reviewable. All three are in the
+assumption log.
+
+| Asset | The disagreement | What was written |
+|---|---|---|
+| `entity:QNL_CAV_1F_S15_001`<br>`entity:QNL_VAV_B_S13_005` | Named in the Selected sheet, **absent from the asset register** — so no room and no Fed By | Both units and their 3 points each are in the sheet, with **no `rec:locatedIn`, no `rec:feeds`, no `rec:isFedBy`**. Nothing about their position is asserted. |
+| `entity:QNL_VAV_1F_S15_039S` | In the register **and** the historian, but the Selected sheet lists **no** points for it | Given the 3 points its 245 siblings carry (`DmprPos`, `DuctAirFlow`, `EffectiveSP`), taken from the historian, which publishes all three for it. |
+
+For `039S` the family's own selected signature decided which points to take, so the
+unit matches its siblings rather than carrying a set nothing else in the family has.
+Its other five historian points (`CommAlm`, `ElectHtrSts`, `FltRst`, `HtrHiTempAlm`,
+`SupAirTemp`) are not selected on any sibling either, so they were not added.
+
+The two unregistered units raise **2 `E-FEED-1`** and **2 `W-GR-2`** findings. Those
+are the correct result of asserting nothing about position, and are accepted in the
+log rather than suppressed.
+
+**A validator gap this exposed:** `brick:Constant_Air_Volume_Box` was missing from the
+validator's `TERMINAL_EQUIPMENT` set, so **all 51 QNL CAVs had been escaping the
+`E-FEED-1` and `W-GR-2` checks entirely** — a class missing from that set is not a
+passing check, it is an unasked one. Fixed, along with `brick:Induction_Unit`. The 51
+registered CAVs all pass; only the unregistered one is flagged, correctly.
+
+### What the point data showed up — for the register's owner
+
+1. **Two selected units are not in the asset register:** `QNL_CAV_1F_S15_001` and
+   `QNL_VAV_B_S13_005`. Their 6 selected points are therefore not in the sheet. Either
+   the register is missing two units, or the Selected sheet names two that do not exist.
+2. **`VAV_1F_S15_039` and `VAV_1F_S15_039S` are two real units, not a typo.** The
+   handover previously flagged the trailing `S` as a possible typing error; the IO list
+   settles it — both carry a full, separate point set. But the Selected sheet selects
+   points only for `039`, so **`039S` is in the sheet with no points at all**. Confirm
+   whether `039S` should have been selected too.
+3. **15 tags are listed twice in the Selected sheet** (`RtnAirDuctPrs.PV`, once per AHU).
+   A tag names one physical point, so each is emitted once; the repeats would otherwise
+   produce duplicate rows and two points sharing one timeseries id.
+
 ## Left out, and why
 
-- **Points, and with them every timeseries reference.** No IO list was supplied, so no
-  equipment carries a `brick:hasPoint` row and nothing carries a
-  `ref:TimeseriesReference` — the reference hangs off the point, not the equipment.
-  Send the IO list and both layers land together. When you do, `check_io_list.py`
-  cross-checks the two in both directions so no point ships that the BMS does not
-  publish — and passing `--io` to the other two checkers lets them settle the findings
-  the list can adjudicate instead of leaving them for someone to work through by hand.
+- **Equipment outside AHU / VAV / CAV / FCU.** The Selected sheet also lists points for
+  CCU, EF, DX, HEX, KEF, SEF, TEF and GEN. That equipment is not in the asset register,
+  so neither it nor its points are in this sheet — scoped out at your direction. Send an
+  asset register for those families and both layers land together.
+- **IO-list points that were not selected.** Only the "Must Have" points in
+  `Selected_PARA_OS_Data_Points_v4.0.xlsx` are modelled. The IO list carries 11,601 rows
+  in total; the rest are deliberately out of scope, and show as `W-IO-2` warnings.
 - **Nameplate properties.** No manufacturer datasheets were supplied, so no rated power,
   flow, capacity, model number or manufacturer appears. Nothing is guessed.
 - **Zones.** No `rec:Zone` or `rec:HVACZone` layer; no zone data was supplied. Rooms sit
@@ -355,6 +544,5 @@ column is still the schedule's own text — so the join is documented rather tha
 lost. This reverses the earlier *names cannot be changed* instruction for room
 names only; **asset tags were left untouched**, since they are the BMS join key.
 
-Validator after the pass: **450 errors** (all the deliberately empty
-`para:IFC_ID` cells), **0 warnings**, **0 consistency errors** — identical to
-before it.
+Validator after the spelling pass: unchanged by it — the room-name corrections
+introduce no findings of their own. Current totals are in "Validator result" above.

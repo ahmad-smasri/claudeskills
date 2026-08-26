@@ -4,6 +4,7 @@
 Inputs  : QNL_Room_Names_for_Ontology.xlsx, QNL_Assets_Location_Relationships.xlsx
 Outputs : QNL_Ontology.xlsx (27-column triple sheet), QNL_identifier_crosswalk.csv
 """
+import collections
 import csv, os, re, sys
 from collections import OrderedDict
 import openpyxl
@@ -11,6 +12,7 @@ import openpyxl
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources") + "/"
 ROOMS_XLSX = SRC + "QNL_Room_Names_for_Ontology.xlsx"
 ASSETS_XLSX = SRC + "QNL_Assets_Location_Relationships.xlsx"
+LEDGER_XLSX = os.path.dirname(os.path.abspath(__file__)) + "/QNL_datapoint_ledger_v2.xlsx"
 OUT = os.path.dirname(os.path.abspath(__file__)) + "/"
 
 HEADER = ["subject", "subjectType", "predicate", "object", "objectType"] + \
@@ -256,12 +258,275 @@ ids = [a["id"] for a in assets]
 if len(set(ids)) != len(ids):
     sys.exit("duplicate equipment identifiers")
 
+# --------------------------------------------------------------------------- points
+# The point layer joins three sources:
+#   - Selected_PARA_OS_Data_Points_v4.0.xlsx : which points are selected, per unit
+#     (the per-unit membership - one row per unit x point, "Must Have")
+#   - QNL_Historian_IO_list_CP2.xlsx         : each tag's engineering unit, historian
+#     SourceTag and analog/discrete kind (the authority on units and series ids)
+#   - QNL_datapoint_ledger_v2.xlsx           : the reviewed class decision and a clean
+#     descriptor (match_phrase) per point signature
+#
+# Only the four families already in the sheet are built (AHU, VAV, CAV, FCU); the
+# selected list also covers CCU, EF, DX, HEX, KEF, SEF, TEF and GEN, whose equipment
+# is not in the asset register, so those points are out of scope here.
+#
+# Engineering units come from the IO list, not the Selected sheet: the Selected sheet
+# has 30 analog rows with humidity/temperature units swapped (e.g. AvgSpcHumd as degC),
+# which the IO list gets right.
+SEL_XLSX = SRC + "Selected_PARA_OS_Data_Points_v4.0.xlsx"
+IO_XLSX = SRC + "QNL_Historian_IO_list_CP2.xlsx"
+POINT_FAMILIES = {"AHU": "AHUB", "VAV": "VAV", "CAV": "CAV", "FCU": "FCU"}
+
+# --- Rule 1 exceptions: model what the sources disagree about, and log it ---------
+#
+# The house rule is that a source disagreement is recorded in the assumption log and
+# the entity is still modelled - not silently dropped. Two shapes of that here, each
+# handled differently because the missing piece is different.
+#
+# (a) Units the point sources name but the asset register does not. They have points
+#     but no location, so they are modelled WITHOUT rec:locatedIn, rec:feeds or
+#     rec:isFedBy - all three need a room or a parent the register would have supplied.
+#     Everything else (class, label, IFC reference, points) is written as normal.
+UNREGISTERED_ASSETS = {"CAV_1F_S15_001": "CAV", "VAV_B_S13_005": "VAV"}
+#
+# (b) Units the register has and the historian publishes, but the Selected sheet omits
+#     entirely. The points exist, so they are taken from the historian instead. The
+#     family's own selected signature decides which ones, so the unit ends up matching
+#     its siblings rather than carrying a set nothing else in the family has.
+SELECTED_SHEET_OMISSIONS = {"VAV_1F_S15_039S"}
+
+# IO-list engineering unit -> Brick unit term. Discrete points and blanks carry
+# unit:UNITLESS, as QF SSC does for its status and mode points.
+UNIT_URI = {
+    "°c": "unit:DEG_C", "%": "unit:PERCENT", "l/s": "unit:L-PER-SEC",
+    "hrs": "unit:HR", "%rh": "unit:PERCENT_RH", "pa": "unit:PA",
+    "m/s": "unit:M-PER-SEC", "kwh": "unit:KiloW-HR", "kw": "unit:KiloW",
+}
+
+# The class is the authority on the physical quantity, and it outranks the IO list.
+#
+# The IO list gets units right far more often than the Selected sheet, but it is not
+# infallible: 20 of the 24 `.kW` tags carry `%` against a description that reads
+# "Power" - the same defect the datapoint ledger caught and corrected. Taking the IO
+# unit verbatim put unit:PERCENT on 20 brick:Electric_Power_Sensor points, which says
+# a power sensor reads a percentage.
+#
+# So where the resolved class names the quantity unambiguously, the class decides and
+# the override is logged. Only classes whose quantity admits exactly one unit here are
+# listed: air flow deliberately is not, because the IO list distinguishes volumetric
+# flow (l/s, on the VAV/CAV boxes) from velocity (m/s, on the AHU ducts) and both are
+# real measurements.
+CLASS_UNIT = {
+    "brick:Electric_Power_Sensor": "unit:KiloW",
+    "brick:Electrical_Energy_Usage_Sensor": "unit:KiloW-HR",
+    # Air flow is settled by precedent, not by the IO list. Dar Cairo writes
+    # unit:L-PER-SEC on all 51 of its air-flow sensors (supply 18, return 15,
+    # outside 15, exhaust 3) and SSC on all 118 of its own; unit:M-PER-SEC does
+    # not occur once in either reference model, and neither has any air-velocity
+    # concept at all. The m/s on QNL's 22 AHU flow points comes only from the IO
+    # list's unit column - the same column that puts % on 20 of its 24 .kW tags.
+    # A velocity is also not a flow, so the class and the unit disagreed.
+    "brick:Supply_Air_Flow_Sensor": "unit:L-PER-SEC",
+    "brick:Return_Air_Flow_Sensor": "unit:L-PER-SEC",
+}
+
+# Part -> the words that give a generic point descriptor its context. Fans, dampers
+# and the cooling valve carry generic descriptors ("position feedback", "electric
+# power") that need the part to disambiguate; the air/water sensors already carry it
+# in their descriptor, so they are left out.
+PART_PREFIX = {
+    "SupFan": "Supply Fan", "RtnFan": "Return Fan",
+    "SupFan1": "Supply Fan 1", "SupFan2": "Supply Fan 2",
+    "RtnFan1": "Return Fan 1", "RtnFan2": "Return Fan 2",
+    "IntrnlEADmpr": "Exhaust Air Damper", "IntrnlFADmpr": "Fresh Air Damper",
+    "CoolVlv": "Cooling Valve",
+}
+
+
+def point_label(part, match_phrase):
+    """A readable label from the ledger descriptor, disambiguated by part.
+
+    The descriptor is the ledger's match_phrase (parenthetical stripped, title case).
+    A fan/damper/valve part prepends its context; a numbered sensor part (SpcHumd01)
+    appends its number, so the eleven space-humidity sensors read apart.
+    """
+    base = re.sub(r"\s*\([^)]*\)\s*$", "", str(match_phrase)).strip().title()
+    if part in PART_PREFIX:
+        return PART_PREFIX[part] + " " + base
+    m = re.search(r"(\d+)$", part or "")
+    if m:
+        return base + " " + str(int(m.group(1)))
+    return base
+
+
+def parse_tag(tag):
+    """A historian tag -> (unit, part, point). Only AHU units carry a part."""
+    left, point = (tag.rsplit(".", 1) + [""])[:2] if "." in tag else (tag, "")
+    m = re.match(r"(QNL_AHUB\d+)_(.+)$", left)
+    if m:
+        return m.group(1), m.group(2), point
+    m = re.match(r"(QNL_AHUB\d+)$", left)
+    if m:
+        return m.group(1), "", point
+    return left, "", point
+
+
+def load_point_layer():
+    """Build {bms_unit: [point dicts]} for the four in-scope families.
+
+    Each point dict is {part, point, cls, unit, label, tsid, bms_unit}. Also returns
+    the units selected but absent from the asset register, for the handover note.
+    """
+    # ledger: (family, part, point) -> (class, match_phrase)
+    lw = openpyxl.load_workbook(LEDGER_XLSX, data_only=True)
+    ls = lw["Ledger"]
+    lc = {ls.cell(1, c).value: c for c in range(1, ls.max_column + 1)}
+    ledger = {}
+    for r in range(2, ls.max_row + 1):
+        fam = ls.cell(r, lc["family"]).value
+        part = "" if ls.cell(r, lc["part"]).value in (None, "None") \
+            else str(ls.cell(r, lc["part"]).value)
+        point = str(ls.cell(r, lc["point"]).value)
+        ledger[(fam, part, point)] = (ls.cell(r, lc["final_class"]).value,
+                                      ls.cell(r, lc["match_phrase"]).value)
+
+    # IO list: tag -> (engineering unit, historian SourceTag)
+    io = {}
+    iw = openpyxl.load_workbook(IO_XLSX, data_only=True, read_only=True)
+    for rw in iw["QNL analog cp2"].iter_rows(min_row=2, values_only=True):
+        if rw[0]:
+            io[str(rw[0])] = ((rw[4] or "").strip(), rw[7])
+    for rw in iw["QNL Descrete cp2"].iter_rows(min_row=2, values_only=True):
+        if rw[0]:
+            io[str(rw[0])] = ("", rw[4])          # discrete: unitless, SourceTag col E
+    iw.close()
+
+    known_units = {"QNL_" + a["tag"] for a in assets}
+    by_unit = {}
+    orphans = set()
+    unit_overrides = []
+    # The Selected sheet lists 15 tags twice (RtnAirDuctPrs.PV, once per AHU). A tag
+    # names one physical point, so the repeat is a source defect: emitting it twice
+    # would put two identical rows in the sheet (W-DUP-1) and two points on one
+    # timeseries id. First occurrence wins; the repeats are counted for the note.
+    seen_tags = set()
+    duplicate_tags = []
+    unregistered_seen = set()
+    sw = openpyxl.load_workbook(SEL_XLSX, data_only=True, read_only=True)
+    for rw in sw["Sheet1"].iter_rows(min_row=2, values_only=True):
+        tag = str(rw[0])
+        if tag in seen_tags:
+            duplicate_tags.append(tag)
+            continue
+        seen_tags.add(tag)
+        fam_ref = rw[4]
+        unit, part, point = parse_tag(tag)
+        fam_key = fam_ref if fam_ref in POINT_FAMILIES else \
+            (re.match(r"QNL_(AHUB|VAV|CAV|FCU)", tag) and
+             {"AHUB": "AHU"}.get(re.match(r"QNL_(AHUB|VAV|CAV|FCU)", tag).group(1),
+                                 re.match(r"QNL_(AHUB|VAV|CAV|FCU)", tag).group(1)))
+        if fam_key not in POINT_FAMILIES:
+            continue                               # other families: out of scope
+        if unit not in known_units:
+            if unit.replace("QNL_", "", 1) not in UNREGISTERED_ASSETS:
+                orphans.add(unit)
+                continue
+            unregistered_seen.add(unit)
+        fam = POINT_FAMILIES[fam_key]
+        sig = (fam, part, point)
+        if sig not in ledger:
+            sys.exit("selected point %r has no ledger class (%s)" % (tag, sig))
+        cls, mp = ledger[sig]
+        io_unit, tsid = io.get(tag, ("", tag))
+        unit_uri = UNIT_URI.get(io_unit.lower(), "unit:UNITLESS")
+        forced = CLASS_UNIT.get(cls)
+        if forced and forced != unit_uri:
+            unit_overrides.append((tag, cls, unit_uri, forced))
+            unit_uri = forced
+        by_unit.setdefault(unit, []).append({
+            "part": part, "point": point, "cls": cls, "unit": unit_uri,
+            "label": point_label(part, mp), "tsid": tsid or tag, "bms_unit": unit})
+    sw.close()
+
+    # (b) the Selected sheet omits these units entirely - take the family's standard
+    # signature from the historian instead. Only points the historian actually
+    # publishes for the unit are written, so nothing is invented.
+    supplemented = []
+    for bare in sorted(SELECTED_SHEET_OMISSIONS):
+        unit = "QNL_" + bare
+        fam = next((f for f in ("AHUB", "VAV", "CAV", "FCU") if bare.startswith(f)), None)
+        if unit in by_unit or fam is None:
+            continue
+        # the signature its siblings carry, most common first
+        sibling = collections.Counter()
+        for u, pts in by_unit.items():
+            if u.replace("QNL_", "", 1).startswith(fam):
+                for p in pts:
+                    sibling[(p["part"], p["point"])] += 1
+        for (part, point), _n in sibling.most_common():
+            tag = unit + ("_" + part if part else "") + "." + point
+            if tag not in io:
+                continue                      # the historian does not publish it
+            cls, mp = ledger[(fam, part, point)]
+            io_unit, tsid = io[tag]
+            unit_uri = UNIT_URI.get(io_unit.lower(), "unit:UNITLESS")
+            forced = CLASS_UNIT.get(cls)
+            if forced and forced != unit_uri:
+                unit_overrides.append((tag, cls, unit_uri, forced))
+                unit_uri = forced
+            by_unit.setdefault(unit, []).append({
+                "part": part, "point": point, "cls": cls, "unit": unit_uri,
+                "label": point_label(part, mp), "tsid": tsid or tag, "bms_unit": unit})
+            supplemented.append(tag)
+
+    return (by_unit, sorted(orphans), sorted(set(duplicate_tags)), unit_overrides,
+            sorted(unregistered_seen), supplemented)
+
+
+points_by_unit, orphan_units, duplicate_selected, unit_overrides, unregistered_units, supplemented_points = load_point_layer()
+
+
+def point_rows(a):
+    """The point rows for one asset, each as the QF SSC two-row shape -
+
+        equipment brick:hasPoint point   (class, label, unit)
+        point     ref:hasExternalReference <blanknode> ref:TimeseriesReference
+                  (ref:hasTimeseriesId = historian SourceTag, para:hasEntityId = unit)
+
+    Points are ordered by their identifier so the sheet is stable across builds.
+    """
+    rows = []
+    bms_unit = "QNL_" + a["tag"]
+    pts = sorted(points_by_unit.get(bms_unit, []),
+                 key=lambda p: (p["part"], p["point"]))
+    for p in pts:
+        seg = (p["part"] + "_" if p["part"] else "") + p["point"]
+        pid = a["id"] + "_" + seg
+        rows.append(row(a["id"], a["cls"], "brick:hasPoint", pid, p["cls"],
+                        [("o", "rdfs:label_en", p["label"]),
+                         ("o", "brick:hasUnit", p["unit"])]))
+        rows.append(row(pid, p["cls"], "ref:hasExternalReference",
+                        "<blanknode>", "ref:TimeseriesReference",
+                        [("o", "ref:hasTimeseriesId", p["tsid"]),
+                         ("o", "para:hasEntityId", bms_unit)]))
+    return rows
+
+
 # --------------------------------------------------------------------------- rows
 out = []
 
 # Extensions -----------------------------------------------------------------
 out.append(row(LOOP_CLASS, "owl:Class", "rdfs:subClassOf", "brick:HVAC_Equipment", "",
                [("s", "rdfs:label_en", "Chilled Water Loop Network")]))
+# para:Trip_Alarm is the one class the datapoint layer coins. brick:Alarm is
+# reserved for a point literally named a general/summary alarm, so the fan trip
+# alarms get a class of their own rather than the bare root - SSC types its own
+# _TripAlm points brick:Alarm, which makes trips indistinguishable from every
+# other alarm. It follows SSC's own para:Fail_Start_Alarm / para:Fail_Stop_Alarm
+# pattern (both reused here as-is) and goes to the PARA team for review.
+out.append(row("para:Trip_Alarm", "owl:Class", "rdfs:subClassOf", "brick:Alarm", "",
+               [("s", "rdfs:label_en", "Trip Alarm")]))
 
 # Spatial --------------------------------------------------------------------
 # The site is the organisation's code, not its spelled-out name, and the current
@@ -300,6 +565,24 @@ out.append(row(LOOP, LOOP_CLASS, "ref:hasExternalReference",
                [("o", "para:IFC_ID", ""),
                 ("o", "ref:ifcName", LOOP.replace("entity:", ""))]))
 
+# Equipment: the unregistered units first ------------------------------------
+# Rule 1(a): the point sources name these, the asset register does not. They are
+# modelled so their points are not lost, but nothing about their position is
+# asserted - no rec:locatedIn, no rec:feeds, no rec:isFedBy, because every one of
+# those needs a room or a parent only the register could supply. Inventing a
+# location would be worse than leaving it open: it would read as surveyed fact.
+# They are in the assumption log, and the validator findings they raise
+# (W-GR-2 no location, E-FEED-1 no feeds) are accepted there.
+for bare, kind in sorted(UNREGISTERED_ASSETS.items()):
+    ident = "entity:QNL_" + bare
+    cls = CLASS[kind]
+    out.append(row(ident, cls, "brick:isPartOf", HVAC, HVAC_CLASS,
+                   [("s", "rdfs:label_en", label("QNL_" + bare))]))
+    out.append(row(ident, cls, "ref:hasExternalReference",
+                   "<blanknode>", "ref:IFCReference",
+                   [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", "QNL_" + bare)]))
+    out.extend(point_rows({"id": ident, "cls": cls, "tag": bare, "kind": kind}))
+
 # Equipment ------------------------------------------------------------------
 for kind in ("AHUB", "VAV", "CAV", "FCU"):
     for a in [x for x in assets if x["kind"] == kind]:
@@ -316,10 +599,11 @@ for kind in ("AHUB", "VAV", "CAV", "FCU"):
         out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
                        "<blanknode>", "ref:IFCReference",
                        [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
-        # No timeseries reference row here. A ref:TimeseriesReference belongs to a
-        # POINT, never to the equipment: all 1,767 of them in QF SSC hang off a
-        # brick:hasPoint object and none off a piece of equipment. QNL has no
-        # points because no IO list was supplied, so it has no timeseries refs.
+        # Points, from the ledger's universal signatures for this family. Each is a
+        # brick:hasPoint row plus its ref:TimeseriesReference row (empty id for now).
+        # A ref:TimeseriesReference belongs to the POINT, never to the equipment -
+        # every one of QF SSC's hangs off a brick:hasPoint object.
+        out.extend(point_rows(a))
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
@@ -344,8 +628,32 @@ with open(OUT + "QNL_identifier_crosswalk.csv", "w", newline="") as fh:
         w.writerow([a["kind"], a["tag"], a["id"],
                     label(a["id"].replace("entity:", ""))])
 
+n_points = sum(1 for r in out if r[2] == "brick:hasPoint")
+per_fam = {}
+for a in assets:
+    per_fam[a["kind"]] = per_fam.get(a["kind"], 0) + len(points_by_unit.get("QNL_" + a["tag"], []))
 print("rows      :", len(out))
 print("rooms     :", len(rooms), "levels:", levels_used)
 print("assets    :", len(assets), {k: sum(1 for a in assets if a["kind"] == k) for k in CLASS})
+print("points    :", n_points, "per family:", per_fam)
+if orphan_units:
+    print("orphans   :", len(orphan_units),
+          "selected units absent from the asset register:", orphan_units)
+if unit_overrides:
+    from collections import Counter as _C
+    print("units     :", len(unit_overrides),
+          "class-driven unit overrides (IO list contradicted the class):",
+          dict(_C(f"{c}: {was}->{now}" for _, c, was, now in unit_overrides)))
+if unregistered_units:
+    print("rule1(a)  :", len(unregistered_units),
+          "unregistered units modelled without a location:", unregistered_units)
+if supplemented_points:
+    print("rule1(b)  :", len(supplemented_points),
+          "points taken from the historian for units the Selected sheet omits:",
+          supplemented_points)
+if duplicate_selected:
+    print("dupes     :", len(duplicate_selected),
+          "tags listed twice in the Selected sheet, emitted once:",
+          duplicate_selected[:3], "...")
 for n in sorted(set(notes)):
     print("note      :", n)

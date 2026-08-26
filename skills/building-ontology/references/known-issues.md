@@ -92,6 +92,7 @@ object is supposed to be. There is no expected point list to maintain.
 | `W-CON-9` | a declared point has no `ref:hasExternalReference`. Points only; a part needs no reference of its own |
 | `W-CON-11` | something carries an external reference but is never declared with `brick:hasPoint` or `brick:hasPart` |
 | `W-CON-12` | a unit's rows are scattered instead of sitting together; the stray rows are named |
+| `W-CON-19` | one point class carries more than one `brick:hasUnit` across the sheet. The class names the physical quantity, so a split means at least one unit is wrong. File-wide, not per-family - a point class routinely spans families. This is the check that caught `brick:Electric_Power_Sensor` split 20 `unit:PERCENT` / 4 `unit:KiloW` on QNL |
 
 ### Info
 
@@ -233,6 +234,75 @@ with the PARA team.
 | 10 | The label rule strips punctuation (`1.001 CORRIDOR`); QF SSC carries the source text verbatim (`1.001_CORRIDOR`, `SSC_FCU0001`); Dar Cairo is a third style again (`Mechanical-Area-2-R014`) | **ask the user** - `naming-and-labels.md` documents both, and `validate_ontology.py --label-style verbatim` turns `E-LBL-1` off for the SSC style. QNL was built `verbatim` at the user's direction |
 | 12 | Draft 0.4 had no `rec:Site` and no `rec:Building` row, which read as a convention. It was not - it was an unfinished sheet. Draft 0.5 carries `entity:SSC rec:Building rec:isPartOf entity:QF rec:Site`, labelled `SSC Building` and `Qatar Foundation` | build the full chain, as 0.5 and Dar Cairo both do. **The lesson: an absence in a reference model is not a convention until a current export confirms it** |
 | 11 | The IFC reference property: Dar Cairo writes `ref:ifcName` (535 rows) and defines `para:IFC_ID` once without using it; QF SSC writes **both** `para:IFC_ID` and `ref:ifcName` on all 167 of its IFC rows | both, the SSC shape - `para:IFC_ID` for the BIM GUID, `ref:ifcName` for the derivable entity name |
+
+## Units: the class outranks every source column
+
+A source's unit column is a free-text field nobody validates, and every QNL source got
+some of it wrong in a different way:
+
+| Source | Defect |
+|---|---|
+| `Selected_PARA_OS_Data_Points_v4.0.xlsx` | 30 analog rows with humidity and temperature units transposed (`AvgSpcHumd` as `°C`, `AvgSpcTemp` as `%rH`) |
+| `QNL_Historian_IO_list_CP2.xlsx` | 20 of its 24 `.kW` tags carry `%`, against a description reading "Power" |
+
+Preferring one column over another only moves the error around. The reliable rule is
+that **the resolved class names the physical quantity, so where the class admits exactly
+one unit, the class decides and the source is overridden** - `brick:Electric_Power_Sensor`
+takes `unit:KiloW` no matter what the IO list says. Log every override at build time;
+a silent correction is as hard to review as a silent error.
+
+**Where the class alone does not settle it, the ladder does - check Dar Cairo.** Air flow
+was the QNL case: 22 AHU points arrived as `m/s` (a velocity) on `Supply_/Return_Air_Flow_Sensor`
+(a flow), and the class alone could not say whether the unit or the class was wrong,
+since a duct velocity probe is a normal way to measure AHU airflow. Precedent answered it
+outright:
+
+| Reference | air-flow sensors | unit |
+|---|---|---|
+| Dar Cairo | 51 (supply, return, outside, exhaust) | **all `unit:L-PER-SEC`** |
+| QF SSC | 118 | **all `unit:L-PER-SEC`** |
+| either model | `unit:M-PER-SEC` | **0 occurrences** |
+
+Neither reference model has any air-velocity concept, and Brick 1.4 has no air-velocity
+sensor class either (only `*_Velocity_Pressure_Sensor`, a pressure quantity). So the house
+answer is `unit:L-PER-SEC`, and the `m/s` was the IO list's unit column being wrong again.
+**Run the ladder on the unit, not just on the class** - a unit with no precedent anywhere
+in the estate is a finding in itself.
+
+**The cheap invariant that catches this whole class of defect: no class should carry
+more than one unit across the sheet.** Group `brick:hasUnit` by `objectType` and look for
+a class with two. On QNL that surfaced `brick:Electric_Power_Sensor` split 20 `PERCENT` /
+4 `KiloW` - the split itself was the tell, before anyone read a single tag.
+
+## Reading an IO list: two traps the QNL list exposed
+
+Both were live bugs in the shared loader, fixed 2026-08-24 against
+`QNL_Historian_IO_list_CP2.xlsx`. They matter because both fail *silently* -
+the checks still run and still report, they just report the wrong thing.
+
+**1. An IO list can span several sheets.** QNL splits its points across
+`QNL analog cp2` (5,574 rows) and `QNL Descrete cp2` (6,027), with different
+column layouts. `io_list.py` and `check_io_list.py` both read only
+`worksheets[0]`, so every discrete point vanished - and each one then reported as
+`E-IO-1`, "in the sheet but matches no IO row", against a sheet that was correct.
+88 phantom errors. Both loaders now read every sheet, header-match each on its
+own, and skip (by name) any tab with no key/name column.
+
+**2. "Unit" on an IO list means the engineering unit, not the unit of plant.**
+`EQUIP_HEADERS` matched the analog tab's `Unit` column, so `known_equipment`
+filled with `bar`, `kw`, `hz`, `degC` - 31 "equipment tags", none of them real.
+`has_point()` answers `None` for equipment it does not know, so every finding the
+IO list should have adjudicated came back "cannot tell", and `--io` silently
+changed nothing. `NOT_EQUIP_HEADERS` now excludes unit/uom columns, and where
+there is no usable equipment column the unit is derived from the dotted tag
+(`QNL_AHUB001_SupFan.kW` -> unit `QNL_AHUB001`, point `SupFan.kW`). Watch the
+part heuristic: a trailing numeric segment is a unit counter, not a part -
+`QNL_VAV_B_S11_026` is unit 026 of system S11.
+
+The tell for both: `check_consistency.py --io` reporting exactly what it reported
+without `--io`. If the IO list resolves nothing, check what `IOList.describe()`
+says it found before trusting any finding - on QNL the fixes took equipment tags
+from 31 to 1,755 and consistency errors from 287 to 78.
 
 ## Known defects in the reference models
 

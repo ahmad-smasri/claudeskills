@@ -68,57 +68,75 @@ def find_column(header: list[str], candidates: tuple) -> int | None:
 
 
 def load_io_list(path: Path, report: Report):
-    """Read the IO list and return [(timeseries_id, point_name, equipment, row)]."""
+    """Read the IO list and return [(timeseries_id, point_name, equipment, row)].
+
+    **Every sheet is read, not just the first.** IO lists routinely split analog
+    and discrete points across separate tabs (QNL ships `QNL analog cp2` and
+    `QNL Descrete cp2`), and the tabs need not share a layout, so each is
+    header-matched on its own. Reading only the first sheet silently drops the
+    others and reports every point that lived on them as matching no IO row -
+    a phantom over-inclusion finding against a sheet that is in fact correct.
+    Sheets with no recognisable key/name column are skipped and named, which is
+    what index and legend tabs look like.
+
+    `row` is "<sheet>!<n>" so a finding points at the tab it came from and
+    two tabs cannot collide on a row number.
+    """
+    sheets = []
     if path.suffix.lower() in (".xlsx", ".xlsm"):
         try:
             import openpyxl
         except ImportError:
             sys.exit("openpyxl is needed to read .xlsx - pip install openpyxl")
-        wb = openpyxl.load_workbook(path, data_only=True)
-        ws = pick_ontology_sheet(wb, path)
-        if ws is wb.active and len(wb.worksheets) > 1:
-            ws = wb.worksheets[0]
-        rows = [["" if c is None else str(c).strip() for c in r]
-                for r in ws.iter_rows(values_only=True)]
+        for ws in openpyxl.load_workbook(path, data_only=True).worksheets:
+            rows = [["" if c is None else str(c).strip() for c in r]
+                    for r in ws.iter_rows(values_only=True)]
+            rows = [r for r in rows if any(r)]
+            if len(rows) > 1:
+                sheets.append((ws.title, rows[0], rows[1:]))
     else:
         import csv
         with open(path, encoding="utf-8-sig", newline="") as fh:
             rows = [[c.strip() for c in r] for r in csv.reader(fh)]
-    rows = [r for r in rows if any(r)]
-    if not rows:
+        rows = [r for r in rows if any(r)]
+        if rows:
+            sheets.append((path.name, rows[0], rows[1:]))
+    if not sheets:
         sys.exit(f"{path} is empty")
 
-    header, body = rows[0], rows[1:]
-    i_id = find_column(header, ID_HEADERS)
-    i_name = find_column(header, NAME_HEADERS)
-    i_eq = find_column(header, EQUIP_HEADERS)
-    if i_id is None and i_name is None:
+    print(f"IO list  : {path.name}")
+    out, used, skipped = [], [], []
+    for label, header, body in sheets:
+        i_id = find_column(header, ID_HEADERS)
+        i_name = find_column(header, NAME_HEADERS)
+        i_eq = find_column(header, EQUIP_HEADERS)
+        if i_id is None and i_name is None:
+            skipped.append(label)
+            continue
+        used.append(label)
+        print(f"  sheet {label!r}: id={header[i_id] if i_id is not None else '(none)'}"
+              f", name={header[i_name] if i_name is not None else '(none)'}"
+              f", equipment={header[i_eq] if i_eq is not None else '(none)'}")
+        for n, r in enumerate(body, start=2):
+            def cell(i):
+                return r[i] if i is not None and i < len(r) else ""
+            tsid, name = cell(i_id), cell(i_name)
+            if not tsid and not name:
+                continue
+            where = f"{label}!{n}"
+            if i_id is not None and not tsid:
+                report.add("WARN", "W-IO-5", where,
+                           f"IO row for {name!r} has no timeseries id, so nothing in "
+                           f"the sheet can be matched to it")
+            out.append((tsid, name, cell(i_eq), where))
+    if skipped:
+        print(f"  skipped (no key/name column): {', '.join(skipped)}")
+    if not used:
         sys.exit(
             f"cannot tell which column of {path.name} holds the telemetry key or the\n"
-            f"point name. Its headers are: {header}\n"
+            f"point name. Its headers are: {sheets[0][1]}\n"
             f"Ask the user which column is which rather than guessing - a wrong guess\n"
             f"silently reports every point as unmatched.")
-
-    print(f"IO list  : {path.name}")
-    print(f"  timeseries id column : "
-          f"{header[i_id] if i_id is not None else '(none found)'}")
-    print(f"  point name column    : "
-          f"{header[i_name] if i_name is not None else '(none found)'}")
-    print(f"  equipment column     : "
-          f"{header[i_eq] if i_eq is not None else '(none found)'}")
-
-    out = []
-    for n, r in enumerate(body, start=2):
-        def cell(i):
-            return r[i] if i is not None and i < len(r) else ""
-        tsid, name = cell(i_id), cell(i_name)
-        if not tsid and not name:
-            continue
-        if i_id is not None and not tsid:
-            report.add("WARN", "W-IO-5", n,
-                       f"IO row for {name!r} has no timeseries id, so nothing in the "
-                       f"sheet can be matched to it")
-        out.append((tsid, name, cell(i_eq), n))
     return out
 
 
