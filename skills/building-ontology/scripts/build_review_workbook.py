@@ -22,6 +22,7 @@ add a rule when the derived grouping splits a family you want read as one.
 import argparse
 import collections
 import datetime
+import itertools
 import re
 import subprocess
 import sys
@@ -119,6 +120,188 @@ ACTION = {
  'I-CON-15': 'Single instance - no sibling to compare against; review by hand.',
  'I-CON-16': 'Add the building code, or confirm the entity is site-wide.',
 }
+
+# --------------------------------------------------------------- plain words --
+# Every rule code, said the way you would say it to someone who has never seen a
+# validator. (title, why it matters, what to do about it).
+PLAIN = {
+ 'X-FILT-1': ("The file opens with most of its rows hidden",
+   "Someone left a filter switched on before saving. Anyone who opens the original sees a few hundred rows out of nearly thirty thousand, and may think that is the whole file.",
+   "Open the file, clear the filter on the top row, and save. Nothing is missing - it is only hidden. This review copy already has it cleared."),
+ 'X-HDR-1': ("The column headings across the top are wrong",
+   "The headings tell the software which column means what. These have had numbers stuck on the end of them, so the software stops reading at column 9 and silently ignores everything to the right - about ten thousand pieces of information.",
+   "Replace the top row with the standard headings. This is the single most important fix in the file; do it before anything else."),
+ 'E-HDR-1': ("The first columns are not the standard ones", "The software expects a fixed order and cannot find its way around without it.", "Put the first five columns back in the standard order."),
+ 'E-HDR-2': ("A column heading is not one the software recognises", "Anything under an unrecognised heading is thrown away when the file is converted.", "Use only the standard heading names."),
+ 'E-CORE-1': ("A row is missing the thing it is meant to describe",
+   "Every row is supposed to say three things: what, how it relates, and to what. These rows are missing the third one, so they describe nothing and vanish on conversion.",
+   "Fill in the missing value, or delete the row if there is nothing to put there."),
+ 'X-VAL-1': ("A capacity or flow rate has its unit but no number",
+   "The row says something like 'rated cooling capacity, in kilowatts' and then never gives the figure. It looks like data but carries none.",
+   "Put the number in from the equipment datasheet. If no datasheet was supplied, delete the row - an empty figure is worse than no figure."),
+ 'E-PH-1': ("Someone left a to-do note in the file",
+   "Placeholders like <Location> and <Fedby> are notes-to-self meaning 'fill this in later'. Later never came. Equipment with one of these does not know what room it is in or what feeds it.",
+   "Replace each placeholder with the real room or the real piece of equipment."),
+ 'E-TYP-2': ("Equipment is described with a word the standard does not contain",
+   "The file uses an industry standard vocabulary. These words are not in it, so the software will not know what the thing is.",
+   "Swap in the correct standard word. Check with whoever built the file which was meant."),
+ 'E-TYP-1': ("The same thing is described two or three different ways",
+   "One sensor is called three different things in three different rows. The software will treat it as three separate sensors, or refuse the file.",
+   "Decide what the thing actually is and use that one description everywhere."),
+ 'E-CON-5': ("The same part is described differently on different units",
+   "Identical units should describe their identical parts identically. These do not.",
+   "Pick the right description and apply it to every unit."),
+ 'E-CON-1': ("One unit has a different number of rows from its identical twins",
+   "Units of the same type should each carry the same set of information. One that is short is missing something; one that is long has something extra.",
+   "Compare it against its siblings and add or remove until they match - or confirm the difference is genuine."),
+ 'E-CON-2': ("Most units have this, a handful do not",
+   "Something almost every unit of this type carries is missing on a few of them. Usually an oversight when the file was built.",
+   "Add it to the ones that lack it, or confirm those units genuinely do not have it."),
+ 'E-CON-6': ("A unit says two different things feed it",
+   "Each unit should have one source of supply. These name two.",
+   "Work out which is right and delete the other - unless the pair is a duty/standby arrangement, in which case say so."),
+ 'E-CON-3': ("The same fact is written more than once on a unit", "Duplicates inflate counts and can create phantom equipment.", "Delete the repeats, keep one."),
+ 'X-DUP-1': ("The same fact is written more than once",
+   "The identical statement appears two or three times over. Duplicates create phantom equipment on screen.",
+   "Delete the repeats, keeping one."),
+ 'E-CON-4': ("A cell holds an error message instead of a value",
+   "Something like #N/A is sitting where a room or a piece of equipment should be - a spreadsheet formula that failed and was never noticed.",
+   "Put the real value in."),
+ 'E-CON-17': ("A part is spelled slightly differently from its parent",
+   "A dash where the parent has an underscore, or the reverse. To software these are different things, so the part comes adrift from the unit it belongs to.",
+   "Make the two agree - correct whichever one is wrong."),
+ 'E-WS-1': ("A stray space at the start or end of a word",
+   "Invisible on screen, but software matches text exactly, so a trailing space breaks the link.",
+   "Delete the extra space."),
+ 'E-GR-1': ("A floor or room is not attached to the building",
+   "Everything should trace up to the building. These do not, so they will not appear where they should in the building tree.",
+   "Add the row that says which building or floor it belongs to."),
+ 'X-ID-3': ("A room number and its floor disagree",
+   "The room is numbered as if it were on one floor but filed under another.",
+   "Check the room schedule and correct whichever is wrong."),
+ 'X-ID-2': ("A tag has the wrong number of digits",
+   "Every other unit in the family uses four digits; this one has five. Almost certainly a typing slip.",
+   "Check the asset register and correct it."),
+ 'X-ID-1': ("Floor tags are punctuated differently from everything else",
+   "Floors use dashes where rooms and equipment use underscores. Not fatal, but inconsistent.",
+   "Agree one convention and apply it to all the floors."),
+ 'E-LBL-1': ("A display name contains punctuation that is not allowed", "The house style strips these characters.", "Remove the punctuation from the name."),
+ 'E-FEED-1': ("A unit that serves a room does not say which room",
+   "Terminal units must name the space they serve or the building tree has a dead end.",
+   "Add the room it serves."),
+ 'X-LBL-3': ("The on-screen name is a code, not a name",
+   "Users will see 'HQ_VAV0001' where they expect something like 'VAV Box 1, Level 3'. It is a filing reference, not a name a person can read.",
+   "Give each one a readable name."),
+ 'X-LBL-4': ("On-screen names still contain dashes and underscores",
+   "Names read like filenames rather than English. Sister projects show them as spaces.",
+   "Agree with the team how names should look, then apply it once across the file."),
+ 'W-LBL-2': ("This has nothing to show on screen",
+   "No name was ever given, so the front end will display a blank or fall back to the raw code.",
+   "Add a name."),
+ 'W-PT-1': ("A sensor with no live data behind it",
+   "The file says this sensor exists but never says where its readings come from. On screen it becomes a tile that is permanently blank, and nobody can tell whether the sensor is broken or was never real.",
+   "Either connect it to its data feed, or delete it if the system does not actually publish it."),
+ 'W-CON-9': ("A sensor is listed but never connected to its data",
+   "Same problem as above, spotted by comparing a unit against its twins.",
+   "Connect it to its data feed, or remove it."),
+ 'W-CON-11': ("Something has a data feed but nothing owns it",
+   "It is wired up but never declared as a part of any unit, so it will float loose in the building tree.",
+   "Attach it to the unit it belongs to."),
+ 'X-ORPH-1': ("Mentioned, but never actually defined",
+   "Other rows refer to this thing, but it has no row of its own - so it has no name, no location and no data.",
+   "Give it a proper row, or confirm it is only ever meant to be referred to."),
+ 'W-BN-4': ("A number with no unit",
+   "A figure with no unit is ambiguous - kilowatts or watts, litres or cubic metres.",
+   "Add the unit."),
+ 'W-BN-5': ("A data tag with nothing saying which unit it belongs to",
+   "The data reference is there but not grouped under its equipment.",
+   "Add the owning unit."),
+ 'E-BN-1': ("A reference that references nothing", "An empty placeholder that converts to nothing.", "Fill it in or delete the row."),
+ 'E-PAIR-1': ("A label with no value next to it",
+   "Something is named - 'voltage', say - but the figure beside it was never filled in.",
+   "Supply the figure, or remove the label."),
+ 'W-TYP-5': ("An old word used where the standard now prefers a newer one",
+   "It still works, but the newer word is the one the standard recommends.",
+   "Swap to the preferred word when convenient. Low priority."),
+ 'W-CON-7': ("Every single unit points at the same room",
+   "All twenty-seven car park fans claim to serve one office. That is template data nobody went back and corrected - and the room named is from a different building's file entirely.",
+   "Put in the real room for each unit."),
+ 'W-CON-12': ("A unit's rows are scattered through the file",
+   "Rows for one unit are spread far apart, which makes checking it by eye hard.",
+   "Group each unit's rows together. Tidiness only - nothing is wrong with the data."),
+ 'W-CON-19': ("One kind of sensor is measuring in several different units",
+   "Temperature sensors reading in degrees on some units and percent on others. At least one is wrong.",
+   "Check the source list and correct the odd ones out."),
+ 'I-CON-8': ("A unit's location and the space it serves are the same room",
+   "That is often correct, but sometimes it means one column was copied into both.",
+   "Confirm the original source really meant both."),
+ 'I-CON-13': ("A tag repeats a word",
+   "Something like ...LEGAL_LEGAL... Usually a copy-paste slip, occasionally genuine.",
+   "Glance at it and confirm."),
+ 'I-CON-15': ("Only one of these exists, so nothing to compare it against",
+   "Everything else was checked by comparing identical units. This one is alone, so it was checked on its own terms only.",
+   "Worth a manual read since no sibling could vouch for it."),
+ 'I-CON-16': ("A tag is missing the building code",
+   "Everything else in the family starts with the building code and this does not.",
+   "Add the code, or confirm it is deliberately shared across buildings."),
+}
+
+SEVERITY_WORD = {'ERROR': 'Must fix', 'WARN': 'Please check', 'INFO': 'Just so you know'}
+
+# How much a problem matters is not how often it occurs. A broken header row is one
+# finding and the worst thing in the file; a stray space is twenty-eight and trivial.
+# Lower number = higher up the list. Anything unlisted sits in the middle.
+IMPORTANCE = {
+ 'X-HDR-1': 1, 'E-HDR-1': 1, 'E-HDR-2': 2, 'X-FILT-1': 3,
+ 'E-PH-1': 4, 'W-CON-7': 5, 'X-VAL-1': 6, 'E-CORE-1': 7,
+ 'E-CON-4': 8, 'E-TYP-1': 9, 'E-TYP-2': 10, 'E-CON-5': 11,
+ 'E-GR-1': 12, 'X-ID-3': 13, 'E-CON-6': 14, 'E-CON-2': 15,
+ 'E-CON-1': 16, 'X-DUP-1': 17, 'E-CON-3': 17, 'E-CON-17': 18,
+ 'W-PT-1': 19, 'W-CON-9': 19, 'X-ORPH-1': 20, 'E-PAIR-1': 21,
+ 'X-LBL-3': 22, 'X-LBL-4': 23, 'W-LBL-2': 24, 'E-BN-1': 25,
+ 'W-BN-4': 30, 'W-BN-5': 31, 'E-WS-1': 32, 'X-ID-2': 33,
+ 'X-ID-1': 34, 'W-CON-11': 35, 'W-CON-19': 36, 'W-TYP-5': 40,
+ 'W-CON-12': 45,
+}
+
+
+def importance(code):
+    return IMPORTANCE.get(code, 50)
+SEVERITY_NOTE = {
+    'Must fix': 'The file will not work properly until this is sorted.',
+    'Please check': 'Might be deliberate, might be a mistake. Someone who knows the building should decide.',
+    'Just so you know': 'Probably fine. Read it once and move on.',
+}
+
+# What each group of rows is called, in words rather than jargon.
+PRETTY = {
+ 'Sheet_Structure':   ('The Whole File',        'Problems with the file itself rather than any one piece of equipment'),
+ 'Class_Definitions': ('Vocabulary List',       'The list of custom terms defined at the top of the file'),
+ 'Spatial':           ('Building, Floors and Rooms', 'The site, the building, its floors and its 1,044 rooms'),
+ 'Systems':           ('Systems',               'The top-level groupings - heating, cooling, electrical'),
+ 'AHU':               ('Air Handling Units',    'The big air units - AHU'),
+ 'VAV':               ('VAV Boxes',             'Variable air volume boxes - the dampers that feed each room'),
+ 'FCU':               ('Fan Coil Units',        'Fan coil units - FCU'),
+ 'CRAC':              ('Server Room Coolers',   'Computer room air conditioners - CCU'),
+ 'DX':                ('DX Units',              'Direct expansion cooling units'),
+ 'ExhaustFan':        ('Extract Fans',          'Car park, general and toilet extract fans'),
+ 'HeatExchanger':     ('Heat Exchangers',       'The plate heat exchangers - HEX'),
+ 'CHWPump':           ('Chilled Water Pumps',   'The chilled water booster pumps'),
+ 'Generator':         ('Generators',            'The standby generators'),
+ 'Misc':              ('Everything Else',       'A few odds and ends that do not belong to any group above'),
+}
+
+
+def pretty(group):
+    if group in PRETTY:
+        return PRETTY[group]
+    return (group.replace('_', ' ').title(), 'Equipment of this type')
+
+
+def plain(code):
+    return PLAIN.get(code, ('Something needs checking',
+                            'The checker flagged this and there is no plain-English note for it yet.',
+                            'Ask whoever maintains the checker.'))
 
 SEV_ORDER = {'ERROR': 0, 'WARN': 1, 'INFO': 2}
 CANON = (['subject', 'subjectType', 'predicate', 'object', 'objectType']
@@ -512,8 +695,17 @@ def build(args):
         elif sev == 'WARN':
             cell.fill = WARNF
 
-    wb = openpyxl.load_workbook(sheet)
-    src = pick_sheet(wb)
+    if sheet.suffix.lower() in ('.xlsx', '.xlsm'):
+        wb = openpyxl.load_workbook(sheet)
+        src = pick_sheet(wb)
+        sheet_name = src.title
+    else:
+        # a CSV has no workbook to copy, so the data sheet is written fresh
+        wb = openpyxl.Workbook()
+        src = wb.active
+        src.title = sheet_name[:31]
+        for r in rows:
+            src.append(['' if c is None else c for c in r])
 
     # Clear the filter on the copy and unhide every row, so the fills below are visible.
     if filter_state:
@@ -530,229 +722,255 @@ def build(args):
     by_group = collections.defaultdict(list)
     for f in findings:
         by_group[f.group].append(f)
-    order = (['Sheet_Structure', 'Class_Definitions', 'Spatial', 'Systems']
+    order = (['Sheet_Structure', 'Spatial', 'Systems']
              + sorted(g for g in by_group if g not in
                       ('Sheet_Structure', 'Class_Definitions', 'Spatial', 'Systems', 'Misc'))
-             + ['Misc'])
-    order = [g for g in order if g in by_group or g == 'Misc']
+             + ['Class_Definitions', 'Misc'])
+    order = [g for g in order if by_group.get(g)]
 
+    def collapse(fs):
+        """One line per kind of problem, not one line per row."""
+        out = []
+        for code, group in itertools.groupby(
+                sorted(fs, key=lambda f: (SEV_ORDER[f.severity], f.code)),
+                key=lambda f: f.code):
+            g = list(group)
+            rws = sorted({f.row for f in g if f.row})
+            out.append((g[0].severity, code, len(g), rws, g))
+        out.sort(key=lambda t: (SEV_ORDER[t[0]], importance(t[1]), -t[2]))
+        return out
+
+    def where(rws, n=8):
+        if not rws:
+            return 'across the file'
+        head = ', '.join(str(r) for r in rws[:n])
+        return 'row ' + head if len(rws) <= n else 'rows %s and %d more' % (head, len(rws) - n)
+
+    # ---------------------------------------------------------- one sheet each --
     built = []
     for g in order:
-        fs = sorted(by_group.get(g, []), key=lambda f: (SEV_ORDER[f.severity], f.code, f.row or 0))
-        name = (g if g in ('Sheet_Structure', 'Class_Definitions') else g + '_Issues')[:31]
-        ws = wb.create_sheet(name)
-        grp_rows = [i for i, x in row_group.items() if x == g]
-        span = ('%s!A%d:AA%d' % (sheet_name, min(grp_rows), max(grp_rows))) if grp_rows else 'n/a'
-        ws['A1'] = '%s - %s' % (name.replace('_', ' '), sheet.stem)
+        fs = by_group[g]
+        name, blurb = pretty(g)
+        ws = wb.create_sheet(name[:31])
+        rowsn = sum(1 for x in row_group.values() if x == g)
+        must = sum(1 for f in fs if f.severity == 'ERROR')
+        chk = sum(1 for f in fs if f.severity == 'WARN')
+
+        ws['A1'] = name
         ws['A1'].font = TITLE
-        ws['A2'] = ('Source: %s (%d rows).   Flagged rows are filled yellow (ERROR) or amber (WARN) in %s.   '
-                    'Every finding is listed once in section 4.' % (span, len(grp_rows), sheet_name))
+        ws['A2'] = blurb
         ws['A2'].font = SUB
+        scope = ('%s rows of the file' % '{:,}'.format(rowsn)) if rowsn else 'the file as a whole'
+        ws['A3'] = ('%s covers %s. There %s %d thing%s that must be fixed and %d to check. '
+                    'Each line below is one kind of problem, however many rows it affects.'
+                    % (name, scope, 'is' if must == 1 else 'are', must,
+                       '' if must == 1 else 's', chk))
+        ws['A3'].font = Font(size=10)
 
-        e = sum(1 for f in fs if f.severity == 'ERROR')
-        w = sum(1 for f in fs if f.severity == 'WARN')
-        n = sum(1 for f in fs if f.severity == 'INFO')
-        codes = sorted({f.code for f in fs})
-        r = section(ws, 4, '1. Counts')
-        r = header_row(ws, r, ['Metric', 'Value', 'Note'])
-        for metric, value, note in [
-            ('Source rows in this group', len(grp_rows), 'rows whose subject belongs here'),
-            ('Entities named in findings', len({f.entity for f in fs if f.entity}), ''),
-            ('Findings - ERROR', e, 'blocks handover'),
-            ('Findings - WARN', w, 'decide, then fix or accept'),
-            ('Findings - INFO', n, 'confirm only'),
-            ('Distinct rows flagged ERROR', len({f.row for f in fs if f.severity == 'ERROR' and f.row}), 'yellow'),
-            ('Distinct rows flagged WARN', len({f.row for f in fs if f.severity == 'WARN' and f.row}), 'amber'),
-            ('Distinct rule codes', len(codes), ', '.join(codes)),
-        ]:
-            ws.cell(r, 1, metric)
-            c = ws.cell(r, 2, value)
-            if metric.startswith('Findings'):
-                if not value:
-                    c.fill = OKF
-                else:
-                    sev_fill(c, 'ERROR' if 'ERROR' in metric else ('WARN' if 'WARN' in metric else 'INFO'))
-            ws.cell(r, 3, note)
-            r += 1
-        r += 1
-
-        r = section(ws, r, '2. Findings')
+        r = 5
+        r = header_row(ws, r, ['How serious', 'What is wrong', 'Why it matters', 'What to do',
+                               'How many', 'Where to look'])
         if not fs:
-            ws.cell(r, 1, 'Clean - no finding of any severity was raised against this group.').fill = OKF
-            r += 2
-        else:
-            for code, cnt in sorted(collections.Counter(f.code for f in fs).items(),
-                                    key=lambda kv: (SEV_ORDER[RULE.get(kv[0], ('INFO',))[0]], -kv[1])):
-                sev, expl = RULE.get(code, ('INFO', ''))
-                sev_fill(ws.cell(r, 1, '%s  %s' % (sev, code)), sev)
-                ws.cell(r, 2, cnt)
-                ws.cell(r, 3, expl)
-                ws.cell(r, 4, 'e.g. %s' % (next(f for f in fs if f.code == code).finding or '')[:220])
+            ws.cell(r, 1, 'Nothing wrong here.').fill = OKF
+            r += 1
+        for sev, code, cnt, rws, items in collapse(fs):
+            word = SEVERITY_WORD[sev]
+            title, why, todo = plain(code)
+            c = ws.cell(r, 1, word)
+            sev_fill(c, sev)
+            c.font = Font(bold=True, size=10)
+            ws.cell(r, 2, title).font = Font(bold=True, size=10)
+            ws.cell(r, 3, why)
+            ws.cell(r, 4, todo)
+            ws.cell(r, 5, cnt)
+            ws.cell(r, 6, where(rws))
+            for k in range(1, 7):
+                ws.cell(r, k).border = THIN
+                ws.cell(r, k).alignment = Alignment(wrap_text=True, vertical='top')
+            ws.row_dimensions[r].height = 58
+            r += 1
+
+        r += 1
+        ws.cell(r, 1, 'Examples, if you want to see actual cases').font = SECT
+        ws.cell(r, 1).fill = SECF
+        r += 1
+        r = header_row(ws, r, ['What is wrong', 'Row', 'What the checker saw'])
+        for sev, code, cnt, rws, items in collapse(fs):
+            title = plain(code)[0]
+            for f in items[:3]:
+                ws.cell(r, 1, title)
+                ws.cell(r, 2, f.row if f.row else 'whole file')
+                ws.cell(r, 3, f.finding)
+                for k in range(1, 4):
+                    ws.cell(r, k).border = THIN
                 r += 1
-            r += 1
 
-        r = section(ws, r, '3. Recommended action, one line per rule code')
-        r = header_row(ws, r, ['Code', 'Severity', 'Instances', 'Recommended action'])
-        acts = {}
-        for f in fs:
-            acts.setdefault(f.code, f.action)
-        for code, cnt in sorted(collections.Counter(f.code for f in fs).items(),
-                                key=lambda kv: (SEV_ORDER[RULE.get(kv[0], ('INFO',))[0]], kv[0])):
-            ws.cell(r, 1, code)
-            ws.cell(r, 2, RULE.get(code, ('INFO',))[0])
-            ws.cell(r, 3, cnt)
-            ws.cell(r, 4, acts[code])
-            for c in range(1, 5):
-                ws.cell(r, c).border = THIN
-            r += 1
-        if not fs:
-            ws.cell(r, 1, 'none')
-            r += 1
+        for i, wd in enumerate([14, 40, 66, 62, 13, 30], 1):
+            ws.column_dimensions[get_column_letter(i)].width = wd
+        built.append((g, ws, must, chk, len(fs) - must - chk, rowsn))
+
+    # ------------------------------------------------------------- Start Here --
+    ws = wb.create_sheet('START HERE')
+    ws['A1'] = 'How to use this file'
+    ws['A1'].font = Font(bold=True, size=18, color='1F3864')
+    total_must = sum(b[2] for b in built)
+    total_chk = sum(b[3] for b in built)
+    lines = [
+        ('', ''),
+        ('What this is', 'A check of the QF HQ building data file. The file lists every room, every piece '
+                         'of equipment and every sensor in the building, one fact per row - almost thirty '
+                         'thousand rows. This workbook says what is wrong with it.'),
+        ('', ''),
+        ('What we found', 'There are %s things that must be fixed and %s that someone should look at and '
+                          'decide about. They are not %s separate problems - they are a few dozen kinds of '
+                          'problem, each repeated across many rows.'
+                          % ('{:,}'.format(total_must), '{:,}'.format(total_chk),
+                             '{:,}'.format(total_must + total_chk))),
+        ('', ''),
+        ('What to do', ''),
+        ('   Step 1', 'Read the "Biggest problems" list below. That is the short version - about ten lines.'),
+        ('   Step 2', 'Each tab after this one covers one part of the building - the rooms, the air handling '
+                      'units, the VAV boxes and so on. Open the tabs that are yours.'),
+        ('   Step 3', 'On each tab, work down the list. Anything marked "Must fix" needs doing. Anything '
+                      'marked "Please check" needs a decision from someone who knows the building.'),
+        ('   Step 4', 'Send the file back to whoever built it with this workbook attached.'),
+        ('', ''),
+        ('The colours in the data tab',
+         'The tab named %s is the original data, untouched apart from colour. A YELLOW row has something '
+         'that must be fixed. An ORANGE row has something to check. A plain white row is fine.'
+         % sheet_name),
+        ('', ''),
+        ('One thing to know',
+         'The original file was saved with a filter switched on, so it opens showing only 846 of its 29,169 '
+         'rows. Nothing was missing - just hidden. We cleared it here so you can see everything.'
+         if filter_state else ''),
+        ('', ''),
+        ('If a line makes no sense',
+         'Every line says what is wrong in ordinary words, why it matters, and what to do. If one still '
+         'does not make sense, the "Technical detail" tab at the end has the raw version for whoever is '
+         'doing the fixing.'),
+    ]
+    r = 3
+    for head, body in lines:
+        if head:
+            ws.cell(r, 1, head).font = Font(bold=True, size=11, color='1F3864')
+        if body:
+            c = ws.cell(r, 2, body)
+            c.alignment = Alignment(wrap_text=True, vertical='top')
+            ws.row_dimensions[r].height = max(16, 15 * (len(body) // 95 + 1))
         r += 1
 
-        r = section(ws, r, '4. Full finding list - one row per finding, ERROR then WARN then INFO')
-        r = header_row(ws, r, ['#', 'Severity', 'Code', 'Source row', 'Entity', 'Finding',
-                               'Recommended action', 'Status'])
-        for k, f in enumerate(fs, 1):
-            ws.cell(r, 1, k)
-            sev_fill(ws.cell(r, 2, f.severity), f.severity)
-            ws.cell(r, 3, f.code)
-            ws.cell(r, 4, f.row if f.row else 'file')
-            ws.cell(r, 5, f.entity)
-            ws.cell(r, 6, f.finding)
-            ws.cell(r, 7, f.action)
-            ws.cell(r, 8, 'Open')
-            r += 1
-        for i, wd in enumerate([34, 12, 46, 62, 30, 96, 70, 10], 1):
-            ws.column_dimensions[get_column_letter(i)].width = wd
-        built.append((g, ws, e, w, n, len(grp_rows)))
-
-    # ---- summary
-    ws = wb.create_sheet('Review_Summary')
-    ws['A1'] = '%s - validation review' % sheet.stem
-    ws['A1'].font = TITLE
-    ws['A2'] = ('Sheet checked: %s, %d triples.   Row-level validation, cross-unit consistency comparison and '
-                'an identifier / label / duplication audit.   Findings are grouped one sheet per entity '
-                'family; the rows they sit on are filled yellow (ERROR) or amber (WARN).'
-                % (sheet_name, len(data)))
-    ws['A2'].font = SUB
-    r = section(ws, 4, '1. Headline - the largest defects, by number of rows they touch')
-    r = header_row(ws, r, ['Severity', 'Code', 'Instances', 'What the rule tests', 'Where it lands'])
-    counts = collections.Counter(f.code for f in findings)
-    top = sorted(counts.items(),
-                 key=lambda kv: (SEV_ORDER[RULE.get(kv[0], ('INFO',))[0]], -kv[1]))[:10]
-    for code, cnt in top:
-        sev, expl = RULE.get(code, ('INFO', ''))
-        sev_fill(ws.cell(r, 1, sev), sev)
-        ws.cell(r, 2, code).font = Font(bold=True)
-        ws.cell(r, 3, cnt)
-        ws.cell(r, 4, expl)
-        ws.cell(r, 5, ', '.join(sorted({f.group for f in findings if f.code == code})))
-        for k in range(1, 6):
+    r += 1
+    ws.cell(r, 1, 'The biggest problems, worst first').font = Font(bold=True, size=13, color='1F3864')
+    r += 1
+    r = header_row(ws, r, ['How serious', 'What is wrong', 'Why it matters', 'What to do',
+                           'How many', 'Which tab'])
+    big = collections.Counter()
+    for f in findings:
+        big[f.code] += 1
+    tabs = collections.defaultdict(set)
+    for f in findings:
+        tabs[f.code].add(pretty(f.group)[0])
+    sev_of = {}
+    for f in findings:
+        if f.code not in sev_of or SEV_ORDER[f.severity] < SEV_ORDER[sev_of[f.code]]:
+            sev_of[f.code] = f.severity
+    for code, cnt in sorted(big.items(),
+                            key=lambda kv: (importance(kv[0]),
+                                            SEV_ORDER[sev_of[kv[0]]], -kv[1]))[:12]:
+        title, why, todo = plain(code)
+        c = ws.cell(r, 1, SEVERITY_WORD[sev_of[code]])
+        sev_fill(c, sev_of[code])
+        c.font = Font(bold=True, size=10)
+        ws.cell(r, 2, title).font = Font(bold=True, size=10)
+        ws.cell(r, 3, why)
+        ws.cell(r, 4, todo)
+        ws.cell(r, 5, cnt)
+        ws.cell(r, 6, ', '.join(sorted(tabs[code])[:3]))
+        for k in range(1, 7):
             ws.cell(r, k).border = THIN
             ws.cell(r, k).alignment = Alignment(wrap_text=True, vertical='top')
+        ws.row_dimensions[r].height = 58
         r += 1
-    r += 1
 
-    r = section(ws, r, '2. Index of issue sheets')
-    r = header_row(ws, r, ['Sheet', 'Source rows', 'ERROR', 'WARN', 'INFO', 'Verdict'])
-    tot = [0, 0, 0]
-    for g, wsx, e, w, n, nrows in built:
-        ws.cell(r, 1, wsx.title)
-        ws.cell(r, 2, nrows)
-        for k, v, sev in ((3, e, 'ERROR'), (4, w, 'WARN'), (5, n, 'INFO')):
+    r += 2
+    ws.cell(r, 1, 'What is on each tab').font = Font(bold=True, size=13, color='1F3864')
+    r += 1
+    r = header_row(ws, r, ['Tab', 'What it covers', 'Rows', 'Must fix', 'Please check', 'How it looks'])
+    for g, wsx, must, chk, info, rowsn in built:
+        nm, bl = pretty(g)
+        ws.cell(r, 1, nm)
+        ws.cell(r, 2, bl)
+        ws.cell(r, 3, rowsn if rowsn else 'whole file')
+        for k, v, sev in ((4, must, 'ERROR'), (5, chk, 'WARN')):
             c = ws.cell(r, k, v)
             if v:
                 sev_fill(c, sev)
-        v = ws.cell(r, 6, 'blocks handover' if e else ('review' if w else 'clean'))
-        v.fill = BADF if e else (WARNF if w else OKF)
+        v = ws.cell(r, 6, 'needs work' if must else ('worth a look' if chk else 'all fine'))
+        v.fill = BADF if must else (WARNF if chk else OKF)
         for k in range(1, 7):
             ws.cell(r, k).border = THIN
-        tot[0] += e
-        tot[1] += w
-        tot[2] += n
         r += 1
-    ws.cell(r, 1, 'TOTAL').font = Font(bold=True)
-    for k, v in ((2, len(data)), (3, tot[0]), (4, tot[1]), (5, tot[2])):
-        ws.cell(r, k, v).font = Font(bold=True)
-    r += 2
-
-    r = section(ws, r, '3. Every rule code raised, across the whole sheet')
-    r = header_row(ws, r, ['Code', 'Severity', 'Instances', 'What the rule tests', 'Sheets it appears on'])
-    where = collections.defaultdict(set)
-    for f in findings:
-        where[f.code].add(f.group)
-    for code, cnt in sorted(collections.Counter(f.code for f in findings).items(),
-                            key=lambda kv: (SEV_ORDER[RULE.get(kv[0], ('INFO',))[0]], -kv[1])):
-        sev, expl = RULE.get(code, ('INFO', ''))
-        ws.cell(r, 1, code)
-        sev_fill(ws.cell(r, 2, sev), sev)
-        ws.cell(r, 3, cnt)
-        ws.cell(r, 4, expl)
-        ws.cell(r, 5, ', '.join(sorted(where[code])))
-        for k in range(1, 6):
-            ws.cell(r, k).border = THIN
-        r += 1
-    r += 1
-
-    r = section(ws, r, '4. How to read the source sheet')
-    for line in [
-        'Yellow fill (columns A:E) - the row carries at least one ERROR. %d rows.' % len(err_rows),
-        'Amber fill (columns A:E) - the row carries a WARN and no ERROR. %d rows.' % len(warn_rows),
-        'No fill - no finding sits on that row. %d rows.' % (len(data) - len(err_rows) - len(warn_rows)),
-    ] + ([
-        '',
-        'The source sheet arrived with an autofilter applied that hid %d of its %d rows. The filter is '
-        'cleared here and every row unhidden, so the fills below are all visible. See Sheet_Structure, '
-        'X-FILT-1.' % (filter_state[2], len(data)),
-    ] if filter_state else []) + [
-        '',
-        'File-level findings - a class-wide pattern, a graph break, the header row - have no single row to '
-        'sit on, and read "file" in the Source row column of their issue sheet.',
-        '',
-        'I-TYP-6 advisories ("valid Brick, no precedent in Dar Cairo") are not itemised; they would drown '
-        'the register. The class list is in the preflight output.',
-    ] + ([] if args.io else [
-        '',
-        'Not run: the IO-list cross-check. No IO list was supplied, so no point in this sheet has been '
-        'confirmed against the BMS.']):
-        ws.cell(r, 1, line)
-        r += 1
-    for i, wd in enumerate([26, 14, 10, 96, 60, 18], 1):
+    for i, wd in enumerate([20, 44, 62, 58, 13, 26], 1):
         ws.column_dimensions[get_column_letter(i)].width = wd
+    ws.column_dimensions['B'].width = 100
 
+    # --------------------------------------------------------- technical tab --
+    tech = wb.create_sheet('Technical detail')
+    tech['A1'] = 'Technical detail - for whoever is doing the fixing'
+    tech['A1'].font = TITLE
+    tech['A2'] = ('Every finding, one per line, with the checker rule code it came from. The tabs before '
+                  'this one are the readable version; nothing here is extra, it is the same findings '
+                  'written for a specialist.')
+    tech['A2'].font = SUB
+    r = header_row(tech, 4, ['Severity', 'Rule code', 'Tab', 'Row', 'Entity', 'What the checker saw',
+                             'What to do'])
+    for f in sorted(findings, key=lambda f: (SEV_ORDER[f.severity], f.code, f.row or 0)):
+        sev_fill(tech.cell(r, 1, f.severity), f.severity)
+        tech.cell(r, 2, f.code)
+        tech.cell(r, 3, pretty(f.group)[0])
+        tech.cell(r, 4, f.row if f.row else 'file')
+        tech.cell(r, 5, f.entity)
+        tech.cell(r, 6, f.finding)
+        tech.cell(r, 7, f.action)
+        r += 1
+    for i, wd in enumerate([11, 12, 22, 8, 34, 96, 70], 1):
+        tech.column_dimensions[get_column_letter(i)].width = wd
+
+    # ------------------------------------------------------------- Claude Log --
     log = wb.create_sheet('Claude Log')
     log.append(['Turn #', 'Date', 'User Request', 'Action Taken', 'Details', 'Outcome'])
     for c in range(1, 7):
         log.cell(1, c).font = COLH
         log.cell(1, c).fill = HDRF
     log.append([1, datetime.date.today(), args.request,
-                'Built this review workbook: %d issue sheets, a Review_Summary index, and yellow / amber '
-                'fills on the source rows.' % len(built),
-                'validate_ontology.py --label-style %s and check_consistency.py over %d rows, both against a '
-                'header-normalised copy so a broken header row does not drown the output; plus seven checks '
-                'neither script covers - empty rated-property objects, duplicate triples, '
-                'label-equals-identifier, label separators, identifier digit width, room level segment '
-                'against parent level, and object-only entities.' % (args.label_style, len(data)),
-                '%d findings: %d ERROR, %d WARN, %d INFO. %d rows yellow, %d amber, %d clean.'
-                % (len(findings), tot[0], tot[1], tot[2], len(err_rows), len(warn_rows),
-                   len(data) - len(err_rows) - len(warn_rows))])
+                'Built this review workbook: a START HERE tab, %d plain-English tabs, a technical tab, and '
+                'colour on the data rows.' % len(built),
+                'Ran the row-level validator and the cross-unit consistency checker over %d rows, both '
+                'against a header-normalised copy so the broken header row did not drown the output, plus '
+                'seven checks neither script covers. Findings are collapsed to one line per kind of problem '
+                'rather than one line per row, and every rule code is rewritten in ordinary English. The '
+                'raw coded findings are kept on the Technical detail tab.' % len(data),
+                '%d findings in total: %d must be fixed, %d to check, %d for information. %d rows coloured '
+                'yellow, %d orange.' % (len(findings), total_must, total_chk,
+                                        len(findings) - total_must - total_chk,
+                                        len(err_rows), len(warn_rows))])
     for c in range(1, 7):
         log.cell(2, c).alignment = Alignment(wrap_text=True, vertical='top')
     for i, wd in enumerate([8, 12, 60, 60, 110, 90], 1):
         log.column_dimensions[get_column_letter(i)].width = wd
     log.row_dimensions[2].height = 150
 
-    wb._sheets = [wb[t] for t in ['Claude Log', 'Review_Summary', sheet_name]
-                  + [w.title for _, w, *_ in built]]
+    wb._sheets = ([wb['START HERE'], wb[sheet_name]]
+                  + [w for _, w, *_ in built] + [wb['Technical detail'], wb['Claude Log']])
     wb.save(args.out)
 
     print('%s -> %s' % (sheet.name, args.out))
-    print('%d findings: %d ERROR, %d WARN, %d INFO' % (len(findings), tot[0], tot[1], tot[2]))
-    print('%d rows filled yellow, %d amber' % (len(err_rows), len(warn_rows)))
-    for g, wsx, e, w, n, nrows in built:
-        print('  %-26s rows=%-6d E=%-5d W=%-5d I=%d' % (wsx.title, nrows, e, w, n))
-    return 1 if tot[0] else 0
+    print('%d findings: %d must fix, %d please check' % (len(findings), total_must, total_chk))
+    print('%d rows yellow, %d orange' % (len(err_rows), len(warn_rows)))
+    for g, wsx, must, chk, info, rowsn in built:
+        print('  %-24s rows=%-6d must fix=%-5d check=%d' % (wsx.title, rowsn, must, chk))
+    return 1 if total_must else 0
 
 
 def main():
