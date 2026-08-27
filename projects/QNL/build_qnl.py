@@ -10,6 +10,7 @@ import openpyxl
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "datapoints"))
 import qnl_datapoints
+import qnl_instrumentation
 from step1_confirm_datapoints import load_selected as _load_selected, \
     load_historian as _load_historian
 
@@ -690,6 +691,25 @@ for head in ORPHAN_SENSORS:
     _osensor_rows += 2
 notes.append("%d orphan CCU room sensors modelled as points isPartOf HVAC "
              "(assumption QNL-025)" % (len(ORPHAN_SENSORS)))
+
+# Building/system-level instrumentation (assumption QNL-024): CHW plant, the
+# electrical meters, orphan roof/control DX units, and loose room points -
+# attached to the parents Dar Cairo/SSC use. See qnl_instrumentation.py.
+_instr_n, _instr_para = qnl_instrumentation.build(
+    out, row, label, qnl_datapoints.to_unit, _load_historian(),
+    HVAC, HVAC_CLASS, CHW, CHW_CLASS, ELEC, ELEC_CLASS, LOOP, LOOP_CLASS,
+    _declared)
+_PARA_LABELS = dict(qnl_datapoints.PARA_LABEL)
+_PARA_LABELS.update({c: v[1] for c, v in qnl_instrumentation.PARA_DECL.items()})
+for _cls in sorted(_instr_para):
+    if _cls not in _declared:
+        out.append(row(_cls, "owl:Class", "rdfs:subClassOf",
+                       _instr_para[_cls] or "brick:Point", "",
+                       [("s", "rdfs:label_en",
+                         _PARA_LABELS.get(_cls, label(_cls.split(":", 1)[-1])))]))
+        _declared.add(_cls)
+notes.append("%d instrumentation rows for the 68 building/system-level tags "
+             "(assumption QNL-024, now modelled)" % _instr_n)
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()

@@ -581,3 +581,35 @@ do not settle. Modelling them as standalone equipment would invent units that
 do not exist, so they are logged for you to say where they attach.
 
 The full assumption log is `QNL_Assumption_Log.xlsx` (QNL sheet, QNL-007…QNL-024).
+
+## Building/system-level instrumentation modelled (QNL-024 resolved)
+
+The 68 tags held under QNL-024 are now attached to the parent their Dar Cairo /
+SSC counterpart uses (`qnl_instrumentation.py` is the ledger for them):
+
+- **CHW plant instrumentation (21)** → the chilled-water loop
+  `entity:QNL_CHWS-MAIN-LOOP`: loop temps, pressures and flows hang on the loop
+  directly (Dar Cairo's shape), and the energy/power points on a
+  `brick:Building_Chilled_Water_Meter` sub-part (Dar Cairo's
+  `CHWS-MAIN-LOOP_Energy-Meter`).
+- **Electrical metering (24)** → one `brick:Electrical_Meter` per meter under
+  `entity:Electrical_System`, each carrying its `Electric_Power_Sensor` /
+  `Electrical_Energy_Usage_Sensor` points — how both Dar Cairo (1,456 meters) and
+  SSC (46) model electrical measurement. The building total is a
+  `para:Utility_Meter` (Dar Cairo's own class); the generator breaker `ACB3`
+  is a `brick:Circuit_Breaker` part of the generator, like `ACB14`.
+- **`DX_RP21` and `CR_DX_EWRC500`** → orphan `para:DXUnit` units the register
+  omits, `isPartOf` HVAC with no location — the roof and control-room DX, treated
+  like the CCU orphans.
+- **Loose room sensors and group statuses/setpoints** (CPNL2 CCU space sensors,
+  `MF_B01` space temp, the `TEF_B0x` group local-statuses, the DX group
+  changeover setpoints) → orphan points `isPartOf` HVAC.
+
+Three `para:` classes were coined (QNL-026): `para:Required_Units_Count`,
+`para:Stage_Up_Delay_Setpoint`, and `para:Utility_Meter` (reusing Dar Cairo's
+name and `brick:Electrical_Meter` parent).
+
+**Every selected datapoint present in the historian is now in the ontology — 0
+left unmodelled.** Total **8,673 rows**. Row validator: 573 IFC-empty errors, 9
+accepted orphan findings (E-FEED-1 / W-GR-2 on the register-absent units).
+IO cross-check **clean, 0 E-IO-1**.
