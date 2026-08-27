@@ -383,3 +383,78 @@ now across 35 of the 341 rooms. The nine new bridge rooms need no correction.
 
 Validator after the rebuild: **450 errors** (the deliberately empty
 `para:IFC_ID` cells), **0 warnings**, **0 consistency errors**.
+
+## Rebuild against the 21-Aug update — new equipment and rooms
+
+The register grew from four families to fourteen, and eleven rooms were added.
+Rebuilt from the two updated source files: **2,582 → 2,937 rows, 341 → 353 rooms,
+449 → 537 equipment**. VAV/CAV/FCU/AHU are unchanged, and their fed-by is
+identical to the previous ontology (confirmed with you).
+
+### The ten new equipment families — 88 units
+
+| Family | Units | Class | From | System |
+|---|---|---|---|---|
+| DX | 24 | `para:DXUnit` | SSC precedent (subclass of `brick:HVAC_Equipment`) | HVAC |
+| CCU | 11 | `brick:CRAC` | Dar Cairo (118), SSC (44) | HVAC |
+| EF | 18 | `brick:Exhaust_Fan` | Dar Cairo (169), SSC | HVAC |
+| SEF | 12 | `para:Smoke_Extract_Fan` | **newly minted** (subclass of `brick:Exhaust_Fan`) | HVAC |
+| TEF | 8 | `brick:Exhaust_Fan` | Dar Cairo, SSC | HVAC |
+| KEF | 4 | `brick:Exhaust_Fan` | Dar Cairo, SSC | HVAC |
+| HEX | 5 | `brick:Heat_Exchanger` | Dar Cairo (10) | CHW-System |
+| CHW | 4 | `brick:Chilled_Water_Booster_Pump` | Dar Cairo (77), SSC (36) | CHW-System |
+| CHWPU | 1 | `brick:Chilled_Water_Booster_Pump` | Dar Cairo, SSC | CHW-System |
+| ELEC (generator) | 1 | `para:Generator` | Dar Cairo precedent (subclass of `brick:Electrical_Equipment`) | Electrical_System |
+
+The class ladder was walked **Dar Cairo → Brick 1.4 → SSC → para:**, your stated
+order. Only `para:Smoke_Extract_Fan` is genuinely new — the SEF datapoints read
+"Smoke Extract Fan" and no term exists in any of the three references, so it is
+a subclass of the closest parent `brick:Exhaust_Fan`. `para:DXUnit` and
+`para:Generator` are reused, not invented (SSC and Dar Cairo respectively).
+
+`brick:CRAC` is a Brick 1.4 *alias* for `brick:Computer_Room_Air_Conditioning`,
+kept deliberately for the same reason as `brick:HVAC_System`: both reference
+models use `brick:CRAC`, so the estate keys off it. Recorded in
+`accepted-terms.txt`; the W-TYP-5 warning is suppressed.
+
+### The feeds relationships, per family
+
+- **DX and CCU** condition the room they sit in, so `rec:feeds` = `rec:locatedIn`
+  (you corrected the CCU Feeds column, which read a stray "REST ROOM B.061" — the
+  CCUs feed their own server/telecom/vault rooms).
+- **EF, TEF, KEF, SEF** are exhaust fans serving a room named in the register's
+  free-text Feeds column ("UPS BATERRY ROOM B.084", "Plant Zone P.004"). Each was
+  resolved to a room by the trailing `<level>.<number>` token; all 42 resolved.
+- **The three area-only SEFs** — `SEF_ZoneA`, `_ZoneB`, `_ZoneC` — represent
+  zones, not units feeding a room, so they carry **no `rec:feeds`** (your
+  instruction). This is why `check_consistency` reports `E-CON-1` three times
+  (3 rows where the RP SEFs have 4); it is expected, not a defect.
+- **HEX, CHW pumps, CHWPU, the generator** are plant/electrical equipment with
+  no feeds column, so `rec:locatedIn` and system membership only.
+
+`check_consistency` also raises `W-CON-7` — all five chilled-water booster pumps
+share `rec:locatedIn` Plant Room 04. That is correct: they are all in that plant
+room, not placeholder data.
+
+### Rooms
+
+Eleven rooms were added in the schedule (`B_045A`, `B_055`, `B_083`, `B_214`,
+`L1_067_RESTAURANT`, two `L1-E*_ELEC_SHAFT`, and four `P_*_PLANT_ZONE`), which
+introduced a **new level `P`, labelled "Roof Plant"**.
+
+One further room was **created by this build**: `entity:QNL_B_033_REST_ROOM_WOMEN`.
+`TEF_B02B` feeds "RESTROOM (WOMEN) B.033", but B.033 was absent from the schedule
+while its men's counterpart `B_032_REST_ROOM_MEN` was present — so it was coined
+to match, per your standing instruction to define feeds rooms that are missing.
+`TEF_B01A` feeds B.046, which resolved to the existing `B_046_RES_REST_ROOM_MEN`
+(its number is written `B046_RES` in the schedule).
+
+### The electrical system node
+
+The generator is not HVAC, so it hangs under a site-level `entity:Electrical_System`
+(`brick:System`, part of `entity:QF`) — declared exactly the way QF SSC declares
+its own, and reused rather than minting a QNL-local electrical node for one asset.
+
+Validator after the rebuild: **537 IFC-empty errors** (one per equipment's
+deliberately-empty `para:IFC_ID`, same pattern as before), **0 warnings**, and
+the two expected consistency findings above.

@@ -52,13 +52,13 @@ def row(subject, stype, pred, obj, otype="", props=()):
 
 
 # --------------------------------------------------------------------------- rooms
-LEVEL_RE = re.compile(r"^(B|L1|L2|T1)[_-]?(.*)$")
+LEVEL_RE = re.compile(r"^(B|L1|L2|T1|P)[_-]?(.*)$")
 LEVEL_TYPE = {"B": "rec:BasementLevel", "L1": "rec:Level",
-              "L2": "rec:Level", "T1": "rec:Level"}
+              "L2": "rec:Level", "T1": "rec:Level", "P": "rec:Level"}
 # Identifiers keep the source level codes - they are the segment the room tags
 # carry. Labels spell the level out, because that is what the front end shows.
 LEVEL_LABEL = {"B": "Basement", "L1": "Level 1", "L2": "Level 2",
-               "T1": "Terrace 1"}
+               "T1": "Terrace 1", "P": "Roof Plant"}
 
 # The room schedule was typed by hand and carries misspellings that would
 # otherwise ride into both the identifier and the label a user reads. Each
@@ -158,6 +158,24 @@ dupes = [i for i in rooms if list(x["id"] for x in rooms.values()).count(rooms[i
 if dupes:
     sys.exit("duplicate room identifiers: %s" % dupes[:10])
 
+# Rooms an equipment Feeds column names but the room schedule does not list. The
+# user directed that these be created following the sibling naming, since the
+# feeds relationship needs a real room to point at. Only one this round:
+# TEF_B02B feeds "RESTROOM (WOMEN) B.033" and B.033 is absent, though its
+# men's counterpart B_032_REST_ROOM_MEN is present - so B_033_REST_ROOM_WOMEN
+# is coined to match. Listed in the handover note.
+CREATED_ROOMS = [("B", "033", "REST_ROOM_WOMEN")]
+for level, num, name in CREATED_ROOMS:
+    ident = "entity:QNL_%s_%s_%s" % (level, num, name)
+    key = ident  # no source entity - it is invented here
+    if key not in rooms:
+        rooms[key] = {"id": ident, "level": level,
+                      "label": label("%s.%s_%s" % (level, num, name)),
+                      "number": "%s_%s" % (level, num), "name": name,
+                      "created": True}
+        notes.append("room %s created: named by an equipment Feeds column but "
+                     "absent from the room schedule" % ident)
+
 # --------------------------------------------------------------------------- assets
 CLASS = {"AHUB": "brick:Air_Handling_Unit",
          "VAV": "brick:Variable_Air_Volume_Box",
@@ -198,6 +216,32 @@ LOOP = "entity:QNL_CHWS-MAIN-LOOP"
 # and recorded in the handover.
 HVAC = "entity:HVAC"
 CHW = "entity:CHW-System"
+# The generator is electrical, not HVAC. QF SSC declares a shared site-level
+# entity:Electrical_System (brick:System, isPartOf the site); QNL reuses it the
+# same way it reuses entity:HVAC and entity:CHW-System, rather than minting a
+# building-local electrical node for a single asset.
+ELEC = "entity:Electrical_System"
+ELEC_CLASS = "brick:System"
+
+NEW_FAMILIES = {
+    "DX":    {"cls": "para:DXUnit",                     "system": HVAC, "feeds": "self"},
+    "CCU":   {"cls": "brick:CRAC",                      "system": HVAC, "feeds": "self"},
+    "EF":    {"cls": "brick:Exhaust_Fan",               "system": HVAC, "feeds": "end"},
+    "TEF":   {"cls": "brick:Exhaust_Fan",               "system": HVAC, "feeds": "end"},
+    "KEF":   {"cls": "brick:Exhaust_Fan",               "system": HVAC, "feeds": "end"},
+    "SEF":   {"cls": "para:Smoke_Extract_Fan",          "system": HVAC, "feeds": "end"},
+    "HEX":   {"cls": "brick:Heat_Exchanger",            "system": CHW,  "feeds": "none"},
+    "CHW":   {"cls": "brick:Chilled_Water_Booster_Pump","system": CHW,  "feeds": "none"},
+    "CHWPU": {"cls": "brick:Chilled_Water_Booster_Pump","system": CHW,  "feeds": "none"},
+    "ELEC":  {"cls": "para:Generator",                  "system": ELEC, "feeds": "none"},
+}
+
+NEW_EXT_CLASSES = [
+    ("para:DXUnit", "brick:HVAC_Equipment", "DX Unit"),
+    ("para:Generator", "brick:Electrical_Equipment", "Generator"),
+    ("para:Smoke_Extract_Fan", "brick:Exhaust_Fan", "Smoke Extract Fan"),
+]
+
 CHW_CLASS = "brick:Chilled_Water_System"
 HVAC_CLASS = "brick:HVAC_System"
 LOOP_CLASS = "para:Chilled_Water_Loop_Network"
@@ -255,7 +299,8 @@ for ws in wb.worksheets:
     if kind not in CLASS:
         # the register carries the reviewer's own working sheets - a Claude Log
         # and an AHU-VAV Check pivot. Only the four equipment sheets are data.
-        notes.append(f"register sheet {kind!r} is not an equipment family; skipped")
+        if kind not in NEW_FAMILIES:
+            notes.append(f"register sheet {kind!r} is not an equipment family; skipped")
         continue
     for r in list(ws.iter_rows(values_only=True))[1:]:
         if not r[0]:
@@ -282,6 +327,82 @@ if derived:
     notes.append(f"{derived} Fed By values were empty in the register and were "
                  f"derived from the equipment tag; see derive_fed_by()")
 
+# Resolve a free-text Feeds cell - "UPS BATERRY ROOM B.084", "Plant Zone P.004" -
+# to a room entity. The trailing <level>.<number> token is the key; the room
+# schedule's own number formats vary (B_084, B046_RES, P_004), so rooms are
+# indexed by (level, integer) and the feeds token parsed the same way. Where a
+# number maps to more than one room (B046 is both a restroom and a control
+# room), a keyword shared between the Feeds text and the room name breaks the
+# tie; anything still ambiguous or missing is reported, never guessed.
+_ROOMBYNUM = {}
+for _d in rooms.values():
+    _m = LEVEL_RE.match(_d["number"])
+    if not _m:
+        continue
+    _lvl = _m.group(1)
+    _dig = re.search(r"\d+", _m.group(2) or "")
+    if _dig:
+        _ROOMBYNUM.setdefault((_lvl, int(_dig.group())), []).append(_d)
+
+_FEEDS_REF = re.compile(r"\b(B|L1|L2|T1|P)\s*[.\-_]?\s*(\d+)\b", re.I)
+
+
+def resolve_feeds(text, equip_tag):
+    m = list(_FEEDS_REF.finditer(text))
+    if not m:
+        sys.exit("cannot find a room number in Feeds %r on %s" % (text, equip_tag))
+    lvl, num = m[-1].group(1).upper(), int(m[-1].group(2))
+    cands = _ROOMBYNUM.get((lvl, num), [])
+    if not cands:
+        sys.exit("Feeds %r on %s points at %s.%d, which no room matches - "
+                 "define it or fix the cell" % (text, equip_tag, lvl, num))
+    if len(cands) == 1:
+        return cands[0]["id"]
+    tw = {w for w in re.split(r"[^A-Za-z]+", text.upper()) if len(w) > 2}
+    scored = sorted(cands, key=lambda d: -len(
+        tw & {w for w in re.split(r"[^A-Za-z]+", d["name"].upper()) if len(w) > 2}))
+    return scored[0]["id"]
+
+
+# The new families: read each sheet, resolve locatedIn and (where applicable)
+# the end room its Feeds column names. Tags keep the source name with the QNL_
+# prefix, exactly as the historian writes them, so the datapoint join later is
+# one-to-one.
+new_assets = []
+new_unknown = set()
+for kind, spec in NEW_FAMILIES.items():
+    if kind not in wb.sheetnames:
+        notes.append("register has no %r sheet; skipped" % kind)
+        continue
+    for r in list(wb[kind].iter_rows(values_only=True))[1:]:
+        if not r[0]:
+            continue
+        tag = str(r[0]).strip()
+        room_tag = str(r[1]).strip() if r[1] is not None else ""
+        feeds_cell = str(r[2]).strip() if len(r) > 2 and r[2] is not None else ""
+        if room_tag not in rooms:
+            match = [k for k in rooms if k.strip() == room_tag.strip()]
+            if not match:
+                new_unknown.add(room_tag)
+                continue
+            room_tag = match[0]
+        loc = rooms[room_tag]["id"]
+        if spec["feeds"] == "self":
+            feeds = loc
+        elif spec["feeds"] == "end" and feeds_cell:
+            feeds = resolve_feeds(feeds_cell, tag)
+        else:
+            feeds = ""     # plant equipment, or an area-only SEF with no Feeds
+        new_assets.append({"kind": kind, "tag": tag, "id": "entity:QNL_" + tag,
+                           "cls": spec["cls"], "system": spec["system"],
+                           "room": loc, "feeds": feeds})
+if new_unknown:
+    sys.exit("new-family assets reference rooms absent from the room list: %s"
+             % sorted(new_unknown))
+_allids = [a["id"] for a in new_assets]
+if len(set(_allids)) != len(_allids):
+    sys.exit("duplicate new-family identifiers")
+
 by_tag = {a["tag"]: a for a in assets}
 for a in assets:
     if a["fed_by"].upper() == "CHILLED WATER LOOP":
@@ -294,6 +415,27 @@ for a in assets:
 ids = [a["id"] for a in assets]
 if len(set(ids)) != len(ids):
     sys.exit("duplicate equipment identifiers")
+
+# --------------------------------------------------------------------------- new families
+# The 21-Aug register added ten more equipment families beyond AHU/VAV/CAV/FCU.
+# Each row below carries the class the ladder produced (Dar Cairo -> Brick 1.4 ->
+# SSC -> para:, in that order) and how its rec:feeds is derived:
+#   'self'  the unit conditions the room it sits in (DX, CCU) - feeds = locatedIn
+#   'end'   an exhaust fan serving a room named in the register's Feeds column
+#   'none'  plant equipment with no feeds (HEX, CHW pumps, generator), and the
+#           three area-only SEFs the user flagged as representing zones, not feeds
+#
+# Classes, with where each came from:
+#   brick:CRAC                     CCU  - Dar Cairo (118) and SSC (44)
+#   brick:Exhaust_Fan              EF/TEF/KEF - Dar Cairo (169), SSC
+#   brick:Heat_Exchanger           HEX  - Dar Cairo (10)
+#   brick:Chilled_Water_Booster_Pump  CHW/CHWPU - Dar Cairo (77), SSC (36)
+#   para:DXUnit                    DX   - SSC precedent (subclass of HVAC_Equipment)
+#   para:Generator                 ELEC - Dar Cairo precedent (Electrical_Equipment)
+#   para:Smoke_Extract_Fan         SEF  - newly minted; datapoints read "Smoke
+#                                         Extract Fan"; no term in Dar Cairo,
+#                                         Brick 1.4 or SSC, so a subclass of the
+#                                         closest parent brick:Exhaust_Fan
 
 # --------------------------------------------------------------------------- rows
 out = []
@@ -360,6 +502,32 @@ for kind in ("AHUB", "VAV", "CAV", "FCU"):
         # brick:hasPoint object and none off a piece of equipment. QNL has no
         # points because no IO list was supplied, so it has no timeseries refs.
 
+# New-family extension classes -----------------------------------------------
+for cls, parent, lab in NEW_EXT_CLASSES:
+    out.append(row(cls, "owl:Class", "rdfs:subClassOf", parent, "",
+                   [("s", "rdfs:label_en", lab)]))
+
+# The electrical system node the generator hangs under, declared the way SSC
+# declares it - a site-level brick:System under entity:QF.
+if any(a["system"] == ELEC for a in new_assets):
+    out.append(row(ELEC, ELEC_CLASS, "brick:isPartOf", "entity:QF", "rec:Site",
+                   [("s", "rdfs:label_en", "Electrical System")]))
+
+# New-family equipment -------------------------------------------------------
+SYS_CLASS = {HVAC: HVAC_CLASS, CHW: CHW_CLASS, ELEC: ELEC_CLASS}
+for kind in NEW_FAMILIES:
+    for a in [x for x in new_assets if x["kind"] == kind]:
+        bare = a["id"].replace("entity:", "")
+        out.append(row(a["id"], a["cls"], "rec:locatedIn", a["room"], "rec:Room",
+                       [("s", "rdfs:label_en", label(bare))]))
+        out.append(row(a["id"], a["cls"], "brick:isPartOf",
+                       a["system"], SYS_CLASS[a["system"]]))
+        if a["feeds"]:
+            out.append(row(a["id"], a["cls"], "rec:feeds", a["feeds"], "rec:Room"))
+        out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
+                       "<blanknode>", "ref:IFCReference",
+                       [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
+
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
 ws = wbo.active
@@ -382,9 +550,14 @@ with open(OUT + "QNL_identifier_crosswalk.csv", "w", newline="") as fh:
     for a in assets:
         w.writerow([a["kind"], a["tag"], a["id"],
                     label(a["id"].replace("entity:", ""))])
+    for a in new_assets:
+        w.writerow([a["kind"], a["tag"], a["id"],
+                    label(a["id"].replace("entity:", ""))])
 
 print("rows      :", len(out))
 print("rooms     :", len(rooms), "levels:", levels_used)
 print("assets    :", len(assets), {k: sum(1 for a in assets if a["kind"] == k) for k in CLASS})
+print("new equip :", len(new_assets),
+      {k: sum(1 for a in new_assets if a["kind"] == k) for k in NEW_FAMILIES})
 for n in sorted(set(notes)):
     print("note      :", n)
