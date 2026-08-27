@@ -571,6 +571,10 @@ with open(OUT + "QNL_newfamily_datapoint_ledger.csv", "w", newline="") as fh:
 # left out, since there is no subject here to hang their points on.
 ORIG4_POINTS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                             "assets", "QNL_original4_points.xlsx")
+# Two orphan assets carry telemetry but have no register row. Yesterday modelled
+# them (assumption QNL-021) with their points and no location; they are kept, not
+# dropped - see the orphan handling and the assumption log.
+ORIG4_ORPHANS = {"entity:QNL_VAV_B_S13_005", "entity:QNL_CAV_1F_S15_001"}
 _cur_equip = {a["id"] for a in assets}          # the 449 AHU/VAV/CAV/FCU subjects
 _owb = openpyxl.load_workbook(ORIG4_POINTS, read_only=True, data_only=True)
 _ows = _owb["Ontology"]
@@ -583,15 +587,18 @@ for r in _orows:
         subj = str(r[0])
         equip = subj.split("_")[:0]  # placeholder
         # the owning equipment is the subject; keep only if it is a current unit
-        if subj in _cur_equip:
+        if subj in _cur_equip or subj in ORIG4_ORPHANS:
             _orig_rows.append(r)
             _pt_ids.add(str(r[3]))
         else:
             _skipped_equip.add(subj)
 # pass 2: every other row whose subject is one of those points (its timeseries
-# reference, and any point attribute rows).
+# reference, and any point attribute rows), plus the orphan units' own
+# declaration rows (isPartOf HVAC, IFC) - yesterday modelled them with a class
+# and an IFC reference but no rec:locatedIn/feeds/isFedBy.
 for r in _orows:
-    if str(r[2]) != "brick:hasPoint" and str(r[0]) in _pt_ids:
+    subj = str(r[0])
+    if str(r[2]) != "brick:hasPoint" and (subj in _pt_ids or subj in ORIG4_ORPHANS):
         _orig_rows.append(r)
 for r in _orig_rows:
     out.append([("" if c is None else c) for c in r] + [""] * (27 - len(r)))
@@ -613,6 +620,45 @@ for _cls, (_par, _lab) in ORIG4_PARA.items():
         out.append(row(_cls, "owl:Class", "rdfs:subClassOf", _par, "",
                        [("s", "rdfs:label_en", _lab)]))
         _declared.add(_cls)
+
+# Orphan units named in the historian/selected list but absent from the register
+# (assumption QNL-023). Modelled like yesterday's VAV/CAV orphans: a class, a
+# label, an IFC reference and their datapoints, but NO rec:locatedIn / rec:feeds
+# / rec:isFedBy - position and feeds are not asserted because the register, the
+# only source for them, says nothing.
+ORPHAN_UNITS = (
+    [("CCU_%d" % n, "brick:CRAC", HVAC, HVAC_CLASS) for n in range(8081, 8087)]
+    + [("CHWPU_P02", "brick:Chilled_Water_Booster_Pump", CHW, CHW_CLASS)]
+)
+_orphan_assets = [{"kind": "ORPHAN", "tag": t, "id": "entity:QNL_" + t, "cls": c}
+                  for t, c, sysent, syscls in ORPHAN_UNITS]
+_osys = {"entity:QNL_" + t: (sysent, syscls) for t, c, sysent, syscls in ORPHAN_UNITS}
+for a in _orphan_assets:
+    bare = a["id"].replace("entity:", "")
+    sysent, syscls = _osys[a["id"]]
+    out.append(row(a["id"], a["cls"], "brick:isPartOf", sysent, syscls,
+                   [("s", "rdfs:label_en", label(bare))]))
+    # A chilled-water pump feeds the loop by function, not by position, so that
+    # much is asserted even for an orphan; a CCU feeds a specific room the
+    # register would have named, so its feeds is left unasserted.
+    if a["cls"] == "brick:Chilled_Water_Booster_Pump":
+        out.append(row(a["id"], a["cls"], "rec:feeds", LOOP, LOOP_CLASS))
+    out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
+                   "<blanknode>", "ref:IFCReference",
+                   [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
+_odp_rows, _odp_ledger, _opara = qnl_datapoints.build_datapoints(
+    _orphan_assets, _load_selected(), _load_historian(), row, label)
+for _cls in sorted(_opara):
+    if _cls not in _declared:
+        out.append(row(_cls, "owl:Class", "rdfs:subClassOf", _opara[_cls], "",
+                       [("s", "rdfs:label_en",
+                         qnl_datapoints.PARA_LABEL.get(_cls,
+                             label(_cls.split(":", 1)[-1])))]))
+        _declared.add(_cls)
+out.extend(_odp_rows)
+notes.append("%d orphan units modelled (assumption QNL-023): %s"
+             % (len(_orphan_assets),
+                ", ".join(a["tag"] for a in _orphan_assets)))
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()

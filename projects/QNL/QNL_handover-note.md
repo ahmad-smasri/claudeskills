@@ -549,3 +549,35 @@ E-IO-1)** for all four families too — every point traces to a historian tag.
 Consistency reports the genuine per-unit heterogeneity these points make visible
 (`RmTemp` on 44/246 VAVs and 59/137 FCUs, `RtnAirTemp`/`RtnTempSP` on 82/137
 FCUs — exactly what the historian carries), documented as before, not defects.
+
+## Orphan equipment kept, not dropped (assumptions QNL-021, QNL-023, QNL-024)
+
+Assets that carry telemetry but have no register row are modelled, not dropped —
+the same discipline as yesterday's QNL-021. An orphan gets its class, a label, an
+IFC reference and its datapoints, but **no `rec:locatedIn` / `rec:isFedBy`**,
+because the register — the only source for position and feeds — says nothing.
+
+**Modelled this pass (QNL-023):** the six orphan CCU units `CCU_8081`–`8086`
+(`brick:CRAC`, each with Alarm / Comm-alarm / Humidity / Temperature points) and
+`CHWPU_P02` (`brick:Chilled_Water_Booster_Pump`). The pump `rec:feeds` the loop —
+a pump feeds the loop by function, not by position — while the CCUs' room-feeds
+are left unasserted. **Re-added (QNL-021):** `VAV_B_S13_005` and `CAV_1F_S15_001`,
+which I had wrongly dropped when lifting the four-family points; they are back
+with their 3 points each.
+
+These raise **7 E-FEED-1 and 7 W-GR-2** (a CRAC/VAV with no declared feed or
+location) — accepted, exactly as QNL-021 documents. All their points trace to the
+historian: the IO cross-check stays **clean, 0 E-IO-1**.
+
+**Not modelled, held for your direction (QNL-024):** 78 further historian tags
+that sit under a family prefix but are each a single building- or system-level
+measurement, not an equipment unit — CHW plant instrumentation (21, e.g.
+`CHW_BldgAvgSupTemp`, `CHW_PriRtnTemp`), electrical metering (24, e.g.
+`ELEC_MFM_MVP1`, the VCB/ACB meters), the DX group/staging controller
+(`DX_RP21` and the group changeover setpoints, 11), and CCU room sensors (10,
+e.g. `CCU_AVServerRmHumd`). These are points that need a parent — the
+chilled-water loop, the electrical system, or specific units — which the sources
+do not settle. Modelling them as standalone equipment would invent units that
+do not exist, so they are logged for you to say where they attach.
+
+The full assumption log is `QNL_Assumption_Log.xlsx` (QNL sheet, QNL-007…QNL-024).

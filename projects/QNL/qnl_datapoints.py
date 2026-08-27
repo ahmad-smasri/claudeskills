@@ -154,6 +154,10 @@ def to_unit(u):
 CANON = {
     # fans, pumps, generic actuation/telemetry
     "RunSts": ("brick:Run_Status", "Brick 1.4"),
+    # orphan CCU points (Temp/Humidity/Alm room monitors)
+    "Alm": ("brick:Alarm", "Dar Cairo"),
+    "Humidity": ("brick:Relative_Humidity_Sensor", "Dar Cairo"),
+    "Temp": ("brick:Temperature_Sensor", "Dar Cairo"),
     "TripAlm": ("para:Trip_Status", "Dar Cairo"),
     "LocSts": ("para:Local_Status", "para (minted)"),
     "RemSts": ("para:Remote_Status", "para (minted)"),
