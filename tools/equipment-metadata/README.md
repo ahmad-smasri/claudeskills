@@ -15,7 +15,13 @@ converted to the unit Dar Cairo uses for it.
 | Closed Control Units | CC/B/01 … CC/B/09 (5 selection sheets) | `qnl_closed_control_units_manual.pdf` |
 | Climate Control Units | MCG-10P, VCB1000-AB32, AF4 filter | `climate_control_units_manual.pdf` |
 | FCU | 28 positions across B, 1F, 2F | `FCU_Manual.pdf` (p2-29) |
+| Heat Exchangers | PHX/B/01 … PHX/B/04 | MEP schedule drawing (image supplied in chat) |
+| Pumps | CHWP/B/01 … CHWP/B/04 | MEP schedule drawing (image supplied in chat) |
+| Exhaust Fans | 39 fans, EF/ TEF_ KEF_ families | `Book1.xlsx` Sheet1 |
 | Units | the source-unit to Dar-Cairo-unit mapping | `reference-models/DarCairo_V93.csv` |
+
+Not covered, and deliberately: the same schedule drawing carries a SCHEDULE OF
+PRESSURIZATION UNIT (PU/B/01, Armstrong 3750 2 EM-S). It was not requested.
 
 ## Rebuilding
 
@@ -62,6 +68,20 @@ it touches.
 Values that are designations rather than quantities — BSP thread sizes, IEC motor
 frame numbers, composite `V-ph-Hz` nameplate strings, drawing revisions — carry no
 unit in either pair, by design.
+
+Dimensionless quantities (SHR, EER, COP, fan speed setting) are matched on whole
+words, not substrings — "Schedule scope" contains "cop" and must not be treated as
+a ratio.
+
+## Source quality
+
+Two sources are weaker than the submittal PDFs, and the sheets say so on the row:
+
+- The heat exchanger and pump schedules were supplied as an image with the title
+  block cropped out, so no drawing number, sheet or revision is recorded.
+- The exhaust fan spreadsheet carries model, manufacturer and air flow only, uses
+  two identifier shapes (28 slash-separated, 11 underscore-separated), and leaves
+  model/manufacturer blank on three fans and air flow blank on four.
 
 ## Adding an equipment type
 

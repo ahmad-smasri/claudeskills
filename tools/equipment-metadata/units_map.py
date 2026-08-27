@@ -78,16 +78,21 @@ UNIT_MAP = {
 PERCENT_RH = ("unit:PERCENT_RH", 1.0, True, "")
 PERCENT    = ("unit:PERCENT",    1.0, True, "")
 
-# properties that are dimensionless quantities even though the sheet prints no unit
-DIMENSIONLESS = ("shr", "eer", "cop", "fan speed setting")
+# properties that are dimensionless quantities even though the sheet prints no unit.
+# Matched on whole words, not substrings - "Schedule scope" contains "cop".
+DIMENSIONLESS_WORDS = {"shr", "eer", "cop"}
+DIMENSIONLESS_PHRASES = {"fan speed setting"}
 
 def resolve(unit, prop):
     """Return (qudt_unit, factor, in_dar_cairo, note) for one row."""
     p = (prop or "").lower()
     if unit == "%":
         return PERCENT_RH if ("rh" in p.split() or "humidity" in p) else PERCENT
-    if unit == "" and any(k in p for k in DIMENSIONLESS):
-        return ("unit:UNITLESS", 1.0, True, "dimensionless ratio")
+    if unit == "":
+        import re as _re
+        words = set(_re.findall(r"[a-z]+", p))
+        if (words & DIMENSIONLESS_WORDS) or p in DIMENSIONLESS_PHRASES:
+            return ("unit:UNITLESS", 1.0, True, "dimensionless ratio")
     return UNIT_MAP.get(unit, ("", None, True, "unmapped source unit"))
 
 

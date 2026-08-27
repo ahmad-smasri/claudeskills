@@ -4,9 +4,13 @@ from ahu import AHU
 from ccu import CCU
 from climate import CLIMATE
 from fcu import FCU_COLS, FCU_ROWS, FCU_NOTES
+from hex import HEX_COLS, HEX_ROWS, HEX_NOTES, SRC_HEX, PAGE_HEX
+from pumps import PUMP_COLS, PUMP_ROWS, PUMP_NOTES, SRC_PUMP, PAGE_PUMP
+from ef import EF_ROWS, EF_NOTES, SRC_EF
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from units_map import UNIT_MAP, resolve, convert
 
+import re
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
@@ -374,6 +378,82 @@ def build_fcu(rows):
             rows.append([tag, model, "Data quality", "Sheet note", FCU_NOTES[tag], "", SRC_FCU, page,
                          "Confirm with the supplier before use"])
 
+# ---------------------------------------------------------------- HEX
+def build_hex(rows):
+    idx = {c: i for i, c in enumerate(HEX_COLS)}
+    for r in HEX_ROWS:
+        tag = r[idx["unit_ref"]]
+        def add(comp, prop, key, unit, note=""):
+            rows.append([tag, "", comp, prop, r[idx[key]], unit, SRC_HEX, PAGE_HEX, note])
+        rows.append([tag, "", "Identification", "Make", r[idx["make"]], "", SRC_HEX, PAGE_HEX, ""])
+        add("Identification", "Type", "type", "")
+        add("Identification", "Location", "location", "")
+        add("Identification", "Quantity", "qty", "n")
+        add("Dimensions and weight", "Unit dimension (L x W x H)", "dim_lxwxh_mm", "mm")
+        add("Dimensions and weight", "Operating weight", "operating_weight_kg", "kg")
+        add("CHW flow rate", "Cold side", "chw_flow_cold_l_s", "l/s")
+        add("CHW flow rate", "Hot side", "chw_flow_hot_l_s", "l/s")
+    for tag in [r[0] for r in HEX_ROWS][:1]:
+        for prop, text in HEX_NOTES:
+            rows.append([tag, "", "Data quality", prop, text, "", SRC_HEX, PAGE_HEX,
+                         "Applies to every unit on this schedule"])
+
+# ---------------------------------------------------------------- pumps
+def build_pumps(rows):
+    idx = {c: i for i, c in enumerate(PUMP_COLS)}
+    for r in PUMP_ROWS:
+        tag = r[idx["unit_ref"]]; model = r[idx["model"]]
+        def add(comp, prop, key, unit, note=""):
+            rows.append([tag, model, comp, prop, r[idx[key]], unit, SRC_PUMP, PAGE_PUMP, note])
+        rows.append([tag, model, "Identification", "Make", r[idx["make"]], "",
+                     SRC_PUMP, PAGE_PUMP, ""])
+        add("Identification", "Type", "type", "")
+        add("Identification", "Location", "location", "")
+        add("Identification", "Model", "model", "",
+            "Designation ends in 55KW; the schedule states no motor rating of its own")
+        add("Identification", "Quantity", "qty", "n")
+        add("Dimensions and weight", "Unit dimension (L x W x H)", "dim_lxwxh_mm", "mm")
+        add("Dimensions and weight", "Weight", "weight_kg", "kg")
+        add("Performance", "CHW flow rate", "chw_flow_l_s", "l/s")
+    for tag in [r[0] for r in PUMP_ROWS][:1]:
+        for prop, text in PUMP_NOTES:
+            rows.append([tag, "", "Data quality", prop, text, "", SRC_PUMP, PAGE_PUMP,
+                         "Applies to every unit on this schedule"])
+
+# ---------------------------------------------------------------- exhaust fans
+_FLOW = re.compile(r"^\s*([\d.]+)\s*[lL]\s*/\s*[sS]\s*$")
+
+def build_ef(rows):
+    for tag, row, model, make, flow in EF_ROWS:
+        page = "Sheet1 r%d" % row
+        if make:
+            rows.append([tag, model or "", "Identification", "Manufacturer", make, "",
+                         SRC_EF, page, ""])
+        if model:
+            rows.append([tag, model, "Identification", "Model", model, "", SRC_EF, page, ""])
+        if not model and not make:
+            rows.append([tag, "", "Data quality", "Model and manufacturer",
+                         "not stated in the source sheet", "", SRC_EF, page,
+                         "Left out rather than filled with a typical value"])
+        if flow:
+            m = _FLOW.match(flow)
+            if m:
+                rows.append([tag, model or "", "Air", "Air flow", float(m.group(1)), "l/s",
+                             SRC_EF, page,
+                             "" if flow.strip() == "%s L/S" % m.group(1)
+                             else "source writes %r" % flow])
+            else:
+                rows.append([tag, model or "", "Air", "Air flow", flow, "", SRC_EF, page,
+                             "air-flow value could not be parsed"])
+        else:
+            rows.append([tag, model or "", "Data quality", "Air flow",
+                         "not stated in the source sheet", "", SRC_EF, page,
+                         "Left out rather than filled with a typical value"])
+    first = EF_ROWS[0][0]
+    for prop, text in EF_NOTES:
+        rows.append([first, "", "Data quality", prop, text, "", SRC_EF, "Sheet1",
+                     "Applies to the whole schedule"])
+
 # ---------------------------------------------------------------- write
 def sheet(wb, name, rows, subtitle):
     rows = [expand(r) for r in rows]
@@ -440,6 +520,12 @@ for name, desc in [
   ("Climate Control Units", "Museum Climate Controls MCG-10P humidity control unit with its VCB1000 "
           "blower option and AF4 intake air filter."),
   ("FCU", "28 Euroclima selection sheets covering positions on Basement, 1F and 2F."),
+  ("Heat Exchangers", "4 Alfa Laval counter-current plate heat exchangers, PHX/B/01 to PHX/B/04, "
+            "from the SCHEDULE OF HEAT EXCHANGER."),
+  ("Pumps", "4 Armstrong horizontal split case chilled water pumps, CHWP/B/01 to CHWP/B/04, from "
+            "the SCHEDULE OF PUMPS on the same drawing."),
+  ("Exhaust Fans", "39 exhaust fans - mostly Nuaire, two Colasit - from the supplied schedule "
+            "spreadsheet."),
   ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
             "Dar Cairo uses that unit at all."),
 ]:
@@ -458,8 +544,9 @@ for name, desc in [
   ("Value (Dar Cairo)", "The same quantity converted to the unit Dar Cairo uses for it."),
   ("Unit (QUDT)", "The QUDT unit token to write into brick:hasUnit."),
   ("Conversion", "The arithmetic applied, and any assumption behind it. Blank means no conversion was needed."),
-  ("Source File", "The PDF the value came from."),
-  ("Page", "The page of that PDF, 1-based."),
+  ("Source File", "The document the value came from - a PDF, a spreadsheet, or a supplied drawing image."),
+  ("Page", "Where in that document: a 1-based page for a PDF, a sheet and row for a spreadsheet, "
+           "the schedule title for a drawing."),
   ("Note", "Anything that qualifies the value - a quantity off, a source conflict, a mislabelled row."),
 ]:
     ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
@@ -495,6 +582,16 @@ for line in [
   "On 27 of the 28 Euroclima sheets the air pressure drop row is printed as 'Perdita di carico aria' "
   "with the unit [degC]. It is air-side pressure drop in Pa - page 2 labels the same row correctly.",
   "The CC/B/05,06,07 sheet heading reads M5DUA while its own Unit row reads M5DOA.",
+  "The heat exchanger and pump rows come from an image of a schedule drawing whose title block is "
+  "cropped out. They carry no drawing number, sheet or revision - ask for the sheet reference "
+  "before handover.",
+  "The exhaust fan schedule uses two identifier shapes: 28 slash-separated tags (EF/B/nn, EF/RP/n) "
+  "and 11 underscore-separated (TEF_B01A, KEF_101). Both were kept as written because the tag is "
+  "the BMS join key. EF/B numbering also runs 4 to 16 with no 1, 2 or 3.",
+  "The pump model designation ends in 55KW. The schedule states no motor rating of its own, so no "
+  "rated-power property was created from it - confirm against the pump submittal.",
+  "The same schedule drawing carries a SCHEDULE OF PRESSURIZATION UNIT (PU/B/01, Armstrong "
+  "3750 2 EM-S). It was not asked for and is not in this workbook; say the word and it gets a sheet.",
   "These are equipment selection and as-built documents, not nameplate photographs. Where the "
   "installed plant differs from the selection, the installed plant governs.",
 ]:
@@ -508,6 +605,11 @@ for f, pages, what in [
   ("qnl_closed_control_units_manual.pdf", "17 pages", "Emerson closed control unit selections"),
   ("climate_control_units_manual.pdf", "7 pages", "Museum Climate Controls MCG-10P data sheets"),
   ("FCU_Manual.pdf", "29 pages", "Euroclima fan coil unit selection sheets"),
+  ("MEP schedule drawing", "image", "Heat exchanger, pump and pressurization unit schedules, "
+   "supplied as an image in chat. The image crops the title block, so no drawing number, sheet "
+   "number or revision is recorded against these rows."),
+  ("Book1.xlsx", "Sheet1, 39 rows", "Exhaust fan schedule - equipment tag, model, manufacturer "
+   "and air flow only"),
 ]:
     ws.cell(row=r, column=1, value=f).font = Font(bold=True, size=10)
     c = ws.cell(row=r, column=2, value="%s - %s" % (pages, what)); c.font = Font(size=10)
@@ -541,6 +643,25 @@ sheet(wb, "FCU", rows,
       "carrying several tags on one sheet (e.g. B/06,08,17,24) were annotated by hand on the printed "
       "sheet; those tags share the selection above them. The Heating column is blank on all 28 sheets.")
 n_fcu = len(rows)
+
+rows = []; build_hex(rows)
+sheet(wb, "Heat Exchangers", rows,
+      "Plate heat exchangers PHX/B/01 to PHX/B/04 - SCHEDULE OF HEAT EXCHANGER. The supplied image "
+      "crops the title block, so the drawing number and sheet are not recorded.")
+n_hex = len(rows)
+
+rows = []; build_pumps(rows)
+sheet(wb, "Pumps", rows,
+      "Chilled water pumps CHWP/B/01 to CHWP/B/04 - SCHEDULE OF PUMPS, same drawing as the heat "
+      "exchanger schedule. The supplied image crops the title block.")
+n_pump = len(rows)
+
+rows = []; build_ef(rows)
+sheet(wb, "Exhaust Fans", rows,
+      "39 exhaust fans from the supplied schedule spreadsheet. The sheet carries model, "
+      "manufacturer and air flow only - no location, motor rating or static pressure. Two "
+      "identifier shapes are in use; both were kept as written.")
+n_ef = len(rows)
 
 # ---------------------------------------------------------------- Units sheet
 uw = wb.create_sheet("Units")
@@ -606,5 +727,6 @@ uw.sheet_view.showGridLines = False
 
 wb.save(OUT)
 print("saved", OUT)
-print("AHU %d rows | CCU %d | Climate %d | FCU %d | total %d"
-      % (n_ahu, n_ccu, n_cli, n_fcu, n_ahu+n_ccu+n_cli+n_fcu))
+print("AHU %d | CCU %d | Climate %d | FCU %d | HEX %d | Pumps %d | EF %d | total %d"
+      % (n_ahu, n_ccu, n_cli, n_fcu, n_hex, n_pump, n_ef,
+         n_ahu+n_ccu+n_cli+n_fcu+n_hex+n_pump+n_ef))
