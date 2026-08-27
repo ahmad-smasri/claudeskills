@@ -113,7 +113,7 @@ review is tractable.
 | Equipment | Type, `rec:locatedIn`, `brick:isPartOf` its system, nameplate properties from the manufacturer datasheet | |
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
-| Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, **from the IO list and nowhere else** | below |
+| Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, **from the IO list and nowhere else** | below, and `references/datapoints.md` |
 | References | `ref:hasExternalReference`, one row per reference. `ref:IFCReference` on the physical thing, carrying `para:IFC_ID` and `ref:ifcName`. `ref:TimeseriesReference` **on the point, never on the equipment**, carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
@@ -135,6 +135,24 @@ with no data behind it, and nobody can tell whether the sensor is broken or was
 never real. Over-inclusion is worse than omission here. Cross-check with
 `scripts/check_io_list.py` before handover, and never infer a point list from the
 equipment type.
+
+**When the IO list runs to hundreds or thousands of tags, the Points layer is
+its own procedure - `references/datapoints.md`.** In short: the client's
+*selected* list is what to model, the *historian* is what exists, and you carry
+only the intersection; a datapoint tag `<BUILDING>_<equipment>[_<part>].<point>`
+carries its own structure, and a token before the dot is a **part** only when it
+resolves to an *equipment* class, else it names the point that hangs on the
+equipment; the thousands of tags collapse to a few dozen `(family, part, point)`
+**signatures**, each resolved once through the same Dar Cairo → Brick → SSC →
+`para:` ladder and recorded as a reviewable **ledger** with its provenance;
+`scripts/point_class_ledger.py` walks that ladder mechanically and applies three
+guards (kind, device, generic description) earned by real mistakes, but its
+output is a first pass to inspect and curate. Every point carries `rdfs:label_en`,
+`brick:hasUnit` (mapped from the IO list's unit to the estate's code, overriding a
+physically wrong one and logging it), and its `ref:TimeseriesReference` **on the
+point**. A selected point whose equipment the register never named is an
+**orphan** - modelled with its class, label and points but no `rec:locatedIn` /
+`rec:isFedBy`, logged in the assumption log, never dropped.
 
 ## 3. Naming and labels
 
@@ -264,11 +282,13 @@ extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.
 | `references/naming-and-labels.md` | Naming an entity or writing a label |
 | `references/relationships.md` | Choosing a predicate |
 | `references/class-resolution.md` | A class is missing or ambiguous |
+| `references/datapoints.md` | Turning a selected-points list and a historian into point and part rows |
 | `references/known-issues.md` | A rule code needs explaining, or the sources disagree |
 
 | Script | Does |
 |---|---|
 | `scripts/lookup_reference.py` | Finds precedent in Dar Cairo; checks a term against Brick 1.4 |
+| `scripts/point_class_ledger.py` | Resolves a BMS point/part token to a class with provenance, walking the Dar Cairo → Brick → SSC → para ladder |
 | `scripts/validate_ontology.py` | Validates a sheet row by row |
 | `scripts/highlight_findings.py` | Writes a copy with unresolved findings filled yellow, for a manual pass |
 | `scripts/check_consistency.py` | Compares every unit of a class against its siblings |

@@ -26,6 +26,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/naming-and-labels.md` | identifier patterns per level, character rules, the label rule, IFC references | naming anything |
 | `references/relationships.md` | predicate families, what Dar Cairo actually uses and how often, the spatial hierarchy, feeds, hasPart vs locatedIn | choosing a predicate |
 | `references/class-resolution.md` | the four-step ladder, extension rules, where the vocabularies come from | a class is missing or ambiguous |
+| `references/datapoints.md` | the datapoint workflow: selected list vs historian, tag structure, collapse-to-signatures, part-vs-point, the class ladder with three guards, unit mapping, timeseries-on-point, orphans, bidirectional validation | turning a large IO list into point and part rows |
 | `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
 | `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
 | `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
@@ -35,6 +36,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/ontology-template.csv` | the empty 27-column header | starting a sheet |
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
+| `scripts/point_class_ledger.py` | resolves a BMS point/part token to a class with provenance, walking Dar Cairo → Brick → SSC → para with the kind/device/generic guards; importable resolver plus a token-to-ledger CLI | resolving the classes for a large datapoint list |
 | `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
 | `scripts/io_list.py` | shared IO-list loader; answers "does this unit have this point" and "what is its key" for all three checkers | changing how an IO list is read |
 | `scripts/highlight_findings.py` | writes a copy of a workbook with unresolved findings filled yellow and written into `validator_code` / `validator_finding` columns past the data, for a manual pass | findings need a human |
@@ -173,6 +175,33 @@ findings it can adjudicate are resolved rather than flagged, which is the pass a
 reviewer would otherwise do by hand. Silence is not confirmation: a unit the list
 says nothing about leaves its finding standing.
 
+**A large IO list is its own procedure** - `references/datapoints.md`. Two files
+drive it and they are not interchangeable: the client's *selected* list is what
+to model, the *historian* (analog and discrete points, routinely split across
+sheets) is what exists, and **only the intersection is carried** - a selected
+point absent from the historian resolves to an empty timeseries. A tag reads
+`<BUILDING>_<equipment>[_<part>].<point>`; a token before the dot is a **part**
+only when it resolves to an *equipment* class, otherwise it names the point and
+the point hangs on the equipment. The thousands of tags collapse to a few dozen
+`(family, part, point)` **signatures**, each resolved once through the
+Dar Cairo → Brick → SSC → `para:` ladder and recorded as a reviewable **ledger**
+with provenance; `point_class_ledger.py` walks that ladder and applies three
+guards - **kind** (a `...SP` suffix cannot match a `..._Sensor`; order the suffix
+table so `FTSP` reads fail-to-stop, not setpoint), **device** (a point on a
+damper is not a valve point), **generic description** (a self-referential or
+`"Process Value"` description names nothing - expand the tag instead) - but its
+output is a first pass to inspect and curate, since three of the first
+twenty-four were wrong before the guards. Units map from the IO cell to the
+estate's code, overriding a physically wrong one (a power sensor reading `%`) and
+logging it. A selected point whose equipment the register never named is an
+**orphan**, not a drop: modelled with class, label and points but no
+`rec:locatedIn` / `rec:isFedBy`, feeds left unasserted unless it is a function
+rather than a place, and each one logged in the assumption log. Three shapes - an
+orphan unit, an orphan sensor (the tag *is* the point, `brick:isPartOf` its
+system, never assumed to belong to a register unit that merely shares its room),
+and a building- or system-level point attached to the loop / electrical meter /
+HVAC parent its Dar Cairo or SSC counterpart uses.
+
 **Nameplate properties come from manufacturer datasheets.** Ask for them. If a
 datasheet was not submitted, leave the property out - never a typical value,
 never a placeholder.
@@ -199,6 +228,10 @@ python3 skills/building-ontology/scripts/lookup_reference.py --template brick:Fa
 
 # does this term exist in Brick 1.4, and is it preferred
 python3 skills/building-ontology/scripts/lookup_reference.py --term Heat_Wheel
+
+# resolve a datapoint token to a class, with the ladder step that settled it
+python3 skills/building-ontology/scripts/point_class_ledger.py --token RmTempSP --kind Setpoint
+python3 skills/building-ontology/scripts/point_class_ledger.py --tokens points.txt > ledger.csv
 
 # discover and show first - confirm the picture before trusting any finding
 python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx --preflight

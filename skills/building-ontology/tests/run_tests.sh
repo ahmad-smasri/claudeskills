@@ -118,6 +118,24 @@ else
 fi
 rm -f /tmp/ontology-formula-sample.xlsx
 
+echo "== the point-class ledger must walk the ladder and apply its guards"
+# Dar Cairo / Brick reads only; skip SSC (--ssc '') so no openpyxl is needed.
+out=$("$PY" scripts/point_class_ledger.py --ssc '' --tokens <(printf \
+    'SupFan.kW\nRunSts\nIsoVlv.OpenSts\nFooBarWidget\n') 2>/dev/null)
+led_ok=1
+grep -q 'SupFan.kW,Sensor,brick:Electric_Power_Sensor,Dar Cairo' <<<"$out" || led_ok=0
+grep -q 'RunSts,Status,brick:Run_Status,Brick 1.4' <<<"$out" || led_ok=0
+grep -q 'FooBarWidget,,para:Foo_Bar_Widget,para (minted)' <<<"$out" || led_ok=0
+# kind guard: a setpoint token must not resolve to a ..._Sensor class
+ksp=$("$PY" scripts/point_class_ledger.py --ssc '' --token RtnHumiditySP 2>/dev/null | tail -1)
+grep -q 'Sensor' <<<"$ksp" && led_ok=0
+if [ "$led_ok" -eq 1 ]; then
+    echo "   ok"
+else
+    echo "   FAIL: point_class_ledger did not resolve as expected"
+    echo "$out" | sed 's/^/   /'; echo "   RtnHumiditySP: $ksp"; fail=1
+fi
+
 echo "== an empty template must validate"
 "$PY" scripts/validate_ontology.py assets/ontology-template.csv >/dev/null 2>&1 \
     && echo "   ok" || { echo "   FAIL"; fail=1; }
