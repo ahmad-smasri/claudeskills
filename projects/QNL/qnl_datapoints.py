@@ -137,7 +137,7 @@ UNIT_MAP = {"°C": "unit:DEG_C", "%": "unit:PERCENT", "kW": "unit:KiloW",
             "Watt": "unit:W", "kWh": "unit:KiloW-HR", "kWH": "unit:KiloW-HR",
             "MWh": "unit:MegaW-HR", "Hrs": "unit:HR", "hrs": "unit:HR",
             "bar": "unit:BAR", "Hz": "unit:HZ", "A": "unit:A", "V": "unit:V",
-            "kPa": "unit:KiloPA", "Pa": "unit:PA"}
+            "kPa": "unit:KiloPA", "Pa": "unit:PA", "%rH": "unit:PERCENT_RH"}
 
 
 def to_unit(u):

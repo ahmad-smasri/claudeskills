@@ -660,6 +660,37 @@ notes.append("%d orphan units modelled (assumption QNL-023): %s"
              % (len(_orphan_assets),
                 ", ".join(a["tag"] for a in _orphan_assets)))
 
+# Orphan sensors: single room-condition points named in the historian/selected
+# list under the CCU prefix but not tied to any register unit (assumption
+# QNL-025). The user directed they be treated as orphans, not assumed onto the
+# register CCUs that happen to share those rooms. Each tag is the sensor itself
+# (a point), so it is typed as its measurement class, made brick:isPartOf the
+# HVAC system, given its timeseries - and NO rec:locatedIn, exactly like the
+# other orphans.
+_ohist = _load_historian()
+ORPHAN_SENSORS = sorted(
+    t[:-3] for t in {s["tag"] for s in _load_selected()}
+    if t.startswith("QNL_CCU_") and "Rm" in t and t.endswith(".PV"))
+_osensor_rows = 0
+for head in ORPHAN_SENSORS:
+    tag = head + ".PV"
+    if tag not in _ohist:
+        continue
+    cls = ("brick:Relative_Humidity_Sensor" if "Humd" in head
+           else "brick:Temperature_Sensor" if "Temp" in head else "brick:Sensor")
+    eid = "entity:" + head
+    unit = qnl_datapoints.to_unit(_ohist[tag].get("unit", ""))
+    out.append(row(eid, cls, "brick:isPartOf", HVAC, HVAC_CLASS,
+                   [("s", "rdfs:label_en", label(head)),
+                    ("s", "brick:hasUnit", unit)]))
+    out.append(row(eid, cls, "ref:hasExternalReference", "<blanknode>",
+                   "ref:TimeseriesReference",
+                   [("o", "ref:hasTimeseriesId", tag),
+                    ("o", "para:hasEntityId", tag)]))
+    _osensor_rows += 2
+notes.append("%d orphan CCU room sensors modelled as points isPartOf HVAC "
+             "(assumption QNL-025)" % (len(ORPHAN_SENSORS)))
+
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
 ws = wbo.active
