@@ -4,6 +4,8 @@ from ahu import AHU
 from ccu import CCU
 from climate import CLIMATE
 from fcu import FCU_COLS, FCU_ROWS, FCU_NOTES
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from units_map import UNIT_MAP, resolve, convert
 
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
@@ -11,7 +13,34 @@ from openpyxl.utils import get_column_letter
 
 OUT = sys.argv[1]
 
-HEAD = ["Equipment Tag","Model","Component","Property","Value","Unit","Source File","Page","Note"]
+def _sigfmt(f):
+    """Show the factor the way an engineer would check it: 'x 1000' or '/ 3.6'."""
+    if f >= 1:
+        return "x %g" % f
+    return "/ %g" % float("%.6g" % (1 / f))
+
+HEAD = ["Equipment Tag","Model","Component","Property",
+        "Value (as printed)","Unit (as printed)",
+        "Value (Dar Cairo)","Unit (QUDT)","Conversion",
+        "Source File","Page","Note"]
+
+WRAP_COLS = (5, 7, 9, 12)
+NOTE_COL, PAGE_COL = 12, 11
+
+def expand(row):
+    """9-column source row -> 12-column row carrying the Dar Cairo value and unit."""
+    tag, model, comp, prop, val, unit, src, page, note = row
+    qudt, factor, in_dc, cnote = resolve(unit, prop)
+    if not qudt:
+        return [tag, model, comp, prop, val, unit, "", "", cnote, src, page, note]
+    new, ok = convert(val, factor)
+    if not ok:
+        return [tag, model, comp, prop, val, unit, "", "",
+                "not converted - value is not numeric", src, page, note]
+    bits = []
+    if cnote: bits.append(cnote)
+    if not in_dc: bits.append("unit not used in Dar Cairo")
+    return [tag, model, comp, prop, val, unit, new, qudt, "; ".join(bits), src, page, note]
 
 HDR_FILL   = PatternFill("solid", fgColor="1F3864")
 HDR_FONT   = Font(bold=True, color="FFFFFF", size=10)
@@ -248,7 +277,10 @@ def build_climate(rows):
                         unit = u; lbl = f[:-len(suf)].replace("_"," ").capitalize(); break
                 rows.append([tag, model, comp, lbl, v, unit, src, page, ""])
         for f, v in d.get("dimensions_mm", {}).items():
-            rows.append([tag, model, "Dimensions", f.replace("_"," ").capitalize(), v, "mm", src, page, ""])
+            # "mounting" is a screw specification (8 x M4 x 6), not a length
+            unit = "" if f == "mounting" else "mm"
+            rows.append([tag, model, "Dimensions", f.replace("_"," ").capitalize(),
+                         v, unit, src, page, ""])
         for key, comp in (("installation_requirements","Installation requirement"),
                           ("systems_included","System included"),
                           ("features","Feature"),
@@ -276,8 +308,10 @@ def build_climate(rows):
             dd = d["dimension_drawings"]
             for f, v in dd.items():
                 if f == "pages": continue
-                rows.append([tag, model, "Dimension drawing", f.replace("_"," ").capitalize(),
-                             v, "", src, dd["pages"], ""])
+                unit, lbl = "", f.replace("_"," ").capitalize()
+                if f.endswith("_mm"):
+                    unit, lbl = "mm", f[:-3].replace("_"," ").capitalize()
+                rows.append([tag, model, "Dimension drawing", lbl, v, unit, src, dd["pages"], ""])
         if "source_conflict" in d:
             rows.append([tag, model, "Data quality", "Source conflict", d["source_conflict"],
                          "", src, page, "Confirm with the manufacturer before use"])
@@ -342,6 +376,7 @@ def build_fcu(rows):
 
 # ---------------------------------------------------------------- write
 def sheet(wb, name, rows, subtitle):
+    rows = [expand(r) for r in rows]
     ws = wb.create_sheet(name)
     ws["A1"] = name; ws["A1"].font = Font(bold=True, size=14, color="1F3864")
     ws["A2"] = subtitle; ws["A2"].font = Font(italic=True, size=9, color="555555")
@@ -350,13 +385,13 @@ def sheet(wb, name, rows, subtitle):
     hr = ws.max_row
     for c in range(1, len(HEAD)+1):
         cell = ws.cell(row=hr, column=c)
-        cell.fill = HDR_FILL; cell.font = HDR_FONT
-        cell.alignment = Alignment(horizontal="center", vertical="center")
+        cell.fill = HDR_FILL if c not in (7, 8, 9) else PatternFill("solid", fgColor="2E5F2E")
+        cell.font = HDR_FONT
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
         cell.border = BORDER
     tags = []
     for r in rows:
         ws.append(r); tags.append(r[0])
-    # banding by equipment tag
     order, seen = [], set()
     for t in tags:
         if t not in seen: seen.add(t); order.append(t)
@@ -366,12 +401,13 @@ def sheet(wb, name, rows, subtitle):
         for c in range(1, len(HEAD)+1):
             cell = ws.cell(row=rr, column=c)
             cell.border = BORDER
-            cell.alignment = Alignment(vertical="top", wrap_text=(c in (5, 9)))
+            cell.alignment = Alignment(vertical="top", wrap_text=(c in WRAP_COLS))
             if band[r[0]]: cell.fill = BAND_FILL
         ws.cell(row=rr, column=1).font = COMP_FONT if (i == 0 or rows[i-1][0] != r[0]) else Font(size=10)
-        if r[8]: ws.cell(row=rr, column=9).font = NOTE_FONT
-        ws.cell(row=rr, column=8).alignment = Alignment(horizontal="center", vertical="top")
-    widths = [16, 26, 30, 42, 46, 11, 34, 7, 52]
+        if r[NOTE_COL-1]: ws.cell(row=rr, column=NOTE_COL).font = NOTE_FONT
+        if r[8]: ws.cell(row=rr, column=9).font = Font(italic=True, size=9, color="2E5F2E")
+        ws.cell(row=rr, column=PAGE_COL).alignment = Alignment(horizontal="center", vertical="top")
+    widths = [16, 24, 28, 40, 20, 13, 20, 20, 30, 32, 7, 50]
     for i, w in enumerate(widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = w
     ws.freeze_panes = ws.cell(row=hr+1, column=1)
@@ -404,6 +440,8 @@ for name, desc in [
   ("Climate Control Units", "Museum Climate Controls MCG-10P humidity control unit with its VCB1000 "
           "blower option and AF4 intake air filter."),
   ("FCU", "28 Euroclima selection sheets covering positions on Basement, 1F and 2F."),
+  ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
+            "Dar Cairo uses that unit at all."),
 ]:
     ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
     c = ws.cell(row=r, column=2, value=desc); c.font = Font(size=10)
@@ -415,14 +453,35 @@ for name, desc in [
   ("Model", "Manufacturer model designation where the sheet gives one."),
   ("Component", "The part of the unit the property belongs to - cooling coil, supply fan, condenser, etc."),
   ("Property", "The property name, kept close to the source wording."),
-  ("Value", "The value as printed. Nothing has been converted, rounded or inferred."),
-  ("Unit", "Unit of measure."),
+  ("Value (as printed)", "The value exactly as the document prints it. Nothing converted, rounded or inferred."),
+  ("Unit (as printed)", "The unit exactly as the document prints it."),
+  ("Value (Dar Cairo)", "The same quantity converted to the unit Dar Cairo uses for it."),
+  ("Unit (QUDT)", "The QUDT unit token to write into brick:hasUnit."),
+  ("Conversion", "The arithmetic applied, and any assumption behind it. Blank means no conversion was needed."),
   ("Source File", "The PDF the value came from."),
   ("Page", "The page of that PDF, 1-based."),
   ("Note", "Anything that qualifies the value - a quantity off, a source conflict, a mislabelled row."),
 ]:
     ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
     c = ws.cell(row=r, column=2, value=desc); c.font = Font(size=10)
+    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+r += 1
+put(r, "Units", bold=True, size=12, color="2E5F2E"); r += 1
+for line in [
+  "The source documents are transcribed in their own units, and each row then carries the same "
+  "quantity in the unit Dar Cairo uses for it. Both are kept side by side: the printed pair stays "
+  "traceable to the page, the converted pair is what goes into brick:hasUnit.",
+  "Targets were read off DarCairo_V93.csv, not assumed. Air flow and water flow both land on "
+  "unit:L-PER-SEC (para:ratedSupplyAirFlowrate, para:ratedChilledWaterFlowrate and their siblings), "
+  "power on unit:KiloW (brick:ratedPowerInput, brick:coolingCapacity), length on unit:M "
+  "(para:ratedHead), relative humidity on unit:PERCENT_RH rather than unit:PERCENT.",
+  "The Units sheet lists every mapping, the factor applied, and the four QUDT units Dar Cairo has "
+  "never used - mass, mass flow and velocity, which it carries no quantity for. Those need the "
+  "PARA team's confirmation.",
+  "Converting kg/s to l/s treats water as 1 kg/l. At 7-15 degC it is about 0.9997 kg/l, so the "
+  "converted flow is high by roughly 0.03%.",
+]:
+    c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
     c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
 r += 1
 put(r, "Read before using the data", bold=True, size=12, color="C00000"); r += 1
@@ -482,6 +541,68 @@ sheet(wb, "FCU", rows,
       "carrying several tags on one sheet (e.g. B/06,08,17,24) were annotated by hand on the printed "
       "sheet; those tags share the selection above them. The Heating column is blank on all 28 sheets.")
 n_fcu = len(rows)
+
+# ---------------------------------------------------------------- Units sheet
+uw = wb.create_sheet("Units")
+uw["A1"] = "Units"; uw["A1"].font = Font(bold=True, size=14, color="1F3864")
+uw["A2"] = ("Source unit to Dar Cairo unit. Targets read off reference-models/DarCairo_V93.csv - "
+            "air and water flow both land on unit:L-PER-SEC, power on unit:KiloW, length on unit:M.")
+uw["A2"].font = Font(italic=True, size=9, color="555555")
+uw.append([])
+UHEAD = ["Unit (as printed)", "Unit (QUDT)", "Factor applied",
+         "Used in Dar Cairo", "Dar Cairo uses (rows)", "Note"]
+uw.append(UHEAD)
+uhr = uw.max_row
+for c in range(1, len(UHEAD)+1):
+    cell = uw.cell(row=uhr, column=c)
+    cell.fill = HDR_FILL; cell.font = HDR_FONT
+    cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    cell.border = BORDER
+
+DC_USES = {  # usage counts from references/data/units.csv
+ "unit:KiloW":1593, "unit:DEG_C":883, "unit:M2":755, "unit:PERCENT":708, "unit:HR":613,
+ "unit:L-PER-SEC":535, "unit:V":451, "unit:A":227, "unit:PA":172, "unit:DeciB":171,
+ "unit:PERCENT_RH":79, "unit:HZ":61, "unit:M":47, "unit:RPM":21, "unit:W":13,
+ "unit:UNITLESS":3376,
+}
+
+urows = []
+for srcu, (qudt, factor, in_dc, note) in UNIT_MAP.items():
+    if srcu == "":
+        continue
+    urows.append([srcu, qudt or "(none)",
+                  "" if factor is None else ("x 1" if factor == 1.0 else _sigfmt(factor)),
+                  "yes" if (in_dc and qudt) else ("n/a" if not qudt else "NO"),
+                  DC_USES.get(qudt, "" if qudt else ""),
+                  note])
+urows.append(["%", "unit:PERCENT_RH", "x 1", "yes", DC_USES["unit:PERCENT_RH"],
+              "used when the property is a relative humidity"])
+urows.append(["%", "unit:PERCENT", "x 1", "yes", DC_USES["unit:PERCENT"],
+              "used for every other percentage"])
+urows.append(["(none printed)", "unit:UNITLESS", "x 1", "yes", DC_USES["unit:UNITLESS"],
+              "dimensionless ratios - SHR, EER, COP, fan speed setting"])
+for r_ in urows:
+    uw.append(r_)
+for i in range(len(urows)):
+    rr = uhr + 1 + i
+    for c in range(1, len(UHEAD)+1):
+        cell = uw.cell(row=rr, column=c)
+        cell.border = BORDER
+        cell.alignment = Alignment(vertical="top", wrap_text=(c == 6),
+                                   horizontal="center" if c in (3, 4, 5) else "left")
+    if uw.cell(row=rr, column=4).value == "NO":
+        for c in range(1, len(UHEAD)+1):
+            uw.cell(row=rr, column=c).fill = PatternFill("solid", fgColor="FFF2CC")
+for i, w in enumerate([20, 26, 16, 18, 20, 62], 1):
+    uw.column_dimensions[get_column_letter(i)].width = w
+uw.freeze_panes = uw.cell(row=uhr+1, column=1)
+rr = uw.max_row + 2
+uw.cell(row=rr, column=1, value="Highlighted rows are QUDT units Dar Cairo has never used - it "
+        "carries no mass, mass-flow or velocity quantity. They are genuine QUDT terms, not minted "
+        "ones, but the PARA team should confirm them before handover.").font = NOTE_FONT
+uw.cell(row=rr, column=1).alignment = Alignment(wrap_text=True, vertical="top")
+uw.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=6)
+uw.sheet_view.showGridLines = False
 
 wb.save(OUT)
 print("saved", OUT)

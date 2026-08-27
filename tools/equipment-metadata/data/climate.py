@@ -42,7 +42,8 @@ CLIMATE["MCG-10P"] = dict(
     "Remote monitoring and data logging (optional)"],
   dimension_drawings=dict(pages="5-6", dwg_no="MCG10P-1 / MCG10P-2", rev="1.0",
     drawn_by="KY", date="2-10-13", scale="1:10", size="A / B",
-    front_view_mm="475 W x 400 H", plan_view_depth_mm=430, side_view_mm="494 x 425"),
+    front_view_width_mm=475, front_view_height_mm=400, plan_view_depth_mm=430,
+    side_view_width_mm=494, side_view_height_mm=425),
   source_conflict=("Specification sheet (page 2) states size 500 (w) x 650 (d) x 650 (h) mm, "
                    "while dimension drawing MCG10P-1 (page 6) shows 475 W x 430 D x 400 H mm. "
                    "Confirm with the manufacturer before using either as nameplate data."),
