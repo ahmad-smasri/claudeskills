@@ -513,3 +513,39 @@ not corrected.
 
 Validator: **538 IFC-empty errors** (one per equipment, unchanged pattern),
 **0 warnings**.
+
+## AHU/VAV/CAV/FCU points — lifted from the reviewed sheet
+
+The four original families now carry their points too. Rather than re-run their
+ledger, the point rows were lifted verbatim from the reviewed sheet built and
+approved for them earlier (`assets/QNL_original4_points.xlsx`) — 4,436 rows:
+2,224 `brick:hasPoint` declarations and their timeseries references. **Total
+ontology: 8,273 rows.**
+
+Only point rows were taken; the equipment rows already exist in this build. Only
+points for equipment that exists here were kept — the two orphan assets
+(`VAV_B_S13_005`, `CAV_1F_S15_001`, which carry telemetry but have no register
+row) were skipped, since there is no subject to hang their points on.
+
+Six `para:` classes those points use are declared: `para:Trip_Alarm`,
+`para:Fail_Stop_Alarm`, `para:Fail_Start_Alarm`, `para:Scheduled_Hrs_Duration`,
+`para:UnScheduled_Hrs_Duration`, `para:Room_Air_Temperature`.
+
+Two deprecated Brick classes come in with these points —
+`brick:Chilled_Water_Supply_Temperature_Sensor` and its return sibling. Brick
+1.4 deprecated the supply/return water temperature sensors for entering/leaving,
+but Dar Cairo uses these exact classes (8 each) and the approved AHU work
+follows it, so they are accepted in `accepted-terms.txt` for estate consistency
+— the same treatment as `brick:HVAC_System` and `brick:CRAC`. That clears the
+W-TYP-4 warnings.
+
+**One cosmetic cross-family difference, left as-is.** Yesterday's AHU/VAV/CAV/FCU
+work names trip alarms `para:Trip_Alarm` (45 rows); the new families use
+`para:Trip_Status` (107 rows). Both are valid; harmonising would mean editing the
+approved sheet, which you asked me not to redo. Say the word and I'll align them.
+
+Validator: **538 IFC-empty errors, 0 warnings.** IO cross-check **clean (0
+E-IO-1)** for all four families too — every point traces to a historian tag.
+Consistency reports the genuine per-unit heterogeneity these points make visible
+(`RmTemp` on 44/246 VAVs and 59/137 FCUs, `RtnAirTemp`/`RtnTempSP` on 82/137
+FCUs — exactly what the historian carries), documented as before, not defects.

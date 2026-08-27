@@ -563,6 +563,57 @@ with open(OUT + "QNL_newfamily_datapoint_ledger.csv", "w", newline="") as fh:
     w.writeheader()
     w.writerows(_dp_ledger)
 
+# AHU/VAV/CAV/FCU points, taken verbatim from the reviewed sheet built for those
+# four families earlier - the ledger step for them was already done and approved,
+# so they are lifted in rather than regenerated. Only point rows are taken (the
+# equipment rows already exist above), and only for equipment that exists in this
+# build - the three orphan assets that carry telemetry but no register row are
+# left out, since there is no subject here to hang their points on.
+ORIG4_POINTS = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                            "assets", "QNL_original4_points.xlsx")
+_cur_equip = {a["id"] for a in assets}          # the 449 AHU/VAV/CAV/FCU subjects
+_owb = openpyxl.load_workbook(ORIG4_POINTS, read_only=True, data_only=True)
+_ows = _owb["Ontology"]
+_orows = [list(r) for r in _ows.iter_rows(values_only=True)][1:]
+# pass 1: the hasPoint declarations whose subject is a current equipment or a
+# part of one; collect the point-entity ids they introduce.
+_pt_ids, _orig_rows, _skipped_equip = set(), [], set()
+for r in _orows:
+    if str(r[2]) == "brick:hasPoint":
+        subj = str(r[0])
+        equip = subj.split("_")[:0]  # placeholder
+        # the owning equipment is the subject; keep only if it is a current unit
+        if subj in _cur_equip:
+            _orig_rows.append(r)
+            _pt_ids.add(str(r[3]))
+        else:
+            _skipped_equip.add(subj)
+# pass 2: every other row whose subject is one of those points (its timeseries
+# reference, and any point attribute rows).
+for r in _orows:
+    if str(r[2]) != "brick:hasPoint" and str(r[0]) in _pt_ids:
+        _orig_rows.append(r)
+for r in _orig_rows:
+    out.append([("" if c is None else c) for c in r] + [""] * (27 - len(r)))
+notes.append("%d point rows for AHU/VAV/CAV/FCU lifted from the reviewed sheet; "
+             "%d equipment skipped as not in this build (orphans)"
+             % (len(_orig_rows), len(_skipped_equip)))
+
+# declare the para: classes those points use that are not already declared.
+ORIG4_PARA = {
+    "para:Trip_Alarm": ("brick:Alarm", "Trip Alarm"),
+    "para:Fail_Stop_Alarm": ("brick:Alarm", "Fail to Stop Alarm"),
+    "para:Fail_Start_Alarm": ("brick:Alarm", "Fail to Start Alarm"),
+    "para:Scheduled_Hrs_Duration": ("brick:Point", "Scheduled Hours Duration"),
+    "para:UnScheduled_Hrs_Duration": ("brick:Point", "Unscheduled Hours Duration"),
+    "para:Room_Air_Temperature": ("brick:Temperature_Sensor", "Room Air Temperature"),
+}
+for _cls, (_par, _lab) in ORIG4_PARA.items():
+    if _cls not in _declared:
+        out.append(row(_cls, "owl:Class", "rdfs:subClassOf", _par, "",
+                       [("s", "rdfs:label_en", _lab)]))
+        _declared.add(_cls)
+
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
 ws = wbo.active
