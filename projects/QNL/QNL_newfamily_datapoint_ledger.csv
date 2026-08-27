@@ -1,0 +1,442 @@
+equip,kind,token,class,source,unit,desc
+entity:QNL_DX_B11,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Irrigation Pump Room DX Unit B/
+entity:QNL_DX_B11,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B11,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B11,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B01,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level MV Room-1 DX Unit B/01
+entity:QNL_DX_B01,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B01,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B01,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B02,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level MV Room-1 DX Unit B/02
+entity:QNL_DX_B03,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Transformer Room DX Unit B/03
+entity:QNL_DX_B03,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B03,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B03,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B04,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Transformer Room DX Unit B/04
+entity:QNL_DX_B14,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Transformer Room DX Unit B/14
+entity:QNL_DX_B08,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level UPS Battery Room DX Unit B/08
+entity:QNL_DX_B09,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level UPS Battery Room DX Unit B/09
+entity:QNL_DX_B09,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B09,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B09,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B20,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Security IDF 2/CPNL Room DX Uni
+entity:QNL_DX_B20,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B20,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B20,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B13,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Trash Room DX Unit B/13
+entity:QNL_DX_B13,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B13,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B13,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B15,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Trash Room DX Unit B/15
+entity:QNL_DX_B07,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level MV Room-2 DX Unit B/07 B.95
+entity:QNL_DX_B07,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B07,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B07,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B16,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level MV Room-2 DX Unit B/16 B.95
+entity:QNL_DX_B10,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Security Store/Security UPS Roo
+entity:QNL_DX_B10,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B10,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B10,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B22,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level BMS Control Room DX Unit B/22 B
+entity:QNL_DX_B22,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B22,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B22,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B12,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Security Store/Equipment Room D
+entity:QNL_DX_B12,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B12,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,None,Setpoint
+entity:QNL_DX_B12,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),None,Setpoint
+entity:QNL_DX_B23,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Security Equipment Room DX Unit
+entity:QNL_DX_B23,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B23,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B23,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B05,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level HV Room DX Unit B/05
+entity:QNL_DX_B05,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B05,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B05,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B06,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level HV Room DX Unit B/06
+entity:QNL_DX_B17,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Refrigerate Store DX Unit B/17 
+entity:QNL_DX_B17,POINT/part,ChOverHrsSP.SP,para:Changeover_Hours_Setpoint,para (minted),Hrs,Setpoint
+entity:QNL_DX_B17,POINT/part,RmTemp.PV,para:Room_Air_Temperature,Dar Cairo,°C,Process Value
+entity:QNL_DX_B17,POINT/part,RmTempSP.SP,brick:Room_Air_Temperature_Setpoint,Brick 1.4,°C,Setpoint
+entity:QNL_DX_B17,POINT/part,RmTempSPHys.SP,para:Room_Air_Temperature_Setpoint_Hysteresis,para (minted),°C,Setpoint
+entity:QNL_DX_B18,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Refrigerate Store DX Unit B/18 
+entity:QNL_DX_B19,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Refrigerate Store DX Unit B/19 
+entity:QNL_DX_B21,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Roof Floor IDF & CPNL-00008 DX Unit RP/21
+entity:QNL_DX_B24,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Roof Floor IDF & CPNL-00008 DX Unit RP/24
+entity:QNL_CCU_B01,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-2 Q-Tel Room Closed Contro
+entity:QNL_CCU_B01,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B02,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-2 Q-Tel Room Closed Contro
+entity:QNL_CCU_B02,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B03,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-2 MDF Room Closed Control 
+entity:QNL_CCU_B03,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B04,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-2 MDF Room Closed Control 
+entity:QNL_CCU_B04,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B05,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Server Room Closed Contr
+entity:QNL_CCU_B05,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B06,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Server Room Closed Contr
+entity:QNL_CCU_B06,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B07,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Server Room Closed Contr
+entity:QNL_CCU_B07,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B08,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Heritage Vault -B.141
+entity:QNL_CCU_B08,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B09,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Heritage Vault -B.141
+entity:QNL_CCU_B09,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B10,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Server Room Closed Contr
+entity:QNL_CCU_B10,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_CCU_B11,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone-1 Server Room Closed Contr
+entity:QNL_CCU_B11,POINT,TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_EF_BBV01,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV01,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV01,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV01,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV01,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_BBV01,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV02,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV02,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV02,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV02,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_BBV02,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_BBV02,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Plant Room CBS UPS Exhaust Fan 
+entity:QNL_EF_B14,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Fire Command Exhaust Fan B.14
+entity:QNL_EF_B14,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Fire Command Exhaust Fan B.14
+entity:QNL_EF_B14,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Fire Command Exhaust Fan B.14
+entity:QNL_EF_B14,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Fire Command Exhaust Fan B.14
+entity:QNL_EF_B14,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Fire Command Exhaust Fan B.14
+entity:QNL_EF_B13,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Sprinkler Pump Room Exhaust Fan
+entity:QNL_EF_B13,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Sprinkler Pump Room Exhaust Fan
+entity:QNL_EF_B13,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Sprinkler Pump Room Exhaust Fan
+entity:QNL_EF_B13,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Sprinkler Pump Room Exhaust Fan
+entity:QNL_EF_B13,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Sprinkler Pump Room Exhaust Fan
+entity:QNL_EF_B09,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement level Generator Room Exhaust Fan B.09
+entity:QNL_EF_B09,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement level Generator Room Exhaust Fan B.09
+entity:QNL_EF_B09,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement level Generator Room Exhaust Fan B.09
+entity:QNL_EF_B09,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement level Generator Room Exhaust Fan B.09
+entity:QNL_EF_B09,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement level Generator Room Exhaust Fan B.09
+entity:QNL_EF_B05,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Disinfection Freezer Exhaust Fan B.05
+entity:QNL_EF_B05,POINT,LocSts,para:Local_Status,para (minted),,QNL Disinfection Freezer Exhaust Fan B.05
+entity:QNL_EF_B05,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Disinfection Freezer Exhaust Fan B.05
+entity:QNL_EF_B05,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Disinfection Freezer Exhaust Fan B.05
+entity:QNL_EF_B05,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Disinfection Freezer Exhaust Fan B.05
+entity:QNL_EF_B11,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Fuel Pump Room Exhaust Fan B.11
+entity:QNL_EF_B11,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Fuel Pump Room Exhaust Fan B.11
+entity:QNL_EF_B11,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Fuel Pump Room Exhaust Fan B.11
+entity:QNL_EF_B11,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Fuel Pump Room Exhaust Fan B.11
+entity:QNL_EF_B11,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Fuel Pump Room Exhaust Fan B.11
+entity:QNL_EF_B10,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Trash Room Exhaust Fan B.10
+entity:QNL_EF_B10,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Trash Room Exhaust Fan B.10
+entity:QNL_EF_B10,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Trash Room Exhaust Fan B.10
+entity:QNL_EF_B10,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Trash Room Exhaust Fan B.10
+entity:QNL_EF_B10,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Trash Room Exhaust Fan B.10
+entity:QNL_EF_B07,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B07,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B07,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B07,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_EF_B07,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B07,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_B07,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B07,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,Watt,Power
+entity:QNL_EF_B08,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B08,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B08,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B08,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_EF_B08,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B08,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_B08,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Loading Bay Delivery Bay Exhaus
+entity:QNL_EF_B08,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,Watt,Power
+entity:QNL_EF_B15,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement level Zone 2 Extract Fan for Fume Hoo
+entity:QNL_EF_B15,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement level Zone 2 Extract Fan for Fume Hoo
+entity:QNL_EF_B15,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement level Zone 2 Extract Fan for Fume Hoo
+entity:QNL_EF_B15,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement level Zone 2 Extract Fan for Fume Hoo
+entity:QNL_EF_B15,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement level Zone 2 Extract Fan for Fume Hoo
+entity:QNL_EF_B16,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement level Zone 2 Extract Fan for Fumigati
+entity:QNL_EF_B16,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement level Zone 2 Extract Fan for Fumigati
+entity:QNL_EF_B16,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement level Zone 2 Extract Fan for Fumigati
+entity:QNL_EF_B16,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement level Zone 2 Extract Fan for Fumigati
+entity:QNL_EF_B16,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement level Zone 2 Extract Fan for Fumigati
+entity:QNL_EF_201,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Pantry Room Exhaust Fan 2.01
+entity:QNL_EF_201,POINT,LocSts,para:Local_Status,para (minted),,QNL Pantry Room Exhaust Fan 2.01
+entity:QNL_EF_201,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Pantry Room Exhaust Fan 2.01
+entity:QNL_EF_201,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Pantry Room Exhaust Fan 2.01
+entity:QNL_EF_201,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Pantry Room Exhaust Fan 2.01
+entity:QNL_EF_RP02,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Roof Exhaust Fan RP-02
+entity:QNL_EF_RP02,POINT,LocSts,para:Local_Status,para (minted),,QNL Roof Exhaust Fan RP-02
+entity:QNL_EF_RP02,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Roof Exhaust Fan RP-02
+entity:QNL_EF_RP02,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_EF_RP02,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Roof Exhaust Fan RP-02
+entity:QNL_EF_RP02,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_RP02,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Roof Exhaust Fan RP-02
+entity:QNL_EF_RP02,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,kW,Power
+entity:QNL_EF_RP02,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_EF_B06,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Binding & Preservation Room Fume Hood Exhaust 
+entity:QNL_EF_B06,POINT,LocSts,para:Local_Status,para (minted),,QNL Binding & Preservation Room Fume Hood Exhaust 
+entity:QNL_EF_B06,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Binding & Preservation Room Fume Hood Exhaust 
+entity:QNL_EF_B06,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Binding & Preservation Room Fume Hood Exhaust 
+entity:QNL_EF_B06,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Binding & Preservation Room Fume Hood Exhaust 
+entity:QNL_EF_B12,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Pantry Room Exhaust Fan B.12
+entity:QNL_EF_B12,POINT,LocSts,para:Local_Status,para (minted),,QNL Basement Level Pantry Room Exhaust Fan B.12
+entity:QNL_EF_B12,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Pantry Room Exhaust Fan B.12
+entity:QNL_EF_B12,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Pantry Room Exhaust Fan B.12
+entity:QNL_EF_B12,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Pantry Room Exhaust Fan B.12
+entity:QNL_EF_RP01,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Roof Exhaust Fan RP-01
+entity:QNL_EF_RP01,POINT,LocSts,para:Local_Status,para (minted),,QNL Roof Exhaust Fan RP-01
+entity:QNL_EF_RP01,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Roof Exhaust Fan RP-01
+entity:QNL_EF_RP01,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_EF_RP01,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Roof Exhaust Fan RP-01
+entity:QNL_EF_RP01,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_RP01,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Roof Exhaust Fan RP-01
+entity:QNL_EF_RP01,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,kW,Power
+entity:QNL_EF_RP01,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_EF_RP01,POINT/part,ZoneASpcTemp.PV,brick:Zone_Air_Temperature_Sensor,Brick 1.4,°C,Process Value
+entity:QNL_EF_RP01,POINT/part,ZoneBSpcTemp.PV,brick:Zone_Air_Temperature_Sensor,Brick 1.4,°C,Process Value
+entity:QNL_EF_RP01,POINT/part,ZoneCSpcTemp.PV,brick:Zone_Air_Temperature_Sensor,Brick 1.4,°C,Process Value
+entity:QNL_EF_RP03,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Roof Exhaust Fan RP-03
+entity:QNL_EF_RP03,POINT,LocSts,para:Local_Status,para (minted),,QNL Roof Exhaust Fan RP-03
+entity:QNL_EF_RP03,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Roof Exhaust Fan RP-03
+entity:QNL_EF_RP03,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_EF_RP03,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Roof Exhaust Fan RP-03
+entity:QNL_EF_RP03,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_EF_RP03,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Roof Exhaust Fan RP-03
+entity:QNL_EF_RP03,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,kW,Power
+entity:QNL_EF_RP03,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_TEF_B02A,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02A,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02A,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02A,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_B02A,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02B,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02B,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02B,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B02B,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_B02B,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Zone 1 Plant Room 02 Toilet Exh
+entity:QNL_TEF_B01A,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01A,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01A,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01A,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_B01A,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01B,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01B,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01B,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B01B,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_B01B,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Zone 2 Plant Room 03 Toilet Exh
+entity:QNL_TEF_B03A,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03A,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03A,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03A,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_B03A,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03B,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03B,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03B,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_B03B,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_B03B,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Basement Level Zone 1 Plant Room B4 Toilet Exh
+entity:QNL_TEF_101C,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_101C,POINT,LocSts,para:Local_Status,para (minted),,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_101C,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_101C,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_101C,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_101C,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_102C,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_102C,POINT,LocSts,para:Local_Status,para (minted),,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_102C,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_102C,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_TEF_102C,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_TEF_102C,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL First Level Zone 2 Electrical Room Toilet Exha
+entity:QNL_KEF_B019,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Kitchen Plant Room Exhaust Fan B.19
+entity:QNL_KEF_B019,POINT,LocSts,para:Local_Status,para (minted),,QNL Kitchen Plant Room Exhaust Fan B.19
+entity:QNL_KEF_B019,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Kitchen Plant Room Exhaust Fan B.19
+entity:QNL_KEF_B019,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_KEF_B019,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Kitchen Plant Room Exhaust Fan B.19
+entity:QNL_KEF_B019,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Kitchen Plant Room Exhaust Fan B.19
+entity:QNL_KEF_B019,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,kW,Power
+entity:QNL_KEF_B04,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Kitchen Exhaust Fan B.04
+entity:QNL_KEF_B04,POINT,LocSts,para:Local_Status,para (minted),,QNL Kitchen Exhaust Fan B.04
+entity:QNL_KEF_B04,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Kitchen Exhaust Fan B.04
+entity:QNL_KEF_B04,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Kitchen Exhaust Fan B.04
+entity:QNL_KEF_B04,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Kitchen Exhaust Fan B.04
+entity:QNL_KEF_B020,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Kitchen Dish Washer Hood Exhaust Fan B.20
+entity:QNL_KEF_B020,POINT,LocSts,para:Local_Status,para (minted),,QNL Kitchen Dish Washer Hood Exhaust Fan B.20
+entity:QNL_KEF_B020,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Kitchen Dish Washer Hood Exhaust Fan B.20
+entity:QNL_KEF_B020,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Kitchen Dish Washer Hood Exhaust Fan B.20
+entity:QNL_KEF_B020,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Kitchen Dish Washer Hood Exhaust Fan B.20
+entity:QNL_KEF_101,POINT,AutoManCmd,para:Auto_Manual_Command,para (minted),,QNL Kitchen Plant Room Kitchen Exhaust Transfer Fa
+entity:QNL_KEF_101,POINT,LocSts,para:Local_Status,para (minted),,QNL Kitchen Plant Room Kitchen Exhaust Transfer Fa
+entity:QNL_KEF_101,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Kitchen Plant Room Kitchen Exhaust Transfer Fa
+entity:QNL_KEF_101,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,Speed Feedback
+entity:QNL_KEF_101,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Kitchen Plant Room Kitchen Exhaust Transfer Fa
+entity:QNL_KEF_101,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Kitchen Plant Room Kitchen Exhaust Transfer Fa
+entity:QNL_KEF_101,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,kW,Power
+entity:QNL_SEF_RP07,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-B EF-RP07
+entity:QNL_SEF_RP07,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP07,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-B EF-RP07
+entity:QNL_SEF_RP08,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-B EF-RP08
+entity:QNL_SEF_RP08,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP08,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-B EF-RP08
+entity:QNL_SEF_RP09,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-B EF-RP09
+entity:QNL_SEF_RP09,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP09,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-B EF-RP09
+entity:QNL_SEF_ZoneB,POINT,LocSts,para:Local_Status,para (minted),,QNL Smoke Extract Fan Zone-B
+entity:QNL_SEF_ZoneB,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP04,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-A EF-RP04
+entity:QNL_SEF_RP04,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP04,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-A EF-RP04
+entity:QNL_SEF_RP05,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-A EF-RP05
+entity:QNL_SEF_RP05,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP05,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-A EF-RP05
+entity:QNL_SEF_RP06,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-A EF-RP06
+entity:QNL_SEF_RP06,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP06,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-A EF-RP06
+entity:QNL_SEF_ZoneA,POINT,LocSts,para:Local_Status,para (minted),,QNL Smoke Extract Fan Zone-A
+entity:QNL_SEF_ZoneA,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP10,POINT,LocSts,para:Local_Status,para (minted),,QNL Smoke Extract Fan Zone-C EF/RP/10
+entity:QNL_SEF_RP10,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-C EF/RP/10
+entity:QNL_SEF_RP10,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Smoke Extract Fan Zone-C EF/RP/10
+entity:QNL_SEF_RP10,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-C EF/RP/10
+entity:QNL_SEF_ZoneC,POINT,LocSts,para:Local_Status,para (minted),,QNL Smoke Extract Fan Zone-C
+entity:QNL_SEF_ZoneC,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP11,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-C EF-RP11
+entity:QNL_SEF_RP11,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP11,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-C EF-RP11
+entity:QNL_SEF_RP12,POINT,RunSts,brick:Run_Status,Brick 1.4,,QNL Smoke Extract Fan Zone-C EF-RP12
+entity:QNL_SEF_RP12,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,Start/Stop Command
+entity:QNL_SEF_RP12,POINT,TripAlm,para:Trip_Status,Dar Cairo,,QNL Smoke Extract Fan Zone-C EF-RP12
+entity:QNL_HEX05,POINT/part,DiffPrs.PV,brick:Differential_Pressure_Sensor,Brick 1.4,kPa,Process Value
+entity:QNL_HEX05,PART,IsoVlv,brick:Isolation_Valve,Dar Cairo,,isolation valve
+entity:QNL_HEX05,POINT/part,IsoVlv.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX05,POINT/part,IsoVlv.CloseSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-05 Secondary Side
+entity:QNL_HEX05,POINT/part,IsoVlv.OpenCmd,brick:Open_Close_Command,Brick 1.4,,QNL Chilled Water Heat Exchanger-05 Secondary Side
+entity:QNL_HEX05,POINT/part,IsoVlv.OpenCmdSts,brick:Open_Close_Status,Brick 1.4,,Open/Close Command Status
+entity:QNL_HEX05,POINT/part,IsoVlv.OpenSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-05 Secondary Side
+entity:QNL_HEX05,PART,MV,para:Modulating_Valve,para (minted),,modulating valve
+entity:QNL_HEX05,POINT/part,MV.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX05,POINT/part,MV.PosCmd,brick:Valve_Position_Command,Dar Cairo,%,QNL Chilled Water Heat Exchanger-05 Modulating Val
+entity:QNL_HEX05,POINT/part,MV.PosFbk,brick:Valve_Position_Sensor,Dar Cairo,%,QNL Chilled Water Heat Exchanger-05 Modulating Val
+entity:QNL_HEX05,POINT/part,PriRtnTemp.PV,para:Primary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX05,POINT/part,SecRtnTemp.PV,para:Secondary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX01,POINT/part,DiffPrs.PV,brick:Differential_Pressure_Sensor,Brick 1.4,kPa,Process Value
+entity:QNL_HEX01,PART,IsoVlv,brick:Isolation_Valve,Dar Cairo,,isolation valve
+entity:QNL_HEX01,POINT/part,IsoVlv.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX01,POINT/part,IsoVlv.CloseSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-01 Secondary Side
+entity:QNL_HEX01,POINT/part,IsoVlv.OpenCmd,brick:Open_Close_Command,Brick 1.4,,QNL Chilled Water Heat Exchanger-01 Secondary Side
+entity:QNL_HEX01,POINT/part,IsoVlv.OpenCmdSts,brick:Open_Close_Status,Brick 1.4,,Open/Close Command Status
+entity:QNL_HEX01,POINT/part,IsoVlv.OpenSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-01 Secondary Side
+entity:QNL_HEX01,PART,MV,para:Modulating_Valve,para (minted),,modulating valve
+entity:QNL_HEX01,POINT/part,MV.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX01,POINT/part,MV.PosCmd,brick:Valve_Position_Command,Dar Cairo,%,QNL Chilled Water Heat Exchanger-01 Modulating Val
+entity:QNL_HEX01,POINT/part,MV.PosFbk,brick:Valve_Position_Sensor,Dar Cairo,%,QNL Chilled Water Heat Exchanger-01 Modulating Val
+entity:QNL_HEX01,POINT/part,PriRtnTemp.PV,para:Primary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX01,POINT/part,SecRtnTemp.PV,para:Secondary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX02,POINT/part,DiffPrs.PV,brick:Differential_Pressure_Sensor,Brick 1.4,kPa,Process Value
+entity:QNL_HEX02,PART,IsoVlv,brick:Isolation_Valve,Dar Cairo,,isolation valve
+entity:QNL_HEX02,POINT/part,IsoVlv.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX02,POINT/part,IsoVlv.CloseSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-02 Secondary Side
+entity:QNL_HEX02,POINT/part,IsoVlv.OpenCmd,brick:Open_Close_Command,Brick 1.4,,QNL Chilled Water Heat Exchanger-02 Secondary Side
+entity:QNL_HEX02,POINT/part,IsoVlv.OpenCmdSts,brick:Open_Close_Status,Brick 1.4,,Open/Close Command Status
+entity:QNL_HEX02,POINT/part,IsoVlv.OpenSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-02 Secondary Side
+entity:QNL_HEX02,PART,MV,para:Modulating_Valve,para (minted),,modulating valve
+entity:QNL_HEX02,POINT/part,MV.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX02,POINT/part,MV.PosCmd,brick:Valve_Position_Command,Dar Cairo,%,QNL Chilled Water Heat Exchanger-02 Modulating Val
+entity:QNL_HEX02,POINT/part,MV.PosFbk,brick:Valve_Position_Sensor,Dar Cairo,%,QNL Chilled Water Heat Exchanger-02 Modulating Val
+entity:QNL_HEX02,POINT/part,PriRtnTemp.PV,para:Primary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX02,POINT/part,SecRtnTemp.PV,para:Secondary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX03,POINT/part,DiffPrs.PV,brick:Differential_Pressure_Sensor,Brick 1.4,kPa,Process Value
+entity:QNL_HEX03,PART,IsoVlv,brick:Isolation_Valve,Dar Cairo,,isolation valve
+entity:QNL_HEX03,POINT/part,IsoVlv.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX03,POINT/part,IsoVlv.CloseSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-03\n Secondary Si
+entity:QNL_HEX03,POINT/part,IsoVlv.OpenCmd,brick:Open_Close_Command,Brick 1.4,,QNL Chilled Water Heat Exchanger-03\n Secondary Si
+entity:QNL_HEX03,POINT/part,IsoVlv.OpenCmdSts,brick:Open_Close_Status,Brick 1.4,,Open/Close Command Status
+entity:QNL_HEX03,POINT/part,IsoVlv.OpenSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-03\n Secondary Si
+entity:QNL_HEX03,PART,MV,para:Modulating_Valve,para (minted),,modulating valve
+entity:QNL_HEX03,POINT/part,MV.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX03,POINT/part,MV.PosCmd,brick:Valve_Position_Command,Dar Cairo,%,QNL Chilled Water Heat Exchanger-03\n Modulating V
+entity:QNL_HEX03,POINT/part,MV.PosFbk,brick:Valve_Position_Sensor,Dar Cairo,%,QNL Chilled Water Heat Exchanger-03\n Modulating V
+entity:QNL_HEX03,POINT/part,PriRtnTemp.PV,para:Primary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX03,POINT/part,SecRtnTemp.PV,para:Secondary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX04,POINT/part,DiffPrs.PV,brick:Differential_Pressure_Sensor,Brick 1.4,kPa,Process Value
+entity:QNL_HEX04,PART,IsoVlv,brick:Isolation_Valve,Dar Cairo,,isolation valve
+entity:QNL_HEX04,POINT/part,IsoVlv.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX04,POINT/part,IsoVlv.CloseSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-04 Secondary Side
+entity:QNL_HEX04,POINT/part,IsoVlv.OpenCmd,brick:Open_Close_Command,Brick 1.4,,QNL Chilled Water Heat Exchanger-04 Secondary Side
+entity:QNL_HEX04,POINT/part,IsoVlv.OpenCmdSts,brick:Open_Close_Status,Brick 1.4,,Open/Close Command Status
+entity:QNL_HEX04,POINT/part,IsoVlv.OpenSts,brick:Open_Close_Status,Brick 1.4,,QNL Chilled Water Heat Exchanger-04 Secondary Side
+entity:QNL_HEX04,PART,MV,para:Modulating_Valve,para (minted),,modulating valve
+entity:QNL_HEX04,POINT/part,MV.AutoManCmd,para:Auto_Manual_Command,para (minted),,Auto/Manual Command
+entity:QNL_HEX04,POINT/part,MV.PosCmd,brick:Valve_Position_Command,Dar Cairo,%,QNL Chilled Water Heat Exchanger-04 Modulating Val
+entity:QNL_HEX04,POINT/part,MV.PosFbk,brick:Valve_Position_Sensor,Dar Cairo,%,QNL Chilled Water Heat Exchanger-04 Modulating Val
+entity:QNL_HEX04,POINT/part,PriRtnTemp.PV,para:Primary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_HEX04,POINT/part,SecRtnTemp.PV,para:Secondary_Return_Temperature_Sensor,para (minted),°C,Process Value
+entity:QNL_CHW_P01,POINT,AutoManSts,brick:Manual_Auto_Status,SSC,,QNL Chilled Water Pump 01 CHWP-B01
+entity:QNL_CHW_P01,POINT,CalcEntryScheduledHrs,para:Scheduled_Maintenance_Hours,para (minted),Hrs,ScheduledPM Hours (Manual Entry)
+entity:QNL_CHW_P01,POINT,CalcEntryUnscheduledHrs,para:Unscheduled_Outage_Hours,para (minted),Hrs,UnScheduled Outage Hours (Manual Entry)
+entity:QNL_CHW_P01,POINT,LocSts,para:Local_Status,para (minted),,QNL Chilled Water Pump 01 CHWP-B01
+entity:QNL_CHW_P01,POINT,RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_CHW_P01,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,QNL Chilled Water Pump 01 CHWP-B01
+entity:QNL_CHW_P01,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Chilled Water Pump 01 CHWP-B01
+entity:QNL_CHW_P01,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_CHW_P01,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,%,Power
+entity:QNL_CHW_P01,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_CHW_P02,POINT,AutoManSts,brick:Manual_Auto_Status,SSC,,QNL Chilled Water Pump 02 CHWP-B02
+entity:QNL_CHW_P02,POINT,CalcEntryScheduledHrs,para:Scheduled_Maintenance_Hours,para (minted),Hrs,ScheduledPM Hours (Manual Entry)
+entity:QNL_CHW_P02,POINT,CalcEntryUnscheduledHrs,para:Unscheduled_Outage_Hours,para (minted),Hrs,UnScheduled Outage Hours (Manual Entry)
+entity:QNL_CHW_P02,POINT,LocSts,para:Local_Status,para (minted),,QNL Chilled Water Pump 02 CHWP-B02
+entity:QNL_CHW_P02,POINT,RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_CHW_P02,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,QNL Chilled Water Pump 02 CHWP-B02
+entity:QNL_CHW_P02,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Chilled Water Pump 02 CHWP-B02
+entity:QNL_CHW_P02,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_CHW_P02,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,%,Power
+entity:QNL_CHW_P02,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_CHW_P03,POINT,AutoManSts,brick:Manual_Auto_Status,SSC,,QNL Chilled Water Pump 03 CHWP-B03
+entity:QNL_CHW_P03,POINT,CalcEntryScheduledHrs,para:Scheduled_Maintenance_Hours,para (minted),Hrs,ScheduledPM Hours (Manual Entry)
+entity:QNL_CHW_P03,POINT,CalcEntryUnscheduledHrs,para:Unscheduled_Outage_Hours,para (minted),Hrs,UnScheduled Outage Hours (Manual Entry)
+entity:QNL_CHW_P03,POINT,LocSts,para:Local_Status,para (minted),,QNL Chilled Water Pump 03 CHWP-B03
+entity:QNL_CHW_P03,POINT,RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_CHW_P03,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,QNL Chilled Water Pump 03 CHWP-B03
+entity:QNL_CHW_P03,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Chilled Water Pump 03 CHWP-B03
+entity:QNL_CHW_P03,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_CHW_P03,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,%,Power
+entity:QNL_CHW_P03,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_CHW_P04,POINT,AutoManSts,brick:Manual_Auto_Status,SSC,,QNL Chilled Water Pump 04 CHWP-B04
+entity:QNL_CHW_P04,POINT,CalcEntryScheduledHrs,para:Scheduled_Maintenance_Hours,para (minted),hrs,ScheduledPM Hours (Manual Entry)
+entity:QNL_CHW_P04,POINT,CalcEntryUnscheduledHrs,para:Unscheduled_Outage_Hours,para (minted),hrs,UnScheduled Outage Hours (Manual Entry)
+entity:QNL_CHW_P04,POINT,LocSts,para:Local_Status,para (minted),,QNL Chilled Water Pump 04 CHWP-B04
+entity:QNL_CHW_P04,POINT,RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_CHW_P04,POINT,SpeedFbk,brick:Speed_Sensor,Brick 1.4,%,QNL Chilled Water Pump 04 CHWP-B04
+entity:QNL_CHW_P04,POINT,StartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Chilled Water Pump 04 CHWP-B04
+entity:QNL_CHW_P04,POINT,StartStopCmdSts,brick:Start_Stop_Status,Brick 1.4,,Start/Stop Command Status
+entity:QNL_CHW_P04,POINT,kW,brick:Electric_Power_Sensor,Dar Cairo,%,Power
+entity:QNL_CHW_P04,POINT,kWH,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWh,Energy
+entity:QNL_CHWPU_P01,POINT,CalcEntryScheduledHrs,para:Scheduled_Maintenance_Hours,para (minted),Hrs,ScheduledPM Hours (Manual Entry)
+entity:QNL_CHWPU_P01,POINT,CalcEntryUnscheduledHrs,para:Unscheduled_Outage_Hours,para (minted),hrs,UnScheduled Outage Hours (Manual Entry)
+entity:QNL_CHWPU_P01,POINT,RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_ELEC_Gen,POINT,BattChrgSts,para:Battery_Charge_Status,para (minted),,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,CommAlm,brick:Communication_Loss_Alarm,SSC,,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,ECUSts,para:Engine_Control_Unit_Status,para (minted),,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,EngAutoManSts,brick:Manual_Auto_Status,SSC,,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,EngFailFbk,para:Engine_Fail_Status,para (minted),,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,EngManOvrSts,para:Engine_Manual_Override_Status,para (minted),,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,EngOilPrs,para:Oil_Pressure_Sensor,para (minted),bar,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,EngStartStopCmd,brick:Start_Stop_Command,Brick 1.4,,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,EngStartedFbk,para:Engine_Started_Status,para (minted),,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,FltRst,brick:Reset_Command,Brick 1.4,,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,Frequency,brick:Frequency_Sensor,Brick 1.4,Hz,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,GenReadySts,para:Generator_Ready_Status,para (minted),,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,LineCurrentL1,brick:Current_Sensor,Brick 1.4,A,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,LineCurrentL2,brick:Current_Sensor,Brick 1.4,A,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,LineCurrentL3,brick:Current_Sensor,Brick 1.4,A,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,LineVoltageL1,brick:Voltage_Sensor,Brick 1.4,V,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,LineVoltageL2,brick:Voltage_Sensor,Brick 1.4,V,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,LineVoltageL3,brick:Voltage_Sensor,Brick 1.4,V,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,MCBOnOffSts,brick:On_Off_Status,Dar Cairo,,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,POINT,Reset,brick:Reset_Command,Brick 1.4,,GCP Reset
+entity:QNL_ELEC_Gen,POINT,kWh,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,kWH,QNL Basement Level Zone 1 Generator
+entity:QNL_ELEC_Gen,PART,ACB14,brick:Circuit_Breaker,Brick 1.4,,air circuit breaker
+entity:QNL_ELEC_Gen,POINT/part,ACB14.MWh,brick:Electrical_Energy_Usage_Sensor,Dar Cairo,MWh,MWh
+entity:QNL_ELEC_Gen,POINT/part,ACB14.OnOffSts,brick:On_Off_Status,Dar Cairo,,On/Off Status
+entity:QNL_ELEC_Gen,POINT/part,ACB14.Sts,brick:On_Off_Status,Dar Cairo,,On/Off Status
+entity:QNL_ELEC_Gen,POINT/part,ACB14.TripAlm,para:Trip_Status,Dar Cairo,,Trip Alarm
+entity:QNL_ELEC_Gen,POINT/part,DayTnkHiLvlAlm.HiAlm,para:Day_Tank_High_Level_Alarm,para (minted),,Hi Level Alarm
+entity:QNL_ELEC_Gen,POINT/part,DayTnkLoLvlAlm.LoAlm,para:Day_Tank_Low_Level_Alarm,para (minted),,Low Level Alarm
+entity:QNL_ELEC_Gen,PART,FTPmp1,para:Fuel_Transfer_Pump,para (minted),,fuel transfer pump
+entity:QNL_ELEC_Gen,POINT/part,FTPmp1.RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_ELEC_Gen,POINT/part,FTPmp1.TripAlm,para:Trip_Status,Dar Cairo,,QNL Fuel Transfer Pump 01 Basement Level Zone1 Gen
+entity:QNL_ELEC_Gen,PART,FTPmp2,para:Fuel_Transfer_Pump,para (minted),,fuel transfer pump
+entity:QNL_ELEC_Gen,POINT/part,FTPmp2.RunSts,brick:Run_Status,Brick 1.4,,Pump Running Status
+entity:QNL_ELEC_Gen,POINT/part,FTPmp2.TripAlm,para:Trip_Status,Dar Cairo,,QNL Fuel Transfer Pump 02 Basement Level Zone1 Gen

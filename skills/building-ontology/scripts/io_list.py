@@ -105,58 +105,74 @@ def load(path: Path, on_blank_key=None) -> IOList:
     column holds the telemetry key or the point name: a wrong guess silently
     reports every point as unmatched, which reads exactly like a broken sheet.
     """
+    # An IO list may split its rows across sheets - a historian export routinely
+    # keeps analog and discrete points on separate tabs. Every sheet that has a
+    # usable header is read and merged; a point missed because only the first
+    # sheet was read reports as a false E-IO-1, which reads exactly like real
+    # over-inclusion. Sheets with neither an id nor a name column (a bare "Assets"
+    # list) are skipped, not errored.
+    sheets = []      # [(title, header, body)]
     if path.suffix.lower() in (".xlsx", ".xlsm"):
         try:
             import openpyxl
         except ImportError:
             sys.exit("openpyxl is needed to read .xlsx - pip install openpyxl")
-        ws = openpyxl.load_workbook(path, data_only=True).worksheets[0]
-        rows = [["" if c is None else str(c).strip() for c in r]
-                for r in ws.iter_rows(values_only=True)]
-        # An IO list is a natural place for lookup formulas, and a workbook saved
-        # without a formula cache reads back blank rather than wrong - the list
-        # would silently confirm nothing and every point would look unmatched.
         from validate_ontology import uncached_formulas
-        blank = uncached_formulas(path, ws.title, rows)
-        if blank:
-            cols = sorted({c for _, c in blank})
-            sys.exit(
-                f"{path}: sheet {ws.title!r} has {len(blank)} formula cells with no "
-                f"cached value, in column(s) {', '.join(cols)}.\n"
-                "They read back as empty, so this IO list would confirm nothing.\n"
-                "Open it in Excel and save it, or export the sheet to CSV, then "
-                "run again."
-            )
+        wb = openpyxl.load_workbook(path, data_only=True)
+        for ws in wb.worksheets:
+            rws = [["" if c is None else str(c).strip() for c in r]
+                   for r in ws.iter_rows(values_only=True)]
+            rws = [r for r in rws if any(r)]
+            if len(rws) < 2:
+                continue
+            blank = uncached_formulas(path, ws.title, rws)
+            if blank:
+                cols = sorted({c for _, c in blank})
+                sys.exit(
+                    f"{path}: sheet {ws.title!r} has {len(blank)} formula cells "
+                    f"with no cached value, in column(s) {', '.join(cols)}.\n"
+                    "They read back as empty, so this IO list would confirm "
+                    "nothing.\nOpen it in Excel and save it, or export the sheet "
+                    "to CSV, then run again.")
+            sheets.append((ws.title, rws[0], rws[1:]))
     else:
         with open(path, encoding="utf-8-sig", newline="") as fh:
-            rows = [[c.strip() for c in r] for r in csv.reader(fh)]
-    rows = [r for r in rows if any(r)]
-    if not rows:
+            rws = [[c.strip() for c in r] for r in csv.reader(fh)]
+        rws = [r for r in rws if any(r)]
+        if rws:
+            sheets.append((path.name, rws[0], rws[1:]))
+    if not sheets:
         sys.exit(f"{path} is empty")
 
-    header, body = rows[0], rows[1:]
-    i_id = find_column(header, ID_HEADERS)
-    i_name = find_column(header, NAME_HEADERS)
-    i_eq = find_column(header, EQUIP_HEADERS)
-    if i_id is None and i_name is None:
-        sys.exit(
-            f"cannot tell which column of {path.name} holds the telemetry key or the\n"
-            f"point name. Its headers are: {header}\n"
-            f"Ask the user which column is which rather than guessing - a wrong guess\n"
-            f"silently reports every point as unmatched.")
-
     out = []
-    for n, r in enumerate(body, start=2):
-        def cell(i):
-            return r[i] if i is not None and i < len(r) else ""
-        tsid, name = cell(i_id), cell(i_name)
-        if not tsid and not name:
-            continue
-        if on_blank_key and i_id is not None and not tsid:
-            on_blank_key(n, name)
-        out.append((tsid, name, cell(i_eq), n))
+    used = []          # (title, id_col, name_col, eq_col) for sheets we read
+    for title, header, body in sheets:
+        i_id = find_column(header, ID_HEADERS)
+        i_name = find_column(header, NAME_HEADERS)
+        i_eq = find_column(header, EQUIP_HEADERS)
+        if i_id is None and i_name is None:
+            continue      # not a point sheet (e.g. a bare Assets tab); skip
+        used.append((title, i_id, i_name, i_eq, header))
+        for n, r in enumerate(body, start=2):
+            def cell(i):
+                return r[i] if i is not None and i < len(r) else ""
+            tsid, name = cell(i_id), cell(i_name)
+            if not tsid and not name:
+                continue
+            if on_blank_key and i_id is not None and not tsid:
+                on_blank_key(n, name)
+            out.append((tsid, name, cell(i_eq), n))
 
+    if not used:
+        sys.exit(
+            f"cannot tell which column of {path.name} holds the telemetry key or "
+            f"the point name.\nSheets seen: "
+            f"{', '.join(t for t, *_ in sheets)}\n"
+            f"Ask the user which column is which rather than guessing - a wrong "
+            f"guess silently reports every point as unmatched.")
+
+    t0 = used[0]
     return IOList(path, out,
-                  header[i_id] if i_id is not None else None,
-                  header[i_name] if i_name is not None else None,
-                  header[i_eq] if i_eq is not None else None)
+                  t0[4][t0[1]] if t0[1] is not None else None,
+                  t0[4][t0[2]] if t0[2] is not None else None,
+                  t0[4][t0[3]] if t0[3] is not None else None)

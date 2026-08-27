@@ -189,6 +189,15 @@ the build script and **prove the derivation against a version that stored the
 column as text** - QNL's `derive_fed_by()` reproduces all 297 old literals
 exactly. A derivation nobody checked is a guess with a function around it.
 
+**An IO list can span several sheets.** A historian export routinely keeps
+analog and discrete points on separate tabs - QNL's had `QNL analog cp2` and
+`QNL Descrete cp2`. Reading only the first tab reports every discrete point
+(every run status, trip alarm, command) as a false `E-IO-1`, which looks exactly
+like real over-inclusion. `io_list.load` now reads *every* data sheet whose
+header resolves an id or name column and merges them; sheets with neither (a
+bare `Assets` tab) are skipped, not errored. `check_io_list` delegates to that
+loader rather than keeping its own single-sheet copy.
+
 **The sheet you get is not the sheet you want.** Reference workbooks carry
 review sheets, logs and pivots, and `.active` is whichever sheet was selected
 when the file was last saved - `QF_SSC_Ontology_draft0.5_review.xlsx` opens on

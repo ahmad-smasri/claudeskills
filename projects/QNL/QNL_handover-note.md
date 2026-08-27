@@ -458,3 +458,58 @@ its own, and reused rather than minting a QNL-local electrical node for one asse
 Validator after the rebuild: **537 IFC-empty errors** (one per equipment's
 deliberately-empty `para:IFC_ID`, same pattern as before), **0 warnings**, and
 the two expected consistency findings above.
+
+## Datapoints and parts for the new families
+
+The ten new families now carry their points and parts. **3,832 rows total** (up
+from 2,937): 869 datapoint rows over 428 points and 13 parts, plus 21 `para:`
+class declarations. The ledger step was done internally with the priority you
+set — **Dar Cairo → Brick 1.4 → SSC → para:** — and the full resolution is in
+`QNL_newfamily_datapoint_ledger.csv`, one row per point/part with its class and
+which source settled it.
+
+**Where the classes came from** (441 ledger entries): Brick 1.4 209, Dar Cairo
+104, SSC 6, para: (minted) 122. The 122 para rows are 21 distinct classes, each
+declared in the sheet as an `owl:Class` under its closest Brick parent —
+generator-specific points Brick has no term for (`para:Engine_Fail_Status`,
+`para:Battery_Charge_Status`, `para:Day_Tank_High_Level_Alarm`), the day-tank
+fuel pumps (`para:Fuel_Transfer_Pump` under `brick:Pump`), the modulating valve
+(`para:Modulating_Valve` under `brick:Valve`), and a handful of setpoint/hours
+points. `para:Trip_Status` and `para:Room_Air_Temperature` are reused from Dar
+Cairo, not invented.
+
+**Parts.** The tag structure is honoured: where a token before the dot is a real
+component it becomes a `brick:hasPart`, and its points hang under the part —
+`HEX01 → hasPart IsoVlv (Isolation_Valve) / MV (Modulating_Valve)`, and the
+generator `→ hasPart ACB14 (Circuit_Breaker), FTPmp1/2 (Fuel_Transfer_Pump)`.
+Everything else is a point directly on the equipment.
+
+**Every point** carries `rdfs:label_en`, `brick:hasUnit` (mapped to the estate's
+unit codes — `°C→unit:DEG_C`, `kW→unit:KiloW`, discrete points `unit:UNITLESS`),
+and a `ref:TimeseriesReference` blank node with `ref:hasTimeseriesId` and
+`para:hasEntityId` **on the point, never the equipment**.
+
+**Only the selected datapoints that exist in the historian were written** — 428
+of 428. The IO cross-check against the historian is **clean: 0 E-IO-1**, every
+point traces back to a real historian tag, so nothing resolves to an empty
+timeseries. (This required fixing the checker: a historian export splits analog
+and discrete points across two sheets, and both `io_list.py` and
+`check_io_list.py` were reading only the first — see known-issues.)
+
+**The CHW pumps now feed the loop.** Following Dar Cairo — where a
+`brick:Chilled_Water_Booster_Pump` `rec:feeds` the chilled-water loop — the four
+`CHW_P*` pumps and `CHWPU_P01` carry `rec:feeds entity:QNL_CHWS-MAIN-LOOP`. HEX
+stays locatedIn-only (a heat exchanger is the interface into the loop, not a
+pump feeding it).
+
+**Consistency: 72 findings, all genuine equipment heterogeneity, not defects.**
+Some DX units (the transformer and battery rooms) are on/off only, so they carry
+6 rows where the room-conditioning DX units carry 12; exhaust fans genuinely
+differ in what they publish (kW and speed on some, zone temps on others,
+local-status on 24 of 30). The historian confirms each point we wrote and does
+not offer the absent ones, so forcing uniformity would invent phantom points —
+the exact over-inclusion this exercise exists to prevent. Listed for the record,
+not corrected.
+
+Validator: **538 IFC-empty errors** (one per equipment, unchanged pattern),
+**0 warnings**.

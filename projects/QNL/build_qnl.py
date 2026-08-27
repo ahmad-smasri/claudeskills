@@ -7,6 +7,11 @@ Outputs : QNL_Ontology.xlsx (27-column triple sheet), QNL_identifier_crosswalk.c
 import csv, os, re, sys
 from collections import OrderedDict
 import openpyxl
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "datapoints"))
+import qnl_datapoints
+from step1_confirm_datapoints import load_selected as _load_selected, \
+    load_historian as _load_historian
 
 SRC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources") + "/"
 ROOMS_XLSX = SRC + "QNL_Room_Names_for_Ontology.xlsx"
@@ -231,8 +236,8 @@ NEW_FAMILIES = {
     "KEF":   {"cls": "brick:Exhaust_Fan",               "system": HVAC, "feeds": "end"},
     "SEF":   {"cls": "para:Smoke_Extract_Fan",          "system": HVAC, "feeds": "end"},
     "HEX":   {"cls": "brick:Heat_Exchanger",            "system": CHW,  "feeds": "none"},
-    "CHW":   {"cls": "brick:Chilled_Water_Booster_Pump","system": CHW,  "feeds": "none"},
-    "CHWPU": {"cls": "brick:Chilled_Water_Booster_Pump","system": CHW,  "feeds": "none"},
+    "CHW":   {"cls": "brick:Chilled_Water_Booster_Pump","system": CHW,  "feeds": "loop"},
+    "CHWPU": {"cls": "brick:Chilled_Water_Booster_Pump","system": CHW,  "feeds": "loop"},
     "ELEC":  {"cls": "para:Generator",                  "system": ELEC, "feeds": "none"},
 }
 
@@ -389,6 +394,8 @@ for kind, spec in NEW_FAMILIES.items():
         loc = rooms[room_tag]["id"]
         if spec["feeds"] == "self":
             feeds = loc
+        elif spec["feeds"] == "loop":
+            feeds = LOOP   # CHW pumps feed the chilled-water loop, per Dar Cairo
         elif spec["feeds"] == "end" and feeds_cell:
             feeds = resolve_feeds(feeds_cell, tag)
         else:
@@ -522,11 +529,39 @@ for kind in NEW_FAMILIES:
                        [("s", "rdfs:label_en", label(bare))]))
         out.append(row(a["id"], a["cls"], "brick:isPartOf",
                        a["system"], SYS_CLASS[a["system"]]))
-        if a["feeds"]:
+        if a["feeds"] == LOOP:
+            out.append(row(a["id"], a["cls"], "rec:feeds", LOOP, LOOP_CLASS))
+        elif a["feeds"]:
             out.append(row(a["id"], a["cls"], "rec:feeds", a["feeds"], "rec:Room"))
         out.append(row(a["id"], a["cls"], "ref:hasExternalReference",
                        "<blanknode>", "ref:IFCReference",
                        [("o", "para:IFC_ID", ""), ("o", "ref:ifcName", bare)]))
+
+# Datapoints and parts for the new families -----------------------------------
+# The ledger step is done internally, priority Dar Cairo -> Brick 1.4 -> SSC ->
+# para:. See qnl_datapoints.py; the resolved ledger is written for review.
+_dp_rows, _dp_ledger, _para_used = qnl_datapoints.build_datapoints(
+    new_assets, _load_selected(), _load_historian(), row, label)
+
+# declare every para: class the datapoints use, as an owl:Class subclass, so the
+# sheet is self-contained. The three family classes (DXUnit/Generator/
+# Smoke_Extract_Fan) were declared above; skip any repeats.
+_declared = {c for c, _, _ in NEW_EXT_CLASSES}
+for _cls in sorted(_para_used):
+    if _cls in _declared:
+        continue
+    out.append(row(_cls, "owl:Class", "rdfs:subClassOf", _para_used[_cls], "",
+                   [("s", "rdfs:label_en",
+                     qnl_datapoints.PARA_LABEL.get(_cls,
+                         label(_cls.split(":", 1)[-1])))]))
+    _declared.add(_cls)
+out.extend(_dp_rows)
+
+with open(OUT + "QNL_newfamily_datapoint_ledger.csv", "w", newline="") as fh:
+    w = csv.DictWriter(fh, fieldnames=["equip", "kind", "token", "class",
+                                       "source", "unit", "desc"])
+    w.writeheader()
+    w.writerows(_dp_ledger)
 
 # --------------------------------------------------------------------------- write
 wbo = openpyxl.Workbook()
@@ -559,5 +594,6 @@ print("rooms     :", len(rooms), "levels:", levels_used)
 print("assets    :", len(assets), {k: sum(1 for a in assets if a["kind"] == k) for k in CLASS})
 print("new equip :", len(new_assets),
       {k: sum(1 for a in new_assets if a["kind"] == k) for k in NEW_FAMILIES})
+print("datapoints:", len(_dp_rows), "rows;", len(_para_used), "para classes declared")
 for n in sorted(set(notes)):
     print("note      :", n)

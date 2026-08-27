@@ -39,6 +39,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate_ontology import Report, read_sheet, pick_ontology_sheet   # noqa: E402
+import io_list   # noqa: E402
 
 # Column headers an IO list might use for the telemetry key and the point name.
 # Matched case-insensitively against the header row, longest first.
@@ -68,58 +69,24 @@ def find_column(header: list[str], candidates: tuple) -> int | None:
 
 
 def load_io_list(path: Path, report: Report):
-    """Read the IO list and return [(timeseries_id, point_name, equipment, row)]."""
-    if path.suffix.lower() in (".xlsx", ".xlsm"):
-        try:
-            import openpyxl
-        except ImportError:
-            sys.exit("openpyxl is needed to read .xlsx - pip install openpyxl")
-        wb = openpyxl.load_workbook(path, data_only=True)
-        ws = pick_ontology_sheet(wb, path)
-        if ws is wb.active and len(wb.worksheets) > 1:
-            ws = wb.worksheets[0]
-        rows = [["" if c is None else str(c).strip() for c in r]
-                for r in ws.iter_rows(values_only=True)]
-    else:
-        import csv
-        with open(path, encoding="utf-8-sig", newline="") as fh:
-            rows = [[c.strip() for c in r] for r in csv.reader(fh)]
-    rows = [r for r in rows if any(r)]
-    if not rows:
-        sys.exit(f"{path} is empty")
+    """Read the IO list as [(timeseries_id, point_name, equipment, row)].
 
-    header, body = rows[0], rows[1:]
-    i_id = find_column(header, ID_HEADERS)
-    i_name = find_column(header, NAME_HEADERS)
-    i_eq = find_column(header, EQUIP_HEADERS)
-    if i_id is None and i_name is None:
-        sys.exit(
-            f"cannot tell which column of {path.name} holds the telemetry key or the\n"
-            f"point name. Its headers are: {header}\n"
-            f"Ask the user which column is which rather than guessing - a wrong guess\n"
-            f"silently reports every point as unmatched.")
-
+    Delegates to the shared io_list loader, which reads *every* data sheet and
+    merges them - a historian export splits analog and discrete points across
+    tabs, and reading only the first would report every discrete point as a
+    false E-IO-1. W-IO-5 (a row with no timeseries id) is raised through the
+    loader's on_blank_key hook.
+    """
+    io = io_list.load(path, on_blank_key=lambda n, name: report.add(
+        "WARN", "W-IO-5", n,
+        f"IO row for {name!r} has no timeseries id, so nothing in the sheet "
+        f"can be matched to it"))
     print(f"IO list  : {path.name}")
-    print(f"  timeseries id column : "
-          f"{header[i_id] if i_id is not None else '(none found)'}")
-    print(f"  point name column    : "
-          f"{header[i_name] if i_name is not None else '(none found)'}")
-    print(f"  equipment column     : "
-          f"{header[i_eq] if i_eq is not None else '(none found)'}")
-
-    out = []
-    for n, r in enumerate(body, start=2):
-        def cell(i):
-            return r[i] if i is not None and i < len(r) else ""
-        tsid, name = cell(i_id), cell(i_name)
-        if not tsid and not name:
-            continue
-        if i_id is not None and not tsid:
-            report.add("WARN", "W-IO-5", n,
-                       f"IO row for {name!r} has no timeseries id, so nothing in the "
-                       f"sheet can be matched to it")
-        out.append((tsid, name, cell(i_eq), n))
-    return out
+    print(f"  timeseries id column : {io.id_col or '(none found)'}")
+    print(f"  point name column    : {io.name_col or '(none found)'}")
+    print(f"  equipment column     : {io.eq_col or '(none found)'}")
+    print(f"  rows (all sheets)    : {len(io.rows)}")
+    return io.rows
 
 
 def load_points(path: Path, report: Report):
