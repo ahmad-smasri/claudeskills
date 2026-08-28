@@ -183,114 +183,57 @@ python3 scripts/check_consistency.py MyBuilding.xlsx
 python3 scripts/check_io_list.py MyBuilding.xlsx --io IO_List.xlsx
 ```
 
-**`--preflight` first.** It prints what the sheet actually contains - prefixes,
-classes by kind, predicates, properties, units - and stops. Read it and confirm
-the picture before trusting a single finding: a sheet can validate clean and
-still model the wrong building. Nothing downstream carries one building's facts
-into another; every rule runs against what preflight found.
+**`--preflight` first.** It prints what the sheet contains - prefixes, classes by
+kind, predicates, properties, units - and stops. Confirm the picture before
+trusting a finding: a sheet can validate clean and still model the wrong building.
 
-**`validate_ontology.py` reads one row at a time.** Header contract, prefixes,
-whitespace, unresolved `<placeholder>` cells, label punctuation,
-one-type-per-entity, Brick 1.4 term existence, deprecated and alias terms, units,
-blank-node shape, spatial connectivity, terminal units with no feeds, points with
-no external reference. Pass `--label-style verbatim` when the user chose
-source-verbatim labels; it turns `E-LBL-1` off and leaves every other rule in
-force.
+- **`validate_ontology.py`** reads one row at a time - header contract, prefixes,
+  whitespace, placeholders, label punctuation, one-type-per-entity, Brick 1.4
+  term existence, deprecation, units, blank-node shape, spatial connectivity,
+  terminal units with no feeds, points with no reference. `--label-style verbatim`
+  turns `E-LBL-1` off, every other rule stays.
+- **`check_consistency.py`** puts every unit of a class beside its siblings and
+  finds what a row read cannot - a missing point, a divergent type, a `#N/A` in an
+  object cell, a child whose separators drifted. Run it per family while building
+  (`--family ...`) and whole before handover. Codes `-CON-`.
+- **`check_io_list.py`** compares the sheet's points against the IO list both ways:
+  a point with no IO row (`E-IO-1`) must come out; an IO row with no point
+  (`W-IO-2`) is a scope call. It stops and asks rather than guess the join column.
+- **Pass `--io` to the other two** and they use the list as evidence - a finding
+  the list settles is downgraded to `I-`, one the list contradicts is promoted.
+  Silence is not confirmation.
 
-**`check_consistency.py` puts every unit of a class beside its siblings.** That
-is where the defects a row-level read cannot see live: the FCU missing a point
-its 136 siblings all have, the VAV whose status is typed differently from every
-other VAV, the `#N/A` a lookup formula left in an object column, the child whose
-identifier drifted one separator from its parent's. It infers the families, what
-a complete unit looks like in each, and what each predicate's object should be,
-all from the sheet - there is no expected point list to keep up to date. Codes
-are `-CON-` and are explained in `references/known-issues.md`.
+Every rule code is explained in `references/known-issues.md`. Fix every `ERROR`;
+read every `WARN` and fix it or say why it stands; `INFO` lines are advisories
+worth a handover line, not defects.
 
-Run it on a family at a time while building (`--family brick:Fan_Coil_Unit`), and
-on the whole sheet before handover.
-
-**`check_io_list.py` compares the sheet's points against the IO list they came
-from**, in both directions: a point with no IO row (`E-IO-1`) would resolve to an
-empty timeseries and must come out; an IO row with no point (`W-IO-2`) is usually
-a scope decision worth confirming. It matches on the telemetry id, falls back to
-the point name, and **stops and asks rather than guessing** when it cannot tell
-which column of the IO list is which.
-
-**Pass `--io` to the other two as well, and they use the list as evidence rather
-than reporting round it.** A point with no timeseries reference is a defect if
-the BMS publishes a key for it and a fact if it does not; a point on 4 of 10
-units is a defect if the other 6 should have it and a fact if they never did.
-With the list to hand those findings are resolved and reported as confirmed -
-`E-CON-1` becomes `I-CON-1`, `E-CON-2` becomes `I-CON-2`, `W-CON-9` becomes
-`I-CON-9`, `W-PT-1` becomes `I-PT-3` - and where the list says a key exists that
-the sheet is missing, the finding is promoted instead (`E-PT-4`, `E-CON-18`).
-Silence is not confirmation: a unit the list says nothing about leaves its
-finding standing.
-
-**When findings need a human, hand them the sheet, not a report.**
-
-```
-python3 scripts/highlight_findings.py In.xlsx --out Reviewed.xlsx --label-style verbatim
-```
-
-writes a copy with every still-flagged row filled `#FFFF00`, the finding written
-into two columns past the data - `validator_code` and `validator_finding`, so it
-can be read, sorted and filtered - and the full text on a cell comment for rows
-carrying several. The reviewer works where the data is. **Delete both columns and
-the fills before handover**: the deliverable holds triples and nothing else. File-level
-findings - a type clash, a terminal unit with no feeds - are placed on the
-entity's **defining row only**: marking every row an entity owns paints hundreds
-of cells yellow for a handful of findings and buries the ones that point at a
-single cell. It writes a copy, adds no sheet, and never touches the input. Clear
-the fills before handover.
-
-**Neither of the two checkers writes to the ontology workbook.** Findings go to stdout, or to
-a file of their own with `--report findings.xlsx`. The deliverable stays one
-sheet of triples: a converter that meets a second sheet has to be told which one
-to read, and a reviewer diffing two versions has to skip it.
-
-`.xlsx` input needs `openpyxl`; `.csv` input needs nothing beyond the standard
-library.
-
-Fix every `ERROR` from both scripts. Read every `WARN` and either fix it or be
-able to say why it stands. `INFO` lines are advisories - a valid Brick term with
-no precedent in Dar Cairo, a class with only one instance, a `rec:feeds` target
-that equals `rec:locatedIn`. Worth a second look and a line in the handover, not
-a defect.
+**When findings need a human, hand them the sheet:**
+`scripts/highlight_findings.py In.xlsx --out Reviewed.xlsx --label-style verbatim`
+writes a copy with each still-flagged row filled yellow and the finding in two
+columns past the data (file-level findings on the entity's defining row only).
+**Delete those columns and the fills before handover** - the deliverable holds
+triples and nothing else. Neither checker writes to the workbook; findings go to
+stdout or `--report`. `.xlsx` needs `openpyxl`; `.csv` needs nothing extra.
 
 ## 4b. The assumption log - every departure from the source is recorded
 
 **Every assumption, correction or departure from what a source literally says goes
-in the assumption log.** The log is a deliverable in its own right, not a note to
-self: it is what lets a reviewer see, months later, why the sheet differs from the
-register they are holding.
+in the assumption log** - a deliverable in its own right, what lets a reviewer see
+months later why the sheet differs from the register they hold.
 
-The log is one workbook for the estate, `Assumption_Log.xlsx`, with **one sheet per
-building - `SSC`, `HQ`, `QNL`, `RDC`** - so the projects stay comparable and a rule
-applied on one building can be checked against the others. Columns:
+One workbook for the estate, `Assumption_Log.xlsx`, **one sheet per building**
+(`SSC`, `HQ`, `QNL`, …), columns `ID · Date · Category · Layer · Entity/Scope ·
+What the source says · What we did · Why/basis · Rows affected`. Categories:
+`Identifier`, `Location`, `Units`, `Spelling`, `Class`, `Structure`, `Scope`,
+`Source defect`. It is **hand-maintained** in Excel; `projects/format_assumption_log.py`
+only propagates the shared format (`--add <NAME>` scaffolds a new building's sheet),
+never row content.
 
-`ID` · `Date` · `Category` · `Layer` · `Entity / Scope` · `What the source says` ·
-`What we did` · `Why / basis` · `Rows affected`
-
-Categories in use: `Identifier`, `Location`, `Units`, `Spelling`, `Class`,
-`Structure`, `Scope`, `Source defect`.
-
-**The log is hand-maintained** - it is edited in Excel as decisions are taken, so
-nothing regenerates it from a script. `projects/format_assumption_log.py` only applies
-the shared format, never row content: it reads the column set and styling off the QNL
-sheet and brings the others to match, so a column change is made once in Excel and
-propagated from there. `--add <NAME>` scaffolds an empty sheet for a new building.
-
-**What must be logged.** Anything where the sheet and the source do not match:
-
-- a unit changed, whichever source it came from, and why the class outranked it;
-- a spelling or separator corrected, with the sibling row that proves it;
-- an identifier reshaped, prefixed or invented;
-- a class chosen against precedent, or a new `para:` class coined;
-- a deprecated term deliberately kept;
-- anything deliberately left out, and what it is waiting on;
-- a defect found in a source, even where it changed nothing in the sheet - the
-  source owner still needs to hear it.
+Log anything where the sheet and the source diverge: a unit changed and why the
+class outranked it; a spelling/separator corrected with the sibling that proves
+it; an identifier reshaped, prefixed or invented; a class chosen against precedent
+or a `para:` coined; a deprecated term kept; anything left out and what it waits
+on; a defect found in a source even where it changed nothing.
 
 ### Rule 1: model what the sources disagree about, then log it
 
