@@ -60,8 +60,12 @@ PY
 ```
 
 `QF_SSC_Ontology_ver02.xlsx` (the QF SSC building) is the first to check - it is
-the current house sheet and shares Dar Cairo's 27-column shape. Later projects go
-here too as they land.
+the current house sheet and shares Dar Cairo's 27-column shape.
+`QF_HQ_Ontology_draft0.4.xlsx` (the QF HQ building, 28,929 rows) is the second -
+read it for class and structure precedent, not for units (several of its rows
+carry a wrong `brick:hasUnit`), and pick its sheet by the header contract, not by
+its misspelled tab `HQ_Onotlogy_Draft_v0.4`. Later projects go here too as they
+land.
 
 Why this sits above minting a `para:` class: a previous project has usually
 already faced the same gap and coined a `para:` class for it. **Reuse that exact

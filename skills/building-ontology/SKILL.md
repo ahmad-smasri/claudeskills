@@ -92,7 +92,8 @@ For every piece of equipment, part and point, in this order - see
 2. **Is it in Brick?** `scripts/lookup_reference.py --term Heat_Wheel`, or search
    <https://ontology.brickschema.org>. Use the preferred class, never an alias.
 3. **Is it in a previous project's ontology?** Check the other delivered project
-   sheets - `reference-models/QF_SSC_Ontology_*.xlsx` first. If a prior project
+   sheets - `reference-models/QF_SSC_Ontology_*.xlsx` and `QF_HQ_Ontology_*.xlsx`.
+   If a prior project
    already classed this concept, reuse that class. This is where a `para:` class
    the team already coined gets reused instead of minted a second time - always
    reuse the prior name rather than inventing a parallel one.
@@ -294,6 +295,7 @@ timeseries references, an aggregation and two `para:` classes - that validates
 clean. Copy its shapes rather than reinventing them.
 
 `reference-models/` holds the source of truth: `DarCairo_V93.csv` (primary),
-`QF_SSC_Ontology_ver02.xlsx` (the cleaned SSC delivery, 5,082 rows, 17 errors -
-the step-3 previous-project reference in the class ladder) and
-`Ontology_headers.xlsx` (the 9 canonical column names).
+`QF_SSC_Ontology_ver02.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx` (the two
+delivered previous-project ontologies - the step-3 reference in the class ladder;
+read HQ for structure, not units, and pick its sheet by header not by its
+misspelled tab name) and `Ontology_headers.xlsx` (the 9 canonical column names).
