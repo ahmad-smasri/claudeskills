@@ -1,0 +1,338 @@
+sheet,tag,entity,status,detail
+AHU,AHU-001,entity:QNL_AHU_B_001,matched,
+AHU,AHU-002,entity:QNL_AHU_B_002,matched,
+AHU,AHU-003,entity:QNL_AHU_B_003,matched,
+AHU,AHU-004,entity:QNL_AHU_B_004,matched,
+AHU,AHU-005,entity:QNL_AHU_B_005,matched,
+AHU,AHU-006,entity:QNL_AHU_B_006,matched,
+AHU,AHU-007,entity:QNL_AHU_B_007,matched,
+AHU,AHU-008,entity:QNL_AHU_B_008,matched,
+AHU,AHU-009,entity:QNL_AHU_B_009,matched,
+AHU,AHU-010,entity:QNL_AHU_B_010,matched,
+AHU,AHU-011,entity:QNL_AHU_B_011,matched,
+AHU,AHU-012,entity:QNL_AHU_B_012,matched,
+AHU,AHU-013,entity:QNL_AHU_B_013,matched,
+AHU,AHU-014,entity:QNL_AHU_B_014,matched,
+AHU,AHU-015,entity:QNL_AHU_B_015,matched,
+CAV Units,CAV/1F/S11/001,entity:QNL_CAV_1F_S11_001,matched,
+CAV Units,CAV/1F/S11/002,entity:QNL_CAV_1F_S11_002,matched,
+CAV Units,CAV/1F/S11/006,entity:QNL_CAV_1F_S11_006,matched,
+CAV Units,CAV/1F/S11/007,entity:QNL_CAV_1F_S11_007,matched,
+CAV Units,CAV/1F/S11/008,entity:QNL_CAV_1F_S11_008,matched,
+CAV Units,CAV/1F/S11/009,entity:QNL_CAV_1F_S11_009,matched,
+CAV Units,CAV/1F/S15/002,entity:QNL_CAV_1F_S15_002,matched,
+CAV Units,CAV/1F/S15/004,entity:QNL_CAV_1F_S15_004,matched,
+CAV Units,CAV/1F/S15/005,entity:QNL_CAV_1F_S15_005,matched,
+CAV Units,CAV/1F/S15/006,entity:QNL_CAV_1F_S15_006,matched,
+CAV Units,CAV/B/S12/001,entity:QNL_CAV_B_S12_001,matched,
+CAV Units,CAV/B/S12/002,entity:QNL_CAV_B_S12_002,matched,
+CAV Units,CAV/B/S12/003,entity:QNL_CAV_B_S12_003,matched,
+CAV Units,CAV/B/S13/001,entity:QNL_CAV_B_S13_001,matched,
+CAV Units,CAV/B/S13/002,entity:QNL_CAV_B_S13_002,matched,
+CAV Units,CAV/B/S13/003,entity:QNL_CAV_B_S13_003,matched,
+CAV Units,CAV/B/S13/004,entity:QNL_CAV_B_S13_004,matched,
+CAV Units,CAV/B/S13/005,entity:QNL_CAV_B_S13_005,matched,
+CAV Units,CAV/B/S13/006,entity:QNL_CAV_B_S13_006,matched,
+CAV Units,CAV/B/S13/007,entity:QNL_CAV_B_S13_007,matched,
+CAV Units,CAV/B/S13/008,entity:QNL_CAV_B_S13_008,matched,
+CAV Units,CAV/B/S13/012,entity:QNL_CAV_B_S13_012,matched,
+CAV Units,CAV/B/S13/013,entity:QNL_CAV_B_S13_013,matched,
+CAV Units,CAV/B/S13/014,entity:QNL_CAV_B_S13_014,matched,
+CAV Units,CAV/B/S13/015,entity:QNL_CAV_B_S13_015,matched,
+CAV Units,CAV/B/S13/020,entity:QNL_CAV_B_S13_020,matched,
+CAV Units,CAV/B/S13/021,entity:QNL_CAV_B_S13_021,matched,
+CAV Units,CAV/B/S14/001,entity:QNL_CAV_B_S14_001,matched,
+CAV Units,CAV/B/S14/002,entity:QNL_CAV_B_S14_002,matched,
+CAV Units,CAV/B/S14/03,entity:QNL_CAV_B_S14_003,matched,
+CAV Units,CAV/B/S14/04,entity:QNL_CAV_B_S14_004,matched,
+CAV Units,CAV/B/S14/05,entity:QNL_CAV_B_S14_005,matched,
+CAV Units,CAV/B/S15/001,entity:QNL_CAV_B_S15_001,matched,
+CAV Units,CAV/B/S15/002,entity:QNL_CAV_B_S15_002,matched,
+CAV Units,CAV/B/S15/003,entity:QNL_CAV_B_S15_003,matched,
+CAV Units,CAV/1F/S11/004,,unmatched,no ontology entity for this tag
+CAV Units,CAV/1F/S11/005,,unmatched,no ontology entity for this tag
+CAV Units,CAV/1F/S15/007,,unmatched,no ontology entity for this tag
+CAV Units,CAV/B/S13/016,,unmatched,no ontology entity for this tag
+CAV Units,CAV/B/S13/017,,unmatched,no ontology entity for this tag
+CAV Units,CAV/B/S13/018,,unmatched,no ontology entity for this tag
+CAV Units,CAV/B/S13/019,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S11/001,entity:QNL_VAV_1F_S11_001,matched,
+VAV Units,VAV/1F/S11/002,entity:QNL_VAV_1F_S11_002,matched,
+VAV Units,VAV/1F/S11/003,entity:QNL_VAV_1F_S11_003,matched,
+VAV Units,VAV/1F/S11/004,entity:QNL_VAV_1F_S11_004,matched,
+VAV Units,VAV/1F/S11/005,entity:QNL_VAV_1F_S11_005,matched,
+VAV Units,VAV/1F/S11/006,entity:QNL_VAV_1F_S11_006,matched,
+VAV Units,VAV/1F/S11/007,entity:QNL_VAV_1F_S11_007,matched,
+VAV Units,VAV/1F/S11/008,entity:QNL_VAV_1F_S11_008,matched,
+VAV Units,VAV/1F/S11/009,entity:QNL_VAV_1F_S11_009,matched,
+VAV Units,VAV/1F/S11/010,entity:QNL_VAV_1F_S11_010,matched,
+VAV Units,VAV/1F/S11/011,entity:QNL_VAV_1F_S11_011,matched,
+VAV Units,VAV/1F/S11/012,entity:QNL_VAV_1F_S11_012,matched,
+VAV Units,VAV/1F/S11/013,entity:QNL_VAV_1F_S11_013,matched,
+VAV Units,VAV/1F/S11/014,entity:QNL_VAV_1F_S11_014,matched,
+VAV Units,VAV/1F/S11/015,entity:QNL_VAV_1F_S11_015,matched,
+VAV Units,VAV/1F/S11/016,entity:QNL_VAV_1F_S11_016,matched,
+VAV Units,VAV/1F/S11/017,entity:QNL_VAV_1F_S11_017,matched,
+VAV Units,VAV/1F/S11/018,entity:QNL_VAV_1F_S11_018,matched,
+VAV Units,VAV/1F/S11/019,entity:QNL_VAV_1F_S11_019,matched,
+VAV Units,VAV/1F/S11/020,entity:QNL_VAV_1F_S11_020,matched,
+VAV Units,VAV/1F/S11/021,entity:QNL_VAV_1F_S11_021,matched,
+VAV Units,VAV/1F/S11/022,entity:QNL_VAV_1F_S11_022,matched,
+VAV Units,VAV/1F/S15/001,entity:QNL_VAV_1F_S15_001,matched,
+VAV Units,VAV/1F/S15/002,entity:QNL_VAV_1F_S15_002,matched,
+VAV Units,VAV/1F/S15/003,entity:QNL_VAV_1F_S15_003,matched,
+VAV Units,VAV/1F/S15/004,entity:QNL_VAV_1F_S15_004,matched,
+VAV Units,VAV/1F/S15/005,entity:QNL_VAV_1F_S15_005,matched,
+VAV Units,VAV/1F/S15/006,entity:QNL_VAV_1F_S15_006,matched,
+VAV Units,VAV/1F/S15/007,entity:QNL_VAV_1F_S15_007,matched,
+VAV Units,VAV/1F/S15/008,entity:QNL_VAV_1F_S15_008,matched,
+VAV Units,VAV/1F/S15/009,entity:QNL_VAV_1F_S15_009,matched,
+VAV Units,VAV/1F/S15/010,entity:QNL_VAV_1F_S15_010,matched,
+VAV Units,VAV/1F/S15/011,entity:QNL_VAV_1F_S15_011,matched,
+VAV Units,VAV/1F/S15/012,entity:QNL_VAV_1F_S15_012,matched,
+VAV Units,VAV/1F/S15/021,entity:QNL_VAV_1F_S15_021,matched,
+VAV Units,VAV/1F/S15/022,entity:QNL_VAV_1F_S15_022,matched,
+VAV Units,VAV/1F/S15/023,entity:QNL_VAV_1F_S15_023,matched,
+VAV Units,VAV/1F/S15/024,entity:QNL_VAV_1F_S15_024,matched,
+VAV Units,VAV/1F/S15/025,entity:QNL_VAV_1F_S15_025,matched,
+VAV Units,VAV/1F/S15/038,entity:QNL_VAV_1F_S15_038,matched,
+VAV Units,VAV/1F/S15/039,entity:QNL_VAV_1F_S15_039,matched,
+VAV Units,VAV/1F/S15/040,entity:QNL_VAV_1F_S15_040,matched,
+VAV Units,VAV/B/S10/001,entity:QNL_VAV_B_S10_001,matched,
+VAV Units,VAV/B/S10/008,entity:QNL_VAV_B_S10_008,matched,
+VAV Units,VAV/B/S10/009,entity:QNL_VAV_B_S10_009,matched,
+VAV Units,VAV/B/S10/010,entity:QNL_VAV_B_S10_010,matched,
+VAV Units,VAV/B/S10/011,entity:QNL_VAV_B_S10_011,matched,
+VAV Units,VAV/B/S10/012,entity:QNL_VAV_B_S10_012,matched,
+VAV Units,VAV/B/S10/013,entity:QNL_VAV_B_S10_013,matched,
+VAV Units,VAV/B/S10/014,entity:QNL_VAV_B_S10_014,matched,
+VAV Units,VAV/B/S10/015,entity:QNL_VAV_B_S10_015,matched,
+VAV Units,VAV/B/S10/016,entity:QNL_VAV_B_S10_016,matched,
+VAV Units,VAV/B/S10/017,entity:QNL_VAV_B_S10_017,matched,
+VAV Units,VAV/B/S10/018,entity:QNL_VAV_B_S10_018,matched,
+VAV Units,VAV/B/S10/019,entity:QNL_VAV_B_S10_019,matched,
+VAV Units,VAV/B/S10/020,entity:QNL_VAV_B_S10_020,matched,
+VAV Units,VAV/B/S10/021,entity:QNL_VAV_B_S10_021,matched,
+VAV Units,VAV/B/S10/022,entity:QNL_VAV_B_S10_022,matched,
+VAV Units,VAV/B/S10/023,entity:QNL_VAV_B_S10_023,matched,
+VAV Units,VAV/B/S11/001,entity:QNL_VAV_B_S11_001,matched,
+VAV Units,VAV/B/S11/002,entity:QNL_VAV_B_S11_002,matched,
+VAV Units,VAV/B/S11/003,entity:QNL_VAV_B_S11_003,matched,
+VAV Units,VAV/B/S11/004,entity:QNL_VAV_B_S11_004,matched,
+VAV Units,VAV/B/S11/005,entity:QNL_VAV_B_S11_005,matched,
+VAV Units,VAV/B/S11/006,entity:QNL_VAV_B_S11_006,matched,
+VAV Units,VAV/B/S11/007,entity:QNL_VAV_B_S11_007,matched,
+VAV Units,VAV/B/S11/008,entity:QNL_VAV_B_S11_008,matched,
+VAV Units,VAV/B/S11/009,entity:QNL_VAV_B_S11_009,matched,
+VAV Units,VAV/B/S11/010,entity:QNL_VAV_B_S11_010,matched,
+VAV Units,VAV/B/S11/011,entity:QNL_VAV_B_S11_011,matched,
+VAV Units,VAV/B/S11/012,entity:QNL_VAV_B_S11_012,matched,
+VAV Units,VAV/B/S11/013,entity:QNL_VAV_B_S11_013,matched,
+VAV Units,VAV/B/S11/014,entity:QNL_VAV_B_S11_014,matched,
+VAV Units,VAV/B/S11/015,entity:QNL_VAV_B_S11_015,matched,
+VAV Units,VAV/B/S11/016,entity:QNL_VAV_B_S11_016,matched,
+VAV Units,VAV/B/S11/017,entity:QNL_VAV_B_S11_017,matched,
+VAV Units,VAV/B/S11/018,entity:QNL_VAV_B_S11_018,matched,
+VAV Units,VAV/B/S11/019,entity:QNL_VAV_B_S11_019,matched,
+VAV Units,VAV/B/S11/020,entity:QNL_VAV_B_S11_020,matched,
+VAV Units,VAV/B/S11/021,entity:QNL_VAV_B_S11_021,matched,
+VAV Units,VAV/B/S11/022,entity:QNL_VAV_B_S11_022,matched,
+VAV Units,VAV/B/S11/023,entity:QNL_VAV_B_S11_023,matched,
+VAV Units,VAV/B/S11/024,entity:QNL_VAV_B_S11_024,matched,
+VAV Units,VAV/B/S11/025,entity:QNL_VAV_B_S11_025,matched,
+VAV Units,VAV/B/S11/026,entity:QNL_VAV_B_S11_026,matched,
+VAV Units,VAV/B/S11/027,entity:QNL_VAV_B_S11_027,matched,
+VAV Units,VAV/B/S11/028,entity:QNL_VAV_B_S11_028,matched,
+VAV Units,VAV/B/S11/029,entity:QNL_VAV_B_S11_029,matched,
+VAV Units,VAV/B/S11/030,entity:QNL_VAV_B_S11_030,matched,
+VAV Units,VAV/B/S11/031,entity:QNL_VAV_B_S11_031,matched,
+VAV Units,VAV/B/S11/032,entity:QNL_VAV_B_S11_032,matched,
+VAV Units,VAV/B/S11/033,entity:QNL_VAV_B_S11_033,matched,
+VAV Units,VAV/B/S11/034,entity:QNL_VAV_B_S11_034,matched,
+VAV Units,VAV/B/S11/035,entity:QNL_VAV_B_S11_035,matched,
+VAV Units,VAV/B/S11/036,entity:QNL_VAV_B_S11_036,matched,
+VAV Units,VAV/B/S11/037,entity:QNL_VAV_B_S11_037,matched,
+VAV Units,VAV/B/S11/038,entity:QNL_VAV_B_S11_038,matched,
+VAV Units,VAV/B/S11/039,entity:QNL_VAV_B_S11_039,matched,
+VAV Units,VAV/B/S11/040,entity:QNL_VAV_B_S11_040,matched,
+VAV Units,VAV/B/S11/041,entity:QNL_VAV_B_S11_041,matched,
+VAV Units,VAV/B/S11/042,entity:QNL_VAV_B_S11_042,matched,
+VAV Units,VAV/B/S11/043,entity:QNL_VAV_B_S11_043,matched,
+VAV Units,VAV/B/S11/044,entity:QNL_VAV_B_S11_044,matched,
+VAV Units,VAV/B/S11/045,entity:QNL_VAV_B_S11_045,matched,
+VAV Units,VAV/B/S11/046,entity:QNL_VAV_B_S11_046,matched,
+VAV Units,VAV/B/S13/001,entity:QNL_VAV_B_S13_001,matched,
+VAV Units,VAV/B/S13/002,entity:QNL_VAV_B_S13_002,matched,
+VAV Units,VAV/B/S13/003,entity:QNL_VAV_B_S13_003,matched,
+VAV Units,VAV/B/S13/004,entity:QNL_VAV_B_S13_004,matched,
+VAV Units,VAV/B/S13/005,entity:QNL_VAV_B_S13_005,matched,
+VAV Units,VAV/B/S13/007,entity:QNL_VAV_B_S13_007,matched,
+VAV Units,VAV/B/S13/008,entity:QNL_VAV_B_S13_008,matched,
+VAV Units,VAV/B/S14/001,entity:QNL_VAV_B_S14_001,matched,
+VAV Units,VAV/B/S14/002,entity:QNL_VAV_B_S14_002,matched,
+VAV Units,VAV/B/S14/003,entity:QNL_VAV_B_S14_003,matched,
+VAV Units,VAV/B/S14/004,entity:QNL_VAV_B_S14_004,matched,
+VAV Units,VAV/B/S14/005,entity:QNL_VAV_B_S14_005,matched,
+VAV Units,VAV/B/S14/006,entity:QNL_VAV_B_S14_006,matched,
+VAV Units,VAV/B/S14/007,entity:QNL_VAV_B_S14_007,matched,
+VAV Units,VAV/B/S14/008,entity:QNL_VAV_B_S14_008,matched,
+VAV Units,VAV/B/S14/009,entity:QNL_VAV_B_S14_009,matched,
+VAV Units,VAV/B/S14/010,entity:QNL_VAV_B_S14_010,matched,
+VAV Units,VAV/B/S14/011,entity:QNL_VAV_B_S14_011,matched,
+VAV Units,VAV/B/S14/012,entity:QNL_VAV_B_S14_012,matched,
+VAV Units,VAV/B/S14/013,entity:QNL_VAV_B_S14_013,matched,
+VAV Units,VAV/B/S14/014,entity:QNL_VAV_B_S14_014,matched,
+VAV Units,VAV/B/S14/015,entity:QNL_VAV_B_S14_015,matched,
+VAV Units,VAV/B/S14/016,entity:QNL_VAV_B_S14_016,matched,
+VAV Units,VAV/B/S15/001,entity:QNL_VAV_B_S15_001,matched,
+VAV Units,VAV/B/S15/002,entity:QNL_VAV_B_S15_002,matched,
+VAV Units,VAV/B/S15/003,entity:QNL_VAV_B_S15_003,matched,
+VAV Units,VAV/B/S15/004,entity:QNL_VAV_B_S15_004,matched,
+VAV Units,VAV/B/S15/005,entity:QNL_VAV_B_S15_005,matched,
+VAV Units,VAV/B/S15/006,entity:QNL_VAV_B_S15_006,matched,
+VAV Units,VAV/B/S15/007,entity:QNL_VAV_B_S15_007,matched,
+VAV Units,VAV/B/S15/008,entity:QNL_VAV_B_S15_008,matched,
+VAV Units,VAV/B/S15/009,entity:QNL_VAV_B_S15_009,matched,
+VAV Units,VAV/B/S15/010,entity:QNL_VAV_B_S15_010,matched,
+VAV Units,VAV/B/S15/011,entity:QNL_VAV_B_S15_011,matched,
+VAV Units,VAV/B/S15/012,entity:QNL_VAV_B_S15_012,matched,
+VAV Units,VAV/1F/S11/023,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S11/024,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S11/025,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/013,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/014,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/015,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/016,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/017,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/018,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/019,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/020,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/026,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/027,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/028,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/029,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/030,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/031,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/032,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/033,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/034,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/035,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/036,,unmatched,no ontology entity for this tag
+VAV Units,VAV/1F/S15/037,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/017,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/018,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/019,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/020,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/022,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/023,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/024,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/025,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/026,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/027,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/028,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/029,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/030,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S14/031,,unmatched,no ontology entity for this tag
+VAV Units,VAV/B/S21,,unmatched,no ontology entity for this tag
+DX Units,DX/B/01,entity:QNL_DX_B01,matched,
+DX Units,DX/B/02,entity:QNL_DX_B02,matched,
+DX Units,DX/B/03,entity:QNL_DX_B03,matched,
+DX Units,DX/B/04,entity:QNL_DX_B04,matched,
+DX Units,DX/B/05,entity:QNL_DX_B05,matched,
+DX Units,DX/B/06,entity:QNL_DX_B06,matched,
+DX Units,DX/B/07,entity:QNL_DX_B07,matched,
+DX Units,DX/B/08,entity:QNL_DX_B08,matched,
+DX Units,DX/B/09,entity:QNL_DX_B09,matched,
+DX Units,DX/B/10,entity:QNL_DX_B10,matched,
+DX Units,DX/B/11,entity:QNL_DX_B11,matched,
+DX Units,DX/B/12,entity:QNL_DX_B12,matched,
+DX Units,DX/B/13,entity:QNL_DX_B13,matched,
+DX Units,DX/B/14,entity:QNL_DX_B14,matched,
+DX Units,DX/B/15,entity:QNL_DX_B15,matched,
+DX Units,DX/B/16,entity:QNL_DX_B16,matched,
+Heat Exchangers,PHX/B/01,entity:QNL_HEX01,matched,
+Heat Exchangers,PHX/B/02,entity:QNL_HEX02,matched,
+Heat Exchangers,PHX/B/03,entity:QNL_HEX03,matched,
+Heat Exchangers,PHX/B/04,entity:QNL_HEX04,matched,
+Heat Exchangers,PHX/B/05,entity:QNL_HEX05,matched,
+Pumps,CHWP/B/01,entity:QNL_CHW_P01,matched,
+Pumps,CHWP/B/02,entity:QNL_CHW_P02,matched,
+Pumps,CHWP/B/03,entity:QNL_CHW_P03,matched,
+Pumps,CHWP/B/04,entity:QNL_CHW_P04,matched,
+Generators,GENERATOR SET,entity:QNL_ELEC_Gen,matched,
+Exhaust Fans,EF/2/01,entity:QNL_EF_201,matched,
+Exhaust Fans,EF/B/10,entity:QNL_EF_B10,matched,
+Exhaust Fans,EF/B/11,entity:QNL_EF_B11,matched,
+Exhaust Fans,EF/B/12,entity:QNL_EF_B12,matched,
+Exhaust Fans,EF/B/13,entity:QNL_EF_B13,matched,
+Exhaust Fans,EF/B/14,entity:QNL_EF_B14,matched,
+Exhaust Fans,EF/B/15,entity:QNL_EF_B15,matched,
+Exhaust Fans,EF/B/16,entity:QNL_EF_B16,matched,
+Exhaust Fans,EF/B/5,entity:QNL_EF_B05,matched,
+Exhaust Fans,EF/B/6,entity:QNL_EF_B06,matched,
+Exhaust Fans,EF/B/7,entity:QNL_EF_B07,matched,
+Exhaust Fans,EF/B/8,entity:QNL_EF_B08,matched,
+Exhaust Fans,EF/B/9,entity:QNL_EF_B09,matched,
+Exhaust Fans,EF/RP/1,entity:QNL_EF_RP01,matched,
+Exhaust Fans,EF/RP/2,entity:QNL_EF_RP02,matched,
+Exhaust Fans,EF/RP/3,entity:QNL_EF_RP03,matched,
+Exhaust Fans,KEF_101,entity:QNL_KEF_101,matched,
+Exhaust Fans,KEF_B019,entity:QNL_KEF_B019,matched,
+Exhaust Fans,KEF_B020,entity:QNL_KEF_B020,matched,
+Exhaust Fans,TEF_101C,entity:QNL_TEF_101C,matched,
+Exhaust Fans,TEF_102C,entity:QNL_TEF_102C,matched,
+Exhaust Fans,TEF_B01A,entity:QNL_TEF_B01A,matched,
+Exhaust Fans,TEF_B01B,entity:QNL_TEF_B01B,matched,
+Exhaust Fans,TEF_B02A,entity:QNL_TEF_B02A,matched,
+Exhaust Fans,TEF_B02B,entity:QNL_TEF_B02B,matched,
+Exhaust Fans,TEF_B03A,entity:QNL_TEF_B03A,matched,
+Exhaust Fans,TEF_B03B,entity:QNL_TEF_B03B,matched,
+Exhaust Fans,EF/B/4,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/BV/01,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/BV/02,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/10,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/11,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/12,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/4,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/5,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/6,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/7,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/8,,unmatched,no ontology entity for this tag
+Exhaust Fans,EF/RP/9,,unmatched,no ontology entity for this tag
+FCU,1F/02-03,,unmatched,family tags do not correspond to ontology tags
+FCU,1F/04-54,,unmatched,family tags do not correspond to ontology tags
+FCU,1F/55,,unmatched,family tags do not correspond to ontology tags
+FCU,1F/56,,unmatched,family tags do not correspond to ontology tags
+FCU,1F/57-58,,unmatched,family tags do not correspond to ontology tags
+FCU,2F/05,,unmatched,family tags do not correspond to ontology tags
+FCU,2F/06-29,,unmatched,family tags do not correspond to ontology tags
+FCU,2F/30-33,,unmatched,family tags do not correspond to ontology tags
+FCU,B/02,,unmatched,family tags do not correspond to ontology tags
+FCU,"B/03,04",,unmatched,family tags do not correspond to ontology tags
+FCU,"B/06,08,17,24",,unmatched,family tags do not correspond to ontology tags
+FCU,B/07,,unmatched,family tags do not correspond to ontology tags
+FCU,B/09,,unmatched,family tags do not correspond to ontology tags
+FCU,B/10,,unmatched,family tags do not correspond to ontology tags
+FCU,B/11-12 (OPT-1),,unmatched,family tags do not correspond to ontology tags
+FCU,B/13-14,,unmatched,family tags do not correspond to ontology tags
+FCU,B/15-16,,unmatched,family tags do not correspond to ontology tags
+FCU,B/18-21,,unmatched,family tags do not correspond to ontology tags
+FCU,B/22-23,,unmatched,family tags do not correspond to ontology tags
+FCU,B/25-26,,unmatched,family tags do not correspond to ontology tags
+FCU,B/27-28,,unmatched,family tags do not correspond to ontology tags
+FCU,B/29,,unmatched,family tags do not correspond to ontology tags
+FCU,B/30,,unmatched,family tags do not correspond to ontology tags
+FCU,B5,,unmatched,family tags do not correspond to ontology tags
+FCU,FCU/1F/01,,unmatched,family tags do not correspond to ontology tags
+FCU,FCU/2F/01-04,,unmatched,family tags do not correspond to ontology tags
+FCU,FCU/B/01,,unmatched,family tags do not correspond to ontology tags
+FCU,FCU/B/31,,unmatched,family tags do not correspond to ontology tags
+Closed Control Units,"CC/B/01,02",,unmatched,family tags do not correspond to ontology tags
+Closed Control Units,"CC/B/03,04",,unmatched,family tags do not correspond to ontology tags
+Closed Control Units,"CC/B/05,06,07",,unmatched,family tags do not correspond to ontology tags
+Closed Control Units,CC/B/08,,unmatched,family tags do not correspond to ontology tags
+Closed Control Units,CC/B/09,,unmatched,family tags do not correspond to ontology tags
+Climate Control Units,MCG Air Filter AF4,,unmatched,family tags do not correspond to ontology tags
+Climate Control Units,MCG-10P,,unmatched,family tags do not correspond to ontology tags
+Climate Control Units,VCB1000-AB32,,unmatched,family tags do not correspond to ontology tags
+Pressurization Unit,PU/B/01,,unmatched,family tags do not correspond to ontology tags
