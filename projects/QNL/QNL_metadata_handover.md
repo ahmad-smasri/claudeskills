@@ -95,3 +95,31 @@ Every tag and its verdict is in `QNL_metadata_join_report.csv`.
   if the team prefers (moot until the pressurisation unit is modelled).
 - The 574 pre-existing `para:IFC_ID has no value` errors remain — the BIM GUIDs
   were never supplied.
+
+## Dar Cairo naming alignment (`align_naming.py`)
+
+Final pass to bring every subject/object identifier onto Dar Cairo's convention:
+**`_` between segments (equipment | component | point), `-` between words inside a
+segment, points in dashed English, no camelCase, no dots.**
+
+| Before | After | Dar Cairo analogue |
+|---|---|---|
+| `entity:QNL_AHU_B_001` | `entity:QNL_AHU-B-001` | `entity:AHU-TYP1-B1` |
+| `entity:QNL_AHU_B_001_CHW-Coil` | `entity:QNL_AHU-B-001_CHW-Coil` | `entity:HRAHU-R3_CHW-Coil` |
+| `entity:QNL_AHU_B_001_SF_Motor` | `entity:QNL_AHU-B-001_SF-Motor` | `entity:FCU-9_F5_SF-Motor` |
+| `entity:QNL_AHU_B_001_AvgSpcHumd_PV` | `entity:QNL_AHU-B-001_Average-Space-Humidity` | `entity:UPS-02_Trip-Status` |
+| `entity:QNL_DX_B01_RmTempSP_SP` | `entity:QNL_DX-B01_Room-Air-Temperature-Setpoint` | |
+
+- **3,476 identifiers renamed** (558 equipment, 104 parts, 2,814 datapoints);
+  **camelCase 71% → 0%**, dots 0, collisions 0.
+- **Datapoint names**: taken from each point's own `rdfs:label_en` where it is
+  clean English (AHU/VAV/CAV/FCU), else from the point's Brick/para class name
+  (`brick:Run_Status → Run-Status`) so nothing stays a raw BMS token.
+- **The BMS join keys are untouched** — `ref:hasTimeseriesId` / `para:hasEntityId`
+  keep the raw historian tag, and `QNL_naming_crosswalk.csv` records every
+  old → new id (the identifier crosswalk was remapped to match).
+- **Rooms and levels keep their identifiers** (the verbatim spatial style, ~10%
+  of ids) — not datapoints, and several systems (`entity:Electrical_System`)
+  already match Dar Cairo. Extendable to room ids on request.
+- Row validator unchanged (574/186, all pre-existing IFC-empty); references stay
+  consistent (17 object-only entities before and after, 0 dangling ids).
