@@ -32,7 +32,8 @@ from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-OUT = sys.argv[1]
+OUT_FULL = sys.argv[1]
+OUT_ONT  = sys.argv[2] if len(sys.argv) > 2 else None
 
 def _sigfmt(f):
     """Show the factor the way an engineer would check it: 'x 1000' or '/ 3.6'."""
@@ -732,9 +733,24 @@ def build_gen(rows):
         rows.append([GEN_ROWS[0][0], "", "Data quality", prop, text, "", SRC_GEN, PAGE_GEN, ""])
 
 # ---------------------------------------------------------------- write
-def sheet(wb, name, rows, subtitle):
+SHEETS = []
+
+def add_sheet(name, rows, subtitle):
+    """Hold a sheet's rows so both workbooks can be written from the same data."""
     _index(name, rows)
+    SHEETS.append((name, list(rows), subtitle))
+
+def sheet(wb, name, rows, subtitle, do_index=False, fill_value=False):
+    if do_index:
+        _index(name, rows)
     rows = [expand(r) for r in rows]
+    if fill_value:
+        # A string-valued predicate (rec:modelNumber, rec:manufacturedBy) has nothing to
+        # convert, so the Dar Cairo cell is empty. The object of the triple is the printed
+        # value, so carry it across - the ontology workbook must never show a blank object.
+        for r in rows:
+            if r[6] == "" and r[4] not in (None, ""):
+                r[6] = r[4]
     ws = wb.create_sheet(name)
     ws["A1"] = name; ws["A1"].font = Font(bold=True, size=14, color="1F3864")
     ws["A2"] = subtitle; ws["A2"].font = Font(italic=True, size=9, color="555555")
@@ -781,309 +797,332 @@ def sheet(wb, name, rows, subtitle):
     ws.auto_filter.ref = "A%d:%s%d" % (hr, get_column_letter(len(HEAD)), ws.max_row)
     return ws
 
-wb = Workbook(); wb.remove(wb.active)
+def new_wb():
+    wb = Workbook(); wb.remove(wb.active); return wb
 
-# README
-ws = wb.create_sheet("README")
-def put(r, a, b="", bold=False, size=10, color="000000", italic=False):
-    ws.cell(row=r, column=1, value=a).font = Font(bold=bold, size=size, color=color, italic=italic)
-    if b != "":
-        c = ws.cell(row=r, column=2, value=b)
-        c.font = Font(size=10); c.alignment = Alignment(wrap_text=True, vertical="top")
+def readme_sheet(wb, ontology_only=False):
+    # README
+    ws = wb.create_sheet("README")
+    def put(r, a, b="", bold=False, size=10, color="000000", italic=False):
+        ws.cell(row=r, column=1, value=a).font = Font(bold=bold, size=size, color=color, italic=italic)
+        if b != "":
+            c = ws.cell(row=r, column=2, value=b)
+            c.font = Font(size=10); c.alignment = Alignment(wrap_text=True, vertical="top")
 
-put(1, "QNL Equipment Metadata - Manufacturer Properties", bold=True, size=16, color="1F3864")
-put(2, "Qatar National Library, Education City BP#7A", italic=True, color="555555")
-r = 4
-put(r, "What this workbook is", bold=True, size=12, color="1F3864"); r += 1
-put(r, "", "One sheet per equipment type. Every row is a single manufacturer property for a single "
-          "unit, and carries the source PDF and the page it was read from, so any value can be "
-          "traced back to the document."); r += 2
-put(r, "Sheets", bold=True, size=12, color="1F3864"); r += 1
-for name, desc in [
-  ("AHU", "15 air handling units, AHU-001 to AHU-015. AS BUILT general arrangement drawings, "
-          "drawing 1844-SD-05-AC-0077, Mercury Mena for Qatar Foundation, 26-10-2015 / 28-11-2015."),
-  ("Closed Control Units", "5 selection sheets covering CC/B/01 to CC/B/09. Emerson Network Power, "
-          "issued by Qatar Site & Power, April and October 2013."),
-  ("Climate Control Units", "Museum Climate Controls MCG-10P humidity control unit with its VCB1000 "
-          "blower option and AF4 intake air filter."),
-  ("FCU", "28 Euroclima selection sheets covering positions on Basement, 1F and 2F."),
-  ("Heat Exchangers", "5 Alfa Laval plate heat exchangers, PHX/B/01 to PHX/B/05, with the "
-            "manufacturer's construction data and the M10-MFM thermal specification."),
-  ("Pumps", "4 Armstrong horizontal split case chilled water pumps, CHWP/B/01 to CHWP/B/04, with "
-            "the full Armstrong submittal - pump, motor, seal, materials and dimensions."),
-  ("Exhaust Fans", "39 exhaust fans - mostly Nuaire, two Colasit - from the supplied schedule "
-            "spreadsheet."),
-  ("Generators", "One standby diesel generator from the GENERATOR ASSET LIST, a multi-equipment "
-            "asset register."),
-  ("Pressurization Unit", "PU/B/01 (PRO1) - Armstrong 3750 2 EM-S pressurisation unit plus a "
-            "Reflex DE10 1000 litre expansion tank."),
-  ("CAV Units", "42 constant air volume boxes, one row per box, from six schedules."),
-  ("VAV Units", "180 variable air volume boxes, one row per box, from six schedules."),
-  ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, from the schematic riser and the "
-            "SYSTEM DETAILS equipment schedule, which names models for 16 of them."),
-  ("Ontology Scope", "Every distinct property in this workbook, the reference-model predicate it "
-            "maps to, and whether it belongs in the ontology at all."),
-  ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
-            "Dar Cairo uses that unit at all."),
-]:
-    ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
-    c = ws.cell(row=r, column=2, value=desc); c.font = Font(size=10)
-    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
-r += 1
-put(r, "Columns", bold=True, size=12, color="1F3864"); r += 1
-for name, desc in [
-  ("Equipment Tag", "The position or unit reference exactly as the source document writes it."),
-  ("Model", "Manufacturer model designation where the sheet gives one."),
-  ("Component", "The part of the unit the property belongs to - cooling coil, supply fan, condenser, etc."),
-  ("Property", "The property name, kept close to the source wording."),
-  ("Value (as printed)", "The value exactly as the document prints it. Nothing converted, rounded or inferred."),
-  ("Unit (as printed)", "The unit exactly as the document prints it."),
-  ("Value (Dar Cairo)", "The same quantity converted to the unit Dar Cairo uses for it."),
-  ("Unit (QUDT)", "The QUDT unit token to write into brick:hasUnit."),
-  ("Conversion", "The arithmetic applied, and any assumption behind it. Blank means no conversion was needed."),
-  ("Source File", "The document the value came from - a PDF, a spreadsheet, or a supplied drawing image."),
-  ("Page", "Where in that document: a 1-based page for a PDF, a sheet and row for a spreadsheet, "
-           "the schedule title for a drawing."),
-  ("Note", "Anything that qualifies the value - a quantity off, a source conflict, a mislabelled row."),
-]:
-    ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
-    c = ws.cell(row=r, column=2, value=desc); c.font = Font(size=10)
-    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
-r += 1
-put(r, "Units", bold=True, size=12, color="2E5F2E"); r += 1
-for line in [
-  "The source documents are transcribed in their own units, and each row then carries the same "
-  "quantity in the unit Dar Cairo uses for it. Both are kept side by side: the printed pair stays "
-  "traceable to the page, the converted pair is what goes into brick:hasUnit.",
-  "Targets were read off DarCairo_V93.csv, not assumed. Air flow and water flow both land on "
-  "unit:L-PER-SEC (para:ratedSupplyAirFlowrate, para:ratedChilledWaterFlowrate and their siblings), "
-  "power on unit:KiloW (brick:ratedPowerInput, brick:coolingCapacity), length on unit:M "
-  "(para:ratedHead), relative humidity on unit:PERCENT_RH rather than unit:PERCENT.",
-  "The Units sheet lists every mapping, the factor applied, and the four QUDT units Dar Cairo has "
-  "never used - mass, mass flow and velocity, which it carries no quantity for. Those need the "
-  "PARA team's confirmation.",
-  "Converting kg/s to l/s treats water as 1 kg/l. At 7-15 degC it is about 0.9997 kg/l, so the "
-  "converted flow is high by roughly 0.03%.",
-]:
-    c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
-    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
-r += 1
-put(r, "What belongs in the ontology", bold=True, size=12, color="7B3F00"); r += 1
-for line in [
-  "Most of this workbook is engineering reference, not ontology metadata. Dar Cairo, QF SSC and "
-  "QF HQ agree on a short vocabulary for equipment - about twenty predicates - and everything "
-  "outside it has no precedent in any of them.",
-  "Brick 1.4 is checked FIRST, per the class ladder - it is step 2 and the reference models are "
-  "step 3. Brick has no water or air flow-rate entity property and no heat-exchanger duty "
-  "property, which is why Dar Cairo minted para:ratedWaterFlowrate, para:ratedChilledWaterFlowrate "
-  "and the air-flowrate family. Where Brick does carry the term it wins: brick:coolingCapacity for "
-  "heat exchanger duty, brick:ratedCurrentInput for full load current, brick:operationalStageCount "
-  "for a fan's speed count, and brick:Condensing_Unit as the entity an outdoor unit's model sits on.",
-  "Every row carries an 'Ontology predicate' and a 'Scope'. core means it maps unambiguously to a "
-  "Brick 1.4 entity property or a predicate the reference models use. candidate means the match is "
-  "plausible but needs a decision. reference means neither Brick nor any reference model carries "
-  "anything like it - dimensions, weights, "
-  "materials, seal specifications, sound power levels, filter part numbers, psychrometrics, "
-  "warranty text. Those rows stay because they are useful to engineers, not because they will be "
-  "modelled.",
-  "The Ontology Scope sheet lists every distinct property with its verdict, the predicate it maps "
-  "to and where that predicate comes from - Brick 1.4, Dar Cairo, QF SSC or QF HQ.",
-  "The predicates in play: para:ratedSupplyAirFlowrate, rec:modelNumber, rec:manufacturedBy, "
-  "para:ratedReheatCapacity, brick:ratedPowerInput, para:ratedChilledWaterFlowrate, "
-  "brick:coolingCapacity, para:ratedSpeed, brick:ratedCurrentInput, para:ratedExhaustAirFlowrate, "
-  "brick:operationalStageCount, para:ratedHead, para:refrigerant, rec:installationDate, "
-  "para:ratedWaterFlowrate, para:Rated_Tank_Level.",
-  "One open point: the expansion tank's 1000 litre capacity is written as para:Rated_Tank_Level at "
-  "the user's direction. brick:volume exists in Brick 1.4 and by the ladder would outrank a para: "
-  "term - reversible in one line of ontology_map.py if the team prefers it.",
-  "An outdoor DX unit's model belongs on its own brick:Condensing_Unit entity, which Brick 1.4 "
-  "carries, so no para: class needed to be minted for it. Those entities are not in this workbook "
-  "yet - it holds the model against the indoor unit that names it.",
-  "A component's own maker is not the equipment's manufacturer. The pump's mechanical seal is "
-  "made by Armstrong and its motor by WEG; neither becomes rec:manufacturedBy on the pump.",
-  "The QF HQ v0.4 draft was read for structure, not for units - several of its rows carry a wrong "
-  "brick:hasUnit (an air flow tagged unit:V, a cooling capacity tagged unit:HZ). Dar Cairo remains "
-  "the authority for unit choice, as the Units sheet records.",
-]:
-    c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
-    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
-r += 1
-put(r, "Read before using the data", bold=True, size=12, color="C00000"); r += 1
-for line in [
-  "Values are transcribed from the documents as printed. Where a document contradicts itself the "
-  "conflict is recorded as a 'Data quality' row rather than resolved - those need the supplier's answer.",
-  "AHU-011 carries two Item 3 ELECTRIC COIL blocks; the first is an unfilled template "
-  "(capacity POW, stages NST, entering air AON, leaving air AOF). The populated block is the one recorded.",
-  "MCG-10P size is given as 500 x 650 x 650 mm on the specification sheet and 475 x 430 x 400 mm on "
-  "dimension drawing MCG10P-1. Both are recorded; neither is confirmed.",
-  "On 27 of the 28 Euroclima sheets the air pressure drop row is printed as 'Perdita di carico aria' "
-  "with the unit [degC]. It is air-side pressure drop in Pa - page 2 labels the same row correctly.",
-  "The CC/B/05,06,07 sheet heading reads M5DUA while its own Unit row reads M5DOA.",
-  "The heat exchanger and pump rows come from an image of a schedule drawing whose title block is "
-  "cropped out. They carry no drawing number, sheet or revision - ask for the sheet reference "
-  "before handover.",
-  "The exhaust fan schedule uses two identifier shapes: 28 slash-separated tags (EF/B/nn, EF/RP/n) "
-  "and 11 underscore-separated (TEF_B01A, KEF_101). Both were kept as written because the tag is "
-  "the BMS join key. EF/B numbering also runs 4 to 16 with no 1, 2 or 3.",
-  "The pump model designation ends in 55KW. The schedule states no motor rating of its own, so no "
-  "rated-power property was created from it - confirm against the pump submittal.",
-  "The same schedule drawing carries a SCHEDULE OF PRESSURIZATION UNIT (PU/B/01, Armstrong "
-  "3750 2 EM-S). It was not asked for and is not in this workbook; say the word and it gets a sheet.",
-  "On the DX sheet the cooling figure is the load printed on the ROOM box, not a per-unit "
-  "capacity. Rooms served by two or three units are not split by the schematic, so do not write "
-  "it as brick:coolingCapacity on a unit without a per-unit duty.",
-  "The DX indoor-to-outdoor pairing recorded from the schematic's matching numbers is NOT "
-  "reliable. SYSTEM DETAILS Table 3.6 shows DX/B/03, 04, 08, 09 and 14 each take an X2 outdoor "
-  "model - two condensers per indoor unit - so those five need two DX/OD tags each and the "
-  "numbering does not say which two. The pipework layout plan is still needed. DX/OD/05 is also "
-  "marked (ST.BY) while DX/B/05 is not.",
-  "Table 3.6 covers DX/B/01 to DX/B/16 only, so DX/B/17, 18, 19, 20 and DX/RP/21 still carry no "
-  "model. DX/B/08 reads PUHZ-RP2S0X2 where its twin DX/B/09 reads PUHZ-RP250X2 - almost certainly "
-  "a misprint, recorded as printed. The PEAD, PCA and PUHZ prefixes are Mitsubishi Electric "
-  "Mr. Slim naming, but no document states a manufacturer, so none was inferred.",
-  "CAV and VAV schedules write many references as ranges. Each range is split into one row per "
-  "box, so every box carries its own air flow, heating capacity, model and make, and keeps a "
-  "'Scheduled as' row naming the line it came from. A range is only split when its box count "
-  "matches the stated quantity; three do not and keep the printed reference with a Data quality "
-  "row instead: VAV/1F/S15/012, VAV/B/S14/009 TO 012 and VAV/B/S10/001 & 008.",
-  "Two drawings schedule the same basement S10/S15 VAV boxes and disagree on VAV/B/S15/001 TO 004 "
-  "(261 l/s against 251 l/s). Both are recorded against their own drawing. On the second 1F "
-  "schedule VAV/1F/S15/014 TO 015 also falls inside VAV/1F/S15/013 TO 020 with a different flow "
-  "and model.",
-  "VAV/1F/S11/022 was scheduled twice; the user confirmed the standalone row governs (220 l/s, "
-  "NBOQOB200), so the overlapping VAV/1F/S11/022 TO 24 row is read as covering 023 and 024 only. "
-  "Five further rows carrying out-of-range box numbers were excluded on instruction.",
-  "The fire damper and supply/return grille schedules on the same images were struck through in "
-  "red and were read as cancelled, so they are not in this workbook.",
-  "PHX/B/05 exists only on the Alfa Laval data and the SYSTEM DETAILS schedule - the drawing "
-  "schedule stops at PHX/B/04. It is a 300 kW M10-MFM described as the 'Main HEX'. SYSTEM DETAILS "
-  "states one hot-side temperature across all five rows (15.5 in / 6.5 out) but the M10-MFM "
-  "specification gives 50.0 in / 20.0 out. Both are recorded; the conflict is unresolved.",
-  "SYSTEM DETAILS writes the pump tags with dashes (CHWP-B-01) and tags the pressurisation unit "
-  "PRO1, where the drawing schedules write CHWP/B/01 and PU/B/01. The slash forms are used as the "
-  "Equipment Tag because they match the rest of the workbook; the alternates are recorded as an "
-  "'Alternate reference' property on each unit. Confirm which the BMS uses.",
-  "The Armstrong pump submittal is dimensioned in inches and pounds and is marked NOT for "
-  "CONSTRUCTION. Its weight of 1874 lb converts to 850 kg against the drawing schedule's 843 kg. "
-  "Its letter callouts (D, HA, HB, ...) are keyed to an outline drawing that does not say which "
-  "feature each measures.",
-  "The GENERATOR ASSET LIST is a multi-equipment asset register. The row cropped off below the "
-  "generator belongs to different equipment, so the single row on the Generators sheet is the "
-  "complete record for this machine. Its ASSET TAG NUMBER column reads 'GENERATOR SET' - the same "
-  "text as the equipment name - so it does not identify an individual machine; only the serial "
-  "number does.",
-  "These are equipment selection and as-built documents, not nameplate photographs. Where the "
-  "installed plant differs from the selection, the installed plant governs.",
-]:
-    c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
-    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
-r += 1
-put(r, "Source documents", bold=True, size=12, color="1F3864"); r += 1
-for f, pages, what in [
-  ("Ahu_manual_1.pdf", "8 pages", "AHU-001 to AHU-008 general arrangement drawings"),
-  ("ahu_2.pdf", "7 pages", "AHU-009 to AHU-015 general arrangement drawings"),
-  ("qnl_closed_control_units_manual.pdf", "17 pages", "Emerson closed control unit selections"),
-  ("climate_control_units_manual.pdf", "7 pages", "Museum Climate Controls MCG-10P data sheets"),
-  ("FCU_Manual.pdf", "29 pages", "Euroclima fan coil unit selection sheets"),
-  ("MEP schedule drawing", "image", "Heat exchanger, pump and pressurization unit schedules, "
-   "supplied as an image in chat. The image crops the title block, so no drawing number, sheet "
-   "number or revision is recorded against these rows."),
-  ("Book1.xlsx", "Sheet1, 39 rows", "Exhaust fan schedule - equipment tag, model, manufacturer "
-   "and air flow only"),
-  ("CAV and VAV schedules", "6 + 6 schedules", "Supplied as drawing images in chat, title blocks "
-   "cropped. Each schedule is a separate source; the Page column names which."),
-  ("Armstrong submittal", "TENDER301358.1 rev3, p14/22", "Full nameplate for the chilled water "
-   "pumps - pump design, WEG motor, mechanical seal, materials and imperial dimensions"),
-  ("Alfa Laval PHE data", "2 sheets", "Construction comparison for T20-BFG and M10-MFM, and the "
-   "M10-MFM thermal specification for PHX/B/05"),
-  ("SYSTEM DETAILS", "Tables 3.1-3.3, 3.6", "Duty/standby split for the pumps and heat "
-   "exchangers, the pressurisation unit broken into its two components, and indoor/outdoor models "
-   "for DX/B/01 to DX/B/16"),
-  ("GENERATOR ASSET LIST", "image", "Asset register row for a standby diesel generator"),
-  ("DX split system schematic", "image", "Riser diagram giving the room each DX unit serves, its "
-   "design condition and a room cooling load"),
-]:
-    ws.cell(row=r, column=1, value=f).font = Font(bold=True, size=10)
-    c = ws.cell(row=r, column=2, value="%s - %s" % (pages, what)); c.font = Font(size=10)
-    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
-ws.column_dimensions["A"].width = 40
-ws.column_dimensions["B"].width = 108
-ws.sheet_view.showGridLines = False
+    if ontology_only:
+        put(1, "QNL Equipment Metadata - Needed for Ontology", bold=True, size=16, color="7B3F00")
+    else:
+        put(1, "QNL Equipment Metadata - Full Metadata", bold=True, size=16, color="1F3864")
+    put(2, "Qatar National Library, Education City BP#7A", italic=True, color="555555")
+    r = 4
+    if ontology_only:
+        put(r, "This workbook", bold=True, size=12, color="7B3F00"); r += 1
+        for line in [
+          "The subset of the full transcription that becomes triples: 1,225 rows across 16 "
+          "predicates, every one mapping to a Brick 1.4 entity property or a predicate Dar Cairo, "
+          "QF SSC or QF HQ already uses. Its companion, QNL_Full_Metadata.xlsx, holds all 4,728 "
+          "rows including the 3,418 kept as engineering reference.",
+          "Read 'Value (Dar Cairo)' and 'Unit (QUDT)' as the object of the triple. For a "
+          "string-valued predicate such as rec:modelNumber there is nothing to convert, so that "
+          "cell carries the printed value unchanged.",
+          "The Open Items sheet holds the 85 data quality findings. None are triples, but each "
+          "one qualifies rows that are - read it before writing the ontology.",
+          "Every row still names its source document and page, so any object can be traced back.",
+        ]:
+            c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
+            c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+        r += 1
+    put(r, "What this workbook is", bold=True, size=12, color="1F3864"); r += 1
+    put(r, "", "One sheet per equipment type. Every row is a single manufacturer property for a single "
+              "unit, and carries the source PDF and the page it was read from, so any value can be "
+              "traced back to the document."); r += 2
+    put(r, "Sheets", bold=True, size=12, color="1F3864"); r += 1
+    for name, desc in [
+      ("AHU", "15 air handling units, AHU-001 to AHU-015. AS BUILT general arrangement drawings, "
+              "drawing 1844-SD-05-AC-0077, Mercury Mena for Qatar Foundation, 26-10-2015 / 28-11-2015."),
+      ("Closed Control Units", "5 selection sheets covering CC/B/01 to CC/B/09. Emerson Network Power, "
+              "issued by Qatar Site & Power, April and October 2013."),
+      ("Climate Control Units", "Museum Climate Controls MCG-10P humidity control unit with its VCB1000 "
+              "blower option and AF4 intake air filter."),
+      ("FCU", "28 Euroclima selection sheets covering positions on Basement, 1F and 2F."),
+      ("Heat Exchangers", "5 Alfa Laval plate heat exchangers, PHX/B/01 to PHX/B/05, with the "
+                "manufacturer's construction data and the M10-MFM thermal specification."),
+      ("Pumps", "4 Armstrong horizontal split case chilled water pumps, CHWP/B/01 to CHWP/B/04, with "
+                "the full Armstrong submittal - pump, motor, seal, materials and dimensions."),
+      ("Exhaust Fans", "39 exhaust fans - mostly Nuaire, two Colasit - from the supplied schedule "
+                "spreadsheet."),
+      ("Generators", "One standby diesel generator from the GENERATOR ASSET LIST, a multi-equipment "
+                "asset register."),
+      ("Pressurization Unit", "PU/B/01 (PRO1) - Armstrong 3750 2 EM-S pressurisation unit plus a "
+                "Reflex DE10 1000 litre expansion tank."),
+      ("CAV Units", "42 constant air volume boxes, one row per box, from six schedules."),
+      ("VAV Units", "180 variable air volume boxes, one row per box, from six schedules."),
+      ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, from the schematic riser and the "
+                "SYSTEM DETAILS equipment schedule, which names models for 16 of them."),
+      ("Ontology Scope", "Every distinct property in this workbook, the reference-model predicate it "
+                "maps to, and whether it belongs in the ontology at all."),
+      ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
+                "Dar Cairo uses that unit at all."),
+    ]:
+        ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
+        c = ws.cell(row=r, column=2, value=desc); c.font = Font(size=10)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+    r += 1
+    put(r, "Columns", bold=True, size=12, color="1F3864"); r += 1
+    for name, desc in [
+      ("Equipment Tag", "The position or unit reference exactly as the source document writes it."),
+      ("Model", "Manufacturer model designation where the sheet gives one."),
+      ("Component", "The part of the unit the property belongs to - cooling coil, supply fan, condenser, etc."),
+      ("Property", "The property name, kept close to the source wording."),
+      ("Value (as printed)", "The value exactly as the document prints it. Nothing converted, rounded or inferred."),
+      ("Unit (as printed)", "The unit exactly as the document prints it."),
+      ("Value (Dar Cairo)", "The same quantity converted to the unit Dar Cairo uses for it."),
+      ("Unit (QUDT)", "The QUDT unit token to write into brick:hasUnit."),
+      ("Conversion", "The arithmetic applied, and any assumption behind it. Blank means no conversion was needed."),
+      ("Source File", "The document the value came from - a PDF, a spreadsheet, or a supplied drawing image."),
+      ("Page", "Where in that document: a 1-based page for a PDF, a sheet and row for a spreadsheet, "
+               "the schedule title for a drawing."),
+      ("Note", "Anything that qualifies the value - a quantity off, a source conflict, a mislabelled row."),
+    ]:
+        ws.cell(row=r, column=1, value=name).font = Font(bold=True, size=10)
+        c = ws.cell(row=r, column=2, value=desc); c.font = Font(size=10)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+    r += 1
+    put(r, "Units", bold=True, size=12, color="2E5F2E"); r += 1
+    for line in [
+      "The source documents are transcribed in their own units, and each row then carries the same "
+      "quantity in the unit Dar Cairo uses for it. Both are kept side by side: the printed pair stays "
+      "traceable to the page, the converted pair is what goes into brick:hasUnit.",
+      "Targets were read off DarCairo_V93.csv, not assumed. Air flow and water flow both land on "
+      "unit:L-PER-SEC (para:ratedSupplyAirFlowrate, para:ratedChilledWaterFlowrate and their siblings), "
+      "power on unit:KiloW (brick:ratedPowerInput, brick:coolingCapacity), length on unit:M "
+      "(para:ratedHead), relative humidity on unit:PERCENT_RH rather than unit:PERCENT.",
+      "The Units sheet lists every mapping, the factor applied, and the four QUDT units Dar Cairo has "
+      "never used - mass, mass flow and velocity, which it carries no quantity for. Those need the "
+      "PARA team's confirmation.",
+      "Converting kg/s to l/s treats water as 1 kg/l. At 7-15 degC it is about 0.9997 kg/l, so the "
+      "converted flow is high by roughly 0.03%.",
+    ]:
+        c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+    r += 1
+    put(r, "What belongs in the ontology", bold=True, size=12, color="7B3F00"); r += 1
+    for line in [
+      "Most of this workbook is engineering reference, not ontology metadata. Dar Cairo, QF SSC and "
+      "QF HQ agree on a short vocabulary for equipment - about twenty predicates - and everything "
+      "outside it has no precedent in any of them.",
+      "Brick 1.4 is checked FIRST, per the class ladder - it is step 2 and the reference models are "
+      "step 3. Brick has no water or air flow-rate entity property and no heat-exchanger duty "
+      "property, which is why Dar Cairo minted para:ratedWaterFlowrate, para:ratedChilledWaterFlowrate "
+      "and the air-flowrate family. Where Brick does carry the term it wins: brick:coolingCapacity for "
+      "heat exchanger duty, brick:ratedCurrentInput for full load current, brick:operationalStageCount "
+      "for a fan's speed count, and brick:Condensing_Unit as the entity an outdoor unit's model sits on.",
+      "Every row carries an 'Ontology predicate' and a 'Scope'. core means it maps unambiguously to a "
+      "Brick 1.4 entity property or a predicate the reference models use. candidate means the match is "
+      "plausible but needs a decision. reference means neither Brick nor any reference model carries "
+      "anything like it - dimensions, weights, "
+      "materials, seal specifications, sound power levels, filter part numbers, psychrometrics, "
+      "warranty text. Those rows stay because they are useful to engineers, not because they will be "
+      "modelled.",
+      "The Ontology Scope sheet lists every distinct property with its verdict, the predicate it maps "
+      "to and where that predicate comes from - Brick 1.4, Dar Cairo, QF SSC or QF HQ.",
+      "The predicates in play: para:ratedSupplyAirFlowrate, rec:modelNumber, rec:manufacturedBy, "
+      "para:ratedReheatCapacity, brick:ratedPowerInput, para:ratedChilledWaterFlowrate, "
+      "brick:coolingCapacity, para:ratedSpeed, brick:ratedCurrentInput, para:ratedExhaustAirFlowrate, "
+      "brick:operationalStageCount, para:ratedHead, para:refrigerant, rec:installationDate, "
+      "para:ratedWaterFlowrate, para:Rated_Tank_Level.",
+      "One open point: the expansion tank's 1000 litre capacity is written as para:Rated_Tank_Level at "
+      "the user's direction. brick:volume exists in Brick 1.4 and by the ladder would outrank a para: "
+      "term - reversible in one line of ontology_map.py if the team prefers it.",
+      "An outdoor DX unit's model belongs on its own brick:Condensing_Unit entity, which Brick 1.4 "
+      "carries, so no para: class needed to be minted for it. Those entities are not in this workbook "
+      "yet - it holds the model against the indoor unit that names it.",
+      "A component's own maker is not the equipment's manufacturer. The pump's mechanical seal is "
+      "made by Armstrong and its motor by WEG; neither becomes rec:manufacturedBy on the pump.",
+      "The QF HQ v0.4 draft was read for structure, not for units - several of its rows carry a wrong "
+      "brick:hasUnit (an air flow tagged unit:V, a cooling capacity tagged unit:HZ). Dar Cairo remains "
+      "the authority for unit choice, as the Units sheet records.",
+    ]:
+        c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+    r += 1
+    put(r, "Read before using the data", bold=True, size=12, color="C00000"); r += 1
+    for line in [
+      "Values are transcribed from the documents as printed. Where a document contradicts itself the "
+      "conflict is recorded as a 'Data quality' row rather than resolved - those need the supplier's answer.",
+      "AHU-011 carries two Item 3 ELECTRIC COIL blocks; the first is an unfilled template "
+      "(capacity POW, stages NST, entering air AON, leaving air AOF). The populated block is the one recorded.",
+      "MCG-10P size is given as 500 x 650 x 650 mm on the specification sheet and 475 x 430 x 400 mm on "
+      "dimension drawing MCG10P-1. Both are recorded; neither is confirmed.",
+      "On 27 of the 28 Euroclima sheets the air pressure drop row is printed as 'Perdita di carico aria' "
+      "with the unit [degC]. It is air-side pressure drop in Pa - page 2 labels the same row correctly.",
+      "The CC/B/05,06,07 sheet heading reads M5DUA while its own Unit row reads M5DOA.",
+      "The heat exchanger and pump rows come from an image of a schedule drawing whose title block is "
+      "cropped out. They carry no drawing number, sheet or revision - ask for the sheet reference "
+      "before handover.",
+      "The exhaust fan schedule uses two identifier shapes: 28 slash-separated tags (EF/B/nn, EF/RP/n) "
+      "and 11 underscore-separated (TEF_B01A, KEF_101). Both were kept as written because the tag is "
+      "the BMS join key. EF/B numbering also runs 4 to 16 with no 1, 2 or 3.",
+      "The pump model designation ends in 55KW. The schedule states no motor rating of its own, so no "
+      "rated-power property was created from it - confirm against the pump submittal.",
+      "The same schedule drawing carries a SCHEDULE OF PRESSURIZATION UNIT (PU/B/01, Armstrong "
+      "3750 2 EM-S). It was not asked for and is not in this workbook; say the word and it gets a sheet.",
+      "On the DX sheet the cooling figure is the load printed on the ROOM box, not a per-unit "
+      "capacity. Rooms served by two or three units are not split by the schematic, so do not write "
+      "it as brick:coolingCapacity on a unit without a per-unit duty.",
+      "The DX indoor-to-outdoor pairing recorded from the schematic's matching numbers is NOT "
+      "reliable. SYSTEM DETAILS Table 3.6 shows DX/B/03, 04, 08, 09 and 14 each take an X2 outdoor "
+      "model - two condensers per indoor unit - so those five need two DX/OD tags each and the "
+      "numbering does not say which two. The pipework layout plan is still needed. DX/OD/05 is also "
+      "marked (ST.BY) while DX/B/05 is not.",
+      "Table 3.6 covers DX/B/01 to DX/B/16 only, so DX/B/17, 18, 19, 20 and DX/RP/21 still carry no "
+      "model. DX/B/08 reads PUHZ-RP2S0X2 where its twin DX/B/09 reads PUHZ-RP250X2 - almost certainly "
+      "a misprint, recorded as printed. The PEAD, PCA and PUHZ prefixes are Mitsubishi Electric "
+      "Mr. Slim naming, but no document states a manufacturer, so none was inferred.",
+      "CAV and VAV schedules write many references as ranges. Each range is split into one row per "
+      "box, so every box carries its own air flow, heating capacity, model and make, and keeps a "
+      "'Scheduled as' row naming the line it came from. A range is only split when its box count "
+      "matches the stated quantity; three do not and keep the printed reference with a Data quality "
+      "row instead: VAV/1F/S15/012, VAV/B/S14/009 TO 012 and VAV/B/S10/001 & 008.",
+      "Two drawings schedule the same basement S10/S15 VAV boxes and disagree on VAV/B/S15/001 TO 004 "
+      "(261 l/s against 251 l/s). Both are recorded against their own drawing. On the second 1F "
+      "schedule VAV/1F/S15/014 TO 015 also falls inside VAV/1F/S15/013 TO 020 with a different flow "
+      "and model.",
+      "VAV/1F/S11/022 was scheduled twice; the user confirmed the standalone row governs (220 l/s, "
+      "NBOQOB200), so the overlapping VAV/1F/S11/022 TO 24 row is read as covering 023 and 024 only. "
+      "Five further rows carrying out-of-range box numbers were excluded on instruction.",
+      "The fire damper and supply/return grille schedules on the same images were struck through in "
+      "red and were read as cancelled, so they are not in this workbook.",
+      "PHX/B/05 exists only on the Alfa Laval data and the SYSTEM DETAILS schedule - the drawing "
+      "schedule stops at PHX/B/04. It is a 300 kW M10-MFM described as the 'Main HEX'. SYSTEM DETAILS "
+      "states one hot-side temperature across all five rows (15.5 in / 6.5 out) but the M10-MFM "
+      "specification gives 50.0 in / 20.0 out. Both are recorded; the conflict is unresolved.",
+      "SYSTEM DETAILS writes the pump tags with dashes (CHWP-B-01) and tags the pressurisation unit "
+      "PRO1, where the drawing schedules write CHWP/B/01 and PU/B/01. The slash forms are used as the "
+      "Equipment Tag because they match the rest of the workbook; the alternates are recorded as an "
+      "'Alternate reference' property on each unit. Confirm which the BMS uses.",
+      "The Armstrong pump submittal is dimensioned in inches and pounds and is marked NOT for "
+      "CONSTRUCTION. Its weight of 1874 lb converts to 850 kg against the drawing schedule's 843 kg. "
+      "Its letter callouts (D, HA, HB, ...) are keyed to an outline drawing that does not say which "
+      "feature each measures.",
+      "The GENERATOR ASSET LIST is a multi-equipment asset register. The row cropped off below the "
+      "generator belongs to different equipment, so the single row on the Generators sheet is the "
+      "complete record for this machine. Its ASSET TAG NUMBER column reads 'GENERATOR SET' - the same "
+      "text as the equipment name - so it does not identify an individual machine; only the serial "
+      "number does.",
+      "These are equipment selection and as-built documents, not nameplate photographs. Where the "
+      "installed plant differs from the selection, the installed plant governs.",
+    ]:
+        c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+    r += 1
+    put(r, "Source documents", bold=True, size=12, color="1F3864"); r += 1
+    for f, pages, what in [
+      ("Ahu_manual_1.pdf", "8 pages", "AHU-001 to AHU-008 general arrangement drawings"),
+      ("ahu_2.pdf", "7 pages", "AHU-009 to AHU-015 general arrangement drawings"),
+      ("qnl_closed_control_units_manual.pdf", "17 pages", "Emerson closed control unit selections"),
+      ("climate_control_units_manual.pdf", "7 pages", "Museum Climate Controls MCG-10P data sheets"),
+      ("FCU_Manual.pdf", "29 pages", "Euroclima fan coil unit selection sheets"),
+      ("MEP schedule drawing", "image", "Heat exchanger, pump and pressurization unit schedules, "
+       "supplied as an image in chat. The image crops the title block, so no drawing number, sheet "
+       "number or revision is recorded against these rows."),
+      ("Book1.xlsx", "Sheet1, 39 rows", "Exhaust fan schedule - equipment tag, model, manufacturer "
+       "and air flow only"),
+      ("CAV and VAV schedules", "6 + 6 schedules", "Supplied as drawing images in chat, title blocks "
+       "cropped. Each schedule is a separate source; the Page column names which."),
+      ("Armstrong submittal", "TENDER301358.1 rev3, p14/22", "Full nameplate for the chilled water "
+       "pumps - pump design, WEG motor, mechanical seal, materials and imperial dimensions"),
+      ("Alfa Laval PHE data", "2 sheets", "Construction comparison for T20-BFG and M10-MFM, and the "
+       "M10-MFM thermal specification for PHX/B/05"),
+      ("SYSTEM DETAILS", "Tables 3.1-3.3, 3.6", "Duty/standby split for the pumps and heat "
+       "exchangers, the pressurisation unit broken into its two components, and indoor/outdoor models "
+       "for DX/B/01 to DX/B/16"),
+      ("GENERATOR ASSET LIST", "image", "Asset register row for a standby diesel generator"),
+      ("DX split system schematic", "image", "Riser diagram giving the room each DX unit serves, its "
+       "design condition and a room cooling load"),
+    ]:
+        ws.cell(row=r, column=1, value=f).font = Font(bold=True, size=10)
+        c = ws.cell(row=r, column=2, value="%s - %s" % (pages, what)); c.font = Font(size=10)
+        c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+    ws.column_dimensions["A"].width = 40
+    ws.column_dimensions["B"].width = 108
+    ws.sheet_view.showGridLines = False
+    return ws
 
 rows = []; build_ahu(rows)
-sheet(wb, "AHU", rows,
+add_sheet("AHU", rows,
       "Air handling units AHU-001 to AHU-015 - AS BUILT general arrangement drawings, drawing "
       "1844-SD-05-AC-0077 (Mercury Mena for Qatar Foundation). The drawings give no unit-level model "
       "designation, so Model is blank; component models (coil, fan, motor) appear as their own rows.")
 n_ahu = len(rows)
 
 rows = []; build_ccu(rows)
-sheet(wb, "Closed Control Units", rows,
+add_sheet("Closed Control Units", rows,
       "Emerson Network Power closed control units CC/B/01 to CC/B/09 - selection sheets "
       "issued by Qatar Site & Power.")
 n_ccu = len(rows)
 
 rows = []; build_climate(rows)
-sheet(wb, "Climate Control Units", rows,
+add_sheet("Climate Control Units", rows,
       "Museum Climate Controls MCG-10P positive-pressure humidity control unit, "
       "VCB1000 blower option and AF4 intake air filter.")
 n_cli = len(rows)
 
 rows = []; build_fcu(rows)
-sheet(wb, "FCU", rows,
+add_sheet("FCU", rows,
       "Euroclima fan coil units - one selection sheet per position, offer CENTRAL LIBRARY. Positions "
       "carrying several tags on one sheet (e.g. B/06,08,17,24) were annotated by hand on the printed "
       "sheet; those tags share the selection above them. The Heating column is blank on all 28 sheets.")
 n_fcu = len(rows)
 
 rows = []; build_hex(rows)
-sheet(wb, "Heat Exchangers", rows,
+add_sheet("Heat Exchangers", rows,
       "Plate heat exchangers PHX/B/01 to PHX/B/04 - SCHEDULE OF HEAT EXCHANGER. The supplied image "
       "crops the title block, so the drawing number and sheet are not recorded.")
 n_hex = len(rows)
 
 rows = []; build_pumps(rows)
-sheet(wb, "Pumps", rows,
+add_sheet("Pumps", rows,
       "Chilled water pumps CHWP/B/01 to CHWP/B/04 - SCHEDULE OF PUMPS, same drawing as the heat "
       "exchanger schedule. The supplied image crops the title block.")
 n_pump = len(rows)
 
 rows = []; build_ef(rows)
-sheet(wb, "Exhaust Fans", rows,
+add_sheet("Exhaust Fans", rows,
       "39 exhaust fans from the supplied schedule spreadsheet. The sheet carries model, "
       "manufacturer and air flow only - no location, motor rating or static pressure. Two "
       "identifier shapes are in use; both were kept as written.")
 n_ef = len(rows)
 
 rows = []; build_gen(rows)
-sheet(wb, "Generators", rows,
+add_sheet("Generators", rows,
       "One standby diesel generator from the GENERATOR ASSET LIST, a multi-equipment asset "
       "register. The row cropped off below it belongs to different equipment, so this is the "
       "complete record for this machine.")
 n_gen = len(rows)
 
 rows = []; build_pu(rows)
-sheet(wb, "Pressurization Unit", rows,
+add_sheet("Pressurization Unit", rows,
       "PU/B/01 - SCHEDULE OF PRESSURIZATION UNIT, same drawing as the heat exchanger and pump "
       "schedules. The supplied image crops the title block.")
 n_pu = len(rows)
 
 rows = []; build_cav(rows)
-sheet(wb, "CAV Units", rows,
+add_sheet("CAV Units", rows,
       "Constant air volume boxes across six schedules on level 1F and the basement. Air flow is "
       "stated per box. A range reference is expanded into its individual boxes only when the box "
       "count matches the stated quantity.")
 n_cav = len(rows)
 
 rows = []; build_vav(rows)
-sheet(wb, "VAV Units", rows,
+add_sheet("VAV Units", rows,
       "Variable air volume boxes across six schedules on level 1F and the basement. Two drawings "
       "overlap on the basement S10/S15 boxes and disagree on one air flow; both are recorded. "
       "Five out-of-range rows were excluded on instruction.")
 n_vav = len(rows)
 
 rows = []; build_dx(rows)
-sheet(wb, "DX Units", rows,
+add_sheet("DX Units", rows,
       "21 DX split systems from the schematic riser, with indoor and outdoor models from SYSTEM "
       "DETAILS Table 3.6 for DX/B/01 to DX/B/16. The cooling figure is the load printed on each "
       "room box, not a per-unit capacity. Five units take an X2 outdoor model - two condensers "
@@ -1135,74 +1174,136 @@ def scope_sheet(wb, per_sheet):
     ws.auto_filter.ref = "A%d:%s%d" % (hr, get_column_letter(len(HD)), ws.max_row)
     return ws
 
-scope_sheet(wb, SCOPE_INDEX)
-
-# ---------------------------------------------------------------- Units sheet
-uw = wb.create_sheet("Units")
-uw["A1"] = "Units"; uw["A1"].font = Font(bold=True, size=14, color="1F3864")
-uw["A2"] = ("Source unit to Dar Cairo unit. Targets read off reference-models/DarCairo_V93.csv - "
-            "air and water flow both land on unit:L-PER-SEC, power on unit:KiloW, length on unit:M.")
-uw["A2"].font = Font(italic=True, size=9, color="555555")
-uw.append([])
-UHEAD = ["Unit (as printed)", "Unit (QUDT)", "Factor applied",
-         "Used in Dar Cairo", "Dar Cairo uses (rows)", "Note"]
-uw.append(UHEAD)
-uhr = uw.max_row
-for c in range(1, len(UHEAD)+1):
-    cell = uw.cell(row=uhr, column=c)
-    cell.fill = HDR_FILL; cell.font = HDR_FONT
-    cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-    cell.border = BORDER
-
-DC_USES = {  # usage counts from references/data/units.csv
- "unit:KiloW":1593, "unit:DEG_C":883, "unit:M2":755, "unit:PERCENT":708, "unit:HR":613,
- "unit:L-PER-SEC":535, "unit:V":451, "unit:A":227, "unit:PA":172, "unit:DeciB":171,
- "unit:PERCENT_RH":79, "unit:HZ":61, "unit:M":47, "unit:RPM":21, "unit:W":13,
- "unit:UNITLESS":3376,
-}
-
-urows = []
-for srcu, (qudt, factor, in_dc, note) in UNIT_MAP.items():
-    if srcu == "":
-        continue
-    urows.append([srcu, qudt or "(none)",
-                  "" if factor is None else ("x 1" if factor == 1.0 else _sigfmt(factor)),
-                  "yes" if (in_dc and qudt) else ("n/a" if not qudt else "NO"),
-                  DC_USES.get(qudt, "" if qudt else ""),
-                  note])
-urows.append(["%", "unit:PERCENT_RH", "x 1", "yes", DC_USES["unit:PERCENT_RH"],
-              "used when the property is a relative humidity"])
-urows.append(["%", "unit:PERCENT", "x 1", "yes", DC_USES["unit:PERCENT"],
-              "used for every other percentage"])
-urows.append(["(none printed)", "unit:UNITLESS", "x 1", "yes", DC_USES["unit:UNITLESS"],
-              "dimensionless ratios - SHR, EER, COP, fan speed setting"])
-for r_ in urows:
-    uw.append(r_)
-for i in range(len(urows)):
-    rr = uhr + 1 + i
+def units_sheet(wb):
+    uw = wb.create_sheet("Units")
+    uw["A1"] = "Units"; uw["A1"].font = Font(bold=True, size=14, color="1F3864")
+    uw["A2"] = ("Source unit to Dar Cairo unit. Targets read off reference-models/DarCairo_V93.csv - "
+                "air and water flow both land on unit:L-PER-SEC, power on unit:KiloW, length on unit:M.")
+    uw["A2"].font = Font(italic=True, size=9, color="555555")
+    uw.append([])
+    UHEAD = ["Unit (as printed)", "Unit (QUDT)", "Factor applied",
+             "Used in Dar Cairo", "Dar Cairo uses (rows)", "Note"]
+    uw.append(UHEAD)
+    uhr = uw.max_row
     for c in range(1, len(UHEAD)+1):
-        cell = uw.cell(row=rr, column=c)
+        cell = uw.cell(row=uhr, column=c)
+        cell.fill = HDR_FILL; cell.font = HDR_FONT
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
         cell.border = BORDER
-        cell.alignment = Alignment(vertical="top", wrap_text=(c == 6),
-                                   horizontal="center" if c in (3, 4, 5) else "left")
-    if uw.cell(row=rr, column=4).value == "NO":
-        for c in range(1, len(UHEAD)+1):
-            uw.cell(row=rr, column=c).fill = PatternFill("solid", fgColor="FFF2CC")
-for i, w in enumerate([20, 26, 16, 18, 20, 62], 1):
-    uw.column_dimensions[get_column_letter(i)].width = w
-uw.freeze_panes = uw.cell(row=uhr+1, column=1)
-rr = uw.max_row + 2
-uw.cell(row=rr, column=1, value="Highlighted rows are QUDT units Dar Cairo has never used - it "
-        "carries no mass, mass-flow or velocity quantity. They are genuine QUDT terms, not minted "
-        "ones, but the PARA team should confirm them before handover.").font = NOTE_FONT
-uw.cell(row=rr, column=1).alignment = Alignment(wrap_text=True, vertical="top")
-uw.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=6)
-uw.sheet_view.showGridLines = False
 
-wb.save(OUT)
-print("saved", OUT)
-tot = (n_ahu+n_ccu+n_cli+n_fcu+n_hex+n_pump+n_ef+n_gen+n_pu+n_cav+n_vav+n_dx)
-print("AHU %d | CCU %d | Climate %d | FCU %d | HEX %d | Pumps %d | EF %d"
-      % (n_ahu, n_ccu, n_cli, n_fcu, n_hex, n_pump, n_ef))
-print("Gen %d | PU %d | CAV %d | VAV %d | DX %d | total %d"
-      % (n_gen, n_pu, n_cav, n_vav, n_dx, tot))
+    DC_USES = {  # usage counts from references/data/units.csv
+     "unit:KiloW":1593, "unit:DEG_C":883, "unit:M2":755, "unit:PERCENT":708, "unit:HR":613,
+     "unit:L-PER-SEC":535, "unit:V":451, "unit:A":227, "unit:PA":172, "unit:DeciB":171,
+     "unit:PERCENT_RH":79, "unit:HZ":61, "unit:M":47, "unit:RPM":21, "unit:W":13,
+     "unit:UNITLESS":3376,
+    }
+
+    urows = []
+    for srcu, (qudt, factor, in_dc, note) in UNIT_MAP.items():
+        if srcu == "":
+            continue
+        urows.append([srcu, qudt or "(none)",
+                      "" if factor is None else ("x 1" if factor == 1.0 else _sigfmt(factor)),
+                      "yes" if (in_dc and qudt) else ("n/a" if not qudt else "NO"),
+                      DC_USES.get(qudt, "" if qudt else ""),
+                      note])
+    urows.append(["%", "unit:PERCENT_RH", "x 1", "yes", DC_USES["unit:PERCENT_RH"],
+                  "used when the property is a relative humidity"])
+    urows.append(["%", "unit:PERCENT", "x 1", "yes", DC_USES["unit:PERCENT"],
+                  "used for every other percentage"])
+    urows.append(["(none printed)", "unit:UNITLESS", "x 1", "yes", DC_USES["unit:UNITLESS"],
+                  "dimensionless ratios - SHR, EER, COP, fan speed setting"])
+    for r_ in urows:
+        uw.append(r_)
+    for i in range(len(urows)):
+        rr = uhr + 1 + i
+        for c in range(1, len(UHEAD)+1):
+            cell = uw.cell(row=rr, column=c)
+            cell.border = BORDER
+            cell.alignment = Alignment(vertical="top", wrap_text=(c == 6),
+                                       horizontal="center" if c in (3, 4, 5) else "left")
+        if uw.cell(row=rr, column=4).value == "NO":
+            for c in range(1, len(UHEAD)+1):
+                uw.cell(row=rr, column=c).fill = PatternFill("solid", fgColor="FFF2CC")
+    for i, w in enumerate([20, 26, 16, 18, 20, 62], 1):
+        uw.column_dimensions[get_column_letter(i)].width = w
+    uw.freeze_panes = uw.cell(row=uhr+1, column=1)
+    rr = uw.max_row + 2
+    uw.cell(row=rr, column=1, value="Highlighted rows are QUDT units Dar Cairo has never used - it "
+            "carries no mass, mass-flow or velocity quantity. They are genuine QUDT terms, not minted "
+            "ones, but the PARA team should confirm them before handover.").font = NOTE_FONT
+    uw.cell(row=rr, column=1).alignment = Alignment(wrap_text=True, vertical="top")
+    uw.merge_cells(start_row=rr, start_column=1, end_row=rr, end_column=6)
+    uw.sheet_view.showGridLines = False
+    return uw
+
+
+# ---------------------------------------------------------------- write both
+def open_items(wb):
+    """Findings that a modeller must see even though they are not triples."""
+    ws = wb.create_sheet("Open Items")
+    ws["A1"] = "Open Items"; ws["A1"].font = Font(bold=True, size=14, color="C00000")
+    ws["A2"] = ("Data quality findings from the source documents. None of these are triples, but "
+                "each one affects rows that are. Read before writing the ontology.")
+    ws["A2"].font = Font(italic=True, size=9, color="555555")
+    ws.append([])
+    HD = ["Equipment Tag", "Finding", "Detail", "Source File", "Page"]
+    ws.append(HD)
+    hr = ws.max_row
+    for c in range(1, len(HD)+1):
+        cell = ws.cell(row=hr, column=c)
+        cell.fill = PatternFill("solid", fgColor="C00000"); cell.font = HDR_FONT
+        cell.alignment = Alignment(horizontal="center", vertical="center"); cell.border = BORDER
+    n = 0
+    for name, rows, _ in SHEETS:
+        for r in rows:
+            if r[2] != "Data quality":
+                continue
+            ws.append([r[0], r[3], r[4], r[6], r[7]]); n += 1
+    for i in range(n):
+        rr = hr + 1 + i
+        for c in range(1, len(HD)+1):
+            cell = ws.cell(row=rr, column=c)
+            cell.border = BORDER
+            cell.alignment = Alignment(vertical="top", wrap_text=(c == 3))
+    for i, w in enumerate([18, 34, 96, 30, 24], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+    ws.freeze_panes = ws.cell(row=hr+1, column=1)
+    ws.auto_filter.ref = "A%d:%s%d" % (hr, get_column_letter(len(HD)), ws.max_row)
+    return n
+
+def build_full(path):
+    wb = new_wb()
+    readme_sheet(wb)
+    for name, rows, sub in SHEETS:
+        sheet(wb, name, rows, sub)
+    scope_sheet(wb, SCOPE_INDEX)
+    units_sheet(wb)
+    wb.save(path)
+    return sum(len(r) for _, r, _ in SHEETS)
+
+def build_ontology(path):
+    """Only the rows that become triples, plus the findings that qualify them."""
+    wb = new_wb()
+    readme_sheet(wb, ontology_only=True)
+    kept = 0
+    for name, rows, sub in SHEETS:
+        core = [r for r in rows if expand(r)[10] == "core"]
+        if not core:
+            continue
+        kept += len(core)
+        sheet(wb, name, core,
+              sub.split(".")[0] + ". Core rows only - every row here maps to an ontology "
+              "predicate. The full transcription is in the full-metadata workbook.",
+              fill_value=True)
+    n_open = open_items(wb)
+    scope_sheet(wb, {k: v for k, v in SCOPE_INDEX.items() if v["scope"] == "core"})
+    units_sheet(wb)
+    wb.save(path)
+    return kept, n_open
+
+n_all = build_full(OUT_FULL)
+print("full metadata   ->", OUT_FULL, "|", n_all, "rows")
+if OUT_ONT:
+    n_core, n_open = build_ontology(OUT_ONT)
+    print("ontology subset ->", OUT_ONT, "|", n_core, "core rows,", n_open, "open items")

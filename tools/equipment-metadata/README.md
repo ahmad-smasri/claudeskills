@@ -1,7 +1,18 @@
 # QNL equipment metadata
 
-Manufacturer properties transcribed from the QNL equipment submittals into one
-workbook, `QNL_Equipment_Metadata.xlsx` at the repo root.
+Manufacturer properties transcribed from the QNL equipment submittals into two
+workbooks at the repo root:
+
+| Workbook | Rows | What it is |
+|---|---|---|
+| `QNL_Full_Metadata.xlsx` | 4,728 | Everything transcribed, core and reference alike |
+| `QNL_Needed_For_Ontology.xlsx` | 1,225 | Only the rows that become triples, plus an Open Items sheet |
+
+The ontology workbook is a filtered view of the same data, not a separate
+transcription — both are generated from `data/*.py` by one run of `build.py`, so
+they cannot drift apart. In it, `Value (Dar Cairo)` is the object of the triple;
+for a string-valued predicate such as `rec:modelNumber` there is nothing to
+convert, so that cell carries the printed value unchanged.
 
 One sheet per equipment type. Every row is a single property for a single unit,
 and carries the source PDF and the page it was read from, plus the same quantity
@@ -167,8 +178,10 @@ was created from the prefix.
 ## Rebuilding
 
 ```
-python3 tools/equipment-metadata/build.py QNL_Equipment_Metadata.xlsx
+python3 tools/equipment-metadata/build.py QNL_Full_Metadata.xlsx QNL_Needed_For_Ontology.xlsx
 ```
+
+The second path is optional; with one argument only the full workbook is written.
 
 Needs `openpyxl`. The transcribed values live in `data/*.py` — one module per
 equipment type. `build.py` only formats them and applies the unit conversion; to
