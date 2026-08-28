@@ -232,13 +232,22 @@ raw/BMS identifiers: it classifies every entity from the graph, renames from the
 label-or-class, and applies one consistent bijection to both identifier columns,
 writing an old → new crosswalk. Run it once (it is not idempotent).
 
+**Equipment and part tags keep their industry codes**, exactly as Dar Cairo does:
+`AHU-TYP1-B1`, `CRAC-04`, `HEX-2`, `SF`, `CHW-Coil`, `SF-Motor`. Do **not** spell
+`AHU` out to `Air-Handling-Unit` in the identifier - the full name lives in the
+type column (`brick:Air_Handling_Unit`). It is the *datapoint* descriptor that is
+written in full English (`Return-Temperature`, not `RtnTemp`), and a **room**'s
+name-words that are dashed (`QNL_B_001_TECH-SERVICES-OFFICE`) while its structural
+prefix `QNL_<level>_<number>` and its verbatim label stay put. Levels and systems
+keep their codes.
+
 **The BMS join keys never move.** `ref:hasTimeseriesId` and `para:hasEntityId`
 keep the raw historian tag character-for-character, and `ref:ifcName` is
 regenerated from the new id. The identifier is internal; the join lives in the
 timeseries reference and the crosswalk, exactly as Dar Cairo's own dashed ids
 differ from the raw SCADA tags they carry. QNL was normalised this way:
 `QNL_AHU_B_001_AvgSpcHumd_PV` → `QNL_AHU-B-001_Average-Space-Humidity`, 71% of
-ids camelCase → 0%, with rooms and levels kept in the verbatim spatial style.
+ids camelCase → 0%.
 
 ## Labels
 

@@ -19,9 +19,13 @@ QNL had segments right but wrote equipment tags with '_' between word-parts
 
 Only the subject and object identifier columns change. The BMS join keys stay
 put: ref:hasTimeseriesId / para:hasEntityId keep the raw historian tag, and the
-identifier crosswalk records old -> new. Rooms, levels, systems, the site and the
-building keep their identifiers (they are not datapoints and several, like
-entity:Electrical_System, already match Dar Cairo).
+identifier crosswalk records old -> new. A room keeps its structural prefix
+(QNL_<level>_<number>) and has its name-words dashed, its verbatim label
+untouched. Levels, systems, the site and the building keep their identifiers
+(clean single-segment codes, several like entity:Electrical_System already
+matching Dar Cairo); equipment and part tags keep their industry codes (AHU, SF,
+CHW-Coil) exactly as Dar Cairo does - the full name lives in the type column, not
+the id.
 
 Prefer naming identifiers this way at build time (name each point
 <owner>_<Dashed-English> from its label or class as you emit it). This script is
@@ -194,8 +198,17 @@ def build(path, out_dir):
             rename_part(eid)
         elif is_equipish(eid):
             rename_equip(eid)
+        elif "Room" in etype.get(eid, ""):
+            # a room keeps its structural prefix QNL_<level>_<number> and dashes
+            # the name-words; the label (verbatim) is untouched.
+            parts = eid[len("entity:"):].split("_")
+            if len(parts) >= 4:
+                name = re.sub(r"[^A-Za-z0-9]+", "-", "_".join(parts[3:])).strip("-")
+                new[eid] = "entity:%s_%s" % ("_".join(parts[:3]), name)
+            else:
+                new[eid] = eid
         else:
-            new[eid] = eid                      # rooms, levels, systems: keep
+            new[eid] = eid                      # levels, systems: keep
 
     # ---- collision guard: keep old id for any that would clash --------------
     forward = {}
