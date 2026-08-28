@@ -25,7 +25,7 @@ from dx import (DX_COLS, DX_ROWS, DX_NOTES, SRC_DX, PAGE_DX, OD_STANDBY,
 from dx import SRC_SYS as DX_SRC_SYS, PAGE_SYS as DX_PAGE_SYS
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from units_map import UNIT_MAP, resolve, convert
-from ontology_map import classify
+from ontology_map import classify, PREDICATE_SOURCE
 
 import re
 from openpyxl import Workbook
@@ -873,18 +873,32 @@ for line in [
   "Most of this workbook is engineering reference, not ontology metadata. Dar Cairo, QF SSC and "
   "QF HQ agree on a short vocabulary for equipment - about twenty predicates - and everything "
   "outside it has no precedent in any of them.",
+  "Brick 1.4 is checked FIRST, per the class ladder - it is step 2 and the reference models are "
+  "step 3. Brick has no water or air flow-rate entity property and no heat-exchanger duty "
+  "property, which is why Dar Cairo minted para:ratedWaterFlowrate, para:ratedChilledWaterFlowrate "
+  "and the air-flowrate family. Where Brick does carry the term it wins: brick:coolingCapacity for "
+  "heat exchanger duty, brick:ratedCurrentInput for full load current, brick:operationalStageCount "
+  "for a fan's speed count, and brick:Condensing_Unit as the entity an outdoor unit's model sits on.",
   "Every row carries an 'Ontology predicate' and a 'Scope'. core means it maps unambiguously to a "
-  "predicate the reference models use. candidate means the match is plausible but needs a "
-  "decision. reference means no reference model carries anything like it - dimensions, weights, "
+  "Brick 1.4 entity property or a predicate the reference models use. candidate means the match is "
+  "plausible but needs a decision. reference means neither Brick nor any reference model carries "
+  "anything like it - dimensions, weights, "
   "materials, seal specifications, sound power levels, filter part numbers, psychrometrics, "
   "warranty text. Those rows stay because they are useful to engineers, not because they will be "
   "modelled.",
-  "The Ontology Scope sheet lists all 572 distinct properties with their verdict: 46 core, "
-  "6 candidate, 520 reference. By row count that is 1,153 core, 34 candidate and 3,456 reference.",
+  "The Ontology Scope sheet lists every distinct property with its verdict, the predicate it maps "
+  "to and where that predicate comes from - Brick 1.4, Dar Cairo, QF SSC or QF HQ.",
   "The predicates in play: para:ratedSupplyAirFlowrate, rec:modelNumber, rec:manufacturedBy, "
   "para:ratedReheatCapacity, brick:ratedPowerInput, para:ratedChilledWaterFlowrate, "
-  "brick:coolingCapacity, para:ratedSpeed, para:ratedExhaustAirFlowrate, para:ratedHead, "
-  "para:refrigerant, rec:installationDate, para:ratedWaterFlowrate, para:Rated_Tank_Level.",
+  "brick:coolingCapacity, para:ratedSpeed, brick:ratedCurrentInput, para:ratedExhaustAirFlowrate, "
+  "brick:operationalStageCount, para:ratedHead, para:refrigerant, rec:installationDate, "
+  "para:ratedWaterFlowrate, para:Rated_Tank_Level.",
+  "One open point: the expansion tank's 1000 litre capacity is written as para:Rated_Tank_Level at "
+  "the user's direction. brick:volume exists in Brick 1.4 and by the ladder would outrank a para: "
+  "term - reversible in one line of ontology_map.py if the team prefers it.",
+  "An outdoor DX unit's model belongs on its own brick:Condensing_Unit entity, which Brick 1.4 "
+  "carries, so no para: class needed to be minted for it. Those entities are not in this workbook "
+  "yet - it holds the model against the indoor unit that names it.",
   "A component's own maker is not the equipment's manufacturer. The pump's mechanical seal is "
   "made by Armstrong and its motor by WEG; neither becomes rec:manufacturedBy on the pump.",
   "The QF HQ v0.4 draft was read for structure, not for units - several of its rows carry a wrong "
@@ -1085,7 +1099,8 @@ def scope_sheet(wb, per_sheet):
                 "in total. Everything else is engineering reference, kept but not modelled.")
     ws["A2"].font = Font(italic=True, size=9, color="555555")
     ws.append([])
-    HD = ["Scope", "Ontology predicate", "Component", "Property", "Rows", "Sheets"]
+    HD = ["Scope", "Ontology predicate", "Predicate source", "Component", "Property",
+          "Rows", "Sheets"]
     ws.append(HD)
     hr = ws.max_row
     for c in range(1, len(HD)+1):
@@ -1098,22 +1113,23 @@ def scope_sheet(wb, per_sheet):
                      key=lambda kv: (order.get(kv[1]["scope"], 3), kv[1]["pred"],
                                      kv[0][0], kv[0][1]))
     for (comp, prop), v in entries:
-        ws.append([v["scope"], v["pred"], comp, prop, v["n"], ", ".join(sorted(v["sheets"]))])
+        ws.append([v["scope"], v["pred"], PREDICATE_SOURCE.get(v["pred"], ""),
+                   comp, prop, v["n"], ", ".join(sorted(v["sheets"]))])
     for i in range(len(entries)):
         rr = hr + 1 + i
         sc = ws.cell(row=rr, column=1).value
         for c in range(1, len(HD)+1):
             cell = ws.cell(row=rr, column=c)
             cell.border = BORDER
-            cell.alignment = Alignment(vertical="top", wrap_text=(c in (4, 6)),
-                                       horizontal="center" if c in (1, 5) else "left")
+            cell.alignment = Alignment(vertical="top", wrap_text=(c in (3, 5, 7)),
+                                       horizontal="center" if c in (1, 6) else "left")
             if sc == "core":
                 cell.fill = PatternFill("solid", fgColor="E8F4E8")
             elif sc == "candidate":
                 cell.fill = PatternFill("solid", fgColor="FFF2CC")
         ws.cell(row=rr, column=1).font = Font(bold=(sc == "core"), size=9,
                 color={"core": "1F6F1F", "candidate": "9C5700"}.get(sc, "9A9A9A"))
-    for i, w in enumerate([12, 30, 30, 42, 8, 40], 1):
+    for i, w in enumerate([12, 30, 46, 28, 40, 8, 34], 1):
         ws.column_dimensions[get_column_letter(i)].width = w
     ws.freeze_panes = ws.cell(row=hr+1, column=1)
     ws.auto_filter.ref = "A%d:%s%d" % (hr, get_column_letter(len(HD)), ws.max_row)

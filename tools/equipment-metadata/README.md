@@ -48,18 +48,37 @@ plus the subject literals `rec:modelNumber`, `rec:manufacturedBy`,
 `rec:installationDate`, and SSC/HQ's VAV-specific `para:vavBoxType`,
 `para:inletSize`, `para:outletSize`, `para:plenumBoxSize`.
 
-`ontology_map.py` classifies every transcribed property against that list into
-three states, written into the `Ontology predicate` and `Scope` columns:
+**Brick 1.4 is checked first**, per the class ladder — it is step 2 and the
+reference models are step 3. Its entity-property list is short, and two gaps in it
+explain the `para:` terms above: Brick has **no water or air flow-rate entity
+property** and **no heat-exchanger duty property**, which is why Dar Cairo minted
+`para:ratedChilledWaterFlowrate`, `para:ratedWaterFlowrate` and the air-flowrate
+family. Where Brick does carry the term, Brick wins:
 
-- **core** — maps unambiguously. 46 distinct properties, 1,153 rows.
-- **candidate** — plausible but needs a decision. 6 properties, 34 rows.
-- **reference** — no precedent anywhere. 520 properties, 3,456 rows. Dimensions,
+| Use | Predicate | Source |
+|---|---|---|
+| heat exchanger duty | `brick:coolingCapacity` | Brick 1.4 |
+| full load current | `brick:ratedCurrentInput` | Brick 1.4, unused by any reference model |
+| fan speed count | `brick:operationalStageCount` | Brick 1.4, unused by any reference model |
+| outdoor DX unit | `brick:Condensing_Unit` entity carrying `rec:modelNumber` | Brick 1.4 |
+
+`ontology_map.py` classifies every transcribed property into two states, written
+into the `Ontology predicate` and `Scope` columns:
+
+- **core** — maps unambiguously to Brick or a reference-model predicate.
+  55 distinct properties, 1,225 rows, 16 predicates.
+- **reference** — no precedent in Brick or any reference model. 517 properties,
+  3,418 rows. Dimensions,
   weights, materials, seal specifications, sound power levels, filter part
   numbers, psychrometrics, warranty text. Kept because engineers want them, not
   because they will be modelled.
 
-The **Ontology Scope** sheet lists all of them with row counts and which sheets
-they appear on.
+The **Ontology Scope** sheet lists all of them with the predicate, where that
+predicate comes from, row counts and which sheets they appear on.
+
+One deliberate exception to the ladder: the expansion tank's capacity is written
+as `para:Rated_Tank_Level` at the user's direction. `brick:volume` exists in
+Brick 1.4 and would outrank a `para:` term — reversible in one line here.
 
 A component's own maker is not the equipment's manufacturer — the pump's seal is
 made by Armstrong and its motor by WEG, and neither becomes `rec:manufacturedBy`
