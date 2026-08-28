@@ -128,3 +128,24 @@ segment, points in dashed English, no camelCase, no dots.**
   exactly as Dar Cairo does — the full name lives in the type column, not the id.
 - Row validator unchanged (574/186, all pre-existing IFC-empty); references stay
   consistent (17 object-only entities before and after, 0 dangling ids).
+
+## BAS valve-schedule enrichment (`add_bas_metadata.py`)
+
+A later as-built document, `sources/BAS_QNL_Assets.pdf` (BAS instrument + valve
+schedule), was cross-checked against the metadata and used to fill gaps.
+
+- **Verification:** of the 94 FCUs that already carried a chilled-water flow, the
+  BAS agrees on **91** within ±0.02 L/s. Three differ (`FCU_1F_002`, `FCU_1F_003`,
+  `FCU_2F_005`: Euroclima 0.27 vs BAS 0.36 L/s) — the Euroclima value was kept and
+  the discrepancy logged (QNL-030).
+- **It resolves the FCU 2F numbering.** The BAS FCU schedule numbers 2F units
+  `1–5, 34–62` — exactly the ontology's — confirming the Euroclima sheet's
+  `2F/06-33` was a different numbering.
+- **Gap-fill:** the **43 FCUs with no chilled-water flow** (all of 2F 034–062 and
+  1F 059–065) got `para:ratedChilledWaterFlowrate` from the BAS.
+- **Control valves:** every FCU/AHU/HEX gained a `brick:Cooling_Valve` part with
+  `rec:modelNumber` (FCU valves `V5862A…` + actuators `M7410C…`, both Honeywell,
+  actuator as a `para:Valve_Actuator` sub-part; AHU/HEX valves `ITQ-…`, make not
+  stated). **334 rows added**, 0 new validator errors.
+- **Not in the BAS:** the closed control units, climate control unit and
+  pressurisation unit — still without metadata, no source found.
