@@ -204,6 +204,42 @@ The PARA document writes the equipment format with underscores
 (`<Type>_<Floor>_<ID>`) but both of its own examples, and all of Dar Cairo, use
 dashes. Follow the examples: dashes.
 
+### Naming datapoints the Dar Cairo way
+
+When a client asks for identifiers aligned to Dar Cairo (the *normalise* path
+above), or whenever the sheet **invents** point identifiers, follow Dar Cairo's
+exact convention. It is one rule, applied per segment:
+
+- **`_` separates segments** - equipment, then component, then point:
+  `AHU-B-001_CHW-Coil`, `HEX-01_Iso-Vlv_Open-Close-Status`.
+- **`-` separates words inside a segment**: `CHW-Coil`, `Trip-Status`,
+  `Room-Air-Temperature-Setpoint`. No camelCase, no dots, no spaces.
+- **A datapoint is named in dashed English, not the BMS token.** Dar Cairo writes
+  `_Trip-Status`, `_Open-Close-Status`, `_Temperature` - never `_TripAlm` or
+  `_RmTempSP`. Take the name from the point's own `rdfs:label_en` when it is
+  clean English (`Average Space Humidity` → `Average-Space-Humidity`); when the
+  label is a raw token (`RunSts`, `IsoVlv AutoManCmd`), take it from the point's
+  **Brick/para class** instead (`brick:Run_Status` → `Run-Status`,
+  `para:Auto_Manual_Command` → `Auto-Manual-Command`). Either way no camelCase
+  survives.
+- **A part of a part extends the parent's segment with `-`** (`_SF` → `_SF-Motor`,
+  Dar Cairo's `FCU-9_F5_SF-Motor`); **a point opens a new `_` segment** off
+  whatever owns it.
+
+Name identifiers this way as you emit them - it is one function over the label or
+class. `scripts/align_naming.py` is the retrofit for a sheet already built with
+raw/BMS identifiers: it classifies every entity from the graph, renames from the
+label-or-class, and applies one consistent bijection to both identifier columns,
+writing an old → new crosswalk. Run it once (it is not idempotent).
+
+**The BMS join keys never move.** `ref:hasTimeseriesId` and `para:hasEntityId`
+keep the raw historian tag character-for-character, and `ref:ifcName` is
+regenerated from the new id. The identifier is internal; the join lives in the
+timeseries reference and the crosswalk, exactly as Dar Cairo's own dashed ids
+differ from the raw SCADA tags they carry. QNL was normalised this way:
+`QNL_AHU_B_001_AvgSpcHumd_PV` → `QNL_AHU-B-001_Average-Space-Humidity`, 71% of
+ids camelCase → 0%, with rooms and levels kept in the verbatim spatial style.
+
 ## Labels
 
 `rdfs:label_en` is what the front end displays. Every entity a user will see

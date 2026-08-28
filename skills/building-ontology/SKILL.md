@@ -152,6 +152,16 @@ Identifiers this sheet has to invent - site, building, levels, systems, parts,
 points - follow the PARA convention exactly. Dashes separate words inside a
 segment, underscores separate segments, no spaces anywhere, case is significant.
 
+**Datapoints are named in dashed English, the Dar Cairo way** - `_Trip-Status`,
+`_Room-Air-Temperature-Setpoint`, never the BMS token `_TripAlm` or `_RmTempSP`.
+Take the name from the point's `rdfs:label_en` when it is clean English, else from
+its Brick/para class (`brick:Run_Status` → `Run-Status`); no camelCase, no dots.
+A part of a part extends the parent segment with `-` (`_SF-Motor`); a point opens
+a new `_` segment. Name ids this way as you emit them - see
+`references/naming-and-labels.md`. When a sheet was already built with raw/BMS
+identifiers, `scripts/align_naming.py` retrofits the whole sheet in one pass,
+keeping the timeseries join keys and writing an old → new crosswalk.
+
 Labels come in two styles and **the user picks one at intake** - neither
 reference model settles it. `verbatim` carries the source text with underscores as spaces and
 everything else untouched, the QF SSC house style: `1.001 CORRIDOR`,
@@ -326,6 +336,7 @@ extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.
 | Script | Does |
 |---|---|
 | `scripts/lookup_reference.py` | Finds precedent in Dar Cairo; checks a term against Brick 1.4 |
+| `scripts/align_naming.py` | Retrofits a sheet's identifiers to Dar Cairo's convention (dashed-English datapoints, `_`-segments/`-`-words), keeping the timeseries join keys; one-shot |
 | `scripts/validate_ontology.py` | Validates a sheet row by row |
 | `scripts/highlight_findings.py` | Writes a copy with unresolved findings filled yellow, for a manual pass |
 | `scripts/check_consistency.py` | Compares every unit of a class against its siblings |

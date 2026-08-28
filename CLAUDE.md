@@ -35,6 +35,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/ontology-template.csv` | the empty 27-column header | starting a sheet |
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
+| `scripts/align_naming.py` | retrofits a sheet's identifiers to Dar Cairo's convention - dashed-English datapoints, `_`-segments/`-`-words, no camelCase - keeping the timeseries join keys and writing an old → new crosswalk; one-shot | a sheet built with raw/BMS ids needs Dar-Cairo naming |
 | `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
 | `scripts/io_list.py` | shared IO-list loader; answers "does this unit have this point" and "what is its key" for all three checkers | changing how an IO list is read |
 | `scripts/highlight_findings.py` | writes a copy of a workbook with unresolved findings filled yellow and written into `validator_code` / `validator_finding` columns past the data, for a manual pass | findings need a human |
@@ -142,6 +143,18 @@ fail-to-start, overload, …) runs the full ladder and gets its specific class -
 - For identifiers the sheet has to invent: dashes separate words inside a
   segment, underscores separate segments, no spaces, case is significant.
   `Dar-Cairo_Basement-3_Pump-Room_B331`.
+- **Datapoints are named in dashed English, the Dar Cairo way** - `_Trip-Status`,
+  `_Room-Air-Temperature-Setpoint`, never the BMS token `_TripAlm`/`_RmTempSP`.
+  Take the name from the point's `rdfs:label_en` when it is clean English, else
+  from its Brick/para class (`brick:Run_Status` → `Run-Status`); no camelCase, no
+  dots. A part of a part extends the parent segment with `-` (`_SF-Motor`); a
+  point opens a new `_` segment. Name ids this way as they are emitted. When a
+  client asks to normalise to Dar Cairo, or a sheet was already built with
+  raw/BMS ids, `scripts/align_naming.py` retrofits the whole sheet in one pass -
+  a bijection over both identifier columns that keeps `ref:hasTimeseriesId` /
+  `para:hasEntityId` untouched and writes an old → new crosswalk. QNL was
+  normalised this way (`QNL_AHU_B_001_AvgSpcHumd_PV` →
+  `QNL_AHU-B-001_Average-Space-Humidity`, camelCase 71% → 0%; rooms/levels kept).
 
 **Labels.** Two styles; ask at intake, because neither reference model settles it.
 `verbatim` is the source text with underscores read as word breaks and every
@@ -202,6 +215,9 @@ python3 skills/building-ontology/scripts/lookup_reference.py --template brick:Fa
 
 # does this term exist in Brick 1.4, and is it preferred
 python3 skills/building-ontology/scripts/lookup_reference.py --term Heat_Wheel
+
+# retrofit a sheet's identifiers to Dar Cairo's convention (one-shot)
+python3 skills/building-ontology/scripts/align_naming.py --in MyBuilding.xlsx
 
 # discover and show first - confirm the picture before trusting any finding
 python3 skills/building-ontology/scripts/validate_ontology.py MyBuilding.xlsx --preflight
