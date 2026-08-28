@@ -18,10 +18,38 @@ converted to the unit Dar Cairo uses for it.
 | Heat Exchangers | PHX/B/01 … PHX/B/04 | MEP schedule drawing (image supplied in chat) |
 | Pumps | CHWP/B/01 … CHWP/B/04 | MEP schedule drawing (image supplied in chat) |
 | Exhaust Fans | 39 fans, EF/ TEF_ KEF_ families | `Book1.xlsx` Sheet1 |
+| Pressurization Unit | PU/B/01 | same drawing as the heat exchangers and pumps |
+| CAV Units | 36 schedule rows, 6 schedules | drawing images supplied in chat |
+| VAV Units | 60 schedule rows, 6 schedules | drawing images supplied in chat |
+| DX Units | DX/B/01-20, DX/RP/21 | DX split system schematic riser |
 | Units | the source-unit to Dar-Cairo-unit mapping | `reference-models/DarCairo_V93.csv` |
 
-Not covered, and deliberately: the same schedule drawing carries a SCHEDULE OF
-PRESSURIZATION UNIT (PU/B/01, Armstrong 3750 2 EM-S). It was not requested.
+## Air terminal references
+
+CAV and VAV schedules write references as ranges — `CAV/1F/S11/006 TO 007`,
+`VAV/B/S15/005 & 006`, `VAV/1F/S11/022 TO 24`. `expand_ref()` in `build.py`
+expands one into individual box tags **only** when the box count matches the
+stated QTY; otherwise it emits a Data quality row rather than an expansion nobody
+checked. Three currently disagree: `VAV/1F/S15/012` (1 box, QTY 2),
+`VAV/B/S14/009 TO 012` (4 boxes, QTY 2), `VAV/B/S10/001 & 008` (2 boxes, QTY 8).
+
+`COVERS_OVERRIDE` in `data/vav.py` handles a range that must not expand literally.
+It currently holds one entry: `VAV/1F/S11/022 TO 24` covers 023 and 024 only,
+because the user confirmed the standalone `VAV/1F/S11/022` row governs box 022.
+
+Each schedule is its own source, named in the Page column. Overlapping drawings
+are recorded side by side, never merged — two drawings schedule the same basement
+S10/S15 VAV boxes and disagree on one air flow.
+
+## DX schematic
+
+The cooling figure is printed on the **room** box, so it is a room load, not a
+per-unit capacity — a room served by three units carries one figure the schematic
+does not split. It is recorded as "Room cooling load" against each unit serving
+the room, and must not become `brick:coolingCapacity` on a unit without the
+equipment schedule. Indoor-to-outdoor pairing follows the drawing's matching-number
+convention rather than any statement on it, and `DX/OD/05` is marked `(ST.BY)`
+while `DX/B/05` is not.
 
 ## Rebuilding
 

@@ -7,6 +7,10 @@ from fcu import FCU_COLS, FCU_ROWS, FCU_NOTES
 from hex import HEX_COLS, HEX_ROWS, HEX_NOTES, SRC_HEX, PAGE_HEX
 from pumps import PUMP_COLS, PUMP_ROWS, PUMP_NOTES, SRC_PUMP, PAGE_PUMP
 from ef import EF_ROWS, EF_NOTES, SRC_EF
+from pressurization import PU_COLS, PU_ROWS, PU_NOTES, SRC_PU, PAGE_PU
+from cav import CAV_COLS, CAV_ROWS, CAV_NOTES, SRC_CAV
+from vav import VAV_COLS, VAV_ROWS, VAV_NOTES, SRC_VAV, COVERS_OVERRIDE
+from dx import DX_COLS, DX_ROWS, DX_NOTES, SRC_DX, PAGE_DX, OD_STANDBY
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from units_map import UNIT_MAP, resolve, convert
 
@@ -454,6 +458,123 @@ def build_ef(rows):
         rows.append([first, "", "Data quality", prop, text, "", SRC_EF, "Sheet1",
                      "Applies to the whole schedule"])
 
+# ---------------------------------------------------------------- air terminals
+_RANGE = re.compile(r"^(?P<prefix>.*/)(?P<a>\d+)\s*(?P<sep>TO|&|-)\s*(?P<b>\d+)$", re.I)
+
+def expand_ref(ref, qty):
+    """Expand a schedule reference into the individual box tags it covers.
+
+    Returns (tags, ok, reason). ok is False whenever the reference cannot be
+    expanded with confidence - a range whose box count disagrees with the stated
+    QTY, a descending range, or a single reference scheduled at QTY > 1. Those
+    become Data quality rows instead of an expansion nobody checked.
+    """
+    ref = ref.strip()
+    m = _RANGE.match(ref)
+    if not m:
+        if qty == 1:
+            return ([ref], True, "")
+        return ([ref], False,
+                "single reference but QTY is %d - the schedule does not name the other boxes" % qty)
+    prefix, a, sep, b = m.group("prefix"), m.group("a"), m.group("sep"), m.group("b")
+    ai, bi, w = int(a), int(b), len(a)
+    if sep == "&":
+        nums = [ai, bi]
+    elif bi < ai:
+        return ([ref], False, "range end %s is lower than its start %s" % (b, a))
+    else:
+        nums = list(range(ai, bi + 1))
+    tags = ["%s%0*d" % (prefix, w, n) for n in nums]
+    if len(tags) != qty:
+        return (tags, False,
+                "reference spans %d boxes but QTY is %d" % (len(tags), qty))
+    return (tags, True, "")
+
+def _terminal(rows, data_rows, cols, src, notes, kind, overrides=None):
+    idx = {c: i for i, c in enumerate(cols)}
+    overrides = overrides or {}
+    for r in data_rows:
+        tag = r[idx["unit_ref"]]; page = r[idx["page"]]
+        model = r[idx["model"]] or ""
+        rnote = r[idx["row_note"]]
+        def add(comp, prop, val, unit, note=""):
+            if val is None or val == "":
+                return
+            rows.append([tag, model, comp, prop, val, unit, src, page, note])
+        add("Identification", "Make", r[idx["make"]], "")
+        add("Identification", "Model", r[idx["model"]], "")
+        add("Identification", "Quantity", r[idx["qty"]], "n")
+        add("Air", "Air flow (per box)", r[idx["air_flow_l_s"]], "l/s")
+        if "heating_kw" in idx:
+            add("Heating", "Heating capacity", r[idx["heating_kw"]], "kW")
+        key = (tag, page)
+        if key in overrides:
+            covered = overrides[key]
+            add("Coverage", "Boxes covered", ", ".join(covered), "",
+                "Expansion overridden - see the row note")
+        else:
+            covered, ok, why = expand_ref(tag, r[idx["qty"]])
+            if ok and len(covered) > 1:
+                add("Coverage", "Boxes covered", ", ".join(covered), "")
+            elif not ok:
+                rows.append([tag, model, "Data quality", "Reference and quantity disagree",
+                             why, "", src, page,
+                             "Not expanded into individual boxes - confirm before modelling"])
+        if rnote:
+            rows.append([tag, model, "Data quality", "Row note", rnote, "", src, page, ""])
+    first = data_rows[0][0]
+    for prop, text in notes:
+        rows.append([first, "", "Data quality", prop, text, "", src, "all %s schedules" % kind,
+                     "Applies to the whole %s set" % kind])
+
+def build_cav(rows):
+    _terminal(rows, CAV_ROWS, CAV_COLS, SRC_CAV, CAV_NOTES, "CAV")
+
+def build_vav(rows):
+    _terminal(rows, VAV_ROWS, VAV_COLS, SRC_VAV, VAV_NOTES, "VAV", COVERS_OVERRIDE)
+
+# ---------------------------------------------------------------- pressurization
+def build_pu(rows):
+    idx = {c: i for i, c in enumerate(PU_COLS)}
+    for r in PU_ROWS:
+        tag = r[idx["unit_ref"]]; model = r[idx["model"]]
+        def add(comp, prop, key, unit, note=""):
+            rows.append([tag, model, comp, prop, r[idx[key]], unit, SRC_PU, PAGE_PU, note])
+        add("Identification", "Make", "make", "")
+        add("Identification", "Model", "model", "")
+        add("Identification", "Location", "location", "")
+        add("Identification", "Quantity", "qty", "n")
+        add("Performance", "System volume (as printed)", "system_volume", "",
+            "Column is headed SYSTEM VOLUME but holds a pressure and a tank size")
+    for prop, text in PU_NOTES:
+        rows.append([PU_ROWS[0][0], "", "Data quality", prop, text, "", SRC_PU, PAGE_PU, ""])
+
+# ---------------------------------------------------------------- DX splits
+def build_dx(rows):
+    idx = {c: i for i, c in enumerate(DX_COLS)}
+    for r in DX_ROWS:
+        tag = r[idx["indoor_ref"]]; od = r[idx["outdoor_ref"]]
+        def add(comp, prop, val, unit, note=""):
+            rows.append([tag, "", comp, prop, val, unit, SRC_DX, PAGE_DX, note])
+        add("Identification", "Level", r[idx["level"]], "")
+        add("Identification", "Duty or standby",
+            "STANDBY" if r[idx["standby"]] else "DUTY", "",
+            "" if r[idx["standby"]] else "No (ST.BY) marking against this unit")
+        add("Served space", "Room served", r[idx["room"]], "")
+        add("Served space", "Room design temperature", r[idx["room_temp_c"]], "degC")
+        add("Served space", "Room design relative humidity", r[idx["room_rh_pct"]], "%")
+        add("Served space", "Room cooling load", r[idx["room_cooling_kw"]], "kW",
+            "Room load printed on the room box, not a per-unit capacity"
+            + ("; stated as %s" % r[idx["cooling_basis"]]
+               if r[idx["cooling_basis"]] != "not stated"
+               else "; the schematic does not say whether this is total or sensible"))
+        add("Refrigeration", "Matched condensing unit", od, "",
+            "Paired by matching number, not stated on the drawing"
+            + (" - this condenser is marked (ST.BY)" if od in OD_STANDBY else ""))
+    for prop, text in DX_NOTES:
+        rows.append([DX_ROWS[0][0], "", "Data quality", prop, text, "", SRC_DX, PAGE_DX,
+                     "Applies to the whole schematic"])
+
 # ---------------------------------------------------------------- write
 def sheet(wb, name, rows, subtitle):
     rows = [expand(r) for r in rows]
@@ -526,6 +647,11 @@ for name, desc in [
             "the SCHEDULE OF PUMPS on the same drawing."),
   ("Exhaust Fans", "39 exhaust fans - mostly Nuaire, two Colasit - from the supplied schedule "
             "spreadsheet."),
+  ("Pressurization Unit", "PU/B/01, Armstrong 3750 2 EM-S, from the schedule on the same drawing "
+            "as the heat exchangers and pumps."),
+  ("CAV Units", "Constant air volume boxes across six schedules on 1F and the basement."),
+  ("VAV Units", "Variable air volume boxes across six schedules on 1F and the basement."),
+  ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, read off the schematic riser."),
   ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
             "Dar Cairo uses that unit at all."),
 ]:
@@ -592,6 +718,24 @@ for line in [
   "rated-power property was created from it - confirm against the pump submittal.",
   "The same schedule drawing carries a SCHEDULE OF PRESSURIZATION UNIT (PU/B/01, Armstrong "
   "3750 2 EM-S). It was not asked for and is not in this workbook; say the word and it gets a sheet.",
+  "On the DX sheet the cooling figure is the load printed on the ROOM box, not a per-unit "
+  "capacity. Rooms served by two or three units are not split by the schematic, so do not write "
+  "it as brick:coolingCapacity on a unit without the equipment schedule. Indoor-to-outdoor "
+  "pairing is by matching number, which is the drawing's convention rather than a statement on "
+  "it - and DX/OD/05 is marked (ST.BY) while DX/B/05 is not.",
+  "CAV and VAV references are often ranges. A range is expanded into individual box tags in the "
+  "'Boxes covered' row only when its box count matches the stated quantity; where they disagree "
+  "the row becomes a Data quality finding instead. Three disagree: VAV/1F/S15/012, "
+  "VAV/B/S14/009 TO 012 and VAV/B/S10/001 & 008.",
+  "Two drawings schedule the same basement S10/S15 VAV boxes and disagree on VAV/B/S15/001 TO 004 "
+  "(261 l/s against 251 l/s). Both are recorded against their own drawing. On the second 1F "
+  "schedule VAV/1F/S15/014 TO 015 also falls inside VAV/1F/S15/013 TO 020 with a different flow "
+  "and model.",
+  "VAV/1F/S11/022 was scheduled twice; the user confirmed the standalone row governs (220 l/s, "
+  "NBOQOB200), so the overlapping VAV/1F/S11/022 TO 24 row is read as covering 023 and 024 only. "
+  "Five further rows carrying out-of-range box numbers were excluded on instruction.",
+  "The fire damper and supply/return grille schedules on the same images were struck through in "
+  "red and were read as cancelled, so they are not in this workbook.",
   "These are equipment selection and as-built documents, not nameplate photographs. Where the "
   "installed plant differs from the selection, the installed plant governs.",
 ]:
@@ -610,6 +754,10 @@ for f, pages, what in [
    "number or revision is recorded against these rows."),
   ("Book1.xlsx", "Sheet1, 39 rows", "Exhaust fan schedule - equipment tag, model, manufacturer "
    "and air flow only"),
+  ("CAV and VAV schedules", "6 + 6 schedules", "Supplied as drawing images in chat, title blocks "
+   "cropped. Each schedule is a separate source; the Page column names which."),
+  ("DX split system schematic", "image", "Riser diagram giving the room each DX unit serves, its "
+   "design condition and a room cooling load"),
 ]:
     ws.cell(row=r, column=1, value=f).font = Font(bold=True, size=10)
     c = ws.cell(row=r, column=2, value="%s - %s" % (pages, what)); c.font = Font(size=10)
@@ -662,6 +810,32 @@ sheet(wb, "Exhaust Fans", rows,
       "manufacturer and air flow only - no location, motor rating or static pressure. Two "
       "identifier shapes are in use; both were kept as written.")
 n_ef = len(rows)
+
+rows = []; build_pu(rows)
+sheet(wb, "Pressurization Unit", rows,
+      "PU/B/01 - SCHEDULE OF PRESSURIZATION UNIT, same drawing as the heat exchanger and pump "
+      "schedules. The supplied image crops the title block.")
+n_pu = len(rows)
+
+rows = []; build_cav(rows)
+sheet(wb, "CAV Units", rows,
+      "Constant air volume boxes across six schedules on level 1F and the basement. Air flow is "
+      "stated per box. A range reference is expanded into its individual boxes only when the box "
+      "count matches the stated quantity.")
+n_cav = len(rows)
+
+rows = []; build_vav(rows)
+sheet(wb, "VAV Units", rows,
+      "Variable air volume boxes across six schedules on level 1F and the basement. Two drawings "
+      "overlap on the basement S10/S15 boxes and disagree on one air flow; both are recorded. "
+      "Five out-of-range rows were excluded on instruction.")
+n_vav = len(rows)
+
+rows = []; build_dx(rows)
+sheet(wb, "DX Units", rows,
+      "21 DX split systems read off the schematic riser. The cooling figure is the load printed on "
+      "each room box, not a per-unit capacity - rooms served by two or three units are not split.")
+n_dx = len(rows)
 
 # ---------------------------------------------------------------- Units sheet
 uw = wb.create_sheet("Units")
@@ -727,6 +901,7 @@ uw.sheet_view.showGridLines = False
 
 wb.save(OUT)
 print("saved", OUT)
-print("AHU %d | CCU %d | Climate %d | FCU %d | HEX %d | Pumps %d | EF %d | total %d"
-      % (n_ahu, n_ccu, n_cli, n_fcu, n_hex, n_pump, n_ef,
-         n_ahu+n_ccu+n_cli+n_fcu+n_hex+n_pump+n_ef))
+tot = (n_ahu+n_ccu+n_cli+n_fcu+n_hex+n_pump+n_ef+n_pu+n_cav+n_vav+n_dx)
+print("AHU %d | CCU %d | Climate %d | FCU %d | HEX %d | Pumps %d | EF %d"
+      % (n_ahu, n_ccu, n_cli, n_fcu, n_hex, n_pump, n_ef))
+print("PU %d | CAV %d | VAV %d | DX %d | total %d" % (n_pu, n_cav, n_vav, n_dx, tot))
