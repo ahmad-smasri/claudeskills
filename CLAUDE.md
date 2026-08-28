@@ -41,6 +41,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/data/accepted-terms.txt` | terms that override the generated Brick extract, each with the reason it is there | a real term reads as a typo, or a deliberate alias floods the warnings |
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
+| `scripts/build_review_workbook.py` | runs both checkers plus eight checks neither covers, then writes the client review workbook - a `START HERE` tab, the ontology sheet with flagged rows filled yellow/orange, one plain-English tab per entity family, and a `Technical detail` tab holding the coded findings. Findings are collapsed to one line per kind of problem and every rule code is rewritten in ordinary English, because the reader is usually not the person who built the sheet. The tabs and the data sheet are cross-linked: clickable row numbers on every tab, and review columns AB-AD past the data naming each flagged row's problem with a link back to its tab | a delivered sheet needs reviewing, or a client asks what is wrong with a draft |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
 | `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
@@ -220,6 +221,14 @@ python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
 # hand the remaining findings to a human, in the sheet itself
 python3 skills/building-ontology/scripts/highlight_findings.py In.xlsx \
     --out Reviewed.xlsx --label-style verbatim --severity ERROR
+
+# the full review workbook - grouped issue sheets plus highlighted source rows
+python3 skills/building-ontology/scripts/build_review_workbook.py MyBuilding.xlsx \
+    --out MyBuilding_review_1.xlsx --label-style verbatim
+
+# force a grouping when the derived one splits a family you want read as one
+python3 skills/building-ontology/scripts/build_review_workbook.py MyBuilding.xlsx \
+    --out R.xlsx --group 'AHU=^entity:HQ_AHU' --group 'ExhaustFan=^entity:HQ_(CEF|GEF|TEF)'
 
 # after touching any script
 skills/building-ontology/tests/run_tests.sh
