@@ -25,6 +25,7 @@ from dx import (DX_COLS, DX_ROWS, DX_NOTES, SRC_DX, PAGE_DX, OD_STANDBY,
 from dx import SRC_SYS as DX_SRC_SYS, PAGE_SYS as DX_PAGE_SYS
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from units_map import UNIT_MAP, resolve, convert
+from ontology_map import classify
 
 import re
 from openpyxl import Workbook
@@ -42,25 +43,46 @@ def _sigfmt(f):
 HEAD = ["Equipment Tag","Model","Component","Property",
         "Value (as printed)","Unit (as printed)",
         "Value (Dar Cairo)","Unit (QUDT)","Conversion",
+        "Ontology predicate","Scope",
         "Source File","Page","Note"]
 
-WRAP_COLS = (5, 7, 9, 12)
-NOTE_COL, PAGE_COL = 12, 11
+WRAP_COLS = (5, 7, 9, 14)
+NOTE_COL, PAGE_COL = 14, 13
+SCOPE_COL, PRED_COL = 11, 10
 
 def expand(row):
-    """9-column source row -> 12-column row carrying the Dar Cairo value and unit."""
+    """9-column source row -> 14-column row: Dar Cairo value/unit, then scope."""
     tag, model, comp, prop, val, unit, src, page, note = row
+    pred, scope, pnote = classify(comp, prop)
+    if comp == "Data quality":
+        pred, scope, pnote = "", "", ""
+    if pnote:
+        note = (note + " " if note else "") + pnote
     qudt, factor, in_dc, cnote = resolve(unit, prop)
     if not qudt:
-        return [tag, model, comp, prop, val, unit, "", "", cnote, src, page, note]
+        return [tag, model, comp, prop, val, unit, "", "", cnote,
+                pred, scope, src, page, note]
     new, ok = convert(val, factor)
     if not ok:
         return [tag, model, comp, prop, val, unit, "", "",
-                "not converted - value is not numeric", src, page, note]
+                "not converted - value is not numeric", pred, scope, src, page, note]
     bits = []
     if cnote: bits.append(cnote)
     if not in_dc: bits.append("unit not used in Dar Cairo")
-    return [tag, model, comp, prop, val, unit, new, qudt, "; ".join(bits), src, page, note]
+    return [tag, model, comp, prop, val, unit, new, qudt, "; ".join(bits),
+            pred, scope, src, page, note]
+
+SCOPE_INDEX = {}
+
+def _index(name, rows):
+    for r in rows:
+        e = expand(r)
+        comp, prop, pred, sc = e[2], e[3], e[9], e[10]
+        if comp == "Data quality":
+            continue
+        k = (comp, prop)
+        d = SCOPE_INDEX.setdefault(k, {"pred": pred, "scope": sc, "n": 0, "sheets": set()})
+        d["n"] += 1; d["sheets"].add(name)
 
 HDR_FILL   = PatternFill("solid", fgColor="1F3864")
 HDR_FONT   = Font(bold=True, color="FFFFFF", size=10)
@@ -545,38 +567,47 @@ def expand_ref(ref, qty):
     return (tags, True, "")
 
 def _terminal(rows, data_rows, cols, src, notes, kind, overrides=None):
+    """One row per BOX, not per schedule line.
+
+    A schedule line covering a range is expanded so every box carries the line's
+    air flow, heating capacity, model and make in its own right. The printed
+    reference is kept on each box as 'Scheduled as' so the row still traces back
+    to the line it came from. A range that cannot be expanded with confidence
+    keeps the printed reference as its tag and raises a Data quality row.
+    """
     idx = {c: i for i, c in enumerate(cols)}
     overrides = overrides or {}
     for r in data_rows:
-        tag = r[idx["unit_ref"]]; page = r[idx["page"]]
+        ref = r[idx["unit_ref"]]; page = r[idx["page"]]
         model = r[idx["model"]] or ""
-        rnote = r[idx["row_note"]]
-        def add(comp, prop, val, unit, note=""):
-            if val is None or val == "":
-                return
-            rows.append([tag, model, comp, prop, val, unit, src, page, note])
-        add("Identification", "Make", r[idx["make"]], "")
-        add("Identification", "Model", r[idx["model"]], "")
-        add("Identification", "Quantity", r[idx["qty"]], "n")
-        add("Air", "Air flow (per box)", r[idx["air_flow_l_s"]], "l/s")
-        if "heating_kw" in idx:
-            add("Heating", "Heating capacity", r[idx["heating_kw"]], "kW")
-        key = (tag, page)
+        rnote = r[idx["row_note"]]; qty = r[idx["qty"]]
+        key = (ref, page)
         if key in overrides:
-            covered = overrides[key]
-            add("Coverage", "Boxes covered", ", ".join(covered), "",
-                "Expansion overridden - see the row note")
+            boxes, ok, why = overrides[key], True, ""
         else:
-            covered, ok, why = expand_ref(tag, r[idx["qty"]])
-            if ok and len(covered) > 1:
-                add("Coverage", "Boxes covered", ", ".join(covered), "")
-            elif not ok:
-                rows.append([tag, model, "Data quality", "Reference and quantity disagree",
-                             why, "", src, page,
-                             "Not expanded into individual boxes - confirm before modelling"])
+            boxes, ok, why = expand_ref(ref, qty)
+        for tag in boxes:
+            def add(comp, prop, val, unit, note=""):
+                if val is None or val == "":
+                    return
+                rows.append([tag, model, comp, prop, val, unit, src, page, note])
+            add("Identification", "Make", r[idx["make"]], "")
+            add("Identification", "Model", r[idx["model"]], "")
+            add("Air", "Air flow (per box)", r[idx["air_flow_l_s"]], "l/s")
+            if "heating_kw" in idx:
+                add("Heating", "Heating capacity", r[idx["heating_kw"]], "kW")
+            if ok and (len(boxes) > 1 or tag != ref):
+                add("Provenance", "Scheduled as", ref, "",
+                    "One schedule line of QTY %s, split to one row per box" % qty)
+        if not ok:
+            rows.append([ref, model, "Data quality", "Reference and quantity disagree",
+                         why, "", src, page,
+                         "Not split into individual boxes - confirm before modelling"])
         if rnote:
-            rows.append([tag, model, "Data quality", "Row note", rnote, "", src, page, ""])
-    first = data_rows[0][0]
+            rows.append([boxes[0] if ok else ref, model, "Data quality", "Row note",
+                         rnote, "", src, page, ""])
+    first_boxes, ok0, _ = expand_ref(data_rows[0][0], data_rows[0][idx["qty"]])
+    first = first_boxes[0]
     for prop, text in notes:
         rows.append([first, "", "Data quality", prop, text, "", src, "all %s schedules" % kind,
                      "Applies to the whole %s set" % kind])
@@ -702,6 +733,7 @@ def build_gen(rows):
 
 # ---------------------------------------------------------------- write
 def sheet(wb, name, rows, subtitle):
+    _index(name, rows)
     rows = [expand(r) for r in rows]
     ws = wb.create_sheet(name)
     ws["A1"] = name; ws["A1"].font = Font(bold=True, size=14, color="1F3864")
@@ -711,7 +743,9 @@ def sheet(wb, name, rows, subtitle):
     hr = ws.max_row
     for c in range(1, len(HEAD)+1):
         cell = ws.cell(row=hr, column=c)
-        cell.fill = HDR_FILL if c not in (7, 8, 9) else PatternFill("solid", fgColor="2E5F2E")
+        cell.fill = (PatternFill("solid", fgColor="2E5F2E") if c in (7, 8, 9)
+                     else PatternFill("solid", fgColor="7B3F00") if c in (10, 11)
+                     else HDR_FILL)
         cell.font = HDR_FONT
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
         cell.border = BORDER
@@ -732,8 +766,15 @@ def sheet(wb, name, rows, subtitle):
         ws.cell(row=rr, column=1).font = COMP_FONT if (i == 0 or rows[i-1][0] != r[0]) else Font(size=10)
         if r[NOTE_COL-1]: ws.cell(row=rr, column=NOTE_COL).font = NOTE_FONT
         if r[8]: ws.cell(row=rr, column=9).font = Font(italic=True, size=9, color="2E5F2E")
+        sc = r[SCOPE_COL-1]
+        if sc:
+            ws.cell(row=rr, column=SCOPE_COL).font = Font(
+                bold=(sc == "core"), size=9,
+                color={"core": "1F6F1F", "candidate": "9C5700"}.get(sc, "9A9A9A"))
+            ws.cell(row=rr, column=SCOPE_COL).alignment = Alignment(
+                horizontal="center", vertical="top")
         ws.cell(row=rr, column=PAGE_COL).alignment = Alignment(horizontal="center", vertical="top")
-    widths = [16, 24, 28, 40, 20, 13, 20, 20, 30, 32, 7, 50]
+    widths = [16, 24, 28, 40, 20, 13, 20, 20, 28, 28, 11, 30, 7, 46]
     for i, w in enumerate(widths, 1):
         ws.column_dimensions[get_column_letter(i)].width = w
     ws.freeze_panes = ws.cell(row=hr+1, column=1)
@@ -776,10 +817,12 @@ for name, desc in [
             "asset register."),
   ("Pressurization Unit", "PU/B/01 (PRO1) - Armstrong 3750 2 EM-S pressurisation unit plus a "
             "Reflex DE10 1000 litre expansion tank."),
-  ("CAV Units", "Constant air volume boxes across six schedules on 1F and the basement."),
-  ("VAV Units", "Variable air volume boxes across six schedules on 1F and the basement."),
+  ("CAV Units", "42 constant air volume boxes, one row per box, from six schedules."),
+  ("VAV Units", "180 variable air volume boxes, one row per box, from six schedules."),
   ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, from the schematic riser and the "
             "SYSTEM DETAILS equipment schedule, which names models for 16 of them."),
+  ("Ontology Scope", "Every distinct property in this workbook, the reference-model predicate it "
+            "maps to, and whether it belongs in the ontology at all."),
   ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
             "Dar Cairo uses that unit at all."),
 ]:
@@ -825,6 +868,32 @@ for line in [
     c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
     c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
 r += 1
+put(r, "What belongs in the ontology", bold=True, size=12, color="7B3F00"); r += 1
+for line in [
+  "Most of this workbook is engineering reference, not ontology metadata. Dar Cairo, QF SSC and "
+  "QF HQ agree on a short vocabulary for equipment - about twenty predicates - and everything "
+  "outside it has no precedent in any of them.",
+  "Every row carries an 'Ontology predicate' and a 'Scope'. core means it maps unambiguously to a "
+  "predicate the reference models use. candidate means the match is plausible but needs a "
+  "decision. reference means no reference model carries anything like it - dimensions, weights, "
+  "materials, seal specifications, sound power levels, filter part numbers, psychrometrics, "
+  "warranty text. Those rows stay because they are useful to engineers, not because they will be "
+  "modelled.",
+  "The Ontology Scope sheet lists all 572 distinct properties with their verdict: 46 core, "
+  "6 candidate, 520 reference. By row count that is 1,153 core, 34 candidate and 3,456 reference.",
+  "The predicates in play: para:ratedSupplyAirFlowrate, rec:modelNumber, rec:manufacturedBy, "
+  "para:ratedReheatCapacity, brick:ratedPowerInput, para:ratedChilledWaterFlowrate, "
+  "brick:coolingCapacity, para:ratedSpeed, para:ratedExhaustAirFlowrate, para:ratedHead, "
+  "para:refrigerant, rec:installationDate, para:ratedWaterFlowrate, para:Rated_Tank_Level.",
+  "A component's own maker is not the equipment's manufacturer. The pump's mechanical seal is "
+  "made by Armstrong and its motor by WEG; neither becomes rec:manufacturedBy on the pump.",
+  "The QF HQ v0.4 draft was read for structure, not for units - several of its rows carry a wrong "
+  "brick:hasUnit (an air flow tagged unit:V, a cooling capacity tagged unit:HZ). Dar Cairo remains "
+  "the authority for unit choice, as the Units sheet records.",
+]:
+    c = ws.cell(row=r, column=2, value="- " + line); c.font = Font(size=10)
+    c.alignment = Alignment(wrap_text=True, vertical="top"); r += 1
+r += 1
 put(r, "Read before using the data", bold=True, size=12, color="C00000"); r += 1
 for line in [
   "Values are transcribed from the documents as printed. Where a document contradicts itself the "
@@ -858,10 +927,11 @@ for line in [
   "model. DX/B/08 reads PUHZ-RP2S0X2 where its twin DX/B/09 reads PUHZ-RP250X2 - almost certainly "
   "a misprint, recorded as printed. The PEAD, PCA and PUHZ prefixes are Mitsubishi Electric "
   "Mr. Slim naming, but no document states a manufacturer, so none was inferred.",
-  "CAV and VAV references are often ranges. A range is expanded into individual box tags in the "
-  "'Boxes covered' row only when its box count matches the stated quantity; where they disagree "
-  "the row becomes a Data quality finding instead. Three disagree: VAV/1F/S15/012, "
-  "VAV/B/S14/009 TO 012 and VAV/B/S10/001 & 008.",
+  "CAV and VAV schedules write many references as ranges. Each range is split into one row per "
+  "box, so every box carries its own air flow, heating capacity, model and make, and keeps a "
+  "'Scheduled as' row naming the line it came from. A range is only split when its box count "
+  "matches the stated quantity; three do not and keep the printed reference with a Data quality "
+  "row instead: VAV/1F/S15/012, VAV/B/S14/009 TO 012 and VAV/B/S10/001 & 008.",
   "Two drawings schedule the same basement S10/S15 VAV boxes and disagree on VAV/B/S15/001 TO 004 "
   "(261 l/s against 251 l/s). Both are recorded against their own drawing. On the second 1F "
   "schedule VAV/1F/S15/014 TO 015 also falls inside VAV/1F/S15/013 TO 020 with a different flow "
@@ -1005,6 +1075,51 @@ sheet(wb, "DX Units", rows,
       "room box, not a per-unit capacity. Five units take an X2 outdoor model - two condensers "
       "each - so the schematic's matching-number pairing does not describe them.")
 n_dx = len(rows)
+
+# ---------------------------------------------------------------- Ontology Scope
+def scope_sheet(wb, per_sheet):
+    ws = wb.create_sheet("Ontology Scope")
+    ws["A1"] = "Ontology Scope"; ws["A1"].font = Font(bold=True, size=14, color="1F3864")
+    ws["A2"] = ("Which transcribed properties belong in the ontology. Targets are the predicates "
+                "Dar Cairo, QF SSC and QF HQ actually use for equipment metadata - about twenty "
+                "in total. Everything else is engineering reference, kept but not modelled.")
+    ws["A2"].font = Font(italic=True, size=9, color="555555")
+    ws.append([])
+    HD = ["Scope", "Ontology predicate", "Component", "Property", "Rows", "Sheets"]
+    ws.append(HD)
+    hr = ws.max_row
+    for c in range(1, len(HD)+1):
+        cell = ws.cell(row=hr, column=c)
+        cell.fill = PatternFill("solid", fgColor="7B3F00"); cell.font = HDR_FONT
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        cell.border = BORDER
+    order = {"core": 0, "candidate": 1, "reference": 2}
+    entries = sorted(per_sheet.items(),
+                     key=lambda kv: (order.get(kv[1]["scope"], 3), kv[1]["pred"],
+                                     kv[0][0], kv[0][1]))
+    for (comp, prop), v in entries:
+        ws.append([v["scope"], v["pred"], comp, prop, v["n"], ", ".join(sorted(v["sheets"]))])
+    for i in range(len(entries)):
+        rr = hr + 1 + i
+        sc = ws.cell(row=rr, column=1).value
+        for c in range(1, len(HD)+1):
+            cell = ws.cell(row=rr, column=c)
+            cell.border = BORDER
+            cell.alignment = Alignment(vertical="top", wrap_text=(c in (4, 6)),
+                                       horizontal="center" if c in (1, 5) else "left")
+            if sc == "core":
+                cell.fill = PatternFill("solid", fgColor="E8F4E8")
+            elif sc == "candidate":
+                cell.fill = PatternFill("solid", fgColor="FFF2CC")
+        ws.cell(row=rr, column=1).font = Font(bold=(sc == "core"), size=9,
+                color={"core": "1F6F1F", "candidate": "9C5700"}.get(sc, "9A9A9A"))
+    for i, w in enumerate([12, 30, 30, 42, 8, 40], 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+    ws.freeze_panes = ws.cell(row=hr+1, column=1)
+    ws.auto_filter.ref = "A%d:%s%d" % (hr, get_column_letter(len(HD)), ws.max_row)
+    return ws
+
+scope_sheet(wb, SCOPE_INDEX)
 
 # ---------------------------------------------------------------- Units sheet
 uw = wb.create_sheet("Units")

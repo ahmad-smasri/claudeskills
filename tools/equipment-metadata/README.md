@@ -25,6 +25,51 @@ converted to the unit Dar Cairo uses for it.
 | DX Units | DX/B/01-20, DX/RP/21 | DX split system schematic riser |
 | Units | the source-unit to Dar-Cairo-unit mapping | `reference-models/DarCairo_V93.csv` |
 
+## Ontology scope
+
+Most of this workbook is engineering reference, not ontology metadata. Counting
+predicates across the three delivered reference models, equipment metadata is a
+short vocabulary — about twenty predicates:
+
+| Predicate | Dar Cairo | QF SSC | QF HQ v0.4 |
+|---|---|---|---|
+| `para:ratedSupplyAirFlowrate` | 81 | 113 | 628 |
+| `para:ratedReheatCapacity` | — | 108 | 602 |
+| `brick:coolingCapacity` | 76 | 16 | 158 |
+| `brick:ratedPowerInput` | 108 | 7 | 113 |
+| `para:ratedChilledWaterFlowrate` | 83 | — | — |
+| `brick:ratedVoltageInput` / `electricalPhaseCount` | 106 / 106 | — | 71 / 71 |
+| `para:ratedHead` | 41 | — | — |
+| `para:ratedWaterFlowrate` | 34 | — | — |
+| `para:ratedExhaustAirFlowrate` / `ratedOutsideAirFlowrate` | 18 / 18 | — / 5 | — / 26 |
+| `para:ratedSpeed`, `para:refrigerant`, `para:Rated_Tank_Level` | 7, 2, 3 | — | — |
+
+plus the subject literals `rec:modelNumber`, `rec:manufacturedBy`,
+`rec:installationDate`, and SSC/HQ's VAV-specific `para:vavBoxType`,
+`para:inletSize`, `para:outletSize`, `para:plenumBoxSize`.
+
+`ontology_map.py` classifies every transcribed property against that list into
+three states, written into the `Ontology predicate` and `Scope` columns:
+
+- **core** — maps unambiguously. 46 distinct properties, 1,153 rows.
+- **candidate** — plausible but needs a decision. 6 properties, 34 rows.
+- **reference** — no precedent anywhere. 520 properties, 3,456 rows. Dimensions,
+  weights, materials, seal specifications, sound power levels, filter part
+  numbers, psychrometrics, warranty text. Kept because engineers want them, not
+  because they will be modelled.
+
+The **Ontology Scope** sheet lists all of them with row counts and which sheets
+they appear on.
+
+A component's own maker is not the equipment's manufacturer — the pump's seal is
+made by Armstrong and its motor by WEG, and neither becomes `rec:manufacturedBy`
+on the pump. Those are matched out explicitly before the general rule.
+
+The QF HQ v0.4 draft was read for **structure**, not for units: several of its
+rows carry a wrong `brick:hasUnit` (an air flow tagged `unit:V`, a cooling
+capacity tagged `unit:HZ`, blank values against `unit:UNITLESS`). Dar Cairo
+remains the authority for unit choice.
+
 ## Air terminal references
 
 CAV and VAV schedules write references as ranges — `CAV/1F/S11/006 TO 007`,
@@ -33,6 +78,12 @@ expands one into individual box tags **only** when the box count matches the
 stated QTY; otherwise it emits a Data quality row rather than an expansion nobody
 checked. Three currently disagree: `VAV/1F/S15/012` (1 box, QTY 2),
 `VAV/B/S14/009 TO 012` (4 boxes, QTY 2), `VAV/B/S10/001 & 008` (2 boxes, QTY 8).
+
+Each schedule line is **split into one row per box** — every box carries its own
+air flow, heating capacity, model and make, plus a `Scheduled as` row naming the
+line it came from. That gives 42 CAV boxes and 180 VAV boxes as individual
+entities. A range that cannot be split with confidence keeps the printed
+reference as its tag and raises a Data quality row instead.
 
 `COVERS_OVERRIDE` in `data/vav.py` handles a range that must not expand literally.
 It currently holds one entry: `VAV/1F/S11/022 TO 24` covers 023 and 024 only,
