@@ -51,9 +51,15 @@ UNIT_MAP = {
     "Pa":      ("unit:PA",      1.0,      True,  ""),
     "kPa":     ("unit:PA",      1000.0,   True,  "kPa x 1000"),
     "mbar":    ("unit:PA",      100.0,    True,  "mbar x 100"),
-    # --- length ------------------------------------------------------------
+    "bar":     ("unit:BAR",     1.0,      True,  ""),
+    "psig":    ("unit:PA",      6894.757, True,
+                "psi x 6894.757; the submittal states it as gauge pressure"),
+    # --- length and area ---------------------------------------------------
     "mm":      ("unit:M",       0.001,    True,  "mm / 1000"),
     "m":       ("unit:M",       1.0,      True,  ""),
+    "in":      ("unit:M",       0.0254,   True,  "in x 0.0254"),
+    "m2":      ("unit:M2",      1.0,      True,  ""),
+    "litre":   ("unit:L",       1.0,      False, ""),
     # --- rotation, time, sound --------------------------------------------
     "rpm":     ("unit:RPM",     1.0,      True,  ""),
     "hours":   ("unit:HR",      1.0,      True,  ""),
@@ -68,6 +74,12 @@ UNIT_MAP = {
     "kg/h":    ("unit:KiloGM-PER-HR", 1.0, False, ""),
     "g/h":     ("unit:KiloGM-PER-HR", 0.001, False, "g/h / 1000"),
     "m/s":     ("unit:M-PER-SEC", 1.0,    False, ""),
+    "kg/m3":   ("unit:KiloGM-PER-M3", 1.0, False, ""),
+    "kJ/(kg*K)": ("unit:KiloJ-PER-KiloGM-K", 1.0, False, ""),
+    "W/(m*K)": ("unit:W-PER-M-K", 1.0,     False, ""),
+    "W/m2 K":  ("unit:W-PER-M2-K", 1.0,    False, ""),
+    "cP":      ("unit:CentiP",  1.0,       False, ""),
+    "K":       ("unit:K",       1.0,       False, "temperature difference, not a temperature"),
     # --- not quantities ----------------------------------------------------
     "BSP":     ("",             None,     True,  "thread designation, not a quantity"),
     "V-ph-Hz": ("",             None,     True,  "composite nameplate string, not a quantity"),
@@ -81,7 +93,7 @@ PERCENT    = ("unit:PERCENT",    1.0, True, "")
 # properties that are dimensionless quantities even though the sheet prints no unit.
 # Matched on whole words, not substrings - "Schedule scope" contains "cop".
 DIMENSIONLESS_WORDS = {"shr", "eer", "cop"}
-DIMENSIONLESS_PHRASES = {"fan speed setting"}
+DIMENSIONLESS_PHRASES = {"fan speed setting", "specific gravity"}
 
 def resolve(unit, prop):
     """Return (qudt_unit, factor, in_dar_cairo, note) for one row."""

@@ -15,8 +15,9 @@ converted to the unit Dar Cairo uses for it.
 | Closed Control Units | CC/B/01 … CC/B/09 (5 selection sheets) | `qnl_closed_control_units_manual.pdf` |
 | Climate Control Units | MCG-10P, VCB1000-AB32, AF4 filter | `climate_control_units_manual.pdf` |
 | FCU | 28 positions across B, 1F, 2F | `FCU_Manual.pdf` (p2-29) |
-| Heat Exchangers | PHX/B/01 … PHX/B/04 | MEP schedule drawing (image supplied in chat) |
-| Pumps | CHWP/B/01 … CHWP/B/04 | MEP schedule drawing (image supplied in chat) |
+| Heat Exchangers | PHX/B/01 … PHX/B/05 | schedule drawing + Alfa Laval data + SYSTEM DETAILS |
+| Pumps | CHWP/B/01 … CHWP/B/04 | schedule drawing + Armstrong submittal + SYSTEM DETAILS |
+| Generators | 1 row (source cropped) | GENERATOR ASSET LIST |
 | Exhaust Fans | 39 fans, EF/ TEF_ KEF_ families | `Book1.xlsx` Sheet1 |
 | Pressurization Unit | PU/B/01 | same drawing as the heat exchangers and pumps |
 | CAV Units | 36 schedule rows, 6 schedules | drawing images supplied in chat |
@@ -40,6 +41,37 @@ because the user confirmed the standalone `VAV/1F/S11/022` row governs box 022.
 Each schedule is its own source, named in the Page column. Overlapping drawings
 are recorded side by side, never merged — two drawings schedule the same basement
 S10/S15 VAV boxes and disagree on one air flow.
+
+## Units with no Dar Cairo precedent
+
+The manufacturer submittals brought quantities Dar Cairo has never carried:
+`unit:KiloGM`, `unit:KiloGM-PER-HR`, `unit:M-PER-SEC`, `unit:L`, `unit:K`,
+`unit:CentiP`, `unit:KiloGM-PER-M3`, `unit:KiloJ-PER-KiloGM-K`, `unit:W-PER-M-K`,
+`unit:W-PER-M2-K`. All are genuine QUDT terms, highlighted on the Units sheet for
+the PARA team to confirm. `unit:M2` and `unit:BAR` do have precedent.
+
+The Armstrong submittal is imperial — `in` converts at ×0.0254 to `unit:M`, `lb`
+at ×0.45359237 to `unit:KiloGM`.
+
+## Multiple sources per unit
+
+Several units are now described by more than one document, and the sources
+disagree in places. Nothing is merged: each property row names the document it came
+from, and the disagreement becomes a `Data quality` row.
+
+- **Pumps** — drawing schedule, Armstrong submittal, SYSTEM DETAILS Table 3.1.
+  Weight is 843 kg on the drawing and 1874 lb (850 kg) on the submittal.
+- **Heat exchangers** — drawing schedule, Alfa Laval construction data, the M10-MFM
+  thermal specification, SYSTEM DETAILS Table 3.3. `PHX/B/05` appears on everything
+  except the drawing schedule. Hot-side temperature conflicts between SYSTEM DETAILS
+  and the M10-MFM sheet.
+- **Pressurisation unit** — drawing schedule and SYSTEM DETAILS Table 3.2, which
+  resolves the drawing's odd `SYSTEM VOLUME` cell into two components.
+
+Where two documents tag the same unit differently (`CHWP/B/01` vs `CHWP-B-01`,
+`PU/B/01` vs `PRO1`), the slash form is the Equipment Tag because it matches the
+rest of the workbook, and the other is recorded as an `Alternate reference`
+property rather than dropped.
 
 ## DX schematic
 

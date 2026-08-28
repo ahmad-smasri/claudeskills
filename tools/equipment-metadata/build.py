@@ -4,10 +4,20 @@ from ahu import AHU
 from ccu import CCU
 from climate import CLIMATE
 from fcu import FCU_COLS, FCU_ROWS, FCU_NOTES
-from hex import HEX_COLS, HEX_ROWS, HEX_NOTES, SRC_HEX, PAGE_HEX
-from pumps import PUMP_COLS, PUMP_ROWS, PUMP_NOTES, SRC_PUMP, PAGE_PUMP
+from hex import (HEX_COLS, HEX_ROWS, HEX_NOTES, SRC_HEX, PAGE_HEX,
+                 SRC_AL, PAGE_AL, SRC_ALTS, PAGE_ALTS, HEX_PROJECT, HEX_MODELS,
+                 HEX_MODEL_FIELDS, HEX_DUTY, HEX_SYS_TEMPS, HEX_EXTRA_UNITS,
+                 M10_SPEC, M10_UNIT, HEX_EXTRA_NOTES)
+from hex import SRC_SYS as HEX_SRC_SYS, PAGE_SYS as HEX_PAGE_SYS
+from pumps import (PUMP_COLS, PUMP_ROWS, PUMP_NOTES, SRC_PUMP, PAGE_PUMP,
+                   SRC_SUB, PAGE_SUB, PUMP_TAGS, PUMP_DUTY, PUMP_SUBMITTAL,
+                   PUMP_SUB_NOTES)
+from pumps import SRC_SYS as PUMP_SRC_SYS, PAGE_SYS as PUMP_PAGE_SYS
 from ef import EF_ROWS, EF_NOTES, SRC_EF
-from pressurization import PU_COLS, PU_ROWS, PU_NOTES, SRC_PU, PAGE_PU
+from pressurization import (PU_COLS, PU_ROWS, PU_NOTES, SRC_PU, PAGE_PU,
+                            PU_ALT_TAG, PU_COMPONENTS, PU_EXTRA_NOTES)
+from pressurization import SRC_SYS as PU_SRC_SYS, PAGE_SYS as PU_PAGE_SYS
+from generator import GEN_COLS, GEN_ROWS, GEN_NOTES, SRC_GEN, PAGE_GEN
 from cav import CAV_COLS, CAV_ROWS, CAV_NOTES, SRC_CAV
 from vav import VAV_COLS, VAV_ROWS, VAV_NOTES, SRC_VAV, COVERS_OVERRIDE
 from dx import DX_COLS, DX_ROWS, DX_NOTES, SRC_DX, PAGE_DX, OD_STANDBY
@@ -397,10 +407,39 @@ def build_hex(rows):
         add("Dimensions and weight", "Operating weight", "operating_weight_kg", "kg")
         add("CHW flow rate", "Cold side", "chw_flow_cold_l_s", "l/s")
         add("CHW flow rate", "Hot side", "chw_flow_hot_l_s", "l/s")
+    all_tags = [r[idx["unit_ref"]] for r in HEX_ROWS] + HEX_EXTRA_UNITS
+    for tag in all_tags:
+        duty, model = HEX_DUTY[tag]
+        rows.append([tag, model, "Identification", "Duty or standby", duty, "",
+                     HEX_SRC_SYS, HEX_PAGE_SYS, ""])
+        rows.append([tag, model, "Identification", "Model", model, "",
+                     HEX_SRC_SYS, HEX_PAGE_SYS, ""])
+        for prop, val in HEX_SYS_TEMPS:
+            rows.append([tag, model, "Design condition", prop, val, "",
+                         HEX_SRC_SYS, HEX_PAGE_SYS,
+                         "SYSTEM DETAILS states one figure across all five rows"])
+        for comp, prop, val, note in HEX_PROJECT:
+            rows.append([tag, model, comp, prop, val, "", SRC_AL, PAGE_AL, note])
+        spec = HEX_MODELS[model]
+        for key, label, unit in HEX_MODEL_FIELDS:
+            rows.append([tag, model, "Construction", label, spec[key], unit,
+                         SRC_AL, PAGE_AL, "Per exchanger"])
+    # M10-MFM thermal specification - PHX/B/05 only
+    for prop, val, unit in M10_UNIT:
+        rows.append(["PHX/B/05", "M10-MFM", "Thermal specification", prop, val, unit,
+                     SRC_ALTS, PAGE_ALTS, ""])
+    for prop, unit, hot, cold in M10_SPEC:
+        rows.append(["PHX/B/05", "M10-MFM", "Thermal specification - hot side", prop, hot, unit,
+                     SRC_ALTS, PAGE_ALTS, ""])
+        rows.append(["PHX/B/05", "M10-MFM", "Thermal specification - cold side", prop, cold, unit,
+                     SRC_ALTS, PAGE_ALTS, ""])
     for tag in [r[0] for r in HEX_ROWS][:1]:
         for prop, text in HEX_NOTES:
             rows.append([tag, "", "Data quality", prop, text, "", SRC_HEX, PAGE_HEX,
                          "Applies to every unit on this schedule"])
+        for prop, text in HEX_EXTRA_NOTES:
+            rows.append([tag, "", "Data quality", prop, text, "", SRC_AL, PAGE_AL,
+                         "Applies to the heat exchanger set"])
 
 # ---------------------------------------------------------------- pumps
 def build_pumps(rows):
@@ -419,10 +458,23 @@ def build_pumps(rows):
         add("Dimensions and weight", "Unit dimension (L x W x H)", "dim_lxwxh_mm", "mm")
         add("Dimensions and weight", "Weight", "weight_kg", "kg")
         add("Performance", "CHW flow rate", "chw_flow_l_s", "l/s")
+    model = PUMP_ROWS[0][idx["model"]]
+    for tag in PUMP_TAGS:
+        duty, alt = PUMP_DUTY[tag]
+        rows.append([tag, model, "Identification", "Duty or standby", duty, "",
+                     PUMP_SRC_SYS, PUMP_PAGE_SYS, ""])
+        rows.append([tag, model, "Identification", "Alternate reference", alt, "",
+                     PUMP_SRC_SYS, PUMP_PAGE_SYS,
+                     "Dash form used by SYSTEM DETAILS; the drawing schedule writes slashes"])
+        for comp, prop, val, unit, note in PUMP_SUBMITTAL:
+            rows.append([tag, model, comp, prop, val, unit, SRC_SUB, PAGE_SUB, note])
     for tag in [r[0] for r in PUMP_ROWS][:1]:
         for prop, text in PUMP_NOTES:
             rows.append([tag, "", "Data quality", prop, text, "", SRC_PUMP, PAGE_PUMP,
                          "Applies to every unit on this schedule"])
+        for prop, text in PUMP_SUB_NOTES:
+            rows.append([tag, "", "Data quality", prop, text, "", SRC_SUB, PAGE_SUB,
+                         "Applies to every unit on this submittal"])
 
 # ---------------------------------------------------------------- exhaust fans
 _FLOW = re.compile(r"^\s*([\d.]+)\s*[lL]\s*/\s*[sS]\s*$")
@@ -546,8 +598,16 @@ def build_pu(rows):
         add("Identification", "Quantity", "qty", "n")
         add("Performance", "System volume (as printed)", "system_volume", "",
             "Column is headed SYSTEM VOLUME but holds a pressure and a tank size")
+    tag = PU_ROWS[0][0]
+    rows.append([tag, "", "Identification", "Alternate reference", PU_ALT_TAG, "",
+                 PU_SRC_SYS, PU_PAGE_SYS,
+                 "Tag used by SYSTEM DETAILS; the drawing schedule writes PU/B/01"])
+    for comp, prop, val, unit, note in PU_COMPONENTS:
+        rows.append([tag, "", comp, prop, val, unit, PU_SRC_SYS, PU_PAGE_SYS, note])
     for prop, text in PU_NOTES:
-        rows.append([PU_ROWS[0][0], "", "Data quality", prop, text, "", SRC_PU, PAGE_PU, ""])
+        rows.append([tag, "", "Data quality", prop, text, "", SRC_PU, PAGE_PU, ""])
+    for prop, text in PU_EXTRA_NOTES:
+        rows.append([tag, "", "Data quality", prop, text, "", PU_SRC_SYS, PU_PAGE_SYS, ""])
 
 # ---------------------------------------------------------------- DX splits
 def build_dx(rows):
@@ -574,6 +634,38 @@ def build_dx(rows):
     for prop, text in DX_NOTES:
         rows.append([DX_ROWS[0][0], "", "Data quality", prop, text, "", SRC_DX, PAGE_DX,
                      "Applies to the whole schematic"])
+
+# ---------------------------------------------------------------- generators
+GEN_LABELS = [
+ ("location_info", "Location info", ""), ("main_category", "Main category", ""),
+ ("sub_category", "Sub category", ""), ("manufacturer", "Manufacturer", ""),
+ ("model_number", "Model number", ""), ("serial_number", "Serial number", ""),
+ ("equipment_name", "Equipment name", ""), ("building_name", "Building name", ""),
+ ("floor", "Floor", ""), ("room_no", "Room no.", ""),
+ ("date_installed", "Date installed", ""), ("quantity", "Quantity", "n"),
+ ("pm_procedure_description", "PM procedure description", ""),
+ ("procedure_document", "Procedure document", ""),
+ ("warranty", "Warranty", ""), ("warranty_expires", "Warranty expires", ""),
+ ("warranty_notes", "Warranty notes", ""),
+ ("recommended_spare_parts", "Recommended spare parts", ""),
+]
+
+def build_gen(rows):
+    idx = {c: i for i, c in enumerate(GEN_COLS)}
+    for r in GEN_ROWS:
+        tag = r[idx["asset_tag"]]; model = r[idx["model_number"]]
+        for key, label, unit in GEN_LABELS:
+            comp = ("Asset register" if key in ("location_info", "main_category", "sub_category",
+                                                "equipment_name", "quantity")
+                    else "Identification" if key in ("manufacturer", "model_number",
+                                                     "serial_number")
+                    else "Location" if key in ("building_name", "floor", "room_no")
+                    else "Maintenance" if key in ("pm_procedure_description", "procedure_document",
+                                                  "recommended_spare_parts", "date_installed")
+                    else "Warranty")
+            rows.append([tag, model, comp, label, r[idx[key]], unit, SRC_GEN, PAGE_GEN, ""])
+    for prop, text in GEN_NOTES:
+        rows.append([GEN_ROWS[0][0], "", "Data quality", prop, text, "", SRC_GEN, PAGE_GEN, ""])
 
 # ---------------------------------------------------------------- write
 def sheet(wb, name, rows, subtitle):
@@ -641,14 +733,16 @@ for name, desc in [
   ("Climate Control Units", "Museum Climate Controls MCG-10P humidity control unit with its VCB1000 "
           "blower option and AF4 intake air filter."),
   ("FCU", "28 Euroclima selection sheets covering positions on Basement, 1F and 2F."),
-  ("Heat Exchangers", "4 Alfa Laval counter-current plate heat exchangers, PHX/B/01 to PHX/B/04, "
-            "from the SCHEDULE OF HEAT EXCHANGER."),
-  ("Pumps", "4 Armstrong horizontal split case chilled water pumps, CHWP/B/01 to CHWP/B/04, from "
-            "the SCHEDULE OF PUMPS on the same drawing."),
+  ("Heat Exchangers", "5 Alfa Laval plate heat exchangers, PHX/B/01 to PHX/B/05, with the "
+            "manufacturer's construction data and the M10-MFM thermal specification."),
+  ("Pumps", "4 Armstrong horizontal split case chilled water pumps, CHWP/B/01 to CHWP/B/04, with "
+            "the full Armstrong submittal - pump, motor, seal, materials and dimensions."),
   ("Exhaust Fans", "39 exhaust fans - mostly Nuaire, two Colasit - from the supplied schedule "
             "spreadsheet."),
-  ("Pressurization Unit", "PU/B/01, Armstrong 3750 2 EM-S, from the schedule on the same drawing "
-            "as the heat exchangers and pumps."),
+  ("Generators", "Standby diesel generators from the GENERATOR ASSET LIST. One complete row - the "
+            "supplied image is cropped."),
+  ("Pressurization Unit", "PU/B/01 (PRO1) - Armstrong 3750 2 EM-S pressurisation unit plus a "
+            "Reflex DE10 1000 litre expansion tank."),
   ("CAV Units", "Constant air volume boxes across six schedules on 1F and the basement."),
   ("VAV Units", "Variable air volume boxes across six schedules on 1F and the basement."),
   ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, read off the schematic riser."),
@@ -736,6 +830,22 @@ for line in [
   "Five further rows carrying out-of-range box numbers were excluded on instruction.",
   "The fire damper and supply/return grille schedules on the same images were struck through in "
   "red and were read as cancelled, so they are not in this workbook.",
+  "PHX/B/05 exists only on the Alfa Laval data and the SYSTEM DETAILS schedule - the drawing "
+  "schedule stops at PHX/B/04. It is a 300 kW M10-MFM described as the 'Main HEX'. SYSTEM DETAILS "
+  "states one hot-side temperature across all five rows (15.5 in / 6.5 out) but the M10-MFM "
+  "specification gives 50.0 in / 20.0 out. Both are recorded; the conflict is unresolved.",
+  "SYSTEM DETAILS writes the pump tags with dashes (CHWP-B-01) and tags the pressurisation unit "
+  "PRO1, where the drawing schedules write CHWP/B/01 and PU/B/01. The slash forms are used as the "
+  "Equipment Tag because they match the rest of the workbook; the alternates are recorded as an "
+  "'Alternate reference' property on each unit. Confirm which the BMS uses.",
+  "The Armstrong pump submittal is dimensioned in inches and pounds and is marked NOT for "
+  "CONSTRUCTION. Its weight of 1874 lb converts to 850 kg against the drawing schedule's 843 kg. "
+  "Its letter callouts (D, HA, HB, ...) are keyed to an outline drawing that does not say which "
+  "feature each measures.",
+  "The GENERATOR ASSET LIST image is cropped partway through its second row, so the Generators "
+  "sheet holds one complete row and is a sample rather than the inventory. Its ASSET TAG NUMBER "
+  "column reads 'GENERATOR SET' - the same text as the equipment name - so it does not identify "
+  "an individual machine; only the serial number does.",
   "These are equipment selection and as-built documents, not nameplate photographs. Where the "
   "installed plant differs from the selection, the installed plant governs.",
 ]:
@@ -756,6 +866,13 @@ for f, pages, what in [
    "and air flow only"),
   ("CAV and VAV schedules", "6 + 6 schedules", "Supplied as drawing images in chat, title blocks "
    "cropped. Each schedule is a separate source; the Page column names which."),
+  ("Armstrong submittal", "TENDER301358.1 rev3, p14/22", "Full nameplate for the chilled water "
+   "pumps - pump design, WEG motor, mechanical seal, materials and imperial dimensions"),
+  ("Alfa Laval PHE data", "2 sheets", "Construction comparison for T20-BFG and M10-MFM, and the "
+   "M10-MFM thermal specification for PHX/B/05"),
+  ("SYSTEM DETAILS", "Tables 3.1-3.3", "Duty/standby split for the pumps and heat exchangers, and "
+   "the pressurisation unit broken into its two components"),
+  ("GENERATOR ASSET LIST", "image, cropped", "Asset register row for a standby diesel generator"),
   ("DX split system schematic", "image", "Riser diagram giving the room each DX unit serves, its "
    "design condition and a room cooling load"),
 ]:
@@ -810,6 +927,13 @@ sheet(wb, "Exhaust Fans", rows,
       "manufacturer and air flow only - no location, motor rating or static pressure. Two "
       "identifier shapes are in use; both were kept as written.")
 n_ef = len(rows)
+
+rows = []; build_gen(rows)
+sheet(wb, "Generators", rows,
+      "Standby diesel generators from the GENERATOR ASSET LIST. The supplied image is cropped "
+      "partway through the second row, so only one complete row is transcribed - treat this as a "
+      "sample, not the generator inventory.")
+n_gen = len(rows)
 
 rows = []; build_pu(rows)
 sheet(wb, "Pressurization Unit", rows,
@@ -901,7 +1025,8 @@ uw.sheet_view.showGridLines = False
 
 wb.save(OUT)
 print("saved", OUT)
-tot = (n_ahu+n_ccu+n_cli+n_fcu+n_hex+n_pump+n_ef+n_pu+n_cav+n_vav+n_dx)
+tot = (n_ahu+n_ccu+n_cli+n_fcu+n_hex+n_pump+n_ef+n_gen+n_pu+n_cav+n_vav+n_dx)
 print("AHU %d | CCU %d | Climate %d | FCU %d | HEX %d | Pumps %d | EF %d"
       % (n_ahu, n_ccu, n_cli, n_fcu, n_hex, n_pump, n_ef))
-print("PU %d | CAV %d | VAV %d | DX %d | total %d" % (n_pu, n_cav, n_vav, n_dx, tot))
+print("Gen %d | PU %d | CAV %d | VAV %d | DX %d | total %d"
+      % (n_gen, n_pu, n_cav, n_vav, n_dx, tot))
