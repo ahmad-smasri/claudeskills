@@ -66,11 +66,12 @@ equipment itself.
 
 Per the instruction not to assume a unit shares its siblings' metadata:
 
-- **FCU 2F (2 selection sheets, `2F/06-29` and `2F/30-33`)** — the 2F datasheets
-  number their FCUs `06–33`, but the ontology numbers 2F FCUs `001–005, 034–062`.
-  The other 26 selection sheets (Basement, 1F, 2F 01–05) landed on 94 units; only
-  the 2F `06–33` block needs a confirmed numbering offset before it can be
-  written. *(The 43 ontology FCUs left blank are those no selection sheet names.)*
+- **FCU 2F (2 selection sheets, `2F/06-29` and `2F/30-33`) — deliberately skipped.**
+  The 2F datasheets number their FCUs `06–33`, but the ontology numbers 2F FCUs
+  `001–005, 034–062`. The user confirmed these are **different FCUs, not a
+  numbering offset**, so no metadata is written for them. The other 26 selection
+  sheets (Basement, 1F, 2F 01–05) landed on 94 units. *(The ontology 2F FCUs
+  034–062 have no selection sheet and are left blank.)*
 - **Closed Control Units (5)** — design tags `CC/B/01…09`; the ontology's CCUs are
   the BMS-tagged orphans `CCU_8081…8086`. Different naming systems, and counts
   differ (9 vs 6). Needs a mapping.
