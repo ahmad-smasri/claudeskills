@@ -20,7 +20,9 @@ from pressurization import SRC_SYS as PU_SRC_SYS, PAGE_SYS as PU_PAGE_SYS
 from generator import GEN_COLS, GEN_ROWS, GEN_NOTES, SRC_GEN, PAGE_GEN
 from cav import CAV_COLS, CAV_ROWS, CAV_NOTES, SRC_CAV
 from vav import VAV_COLS, VAV_ROWS, VAV_NOTES, SRC_VAV, COVERS_OVERRIDE
-from dx import DX_COLS, DX_ROWS, DX_NOTES, SRC_DX, PAGE_DX, OD_STANDBY
+from dx import (DX_COLS, DX_ROWS, DX_NOTES, SRC_DX, PAGE_DX, OD_STANDBY,
+                DX_SCHEDULE, DX_SCHEDULE_NOTES, outdoor_count)
+from dx import SRC_SYS as DX_SRC_SYS, PAGE_SYS as DX_PAGE_SYS
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from units_map import UNIT_MAP, resolve, convert
 
@@ -614,8 +616,10 @@ def build_dx(rows):
     idx = {c: i for i, c in enumerate(DX_COLS)}
     for r in DX_ROWS:
         tag = r[idx["indoor_ref"]]; od = r[idx["outdoor_ref"]]
+        sched = DX_SCHEDULE.get(tag)
+        model = sched[1] if sched else ""
         def add(comp, prop, val, unit, note=""):
-            rows.append([tag, "", comp, prop, val, unit, SRC_DX, PAGE_DX, note])
+            rows.append([tag, model, comp, prop, val, unit, SRC_DX, PAGE_DX, note])
         add("Identification", "Level", r[idx["level"]], "")
         add("Identification", "Duty or standby",
             "STANDBY" if r[idx["standby"]] else "DUTY", "",
@@ -628,12 +632,41 @@ def build_dx(rows):
             + ("; stated as %s" % r[idx["cooling_basis"]]
                if r[idx["cooling_basis"]] != "not stated"
                else "; the schematic does not say whether this is total or sensible"))
+        n_od = outdoor_count(sched[2]) if sched else 1
         add("Refrigeration", "Matched condensing unit", od, "",
-            "Paired by matching number, not stated on the drawing"
-            + (" - this condenser is marked (ST.BY)" if od in OD_STANDBY else ""))
+            ("Paired by matching number, not stated on the drawing"
+             + (" - this condenser is marked (ST.BY)" if od in OD_STANDBY else ""))
+            if n_od == 1 else
+            ("The equipment schedule gives this unit an X2 outdoor model, so it takes TWO "
+             "condensers. The single matching number is not the whole pairing - the pipework "
+             "layout plan is needed."))
+        if sched:
+            loc, indoor, outdoor, speeds = sched
+            rows.append([tag, model, "Identification", "Location (equipment schedule)", loc, "",
+                         DX_SRC_SYS, DX_PAGE_SYS,
+                         "Coarser than the schematic's room; both are recorded"])
+            rows.append([tag, model, "Identification", "Indoor unit model", indoor, "",
+                         DX_SRC_SYS, DX_PAGE_SYS, ""])
+            rows.append([tag, model, "Refrigeration", "Outdoor unit model", outdoor, "",
+                         DX_SRC_SYS, DX_PAGE_SYS,
+                         "X2 suffix - two condensers per indoor unit" if n_od == 2 else ""])
+            rows.append([tag, model, "Refrigeration", "Outdoor units required", n_od, "n",
+                         DX_SRC_SYS, DX_PAGE_SYS,
+                         "Read from the X2 suffix on the outdoor model" if n_od == 2 else
+                         "No multiplier on the outdoor model"])
+            rows.append([tag, model, "Air", "Number of speeds", speeds, "n",
+                         DX_SRC_SYS, DX_PAGE_SYS, ""])
+        else:
+            rows.append([tag, "", "Data quality", "Model not stated",
+                         "This unit is on the schematic but not on SYSTEM DETAILS Table 3.6, "
+                         "which stops at DX/B/16. No indoor or outdoor model is available for it.",
+                         "", DX_SRC_SYS, DX_PAGE_SYS, ""])
     for prop, text in DX_NOTES:
         rows.append([DX_ROWS[0][0], "", "Data quality", prop, text, "", SRC_DX, PAGE_DX,
                      "Applies to the whole schematic"])
+    for prop, text in DX_SCHEDULE_NOTES:
+        rows.append([DX_ROWS[0][0], "", "Data quality", prop, text, "",
+                     DX_SRC_SYS, DX_PAGE_SYS, "Applies to the DX set"])
 
 # ---------------------------------------------------------------- generators
 GEN_LABELS = [
@@ -739,13 +772,14 @@ for name, desc in [
             "the full Armstrong submittal - pump, motor, seal, materials and dimensions."),
   ("Exhaust Fans", "39 exhaust fans - mostly Nuaire, two Colasit - from the supplied schedule "
             "spreadsheet."),
-  ("Generators", "Standby diesel generators from the GENERATOR ASSET LIST. One complete row - the "
-            "supplied image is cropped."),
+  ("Generators", "One standby diesel generator from the GENERATOR ASSET LIST, a multi-equipment "
+            "asset register."),
   ("Pressurization Unit", "PU/B/01 (PRO1) - Armstrong 3750 2 EM-S pressurisation unit plus a "
             "Reflex DE10 1000 litre expansion tank."),
   ("CAV Units", "Constant air volume boxes across six schedules on 1F and the basement."),
   ("VAV Units", "Variable air volume boxes across six schedules on 1F and the basement."),
-  ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, read off the schematic riser."),
+  ("DX Units", "21 DX split systems, DX/B/01-20 and DX/RP/21, from the schematic riser and the "
+            "SYSTEM DETAILS equipment schedule, which names models for 16 of them."),
   ("Units", "Every source unit, the Dar Cairo unit it maps to, the factor applied, and whether "
             "Dar Cairo uses that unit at all."),
 ]:
@@ -814,9 +848,16 @@ for line in [
   "3750 2 EM-S). It was not asked for and is not in this workbook; say the word and it gets a sheet.",
   "On the DX sheet the cooling figure is the load printed on the ROOM box, not a per-unit "
   "capacity. Rooms served by two or three units are not split by the schematic, so do not write "
-  "it as brick:coolingCapacity on a unit without the equipment schedule. Indoor-to-outdoor "
-  "pairing is by matching number, which is the drawing's convention rather than a statement on "
-  "it - and DX/OD/05 is marked (ST.BY) while DX/B/05 is not.",
+  "it as brick:coolingCapacity on a unit without a per-unit duty.",
+  "The DX indoor-to-outdoor pairing recorded from the schematic's matching numbers is NOT "
+  "reliable. SYSTEM DETAILS Table 3.6 shows DX/B/03, 04, 08, 09 and 14 each take an X2 outdoor "
+  "model - two condensers per indoor unit - so those five need two DX/OD tags each and the "
+  "numbering does not say which two. The pipework layout plan is still needed. DX/OD/05 is also "
+  "marked (ST.BY) while DX/B/05 is not.",
+  "Table 3.6 covers DX/B/01 to DX/B/16 only, so DX/B/17, 18, 19, 20 and DX/RP/21 still carry no "
+  "model. DX/B/08 reads PUHZ-RP2S0X2 where its twin DX/B/09 reads PUHZ-RP250X2 - almost certainly "
+  "a misprint, recorded as printed. The PEAD, PCA and PUHZ prefixes are Mitsubishi Electric "
+  "Mr. Slim naming, but no document states a manufacturer, so none was inferred.",
   "CAV and VAV references are often ranges. A range is expanded into individual box tags in the "
   "'Boxes covered' row only when its box count matches the stated quantity; where they disagree "
   "the row becomes a Data quality finding instead. Three disagree: VAV/1F/S15/012, "
@@ -842,10 +883,11 @@ for line in [
   "CONSTRUCTION. Its weight of 1874 lb converts to 850 kg against the drawing schedule's 843 kg. "
   "Its letter callouts (D, HA, HB, ...) are keyed to an outline drawing that does not say which "
   "feature each measures.",
-  "The GENERATOR ASSET LIST image is cropped partway through its second row, so the Generators "
-  "sheet holds one complete row and is a sample rather than the inventory. Its ASSET TAG NUMBER "
-  "column reads 'GENERATOR SET' - the same text as the equipment name - so it does not identify "
-  "an individual machine; only the serial number does.",
+  "The GENERATOR ASSET LIST is a multi-equipment asset register. The row cropped off below the "
+  "generator belongs to different equipment, so the single row on the Generators sheet is the "
+  "complete record for this machine. Its ASSET TAG NUMBER column reads 'GENERATOR SET' - the same "
+  "text as the equipment name - so it does not identify an individual machine; only the serial "
+  "number does.",
   "These are equipment selection and as-built documents, not nameplate photographs. Where the "
   "installed plant differs from the selection, the installed plant governs.",
 ]:
@@ -870,9 +912,10 @@ for f, pages, what in [
    "pumps - pump design, WEG motor, mechanical seal, materials and imperial dimensions"),
   ("Alfa Laval PHE data", "2 sheets", "Construction comparison for T20-BFG and M10-MFM, and the "
    "M10-MFM thermal specification for PHX/B/05"),
-  ("SYSTEM DETAILS", "Tables 3.1-3.3", "Duty/standby split for the pumps and heat exchangers, and "
-   "the pressurisation unit broken into its two components"),
-  ("GENERATOR ASSET LIST", "image, cropped", "Asset register row for a standby diesel generator"),
+  ("SYSTEM DETAILS", "Tables 3.1-3.3, 3.6", "Duty/standby split for the pumps and heat "
+   "exchangers, the pressurisation unit broken into its two components, and indoor/outdoor models "
+   "for DX/B/01 to DX/B/16"),
+  ("GENERATOR ASSET LIST", "image", "Asset register row for a standby diesel generator"),
   ("DX split system schematic", "image", "Riser diagram giving the room each DX unit serves, its "
    "design condition and a room cooling load"),
 ]:
@@ -930,9 +973,9 @@ n_ef = len(rows)
 
 rows = []; build_gen(rows)
 sheet(wb, "Generators", rows,
-      "Standby diesel generators from the GENERATOR ASSET LIST. The supplied image is cropped "
-      "partway through the second row, so only one complete row is transcribed - treat this as a "
-      "sample, not the generator inventory.")
+      "One standby diesel generator from the GENERATOR ASSET LIST, a multi-equipment asset "
+      "register. The row cropped off below it belongs to different equipment, so this is the "
+      "complete record for this machine.")
 n_gen = len(rows)
 
 rows = []; build_pu(rows)
@@ -957,8 +1000,10 @@ n_vav = len(rows)
 
 rows = []; build_dx(rows)
 sheet(wb, "DX Units", rows,
-      "21 DX split systems read off the schematic riser. The cooling figure is the load printed on "
-      "each room box, not a per-unit capacity - rooms served by two or three units are not split.")
+      "21 DX split systems from the schematic riser, with indoor and outdoor models from SYSTEM "
+      "DETAILS Table 3.6 for DX/B/01 to DX/B/16. The cooling figure is the load printed on each "
+      "room box, not a per-unit capacity. Five units take an X2 outdoor model - two condensers "
+      "each - so the schematic's matching-number pairing does not describe them.")
 n_dx = len(rows)
 
 # ---------------------------------------------------------------- Units sheet

@@ -19,10 +19,10 @@ GEN_ROWS = [
 ]
 
 GEN_NOTES = [
- ("Source is truncated", "The supplied image cuts off partway through the second data row - only "
-  "'QATAR...' and '12 MONTHS FROM...' are visible on it - and any rows below are outside the "
-  "image entirely. One complete row is transcribed. The full asset list is still needed; treat "
-  "this sheet as a sample, not the generator inventory."),
+ ("One generator, not a truncated list", "The image cuts off partway through the row below, but "
+  "the user has confirmed that row belongs to a different piece of equipment. The asset list is a "
+  "multi-equipment register rather than a generator inventory, so the single row transcribed here "
+  "is the complete record for this generator."),
  ("Asset tag is not unique", "The ASSET TAG NUMBER column holds the words 'GENERATOR SET', the "
   "same text as the EQUIPMENT NAME column. It does not identify one machine, so it cannot serve "
   "as the join key to the BMS the way every other tag in this workbook does. Ask for the real "

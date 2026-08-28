@@ -55,9 +55,10 @@ DX_NOTES = [
   "indoor unit. Where a room is served by two or three units the schematic does not say how the "
   "load divides, so the figure is recorded against every unit serving that room as a room load. "
   "Do not write it as a per-unit brick:coolingCapacity without the equipment schedule."),
- ("Indoor to outdoor pairing", "The schematic numbers condensers to match their indoor units, so "
-  "DX/B/nn is paired with DX/OD/nn here. That is the numbering convention, not a statement on the "
-  "drawing, and the pipe routing crosses in places. Confirm against the pipework layout plan."),
+ ("Indoor to outdoor pairing - superseded", "The schematic numbers condensers to match their "
+  "indoor units, which suggested DX/B/nn pairs with DX/OD/nn. SYSTEM DETAILS Table 3.6 shows that "
+  "does not hold for every unit - five take an X2 outdoor model, meaning two condensers each. See "
+  "the pairing correction note against the equipment schedule."),
  ("Standby marking disagreement", "DX/OD/05 is marked (ST.BY) at the condenser row, but DX/B/05 "
   "carries no standby marking at the indoor row. One of the two is wrong; the drawing does not "
   "say which. Recorded as printed on each side."),
@@ -67,4 +68,57 @@ DX_NOTES = [
   "LAYOUT PLAN (TYPICAL)'. No condensate route is scheduled on this drawing."),
  ("Scope", "The schematic states no model, no make, no electrical data and no air flow for any "
   "DX unit. Those were not inferred - the equipment schedule is still needed."),
+]
+
+
+# ---------------------------------------------------------------------------
+# SYSTEM DETAILS Table 3.6 - Split DX Units Equipment Schedule.
+# Covers DX/B/01 to DX/B/16 only; DX/B/17 to DX/B/20 and DX/RP/21 are not on it.
+# This is the first source to name any DX model.
+SRC_SYS = "SYSTEM DETAILS (image supplied in chat)"
+PAGE_SYS = "Table 3.6 - Split DX Units Equipment Schedule"
+
+# tag: (location as the table writes it, indoor model, outdoor model, number of speeds)
+DX_SCHEDULE = {
+ "DX/B/01": ("MV Room, HV Room",                  "PEAD-RP35",  "PUHZ-RP35",     3),
+ "DX/B/02": ("MV Room, HV Room",                  "PEAD-RP35",  "PUHZ-RP35",     3),
+ "DX/B/03": ("Transformer Room",                  "PEAD-RP400", "PUHZ-RP200X2",  2),
+ "DX/B/04": ("Transformer Room",                  "PEAD-RP400", "PUHZ-RP200X2",  2),
+ "DX/B/05": ("MV Room, HV Room",                  "PEAD-RP35",  "PUHZ-RP35",     3),
+ "DX/B/06": ("MV Room, HV Room",                  "PEAD-RP35",  "PUHZ-RP35",     3),
+ "DX/B/07": ("MV Room, HV Room",                  "PEAD-RP35",  "PUHZ-RP35",     3),
+ "DX/B/08": ("UPS Room/Emergency Battery Room",   "PEAD-RP500", "PUHZ-RP2S0X2",  2),
+ "DX/B/09": ("UPS Room/Emergency Battery Room",   "PEAD-RP500", "PUHZ-RP250X2",  2),
+ "DX/B/10": ("Security Equipment Room",           "PEAD-RP125", "PUHZ-RP125",    3),
+ "DX/B/11": ("Irrigation Pump Room",              "PCA-RP71",   "PUHZ-RP71",     3),
+ "DX/B/12": ("Security Store/Security UPS",       "PEAD-RP50",  "PUHZ-RP50",     3),
+ "DX/B/13": ("Trash Chamber",                     "PCA-RP71",   "PUHZ-RP71",     3),
+ "DX/B/14": ("Transformer Room",                  "PEAD-RP400", "PUHZ-RP200X2",  2),
+ "DX/B/15": ("Trash Chamber",                     "PCA-RP71",   "PUHZ-RP71",     3),
+ "DX/B/16": ("MV Room, HV Room",                  "PEAD-RP35",  "PUHZ-RP35",     3),
+}
+
+# An outdoor model ending X2 means two condensers serve that one indoor unit.
+def outdoor_count(model):
+    return 2 if model.upper().endswith("X2") else 1
+
+DX_SCHEDULE_NOTES = [
+ ("Pairing correction", "The schematic numbers condensers to match their indoor units, and this "
+  "workbook previously recorded DX/B/nn as paired one-to-one with DX/OD/nn on that basis. "
+  "Table 3.6 shows that is not right for every unit: DX/B/03, 04 and 14 each take a "
+  "PUHZ-RP200X2 and DX/B/08 and 09 each take a PUHZ-RP250X2, where the X2 suffix means two "
+  "condensers per indoor unit. Those five units need two DX/OD tags each, and the schematic's "
+  "numbering does not say which two. The pipework layout plan is still needed."),
+ ("Schedule is partial", "Table 3.6 covers DX/B/01 to DX/B/16. DX/B/17, 18, 19, 20 and DX/RP/21 "
+  "are on the schematic but not on this schedule, so they still carry no model."),
+ ("Location granularity", "Table 3.6 writes 'MV Room, HV Room' for DX/B/01, 02, 05, 06, 07 and "
+  "16, where the schematic separates MV ROOM (01, 02), HV ROOM (05, 06) and MV ROOM 3 (07, 16). "
+  "The two do not conflict - the schedule is simply coarser. The schematic's room is kept as the "
+  "served space and the schedule's text is recorded alongside it."),
+ ("Probable typo", "DX/B/08 reads PUHZ-RP2S0X2. DX/B/09 has the same indoor unit in the same room "
+  "and reads PUHZ-RP250X2, so the 'S' is almost certainly a misprint for '5'. Recorded as "
+  "printed; confirm before ordering."),
+ ("Manufacturer not stated", "The PEAD, PCA and PUHZ prefixes are Mitsubishi Electric Mr. Slim "
+  "naming, but Table 3.6 has no manufacturer column and no other document supplied names one. "
+  "No manufacturer property was created from the model prefix alone."),
 ]

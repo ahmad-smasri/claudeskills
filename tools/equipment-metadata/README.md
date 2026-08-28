@@ -73,15 +73,26 @@ Where two documents tag the same unit differently (`CHWP/B/01` vs `CHWP-B-01`,
 rest of the workbook, and the other is recorded as an `Alternate reference`
 property rather than dropped.
 
-## DX schematic
+## DX schematic and equipment schedule
 
 The cooling figure is printed on the **room** box, so it is a room load, not a
 per-unit capacity — a room served by three units carries one figure the schematic
 does not split. It is recorded as "Room cooling load" against each unit serving
-the room, and must not become `brick:coolingCapacity` on a unit without the
-equipment schedule. Indoor-to-outdoor pairing follows the drawing's matching-number
-convention rather than any statement on it, and `DX/OD/05` is marked `(ST.BY)`
-while `DX/B/05` is not.
+the room, and must not become `brick:coolingCapacity` without a per-unit duty.
+
+**The matching-number pairing is not reliable.** The schematic numbers condensers
+to match their indoor units, which suggested `DX/B/nn` ↔ `DX/OD/nn`. SYSTEM DETAILS
+Table 3.6 disproves that for five units: `DX/B/03`, `04` and `14` take a
+`PUHZ-RP200X2`, and `DX/B/08` and `09` take a `PUHZ-RP250X2` — the `X2` suffix
+means two condensers per indoor unit. Those five need two `DX/OD` tags each and the
+numbering does not say which two. `DX/OD/05` is also marked `(ST.BY)` while
+`DX/B/05` is not.
+
+Table 3.6 covers `DX/B/01`–`DX/B/16`, so `DX/B/17`–`20` and `DX/RP/21` still carry
+no model. `DX/B/08` reads `PUHZ-RP2S0X2` where its twin `DX/B/09` reads
+`PUHZ-RP250X2` — recorded as printed. The `PEAD`, `PCA` and `PUHZ` prefixes are
+Mitsubishi Electric Mr. Slim naming, but no document names a manufacturer, so none
+was created from the prefix.
 
 ## Rebuilding
 
