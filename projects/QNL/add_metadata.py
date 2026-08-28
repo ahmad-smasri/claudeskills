@@ -108,7 +108,38 @@ def NORMALISE(family, tag):
             seg = "RP" if m.group(1) == "RP" else m.group(1)
             return "entity:QNL_EF_%s%02d" % (seg, int(m.group(2)))
         return None
-    return None                                # FCU, CCU, CLIMATE, PU: no join
+    return None                                # CCU, CLIMATE, PU: no join
+
+
+def fcu_units(tag):
+    """An FCU Euroclima selection-sheet tag names one or more BMS FCUs, as a
+    level plus singles, comma-lists and hyphen-ranges: 'B/07', 'B/03,04',
+    '1F/04-54'. Expand to the ontology FCU entities it covers. 2F tags use a
+    numbering that does not correspond to the ontology's 2F FCUs, so they expand
+    to entities that do not exist and fall through to the unmatched report."""
+    t = re.sub(r"\(.*?\)", "", tag).replace("FCU/", "").replace("FCU", "").strip()
+    m = re.match(r"(1F|2F|B)\s*/?\s*(.*)$", t)
+    if not m:
+        return []
+    lvl, rest = m.group(1), m.group(2).strip()
+    nums = []
+    for part in rest.split(","):
+        part = part.strip()
+        rng = re.match(r"(\d+)\s*-\s*(\d+)$", part)
+        if rng:
+            nums += list(range(int(rng.group(1)), int(rng.group(2)) + 1))
+        elif part.isdigit():
+            nums.append(int(part))
+    return ["entity:QNL_FCU_%s_%03d" % (lvl, n) for n in nums]
+
+
+def EXPAND(family, tag):
+    """A datasheet tag -> the ontology entity id(s) it covers. One for most
+    families; an FCU selection sheet covers several units."""
+    if family == "FCU":
+        return fcu_units(tag)
+    eid = NORMALISE(family, tag)
+    return [eid] if eid else []
 
 
 SHEET_FAMILY = {
@@ -194,7 +225,7 @@ def build(base_path, meta_path, out_dir):
         ti, ci, pi = h["Equipment Tag"], h["Component"], h["Property"]
         vi, ui = h["Value (Dar Cairo)"], h["Unit (QUDT)"]
 
-        matched_tags, unmatched_tags = set(), set()
+        matched, unmatched = {}, set()   # tag -> [entity ids] ; {tags}
         for r in rows[hi + 1:]:
             if not r or not r[ti]:
                 continue
@@ -204,44 +235,49 @@ def build(base_path, meta_path, out_dir):
             pred, scope, _ = classify(comp, prop)
             if scope != "core" or not pred:
                 continue
-            eid = NORMALISE(family, tag)
-            if eid is None or eid not in equip:
-                unmatched_tags.add(tag)
+            eids = [e for e in EXPAND(family, tag) if e in equip]
+            if not eids:
+                unmatched.add(tag)
                 continue
-            matched_tags.add(tag)
-
-            # owner: a component sub-entity, or the equipment itself
-            spec = COMPONENTS.get(family, {}).get(comp)
-            if spec:
-                suffix, cls, parent_suffix = spec
-                owner = sub_entity(eid, suffix, cls, parent_suffix)
-                owner_cls = cls
-            else:
-                owner, owner_cls = eid, equip_class[eid]
+            matched[tag] = eids
 
             val = value_str(r[vi] if r[vi] is not None else r[h.get("Value (as printed)", vi)])
             unit = str(r[ui]).strip() if r[ui] else "unit:UNITLESS"
 
-            if is_literal(pred):
+            # one selection sheet can name several identical units - write to each
+            for eid in eids:
+                spec = COMPONENTS.get(family, {}).get(comp)
                 if spec:
-                    subentities[owner]["lits"].append((pred, val))
+                    suffix, cls, parent_suffix = spec
+                    owner = sub_entity(eid, suffix, cls, parent_suffix)
+                    owner_cls = cls
                 else:
-                    key = (owner, pred, val)
-                    if key not in lit_seen:
-                        add_props(host_row[owner], "s", [(pred, val)])
-                        lit_seen.add(key)
-            else:
-                key = (owner, pred, val, unit)
-                if key not in qty_seen:
-                    new_rows.append(row(owner, owner_cls, pred, "<blanknode>", "<blanknode>",
-                                        [("o", "brick:value", val),
-                                         ("o", "brick:hasUnit", unit)]))
-                    qty_seen.add(key)
+                    owner, owner_cls = eid, equip_class[eid]
 
-        for t in sorted(matched_tags):
-            report.append((sheet, t, NORMALISE(family, t), "matched", ""))
-        for t in sorted(unmatched_tags):
+                if is_literal(pred):
+                    if spec:
+                        if (pred, val) not in subentities[owner]["lits"]:
+                            subentities[owner]["lits"].append((pred, val))
+                    else:
+                        key = (owner, pred, val)
+                        if key not in lit_seen:
+                            add_props(host_row[owner], "s", [(pred, val)])
+                            lit_seen.add(key)
+                else:
+                    key = (owner, pred, val, unit)
+                    if key not in qty_seen:
+                        new_rows.append(row(owner, owner_cls, pred, "<blanknode>", "<blanknode>",
+                                            [("o", "brick:value", val),
+                                             ("o", "brick:hasUnit", unit)]))
+                        qty_seen.add(key)
+
+        for t in sorted(matched):
+            report.append((sheet, t, ";".join(matched[t]), "matched",
+                           "%d unit(s)" % len(matched[t])))
+        for t in sorted(unmatched):
             report.append((sheet, t, "", "unmatched",
+                           "2F numbering does not match the ontology's 2F FCUs"
+                           if family == "FCU" else
                            "no ontology entity for this tag" if family in
                            ("EF", "CAV", "VAV", "DX", "HEX", "PUMP")
                            else "family tags do not correspond to ontology tags"))

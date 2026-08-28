@@ -6,9 +6,10 @@ and QF HQ use. Built by `add_metadata.py` from the pre-metadata ontology
 (`sources/QNL_Ontology_pre_metadata.xlsx`).
 
 - **In:** 8,673 triples (no metadata) + the 16-predicate metadata workbook.
-- **Out:** 9,274 triples. **+601 rows**: 95 component sub-entities
-  (`brick:hasPart`), 506 quantity triples, and 324 literal properties
-  (271 on equipment, 53 on components) that ride existing rows.
+- **Out:** 9,650 triples. **+977 rows**: 95 component sub-entities
+  (`brick:hasPart`), 882 quantity triples, and 512 literal properties
+  (459 on equipment, 53 on components) that ride existing rows.
+- **269 datasheet tags placed across 9 families**, filling 337 equipment units.
 - **Validator:** 0 new errors, 0 new warnings. The 574 errors / 186 warnings are
   all pre-existing in the base (the accepted `para:IFC_ID has no value` state and
   the accepted `brick:CRAC` / deprecated CHW-temp-sensor aliases).
@@ -47,13 +48,14 @@ Dar Cairo. Unit-level properties (a VAV's air flow and reheat, an FCU's capacity
 a CCU's performance, a pump's duty, a heat exchanger's duty) attach to the
 equipment itself.
 
-## Coverage — 243 datasheet tags placed, 8 families
+## Coverage — 269 datasheet tags placed, 9 families
 
 | Family | Matched | Notes |
 |---|---|---|
 | AHU | 15 / 15 | coil, aux coil, electric coil, supply+return fan, both motors |
+| FCU | 94 units / 137 | one Euroclima selection sheet names several FCUs (`B/03,04`, `1F/04-54`); its model/capacity/flow/power is written to each. Basement + 1F + 2F 01–05. |
 | DX | 16 / 16 | indoor model on the unit, outdoor model on `_OD`, stage count |
-| Heat Exchangers | 5 / 5 | `PHX/B/0n → HEX0n` by index (prefixes differ; **confirm**) |
+| Heat Exchangers | 5 / 5 | `PHX/B/0n → HEX0n` by index (confirmed) |
 | Pumps | 4 / 4 | `CHWP/B/0n → CHW_P0n`; motor size/speed on `_Motor` |
 | Generators | 1 / 1 | `GENERATOR SET → ELEC_Gen` |
 | Exhaust Fans | 27 / 39 | `TEF_/KEF_` direct, `EF/B/n → EF_B0n` |
@@ -64,10 +66,11 @@ equipment itself.
 
 Per the instruction not to assume a unit shares its siblings' metadata:
 
-- **FCU (28)** — the datasheets are keyed by Euroclima **selection-sheet
-  position** (`FCU/B/01`, `B/03,04`, `B5`), which do not correspond to the BMS
-  register tags (`FCU_B_003` …). No reliable per-unit join. *If you can supply a
-  position → tag map, all 137 FCUs can be filled.*
+- **FCU 2F (2 selection sheets, `2F/06-29` and `2F/30-33`)** — the 2F datasheets
+  number their FCUs `06–33`, but the ontology numbers 2F FCUs `001–005, 034–062`.
+  The other 26 selection sheets (Basement, 1F, 2F 01–05) landed on 94 units; only
+  the 2F `06–33` block needs a confirmed numbering offset before it can be
+  written. *(The 43 ontology FCUs left blank are those no selection sheet names.)*
 - **Closed Control Units (5)** — design tags `CC/B/01…09`; the ontology's CCUs are
   the BMS-tagged orphans `CCU_8081…8086`. Different naming systems, and counts
   differ (9 vs 6). Needs a mapping.
@@ -82,8 +85,8 @@ Every tag and its verdict is in `QNL_metadata_join_report.csv`.
 
 ## Open points for the team
 
-- **Heat-exchanger join** `PHX/B/0n → HEX0n` is by index; confirm the numbering
-  lines up (the drawing schedule stops at `PHX/B/04`, `PHX/B/05` is the "Main HEX").
+- **Heat-exchanger join** `PHX/B/0n → HEX0n` (by index) — confirmed correct by
+  the user.
 - **DX outdoor units** — five DX units (`B/03,04,08,09,14`) take an X2 (two
   condensers). Only one `_OD` per unit is modelled, carrying the single model the
   schedule gives; the pipework layout is still needed to split them.
