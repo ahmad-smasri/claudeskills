@@ -119,8 +119,12 @@ segment, points in dashed English, no camelCase, no dots.**
 - **The BMS join keys are untouched** — `ref:hasTimeseriesId` / `para:hasEntityId`
   keep the raw historian tag, and `QNL_naming_crosswalk.csv` records every
   old → new id (the identifier crosswalk was remapped to match).
-- **Rooms and levels keep their identifiers** (the verbatim spatial style, ~10%
-  of ids) — not datapoints, and several systems (`entity:Electrical_System`)
-  already match Dar Cairo. Extendable to room ids on request.
+- **Rooms** now have their name-words dashed too (`QNL_B_001_TECH_SERVICES_OFFICE`
+  → `QNL_B_001_TECH-SERVICES-OFFICE`) — 277 renamed, structural prefix
+  `QNL_<level>_<number>` and the verbatim label kept, stray punctuation dropped.
+- **Levels and systems keep their codes** (`QNL_B`, `entity:HVAC`,
+  `entity:Electrical_System` — clean single-segment, already Dar-Cairo-shaped).
+  **Equipment and part tags keep their industry codes** (`AHU`, `SF`, `CHW-Coil`)
+  exactly as Dar Cairo does — the full name lives in the type column, not the id.
 - Row validator unchanged (574/186, all pre-existing IFC-empty); references stay
   consistent (17 object-only entities before and after, 0 dangling ids).
