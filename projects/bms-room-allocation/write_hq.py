@@ -1,27 +1,37 @@
 import re, zipfile, os
 import openpyxl
-from hq_alloc import HQ
+from hq_alloc import HQ, SSC_EXTRA
 
 SRC = '/root/.claude/uploads/7b732886-7f20-51be-97dc-21f5f8123adc/1b545c0b-Appendix_A_Asset_Register_SSC_BMS_rooms_1.xlsx'
 OUT = '/home/user/claudeskills/projects/bms-room-allocation/Appendix_A_Asset_Register_SSC_HQ_BMS_rooms.xlsx'
 HQ_LO, HQ_HI = 4, 764
+SSC_LO, SSC_HI = 1318, 1441
 HEADER = 'ROOM PER BMS SCREEN'
 
 wb = openpyxl.load_workbook(SRC, data_only=True)
 ws = wb['Controllable Asset Registry']
-rows = {}
-for i in range(HQ_LO, HQ_HI + 1):
-    v = ws.cell(i, 1).value
-    if v:
-        rows[str(v).strip().upper()] = i
+def index(lo, hi):
+    d = {}
+    for i in range(lo, hi + 1):
+        v = ws.cell(i, 1).value
+        if v:
+            d[str(v).strip().upper()] = i
+    return d
 
+hq_rows, ssc_rows = index(HQ_LO, HQ_HI), index(SSC_LO, SSC_HI)
 targets = {}
 for bms, room, screen, conf in HQ:
     t = bms.replace('-', '')
-    if t in rows:
-        targets[rows[t]] = room
+    if t in hq_rows:
+        targets[hq_rows[t]] = room
     else:
-        print('!! no HQ register row for', bms, '->', t)
+        print('!! no HQ register row for', bms)
+for bms, room, screen, conf in SSC_EXTRA:
+    t = bms.replace('-', '')
+    if t in ssc_rows:
+        targets[ssc_rows[t]] = room
+    else:
+        print('!! no SSC register row for', bms)
 targets[2] = HEADER
 
 def esc(s):
@@ -52,10 +62,10 @@ def fix(mo):
         head = re.sub(r'spans="1:\d+"', 'spans="1:10"', head)
         body += cell
         written.append(rn)
-    # the HQ block is a collapsed outline group - unhide it or column J reads empty
-    if HQ_LO <= rn <= HQ_HI:
+    # the blocks are collapsed outline groups - unhide or column J reads empty
+    if HQ_LO <= rn <= HQ_HI or SSC_LO <= rn <= SSC_HI:
         head = head.replace(' hidden="1"', '')
-    if rn == HQ_LO - 1:
+    if rn in (HQ_LO - 1, SSC_LO - 1):
         head = head.replace(' collapsed="1"', '')
     return '<row' + head + '>' + body + '</row>'
 
@@ -72,4 +82,4 @@ zout = zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED)
 for it in zin.infolist():
     zout.writestr(it, xml2.encode('utf-8') if it.filename == name else zin.read(it.filename))
 zout.close()
-print('HQ rows written to column J:', len(written) - 1)
+print('rows written to column J:', len(written) - 1)
