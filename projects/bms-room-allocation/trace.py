@@ -310,3 +310,38 @@ def leader_from(a, w):
         if dist > best[0]:
             best = (dist, ex, ey, (dx, dy))
     return best[1], best[2], best[0], best[3]
+
+
+def find_icons(a, lo=105, hi=145, minsize=45):
+    """Locate the equipment icons - solid mid-grey rounded squares."""
+    m = (a >= lo) & (a <= hi)
+    h, w = a.shape
+    seen = np.zeros_like(m, dtype=bool)
+    out = []
+    ys, xs = np.nonzero(m)
+    for y0, x0 in zip(ys, xs):
+        if seen[y0, x0]:
+            continue
+        # flood the row-run block by simple bounding-box growth
+        y1 = y0
+        while y1 + 1 < h and m[y1 + 1, x0]:
+            y1 += 1
+        xa = x0
+        while xa - 1 >= 0 and m[y0, xa - 1]:
+            xa -= 1
+        xb = x0
+        while xb + 1 < w and m[y0, xb + 1]:
+            xb += 1
+        if (y1 - y0) >= minsize and (xb - xa) >= minsize:
+            seen[y0:y1 + 1, xa:xb + 1] = True
+            out.append({'left': xa, 'right': xb, 'top': y0, 'bottom': y1,
+                        'y': (y0 + y1) // 2, 'tick': (xa + xb) // 2})
+        else:
+            seen[y0, xa:xb + 1] = True
+    # de-duplicate overlapping boxes
+    keep = []
+    for b in sorted(out, key=lambda z: -( (z['right']-z['left'])*(z['bottom']-z['top']) )):
+        if any(abs(b['tick'] - k['tick']) < 40 and abs(b['y'] - k['y']) < 40 for k in keep):
+            continue
+        keep.append(b)
+    return sorted(keep, key=lambda z: (z['left'], z['y']))

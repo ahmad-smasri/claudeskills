@@ -75,6 +75,19 @@ ALLOC = [
  ('VAV-0107','03.032 GENERAL OFFICE AREA','TF-part2','ok'),
  ('VAV-0077','03.032 GENERAL OFFICE AREA','TF-part2','ok'),
  ('VAV-0072','03.032 GENERAL OFFICE AREA','TF-part2','ok'),
+ # ---- Basement (BF-part1 / BF-part2)
+ # The AHU leader points at the plant room the unit sits in, not the rooms it
+ # serves - those are the colour fill. Confirmed by 4 of the 5 agreeing with the
+ # register's own AHU locations.
+ ('AHU-B-0001','B.013 CHILLED WATER','BF-part1','ok'),
+ ('AHU-B-0002','B.014 VENT PLANT','BF-part1','ok'),
+ ('AHU-B-0003','B.014 VENT PLANT','BF-part1','ok'),
+ ('AHU-B-0005','B.014 VENT PLANT','BF-part1','ok'),
+ ('AHU-B-0004','B.008 VENT PLANT','BF-part2','ok'),
+ ('FCU-0001','B.016 SPRINKLER AND WATER','BF-part1','ok'),
+ ('FCU-0002','B.025 MAIN SEC CONTROL ROOM','BF-part1','ok'),
+ ('FCU-0003','B.030 CORRIDOR','BF-part1','check'),
+ ('VAV-0001','B.015 ENTRANCE','BF-part1','ok'),
  # ---- Second Floor
  ('VAV-0041','02.005 EXECUTIVE CONFERENCE ROOM','Second Floor','ok'),
  ('VAV-0042','02.005 EXECUTIVE CONFERENCE ROOM','Second Floor','ok'),
@@ -86,4 +99,29 @@ ALLOC = [
  ('VAV-0048','02.002 LOBBY','Second Floor','ok'),
  ('VAV-0047','02.002 LOBBY','Second Floor','check'),
  ('VAV-0046','02.002 LOBBY','Second Floor','check'),
+]
+
+
+# Basement plant that the Controllable Asset Registry does not carry - recorded
+# for the asset register / ontology rather than for column J.
+PLANT = [
+ ('CCU-B-005B','B.023 Q TEL','BF-part1','ok'),
+ ('CCU-B-006B','B.023 Q TEL','BF-part1','ok'),
+ ('CCU-B-006A','B.023 Q TEL','BF-part1','check'),
+ ('CCU-B-0007','B.026 MDF/SER.1','BF-part1','ok'),
+ ('CCU-B-0004','B.017 MDF-2','BF-part1','ok'),
+ ('CCU-B-002A','B.038 SER-2','BF-part1','check'),
+ ('CCU-B-001B','B.038 SER-2','BF-part1','check'),
+ ('CCU-B-002B','B.038 SER-2','BF-part1','check'),
+ ('DX-B-0001','B.022 SSP','BF-part1','check'),
+ ('DX-B-0002','B.022 SSP','BF-part1','check'),
+ ('DX-B-0003','B.005 UPS','BF-part2','ok'),
+ ('DX-B-0004','B.008 VENT PLANT','BF-part2','check'),
+ ('DX-B-0006','B.001 FM STORAGE','BF-part2','ok'),
+ ('DX-B-0007','B.006 SERVICE AREA','BF-part2','ok'),
+ ('DX-B-0008','B.008 VENT PLANT','BF-part2','ok'),
+ ('DX-B-0009','B.002 HV ROOM','BF-part2','ok'),
+ ('DX-B-0010','B.033 CLOSET','BF-part2','check'),
+ ('KEF-1F-0103','01.005 KITCHEN','FF-part2','ok'),
+ ('TEF-1F-0101','01.028 CORRIDOR','FF-part2','ok'),
 ]

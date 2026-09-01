@@ -2,7 +2,7 @@ import re, os
 import openpyxl
 from openpyxl.styles import Font, PatternFill
 from openpyxl.utils import get_column_letter
-from ssc_alloc import ALLOC
+from ssc_alloc import ALLOC, PLANT
 from write_j import reg_tag, SRC, SSC_LO, SSC_HI
 
 OUT = '/home/user/claudeskills/projects/bms-room-allocation/SSC_BMS_room_findings.xlsx'
@@ -67,14 +67,27 @@ s.auto_filter.ref = s.dimensions
 for i, w in enumerate([12, 13, 14, 34, 32, 32, 32, 34, 14, 15], 1):
     s.column_dimensions[get_column_letter(i)].width = w
 
+sp = out.create_sheet('Basement plant')
+sp.append(['BMS tag', 'Room per BMS', 'Screen', 'Read confidence'])
+for c in sp[1]:
+    c.font = Font(bold=True, color='FFFFFF')
+    c.fill = PatternFill('solid', fgColor='1F4E79')
+for r in PLANT:
+    sp.append(list(r))
+    if r[3] == 'check':
+        for c in sp[sp.max_row]:
+            c.fill = WARN
+for i, w in enumerate([16, 32, 14, 16], 1):
+    sp.column_dimensions[get_column_letter(i)].width = w
+
 s2 = out.create_sheet('Still to do')
 s2.append(['SSC screen', 'What is not yet allocated'])
 for c in s2[1]:
     c.font = Font(bold=True, color='FFFFFF')
     c.fill = PatternFill('solid', fgColor='1F4E79')
 for row in [
-    ('BF-part1', 'AHU-B-0001/0002/0003/0005, CCU-B-001A/001B/002A/002B/0003/0004/005A/005B/006A/006B/0007/0008, DX-B-0001/0002, FCU-0001/0002/0003, VAV-0001'),
-    ('BF-part2', 'AHU-B-0004, DX-B-0003..0010, GEF-B-0001'),
+    ('BF-part1', 'CCU-B-001A, CCU-B-0003, CCU-B-0008, CCU-B-005A - leaders share a path with their neighbours and cannot be told apart at this resolution'),
+    ('BF-part2', 'DX-B-0005, GEF-B-0001'),
     ('FF-part1', 'FCU-0004, VAV-0037, VAV-0038, VAV-0026, VAV-0022, VAV-0011'),
     ('FF-part2', 'FCU-0009, VAV-0020, FCU-0006, FCU-0008, TEF-1F-0102, VAV-0023'),
     ('Second Floor', 'VAV-0043, VAV-0044, VAV-0045, EF-RF-0001'),
