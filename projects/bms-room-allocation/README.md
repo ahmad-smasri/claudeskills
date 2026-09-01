@@ -21,6 +21,21 @@ these scripts follow it.
 python3 annotate.py SSC/FF-part1.jpg out.png out.json
 ```
 
+## Reading a leader
+
+Two rules, both learned from getting them wrong:
+
+**Resolve the zone, then find its label.** On the HQ screens a room's name is
+printed outside the room and joined to it by its own dashed pointer. So the
+question is never "what text is nearest the endpoint" - it is "which room
+polygon does the endpoint fall inside", and only then "which label points into
+that polygon". VAV0026's leader ends inside G.103; the words `BMS Room` sit
+well to the right of it. Reading the nearest text gives the wrong room.
+
+**Zoom before deciding.** At full-screen scale a marker sitting on a wall and a
+marker sitting just inside a room look identical. VAV0028's endpoint is 5 px
+from the G.003/G.002 wall and the answer changes depending on which side it is.
+
 ## Accuracy
 
 The tracer is an aid, not the authority. Two failure modes to check for on
@@ -29,7 +44,12 @@ every screen before trusting a row:
 - endpoint equals the widget edge - the leader was never picked up (usually a
   leader that leaves vertically, or a unit drawn in alarm red);
 - two widgets sharing one endpoint - the walker jumped onto a neighbouring
-  leader where they run close together.
+  leader where they run close together;
+- `trace.wall_suspect()` true - the walker stepped off the end of the leader
+  onto a wall it touched and followed the wall, sometimes right across the
+  plan. Leaders are dashed and walls are not, so an endpoint reached along an
+  unbroken run is not a real endpoint. This is what put VAV0026 in the lobby
+  and sent FCU0016 the width of the screen away from its own room.
 
 Both are visible in the JSON, and both need the endpoint confirming by eye on
 the annotated image.

@@ -345,3 +345,21 @@ def find_icons(a, lo=105, hi=145, minsize=45):
             continue
         keep.append(b)
     return sorted(keep, key=lambda z: (z['left'], z['y']))
+
+
+def wall_suspect(a, x, y, dx, dy, span=60):
+    """True if the stroke ending at (x,y) arrived along an unbroken run.
+
+    Leaders are dashed; walls are not. A walker that steps off the end of a
+    leader onto a wall it touches will follow the wall, and the give-away is
+    that the last stretch has no gaps in it. Used to mark an endpoint for a
+    manual zoom rather than to change where the walk stops.
+    """
+    gaps = 0
+    for i in range(1, span):
+        px, py = x - dx * i, y - dy * i
+        if not (0 <= py < a.shape[0] and 0 <= px < a.shape[1]):
+            break
+        if not is_line(a, py, px):
+            gaps += 1
+    return gaps == 0
