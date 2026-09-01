@@ -66,10 +66,29 @@ def fix(mo):
     return '<row' + head + '>' + body + cell + '</row>'
 
 xml2 = re.sub(r'<row([^>]*)>(.*?)</row>', fix, xml, flags=re.S)
-if '<cols>' in xml2:
+# Widen column J by editing the <col> already there. Adding a second <col> for
+# the same column makes <cols> overlap, which Excel treats as a repair case.
+if re.search(r'<col min="10" max="10"[^>]*/>', xml2):
+    xml2 = re.sub(r'<col min="10" max="10"[^>]*/>',
+                  '<col min="10" max="10" width="40" customWidth="1"/>', xml2, count=1)
+elif '<cols>' in xml2:
     xml2 = xml2.replace('<cols>', '<cols><col min="10" max="10" width="40" customWidth="1"/>', 1)
 else:
-    xml2 = re.sub(r'(<sheetData>)', '<cols><col min="10" max="10" width="40" customWidth="1"/></cols>\\1', xml2, count=1)
+    xml2 = re.sub(r'(<sheetData>)',
+                  '<cols><col min="10" max="10" width="40" customWidth="1"/></cols>\\1', xml2, count=1)
+
+# 2. The SSC block is a collapsed outline group - every row we just wrote to is
+# hidden, so the column reads as empty on open. Expand it.
+def unhide(mo):
+    head = mo.group(1)
+    rn = int(re.search(r'\br="(\d+)"', head).group(1))
+    if SSC_LO <= rn <= SSC_HI:
+        head = head.replace(' hidden="1"', '')
+    if rn == SSC_LO - 1:
+        head = head.replace(' collapsed="1"', '')
+    return '<row' + head + '>'
+
+xml2 = re.sub(r'<row([^>]*)>', unhide, xml2)
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 zin = zipfile.ZipFile(SRC)
