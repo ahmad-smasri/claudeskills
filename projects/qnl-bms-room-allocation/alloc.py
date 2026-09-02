@@ -34,6 +34,7 @@ SF1_WEST = 'Unlabelled open area, west half of Zone 1'
 SF1_CIRC = 'Circulation Office / Breakout space (open plan)'
 SF1_TRANSL = 'Transl.Spc& Space ED (strip along the south of the cyan zone)'
 SF1_YELLOW = 'Libr.Com.Rel. Spo. & Event Spc / Ad.Admin &Planning (yellow zone)'
+SF3_CYAN = 'VIP Waiting / VIP Meeting (open cyan zone)'
 
 SCREENS = {
  'BF': [
@@ -364,6 +365,72 @@ SCREENS = {
      'south half of the yellow zone, which carries no label of its own;'
      ' column D says GULF MATERIAL L2'),
  ],
+ # SF-3: the cyan zone is one open space carrying VIP Waiting, VIP Meeting and
+ # Rest Rm. Every VAV-2F-S14 unit on this screen lands in it, and column D
+ # gives all of them first-floor rooms - the same pattern as SF-1.
+ 'SF-3': [
+    ('VAV-2F-S13-008', 'Office Coord', ''),
+    ('VAV-2F-S13-001', "Lib. Director's Rm", ''),
+    ('VAV-2F-S13-003', 'Service & Lounge', ''),
+    ('VAV-2F-S15-002', 'VIP Rm', ''),
+    ('VAV-2F-S15-005', 'VIP Rm',
+     'the dot is in the pink VIP Rm; column D says MAJLIS-VIP Meeting L2.046,'
+     ' and VIP Meeting is printed in the cyan zone to the east'),
+    ('VAV-2F-S14-005', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-006', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-007', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-008', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-009', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-010', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-011', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-012', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-013', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-014', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-015', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-017', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-018', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-019', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-020', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S14-021', SF3_CYAN,
+     'column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+ ],
+ # SF-6: the auditorium, a block of small study rooms and an open plate. The
+ # study block's cells carry no labels of their own - `Group Study Rm` points
+ # into its west side from the left and below, `Indv. Study Rm` into its east
+ # side from the right - so a unit is given the side its dot is on.
+ 'SF-6': [
+    ('FCU-2F-034', 'Auditorium', ''),
+    ('FCU-2F-035', 'Auditorium', ''),
+    ('FCU-2F-036', 'Auditorium', ''),
+    ('FCU-2F-045', 'Group Study Rm', 'west side of the study block'),
+    ('FCU-2F-046', 'Group Study Rm', 'west side of the study block'),
+    ('FCU-2F-047', 'Group Study Rm', 'west side of the study block'),
+    ('FCU-2F-049', 'Indv. Study Rm', 'east side of the study block'),
+    ('FCU-2F-050', 'Indv. Study Rm', 'east side of the study block'),
+    ('FCU-2F-051', 'Indv. Study Rm', 'east side of the study block'),
+    ('FCU-2F-052', 'Indv. Study Rm', 'east side of the study block'),
+    ('FCU-2F-054', 'Lounge area',
+     'the dot sits beside the Lounge area label on the open plate; column D'
+     ' says Bridge Raised Floor L2.088'),
+    ('FCU-2F-055', 'Lounge area',
+     'the dot sits beside the Lounge area label on the open plate; column D'
+     ' says Bridge Raised Floor L2.088'),
+ ],
 }
 
 BLANK = {
@@ -549,12 +616,39 @@ BLANK = {
  'VAV-2F-S12-027': 'SF-1: three walkers converge east of the plan',
  'VAV-2F-S12-028': 'SF-1: dot sits between Group Study Rm 7 and Rm 8',
  'VAV-2F-S12-097': 'SF-1: leader not resolved',
- 'VAV-2F-S13-008': 'SF-1: leader not resolved',
+ 'VAV-2F-S13-008 (SF-1)': 'SF-1: leader not resolved; read on SF-3 instead',
  'VAV-2F-S13-009': 'SF-1: leader not resolved',
  'VAV-2F-S13-011': 'SF-1: leader ends above the plan',
  'VAV-2F-S13-014': 'SF-1: leader not resolved',
  'VAV-2F-S10-006': 'SF-1: leader not resolved',
  'FCU-2F-005': 'SF-1: dot is in the grey south of Storage, which carries no label',
+ 'VAV-2F-S13-010': 'SF-3: dot is at the west edge of the yellow, on the wall',
+ 'VAV-2F-S13-015': 'SF-3: dot is in the yellow but not inside a labelled cell',
+ 'VAV-2F-S13-016': 'SF-3: leader not resolved',
+ 'VAV-2F-S13-002': "SF-3: dot is south of Lib. Director's Rm, in an unlabelled cell",
+ 'VAV-2F-S15-001': 'SF-3: leader ends above the plan',
+ 'VAV-2F-S15-003': 'SF-3: leader not resolved',
+ 'VAV-2F-S15-004': 'SF-3: leader not resolved',
+ 'VAV-2F-S14-001': 'SF-3: leader ends above the plan',
+ 'VAV-2F-S14-002': 'SF-3: leader not resolved',
+ 'VAV-2F-S14-003': 'SF-3: leader ends below the plan',
+ 'VAV-2F-S14-004': 'SF-3: leader ends below the plan',
+ 'VAV-2F-S14-016': 'SF-3: leader ends below the plan',
+ 'FCU-2F-037': 'SF-6: leader not resolved',
+ 'FCU-2F-038': 'SF-6: leader ends off the plan',
+ 'FCU-2F-039': 'SF-6: two walkers converge off the plan',
+ 'FCU-2F-040': 'SF-6: leader not resolved',
+ 'FCU-2F-048': 'SF-6: leader not resolved',
+ 'FCU-2F-053': 'SF-6: two walkers converge off the plan',
+ 'FCU-2F-003': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-004': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-056': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-057': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-058': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-059': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-060': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-061': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'FCU-2F-062': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}

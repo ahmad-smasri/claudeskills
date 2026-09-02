@@ -92,3 +92,56 @@ Fourteen units land in it. The register splits them between B.001A and B.001;
 the screen does not contradict that, it simply cannot confirm it, so those
 rows are written as the open space and reported `OPEN` rather than `SAME` or
 `DIFF`. Reading a boundary that is not drawn would be inventing one.
+
+## Coverage
+
+203 of the 551 QNL rows carry a column J reading. The rest are blank on
+purpose, and `alloc.BLANK` says why for each one - a guess in column J reads
+exactly like a reading, so nothing is written that was not confirmed by eye.
+
+| Screen | Placed | | Screen | Placed |
+|---|---|---|---|---|
+| BF | 29 | | FF | 20 |
+| BF-1 | 10 | | FF-2 | 15 |
+| BF-2 | 16 | | FF-3 | 5 |
+| BF-3 | 10 | | SF-1 | 26 |
+| BF-4 | 6 | | SF-3 | 21 |
+| BF-5 | 12 | | SF-6 | 12 |
+| BF-6 | 4 | | | |
+| BF-7 | 4 | | | |
+| BF-8 | 3 | | | |
+| BF-10 | 10 | | | |
+
+Four screens carry no slider units at all (BF-9, BF-11, BF-12, and the empty
+FF-1, FF-6, FF-8, FF-9, RF-4, SF-2, SF-7, SF-8) and three more - FF-4, FF-5 and
+Terrace Floor-1 - print furniture and function labels (Book Shelf, Media
+Station, Special Events, Enter) and no room names, so nothing on them can be
+matched against column D either way. Column D calls most of those units bridge
+ceiling voids, which the QNL screens do not draw.
+
+## What the readings say
+
+`report_qnl.py` gives each row one of five verdicts:
+
+| Verdict | Count | Meaning |
+|---|---|---|
+| SAME | 94 | the screen and column D name the same room |
+| OPEN | 43 | the room is one open space carrying two or more labels; the screen cannot split them, and does not contradict column D |
+| CHECK | 46 | read, but with a caveat - usually the dot lands in a space the screen leaves unlabelled |
+| DIFF | 19 | the screen puts the unit somewhere column D does not |
+
+**The largest single finding is not in that table.** Twenty-seven units tagged
+`2F` - eleven `VAV-2F-S12` on SF-1 and sixteen `VAV-2F-S14` on SF-3 - carry a
+*first floor* room in column D: OPEN READING AREA L1.001, BRAILLE READER
+L1.002, STUDENT CARRELS L1.007, PUBLIC SERVICES L1.080, REF LIBRARIAN L1.086
+to L1.097. Those rooms are printed on the First Floor Zone 1 screen, not on
+the second-floor screens these units appear on. The screens cannot say what the
+right rooms are - SF-1's west half carries no label at all and SF-3's units all
+land in one open cyan zone - so the rows are written as the space they land in
+and flagged. This wants a decision from the client rather than a reading.
+
+The nineteen outright differences are in `QNL_BMS_screen_findings.csv`. Two
+patterns run through them: a dot one wall away from the room column D names
+(FCU-B-008, S11-037, S11-043, S11-046, S12-029, S13-004, S14-003), and a room
+whose column D name disagrees with the column E entity while the screen sides
+with the entity (S11-026 Finance Coordinator, S11-038 Procurement SPC).

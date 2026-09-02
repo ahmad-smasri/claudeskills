@@ -3,6 +3,18 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 840,FCU_1F_060,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan - by the Front Kitchen label
 841,FCU_1F_061,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
 844,FCU_1F_064,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+851,FCU_2F_034,Auditorium High Levlel in Ceiling Void L2.087,Auditorium,QNL/SF-6.jpg,SAME,
+852,FCU_2F_035,Auditorium High Levlel in Ceiling Void L2.087,Auditorium,QNL/SF-6.jpg,SAME,
+853,FCU_2F_036,Auditorium High Levlel in Ceiling Void L2.087,Auditorium,QNL/SF-6.jpg,SAME,
+862,FCU_2F_045,Group Study Room L2.081,Group Study Rm,QNL/SF-6.jpg,SAME,west side of the study block
+863,FCU_2F_046,Group Study Room L2.076,Group Study Rm,QNL/SF-6.jpg,SAME,west side of the study block
+864,FCU_2F_047,Group Study Room L2.076,Group Study Rm,QNL/SF-6.jpg,SAME,west side of the study block
+866,FCU_2F_049,INDIVIDUAL STUDY ROOM L2.070,Indv. Study Rm,QNL/SF-6.jpg,SAME,east side of the study block
+867,FCU_2F_050,INDIVIDUAL STUDY ROOM L2.070,Indv. Study Rm,QNL/SF-6.jpg,SAME,east side of the study block
+868,FCU_2F_051,INDIVIDUAL STUDY ROOM L2.073,Indv. Study Rm,QNL/SF-6.jpg,SAME,east side of the study block
+869,FCU_2F_052,INDIVIDUAL STUDY ROOM L2.073,Indv. Study Rm,QNL/SF-6.jpg,SAME,east side of the study block
+871,FCU_2F_054,Bridge Raised Floor L2.088,Lounge area,QNL/SF-6.jpg,CHECK,the dot sits beside the Lounge area label on the open plate; column D says Bridge Raised Floor L2.088
+872,FCU_2F_055,Bridge Raised Floor L2.088,Lounge area,QNL/SF-6.jpg,CHECK,the dot sits beside the Lounge area label on the open plate; column D says Bridge Raised Floor L2.088
 880,FCU_B_001,IDF ROOM B.155,IDF Rm,QNL/BF-8.jpg,SAME,the dot is in the first of the small cells along the north-west wall; the IDF Rm label sits over the second
 882,FCU_B_003,IDF (Corridor) B.062,IDF,QNL/BF-2.jpg,SAME,
 883,FCU_B_004,IDF FM Storage B.215,FM Storage,QNL/BF-10.jpg,SAME,the dot is at the west wall in the band that carries the FM Storage and Storage labels
@@ -74,12 +86,33 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 996,VAV_2F_S12_022,Circulation Office L2.011,Circulation Office / Breakout space (open plan),QNL/SF-1.jpg,OPEN,open plan
 1000,VAV_2F_S12_026,Group Study Room 5 L2.015,Circulation Office / Breakout space (open plan),QNL/SF-1.jpg,DIFF,"the dot is in the open Circulation Office / Breakout space band; Group Study Room 5, which column D names, is a cell south of it"
 1003,VAV_2F_S12_029,Group Study Room 6 L2.016,Group Study Rm 7,QNL/SF-1.jpg,DIFF,"the dot is inside the Group Study Rm 7 cell; column D says Group Study Room 6 L2.016, the cell one wall west"
+1005,VAV_2F_S13_001,Lib. Director's Room L2.044,Lib. Director's Rm,QNL/SF-3.jpg,SAME,
+1007,VAV_2F_S13_003,Service & Lounge L2.043,Service & Lounge,QNL/SF-3.jpg,SAME,
 1008,VAV_2F_S13_004,OPEN OFFICE L2.025,Academic Pers. Libraria,QNL/SF-1.jpg,DIFF,"the dot is inside the Academic Pers. Libraria cell; column D says OPEN OFFICE L2.025, which is the cell at the west end of the same zone"
 1009,VAV_2F_S13_005,ACADEMIC PERS. LIBRARIA L2.022,Transl.Spc& Space ED (strip along the south of the cyan zone),QNL/SF-1.jpg,CHECK,"the strip runs the width of the cyan zone below the cells; column D says ACADEMIC PERS. LIBRARIA L2.022, which is one of those cells"
 1010,VAV_2F_S13_006,ACD PERS LIBRARIAN L2.022,Transl.Spc& Space ED (strip along the south of the cyan zone),QNL/SF-1.jpg,CHECK,"the strip runs the width of the cyan zone below the cells; column D says ACD PERS LIBRARIAN L2.022, which is one of those cells"
 1011,VAV_2F_S13_007,AD ADMIN & PLANNING L2.023,Cell east of Academic Pers. Libraria,QNL/SF-1.jpg,CHECK,"the cell carries no label; column D says AD ADMIN & PLANNING L2.023, which is in the yellow zone to the south"
+1012,VAV_2F_S13_008,Office Coord L2.024,Office Coord,QNL/SF-3.jpg,SAME,
 1016,VAV_2F_S13_012,CORRIDOR L2,Transl.Spc& Space ED (strip along the south of the cyan zone),QNL/SF-1.jpg,CHECK,"column D says CORRIDOR L2; the strip may be that corridor, it is not labelled as one"
 1017,VAV_2F_S13_013,CORRIDOR L2,Transl.Spc& Space ED (strip along the south of the cyan zone),QNL/SF-1.jpg,CHECK,"column D says CORRIDOR L2; the strip may be that corridor, it is not labelled as one"
+1025,VAV_2F_S14_005,BIBLIOGRAPHER 1 L1.081,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1026,VAV_2F_S14_006,BIBLIOGRAPHER 2 L1.082,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1027,VAV_2F_S14_007,SPEC COLL & ARCH L1.083,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1028,VAV_2F_S14_008,R&L SERVICES L1.084,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1029,VAV_2F_S14_009,AD. PUBLIC SERVICE L1.085,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1030,VAV_2F_S14_010,REF LIBRARIAN L1.086,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1031,VAV_2F_S14_011,REF LIBRARIAN L1.087,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1032,VAV_2F_S14_012,REF LIBRARIAN L1.088,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1033,VAV_2F_S14_013,REF LIBRARIAN L1.089,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1034,VAV_2F_S14_014,REF LIBRARIAN L1.090,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1035,VAV_2F_S14_015,REF LIBRARIAN L1.091,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1037,VAV_2F_S14_017,REF LIBRARIAN L1.093,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1038,VAV_2F_S14_018,REF LIBRARIAN L1.094,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1039,VAV_2F_S14_019,REF LIBRARIAN L1.095,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1040,VAV_2F_S14_020,REF LIBRARIAN L1.096,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1041,VAV_2F_S14_021,REF LIBRARIAN L1.097,VIP Waiting / VIP Meeting (open cyan zone),QNL/SF-3.jpg,CHECK,column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor
+1043,VAV_2F_S15_002,VIP Room L2.051,VIP Rm,QNL/SF-3.jpg,SAME,
+1046,VAV_2F_S15_005,MAJLIS-VIP Meeting L2.046,VIP Rm,QNL/SF-3.jpg,SAME,"the dot is in the pink VIP Rm; column D says MAJLIS-VIP Meeting L2.046, and VIP Meeting is printed in the cyan zone to the east"
 1056,VAV_B_S10_010,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1057,VAV_B_S10_011,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1062,VAV_B_S10_016,MULTIMEDIA PRESENTATION B.205,Instruction Presentation,QNL/BF-5.jpg,SAME,
