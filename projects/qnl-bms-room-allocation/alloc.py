@@ -30,6 +30,10 @@ OPEN_BF6 = 'Plant Rm 3 / Corridor 5 (open plan)'
 OPEN_FF = 'Info. Literacy Instr.2 / Writing Head (open plan)'
 OPEN_FF2 = 'Restaurant / Front Kitchen (open plan)'
 OPEN_FF3 = 'Media Studio1 / Storage / Media Studio2 (open plan)'
+SF1_WEST = 'Unlabelled open area, west half of Zone 1'
+SF1_CIRC = 'Circulation Office / Breakout space (open plan)'
+SF1_TRANSL = 'Transl.Spc& Space ED (strip along the south of the cyan zone)'
+SF1_YELLOW = 'Libr.Com.Rel. Spo. & Event Spc / Ad.Admin &Planning (yellow zone)'
 
 SCREENS = {
  'BF': [
@@ -296,6 +300,70 @@ SCREENS = {
      'the band carries no label; column D says CHILDRENS LIBRARY SLOPE'
      ' CORRIDOR L1.023'),
  ],
+ # SF-1: the west half of the plan is one open area with no label on it at
+ # all, and every unit that lands in it is given a first-floor room number by
+ # column D. The cyan zone is cut into cells across the top with one strip
+ # running the width of it below, and the strip is the one carrying the
+ # Transl.Spc& Space ED label.
+ 'SF-1': [
+    ('VAV-2F-S12-006', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-007', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-008', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-009', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-010', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-011', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-012', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-013', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-014', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-016', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-003', SF1_WEST,
+     'the west half of this Zone 1 plan carries no room label at all; column D gives this unit a first-floor room number (L1.xxx) although the tag and the screen are both second floor'),
+    ('VAV-2F-S12-021', SF1_CIRC, 'open plan'),
+    ('VAV-2F-S12-022', SF1_CIRC, 'open plan'),
+    ('VAV-2F-S12-026', SF1_CIRC,
+     '!the dot is in the open Circulation Office / Breakout space band;'
+     ' Group Study Room 5, which column D names, is a cell south of it'),
+    ('VAV-2F-S12-029', 'Group Study Rm 7',
+     '!the dot is inside the Group Study Rm 7 cell; column D says Group Study'
+     ' Room 6 L2.016, the cell one wall west'),
+    ('VAV-2F-S13-004', 'Academic Pers. Libraria',
+     '!the dot is inside the Academic Pers. Libraria cell; column D says OPEN'
+     ' OFFICE L2.025, which is the cell at the west end of the same zone'),
+    ('VAV-2F-S13-005', SF1_TRANSL,
+     'the strip runs the width of the cyan zone below the cells; column D says'
+     ' ACADEMIC PERS. LIBRARIA L2.022, which is one of those cells'),
+    ('VAV-2F-S13-006', SF1_TRANSL,
+     'the strip runs the width of the cyan zone below the cells; column D says'
+     ' ACD PERS LIBRARIAN L2.022, which is one of those cells'),
+    ('VAV-2F-S13-012', SF1_TRANSL,
+     'column D says CORRIDOR L2; the strip may be that corridor, it is not'
+     ' labelled as one'),
+    ('VAV-2F-S13-013', SF1_TRANSL,
+     'column D says CORRIDOR L2; the strip may be that corridor, it is not'
+     ' labelled as one'),
+    ('VAV-2F-S13-007', 'Cell east of Academic Pers. Libraria',
+     'the cell carries no label; column D says AD ADMIN & PLANNING L2.023,'
+     ' which is in the yellow zone to the south'),
+    ('VAV-2F-S10-001', SF1_YELLOW, 'column D says GULF MATERIAL L2'),
+    ('VAV-2F-S10-002', SF1_YELLOW, 'column D says GULF MATERIAL L2'),
+    ('VAV-2F-S10-003', SF1_YELLOW, 'column D says GULF MATERIAL L2'),
+    ('VAV-2F-S10-004', SF1_YELLOW,
+     'south half of the yellow zone, which carries no label of its own;'
+     ' column D says GULF MATERIAL L2'),
+    ('VAV-2F-S10-005', SF1_YELLOW,
+     'south half of the yellow zone, which carries no label of its own;'
+     ' column D says GULF MATERIAL L2'),
+ ],
 }
 
 BLANK = {
@@ -466,6 +534,27 @@ BLANK = {
  'FCU-1F-057': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
  'FCU-1F-058': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
  'FCU-1F-065': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'VAV-2F-S12-001': 'SF-1: leader not resolved',
+ 'VAV-2F-S12-002': 'SF-1: leader not resolved',
+ 'VAV-2F-S12-004': 'SF-1: two walkers converge above the plan',
+ 'VAV-2F-S12-005': 'SF-1: two walkers converge above the plan',
+ 'VAV-2F-S12-015': 'SF-1: three walkers converge',
+ 'VAV-2F-S12-017': 'SF-1: leader not resolved',
+ 'VAV-2F-S12-018': 'SF-1: three walkers converge',
+ 'VAV-2F-S12-019': 'SF-1: three walkers converge',
+ 'VAV-2F-S12-020': 'SF-1: leader not resolved',
+ 'VAV-2F-S12-023': 'SF-1: three walkers converge east of the plan',
+ 'VAV-2F-S12-024': 'SF-1: leader ends above the plan',
+ 'VAV-2F-S12-025': 'SF-1: three walkers converge east of the plan',
+ 'VAV-2F-S12-027': 'SF-1: three walkers converge east of the plan',
+ 'VAV-2F-S12-028': 'SF-1: dot sits between Group Study Rm 7 and Rm 8',
+ 'VAV-2F-S12-097': 'SF-1: leader not resolved',
+ 'VAV-2F-S13-008': 'SF-1: leader not resolved',
+ 'VAV-2F-S13-009': 'SF-1: leader not resolved',
+ 'VAV-2F-S13-011': 'SF-1: leader ends above the plan',
+ 'VAV-2F-S13-014': 'SF-1: leader not resolved',
+ 'VAV-2F-S10-006': 'SF-1: leader not resolved',
+ 'FCU-2F-005': 'SF-1: dot is in the grey south of Storage, which carries no label',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}
