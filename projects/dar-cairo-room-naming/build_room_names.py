@@ -204,7 +204,29 @@ def same_name(a, b):
     sa, sb = squash(a), squash(b)
     if not sa or not sb:
         return False
+    if sa.startswith(sb) or sb.startswith(sa):
+        long_name, short_sq = (a, sb) if sa.startswith(sb) else (b, sa)
+        if adds_a_token(long_name, short_sq):
+            # One is the other plus a whole word on the end - a compass
+            # qualifier off the VAV list (SHELL SPACE / SHELL SPACE S), or the
+            # number telling three treatment rooms apart (SPA FM TREATMENT 1).
+            # Those rename the room; they are not a respelling of it.
+            return False
     return difflib.SequenceMatcher(None, sa, sb).ratio() >= 0.92
+
+
+def adds_a_token(long_name, short_sq):
+    """Is the extra a whole trailing word, or just the tail of one?
+
+    SPA FM TREATMENT 1 adds the token "1" to SPA FM TREATMENT.  EXECDIR
+    PROTASSIST does not add a token to EXEC. DIR. PROT. ASSIS. - it only
+    finishes the last word, which is a respelling.
+    """
+    toks = [t for t in re.split(r"[^A-Za-z0-9]+", str(long_name)) if t]
+    for i in range(len(toks) - 1, 0, -1):
+        if squash("".join(toks[:i])) == short_sq:
+            return True
+    return False
 
 
 def split_prefix(name, candidates):
@@ -240,11 +262,23 @@ def split_prefix(name, candidates):
     return "%s %s" % (head, best) if head else name
 
 
+def respelling(name, other):
+    """True when `other` is the same name written differently, not a longer one.
+
+    STRPLDIRTECHNSTAFF and STR. PL. DIR. TECH. STAFF are one name spelled two
+    ways; `same_name` already refuses the ones that only add a qualifier.
+    """
+    a, b = squash(name), squash(other)
+    if not a or not b:
+        return False
+    return a == b or same_name(name, other)
+
+
 def best_spelling(name, candidates):
     """R2 - of the spellings of one name, the clearest is the most spaced."""
     best, best_words = name, len(str(name).split())
     for c in candidates:
-        if not c or not same_name(name, c):
+        if not c or not respelling(name, c):
             continue
         w = len(str(c).split())
         if w > best_words:
@@ -712,10 +746,11 @@ def main():
     ap.add_argument("--src", action="append", default=[],
                     metavar="CODE=PATH", help="e.g. SSC=sources/SSC_rooms.xlsx")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--rooms-csv", help="distinct room list")
+    ap.add_argument("--rooms-csv", help="distinct room list, as CSV")
+    ap.add_argument("--rooms-xlsx", help="distinct room list, one sheet per building")
     args = ap.parse_args()
 
-    sheets, all_rooms = [], []
+    sheets, all_rooms = [], {}
     for spec in args.src:
         code, path = spec.split("=", 1)
         building = BUILDINGS[code]
@@ -749,10 +784,20 @@ def main():
                             "%s.%s is not in %s"
                             % (r["level"], r["ref"], DELIVERED[code]))
             if r["subject"]:
-                all_rooms.append((code, r["subject"], r["label"],
-                                  building.level_segment(r["level"] or ""),
-                                  "%s.%s" % (r["level"], r["ref"])
-                                  if r["ref"] else "", r["A"]))
+                room = all_rooms.setdefault(
+                    (code, r["subject"]),
+                    {"code": code, "subject": r["subject"], "label": r["label"],
+                     "level": building.level_segment(r["level"] or ""),
+                     "ref": ("%s.%s" % (r["level"], r["ref"])
+                             if r["ref"] else ""),
+                     "tags": [], "types": [], "included": 0, "excluded": 0})
+                room["tags"].append(r["A"])
+                if r["B"] and r["B"] not in room["types"]:
+                    room["types"].append(str(r["B"]))
+                if str(r["C"] or "").strip().lower() == "included":
+                    room["included"] += 1
+                else:
+                    room["excluded"] += 1
         sheets.append((code, rows))
         blank = [r["A"] for r in rows if not r["subject"]]
         print("%s: %d asset rows, %d distinct rooms, %d unresolved%s"
@@ -762,20 +807,61 @@ def main():
     write(args.out, sheets)
     print("wrote %s" % args.out)
 
-    if args.rooms_csv:
-        seen, out = set(), []
-        for code, subj, lab, lvl, ref, tag in all_rooms:
-            if subj in seen:
-                continue
-            seen.add(subj)
-            out.append((code, subj, lab, lvl, ref))
-        out.sort()
-        with open(args.rooms_csv, "w", newline="", encoding="utf-8") as f:
-            w = csv.writer(f)
-            w.writerow(["building", "subject", "rdfs:label_en",
-                        "level segment", "room ref"])
-            w.writerows(out)
-        print("wrote %s (%d rooms)" % (args.rooms_csv, len(out)))
+    if args.rooms_csv or args.rooms_xlsx:
+        order = {c: i for i, (c, _) in enumerate(sheets)}   # as given on --src
+        rooms = sorted(all_rooms.values(),
+                       key=lambda r: (order[r["code"]], sort_key(r["subject"])))
+        for r in rooms:
+            r["tags"] = sorted(set(r["tags"]), key=sort_key)
+        head = ["building", "subject", "rdfs:label_en", "level", "room ref",
+                "equipment count", "equipment types", "equipment tags",
+                "included", "not included"]
+        body = [[r["code"], r["subject"], r["label"], r["level"], r["ref"],
+                 len(r["tags"]), ", ".join(r["types"]), ", ".join(r["tags"]),
+                 r["included"], r["excluded"]] for r in rooms]
+        if args.rooms_csv:
+            with open(args.rooms_csv, "w", newline="", encoding="utf-8") as f:
+                w = csv.writer(f)
+                w.writerow(head)
+                w.writerows(body)
+            print("wrote %s (%d rooms)" % (args.rooms_csv, len(rooms)))
+        if args.rooms_xlsx:
+            write_rooms(args.rooms_xlsx, head, rooms, body)
+            print("wrote %s (%d rooms)" % (args.rooms_xlsx, len(rooms)))
+
+
+def sort_key(text):
+    """Natural order, so 01-002 precedes 01-010 and FCU9 precedes FCU10."""
+    return [int(t) if t.isdigit() else t
+            for t in re.split(r"(\d+)", str(text))]
+
+
+def write_rooms(path, head, rooms, body):
+    wb = openpyxl.Workbook()
+    wb.remove(wb.active)
+    hdr_fill = PatternFill("solid", start_color="FF1F4E79")
+    hdr_font = Font(color="FFFFFFFF", bold=True)
+    codes = []
+    for r in rooms:
+        if r["code"] not in codes:
+            codes.append(r["code"])
+    for code in codes:
+        ws = wb.create_sheet(code)
+        ws.append(head)
+        for c in ws[1]:
+            c.fill = hdr_fill
+            c.font = hdr_font
+            c.alignment = Alignment(wrap_text=True, vertical="center")
+        for r, line in zip(rooms, body):
+            if r["code"] == code:
+                ws.append(line)
+        for i, w in enumerate([9, 48, 36, 10, 10, 9, 14, 62, 9, 12], start=1):
+            ws.column_dimensions[get_column_letter(i)].width = w
+        for row in ws.iter_rows(min_row=2):
+            row[7].alignment = Alignment(wrap_text=True, vertical="top")
+        ws.freeze_panes = "B2"
+        ws.auto_filter.ref = "A1:%s%d" % (get_column_letter(len(head)), ws.max_row)
+    wb.save(path)
 
 
 if __name__ == "__main__":

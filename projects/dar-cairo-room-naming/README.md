@@ -7,8 +7,16 @@ registers by `build_room_names.py`.
 python3 build_room_names.py \
     --src SSC=sources/SSC_rooms.xlsx \
     --src HQ=sources/HQ_rooms_B-2F.xlsx,sources/HQ_rooms_3F-Roof.xlsx \
-    --out SSC_HQ_Room_Names.xlsx --rooms-csv rooms_distinct.csv
+    --out SSC_HQ_Room_Names.xlsx \
+    --rooms-xlsx SSC_HQ_Rooms_with_Equipment.xlsx \
+    --rooms-csv rooms_distinct.csv
 ```
+
+Two workbooks come out. `--out` is the register, one sheet per building, one
+row per asset, carrying the room subject the row resolved to.
+`--rooms-xlsx` is the room roll-up, one sheet per building, one row per room,
+carrying the equipment that serves it - the tags from column A, how many, what
+types, and how many of them are in scope.
 
 SSC: 124 asset rows, 69 rooms, 1 unresolved.
 HQ: 761 asset rows, 599 rooms, 1 unresolved.
@@ -167,6 +175,12 @@ be split without guessing. They are listed under the open questions.
   the sheet and the draft now agree.
   Three HQ rooms are not in the draft at all: `3-630 Corridor-Bridge`,
   `11-208 Sheikha-Wing-Sheikha-Ensuit`, `B1-124 Waste-Bin-Wash-Up`.
+- Three room names in HQ carry a qualifier the VAV/FCU list adds and the
+  drawings do not - `SHEIKA WING DINING AREA SE`, `HH-WING CORRIDOR SW`,
+  `VISITORS CENTER 08`. These read as zones inside one room rather than room
+  names, so the room keeps the plain name and the qualifier is dropped. Three
+  or four VAVs share each of those rooms, which is consistent with them being
+  zones; confirm if the compass split is meant to be real.
 - Labels are written in the QF SSC house style (`1.024 CORRIDOR`), which is what
   the delivered SSC sheet uses. Dar Cairo instead labels a room with its own
   identifier tail (`Corridor-02-B112`).
