@@ -42,6 +42,7 @@ def probe(w, dx, dy):
 
 bars = [w for w in T.find_widgets(a) if 60 < w['y'] < 790]
 recs = []
+placed = []   # endpoint label positions, so overlapping ones can be nudged apart
 for i, w in enumerate(sorted(bars, key=lambda b: (b['left'], b['y'])), 1):
     if w['y'] < 215:
         order = [(0, 1), (1, 0), (-1, 0), (0, -1)]
@@ -64,7 +65,11 @@ for i, w in enumerate(sorted(bars, key=lambda b: (b['left'], b['y'])), 1):
     d.rectangle([w['left'] - 2, w['y'] - 9, w['right'] + 2, w['y'] + 9], outline=(0, 140, 0), width=2)
     d.text((w['left'] - 26, w['y'] - 7), str(i), fill=(0, 120, 0))
     d.ellipse([ex - 7, ey - 7, ex + 7, ey + 7], outline=(220, 0, 0), width=3)
-    d.text((ex + 9, ey - 6), str(i), fill=(200, 0, 0))
+    lx, ly = ex + 9, ey - 6
+    while any(abs(lx - px) < 20 and abs(ly - py) < 11 for px, py in placed):
+        ly += 12          # two leaders can share an endpoint; keep both readable
+    placed.append((lx, ly))
+    d.text((lx, ly), str(i), fill=(200, 0, 0))
 
 im.save(out)
 json.dump(recs, open(jsn, 'w'), indent=1, default=int)
