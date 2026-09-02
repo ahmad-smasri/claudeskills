@@ -169,6 +169,9 @@ def find_widgets(a):
     """
     h, w = a.shape
     dark = a < 120
+    # a leader crossing the tick lightens a single row and splits the run, so
+    # close one-pixel holes before measuring
+    dark = dark | (np.roll(dark, 1, 0) & np.roll(dark, -1, 0))
     out = []
     for x in range(2, w - 2):
         y = 0
@@ -179,7 +182,9 @@ def find_widgets(a):
             s = y
             while y < h and dark[y, x]:
                 y += 1
-            if 13 <= y - s <= 20 and dark[s:y, x - 1].all() and dark[s:y, x + 1].all():
+            # the tick is 2-3 px wide - on the JPEG screens the outer column is
+            # blurred above the threshold, so one solid neighbour is enough
+            if 13 <= y - s <= 20 and (dark[s:y, x - 1].all() or dark[s:y, x + 1].all()):
                 out.append((x, (s + y) // 2))
             y += 1
     # one hit per tick (the tick is 3 px wide)
@@ -204,11 +209,24 @@ def find_widgets(a):
             r0 = x
             while r0 < w - 2 and a[r, r0 + 1] <= 210:
                 r0 += 1
-            if best is None or r0 - l0 > best[1] - best[0]:
-                best = (l0, r0)
-        if best is None or not (45 <= best[1] - best[0] <= 110):
+            # the leader leaves the bar at its vertical centre, so that row
+            # reads as one long run - keep the widest run that is still a bar
+            if not (45 <= r0 - l0 <= 110):
+                continue
+            if best is None or r0 - l0 > best[2] - best[1]:
+                best = (r, l0, r0)
+        if best is None:
             continue
-        bars.append({'tick': x, 'y': y, 'left': best[0], 'right': best[1]})
+        # an equipment icon is a filled box of about the same width, so check
+        # the height too: a slider bar is 12-13 px deep, an icon 60 or more
+        rb, l0, r0 = best
+        mid = (l0 + r0) // 2
+        d = 1
+        while rb + d < h and a[rb + d, mid] <= 210 and d < 30:
+            d += 1
+        if d > 22:
+            continue
+        bars.append({'tick': x, 'y': y, 'left': l0, 'right': r0})
     return bars
 
 
