@@ -15,23 +15,29 @@ def probe(w, dx, dy):
     """best endpoint leaving the widget in one direction, or None"""
     best = None
     if dy == 0:
-        x0 = w['right'] + 3 if dx > 0 else w['left'] - 3
-        for yy in range(w['y'] - 9, w['y'] + 10):
-            if not T.is_line(a, yy, x0):
-                continue
-            ex, ey = (T.follow(a, x0, yy) if dx > 0 else T.follow_left(a, x0, yy))
-            dist = abs(ex - x0) + abs(ey - yy)
-            if best is None or dist > best[0]:
-                best = (dist, ex, ey)
+        for off in (1, 2, 3, 4, 5):
+            x0 = w['right'] + off if dx > 0 else w['left'] - off
+            for yy in range(w['y'] - 14, w['y'] + 15):
+                if not T.is_line(a, yy, x0):
+                    continue
+                ex, ey = (T.follow(a, x0, yy) if dx > 0 else T.follow_left(a, x0, yy))
+                dist = abs(ex - x0) + abs(ey - yy)
+                if best is None or dist > best[0]:
+                    best = (dist, ex, ey)
+            if best and best[0] > 12:
+                break
     else:
-        y0 = w['y'] + dy * 11
-        for xx in range(w['left'] - 4, w['right'] + 5):
-            if not T.is_line(a, y0, xx):
-                continue
-            ex, ey = T.follow_any(a, xx, y0, 0, dy)
-            dist = abs(ey - y0) + abs(ex - xx)
-            if best is None or dist > best[0]:
-                best = (dist, ex, ey)
+        for off in (9, 11, 13, 15):
+            y0 = w['y'] + dy * off
+            for xx in range(w['left'] - 10, w['right'] + 11):
+                if not T.is_line(a, y0, xx):
+                    continue
+                ex, ey = T.follow_any(a, xx, y0, 0, dy)
+                dist = abs(ey - y0) + abs(ex - xx)
+                if best is None or dist > best[0]:
+                    best = (dist, ex, ey)
+            if best and best[0] > 12:
+                break
     return best
 
 bars = [w for w in T.find_widgets(a) if 60 < w['y'] < 790]

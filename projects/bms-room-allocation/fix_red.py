@@ -27,6 +27,9 @@ FIX = {
     190: '',                        # VAV0030 ends in the corridor east of G.001-G.004; unnamed
     212: 'G.108 CONSULTANT SPACE',  # endpoint sits inside G.108, not at the Male Toilet text
     213: '',                        # VAV0053 also ends inside G.108 - left blank per review
+     39: '',                        # FCU0010 - with the 90 deg jog followed the leader
+                                    # runs past B.105 and stops just inside B.014,
+                                    # while D and H both say B.124. Not callable.
 }
 
 def esc(s):

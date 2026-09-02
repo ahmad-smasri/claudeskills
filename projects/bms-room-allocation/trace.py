@@ -54,7 +54,7 @@ def run_right(a, y, x, limit):
     return x, y
 
 
-def run_vert(a, y, x, direction, limit=90):
+def run_vert(a, y, x, direction, limit=420):   # leaders turn 90 deg and can run a long way
     gap, moved = 0, 0
     while moved < limit:
         r = None
@@ -77,7 +77,7 @@ def follow(a, x0, y0, xlimit=None):
     """from the right edge of a widget, follow the leader to where it stops"""
     xlimit = xlimit or a.shape[1] - 2
     x, y = x0, y0
-    for _ in range(14):                       # at most 14 jogs
+    for _ in range(24):                       # leaders can jog several times
         nx, ny = run_right(a, y, x, xlimit)
         if nx <= x + 1:                       # no horizontal progress
             pass
@@ -228,7 +228,7 @@ def run_left(a, y, x, limit):
 
 def follow_left(a, x0, y0, xlimit=2):
     x, y = x0, y0
-    for _ in range(14):
+    for _ in range(24):
         nx, ny = run_left(a, y, x, xlimit)
         x, y = nx, ny
         best = None
@@ -363,3 +363,37 @@ def wall_suspect(a, x, y, dx, dy, span=60):
         if not is_line(a, py, px):
             gaps += 1
     return gaps == 0
+
+
+def refine_endpoint(a, ex, ey, dx, dy, back=420):
+    """Back a wall-following endpoint up to where the leader actually stopped.
+
+    Walks back along the arrival direction looking for the last place the
+    stroke was still dashed - i.e. had a gap within the preceding few pixels.
+    Everything beyond that was wall the walker had climbed onto.
+    """
+    if not (dx or dy):
+        return ex, ey
+    run = 0
+    last_gap = None
+    for i in range(0, back):
+        px, py = ex - dx * i, ey - dy * i
+        if not (0 <= py < a.shape[0] and 0 <= px < a.shape[1]):
+            break
+        if is_line(a, py, px):
+            run += 1
+        else:
+            run = 0
+            last_gap = (px, py)
+        if run == 0 and last_gap is not None and i > 4:
+            # first genuine gap coming back from the endpoint: the dashed part
+            # of the stroke starts here
+            return last_gap
+    return ex, ey
+
+
+# NOTE: an automatic "trim the wall off the end of the path" pass was tried and
+# removed. hit() searches two rows either side, and these leaders are drawn
+# along a room wall for their first 40-150 px, so the path reads as solid from
+# the very start and the trim fires at the widget. wall_suspect() flags the bad
+# endpoints reliably; resolving them needs a zoom, not more heuristics.
