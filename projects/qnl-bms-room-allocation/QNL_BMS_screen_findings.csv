@@ -1,10 +1,15 @@
 row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 882,FCU_B_003,IDF (Corridor) B.062,IDF,QNL/BF-2.jpg,SAME,
+887,FCU_B_008,GAS SUPPRESSION ROOM B.087,Cell between Gas Suppression and Server Rm,QNL/BF-3.jpg,DIFF,"the dot is in the middle cell, one wall east of the cell the Gas Suppression label points into; column D says GAS SUPPRESSION ROOM B.087"
 890,FCU_B_011,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 891,FCU_B_012,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 892,FCU_B_013,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
 893,FCU_B_014,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
 907,FCU_B_028,Sorting Shelving Room B.121,Sorting Shelving Rm,QNL/BF-2.jpg,SAME,
+911,FCU_B_032,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
+912,FCU_B_033,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
+913,FCU_B_034,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
+914,FCU_B_035,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
 1071,VAV_B_S11_001,Break Out Area B.001A,Break Out Area / Tech.Services & Collections Office (open plan),QNL/BF.jpg,OPEN,open plan - west end
 1072,VAV_B_S11_002,Break Out Area B.001A,Break Out Area / Tech.Services & Collections Office (open plan),QNL/BF.jpg,OPEN,open plan - west end
 1073,VAV_B_S11_003,"Tech, Services & Collections Office B.001",Break Out Area / Tech.Services & Collections Office (open plan),QNL/BF.jpg,OPEN,open plan - west end
@@ -41,6 +46,10 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1116,VAV_B_S11_046,Receiving Area B.008,Corridor east of Receving Area,QNL/BF.jpg,DIFF,"right of the Receving Area wall, in the corridor strip with S11-022; column D says Receiving Area B.008"
 1117,VAV_B_S13_001,Meeting Room B.034,Meeting Rm,QNL/BF-1.jpg,SAME,
 1118,VAV_B_S13_002,Meeting Room B.034,Meeting Rm,QNL/BF-1.jpg,SAME,
+1125,VAV_B_S14_001,Office B.040,Office,QNL/BF-4.jpg,D-BLANK,
+1127,VAV_B_S14_003,Office AD For LIT B.057,Loading Area (north-west grey band),QNL/BF-4.jpg,DIFF,"the dot is in the grey Loading Area band, two walls west of the pink; column D says Office AD For LIT B.057"
+1132,VAV_B_S14_008,Shell Space B.59,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,DIFF,"the dot is in the Digitization Rm end of the open band; Shell Space is the next room east across a wall, which is what column D says"
+1133,VAV_B_S14_009,Digitization Room B.041,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,OPEN,open plan - Office AD For LIT end
 1186,CAV_B_S12_001,CORRIDOR B.061,Plant Rm 1,QNL/BF-2.jpg,DIFF,both S12-001 and S12-002 land in Plant Rm 1; column D says CORRIDOR B.061
 1187,CAV_B_S12_002,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 1188,CAV_B_S12_003,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
@@ -48,6 +57,13 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1190,CAV_B_S13_002,Corridor 2 B.064,Corridor south of Plant Rm 1,QNL/BF-2.jpg,SAME,
 1194,CAV_B_S13_006,CORRIDOR 4 B.035,Plant Rm 2 - narrow band along its north wall,QNL/BF-2.jpg,CHECK,the band may be the Corridor 4 column D names; it carries no label here
 1195,CAV_B_S13_007,CORRIDOR 4 B.035,Corridor 4,QNL/BF-1.jpg,SAME,
+1196,CAV_B_S13_008,CORRIDOR 4 B.035,Unlabelled strip north of Fire Cmd,QNL/BF-3.jpg,CHECK,the strip carries no label; column D says CORRIDOR 4 B.035
 1198,CAV_B_S13_010,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
 1199,CAV_B_S13_011,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
 1200,CAV_B_S13_012,Fire Command B.071,Plant Rm 2,QNL/BF-2.jpg,DIFF,dot is inside Plant Rm 2 with S13-010 and S13-011; column D says Fire Command B.071
+1201,CAV_B_S13_013,GAS SUPPRESSION B.087,Gas Suppression,QNL/BF-3.jpg,SAME,
+1202,CAV_B_S13_014,PEOPLE MOVER B.088,Cell between Gas Suppression and Server Rm,QNL/BF-3.jpg,CHECK,the middle cell carries no label of its own
+1203,CAV_B_S13_015,Server Room B.089,Server Rm,QNL/BF-3.jpg,SAME,
+1205,CAV_B_S13_021,Sprinklers Pumps & Zones Valves B.072,Sprinkler Pump,QNL/BF-3.jpg,SAME,
+1207,CAV_B_S14_001,CORRIDOR 3 B.051,Loading Area (north-west grey band),QNL/BF-4.jpg,CHECK,the band is long and narrow and may be the CORRIDOR 3 column D names
+1212,CAV_B_S14_006,Referigerate Store Kitchen Lobby B.044,Pink lobby west of Refrigerated Store,QNL/BF-4.jpg,SAME,

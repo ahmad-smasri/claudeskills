@@ -23,6 +23,7 @@ than a blank.
 # written as the open space and reported OPEN rather than counted either way.
 OPEN_BF = 'Break Out Area / Tech.Services & Collections Office (open plan)'
 OPEN_BF1 = 'Tech.Services & Collection (open plan)'
+OPEN_BF4 = 'Office AD For LIT / Digitization Rm (open plan)'
 
 SCREENS = {
  'BF': [
@@ -101,6 +102,44 @@ SCREENS = {
      'the strip carries no label on this screen, so it cannot be matched'
      ' against column D either way'),
  ],
+ # BF-3: Plant Rm 2 with a column of yellow rooms - Fire Cmd over Sprinkler
+ # Pump - and a second yellow block split into three cells. The west cell is
+ # the one the `Gas Suppression` label points into, the east is Server Rm, and
+ # the middle carries no label of its own.
+ 'BF-3': [
+    ('CAV-S13-021', 'Sprinkler Pump', ''),
+    ('CAV-S13-008', 'Unlabelled strip north of Fire Cmd',
+     'the strip carries no label; column D says CORRIDOR 4 B.035'),
+    ('CAV-S13-013', 'Gas Suppression', ''),
+    ('CAV-S13-014', 'Cell between Gas Suppression and Server Rm',
+     'the middle cell carries no label of its own'),
+    ('FCU-B-008', 'Cell between Gas Suppression and Server Rm',
+     '!the dot is in the middle cell, one wall east of the cell the Gas'
+     ' Suppression label points into; column D says GAS SUPPRESSION ROOM B.087'),
+    ('CAV-S13-015', 'Server Rm', ''),
+    ('FCU-B-032', 'Shell Space-Special Collection', ''),
+    ('FCU-B-033', 'Shell Space-Special Collection', ''),
+    ('FCU-B-034', 'Shell Space-Special Collection', ''),
+    ('FCU-B-035', 'Shell Space-Special Collection', ''),
+ ],
+
+ # BF-4: the north-west of this zone is a grey band labelled `Loading Area`,
+ # and the pink band along the top carries both `Office AD For LIT` and
+ # `Digitization Rm` with only a blue strip between them, so those two cannot
+ # be separated. `Shell Space` is a room of its own, east across a wall.
+ 'BF-4': [
+    ('VAV-B-S14-001', 'Office', ''),
+    ('VAV-B-S14-003', 'Loading Area (north-west grey band)',
+     '!the dot is in the grey Loading Area band, two walls west of the pink;'
+     ' column D says Office AD For LIT B.057'),
+    ('CAV-S14-001', 'Loading Area (north-west grey band)',
+     'the band is long and narrow and may be the CORRIDOR 3 column D names'),
+    ('CAV-S14-006', 'Pink lobby west of Refrigerated Store', ''),
+    ('VAV-B-S14-009', OPEN_BF4, 'open plan - Office AD For LIT end'),
+    ('VAV-B-S14-008', OPEN_BF4,
+     '!the dot is in the Digitization Rm end of the open band; Shell Space is'
+     ' the next room east across a wall, which is what column D says'),
+ ],
 }
 
 BLANK = {
@@ -123,6 +162,38 @@ BLANK = {
  'FCU-B-027': 'BF-2: leader not resolved',
  'FCU-B-031': 'BF-2: dot is in an unlabelled cell in the riser strip south of'
               ' IT Office; column D says IDF ROOM B.215A',
+ 'FCU-B-006': 'BF-3: two walkers converge above the plan edge',
+ 'FCU-B-007': 'BF-3: traced into Shell Space with FCU-B-035; column D says Sprinklers Pumps',
+ 'FCU-B-009': 'BF-3: two walkers converge above the plan edge',
+ 'CAV-S13-003': 'BF-3: leader ends off the plan',
+ 'FCU-B-037': 'BF-3: leader not resolved',
+ 'VAV-B-S14-002': 'BF-4: leader not resolved',
+ 'VAV-B-S14-004': 'BF-4: two walkers converge off the plan',
+ 'VAV-B-S14-005': 'BF-4: leader not resolved',
+ 'VAV-B-S14-006': 'BF-4: leader not resolved',
+ 'VAV-B-S14-007': 'BF-4: leader not resolved',
+ 'VAV-B-S14-010': 'BF-4: two walkers converge off the plan',
+ 'VAV-B-S14-011': 'BF-4: leader not resolved',
+ 'VAV-B-S14-012': 'BF-4: leader not resolved',
+ 'VAV-B-S14-013': 'BF-4: leader not resolved',
+ 'VAV-B-S14-014': 'BF-4: leader not resolved',
+ 'VAV-B-S14-015': 'BF-4: leader not resolved',
+ 'VAV-B-S14-016': 'BF-4: leader not resolved',
+ 'VAV-B-S14-040': 'BF-4: leader not resolved',
+ 'VAV-B-S14-041': 'BF-4: leader not resolved',
+ 'VAV-B-S14-042': 'BF-4: leader not resolved',
+ 'VAV-B-S14-043': 'BF-4: leader not resolved',
+ 'VAV-B-S14-044': 'BF-4: leader not resolved',
+ 'VAV-B-S14-045': 'BF-4: leader not resolved',
+ 'VAV-B-S14-046': 'BF-4: leader not resolved',
+ 'VAV-B-S14-047': 'BF-4: leader not resolved',
+ 'VAV-B-S14-048': 'BF-4: dot is in the grey south of the pink, not in a named room',
+ 'VAV-B-S14-049': 'BF-4: leader not resolved',
+ 'VAV-B-S14-050': 'BF-4: leader not resolved',
+ 'VAV-B-S14-051': 'BF-4: dot is in the grey south of the pink, not in a named room',
+ 'CAV-S15-002': 'BF-4: leader not resolved',
+ 'CAV-S15-003': 'BF-4: leader not resolved',
+ 'CAV-S14-007': 'BF-4: leader not resolved',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}
