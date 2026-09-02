@@ -30,25 +30,30 @@ ALLOC = [(tag, room, screen, note)
          for tag, room, note in rows]
 
 
-def reg_tag(bms, rows):
+LEVEL = {'BF': 'B', 'FF': '1F', 'SF': '2F', 'RF': 'RF', 'Terrace': 'TF'}
+
+
+def screen_level(screen):
+    """which level a screen shows: BF-4 -> B, FF-2 -> 1F, SF-1 -> 2F"""
+    return LEVEL.get(screen.split('-')[0].split('_')[0], '')
+
+
+def reg_tag(bms, screen, rows):
     """screen tag -> register tag.
 
     `VAV-B-S11-011` is `VAV_B_S11_011`, but the screens drop the level segment
-    on some families - `CAV-S12-003` is `CAV_B_S12_003` and `CAV-S11-002` on a
-    first-floor screen is `CAV_1F_S11_002` - so the level is put back when the
-    plain form is not there. Which level is decided by what the register
-    actually holds, not by the screen the tag came off, because the same
-    family number is reused on more than one level.
+    on some families - `CAV-S12-003` is `CAV_B_S12_003`. The level has to come
+    from the screen and not from whatever the register happens to hold, because
+    the same screen tag is reused across levels: `CAV-S15-002` is
+    `CAV_B_S15_002` on BF-4 and `CAV_1F_S15_002` on FF-2, and they are
+    different units in different rooms.
     """
     t = bms.strip().upper().replace('-', '_')
-    if t in rows:
-        return t
     m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
     if m:
-        for level in ('B', '1F', '2F'):
-            alt = '%s_%s_%s' % (m.group(1), level, m.group(2))
-            if alt in rows:
-                return alt
+        alt = '%s_%s_%s' % (m.group(1), screen_level(screen), m.group(2))
+        if alt in rows:
+            return alt
     return t
 
 
@@ -97,7 +102,7 @@ def main():
 
     targets, missing = {}, []
     for bms, room, screen, _note in ALLOC:
-        t = reg_tag(bms, rows)
+        t = reg_tag(bms, screen, rows)
         if t in rows:
             targets[rows[t]] = (room, SCREEN_FILE[screen])
         else:

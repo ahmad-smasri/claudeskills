@@ -1,4 +1,8 @@
 row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
+783,FCU_1F_003,IDF Room 02 L1.099,IDF Rm,QNL/FF-2.jpg,SAME,
+840,FCU_1F_060,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan - by the Front Kitchen label
+841,FCU_1F_061,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+844,FCU_1F_064,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
 880,FCU_B_001,IDF ROOM B.155,IDF Rm,QNL/BF-8.jpg,SAME,the dot is in the first of the small cells along the north-west wall; the IDF Rm label sits over the second
 882,FCU_B_003,IDF (Corridor) B.062,IDF,QNL/BF-2.jpg,SAME,
 883,FCU_B_004,IDF FM Storage B.215,FM Storage,QNL/BF-10.jpg,SAME,the dot is at the west wall in the band that carries the FM Storage and Storage labels
@@ -35,14 +39,21 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 937,VAV_1F_S11_019,Computer Classroom L1.022,Info. Literacy Instr.2 / Writing Head (open plan),QNL/FF.jpg,DIFF,"the dot is in the Info. Literacy Instr.2 / Writing Head cell, two walls west of the Computer Class Rm where column D puts it"
 938,VAV_1F_S11_020,Computer Classroom L1.022,Computer Class Rm,QNL/FF.jpg,SAME,
 940,VAV_1F_S11_022,Group Study Room 4 L1.029,Study Rm 4,QNL/FF.jpg,SAME,
+941,VAV_1F_S11_087,CHILDRENS LIBRARY SLOPE  CORRIDOR L1.023,Yellow band at the north-west corner,QNL/FF-3.jpg,CHECK,the band carries no label; column D says CHILDRENS LIBRARY SLOPE CORRIDOR L1.023
 942,VAV_1F_S11_088,CHILDRENS LIBRARY SLOPE  CORRIDOR L1.023,Study Rm3,QNL/FF.jpg,DIFF,the dot is inside the Study Rm3 room; column D says CHILDRENS LIBRARY SLOPE CORRIDOR L1.023
+947,VAV_1F_S15_003,Media Studio2 L1.065,Media Studio1 / Storage / Media Studio2 (open plan),QNL/FF-3.jpg,OPEN,open plan - under the Storage label
+948,VAV_1F_S15_004,Media Studio2 L1.065,Media Studio1 / Storage / Media Studio2 (open plan),QNL/FF-3.jpg,OPEN,open plan - under the Storage label
 950,VAV_1F_S15_006,Children Library - Pre School Reading & Playing L1.047,Children Library,QNL/FF.jpg,SAME,
 951,VAV_1F_S15_007,Children Library - Pre School Reading & Playing L1.047,Children Library,QNL/FF.jpg,SAME,
 952,VAV_1F_S15_008,Children Library - Pre School Reading & Playing L1.047,Children Library,QNL/FF.jpg,SAME,
+953,VAV_1F_S15_009,CHILDRENS LIBRARY-PRE SCHOOL COLLECTION L1.047,Unlabelled purple strip west of the Restaurant,QNL/FF-2.jpg,CHECK,"the strip carries no label; column D says CHILDRENS LIBRARY-PRE SCHOOL COLLECTION L1.047, which is on the Zone 1 screen"
+954,VAV_1F_S15_010,CHILDRENS LIBRARY-PRE SCHOOL COLLECTION L1.047,Unlabelled purple strip west of the Restaurant,QNL/FF-2.jpg,CHECK,"the strip carries no label; column D says CHILDRENS LIBRARY-PRE SCHOOL COLLECTION L1.047, which is on the Zone 1 screen"
 956,VAV_1F_S15_012,Staff Office L1.048,Yellow cell south of Staff Office,QNL/FF.jpg,SAME,the cell carries no label of its own; the Staff Office cell is the one above it
+958,VAV_1F_S15_022,Prayer Room (Female) L1.104,Prayer Rm (Female),QNL/FF-3.jpg,SAME,"the upper half of the purple block, which is where the Prayer Rm (Female) pointer lands"
 964,VAV_1F_S15_039S,Staff Office L1.048,Head Librarian Office,QNL/FF.jpg,DIFF,"the dot is in the Head Librarian Office cell, one wall north of the Staff Office cell where column D puts it"
 966,VAV_1F_S15_096,Multipurpose Room L1.041,Multipurpose Rm,QNL/FF.jpg,SAME,
 967,VAV_1F_S15_097,Multipurpose Room L1.041,Multipurpose Rm,QNL/FF.jpg,SAME,
+968,VAV_1F_S15_098,Multipurpose Room L1.041,Multipurpose Rm,QNL/FF-2.jpg,SAME,
 1056,VAV_B_S10_010,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1057,VAV_B_S10_011,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1062,VAV_B_S10_016,MULTIMEDIA PRESENTATION B.205,Instruction Presentation,QNL/BF-5.jpg,SAME,
@@ -102,6 +113,15 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1162,VAV_B_S15_010,HC DIRECTOR HEAD B.149,Cell north-east of VIP Majlis,QNL/BF-8.jpg,CHECK,the cell carries no label of its own
 1163,VAV_B_S15_011,VIP Majlis B.149,VIP Majlis,QNL/BF-8.jpg,SAME,
 1167,CAV_1F_S11_002,CORRIDOR L1.023,Grey area by L-1 and Rest Rm,QNL/FF.jpg,CHECK,unlabelled; may be the CORRIDOR L1.023 column D names
+1172,CAV_1F_S15_002,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1174,CAV_1F_S15_005,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1177,CAV_1F_S15_011,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1178,CAV_1F_S15_012,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan - by the Front Kitchen label
+1179,CAV_1F_S15_013,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1181,CAV_1F_S15_015,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1182,CAV_1F_S15_016,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1183,CAV_1F_S15_017,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
+1185,CAV_1F_S15_019,FURNITURE STORE L1.153,Band south of the Media Studios,QNL/FF-3.jpg,CHECK,the band carries no label; column D says FURNITURE STORE L1.153
 1186,CAV_B_S12_001,CORRIDOR B.061,Plant Rm 1,QNL/BF-2.jpg,DIFF,both S12-001 and S12-002 land in Plant Rm 1; column D says CORRIDOR B.061
 1187,CAV_B_S12_002,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 1188,CAV_B_S12_003,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,

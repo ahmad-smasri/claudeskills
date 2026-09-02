@@ -7,7 +7,8 @@ leader was unambiguous and starts with `!` where the screen puts the unit
 somewhere column D does not; `report_qnl.py` cannot always see those on its own
 because the two rooms share a word.
 
-`BLANK[tag]` is a leader that could not be called. Those rows are left out of
+`BLANK[tag]` is a leader that could not be called; where the same screen tag
+exists on two screens the key names the screen as well. Those rows are left out of
 column J entirely: a guess there reads exactly like a reading.
 
 Rule followed throughout: a tracer endpoint is written only when the room it
@@ -27,6 +28,8 @@ OPEN_BF4 = 'Office AD For LIT / Digitization Rm (open plan)'
 OPEN_BF5 = 'Digitization / Instruction Outreach (open plan)'
 OPEN_BF6 = 'Plant Rm 3 / Corridor 5 (open plan)'
 OPEN_FF = 'Info. Literacy Instr.2 / Writing Head (open plan)'
+OPEN_FF2 = 'Restaurant / Front Kitchen (open plan)'
+OPEN_FF3 = 'Media Studio1 / Storage / Media Studio2 (open plan)'
 
 SCREENS = {
  'BF': [
@@ -254,6 +257,45 @@ SCREENS = {
     ('CAV-S11-002', 'Grey area by L-1 and Rest Rm',
      'unlabelled; may be the CORRIDOR L1.023 column D names'),
  ],
+ # FF-2: the restaurant is one purple space carrying both `Restaurant` and
+ # `Front Kitchen`; the rectangle drawn round the two of them is the counter
+ # line, not a wall.
+ 'FF-2': [
+    ('CAV-S15-002', OPEN_FF2, 'open plan'),
+    ('CAV-S15-005', OPEN_FF2, 'open plan'),
+    ('CAV-S15-011', OPEN_FF2, 'open plan'),
+    ('CAV-S15-012', OPEN_FF2, 'open plan - by the Front Kitchen label'),
+    ('CAV-S15-013', OPEN_FF2, 'open plan'),
+    ('CAV-S15-015', OPEN_FF2, 'open plan'),
+    ('CAV-S15-016', OPEN_FF2, 'open plan'),
+    ('CAV-S15-017', OPEN_FF2, 'open plan'),
+    ('FCU-1F-060', OPEN_FF2, 'open plan - by the Front Kitchen label'),
+    ('FCU-1F-061', OPEN_FF2, 'open plan'),
+    ('FCU-1F-064', OPEN_FF2, 'open plan'),
+    ('VAV-1F-S15-098', 'Multipurpose Rm', ''),
+    ('FCU-1F-003', 'IDF Rm', ''),
+    ('VAV-1F-S15-009', 'Unlabelled purple strip west of the Restaurant',
+     'the strip carries no label; column D says CHILDRENS LIBRARY-PRE SCHOOL'
+     ' COLLECTION L1.047, which is on the Zone 1 screen'),
+    ('VAV-1F-S15-010', 'Unlabelled purple strip west of the Restaurant',
+     'the strip carries no label; column D says CHILDRENS LIBRARY-PRE SCHOOL'
+     ' COLLECTION L1.047, which is on the Zone 1 screen'),
+ ],
+ # FF-3: the three media rooms share one purple space with no wall between
+ # them, and the two prayer rooms are the halves of one purple block, named by
+ # labels that lead in from the grey to the south.
+ 'FF-3': [
+    ('VAV-1F-S15-003', OPEN_FF3, 'open plan - under the Storage label'),
+    ('VAV-1F-S15-004', OPEN_FF3, 'open plan - under the Storage label'),
+    ('VAV-1F-S15-022', 'Prayer Rm (Female)',
+     'the upper half of the purple block, which is where the Prayer Rm'
+     ' (Female) pointer lands'),
+    ('CAV-S15-019', 'Band south of the Media Studios',
+     'the band carries no label; column D says FURNITURE STORE L1.153'),
+    ('VAV-1F-S11-087', 'Yellow band at the north-west corner',
+     'the band carries no label; column D says CHILDRENS LIBRARY SLOPE'
+     ' CORRIDOR L1.023'),
+ ],
 }
 
 BLANK = {
@@ -302,8 +344,8 @@ BLANK = {
  'VAV-B-S14-049': 'BF-4: leader not resolved',
  'VAV-B-S14-050': 'BF-4: leader not resolved',
  'VAV-B-S14-051': 'BF-4: dot is in the grey south of the pink, not in a named room',
- 'CAV-S15-002': 'BF-4: leader not resolved',
- 'CAV-S15-003': 'BF-4: leader not resolved',
+ 'CAV-S15-002 (BF-4)': 'BF-4: leader not resolved',
+ 'CAV-S15-003 (BF-4)': 'BF-4: leader not resolved',
  'CAV-S14-007': 'BF-4: leader not resolved',
  'FCU-B-010': 'BF-5: leader ends in unlabelled grey west of Processing Rm',
  'CAV-S14-002': 'BF-5: leader ends off the plan',
@@ -362,6 +404,68 @@ BLANK = {
  'VAV-1F-S11-090': 'FF: two walkers converge',
  'VAV-1F-S15-005': 'FF: leader not resolved',
  'FCU-1F-002': 'FF: leader not resolved',
+ 'VAV-1F-S15-011': 'FF-2: leader not resolved',
+ 'CAV-S15-006': 'FF-2: leader ends outside the plan',
+ 'CAV-S15-018': 'FF-2: leader not resolved',
+ 'FCU-1F-059': 'FF-2: leader not resolved',
+ 'CAV-S15-010': 'FF-2: leader not resolved',
+ 'FCU-1F-062': 'FF-2: leader not resolved',
+ 'FCU-1F-063': 'FF-2: leader not resolved',
+ 'CAV-S15-014': 'FF-2: leader not resolved',
+ 'FCU-1F-004': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-005': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-006': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-007': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-008': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-009': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-010': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-011': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-012': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-013': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-014': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-015': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-016': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-017': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-018': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-019': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-021': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-022': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-023': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-024': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-025': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-026': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-027': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-028': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-029': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-030': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-031': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-032': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-033': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-034': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-035': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-036': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-037': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-038': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-039': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-040': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-041': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-042': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-043': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-044': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-045': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-046': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-047': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-048': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-049': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-050': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-051': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-052': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-053': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-054': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-055': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-057': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-058': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
+ 'FCU-1F-065': 'the screen names no room where this leader lands - column D calls it a bridge ceiling void, and the QNL screens do not label the voids',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}
