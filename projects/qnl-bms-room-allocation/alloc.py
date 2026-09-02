@@ -35,6 +35,8 @@ SF1_CIRC = 'Circulation Office / Breakout space (open plan)'
 SF1_TRANSL = 'Transl.Spc& Space ED (strip along the south of the cyan zone)'
 SF1_YELLOW = 'Libr.Com.Rel. Spo. & Event Spc / Ad.Admin &Planning (yellow zone)'
 SF3_CYAN = 'VIP Waiting / VIP Meeting (open cyan zone)'
+PZ = ('the screen prints Plant Zone with no P-number, so which plant zone it'
+      ' is cannot be checked from it')
 
 SCREENS = {
  'BF': [
@@ -431,6 +433,16 @@ SCREENS = {
      'the dot sits beside the Lounge area label on the open plate; column D'
      ' says Bridge Raised Floor L2.088'),
  ],
+ # RF-3: the only room label anywhere on the four roof screens. Its pointer
+ # runs down-left into the block at the south-west of the plan, and all four
+ # fans on this screen land in that block. The screen prints `Plant Zone` with
+ # no number, so P.006 against P.007 cannot be checked from it.
+ 'RF-3': [
+    ('SEF-RP0010', 'Plant Zone', PZ),
+    ('SEF-RP0011', 'Plant Zone', PZ),
+    ('SEF-RP0012', 'Plant Zone', PZ),
+    ('EF-RP0003', 'Plant Zone', PZ),
+ ],
 }
 
 BLANK = {
@@ -649,6 +661,15 @@ BLANK = {
  'FCU-2F-060': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
  'FCU-2F-061': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
  'FCU-2F-062': 'the screen names no room where this leader lands - the plan carries furniture and function labels (Book Shelf, Media Station, Special Events) but no room names',
+ 'SEF-RP0007': 'RF-2: all four fans land in the same unlabelled cell, which is at least consistent with all four sharing one plant zone - but the screen names no room, so nothing can be written',
+ 'SEF-RP0008': 'RF-2: all four fans land in the same unlabelled cell, which is at least consistent with all four sharing one plant zone - but the screen names no room, so nothing can be written',
+ 'SEF-RP0009': 'RF-2: all four fans land in the same unlabelled cell, which is at least consistent with all four sharing one plant zone - but the screen names no room, so nothing can be written',
+ 'EF-RP0002': 'RF-2: all four fans land in the same unlabelled cell, which is at least consistent with all four sharing one plant zone - but the screen names no room, so nothing can be written',
+ 'EF-RP0001': "RF-1: the roof plan carries no room label at all - only Zone 3 does - and three of the five icons on this screen carry the HMI default text 'Label' instead of a tag",
+ 'DX-B-05 (RF-1)': "RF-1: the roof plan carries no room label at all - only Zone 3 does - and three of the five icons on this screen carry the HMI default text 'Label' instead of a tag",
+ 'FCU-2F-001': 'Terrace Floor-2: the plan carries furniture and function labels (Computer Station, Media Station, Shell space) and no room names',
+ 'FCU-2F-002': 'Terrace Floor-2: the plan carries furniture and function labels (Computer Station, Media Station, Shell space) and no room names',
+ 'FCU-1F-001': 'Terrace Floor-2: the plan carries furniture and function labels (Computer Station, Media Station, Shell space) and no room names',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}

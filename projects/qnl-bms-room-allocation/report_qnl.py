@@ -14,14 +14,12 @@ import openpyxl
 import alloc
 import write_j
 
+REG = write_j.register_tags()
+
 
 def key(screen, tag):
     """the register tag a screen tag maps to, so the note is found under it"""
-    t = tag.upper().replace('-', '_')
-    m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
-    if m:
-        return '%s_%s_%s' % (m.group(1), write_j.screen_level(screen), m.group(2))
-    return t
+    return write_j.reg_tag(tag, screen, REG)
 
 
 ROWS = [(key(s, t), n)

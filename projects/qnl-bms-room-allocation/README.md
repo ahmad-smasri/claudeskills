@@ -48,6 +48,7 @@ one, so vertical leaders vanished. `qnl_trace.mask` measures both axes.
 | `qnl_dots.py` | finds the discs that terminate the leaders |
 | `qnl_trace.py` | the walker: masks, the gap rule, the corner rule |
 | `annotate_qnl.py` | traces a screen and writes a numbered copy to read by eye |
+| `qnl_icons.py`, `annotate_icons.py` | the same for the equipment icons - fans, AHUs, DX units, CCUs - which are tiles rather than slider bars |
 | `run_all.sh` | annotates every screen not already done |
 | `trace.py`, `crop.py` | symlinks to the HQ/SSC originals - widget finding, zooming |
 
@@ -119,6 +120,40 @@ exactly like a reading, so nothing is written that was not confirmed by eye.
 | BF-7 | 4 | | | |
 | BF-8 | 3 | | | |
 | BF-10 | 10 | | | |
+
+## The roof and terrace screens
+
+Six screens, and between them they yield four rows. Worth writing down why,
+because "I looked and there was nothing" is not the same answer as "there is
+nothing to look at".
+
+The fans, AHUs and DX units are drawn as solid grey tiles, not slider bars, so
+`trace.find_widgets` never saw them and the roof screens came back empty.
+`qnl_icons.py` finds them by flood fill - `trace.find_icons` misses them too,
+because it grows a bounding box along one row and one column out of a seed
+pixel and the fan blade drawn across the middle of the tile stops the column
+walk short of its size test. With that, RF-2 and RF-3 resolve four of four
+leaders and RF-1 two of five.
+
+What the screens then say:
+
+- **RF-3** is the only roof screen with a room label on it. `Plant Zone` leads
+  down-left into the block at the south-west, and all four fans land in that
+  block. Written. The screen prints no P-number, so P.006 against P.007 is not
+  something it can settle - and the four units are split between those two in
+  column D while sharing one block on the screen.
+- **RF-2** resolves all four leaders into the same unlabelled cell. That is at
+  least consistent with column D putting all four in one plant zone, but the
+  plan names no room, so nothing is written.
+- **RF-1** carries no room label either, and **three of its five icons are
+  labelled `Label`** - the HMI default text where a tag was never configured -
+  so those three cannot be identified from the screen at all.
+- **RF-4** has no equipment on it.
+- **Terrace Floor-1 and -2** print furniture and function labels - Book Shelf,
+  Media Station, Computer Station, Shell space, Exit(Main entrance) - and no
+  room names.
+
+## Screens with nothing to read
 
 Four screens carry no slider units at all (BF-9, BF-11, BF-12, and the empty
 FF-1, FF-6, FF-8, FF-9, RF-4, SF-2, SF-7, SF-8) and three more - FF-4, FF-5 and

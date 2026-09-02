@@ -202,3 +202,7 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1207,CAV_B_S14_001,CORRIDOR 3 B.051,Loading Area (north-west grey band),QNL/BF-4.jpg,CHECK,the band is long and narrow and may be the CORRIDOR 3 column D names
 1210,CAV_B_S14_004,PLANT ROOM 3 B.110,Plant Rm 3 / Corridor 5 (open plan),QNL/BF-6.jpg,OPEN,open plan - level with the Corridor 5 label
 1212,CAV_B_S14_006,Referigerate Store Kitchen Lobby B.044,Pink lobby west of Refrigerated Store,QNL/BF-4.jpg,SAME,
+1263,EF_RP03,Plant Zone P.007,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"
+1274,SEF_RP10,Plant Zone P.007,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"
+1275,SEF_RP11,Plant Zone P.006,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"
+1276,SEF_RP12,Plant Zone P.006,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"

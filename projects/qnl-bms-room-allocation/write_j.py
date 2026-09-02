@@ -49,11 +49,21 @@ def reg_tag(bms, screen, rows):
     different units in different rooms.
     """
     t = bms.strip().upper().replace('-', '_')
+    if t in rows:
+        return t
     m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
     if m:
         alt = '%s_%s_%s' % (m.group(1), screen_level(screen), m.group(2))
         if alt in rows:
             return alt
+    # the fans are padded to four digits on screen and two in the register:
+    # SEF-RP0010 is SEF_RP10, EF-RP0003 is EF_RP03
+    m = re.match(r'^(.*?)(\d+)$', t)
+    if m:
+        for width in (2, 1, 3):
+            alt = '%s%0*d' % (m.group(1), width, int(m.group(2)))
+            if alt in rows:
+                return alt
     return t
 
 
@@ -93,6 +103,13 @@ def cells(xml, strings):
             if t:
                 out[rn] = t.group(1).strip()
     return out
+
+
+def register_tags():
+    """the set of tags the QNL block actually carries"""
+    zin = zipfile.ZipFile(SRC)
+    xml = zin.read(SHEET).decode('utf-8')
+    return {v.upper() for v in cells(xml, shared_strings(zin)).values()}
 
 
 def main():
