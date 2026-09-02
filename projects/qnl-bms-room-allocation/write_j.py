@@ -34,17 +34,21 @@ def reg_tag(bms, rows):
     """screen tag -> register tag.
 
     `VAV-B-S11-011` is `VAV_B_S11_011`, but the screens drop the level segment
-    on some families - `CAV-S12-003` is `CAV_B_S12_003` in the register - so
-    the level is put back when the plain form is not there.
+    on some families - `CAV-S12-003` is `CAV_B_S12_003` and `CAV-S11-002` on a
+    first-floor screen is `CAV_1F_S11_002` - so the level is put back when the
+    plain form is not there. Which level is decided by what the register
+    actually holds, not by the screen the tag came off, because the same
+    family number is reused on more than one level.
     """
     t = bms.strip().upper().replace('-', '_')
     if t in rows:
         return t
     m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
     if m:
-        alt = '%s_B_%s' % (m.group(1), m.group(2))
-        if alt in rows:
-            return alt
+        for level in ('B', '1F', '2F'):
+            alt = '%s_%s_%s' % (m.group(1), level, m.group(2))
+            if alt in rows:
+                return alt
     return t
 
 

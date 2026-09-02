@@ -26,6 +26,7 @@ OPEN_BF1 = 'Tech.Services & Collection (open plan)'
 OPEN_BF4 = 'Office AD For LIT / Digitization Rm (open plan)'
 OPEN_BF5 = 'Digitization / Instruction Outreach (open plan)'
 OPEN_BF6 = 'Plant Rm 3 / Corridor 5 (open plan)'
+OPEN_FF = 'Info. Literacy Instr.2 / Writing Head (open plan)'
 
 SCREENS = {
  'BF': [
@@ -217,6 +218,42 @@ SCREENS = {
     ('FCU-B-020', 'Plant Rm 4', ''),
     ('FCU-B-021', 'Plant Rm 4', ''),
  ],
+ # FF: `Info. Literacy Instr.2` and `Writing Head` share one cell with no wall
+ # between them. `Rest Rm Women` is printed inside the Computer Class Rm cell
+ # but leads out of it to the rest rooms below, so the three units under that
+ # text are in the Computer Class Rm.
+ 'FF': [
+    ('VAV-1F-S11-004', 'Info. Literacy Instr.1', ''),
+    ('VAV-1F-S11-005', 'Info. Literacy Instr.1', ''),
+    ('VAV-1F-S11-006', OPEN_FF, 'open plan'),
+    ('VAV-1F-S11-010', OPEN_FF, 'open plan'),
+    ('VAV-1F-S11-019', OPEN_FF,
+     '!the dot is in the Info. Literacy Instr.2 / Writing Head cell, two walls'
+     ' west of the Computer Class Rm where column D puts it'),
+    ('VAV-1F-S11-015', 'Computer Class Rm', ''),
+    ('VAV-1F-S11-016', 'Computer Class Rm', ''),
+    ('VAV-1F-S11-020', 'Computer Class Rm', ''),
+    ('VAV-1F-S11-002', 'Study Rm2', ''),
+    ('VAV-1F-S11-003', 'Cell between Study Rm2 and Study Rm 4',
+     'the cell carries no label; Study Rm3 labels the large room to the east'),
+    ('VAV-1F-S11-022', 'Study Rm 4', ''),
+    ('VAV-1F-S11-088', 'Study Rm3',
+     '!the dot is inside the Study Rm3 room; column D says CHILDRENS LIBRARY'
+     ' SLOPE CORRIDOR L1.023'),
+    ('VAV-1F-S15-006', 'Children Library', ''),
+    ('VAV-1F-S15-007', 'Children Library', ''),
+    ('VAV-1F-S15-008', 'Children Library', ''),
+    ('VAV-1F-S15-039S', 'Head Librarian Office',
+     '!the dot is in the Head Librarian Office cell, one wall north of the'
+     ' Staff Office cell where column D puts it'),
+    ('VAV-1F-S15-012', 'Yellow cell south of Staff Office',
+     'the cell carries no label of its own; the Staff Office cell is the one'
+     ' above it'),
+    ('VAV-1F-S15-096', 'Multipurpose Rm', ''),
+    ('VAV-1F-S15-097', 'Multipurpose Rm', ''),
+    ('CAV-S11-002', 'Grey area by L-1 and Rest Rm',
+     'unlabelled; may be the CORRIDOR L1.023 column D names'),
+ ],
 }
 
 BLANK = {
@@ -304,6 +341,27 @@ BLANK = {
  'FCU-B-038': 'BF-7: four walkers converge below the plan',
  'VAV-B-S15-012': 'BF-8: leader ends outside the plan',
  'FCU-B-025': 'BF-10: leader not resolved',
+ 'CAV-S11-001': 'FF: leader not resolved',
+ 'CAV-S11-006': 'FF: dot sits on the west edge of Info. Literacy Instr.1 and'
+                ' could be either side of the wall',
+ 'CAV-S11-007': 'FF: five walkers converge on one dot in Children Library',
+ 'CAV-S11-008': 'FF: five walkers converge on one dot in Children Library',
+ 'CAV-S11-009': 'FF: leader not resolved',
+ 'VAV-1F-S11-001': 'FF: leader not resolved',
+ 'VAV-1F-S11-007': 'FF: five walkers converge on one dot in Children Library',
+ 'VAV-1F-S11-008': 'FF: leader not resolved',
+ 'VAV-1F-S11-009': 'FF: five walkers converge on one dot in Children Library',
+ 'VAV-1F-S11-011': 'FF: leader not resolved',
+ 'VAV-1F-S11-012': 'FF: leader not resolved',
+ 'VAV-1F-S11-013': 'FF: two walkers converge',
+ 'VAV-1F-S11-014': 'FF: five walkers converge on one dot in Children Library',
+ 'VAV-1F-S11-017': 'FF: leader not resolved',
+ 'VAV-1F-S11-018': 'FF: five walkers converge on one dot in Children Library',
+ 'VAV-1F-S11-021': 'FF: two walkers converge',
+ 'VAV-1F-S11-089': 'FF: two walkers converge',
+ 'VAV-1F-S11-090': 'FF: two walkers converge',
+ 'VAV-1F-S15-005': 'FF: leader not resolved',
+ 'FCU-1F-002': 'FF: leader not resolved',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}

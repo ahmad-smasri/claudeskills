@@ -24,6 +24,25 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 912,FCU_B_033,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
 913,FCU_B_034,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
 914,FCU_B_035,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
+920,VAV_1F_S11_002,Group Study Room2 L1.027,Study Rm2,QNL/FF.jpg,SAME,
+921,VAV_1F_S11_003,Group Study Room3 L1.028,Cell between Study Rm2 and Study Rm 4,QNL/FF.jpg,SAME,the cell carries no label; Study Rm3 labels the large room to the east
+922,VAV_1F_S11_004,Information Literacy Instr 1 L1.020,Info. Literacy Instr.1,QNL/FF.jpg,SAME,
+923,VAV_1F_S11_005,Information Literacy Instr 1 L1.020,Info. Literacy Instr.1,QNL/FF.jpg,SAME,
+924,VAV_1F_S11_006,Infor. Lteracy Instr.2 L1.021,Info. Literacy Instr.2 / Writing Head (open plan),QNL/FF.jpg,OPEN,open plan
+928,VAV_1F_S11_010,Infor. Lteracy Instr.2 L1.021,Info. Literacy Instr.2 / Writing Head (open plan),QNL/FF.jpg,OPEN,open plan
+933,VAV_1F_S11_015,Computer Classroom L1.022,Computer Class Rm,QNL/FF.jpg,SAME,
+934,VAV_1F_S11_016,Computer Classroom L1.022,Computer Class Rm,QNL/FF.jpg,SAME,
+937,VAV_1F_S11_019,Computer Classroom L1.022,Info. Literacy Instr.2 / Writing Head (open plan),QNL/FF.jpg,DIFF,"the dot is in the Info. Literacy Instr.2 / Writing Head cell, two walls west of the Computer Class Rm where column D puts it"
+938,VAV_1F_S11_020,Computer Classroom L1.022,Computer Class Rm,QNL/FF.jpg,SAME,
+940,VAV_1F_S11_022,Group Study Room 4 L1.029,Study Rm 4,QNL/FF.jpg,SAME,
+942,VAV_1F_S11_088,CHILDRENS LIBRARY SLOPE  CORRIDOR L1.023,Study Rm3,QNL/FF.jpg,DIFF,the dot is inside the Study Rm3 room; column D says CHILDRENS LIBRARY SLOPE CORRIDOR L1.023
+950,VAV_1F_S15_006,Children Library - Pre School Reading & Playing L1.047,Children Library,QNL/FF.jpg,SAME,
+951,VAV_1F_S15_007,Children Library - Pre School Reading & Playing L1.047,Children Library,QNL/FF.jpg,SAME,
+952,VAV_1F_S15_008,Children Library - Pre School Reading & Playing L1.047,Children Library,QNL/FF.jpg,SAME,
+956,VAV_1F_S15_012,Staff Office L1.048,Yellow cell south of Staff Office,QNL/FF.jpg,SAME,the cell carries no label of its own; the Staff Office cell is the one above it
+964,VAV_1F_S15_039S,Staff Office L1.048,Head Librarian Office,QNL/FF.jpg,DIFF,"the dot is in the Head Librarian Office cell, one wall north of the Staff Office cell where column D puts it"
+966,VAV_1F_S15_096,Multipurpose Room L1.041,Multipurpose Rm,QNL/FF.jpg,SAME,
+967,VAV_1F_S15_097,Multipurpose Room L1.041,Multipurpose Rm,QNL/FF.jpg,SAME,
 1056,VAV_B_S10_010,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1057,VAV_B_S10_011,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1062,VAV_B_S10_016,MULTIMEDIA PRESENTATION B.205,Instruction Presentation,QNL/BF-5.jpg,SAME,
@@ -82,6 +101,7 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1133,VAV_B_S14_009,Digitization Room B.041,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,OPEN,open plan - Office AD For LIT end
 1162,VAV_B_S15_010,HC DIRECTOR HEAD B.149,Cell north-east of VIP Majlis,QNL/BF-8.jpg,CHECK,the cell carries no label of its own
 1163,VAV_B_S15_011,VIP Majlis B.149,VIP Majlis,QNL/BF-8.jpg,SAME,
+1167,CAV_1F_S11_002,CORRIDOR L1.023,Grey area by L-1 and Rest Rm,QNL/FF.jpg,CHECK,unlabelled; may be the CORRIDOR L1.023 column D names
 1186,CAV_B_S12_001,CORRIDOR B.061,Plant Rm 1,QNL/BF-2.jpg,DIFF,both S12-001 and S12-002 land in Plant Rm 1; column D says CORRIDOR B.061
 1187,CAV_B_S12_002,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 1188,CAV_B_S12_003,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,

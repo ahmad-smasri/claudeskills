@@ -24,7 +24,8 @@ def keys(tag):
     out = {t}
     m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
     if m:
-        out.add('%s_B_%s' % (m.group(1), m.group(2)))
+        for level in ('B', '1F', '2F'):
+            out.add('%s_%s_%s' % (m.group(1), level, m.group(2)))
     return out
 
 
