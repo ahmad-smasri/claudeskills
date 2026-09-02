@@ -1,0 +1,70 @@
+building,subject,rdfs:label_en,level segment,room ref
+SSC,entity:SSC_Level-01_AV-Room_01-008,1.008 AV ROOM,Level-01,01.008
+SSC,entity:SSC_Level-01_Corridor_01-001,1.001 CORRIDOR,Level-01,01.001
+SSC,entity:SSC_Level-01_Corridor_01-013,1.013 CORRIDOR,Level-01,01.013
+SSC,entity:SSC_Level-01_Corridor_01-018,1.018 CORRIDOR,Level-01,01.018
+SSC,entity:SSC_Level-01_Corridor_01-024,1.024 CORRIDOR,Level-01,01.024
+SSC,entity:SSC_Level-01_Corridor_01-028,1.028 CORRIDOR,Level-01,01.028
+SSC,entity:SSC_Level-01_IDF-1_01-027,1.027 IDF 1,Level-01,01.027
+SSC,entity:SSC_Level-01_IDF-2_01-039,1.039 IDF 2,Level-01,01.039
+SSC,entity:SSC_Level-01_Open-Space_01-003,1.003 OPEN SPACE,Level-01,01.003
+SSC,entity:SSC_Level-01_Prayer-Room_01-019,1.019 PRAYER ROOM,Level-01,01.019
+SSC,entity:SSC_Level-01_Room-No-42_01-029,1.029 ROOM NO 42,Level-01,01.029
+SSC,entity:SSC_Level-01_Room-No-43_01-029,1.029 ROOM NO 43,Level-01,01.029
+SSC,entity:SSC_Level-01_Room-No-44_01-029,1.029 ROOM NO 44,Level-01,01.029
+SSC,entity:SSC_Level-01_Shell-Space_01-002,1.002 SHELL SPACE,Level-01,01.002
+SSC,entity:SSC_Level-01_Shell-Space_01-014,1.014 SHELL SPACE,Level-01,01.014
+SSC,entity:SSC_Level-01_Shell-Space_01-015,1.015 SHELL SPACE,Level-01,01.015
+SSC,entity:SSC_Level-01_Shell-Space_01-016,1.016 SHELL SPACE,Level-01,01.016
+SSC,entity:SSC_Level-01_Shell-Space_01-029,1.029 SHELL SPACE,Level-01,01.029
+SSC,entity:SSC_Level-01_Stair-4_01-ST-4,ST-4 STAIR 4,Level-01,01.ST-4
+SSC,entity:SSC_Level-02_Conference-Room_02-006,2.006 CONFERENCE ROOM,Level-02,02.006
+SSC,entity:SSC_Level-02_Corridor_02-003,2.003 CORRIDOR,Level-02,02.003
+SSC,entity:SSC_Level-02_Corridor_02-004,2.004 CORRIDOR,Level-02,02.004
+SSC,entity:SSC_Level-02_Executive-Conference-Room_02-005,2.005 EXECUTIVE CONFERENCE ROOM,Level-02,02.005
+SSC,entity:SSC_Level-02_Foyer_02-001,2.001 FOYER,Level-02,02.001
+SSC,entity:SSC_Level-02_Lobby_02-002,2.002 LOBBY,Level-02,02.002
+SSC,entity:SSC_Level-03_Assoc-Directors-Meeting-Room_03-030,3.030 ASSOC DIRECTORS MEETING ROOM,Level-03,03.030
+SSC,entity:SSC_Level-03_Assoc-Directors-Office_03-031,3.031 ASSOC DIRECTORS OFFICE,Level-03,03.031
+SSC,entity:SSC_Level-03_Corridor_03-034,3.034 CORRIDOR,Level-03,03.034
+SSC,entity:SSC_Level-03_Corridor_03-041,3.041 CORRIDOR,Level-03,03.041
+SSC,entity:SSC_Level-03_Corridor_03-042,3.042 CORRIDOR,Level-03,03.042
+SSC,entity:SSC_Level-03_Directors-Meeting-Room_03-002,3.002 DIRECTORS MEETING ROOM,Level-03,03.002
+SSC,entity:SSC_Level-03_Directors-Office_03-001,3.001 DIRECTORS OFFICE,Level-03,03.001
+SSC,entity:SSC_Level-03_General-Office-Area_03-032,3.032 GENERAL OFFICE AREA,Level-03,03.032
+SSC,entity:SSC_Level-03_IT-Managers-Office_03-019,3.019 IT MANAGERS OFFICE,Level-03,03.019
+SSC,entity:SSC_Level-03_Lounge_03-016,3.016 LOUNGE,Level-03,03.016
+SSC,entity:SSC_Level-03_Meeting-Room_03-026,3.026 MEETING ROOM,Level-03,03.026
+SSC,entity:SSC_Level-03_Operations-Manager_03-007,3.007 OPERATIONS MANAGER,Level-03,03.007
+SSC,entity:SSC_Level-03_Printing_03-033,3.033 PRINTING,Level-03,03.033
+SSC,entity:SSC_Level-03_Researchers-Office_03-003,3.003 RESEARCHERS OFFICE,Level-03,03.003
+SSC,entity:SSC_Level-03_Researchers-Office_03-005,3.005 RESEARCHERS OFFICE,Level-03,03.005
+SSC,entity:SSC_Level-03_Researchers-Office_03-009,3.009 RESEARCHERS OFFICE,Level-03,03.009
+SSC,entity:SSC_Level-03_Researchers-Office_03-010,3.010 RESEARCHERS OFFICE,Level-03,03.010
+SSC,entity:SSC_Level-03_Researchers-Office_03-012,3.012 RESEARCHERS OFFICE,Level-03,03.012
+SSC,entity:SSC_Level-03_Researchers-Office_03-013,3.013 RESEARCHERS OFFICE,Level-03,03.013
+SSC,entity:SSC_Level-03_Researchers-Office_03-015,3.015 RESEARCHERS OFFICE,Level-03,03.015
+SSC,entity:SSC_Level-03_Researchers-Office_03-017,3.017 RESEARCHERS OFFICE,Level-03,03.017
+SSC,entity:SSC_Level-03_Researchers-Office_03-020,3.020 RESEARCHERS OFFICE,Level-03,03.020
+SSC,entity:SSC_Level-03_Researchers-Office_03-022,3.022 RESEARCHERS OFFICE,Level-03,03.022
+SSC,entity:SSC_Level-03_Researchers-Office_03-023,3.023 RESEARCHERS OFFICE,Level-03,03.023
+SSC,entity:SSC_Level-03_Researchers-Office_03-027,3.027 RESEARCHERS OFFICE,Level-03,03.027
+SSC,entity:SSC_Level-03_Researchers-Office_03-029,3.029 RESEARCHERS OFFICE,Level-03,03.029
+SSC,entity:SSC_Level-03_Room_03-006A,3.006A ROOM,Level-03,03.006A
+SSC,entity:SSC_Level-03_Room_03-006B,3.006B ROOM,Level-03,03.006B
+SSC,entity:SSC_Level-03_Secretarial-Area_03-025,3.025 SECRETARIAL AREA,Level-03,03.025
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-004,3.004 VISITORS CUBICLE,Level-03,03.004
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-008,3.008 VISITORS CUBICLE,Level-03,03.008
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-011,3.011 VISITORS CUBICLE,Level-03,03.011
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-014,3.014 VISITORS CUBICLE,Level-03,03.014
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-018,3.018 VISITORS CUBICLE,Level-03,03.018
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-021,3.021 VISITORS CUBICLE,Level-03,03.021
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-024,3.024 VISITORS CUBICLE,Level-03,03.024
+SSC,entity:SSC_Level-03_Visitors-Cubicle_03-028,3.028 VISITORS CUBICLE,Level-03,03.028
+SSC,entity:SSC_Level-B1_Chilled-Water_B-013,B.013 CHILLED WATER,Level-B1,B.013
+SSC,entity:SSC_Level-B1_Corridor_B-030,B.030 CORRIDOR,Level-B1,B.030
+SSC,entity:SSC_Level-B1_Entrance_B-015,B.015 ENTRANCE,Level-B1,B.015
+SSC,entity:SSC_Level-B1_Main-Sec-Control-Room_B-025,B.025 MAIN SEC CONTROL ROOM,Level-B1,B.025
+SSC,entity:SSC_Level-B1_Sprinkler-And-Water_B-016,B.016 SPRINKLER AND WATER,Level-B1,B.016
+SSC,entity:SSC_Level-B1_Vent-Plant_B-008,B.008 VENT PLANT,Level-B1,B.008
+SSC,entity:SSC_Level-B1_Vent-Plant_B-014,B.014 VENT PLANT,Level-B1,B.014
