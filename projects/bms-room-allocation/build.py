@@ -19,10 +19,8 @@ import openpyxl
 from hq_alloc import HQ, SSC_EXTRA
 from gf_alloc import GF
 from bf_alloc import BF
-from ff_alloc import FF1
-from ff2_alloc import FF2
-from sf1_alloc import SF1
-from sf2_alloc import SF2
+from f1_alloc import F1
+from f2_alloc import F2
 from f3_alloc import F3
 from f4_alloc import F4
 from f5_alloc import F5
@@ -80,7 +78,7 @@ def index(lo, hi):
 
 hq_rows, ssc_rows = index(HQ_LO, HQ_HI), index(SSC_LO, SSC_HI)
 
-FLOORS = list(GF) + list(BF) + list(FF1) + list(FF2) + list(SF1) + list(SF2) + list(F3) + list(F4) + list(F5) + list(F6) + list(F7) + list(F8) + list(F9) + list(F10) + list(F11) + list(RF)
+FLOORS = list(GF) + list(BF) + list(F1) + list(F2) + list(F3) + list(F4) + list(F5) + list(F6) + list(F7) + list(F8) + list(F9) + list(F10) + list(F11) + list(RF)
 
 targets = {}                       # row -> value to write where J is empty
 shots = {}                         # row -> the screen the reading came from
