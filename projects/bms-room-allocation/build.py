@@ -24,7 +24,11 @@ from ff2_alloc import FF2
 from sf1_alloc import SF1
 from sf2_alloc import SF2
 from f3_alloc import F3
+from f4_alloc import F4
+from f5_alloc import F5
+from ssc_alloc import ALLOC as SSC_A, PLANT as SSC_P
 from needs_check import BLANK, NOTE
+from screens import image
 
 SRC = '/root/.claude/uploads/7b732886-7f20-51be-97dc-21f5f8123adc/849d736f-Appendix_A_Asset_Register_SSC_HQ_BMS_rooms_1.xlsx'
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -33,6 +37,7 @@ SHEET = 'xl/worksheets/sheet6.xml'
 HQ_LO, HQ_HI = 4, 764
 SSC_LO, SSC_HI = 1318, 1441
 HEADER = 'ROOM PER BMS SCREEN'
+K_HEADER = 'BMS SCREEN (IMAGE FILE)'
 BLUE = 'FFADD8E6'
 
 # --- corrections to values already written and reviewed ----------------------
@@ -55,61 +60,82 @@ CORRECT = {
 
 ws = openpyxl.load_workbook(SRC, data_only=True)['Controllable Asset Registry']
 
+def key(t):
+    """one spelling for a tag: the register writes AHUB_0001, the screens
+    AHU-B-0001, the VAV list 0050-VAV-0001"""
+    return str(t).strip().upper().replace('-', '').replace('_', '').replace(' ', '')
+
+
 def index(lo, hi):
     d = {}
     for i in range(lo, hi + 1):
         v = ws.cell(i, 1).value
         if v:
-            d[str(v).strip().upper()] = i
+            d[key(v)] = i
     return d
 
 hq_rows, ssc_rows = index(HQ_LO, HQ_HI), index(SSC_LO, SSC_HI)
 
-FLOORS = list(GF) + list(BF) + list(FF1) + list(FF2) + list(SF1) + list(SF2) + list(F3)
+FLOORS = list(GF) + list(BF) + list(FF1) + list(FF2) + list(SF1) + list(SF2) + list(F3) + list(F4) + list(F5)
 
 targets = {}                       # row -> value to write where J is empty
+shots = {}                         # row -> the screen the reading came from
 for bms, room, screen, conf in HQ:
-    t = bms.replace('-', '')
+    t = key(bms)
     if t in hq_rows:
         targets[hq_rows[t]] = room
+        shots[hq_rows[t]] = image(screen)
     else:
         print('!! no HQ register row for', bms)
 for bms, room, screen, conf in FLOORS:
-    if not room:
-        continue                   # the screen names nothing - leave it blank
-    t = bms.replace('-', '')
-    if t in hq_rows:
-        targets.setdefault(hq_rows[t], room)
-    else:
+    t = key(bms)
+    if t not in hq_rows:
         print('!! no HQ register row for', bms)
+        continue
+    # the screen is recorded even when it named no room - that is the picture
+    # the reviewer has to open to settle the blank
+    shots.setdefault(hq_rows[t], image(screen))
+    if room:
+        targets.setdefault(hq_rows[t], room)
 for bms, room, screen, conf in SSC_EXTRA:
-    t = bms.replace('-', '')
+    t = key(bms)
     if t in ssc_rows:
         targets[ssc_rows[t]] = room
+        shots[ssc_rows[t]] = image(screen)
     else:
         print('!! no SSC register row for', bms)
+for bms, room, screen, conf in list(SSC_A) + list(SSC_P):
+    t = key(bms)
+    if t in ssc_rows:
+        shots.setdefault(ssc_rows[t], image(screen))
 targets[2] = HEADER
+shots[2] = K_HEADER
 
 corrections = {}                   # row -> value, overriding whatever is there
 for tag, (val, _why) in CORRECT.items():
+    tag = key(tag)
     if tag in hq_rows:
         corrections[hq_rows[tag]] = val
     else:
         print('!! no register row for correction', tag)
 
 # --- rows that still want a human eye ---------------------------------------
-read_here = {b.replace('-', '') for b, *_ in FLOORS}
+read_here = {key(b) for b, *_ in FLOORS}
 read_here |= set(BLANK) | set(NOTE)
 why = dict(BLANK)
 why.update(NOTE)
 for bms, room, screen, conf in FLOORS:
     if conf in ('check', 'unlabelled', 'untraced', 'mis-traced') and room == '':
-        why.setdefault(bms.replace('-', ''),
+        why.setdefault(key(bms),
                        'the screen gives no room name at the endpoint')
 
 def num(s):
     m = re.search(r'\b(\d{1,2}\.\d{2,3}[A-Z]?|[A-Z]\.\d{3})\b', str(s or '').upper())
-    return m.group(1) if m else None
+    if not m:
+        return None
+    # the register writes some levels with a leading zero (04.004); the screens
+    # never do, and 04.004 and 4.004 are the same room
+    return re.sub(r'^0(?=\d)', '', m.group(1))
 
 for tag in sorted(read_here):
     i = hq_rows.get(tag)
@@ -120,9 +146,14 @@ for tag in sorted(read_here):
     if not j:
         continue
     a, b = num(j), num(d)
+    ju, du = str(j).upper(), str(d).upper()
+    # a corridor, bridge or terrace is named, not numbered, on these screens;
+    # when both sides call it the same kind of space there is nothing to check
+    same_kind = any(w in ju and w in du for w in
+                    ('CORRIDOR', 'BRIDGE', 'TERRACE', 'LOUNGE', 'ZONE'))
     if a and b and a != b:
         why[tag] = 'BMS says %s, column D says %s' % (a, b)
-    elif b and not a:
+    elif b and not a and not same_kind:
         why[tag] = 'the screen names the zone but gives no number; column D says %s' % b
 blue_rows = sorted({hq_rows[t] for t in why if t in hq_rows})
 
@@ -159,7 +190,7 @@ base_xfs = re.findall(r'<xf [^>]*?/>|<xf [^>]*?>.*?</xf>',
 filled = {i for i, x in enumerate(base_xfs)
           if (lambda mm: mm and mm.group(1) not in ('0', '1'))(re.search(r'fillId="(\d+)"', x))}
 
-wrote, fixed, blued = [], [], []
+wrote, fixed, blued, shot_rows = [], [], [], []
 
 def row(mo):
     head, body = mo.group(1), mo.group(2)
@@ -196,6 +227,22 @@ def row(mo):
         wrote.append(rn)
         cell = re.search(r'<c r="J%d"([^>]*?)(/>|>.*?</c>)' % rn, body, re.S)
 
+    if rn in shots and shots[rn]:
+        kc = re.search(r'<c r="K%d"([^>]*?)(/>|>.*?</c>)' % rn, body, re.S)
+        ks = ''
+        if kc:
+            sk = re.search(r's="(\d+)"', kc.group(1))
+            if sk:
+                ks = ' s="%s"' % sk.group(1)
+        new = '<c r="K%d"%s t="inlineStr"><is><t>%s</t></is></c>' % (
+            rn, ks or (hdr_style if rn == 2 else ''), esc(shots[rn]))
+        if kc:
+            body = body[:kc.start()] + new + body[kc.end():]
+        else:
+            body += new
+        head = re.sub(r'spans="1:\d+"', 'spans="1:11"', head)
+        shot_rows.append(rn)
+
     if rn in blue_rows:
         if cell:
             cur = re.search(r's="(\d+)"', cell.group(1))
@@ -218,7 +265,11 @@ def row(mo):
 xml2 = re.sub(r'<row([^>]*)>(.*?)</row>', row, xml, flags=re.S)
 if re.search(r'<col min="10" max="10"[^>]*/>', xml2):
     xml2 = re.sub(r'<col min="10" max="10"[^>]*/>',
-                  '<col min="10" max="10" width="40" customWidth="1"/>', xml2, count=1)
+                  '<col min="10" max="10" width="40" customWidth="1"/>'
+                  '<col min="11" max="11" width="26" customWidth="1"/>', xml2, count=1)
+elif not re.search(r'<col min="11" max="11"', xml2):
+    xml2 = re.sub(r'</cols>',
+                  '<col min="11" max="11" width="26" customWidth="1"/></cols>', xml2, count=1)
 
 zin = zipfile.ZipFile(SRC)
 tmp = OUT + '.tmp'
@@ -235,6 +286,7 @@ os.replace(tmp, OUT)
 
 print('new column J values: %d' % (len(wrote) - (1 if 2 in wrote else 0)))
 print('corrected:           %d  %s' % (len(fixed), sorted(fixed)))
+print('column K screen names: %d' % (len(shot_rows) - (1 if 2 in shot_rows else 0)))
 print('flagged light blue:  %d of %d (the rest already carry the reviewer\'s fill)'
       % (len(blued), len(blue_rows)))
 for t in sorted(why, key=lambda k: hq_rows.get(k, 0)):
