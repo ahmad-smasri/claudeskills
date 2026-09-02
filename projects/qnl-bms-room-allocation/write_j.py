@@ -144,6 +144,18 @@ def main():
 
     xml = re.sub(r'<row([^>]*)>(.*?)</row>', fix, xml, flags=re.S)
 
+    # The QNL block is a collapsed outline group - all 551 rows carry
+    # hidden="1" - so anything written into it reads as an empty sheet until
+    # the group is expanded. The SSC pass hit the same thing. Expand it.
+    def unhide(mo):
+        head = mo.group(1)
+        rn = int(re.search(r'\br="(\d+)"', head).group(1))
+        if QNL_LO <= rn <= QNL_HI:
+            head = head.replace(' hidden="1"', '')
+        return '<row' + head + '>'
+
+    xml = re.sub(r'<row([^>]*)>', unhide, xml)
+
     tmp = OUT + '.tmp'
     zout = zipfile.ZipFile(tmp, 'w', zipfile.ZIP_DEFLATED)
     for it in zin.infolist():

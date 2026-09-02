@@ -65,13 +65,20 @@ def verdict(d, j, tag=None):
     wd, wj = words(d), words(j)
     if not wd:
         return 'D-BLANK'
+    if tag in NOTED and 'column D' in NOTED[tag]:
+        # the note says in so many words that column D names something else.
+        # The word test cannot see it - `Unlabelled open area, west half of
+        # Zone 1` and `OPEN READING AREA L1.001` share "open" and "area" and
+        # were being called an agreement.
+        return 'CHECK'
     if wd & wj:
         return 'SAME'
     # the reading came with a caveat, so the mismatch is not evidence of one
     return 'CHECK' if tag in NOTED else 'DIFF'
 
 
-def main():
+def findings():
+    """[row, tag, D, J, K, verdict, note] for every QNL row carrying a reading"""
     wb = openpyxl.load_workbook(BOOK, data_only=True)
     ws = wb['Controllable Asset Registry']
     rows = []
@@ -84,6 +91,11 @@ def main():
         rows.append([i, ws.cell(i, 1).value, d, j, ws.cell(i, 11).value,
                      verdict(d, j, tag),
                      FLAGGED.get(tag) or NOTED.get(tag, '')])
+    return rows
+
+
+def main():
+    rows = findings()
     with open(OUT, 'w', newline='') as fh:
         w = csv.writer(fh)
         w.writerow(['row', 'tag', 'D room as per drawings', 'J room per BMS screen',

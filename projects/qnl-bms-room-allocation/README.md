@@ -80,8 +80,16 @@ Three steps, and the order matters:
    inside one open space and lead each to its own room with a dashed pointer of
    its own, so the nearest text is routinely the wrong answer.
 
-Then `write_j.py` puts the readings into columns J and K of the register, and
-`report_qnl.py` prints column D against column J.
+Then `write_j.py` puts the readings into columns J and K of the register,
+`report_qnl.py` prints column D against column J, and `highlight_rows.py`
+fills the rows that need a human eye.
+
+Two things about the register itself, both learned the hard way. The QNL block
+is a **collapsed outline group** - all 551 rows carry `hidden="1"` - so
+anything written into it reads as an empty sheet until the group is expanded;
+`write_j.py` expands it. And the rows to check are filled `FF00B050`, the green
+already used on the HQ and SSC rows, **across the whole row A:K** rather than
+one cell, because a later pass reads the row colour.
 
 ## What the screens can and cannot settle
 
@@ -125,10 +133,14 @@ ceiling voids, which the QNL screens do not draw.
 
 | Verdict | Count | Meaning |
 |---|---|---|
-| SAME | 94 | the screen and column D name the same room |
+| SAME | 88 | the screen and column D name the same room |
 | OPEN | 43 | the room is one open space carrying two or more labels; the screen cannot split them, and does not contradict column D |
-| CHECK | 46 | read, but with a caveat - usually the dot lands in a space the screen leaves unlabelled |
+| CHECK | 52 | read, but with a caveat - usually the dot lands in a space the screen leaves unlabelled |
 | DIFF | 19 | the screen puts the unit somewhere column D does not |
+
+The 19 DIFF rows and the 52 CHECK rows - 71 in all - are filled green across
+A:K. SAME and OPEN rows are left alone: on those the screen either agrees with
+column D or cannot contradict it.
 
 **The largest single finding is not in that table.** Twenty-seven units tagged
 `2F` - eleven `VAV-2F-S12` on SF-1 and sixteen `VAV-2F-S14` on SF-3 - carry a
