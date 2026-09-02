@@ -1,11 +1,25 @@
 row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
+880,FCU_B_001,IDF ROOM B.155,IDF Rm,QNL/BF-8.jpg,SAME,the dot is in the first of the small cells along the north-west wall; the IDF Rm label sits over the second
 882,FCU_B_003,IDF (Corridor) B.062,IDF,QNL/BF-2.jpg,SAME,
+883,FCU_B_004,IDF FM Storage B.215,FM Storage,QNL/BF-10.jpg,SAME,the dot is at the west wall in the band that carries the FM Storage and Storage labels
 887,FCU_B_008,GAS SUPPRESSION ROOM B.087,Cell between Gas Suppression and Server Rm,QNL/BF-3.jpg,DIFF,"the dot is in the middle cell, one wall east of the cell the Gas Suppression label points into; column D says GAS SUPPRESSION ROOM B.087"
 890,FCU_B_011,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 891,FCU_B_012,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 892,FCU_B_013,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
 893,FCU_B_014,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
+894,FCU_B_015,Plant Room 3 B.110,Plant Rm 3 / Corridor 5 (open plan),QNL/BF-6.jpg,OPEN,open plan - Plant Rm 3 end
+895,FCU_B_016,Plant Room 3 B.110,Plant Rm 3 / Corridor 5 (open plan),QNL/BF-6.jpg,OPEN,open plan - Plant Rm 3 end
+896,FCU_B_017,Plant Room 3 B.110,Plant Rm 3 / Corridor 5 (open plan),QNL/BF-6.jpg,OPEN,open plan - Plant Rm 3 end
+897,FCU_B_018,Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+898,FCU_B_019,Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+899,FCU_B_020,Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+900,FCU_B_021,Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+901,FCU_B_022,FM Storage B.210,FM Storage,QNL/BF-10.jpg,SAME,
+902,FCU_B_023,FM Storage B.210,FM Storage,QNL/BF-10.jpg,SAME,
+903,FCU_B_024,PH Plant ROOM B.211,PH Plant,QNL/BF-10.jpg,SAME,
+905,FCU_B_026,MISTING PUMP ROOM B.212,Misting System,QNL/BF-10.jpg,SAME,
 907,FCU_B_028,Sorting Shelving Room B.121,Sorting Shelving Rm,QNL/BF-2.jpg,SAME,
+909,FCU_B_030,WATER FEATURE ROOM B.226,Pump Rm 4,QNL/BF-10.jpg,DIFF,the dot is inside the Pump Rm 4 box; column D says WATER FEATURE ROOM B.226
 911,FCU_B_032,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
 912,FCU_B_033,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
 913,FCU_B_034,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
@@ -14,6 +28,10 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1057,VAV_B_S10_011,TECHNICAL SERVICES B.204,Technical Services,QNL/BF-5.jpg,SAME,
 1062,VAV_B_S10_016,MULTIMEDIA PRESENTATION B.205,Instruction Presentation,QNL/BF-5.jpg,SAME,
 1063,VAV_B_S10_017,MULTIMEDIA PRESENTATION B.205,Instruction Presentation,QNL/BF-5.jpg,SAME,
+1066,VAV_B_S10_020,Reserchers Reading Area B.207,Researchers Reading Area,QNL/BF-7.jpg,SAME,
+1067,VAV_B_S10_021,Reserchers Reading Area B.207,Researchers Reading Area,QNL/BF-7.jpg,SAME,
+1068,VAV_B_S10_022,Reserchers Reading Area B.207,Researchers Reading Area,QNL/BF-7.jpg,SAME,
+1069,VAV_B_S10_023,Reserchers Reading Area B.207,Researchers Reading Area,QNL/BF-7.jpg,SAME,
 1070,VAV_B_S10_024,DIGITISATION AREA B.200,Digitization / Instruction Outreach (open plan),QNL/BF-5.jpg,OPEN,open plan
 1071,VAV_B_S11_001,Break Out Area B.001A,Break Out Area / Tech.Services & Collections Office (open plan),QNL/BF.jpg,OPEN,open plan - west end
 1072,VAV_B_S11_002,Break Out Area B.001A,Break Out Area / Tech.Services & Collections Office (open plan),QNL/BF.jpg,OPEN,open plan - west end
@@ -62,6 +80,8 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1127,VAV_B_S14_003,Office AD For LIT B.057,Loading Area (north-west grey band),QNL/BF-4.jpg,DIFF,"the dot is in the grey Loading Area band, two walls west of the pink; column D says Office AD For LIT B.057"
 1132,VAV_B_S14_008,Shell Space B.59,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,DIFF,"the dot is in the Digitization Rm end of the open band; Shell Space is the next room east across a wall, which is what column D says"
 1133,VAV_B_S14_009,Digitization Room B.041,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,OPEN,open plan - Office AD For LIT end
+1162,VAV_B_S15_010,HC DIRECTOR HEAD B.149,Cell north-east of VIP Majlis,QNL/BF-8.jpg,CHECK,the cell carries no label of its own
+1163,VAV_B_S15_011,VIP Majlis B.149,VIP Majlis,QNL/BF-8.jpg,SAME,
 1186,CAV_B_S12_001,CORRIDOR B.061,Plant Rm 1,QNL/BF-2.jpg,DIFF,both S12-001 and S12-002 land in Plant Rm 1; column D says CORRIDOR B.061
 1187,CAV_B_S12_002,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 1188,CAV_B_S12_003,Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
@@ -81,4 +101,5 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1203,CAV_B_S13_015,Server Room B.089,Server Rm,QNL/BF-3.jpg,SAME,
 1205,CAV_B_S13_021,Sprinklers Pumps & Zones Valves B.072,Sprinkler Pump,QNL/BF-3.jpg,SAME,
 1207,CAV_B_S14_001,CORRIDOR 3 B.051,Loading Area (north-west grey band),QNL/BF-4.jpg,CHECK,the band is long and narrow and may be the CORRIDOR 3 column D names
+1210,CAV_B_S14_004,PLANT ROOM 3 B.110,Plant Rm 3 / Corridor 5 (open plan),QNL/BF-6.jpg,OPEN,open plan - level with the Corridor 5 label
 1212,CAV_B_S14_006,Referigerate Store Kitchen Lobby B.044,Pink lobby west of Refrigerated Store,QNL/BF-4.jpg,SAME,

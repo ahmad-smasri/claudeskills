@@ -25,6 +25,7 @@ OPEN_BF = 'Break Out Area / Tech.Services & Collections Office (open plan)'
 OPEN_BF1 = 'Tech.Services & Collection (open plan)'
 OPEN_BF4 = 'Office AD For LIT / Digitization Rm (open plan)'
 OPEN_BF5 = 'Digitization / Instruction Outreach (open plan)'
+OPEN_BF6 = 'Plant Rm 3 / Corridor 5 (open plan)'
 
 SCREENS = {
  'BF': [
@@ -169,6 +170,53 @@ SCREENS = {
     ('VAV-B-S10-017', 'Instruction Presentation', ''),
     ('VAV-B-S10-024', OPEN_BF5, 'open plan'),
  ],
+ # BF-6: the cyan fill is one AHU zone, not one room - it carries both
+ # `Plant Rm 3` and `Corridor 5` and no wall runs between them, so a dot
+ # inside it cannot be given to one or the other.
+ 'BF-6': [
+    ('FCU-B-015', OPEN_BF6, 'open plan - Plant Rm 3 end'),
+    ('FCU-B-016', OPEN_BF6, 'open plan - Plant Rm 3 end'),
+    ('FCU-B-017', OPEN_BF6, 'open plan - Plant Rm 3 end'),
+    ('CAV-S14-004', OPEN_BF6, 'open plan - level with the Corridor 5 label'),
+ ],
+
+ # BF-7: four units land in the yellow Researchers Reading Area, which is the
+ # one room on this screen the walkers resolve cleanly.
+ 'BF-7': [
+    ('VAV-B-S10-020', 'Researchers Reading Area', ''),
+    ('VAV-B-S10-021', 'Researchers Reading Area', ''),
+    ('VAV-B-S10-022', 'Researchers Reading Area', ''),
+    ('VAV-B-S10-023', 'Researchers Reading Area', ''),
+ ],
+ # BF-8: the purple VIP zone is cut in two by a diagonal wall; only the
+ # south-west cell carries the `VIP Majlis` label.
+ 'BF-8': [
+    ('FCU-B-001', 'IDF Rm',
+     'the dot is in the first of the small cells along the north-west wall;'
+     ' the IDF Rm label sits over the second'),
+    ('VAV-B-S15-010', 'Cell north-east of VIP Majlis',
+     'the cell carries no label of its own'),
+    ('VAV-B-S15-011', 'VIP Majlis', ''),
+ ],
+
+ # BF-10: Plant Rm 4 fills the east of this zone; the small rooms along its
+ # south wall are Pump Rm 4, IDF and the shafts.
+ 'BF-10': [
+    ('FCU-B-004', 'FM Storage',
+     'the dot is at the west wall in the band that carries the FM Storage and'
+     ' Storage labels'),
+    ('FCU-B-022', 'FM Storage', ''),
+    ('FCU-B-023', 'FM Storage', ''),
+    ('FCU-B-024', 'PH Plant', ''),
+    ('FCU-B-026', 'Misting System', ''),
+    ('FCU-B-030', 'Pump Rm 4',
+     '!the dot is inside the Pump Rm 4 box; column D says WATER FEATURE'
+     ' ROOM B.226'),
+    ('FCU-B-018', 'Plant Rm 4', ''),
+    ('FCU-B-019', 'Plant Rm 4', ''),
+    ('FCU-B-020', 'Plant Rm 4', ''),
+    ('FCU-B-021', 'Plant Rm 4', ''),
+ ],
 }
 
 BLANK = {
@@ -234,6 +282,28 @@ BLANK = {
  'VAV-B-S10-009': 'BF-5: two walkers converge in Instruction Presentation',
  'VAV-B-S10-015': 'BF-5: two walkers converge',
  'VAV-B-S10-018': 'BF-5: two walkers converge in Instruction Presentation',
+ 'CAV-S14-003': 'BF-6: leader ends on the Air Shaft row east of the plan',
+ 'CAV-S14-005': 'BF-6: five walkers converge below the plan',
+ 'CAV-S15-001': 'BF-6: leader ends on the Air Shaft row east of the plan',
+ 'VAV-B-S10-012': 'BF-6: five walkers converge below the plan',
+ 'VAV-B-S10-013': 'BF-6: five walkers converge below the plan',
+ 'VAV-B-S10-014': 'BF-6: five walkers converge below the plan',
+ 'VAV-B-S10-019': 'BF-6: five walkers converge below the plan',
+ 'VAV-B-S15-001': 'BF-7: leader not resolved',
+ 'VAV-B-S15-002': 'BF-7: four walkers converge below the plan',
+ 'VAV-B-S15-003': 'BF-7: four walkers converge below the plan',
+ 'VAV-B-S15-004': 'BF-7: leader not resolved',
+ 'VAV-B-S15-005': 'BF-7: leader not resolved',
+ 'VAV-B-S15-006': 'BF-7: four walkers converge below the plan',
+ 'VAV-B-S15-007': 'BF-7: leader ends in grey outside the purple',
+ 'VAV-B-S15-008': 'BF-7: leader not resolved',
+ 'VAV-B-S15-009': 'BF-7: leader ends in grey outside the purple',
+ 'VAV-B-S15-013': 'BF-7: dot is in the purple band but which side of the'
+                  ' Prof. Librarian wall is not clear at any zoom',
+ 'FCU-B-029': 'BF-7: leader not resolved',
+ 'FCU-B-038': 'BF-7: four walkers converge below the plan',
+ 'VAV-B-S15-012': 'BF-8: leader ends outside the plan',
+ 'FCU-B-025': 'BF-10: leader not resolved',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}
