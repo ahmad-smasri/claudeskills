@@ -28,6 +28,7 @@ from f6_alloc import F6
 from f7_alloc import F7
 from f89_alloc import F8, F9
 from f1011rf_alloc import F10, F11, RF
+from bfgf_extra_alloc import BFGF
 from ssc_alloc import ALLOC as SSC_A, PLANT as SSC_P
 from needs_check import BLANK, NOTE
 from screens import image
@@ -78,7 +79,7 @@ def index(lo, hi):
 
 hq_rows, ssc_rows = index(HQ_LO, HQ_HI), index(SSC_LO, SSC_HI)
 
-FLOORS = list(GF) + list(BF) + list(F1) + list(F2) + list(F3) + list(F4) + list(F5) + list(F6) + list(F7) + list(F8) + list(F9) + list(F10) + list(F11) + list(RF)
+FLOORS = list(GF) + list(BF) + list(F1) + list(F2) + list(F3) + list(F4) + list(F5) + list(F6) + list(F7) + list(F8) + list(F9) + list(F10) + list(F11) + list(RF) + list(BFGF)
 
 targets = {}                       # row -> value to write where J is empty
 shots = {}                         # row -> the screen the reading came from
