@@ -306,33 +306,68 @@ from 31 to 1,755 and consistency errors from 287 to 78.
 
 ## Known defects in the reference models
 
-### Dar Cairo (`DarCairo_V93.csv`, 26,173 rows)
+### Dar Cairo (`DarCairo_V98.csv`, 25,722 rows, 33 columns)
 
 Still the primary reference - but it is not clean, so do not copy patterns
 blindly. Current validator output:
 
 | Count | Code | What it is |
 |---|---|---|
-| 3,181 | `E-LBL-1` | labels with dashes, underscores, brackets - the label rule is newer than the file |
-| 698 | `W-TYP-5` | alias classes, mostly `brick:VFD` and `brick:HVAC_System` |
-| 300 | `W-LBL-2` | entities with no label |
+| 3,145 | `E-LBL-1` | labels with dashes, underscores, brackets - the label rule is newer than the file |
+| 700 | `W-TYP-5` | alias classes, mostly `brick:VFD` and `brick:HVAC_System` |
+| 325 | `W-BN-4` | blank-node rows carrying no reference property |
+| 266 | `W-LBL-2` | entities with no label |
 | 203 | `W-UNIT-2` | `unit:MicroGM-PER-M4` through `M27` - a fill-down accident; every one should be `unit:MicroGM-PER-M3` |
+| 127 | `W-DUP-1` | duplicate rows |
 | 104 | `E-WS-1` | padded cells, including one with an embedded tab |
-| 82 | `W-DUP-1` | duplicate rows |
-| 74 | `E-TYP-1` | entities with two types, e.g. `entity:FCU-01_GF_SF-Motor` typed both `brick:Fan_Coil_Unit` and `brick:Motor` |
+| 79 | `E-TYP-1` | entities with two types, e.g. `entity:FCU-01_GF_SF-Motor` typed both `brick:Fan_Coil_Unit` and `brick:Motor` |
 | 71 | `E-PAIR-2` | prop values with no name |
 | 64 | `E-FEED-1` | equipment with no feeds row, mostly exhaust fans |
-| 3 | `E-EXT-3` | `para:HighPowerFan`, `para:MediumPowerFan`, `para:LowPowerFan` declared as their own parents |
-| 1 | `E-TYP-2` | `brick:Water_PUMP` - should be `brick:Water_Pump` |
+| 61 | `W-GR-2` | orphan subjects |
+| 30 | `W-AGG-1` | aggregate points with no aggregation property |
+| 22 | `E-PAIR-1` | prop names with no value |
+| 16 | `W-TYP-4` | deprecated classes |
 
-`check_consistency.py` adds 3,966 errors and 3,836 warnings on top, dominated by
-`E-CON-1` and `E-CON-2` - Dar Cairo's families genuinely differ unit to unit. The
-15 `E-CON-17` findings are unambiguous though: `entity:Dar-Cairo_Floor-1_A_Occupancy-Virtual-Sensor`
+`check_consistency.py` adds several thousand more, dominated by `E-CON-1` and
+`E-CON-2` - Dar Cairo's families genuinely differ unit to unit. The `E-CON-17`
+findings are unambiguous though: `entity:Dar-Cairo_Floor-1_A_Occupancy-Virtual-Sensor`
 owns a point named `entity:Dar-Cairo_Floor-1A_Occupancy-Virtual-Sensor_Arrival-Time`,
 one underscore apart, on every one of the A/B/C zone sensors.
 
 Also: `unit:KiloWHR` (12 rows) should be `unit:KiloW-HR`; `unit:REV-PER-MIN` and
 `unit:RPM` are used interchangeably.
+
+#### What V98 changed from V93
+
+Rooms are untouched - the same 471, named identically - so anything built
+against V93's spatial layer still holds. What moved:
+
+- **The sheet is 33 columns, not 27**: two more `subject_prop_name,
+  subject_prop_val, object_prop_name, object_prop_val` groups on the end. Every
+  reader here walks the header rather than assuming a width, so this needs no
+  code change; `assets/ontology-template.csv` and what we deliver stay at 27
+  until the client says otherwise.
+- **692 triples added, 1,143 removed.** The removals are the per-level virtual
+  electrical meters (`entity:Dar-Cairo_Basement-1-A_Common-Util-Electrical-Virtual-Meter`
+  and its Consumption/Demand/Target points). The additions are a `_Heart-Beat`
+  and a `_Start-Time-Buffer` point on every AHU.
+- **14 new `para:` classes**, among them the first ones to use a dash inside a
+  class name - `para:Car-Parking_Exhaust-Fan`, `para:General_Exhaust-Fan`,
+  `para:T_Exhaust-Fan`, `para:Fan_High-Speed_SP`. Every other `para:` class is
+  `Title_Case_With_Underscores`, so match the majority when coining, not these.
+- **`para:heartBeat` is declared `owl:Class`** with a lower-case first letter -
+  the only class in the file that does. Reuse the term, since it is Dar Cairo's,
+  but do not read it as licence to coin lower-case classes.
+- **A new property family: `owl:DatatypeProperty`.** Seven C&C metadata
+  properties - `para:C_C_Property` and under it `para:C_C_Override-White-List`,
+  `para:Min_Value`, `para:Max_Value`, `para:Increment`, `para:index`, plus
+  `para:Point_Data_Type`. V93 had only `brick:EntityProperty`. They are in
+  `references/data/para-properties.csv` with their `type` column.
+- **Three properties are declared with the wrong predicate**: `para:IFC_ID`,
+  `para:hasEntityId` and `para:format` carry `rdfs:subClassOf` where
+  `rdfs:subPropertyOf` is meant. Two of those three are the external-reference
+  properties this repo uses on every IFC and timeseries row, so the rows we
+  write are unaffected - it is the declaration that is wrong.
 
 Because of the mistyped motors, `--template` percentages can read "50% of
 instances" where the real figure is 100% of the equipment and 0% of the

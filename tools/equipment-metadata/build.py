@@ -893,7 +893,7 @@ def readme_sheet(wb, ontology_only=False):
       "The source documents are transcribed in their own units, and each row then carries the same "
       "quantity in the unit Dar Cairo uses for it. Both are kept side by side: the printed pair stays "
       "traceable to the page, the converted pair is what goes into brick:hasUnit.",
-      "Targets were read off DarCairo_V93.csv, not assumed. Air flow and water flow both land on "
+      "Targets were read off DarCairo_V93.csv and re-checked on V98, not assumed. Air flow and water flow both land on "
       "unit:L-PER-SEC (para:ratedSupplyAirFlowrate, para:ratedChilledWaterFlowrate and their siblings), "
       "power on unit:KiloW (brick:ratedPowerInput, brick:coolingCapacity), length on unit:M "
       "(para:ratedHead), relative humidity on unit:PERCENT_RH rather than unit:PERCENT.",
@@ -1177,7 +1177,7 @@ def scope_sheet(wb, per_sheet):
 def units_sheet(wb):
     uw = wb.create_sheet("Units")
     uw["A1"] = "Units"; uw["A1"].font = Font(bold=True, size=14, color="1F3864")
-    uw["A2"] = ("Source unit to Dar Cairo unit. Targets read off reference-models/DarCairo_V93.csv - "
+    uw["A2"] = ("Source unit to Dar Cairo unit. Targets read off reference-models/DarCairo_V98.csv - "
                 "air and water flow both land on unit:L-PER-SEC, power on unit:KiloW, length on unit:M.")
     uw["A2"].font = Font(italic=True, size=9, color="555555")
     uw.append([])

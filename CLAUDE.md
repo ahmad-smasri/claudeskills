@@ -29,8 +29,8 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
 | `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
 | `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
-| `references/data/para-classes.csv` | 228 `para:` classes and their parents | generated |
-| `references/data/para-properties.csv` | 13 `para:` entity properties | generated |
+| `references/data/para-classes.csv` | 242 `para:` classes and their parents | generated |
+| `references/data/para-properties.csv` | 20 `para:` properties - 13 `brick:EntityProperty` and the 7 `owl:DatatypeProperty` C&C properties V98 added | generated |
 | `references/data/units.csv` | 41 units seen with `brick:hasUnit`, with usage counts | generated |
 | `assets/ontology-template.csv` | the empty 27-column header | starting a sheet |
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
@@ -43,7 +43,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_review_workbook.py` | runs both checkers plus eight checks neither covers, then writes the client review workbook - a `START HERE` tab, the ontology sheet with flagged rows filled yellow/orange, one plain-English tab per entity family, and a `Technical detail` tab holding the coded findings. Findings are collapsed to one line per kind of problem and every rule code is rewritten in ordinary English, because the reader is usually not the person who built the sheet. The tabs and the data sheet are cross-linked: clickable row numbers on every tab, and review columns AB-AD past the data naming each flagged row's problem with a link back to its tab | a delivered sheet needs reviewing, or a client asks what is wrong with a draft |
-| `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands |
+| `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands - drop the file in and rerun, the scripts resolve `DarCairo_V*.csv` by version |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
 | `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
 
@@ -51,7 +51,7 @@ ontology task; this file is the index, the skill is the procedure.
 
 | File | What it is |
 |---|---|
-| `DarCairo_V93.csv` | **the primary reference for any ontology we build.** 26,173 rows, 27 columns. Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
+| `DarCairo_V98.csv` | **the primary reference for any ontology we build.** 25,722 rows, 33 columns (V93's 27 plus two more property groups). Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
 | `QF_SSC_Ontology_ver02.xlsx` | the current SSC sheet (cleaned), 5,082 rows on `SSC_Ontology_Ver0.6`, plus a `Claude Log` tab. This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
 | `QF_HQ_Ontology_draft0.4.xlsx` | the QF HQ draft, 28,929 rows on `HQ_Onotlogy_Draft_v0.4` (note the misspelled tab - pick the sheet by its header, never by name). A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |

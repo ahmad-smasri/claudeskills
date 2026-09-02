@@ -16,10 +16,15 @@ The canonical nine, from `reference-models/Ontology_headers.xlsx`:
 | 8 | `object_prop_name` | a metadata property **about the object** |
 | 9 | `object_prop_val` | its value |
 
-Columns 6-9 repeat. Both reference models use **27 columns**: the 5 core columns,
-then five `subject_prop_name, subject_prop_val, object_prop_name, object_prop_val`
-groups, then one final `subject_prop_name, subject_prop_val` pair. Use
+Columns 6-9 repeat. **We write 27 columns**: the 5 core columns, then five
+`subject_prop_name, subject_prop_val, object_prop_name, object_prop_val` groups,
+then one final `subject_prop_name, subject_prop_val` pair. Use
 `assets/ontology-template.csv` - it is that header, ready to fill.
+
+The delivered SSC and HQ sheets are 27 columns too. Dar Cairo went to **33** at
+V98, adding two more groups; the readers here walk the header rather than assume
+a width, so both read fine. Do not widen a deliverable past 27 without asking -
+27 is what the converter has been given every time.
 
 Leave a cell blank when it does not apply. Getting subject props and object props
 backwards is the single most common authoring mistake: if the row is
