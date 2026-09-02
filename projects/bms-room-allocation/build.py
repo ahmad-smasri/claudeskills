@@ -26,6 +26,9 @@ from sf2_alloc import SF2
 from f3_alloc import F3
 from f4_alloc import F4
 from f5_alloc import F5
+from f6_alloc import F6
+from f7_alloc import F7
+from f89_alloc import F8, F9
 from ssc_alloc import ALLOC as SSC_A, PLANT as SSC_P
 from needs_check import BLANK, NOTE
 from screens import image
@@ -76,7 +79,7 @@ def index(lo, hi):
 
 hq_rows, ssc_rows = index(HQ_LO, HQ_HI), index(SSC_LO, SSC_HI)
 
-FLOORS = list(GF) + list(BF) + list(FF1) + list(FF2) + list(SF1) + list(SF2) + list(F3) + list(F4) + list(F5)
+FLOORS = list(GF) + list(BF) + list(FF1) + list(FF2) + list(SF1) + list(SF2) + list(F3) + list(F4) + list(F5) + list(F6) + list(F7) + list(F8) + list(F9)
 
 targets = {}                       # row -> value to write where J is empty
 shots = {}                         # row -> the screen the reading came from
@@ -137,6 +140,9 @@ def num(s):
     # never do, and 04.004 and 4.004 are the same room
     return re.sub(r'^0(?=\d)', '', m.group(1))
 
+for bms, room, screen, conf in FLOORS:
+    if conf == 'check':
+        why.setdefault(key(bms), 'read from the screen but worth a look')
 for tag in sorted(read_here):
     i = hq_rows.get(tag)
     if not i or tag in why:
