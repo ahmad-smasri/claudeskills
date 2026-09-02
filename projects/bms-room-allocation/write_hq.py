@@ -3,6 +3,7 @@ import openpyxl
 from hq_alloc import HQ, SSC_EXTRA
 from gf_alloc import GF
 from bf_alloc import BF
+from ff_alloc import FF1
 
 SRC = '/root/.claude/uploads/7b732886-7f20-51be-97dc-21f5f8123adc/849d736f-Appendix_A_Asset_Register_SSC_HQ_BMS_rooms_1.xlsx'
 OUT = '/home/user/claudeskills/projects/bms-room-allocation/Appendix_A_Asset_Register_SSC_HQ_BMS_rooms.xlsx'
@@ -28,7 +29,7 @@ for bms, room, screen, conf in HQ:
         targets[hq_rows[t]] = room
     else:
         print('!! no HQ register row for', bms)
-for bms, room, screen, conf in list(GF) + list(BF):
+for bms, room, screen, conf in list(GF) + list(BF) + list(FF1):
     if not room:
         continue                     # nothing the screen names - leave blank
     t = bms.replace('-', '')
