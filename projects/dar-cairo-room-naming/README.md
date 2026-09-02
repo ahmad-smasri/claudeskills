@@ -99,13 +99,15 @@ and all three are in the notes and highlighted:
 |---|---|---|---|
 | VAV0039-41, VAV0052-53 | `PR & MARKET STAFF G.029/030`, `G.108 CONSULTANT SPACE` | `SENSORY G.029`, `SOFT PLAY & CREATIVE LEARNING G.108` | `B-2F` |
 | VAV0090 | `G.104 LOBBY` | `CONFERENCE ROOM 1.110` | `B-2F` |
-| VAV0092-93 | cashier in 1.116, secure room in 1.106 | the two swapped | `B-2F` |
+| VAV0092-93 | cashier in 1.116, secure room in 1.106 | the two swapped | `3F-Roof` |
 | VAV0584-87 | `SHEIKHA ENSUIT 11.202` | `11.208` | `3F-Roof` |
 
-VAV0092-93 is the one worth a second look: `3F-Roof`'s own column H and the
-delivered HQ draft both agree with `3F-Roof`, against the file that owns level 1.
-The level rule was followed rather than overridden by hand, and the row is
-flagged.
+VAV0092-93 is the one exception to the level rule. Level 1 belongs to `B-2F`,
+but `3F-Roof`'s own column H and the delivered HQ draft both put the cashier in
+1.106 and the secure room in 1.116 - two sources against one. The client read
+the three flagged conflicts and chose `3F-Roof` here and `B-2F` for the other
+two, so the pair sits in `OWNER_OVERRIDE` with that reason written into both
+rows' notes. Every other row still follows the level rule.
 
 ## HQ's own quirks
 
@@ -161,7 +163,8 @@ be split without guessing. They are listed under the open questions.
   name, it only writes a note. Most are typos in the draft (`SPA FITNESS
   DTUDIO`, `VACILITY MANAGDIRENSUIT`, `SH. SERV. DIR. ACCOUNUT.`), but a few
   are real: `CHAUFFER`/`CHAUFFEUR ROOM`, `CONTROL CENTER`/`EMERGENCY CONTROL
-  CENTER`, `MCC/ELEC ROOM`/`ELECTRICAL ROOM`, and the VAV0092-93 swap above.
+  CENTER`, `MCC/ELEC ROOM`/`ELECTRICAL ROOM`. The VAV0092-93 swap is settled -
+  the sheet and the draft now agree.
   Three HQ rooms are not in the draft at all: `3-630 Corridor-Bridge`,
   `11-208 Sheikha-Wing-Sheikha-Ensuit`, `B1-124 Waste-Bin-Wash-Up`.
 - Labels are written in the QF SSC house style (`1.024 CORRIDOR`), which is what

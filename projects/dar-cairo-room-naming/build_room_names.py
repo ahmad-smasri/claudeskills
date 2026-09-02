@@ -519,7 +519,7 @@ def load_one(path, building):
     return rows
 
 
-def merge(parts, building):
+def merge(parts, building, code=None):
     """Combine the per-level-range splits of one building's register.
 
     HQ came as two workbooks holding the same 761 rows, each with the BMS
@@ -542,10 +542,18 @@ def merge(parts, building):
     for k in sorted(keys):
         present = [(name, rows[k]) for name, rows in parts if k in rows]
         owner_name, base = None, None
-        for name, r in present:
-            if r["J"]:
-                owner_name, base = name, r
-                break
+        tag = present[0][1]["A"]
+        want = OWNER_OVERRIDE.get((code, tag))
+        if want:
+            for name, r in present:
+                if want.upper() in os.path.basename(name).upper():
+                    owner_name, base = name, r
+                    break
+        if base is None:
+            for name, r in present:
+                if r["J"]:
+                    owner_name, base = name, r
+                    break
         if base is None:
             # No screen reading anywhere - fall back to the file whose level
             # range covers the row, read off whichever E is available.
@@ -562,6 +570,10 @@ def merge(parts, building):
                 owner_name, base = present[0]
         row = dict(base)
         row["source_file"] = owner_name
+        if want:
+            row.setdefault("merge_notes", []).append(
+                "the level rule points at the other workbook here; %s was "
+                "chosen for this row on the client's instruction" % owner_name)
         row["green"] = any(r["green"] for _, r in present)
         for col in ("D", "E", "H"):
             vals = {name: r[col] for name, r in present}
@@ -583,6 +595,16 @@ def merge(parts, building):
     return out
 
 
+# Rows where the client read the two workbooks and chose against the level
+# rule.  VAV0092-93: level 1 belongs to the B-2F split, but 3F-Roof's own
+# column H and the delivered HQ draft both put the cashier in 1.106 and the
+# secure room in 1.116, and that is the reading kept.
+OWNER_OVERRIDE = {
+    ("HQ", "VAV0092"): "3F",
+    ("HQ", "VAV0093"): "3F",
+}
+
+
 def owner_for_level(parts, lvl):
     """Which split covers a level - by the level ranges the file names state."""
     low = lvl in ("B", "B1", "G", "1", "2", "01", "02")
@@ -595,9 +617,9 @@ def owner_for_level(parts, lvl):
     return parts[0][0]
 
 
-def load(paths, building):
+def load(paths, building, code=None):
     parts = [(p, load_one(p, building)) for p in paths]
-    return merge(parts, building)
+    return merge(parts, building, code)
 
 
 DELIVERED = {"SSC": "QF_SSC_Ontology_ver02.xlsx",
@@ -697,7 +719,7 @@ def main():
     for spec in args.src:
         code, path = spec.split("=", 1)
         building = BUILDINGS[code]
-        rows = load([p for p in path.split(",") if p], building)
+        rows = load([p for p in path.split(",") if p], building, code)
         for r in rows:
             lvl, room, name, src, notes = decide(building, r)
             r["level"], r["ref"], r["name"] = lvl, room, name
