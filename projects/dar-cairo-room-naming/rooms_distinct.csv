@@ -1,0 +1,669 @@
+building,subject,rdfs:label_en,level segment,room ref
+HQ,entity:HQ_1-001_Finance-Clerical-Secretaries,1.001 FINANCE CLERICAL SECRETARIES,Level-1,1.001
+HQ,entity:HQ_1-002_Finance-Manager,1.002 FINANCE MANAGER,Level-1,1.002
+HQ,entity:HQ_1-003_Finance-Manager,1.003 FINANCE MANAGER,Level-1,1.003
+HQ,entity:HQ_1-004_Finance-Manager,1.004 FINANCE MANAGER,Level-1,1.004
+HQ,entity:HQ_1-005_Finance-Secretary,1.005 FINANCE SECRETARY,Level-1,1.005
+HQ,entity:HQ_1-006_Finance-Profstaff,1.006 FINANCE PROFSTAFF,Level-1,1.006
+HQ,entity:HQ_1-007_Finance-Clerical-Profstaff,1.007 FINANCE CLERICAL PROFSTAFF,Level-1,1.007
+HQ,entity:HQ_1-011_Finance-Manager,1.011 FINANCE MANAGER,Level-1,1.011
+HQ,entity:HQ_1-012_Finance-Manager,1.012 FINANCE MANAGER,Level-1,1.012
+HQ,entity:HQ_1-013_Finance-Manager,1.013 FINANCE MANAGER,Level-1,1.013
+HQ,entity:HQ_1-014_Finance-Profstaff,1.014 FINANCE PROFSTAFF,Level-1,1.014
+HQ,entity:HQ_1-015_Finance-Profstaff,1.015 FINANCE PROFSTAFF,Level-1,1.015
+HQ,entity:HQ_1-016_Finance-Secretary,1.016 FINANCE SECRETARY,Level-1,1.016
+HQ,entity:HQ_1-017_Finance-Director-Ensuit,1.017 FINANCE DIRECTOR ENSUIT,Level-1,1.017
+HQ,entity:HQ_1-018_Finance-Manager,1.018 FINANCE MANAGER,Level-1,1.018
+HQ,entity:HQ_1-019_Finance-Manager,1.019 FINANCE MANAGER,Level-1,1.019
+HQ,entity:HQ_1-020_Finance-Manager,1.020 FINANCE MANAGER,Level-1,1.020
+HQ,entity:HQ_1-021_Finance-Secretary,1.021 FINANCE SECRETARY,Level-1,1.021
+HQ,entity:HQ_1-022_Finance-Secretary,1.022 FINANCE SECRETARY,Level-1,1.022
+HQ,entity:HQ_1-023_Finance-Audit,1.023 FINANCE AUDIT,Level-1,1.023
+HQ,entity:HQ_1-024_Finance-Audit,1.024 FINANCE AUDIT,Level-1,1.024
+HQ,entity:HQ_1-025_Finance-Profstaff,1.025 FINANCE PROFSTAFF,Level-1,1.025
+HQ,entity:HQ_1-026_Finance-Profstaff,1.026 FINANCE PROFSTAFF,Level-1,1.026
+HQ,entity:HQ_1-027_Finance-Auditor,1.027 FINANCE AUDITOR,Level-1,1.027
+HQ,entity:HQ_1-028_Finance-Manager,1.028 FINANCE MANAGER,Level-1,1.028
+HQ,entity:HQ_1-029_Finance-Manager,1.029 FINANCE MANAGER,Level-1,1.029
+HQ,entity:HQ_1-101_Staff-Lounge,1.101 STAFF LOUNGE,Level-1,1.101
+HQ,entity:HQ_1-105_Prayer-Room,1.105 PRAYER ROOM,Level-1,1.105
+HQ,entity:HQ_1-106_Finance-Secure-Room,1.106 FINANCE SECURE ROOM,Level-1,1.106
+HQ,entity:HQ_1-108_Finance-Meeting-Room,1.108 FINANCE MEETING ROOM,Level-1,1.108
+HQ,entity:HQ_1-109_Consultant-Space-Trainees,1.109 CONSULTANT SPACE TRAINEES,Level-1,1.109
+HQ,entity:HQ_1-111_Finance-Record-Storage,1.111 FINANCE RECORD STORAGE,Level-1,1.111
+HQ,entity:HQ_1-112_Print-Copy,1.112 PRINT COPY,Level-1,1.112
+HQ,entity:HQ_1-114_Staff-Lounge-Storage,1.114 STAFF LOUNGE STORAGE,Level-1,1.114
+HQ,entity:HQ_1-115_Finance-Auditor,1.115 FINANCE AUDITOR,Level-1,1.115
+HQ,entity:HQ_1-116_Finance-Cashier,1.116 FINANCE CASHIER,Level-1,1.116
+HQ,entity:HQ_1-117_Finance-Auditor,1.117 FINANCE AUDITOR,Level-1,1.117
+HQ,entity:HQ_1-401_Ground-Floor-Vip-Entrance,1.401 GROUND FLOOR VIP ENTRANCE,Level-1,1.401
+HQ,entity:HQ_1-512_IDF-Room,1.512 IDF ROOM,Level-1,1.512
+HQ,entity:HQ_1-531_IDF-Room,1.531 IDF ROOM,Level-1,1.531
+HQ,entity:HQ_1-601_Corridor,1.601 CORRIDOR,Level-1,1.601
+HQ,entity:HQ_1-602_Corridor,1.602 CORRIDOR,Level-1,1.602
+HQ,entity:HQ_1-701_Staff-Cafeteria,1.701 STAFF CAFETERIA,Level-1,1.701
+HQ,entity:HQ_1-702_Food-Heat-Up,1.702 FOOD HEAT UP,Level-1,1.702
+HQ,entity:HQ_1-706_Washing-Area,1.706 WASHING AREA,Level-1,1.706
+HQ,entity:HQ_10-001_Sheikha-Wing-Storage,10.001 SHEIKHA WING STORAGE,Level-10,10.001
+HQ,entity:HQ_10-002A_Office-Space,10.002A OFFICE SPACE,Level-10,10.002A
+HQ,entity:HQ_10-002B_Office-Space,10.002B OFFICE SPACE,Level-10,10.002B
+HQ,entity:HQ_10-002C_Office-Space,10.002C OFFICE SPACE,Level-10,10.002C
+HQ,entity:HQ_10-002D_Office-Space,10.002D OFFICE SPACE,Level-10,10.002D
+HQ,entity:HQ_10-002E_Office-Space,10.002E OFFICE SPACE,Level-10,10.002E
+HQ,entity:HQ_10-003_Board-Room-Waiting-Area,10.003 BOARD ROOM WAITING AREA,Level-10,10.003
+HQ,entity:HQ_10-004_Execdirarch-Coord,10.004 EXECDIRARCH COORD,Level-10,10.004
+HQ,entity:HQ_10-005_Sheikha-Wing-Archive,10.005 SHEIKHA WING ARCHIVE,Level-10,10.005
+HQ,entity:HQ_10-006_Exec-Dir-Arch-Coord,10.006 EXEC DIR ARCH COORD,Level-10,10.006
+HQ,entity:HQ_10-007_Exec-Dir-Prot-Assis,10.007 EXEC DIR PROT ASSIS,Level-10,10.007
+HQ,entity:HQ_10-008_Protocol-Dir-Sched-Officer,10.008 PROTOCOL DIR SCHED OFFICER,Level-10,10.008
+HQ,entity:HQ_10-009_Protocol-Dir-Ceremoff,10.009 PROTOCOL DIR CEREMOFF,Level-10,10.009
+HQ,entity:HQ_10-010_Protocol-Dir-Ceremoff,10.010 PROTOCOL DIR CEREMOFF,Level-10,10.010
+HQ,entity:HQ_10-011_Protocol-Dir-Ceremoff,10.011 PROTOCOL DIR CEREMOFF,Level-10,10.011
+HQ,entity:HQ_10-012_Protocol-Dir-Tr-And-Vis-Off,10.012 PROTOCOL DIR TR AND VIS OFF,Level-10,10.012
+HQ,entity:HQ_10-013_Protocol-Dir-Tr-And-Vis-Off,10.013 PROTOCOL DIR TR AND VIS OFF,Level-10,10.013
+HQ,entity:HQ_10-014_Print-Copy,10.014 PRINT COPY,Level-10,10.014
+HQ,entity:HQ_10-015_Protocol-Dir-Sched-Officer,10.015 PROTOCOL DIR SCHED OFFICER,Level-10,10.015
+HQ,entity:HQ_10-016_Planning-Dir-Planning-Analyst,10.016 PLANNING DIR PLANNING ANALYST,Level-10,10.016
+HQ,entity:HQ_10-017_Planning-Dir-Strat-Planner,10.017 PLANNING DIR STRAT PLANNER,Level-10,10.017
+HQ,entity:HQ_10-018_Planning-Dir-Ext-Coord,10.018 PLANNING DIR EXT COORD,Level-10,10.018
+HQ,entity:HQ_10-019_Policy-Dirsenpolanalyst,10.019 POLICY DIRSENPOLANALYST,Level-10,10.019
+HQ,entity:HQ_10-020_Policy-Dir-Sen-Research-Analyst,10.020 POLICY DIR SEN RESEARCH ANALYST,Level-10,10.020
+HQ,entity:HQ_10-021_Policy-Dirresanalyst,10.021 POLICY DIRRESANALYST,Level-10,10.021
+HQ,entity:HQ_10-022_Policy-Dirresanalyst,10.022 POLICY DIRRESANALYST,Level-10,10.022
+HQ,entity:HQ_10-023_Shservdir-Hr-Officer,10.023 SHSERVDIR HR OFFICER,Level-10,10.023
+HQ,entity:HQ_10-024_Shservdir-Hr-Assistant,10.024 SHSERVDIR HR ASSISTANT,Level-10,10.024
+HQ,entity:HQ_10-025_Shservdir-Procur-Represent,10.025 SHSERVDIR PROCUR REPRESENT,Level-10,10.025
+HQ,entity:HQ_10-026_Shservdir-Service-Coord,10.026 SHSERVDIR SERVICE COORD,Level-10,10.026
+HQ,entity:HQ_10-027_Shservdirgenservsuperv,10.027 SHSERVDIRGENSERVSUPERV,Level-10,10.027
+HQ,entity:HQ_10-028_Shservdir-Finance-Control,10.028 SHSERVDIR FINANCE CONTROL,Level-10,10.028
+HQ,entity:HQ_10-029_Serv-Dir-Tr-And-Gu-Serv,10.029 SERV DIR TR AND GU SERV,Level-10,10.029
+HQ,entity:HQ_10-031_Communicdircomm-Desigr,10.031 COMMUNICDIRCOMM DESIGR,Level-10,10.031
+HQ,entity:HQ_10-032_Communicdirspeech-Editor,10.032 COMMUNICDIRSPEECH EDITOR,Level-10,10.032
+HQ,entity:HQ_10-033_Communicdir-Translator,10.033 COMMUNICDIR TRANSLATOR,Level-10,10.033
+HQ,entity:HQ_10-034_Communicdirpubcommcoord,10.034 COMMUNICDIRPUBCOMMCOORD,Level-10,10.034
+HQ,entity:HQ_10-035_Shservdir-IT-Support-Officer,10.035 SHSERVDIR IT SUPPORT OFFICER,Level-10,10.035
+HQ,entity:HQ_10-036_Sh-Serv-Dir-Accounut,10.036 SH SERV DIR ACCOUNUT,Level-10,10.036
+HQ,entity:HQ_10-037_Shservdirsenaccountant,10.037 SHSERVDIRSENACCOUNTANT,Level-10,10.037
+HQ,entity:HQ_10-038_Print-Copy,10.038 PRINT COPY,Level-10,10.038
+HQ,entity:HQ_10-101_Consultant-Space,10.101 CONSULTANT SPACE,Level-10,10.101
+HQ,entity:HQ_10-102_Sheikha-Wing-Multi-Purpose-Room,10.102 SHEIKHA WING MULTI PURPOSE ROOM,Level-10,10.102
+HQ,entity:HQ_10-106_Lounge,10.106 LOUNGE,Level-10,10.106
+HQ,entity:HQ_10-109_Board-Prep-Room,10.109 BOARD PREP ROOM,Level-10,10.109
+HQ,entity:HQ_10-111_AV-Room,10.111 AV ROOM,Level-10,10.111
+HQ,entity:HQ_10-112_Translator-Room,10.112 TRANSLATOR ROOM,Level-10,10.112
+HQ,entity:HQ_10-512_IDF-Room,10.512 IDF ROOM,Level-10,10.512
+HQ,entity:HQ_10-531_IDF-Room,10.531 IDF ROOM,Level-10,10.531
+HQ,entity:HQ_10-601_Hh-Wing-Corridor,10.601 HH WING CORRIDOR,Level-10,10.601
+HQ,entity:HQ_11-001_Communicdir-Communication-Director,11.001 COMMUNICDIR COMMUNICATION DIRECTOR,Level-11,11.001
+HQ,entity:HQ_11-002_Communicdir-Med-Rel-Officer,11.002 COMMUNICDIR MED REL OFFICER,Level-11,11.002
+HQ,entity:HQ_11-003_Shservdir-Dir-Shared-Services,11.003 SHSERVDIR DIR SHARED SERVICES,Level-11,11.003
+HQ,entity:HQ_11-004_Execdirector-Admassist,11.004 EXECDIRECTOR ADMASSIST,Level-11,11.004
+HQ,entity:HQ_11-005_Protocol-Dirprotocol-Director,11.005 PROTOCOL DIRPROTOCOL DIRECTOR,Level-11,11.005
+HQ,entity:HQ_11-006_Protocol-Dirgifts-Director,11.006 PROTOCOL DIRGIFTS DIRECTOR,Level-11,11.006
+HQ,entity:HQ_11-007_Exec-Dir-Consultant,11.007 EXEC DIR CONSULTANT,Level-11,11.007
+HQ,entity:HQ_11-008_Exec-Dir-Consultant,11.008 EXEC DIR CONSULTANT,Level-11,11.008
+HQ,entity:HQ_11-009_Secretary,11.009 SECRETARY,Level-11,11.009
+HQ,entity:HQ_11-010_Policy-Dir-Dir-Of-Pol-And-Res,11.010 POLICY DIR DIR OF POL AND RES,Level-11,11.010
+HQ,entity:HQ_11-011_Secretary,11.011 SECRETARY,Level-11,11.011
+HQ,entity:HQ_11-012_Planning-Dir-Dir-Planning,11.012 PLANNING DIR DIR PLANNING,Level-11,11.012
+HQ,entity:HQ_11-013_Execdircorrf-Up,11.013 EXECDIRCORRF UP,Level-11,11.013
+HQ,entity:HQ_11-014_Exec-Dir-Corr-Manager,11.014 EXEC DIR CORR MANAGER,Level-11,11.014
+HQ,entity:HQ_11-015_Execdircorrf-Up,11.015 EXECDIRCORRF UP,Level-11,11.015
+HQ,entity:HQ_11-016_Execdir-Legal-Assist,11.016 EXECDIR LEGAL ASSIST,Level-11,11.016
+HQ,entity:HQ_11-017_Execdir-Legal-Advisor,11.017 EXECDIR LEGAL ADVISOR,Level-11,11.017
+HQ,entity:HQ_11-018_Execdirexecassist,11.018 EXECDIREXECASSIST,Level-11,11.018
+HQ,entity:HQ_11-019_Execdir-Dep-Exec-Director,11.019 EXECDIR DEP EXEC DIRECTOR,Level-11,11.019
+HQ,entity:HQ_11-020_Execdirexecassist,11.020 EXECDIREXECASSIST,Level-11,11.020
+HQ,entity:HQ_11-021_Execdir-Exec-Director,11.021 EXECDIR EXEC DIRECTOR,Level-11,11.021
+HQ,entity:HQ_11-022_Sheikha-Wing-Waiting-Room,11.022 SHEIKHA WING WAITING ROOM,Level-11,11.022
+HQ,entity:HQ_11-023_Sheikha-Wing-Security-Room,11.023 SHEIKHA WING SECURITY ROOM,Level-11,11.023
+HQ,entity:HQ_11-102_Hh-Wing-Business-Lounge,11.102 HH WING BUSINESS LOUNGE,Level-11,11.102
+HQ,entity:HQ_11-103_Sheikha-Wing-Business-Lounge,11.103 SHEIKHA WING BUSINESS LOUNGE,Level-11,11.103
+HQ,entity:HQ_11-106_MCC-Elec-Room,11.106 MCC ELEC ROOM,Level-11,11.106
+HQ,entity:HQ_11-107_AV-IT,11.107 AV IT,Level-11,11.107
+HQ,entity:HQ_11-108_Print-Copy-Room,11.108 PRINT COPY ROOM,Level-11,11.108
+HQ,entity:HQ_11-110_Electric-Closet,11.110 ELECTRIC CLOSET,Level-11,11.110
+HQ,entity:HQ_11-201_Sheikha-Wing-Lobby,11.201 SHEIKHA WING LOBBY,Level-11,11.201
+HQ,entity:HQ_11-203_Sheikha-Wing-Relax-Area,11.203 SHEIKHA WING RELAX AREA,Level-11,11.203
+HQ,entity:HQ_11-204_Sheikha-Wing-Meeting-Room,11.204 SHEIKHA WING MEETING ROOM,Level-11,11.204
+HQ,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit,11.208 SHEIKHA WING SHEIKHA ENSUIT,Level-11,11.208
+HQ,entity:HQ_11-512_IDF-Room,11.512 IDF ROOM,Level-11,11.512
+HQ,entity:HQ_11-531_IDF-Room,11.531 IDF ROOM,Level-11,11.531
+HQ,entity:HQ_11-601_Sheika-Wing-Corridor-Ne,11.601 SHEIKA WING CORRIDOR NE,Level-11,11.601
+HQ,entity:HQ_12-002_MCC-Closet,12.002 MCC CLOSET,Level-12,12.002
+HQ,entity:HQ_12-003_MCC-Closet,12.003 MCC CLOSET,Level-12,12.003
+HQ,entity:HQ_12-004_MCC-Closet,12.004 MCC CLOSET,Level-12,12.004
+HQ,entity:HQ_2-001_Storage-Room,2.001 STORAGE ROOM,Level-2,2.001
+HQ,entity:HQ_2-002_Doha-Debate-Executive,2.002 DOHA DEBATE EXECUTIVE,Level-2,2.002
+HQ,entity:HQ_2-003_Doha-Debate-Executive,2.003 DOHA DEBATE EXECUTIVE,Level-2,2.003
+HQ,entity:HQ_2-004_Doha-Debate-Secretary,2.004 DOHA DEBATE SECRETARY,Level-2,2.004
+HQ,entity:HQ_2-005_Doha-Debate-Executive,2.005 DOHA DEBATE EXECUTIVE,Level-2,2.005
+HQ,entity:HQ_2-006_Doha-Debate-Executive,2.006 DOHA DEBATE EXECUTIVE,Level-2,2.006
+HQ,entity:HQ_2-007_Doha-Debate-Executive,2.007 DOHA DEBATE EXECUTIVE,Level-2,2.007
+HQ,entity:HQ_2-008_Doha-Debate-Executive,2.008 DOHA DEBATE EXECUTIVE,Level-2,2.008
+HQ,entity:HQ_2-009_Supp-Ser-Secretary,2.009 SUPP SER SECRETARY,Level-2,2.009
+HQ,entity:HQ_2-010_Suppservadminist,2.010 SUPPSERVADMINIST,Level-2,2.010
+HQ,entity:HQ_2-011_Suppservadminist,2.011 SUPPSERVADMINIST,Level-2,2.011
+HQ,entity:HQ_2-012_Suppservadminist,2.012 SUPPSERVADMINIST,Level-2,2.012
+HQ,entity:HQ_2-013_Supp-Ser-Secretary,2.013 SUPP SER SECRETARY,Level-2,2.013
+HQ,entity:HQ_2-014_Suppservadminist,2.014 SUPPSERVADMINIST,Level-2,2.014
+HQ,entity:HQ_2-015_Suppservadminist,2.015 SUPPSERVADMINIST,Level-2,2.015
+HQ,entity:HQ_2-016_Suppservadminist,2.016 SUPPSERVADMINIST,Level-2,2.016
+HQ,entity:HQ_2-017_Supp-Ser-Secretary,2.017 SUPP SER SECRETARY,Level-2,2.017
+HQ,entity:HQ_2-018_Suppserv-Director-Ensuit,2.018 SUPPSERV DIRECTOR ENSUIT,Level-2,2.018
+HQ,entity:HQ_2-019_Suppservadminist,2.019 SUPPSERVADMINIST,Level-2,2.019
+HQ,entity:HQ_2-020_Suppservadminist,2.020 SUPPSERVADMINIST,Level-2,2.020
+HQ,entity:HQ_2-021_Suppservadminist,2.021 SUPPSERVADMINIST,Level-2,2.021
+HQ,entity:HQ_2-022_Supp-Ser-Secretary,2.022 SUPP SER SECRETARY,Level-2,2.022
+HQ,entity:HQ_2-023_Suppservadminist,2.023 SUPPSERVADMINIST,Level-2,2.023
+HQ,entity:HQ_2-024_Suppservadminist,2.024 SUPPSERVADMINIST,Level-2,2.024
+HQ,entity:HQ_2-025_Suppservadminist,2.025 SUPPSERVADMINIST,Level-2,2.025
+HQ,entity:HQ_2-026_Supp-Ser-Secretary,2.026 SUPP SER SECRETARY,Level-2,2.026
+HQ,entity:HQ_2-027_Suppservadminist,2.027 SUPPSERVADMINIST,Level-2,2.027
+HQ,entity:HQ_2-028_Suppservadminist,2.028 SUPPSERVADMINIST,Level-2,2.028
+HQ,entity:HQ_2-029_Suppservadminist,2.029 SUPPSERVADMINIST,Level-2,2.029
+HQ,entity:HQ_2-030_Supp-Ser-Secretary,2.030 SUPP SER SECRETARY,Level-2,2.030
+HQ,entity:HQ_2-031_Suppservadminist,2.031 SUPPSERVADMINIST,Level-2,2.031
+HQ,entity:HQ_2-032_Suppservadminist,2.032 SUPPSERVADMINIST,Level-2,2.032
+HQ,entity:HQ_2-033_Suppservadminist,2.033 SUPPSERVADMINIST,Level-2,2.033
+HQ,entity:HQ_2-034_Supp-Ser-Secretary,2.034 SUPP SER SECRETARY,Level-2,2.034
+HQ,entity:HQ_2-035_Suppservadminist,2.035 SUPPSERVADMINIST,Level-2,2.035
+HQ,entity:HQ_2-036_Suppservadminist,2.036 SUPPSERVADMINIST,Level-2,2.036
+HQ,entity:HQ_2-101A_Office-Space,2.101A OFFICE SPACE,Level-2,2.101A
+HQ,entity:HQ_2-102_Consultants-Space-Others,2.102 CONSULTANTS SPACE OTHERS,Level-2,2.102
+HQ,entity:HQ_2-103_Print-Copy,2.103 PRINT COPY,Level-2,2.103
+HQ,entity:HQ_2-104_Consultants-Space-Others,2.104 CONSULTANTS SPACE OTHERS,Level-2,2.104
+HQ,entity:HQ_2-105_Lounge,2.105 LOUNGE,Level-2,2.105
+HQ,entity:HQ_2-108_Suppserv-Meeting-Room,2.108 SUPPSERV MEETING ROOM,Level-2,2.108
+HQ,entity:HQ_2-109_Shell-Space,2.109 SHELL SPACE,Level-2,2.109
+HQ,entity:HQ_2-110A_Office-Space,2.110A OFFICE SPACE,Level-2,2.110A
+HQ,entity:HQ_2-201_Spa-Male-Relaxation,2.201 SPA MALE RELAXATION,Level-2,2.201
+HQ,entity:HQ_2-202_Spa-Male-Treatment-3,2.202 SPA MALE TREATMENT 3,Level-2,2.202
+HQ,entity:HQ_2-203_Spa-Male-Treatment-2,2.203 SPA MALE TREATMENT 2,Level-2,2.203
+HQ,entity:HQ_2-204_Spa-Male-Treatment-1,2.204 SPA MALE TREATMENT 1,Level-2,2.204
+HQ,entity:HQ_2-205_Spa-Male-Changing-Room,2.205 SPA MALE CHANGING ROOM,Level-2,2.205
+HQ,entity:HQ_2-206_Spa-Entrance,2.206 SPA ENTRANCE,Level-2,2.206
+HQ,entity:HQ_2-207_Spa-Lounge-Bar,2.207 SPA LOUNGE BAR,Level-2,2.207
+HQ,entity:HQ_2-208_Spa-Fitness-Studio,2.208 SPA FITNESS STUDIO,Level-2,2.208
+HQ,entity:HQ_2-209_Spa-Office,2.209 SPA OFFICE,Level-2,2.209
+HQ,entity:HQ_2-210_Spa-Staff-Waiting-Area,2.210 SPA STAFF WAITING AREA,Level-2,2.210
+HQ,entity:HQ_2-211_Spa-Female-Beauty-Salon,2.211 SPA FEMALE BEAUTY SALON,Level-2,2.211
+HQ,entity:HQ_2-212_Spa-Fm-Treatment-1,2.212 SPA FM TREATMENT 1,Level-2,2.212
+HQ,entity:HQ_2-213_Spa-Changing-Room,2.213 SPA CHANGING ROOM,Level-2,2.213
+HQ,entity:HQ_2-214_Spa-Fm-Treatment-2,2.214 SPA FM TREATMENT 2,Level-2,2.214
+HQ,entity:HQ_2-215_Spa-Fm-Treatment-3,2.215 SPA FM TREATMENT 3,Level-2,2.215
+HQ,entity:HQ_2-216_Spa-Fm-Relaxation,2.216 SPA FM RELAXATION,Level-2,2.216
+HQ,entity:HQ_2-302_Spa-Plant-Room,2.302 SPA PLANT ROOM,Level-2,2.302
+HQ,entity:HQ_2-311_Spa-Male-Heat-Exp,2.311 SPA MALE HEAT EXP,Level-2,2.311
+HQ,entity:HQ_2-512_Mechanical-Room,2.512 MECHANICAL ROOM,Level-2,2.512
+HQ,entity:HQ_2-531_IDF-Room,2.531 IDF ROOM,Level-2,2.531
+HQ,entity:HQ_2-601_S-Tower-Corridor,2.601 S TOWER CORRIDOR,Level-2,2.601
+HQ,entity:HQ_2-603_Spa-Lobby,2.603 SPA LOBBY,Level-2,2.603
+HQ,entity:HQ_2-701_Terrace,2.701 TERRACE,Level-2,2.701
+HQ,entity:HQ_3-001_Lounge,3.001 LOUNGE,Level-3,3.001
+HQ,entity:HQ_3-002_Hr-Immig-Staff,3.002 HR IMMIG STAFF,Level-3,3.002
+HQ,entity:HQ_3-003_Hr-Immig-Staff,3.003 HR IMMIG STAFF,Level-3,3.003
+HQ,entity:HQ_3-004_Hr-Immig-Staff,3.004 HR IMMIG STAFF,Level-3,3.004
+HQ,entity:HQ_3-005_Hr-Immig-Staff,3.005 HR IMMIG STAFF,Level-3,3.005
+HQ,entity:HQ_3-006_Hr-Immig-Staff,3.006 HR IMMIG STAFF,Level-3,3.006
+HQ,entity:HQ_3-007_Hr-Immig-Staff,3.007 HR IMMIG STAFF,Level-3,3.007
+HQ,entity:HQ_3-008_Hr-Immig-Staff,3.008 HR IMMIG STAFF,Level-3,3.008
+HQ,entity:HQ_3-009_Hr-Immig-Storage,3.009 HR IMMIG STORAGE,Level-3,3.009
+HQ,entity:HQ_3-010_Hr-Immig-Staff,3.010 HR IMMIG STAFF,Level-3,3.010
+HQ,entity:HQ_3-011_Hr-Immig-Staff,3.011 HR IMMIG STAFF,Level-3,3.011
+HQ,entity:HQ_3-012_Hr-Immig-Staff,3.012 HR IMMIG STAFF,Level-3,3.012
+HQ,entity:HQ_3-013_Hr-Immig-Staff,3.013 HR IMMIG STAFF,Level-3,3.013
+HQ,entity:HQ_3-014_Hr-Immig-Staff,3.014 HR IMMIG STAFF,Level-3,3.014
+HQ,entity:HQ_3-015_Hr-Immig-Staff,3.015 HR IMMIG STAFF,Level-3,3.015
+HQ,entity:HQ_3-016_Hr-Immig-Staff,3.016 HR IMMIG STAFF,Level-3,3.016
+HQ,entity:HQ_3-017_Hr-Immig-Staff,3.017 HR IMMIG STAFF,Level-3,3.017
+HQ,entity:HQ_3-018_Hr-Immig-Staff,3.018 HR IMMIG STAFF,Level-3,3.018
+HQ,entity:HQ_3-019_Hr-Immig-Staff,3.019 HR IMMIG STAFF,Level-3,3.019
+HQ,entity:HQ_3-020_Hr-Immig-Staff,3.020 HR IMMIG STAFF,Level-3,3.020
+HQ,entity:HQ_3-021_Hr-Immig-Staff,3.021 HR IMMIG STAFF,Level-3,3.021
+HQ,entity:HQ_3-022_Hr-Immig-Secretary,3.022 HR IMMIG SECRETARY,Level-3,3.022
+HQ,entity:HQ_3-023_Hr-Immig-Staff,3.023 HR IMMIG STAFF,Level-3,3.023
+HQ,entity:HQ_3-024_Hr-Immig-Staff,3.024 HR IMMIG STAFF,Level-3,3.024
+HQ,entity:HQ_3-025_Hr-Immig-Staff,3.025 HR IMMIG STAFF,Level-3,3.025
+HQ,entity:HQ_3-026_Hr-Immig-Staff,3.026 HR IMMIG STAFF,Level-3,3.026
+HQ,entity:HQ_3-027_Hr-Immig-Staff,3.027 HR IMMIG STAFF,Level-3,3.027
+HQ,entity:HQ_3-028_Hr-Immig-Staff,3.028 HR IMMIG STAFF,Level-3,3.028
+HQ,entity:HQ_3-029_Hr-Immig-Staff,3.029 HR IMMIG STAFF,Level-3,3.029
+HQ,entity:HQ_3-030_Hr-Immig-Staff,3.030 HR IMMIG STAFF,Level-3,3.030
+HQ,entity:HQ_3-031_Hr-Immig-Staff,3.031 HR IMMIG STAFF,Level-3,3.031
+HQ,entity:HQ_3-032_Hr-Immig-Secretary,3.032 HR IMMIG SECRETARY,Level-3,3.032
+HQ,entity:HQ_3-033_Meeting-Room,3.033 MEETING ROOM,Level-3,3.033
+HQ,entity:HQ_3-101_Shell-Space,3.101 SHELL SPACE,Level-3,3.101
+HQ,entity:HQ_3-102_Consultant-Space-Trainees,3.102 CONSULTANT SPACE TRAINEES,Level-3,3.102
+HQ,entity:HQ_3-103_Print-Copy,3.103 PRINT COPY,Level-3,3.103
+HQ,entity:HQ_3-104_Hr-Immg-Secretary,3.104 HR IMMG SECRETARY,Level-3,3.104
+HQ,entity:HQ_3-105A_Female-Prayer-Room,3.105A FEMALE PRAYER ROOM,Level-3,3.105A
+HQ,entity:HQ_3-105B_Office-Space,3.105B OFFICE SPACE,Level-3,3.105B
+HQ,entity:HQ_3-201_Proc-And-Contrldirensuit,3.201 PROC AND CONTRLDIRENSUIT,Level-3,3.201
+HQ,entity:HQ_3-202A_Office-Space,3.202A OFFICE SPACE,Level-3,3.202A
+HQ,entity:HQ_3-202B_Office-Space,3.202B OFFICE SPACE,Level-3,3.202B
+HQ,entity:HQ_3-203_Copy-Print,3.203 COPY PRINT,Level-3,3.203
+HQ,entity:HQ_3-205_Hr-Immig-Immigration,3.205 HR IMMIG IMMIGRATION,Level-3,3.205
+HQ,entity:HQ_3-206_Hr-Immig-Manager,3.206 HR IMMIG MANAGER,Level-3,3.206
+HQ,entity:HQ_3-207_Hr-Immig-Manager,3.207 HR IMMIG MANAGER,Level-3,3.207
+HQ,entity:HQ_3-208_Hr-Immig-Manager,3.208 HR IMMIG MANAGER,Level-3,3.208
+HQ,entity:HQ_3-209_Hr-Immig-Manager,3.209 HR IMMIG MANAGER,Level-3,3.209
+HQ,entity:HQ_3-210_Hr-Immig-Officer,3.210 HR IMMIG OFFICER,Level-3,3.210
+HQ,entity:HQ_3-211_Hr-Immig-Manager,3.211 HR IMMIG MANAGER,Level-3,3.211
+HQ,entity:HQ_3-212_Hr-Immig-Secretaries,3.212 HR IMMIG SECRETARIES,Level-3,3.212
+HQ,entity:HQ_3-213_Hr-Immig-Dir-Ensuit,3.213 HR IMMIG DIR ENSUIT,Level-3,3.213
+HQ,entity:HQ_3-214_IT-Secretary,3.214 IT SECRETARY,Level-3,3.214
+HQ,entity:HQ_3-215_IT-Dir-Ensuit,3.215 IT DIR ENSUIT,Level-3,3.215
+HQ,entity:HQ_3-216_Proc-Contr-Secretary,3.216 PROC CONTR SECRETARY,Level-3,3.216
+HQ,entity:HQ_3-301_Proc-And-Contr-Meeting-Room,3.301 PROC AND CONTR MEETING ROOM,Level-3,3.301
+HQ,entity:HQ_3-302_Hr-Immg-Meeting-Room,3.302 HR IMMG MEETING ROOM,Level-3,3.302
+HQ,entity:HQ_3-360_Ablution-Room,3.360 ABLUTION ROOM,Level-3,3.360
+HQ,entity:HQ_3-512_IDF-Room,3.512 IDF ROOM,Level-3,3.512
+HQ,entity:HQ_3-531_IDF-Room,3.531 IDF ROOM,Level-3,3.531
+HQ,entity:HQ_3-601_S-Tower-Corridor,3.601 S TOWER CORRIDOR,Level-3,3.601
+HQ,entity:HQ_3-602_E-Tower-Corridor,3.602 E TOWER CORRIDOR,Level-3,3.602
+HQ,entity:HQ_3-630_Corridor-Bridge,3.630 CORRIDOR BRIDGE,Level-3,3.630
+HQ,entity:HQ_4-001A_Office-Space,4.001A OFFICE SPACE,Level-4,4.001A
+HQ,entity:HQ_4-001B_Office-Space,4.001B OFFICE SPACE,Level-4,4.001B
+HQ,entity:HQ_4-001C_Office-Space,4.001C OFFICE SPACE,Level-4,4.001C
+HQ,entity:HQ_4-001D_Office-Space,4.001D OFFICE SPACE,Level-4,4.001D
+HQ,entity:HQ_4-001E_Office-Space,4.001E OFFICE SPACE,Level-4,4.001E
+HQ,entity:HQ_4-001F_Office-Space,4.001F OFFICE SPACE,Level-4,4.001F
+HQ,entity:HQ_4-001G_Office-Space,4.001G OFFICE SPACE,Level-4,4.001G
+HQ,entity:HQ_4-001H_Office-Space,4.001H OFFICE SPACE,Level-4,4.001H
+HQ,entity:HQ_4-002_Str-Pl-Dir-Manager,4.002 STR PL DIR MANAGER,Level-4,4.002
+HQ,entity:HQ_4-003_Str-Pl-Dir-Exec-Secre,4.003 STR PL DIR EXEC SECRE,Level-4,4.003
+HQ,entity:HQ_4-004_Str-Pl-Dir-Ensuit,4.004 STR PL DIR ENSUIT,Level-4,4.004
+HQ,entity:HQ_4-005_Str-Pl-Dir-Meeting-Room,4.005 STR PL DIR MEETING ROOM,Level-4,4.005
+HQ,entity:HQ_4-006_Str-Pl-Dir-Manager,4.006 STR PL DIR MANAGER,Level-4,4.006
+HQ,entity:HQ_4-007_Str-Pl-Dir-Manager,4.007 STR PL DIR MANAGER,Level-4,4.007
+HQ,entity:HQ_4-008_Str-Pl-Dir-Manager,4.008 STR PL DIR MANAGER,Level-4,4.008
+HQ,entity:HQ_4-009_Str-Pl-Dir-Head-Of-Pl,4.009 STR PL DIR HEAD OF PL,Level-4,4.009
+HQ,entity:HQ_4-010_Str-Pl-Dir-Head-Of-Pl,4.010 STR PL DIR HEAD OF PL,Level-4,4.010
+HQ,entity:HQ_4-011_Str-Pl-Dir-Head-Of-Pl,4.011 STR PL DIR HEAD OF PL,Level-4,4.011
+HQ,entity:HQ_4-012_Str-Pl-Dir-Head-Of-Pl,4.012 STR PL DIR HEAD OF PL,Level-4,4.012
+HQ,entity:HQ_4-013_Str-Pl-Dir-Head-Of-Pl,4.013 STR PL DIR HEAD OF PL,Level-4,4.013
+HQ,entity:HQ_4-014_Str-Pl-Dir-Manager,4.014 STR PL DIR MANAGER,Level-4,4.014
+HQ,entity:HQ_4-015A_Office-Space,4.015A OFFICE SPACE,Level-4,4.015A
+HQ,entity:HQ_4-015B_Office-Space,4.015B OFFICE SPACE,Level-4,4.015B
+HQ,entity:HQ_4-015C_Office-Space,4.015C OFFICE SPACE,Level-4,4.015C
+HQ,entity:HQ_4-101_Shell-Space,4.101 SHELL SPACE,Level-4,4.101
+HQ,entity:HQ_4-102_Shell-Space,4.102 SHELL SPACE,Level-4,4.102
+HQ,entity:HQ_4-103_Storage-Space,4.103 STORAGE SPACE,Level-4,4.103
+HQ,entity:HQ_4-104_Waiting-Lounge,4.104 WAITING LOUNGE,Level-4,4.104
+HQ,entity:HQ_4-105_Pantry,4.105 PANTRY,Level-4,4.105
+HQ,entity:HQ_4-107_Str-Pl-Dir-Tech-Staff,4.107 STR PL DIR TECH STAFF,Level-4,4.107
+HQ,entity:HQ_4-108_Str-Pl-Dir-Archive-Room,4.108 STR PL DIR ARCHIVE ROOM,Level-4,4.108
+HQ,entity:HQ_4-109_Vp-Edu-Storage,4.109 VP EDU STORAGE,Level-4,4.109
+HQ,entity:HQ_4-110_Print-Copy,4.110 PRINT COPY,Level-4,4.110
+HQ,entity:HQ_4-201_Shell-Space,4.201 SHELL SPACE,Level-4,4.201
+HQ,entity:HQ_4-202_Print-Copy,4.202 PRINT COPY,Level-4,4.202
+HQ,entity:HQ_4-204_Shell-Space,4.204 SHELL SPACE,Level-4,4.204
+HQ,entity:HQ_4-205_Vp-Adm-Manager,4.205 VP ADM MANAGER,Level-4,4.205
+HQ,entity:HQ_4-206_Vp-Adm-Manager,4.206 VP ADM MANAGER,Level-4,4.206
+HQ,entity:HQ_4-208_Vp-Adm-Execsecret,4.208 VP ADM EXECSECRET,Level-4,4.208
+HQ,entity:HQ_4-209_Vp-Adm-Manager,4.209 VP ADM MANAGER,Level-4,4.209
+HQ,entity:HQ_4-210_Vp-Adm-Manager,4.210 VP ADM MANAGER,Level-4,4.210
+HQ,entity:HQ_4-211_Vp-Adm-Manager,4.211 VP ADM MANAGER,Level-4,4.211
+HQ,entity:HQ_4-212_Vp-Adm-Persassist,4.212 VP ADM PERSASSIST,Level-4,4.212
+HQ,entity:HQ_4-213_Vp-Adm-Ensuit,4.213 VP ADM ENSUIT,Level-4,4.213
+HQ,entity:HQ_4-214_Gsm-Room,4.214 GSM ROOM,Level-4,4.214
+HQ,entity:HQ_4-301_Vp-Adm-Meeting-Room,4.301 VP ADM MEETING ROOM,Level-4,4.301
+HQ,entity:HQ_4-512_IDF-Room,4.512 IDF ROOM,Level-4,4.512
+HQ,entity:HQ_4-531_IDF-Room,4.531 IDF ROOM,Level-4,4.531
+HQ,entity:HQ_4-601_S-Tower-Corridor,4.601 S TOWER CORRIDOR,Level-4,4.601
+HQ,entity:HQ_4-603_E-Tower-Corridor,4.603 E TOWER CORRIDOR,Level-4,4.603
+HQ,entity:HQ_4-701_Vp-Adm-Terrace,4.701 VP ADM TERRACE,Level-4,4.701
+HQ,entity:HQ_4-702_Terrace,4.702 TERRACE,Level-4,4.702
+HQ,entity:HQ_4-703_Terrace,4.703 TERRACE,Level-4,4.703
+HQ,entity:HQ_5-001_Vp-Edu-Assistant,5.001 VP EDU ASSISTANT,Level-5,5.001
+HQ,entity:HQ_5-002_Vp-Edu-Off-Dir-Ensuit,5.002 VP EDU OFF DIR ENSUIT,Level-5,5.002
+HQ,entity:HQ_5-003_Vp-Edu-Secretary,5.003 VP EDU SECRETARY,Level-5,5.003
+HQ,entity:HQ_5-004_Vp-Edu-Assistant,5.004 VP EDU ASSISTANT,Level-5,5.004
+HQ,entity:HQ_5-005_Vp-Edu-Officers,5.005 VP EDU OFFICERS,Level-5,5.005
+HQ,entity:HQ_5-006_Vp-Edu-Officers,5.006 VP EDU OFFICERS,Level-5,5.006
+HQ,entity:HQ_5-007_Vp-Edu-Officers,5.007 VP EDU OFFICERS,Level-5,5.007
+HQ,entity:HQ_5-008_Vp-Edu-Assistant,5.008 VP EDU ASSISTANT,Level-5,5.008
+HQ,entity:HQ_5-009_Vp1-Vp-Edu-Officers,5.009 VP1 VP EDU OFFICERS,Level-5,5.009
+HQ,entity:HQ_5-010_Vp-Edu-Officers,5.010 VP EDU OFFICERS,Level-5,5.010
+HQ,entity:HQ_5-011_Vp-Edu-Assistant,5.011 VP EDU ASSISTANT,Level-5,5.011
+HQ,entity:HQ_5-012_Vp-Edu-Office-Director-Ensuit,5.012 VP EDU OFFICE DIRECTOR ENSUIT,Level-5,5.012
+HQ,entity:HQ_5-013_Vp-Edu-Secretary,5.013 VP EDU SECRETARY,Level-5,5.013
+HQ,entity:HQ_5-014_Vp-Edu-Assistant,5.014 VP EDU ASSISTANT,Level-5,5.014
+HQ,entity:HQ_5-015_Vp-Edu-Assistant,5.015 VP EDU ASSISTANT,Level-5,5.015
+HQ,entity:HQ_5-016_Vp-Edu-Assistant,5.016 VP EDU ASSISTANT,Level-5,5.016
+HQ,entity:HQ_5-017_Vp-Edu-Assistant,5.017 VP EDU ASSISTANT,Level-5,5.017
+HQ,entity:HQ_5-018_Vp-Edu-Officers,5.018 VP EDU OFFICERS,Level-5,5.018
+HQ,entity:HQ_5-019_Vp-Edu-Officers,5.019 VP EDU OFFICERS,Level-5,5.019
+HQ,entity:HQ_5-020_Vp-Edu-Officers,5.020 VP EDU OFFICERS,Level-5,5.020
+HQ,entity:HQ_5-021_Vp-Edu-Officers,5.021 VP EDU OFFICERS,Level-5,5.021
+HQ,entity:HQ_5-022_Vp-Edu-Officers,5.022 VP EDU OFFICERS,Level-5,5.022
+HQ,entity:HQ_5-023_Vp-Edu-Officers,5.023 VP EDU OFFICERS,Level-5,5.023
+HQ,entity:HQ_5-024_Vp-Edu-Secretary,5.024 VP EDU SECRETARY,Level-5,5.024
+HQ,entity:HQ_5-025_Vp-Edu-Office-Director-Ensuit,5.025 VP EDU OFFICE DIRECTOR ENSUIT,Level-5,5.025
+HQ,entity:HQ_5-026_Vp-Edu-Assistant,5.026 VP EDU ASSISTANT,Level-5,5.026
+HQ,entity:HQ_5-027_Vp-Edu-Officers,5.027 VP EDU OFFICERS,Level-5,5.027
+HQ,entity:HQ_5-101_Vp-Edu-Secret,5.101 VP EDU SECRET,Level-5,5.101
+HQ,entity:HQ_5-102_Meeting-Room,5.102 MEETING ROOM,Level-5,5.102
+HQ,entity:HQ_5-103_Print-Copy,5.103 PRINT COPY,Level-5,5.103
+HQ,entity:HQ_5-104_Vp-Edu-Lounge-Waiting,5.104 VP EDU LOUNGE WAITING,Level-5,5.104
+HQ,entity:HQ_5-107_Vp-Education-Suppsecret,5.107 VP EDUCATION SUPPSECRET,Level-5,5.107
+HQ,entity:HQ_5-108_Vp-Edu-Assistant,5.108 VP EDU ASSISTANT,Level-5,5.108
+HQ,entity:HQ_5-109_Electrical-Cabinet,5.109 ELECTRICAL CABINET,Level-5,5.109
+HQ,entity:HQ_5-110_Vp-Edu-Officers,5.110 VP EDU OFFICERS,Level-5,5.110
+HQ,entity:HQ_5-201_Vp-Edu-Members-Of-Edu,5.201 VP EDU MEMBERS OF EDU,Level-5,5.201
+HQ,entity:HQ_5-202_Vp-Edu-Members-Of-Edu,5.202 VP EDU MEMBERS OF EDU,Level-5,5.202
+HQ,entity:HQ_5-203_Vp-Edu-Members-Of-Edu,5.203 VP EDU MEMBERS OF EDU,Level-5,5.203
+HQ,entity:HQ_5-205_Vp-Edu-Meeting-Room,5.205 VP EDU MEETING ROOM,Level-5,5.205
+HQ,entity:HQ_5-206_Vp-Edu-Members-Of-Edu,5.206 VP EDU MEMBERS OF EDU,Level-5,5.206
+HQ,entity:HQ_5-207_Vp-Edu-Members-Of-Edu,5.207 VP EDU MEMBERS OF EDU,Level-5,5.207
+HQ,entity:HQ_5-208_Vp-Edu-Members-Of-Edu,5.208 VP EDU MEMBERS OF EDU,Level-5,5.208
+HQ,entity:HQ_5-209_Vp-Edu-Members-Of-Edu,5.209 VP EDU MEMBERS OF EDU,Level-5,5.209
+HQ,entity:HQ_5-210_Vp-Edu-Ensuit,5.210 VP EDU ENSUIT,Level-5,5.210
+HQ,entity:HQ_5-211_Vp-Edu-Chpexecsecret,5.211 VP EDU CHPEXECSECRET,Level-5,5.211
+HQ,entity:HQ_5-212_Vp-Edu-Members-Of-Edu,5.212 VP EDU MEMBERS OF EDU,Level-5,5.212
+HQ,entity:HQ_5-213_Vp-Edu-Office-Director-Ensuit,5.213 VP EDU OFFICE DIRECTOR ENSUIT,Level-5,5.213
+HQ,entity:HQ_5-301_Plant-Room,5.301 PLANT ROOM,Level-5,5.301
+HQ,entity:HQ_5-350_Corridor,5.350 CORRIDOR,Level-5,5.350
+HQ,entity:HQ_5-512_IDF-Room,5.512 IDF ROOM,Level-5,5.512
+HQ,entity:HQ_5-531_IDF-Room,5.531 IDF ROOM,Level-5,5.531
+HQ,entity:HQ_5-601_S-Tower-Corridor,5.601 S TOWER CORRIDOR,Level-5,5.601
+HQ,entity:HQ_5-602_Bridge,5.602 BRIDGE,Level-5,5.602
+HQ,entity:HQ_6-001_Aca-Audit-Archive,6.001 ACA AUDIT ARCHIVE,Level-6,6.001
+HQ,entity:HQ_6-002_Int-Audit-Archive-Room,6.002 INT AUDIT ARCHIVE ROOM,Level-6,6.002
+HQ,entity:HQ_6-003_Int-Audit-Supp-Audit,6.003 INT AUDIT SUPP AUDIT,Level-6,6.003
+HQ,entity:HQ_6-004_Int-Audit-Supp-Audit,6.004 INT AUDIT SUPP AUDIT,Level-6,6.004
+HQ,entity:HQ_6-005_Int-Audit-Supp-Audit,6.005 INT AUDIT SUPP AUDIT,Level-6,6.005
+HQ,entity:HQ_6-006_Int-Audit-Supp-Audit,6.006 INT AUDIT SUPP AUDIT,Level-6,6.006
+HQ,entity:HQ_6-007_Int-Audit-Supp-Audit,6.007 INT AUDIT SUPP AUDIT,Level-6,6.007
+HQ,entity:HQ_6-008_Int-Audit-Supp-Audit,6.008 INT AUDIT SUPP AUDIT,Level-6,6.008
+HQ,entity:HQ_6-009_Int-Audit-Supp-Audit,6.009 INT AUDIT SUPP AUDIT,Level-6,6.009
+HQ,entity:HQ_6-010_Intaudit-Secretary,6.010 INTAUDIT SECRETARY,Level-6,6.010
+HQ,entity:HQ_6-011_Intaudit-Sen-Jntaud,6.011 INTAUDIT SEN JNTAUD,Level-6,6.011
+HQ,entity:HQ_6-012_Intaudit-Sen-Jntaud,6.012 INTAUDIT SEN JNTAUD,Level-6,6.012
+HQ,entity:HQ_6-013_Intaudit-Secretary,6.013 INTAUDIT SECRETARY,Level-6,6.013
+HQ,entity:HQ_6-014_Aca-Audit-Supp-Audit,6.014 ACA AUDIT SUPP AUDIT,Level-6,6.014
+HQ,entity:HQ_6-015_Aca-Audit-Supp-Audit,6.015 ACA AUDIT SUPP AUDIT,Level-6,6.015
+HQ,entity:HQ_6-016_Aca-Audit-Supp-Audit,6.016 ACA AUDIT SUPP AUDIT,Level-6,6.016
+HQ,entity:HQ_6-017_Aca-Audit-Supp-Audit,6.017 ACA AUDIT SUPP AUDIT,Level-6,6.017
+HQ,entity:HQ_6-018_Aca-Audit-Supp-Audit,6.018 ACA AUDIT SUPP AUDIT,Level-6,6.018
+HQ,entity:HQ_6-019_Aca-Audit-Supp-Audit,6.019 ACA AUDIT SUPP AUDIT,Level-6,6.019
+HQ,entity:HQ_6-020_Aca-Audit-Supp-Audit,6.020 ACA AUDIT SUPP AUDIT,Level-6,6.020
+HQ,entity:HQ_6-021_Aca-Audit-Secretary,6.021 ACA AUDIT SECRETARY,Level-6,6.021
+HQ,entity:HQ_6-022_Aca-Audit-Secretary,6.022 ACA AUDIT SECRETARY,Level-6,6.022
+HQ,entity:HQ_6-023_Aca-Audit-Aca-Senaud,6.023 ACA AUDIT ACA SENAUD,Level-6,6.023
+HQ,entity:HQ_6-024_Aca-Audit-Aca-Senaud,6.024 ACA AUDIT ACA SENAUD,Level-6,6.024
+HQ,entity:HQ_6-025_Facility-Managsecretary,6.025 FACILITY MANAGSECRETARY,Level-6,6.025
+HQ,entity:HQ_6-026_Facility-Manag-Dir-Ensuit,6.026 FACILITY MANAG DIR ENSUIT,Level-6,6.026
+HQ,entity:HQ_6-027_Vp-Capital-Consultant,6.027 VP CAPITAL CONSULTANT,Level-6,6.027
+HQ,entity:HQ_6-028_Vp-Capital-Consultant,6.028 VP CAPITAL CONSULTANT,Level-6,6.028
+HQ,entity:HQ_6-101_Shell-Space,6.101 SHELL SPACE,Level-6,6.101
+HQ,entity:HQ_6-102_Shell-Space,6.102 SHELL SPACE,Level-6,6.102
+HQ,entity:HQ_6-103_Shell-Space,6.103 SHELL SPACE,Level-6,6.103
+HQ,entity:HQ_6-104_Print-Copy,6.104 PRINT COPY,Level-6,6.104
+HQ,entity:HQ_6-105_Lounge,6.105 LOUNGE,Level-6,6.105
+HQ,entity:HQ_6-108_Vp-Capital-Proj-Coord,6.108 VP CAPITAL PROJ COORD,Level-6,6.108
+HQ,entity:HQ_6-109_Vp-Capital-Work-Assist,6.109 VP CAPITAL WORK ASSIST,Level-6,6.109
+HQ,entity:HQ_6-201_Vp-Capital-Proj-Manager,6.201 VP CAPITAL PROJ MANAGER,Level-6,6.201
+HQ,entity:HQ_6-202_Vp-Capital-Proj-Manager,6.202 VP CAPITAL PROJ MANAGER,Level-6,6.202
+HQ,entity:HQ_6-204_Vp-Capital-Proj-Manager,6.204 VP CAPITAL PROJ MANAGER,Level-6,6.204
+HQ,entity:HQ_6-205_Vp-Capital-Consultant,6.205 VP CAPITAL CONSULTANT,Level-6,6.205
+HQ,entity:HQ_6-206_Vp-Capital-Storage,6.206 VP CAPITAL STORAGE,Level-6,6.206
+HQ,entity:HQ_6-207_Vp-Capital-Secretaries,6.207 VP CAPITAL SECRETARIES,Level-6,6.207
+HQ,entity:HQ_6-208_Print-Copy,6.208 PRINT COPY,Level-6,6.208
+HQ,entity:HQ_6-209_Vp-Capital-Ensuit,6.209 VP CAPITAL ENSUIT,Level-6,6.209
+HQ,entity:HQ_6-210_Vp-Capital-Secretaries,6.210 VP CAPITAL SECRETARIES,Level-6,6.210
+HQ,entity:HQ_6-211_Vp-Capital-Secretaries,6.211 VP CAPITAL SECRETARIES,Level-6,6.211
+HQ,entity:HQ_6-212_Vp-Capital-Director-Ensuit,6.212 VP CAPITAL DIRECTOR ENSUIT,Level-6,6.212
+HQ,entity:HQ_6-512_IDF-Room,6.512 IDF ROOM,Level-6,6.512
+HQ,entity:HQ_6-531_IDF-Room,6.531 IDF ROOM,Level-6,6.531
+HQ,entity:HQ_6-601_S-Tower-Corridor,6.601 S TOWER CORRIDOR,Level-6,6.601
+HQ,entity:HQ_6-603_E-Tower-Corridor,6.603 E TOWER CORRIDOR,Level-6,6.603
+HQ,entity:HQ_6-604_Bridge-Corridor,6.604 BRIDGE CORRIDOR,Level-6,6.604
+HQ,entity:HQ_7-001_Doc-Unit-Employee,7.001 DOC UNIT EMPLOYEE,Level-7,7.001
+HQ,entity:HQ_7-002_Doc-Unit-Multimedia-Studio,7.002 DOC UNIT MULTIMEDIA STUDIO,Level-7,7.002
+HQ,entity:HQ_7-003_Doc-Unit-Employee,7.003 DOC UNIT EMPLOYEE,Level-7,7.003
+HQ,entity:HQ_7-004_Doc-Unit-Employee,7.004 DOC UNIT EMPLOYEE,Level-7,7.004
+HQ,entity:HQ_7-005_Doc-Unit-Employee,7.005 DOC UNIT EMPLOYEE,Level-7,7.005
+HQ,entity:HQ_7-006_Doc-Unit-Employee,7.006 DOC UNIT EMPLOYEE,Level-7,7.006
+HQ,entity:HQ_7-007_Ca-Coord,7.007 CA COORD,Level-7,7.007
+HQ,entity:HQ_7-008_Ca-Coord,7.008 CA COORD,Level-7,7.008
+HQ,entity:HQ_7-009_Ca-Coord,7.009 CA COORD,Level-7,7.009
+HQ,entity:HQ_7-010_Ca-Coord,7.010 CA COORD,Level-7,7.010
+HQ,entity:HQ_7-011_Ca-Coord,7.011 CA COORD,Level-7,7.011
+HQ,entity:HQ_7-012_Ca-Coord,7.012 CA COORD,Level-7,7.012
+HQ,entity:HQ_7-013_Ca-Coord,7.013 CA COORD,Level-7,7.013
+HQ,entity:HQ_7-014_Ca-Coord,7.014 CA COORD,Level-7,7.014
+HQ,entity:HQ_7-015_Ca-Coord,7.015 CA COORD,Level-7,7.015
+HQ,entity:HQ_7-016_Ca-Coord,7.016 CA COORD,Level-7,7.016
+HQ,entity:HQ_7-017_Ca-Ensuit,7.017 CA ENSUIT,Level-7,7.017
+HQ,entity:HQ_7-018_Ca-Secretary,7.018 CA SECRETARY,Level-7,7.018
+HQ,entity:HQ_7-019_Bd-Unit-Secretary,7.019 BD UNIT SECRETARY,Level-7,7.019
+HQ,entity:HQ_7-020_Bd-Unit-Executive,7.020 BD UNIT EXECUTIVE,Level-7,7.020
+HQ,entity:HQ_7-021_Bd-Unit-Executive,7.021 BD UNIT EXECUTIVE,Level-7,7.021
+HQ,entity:HQ_7-022_Bd-Unit-Executive,7.022 BD UNIT EXECUTIVE,Level-7,7.022
+HQ,entity:HQ_7-023_Bd-Unit-Executive,7.023 BD UNIT EXECUTIVE,Level-7,7.023
+HQ,entity:HQ_7-024_Bd-Unit-Executive,7.024 BD UNIT EXECUTIVE,Level-7,7.024
+HQ,entity:HQ_7-025_Bd-Unit-Executive,7.025 BD UNIT EXECUTIVE,Level-7,7.025
+HQ,entity:HQ_7-026_Bd-Unit-Executive,7.026 BD UNIT EXECUTIVE,Level-7,7.026
+HQ,entity:HQ_7-027_Bd-Unit-Executive,7.027 BD UNIT EXECUTIVE,Level-7,7.027
+HQ,entity:HQ_7-028_Bd-Unit-Executive,7.028 BD UNIT EXECUTIVE,Level-7,7.028
+HQ,entity:HQ_7-029_Meeting-Room,7.029 MEETING ROOM,Level-7,7.029
+HQ,entity:HQ_7-030_Shell-Space,7.030 SHELL SPACE,Level-7,7.030
+HQ,entity:HQ_7-031A_Office-Space,7.031A OFFICE SPACE,Level-7,7.031A
+HQ,entity:HQ_7-032_Shell-Space,7.032 SHELL SPACE,Level-7,7.032
+HQ,entity:HQ_7-101_Print-Copy,7.101 PRINT COPY,Level-7,7.101
+HQ,entity:HQ_7-102_Ca-Secretary,7.102 CA SECRETARY,Level-7,7.102
+HQ,entity:HQ_7-103_Ca-Secretary,7.103 CA SECRETARY,Level-7,7.103
+HQ,entity:HQ_7-104_Print-Copy,7.104 PRINT COPY,Level-7,7.104
+HQ,entity:HQ_7-105_Ca-Secretary,7.105 CA SECRETARY,Level-7,7.105
+HQ,entity:HQ_7-106_Lounge,7.106 LOUNGE,Level-7,7.106
+HQ,entity:HQ_7-201_Consultant-Space,7.201 CONSULTANT SPACE,Level-7,7.201
+HQ,entity:HQ_7-202_President-Execoffice,7.202 PRESIDENT EXECOFFICE,Level-7,7.202
+HQ,entity:HQ_7-204_President-Execoffice,7.204 PRESIDENT EXECOFFICE,Level-7,7.204
+HQ,entity:HQ_7-205_President-Execoffice,7.205 PRESIDENT EXECOFFICE,Level-7,7.205
+HQ,entity:HQ_7-208_President-Support-Secret,7.208 PRESIDENT SUPPORT SECRET,Level-7,7.208
+HQ,entity:HQ_7-209_President-Execsecret,7.209 PRESIDENT EXECSECRET,Level-7,7.209
+HQ,entity:HQ_7-210_President-Execsecret,7.210 PRESIDENT EXECSECRET,Level-7,7.210
+HQ,entity:HQ_7-211_President-Ensuit,7.211 PRESIDENT ENSUIT,Level-7,7.211
+HQ,entity:HQ_7-212_President-Meeting-Room,7.212 PRESIDENT MEETING ROOM,Level-7,7.212
+HQ,entity:HQ_7-213_Vice-Chairperson-Ensult,7.213 VICE CHAIRPERSON ENSULT,Level-7,7.213
+HQ,entity:HQ_7-214_Vice-Chairsecretary,7.214 VICE CHAIRSECRETARY,Level-7,7.214
+HQ,entity:HQ_7-215_Vice-Chairperson-Meeting-Room,7.215 VICE CHAIRPERSON MEETING ROOM,Level-7,7.215
+HQ,entity:HQ_7-301_Meeting-Room,7.301 MEETING ROOM,Level-7,7.301
+HQ,entity:HQ_7-512_IDF-Room,7.512 IDF ROOM,Level-7,7.512
+HQ,entity:HQ_7-531_IDF-Room,7.531 IDF ROOM,Level-7,7.531
+HQ,entity:HQ_7-601_S-Tower-Corridor,7.601 S TOWER CORRIDOR,Level-7,7.601
+HQ,entity:HQ_7-602_Bridge,7.602 BRIDGE,Level-7,7.602
+HQ,entity:HQ_7-603_E-Tower-Corridor,7.603 E TOWER CORRIDOR,Level-7,7.603
+HQ,entity:HQ_8-001_Observation-Space,8.001 OBSERVATION SPACE,Level-8,8.001
+HQ,entity:HQ_8-002_Visitors-Center-Office,8.002 VISITORS CENTER OFFICE,Level-8,8.002
+HQ,entity:HQ_8-400_Visitors-Center-08,8.400 VISITORS CENTER 08,Level-8,8.400
+HQ,entity:HQ_8-512_IDF-Room,8.512 IDF ROOM,Level-8,8.512
+HQ,entity:HQ_8-602_Visitors-Center-Corridor,8.602 VISITORS CENTER CORRIDOR,Level-8,8.602
+HQ,entity:HQ_9-001_Legal-Archive,9.001 LEGAL ARCHIVE,Level-9,9.001
+HQ,entity:HQ_9-002_Legal-Consule,9.002 LEGAL CONSULE,Level-9,9.002
+HQ,entity:HQ_9-003_Legal-Legal-Consule,9.003 LEGAL LEGAL CONSULE,Level-9,9.003
+HQ,entity:HQ_9-004_Legal-Legal-Consule,9.004 LEGAL LEGAL CONSULE,Level-9,9.004
+HQ,entity:HQ_9-005_Legal-Legal-Consule,9.005 LEGAL LEGAL CONSULE,Level-9,9.005
+HQ,entity:HQ_9-006_Legal-Legal-Consule,9.006 LEGAL LEGAL CONSULE,Level-9,9.006
+HQ,entity:HQ_9-007_Legal-Legal-Consule,9.007 LEGAL LEGAL CONSULE,Level-9,9.007
+HQ,entity:HQ_9-008_Legal-Legsupsec,9.008 LEGAL LEGSUPSEC,Level-9,9.008
+HQ,entity:HQ_9-009_Legal-Legsupsec,9.009 LEGAL LEGSUPSEC,Level-9,9.009
+HQ,entity:HQ_9-010_Legal-Legadvensuit,9.010 LEGAL LEGADVENSUIT,Level-9,9.010
+HQ,entity:HQ_9-011_Bmo-Exec-Assist,9.011 BMO EXEC ASSIST,Level-9,9.011
+HQ,entity:HQ_9-012_Bmo-Exec-Assist,9.012 BMO EXEC ASSIST,Level-9,9.012
+HQ,entity:HQ_9-013_Bmo-Exec-Assist,9.013 BMO EXEC ASSIST,Level-9,9.013
+HQ,entity:HQ_9-014_Bmo-Exec-Assist,9.014 BMO EXEC ASSIST,Level-9,9.014
+HQ,entity:HQ_9-015_Bmo-Exec-Assist,9.015 BMO EXEC ASSIST,Level-9,9.015
+HQ,entity:HQ_9-016_Bmo-Exec-Assist,9.016 BMO EXEC ASSIST,Level-9,9.016
+HQ,entity:HQ_9-017_Bmo-Exec-Assist,9.017 BMO EXEC ASSIST,Level-9,9.017
+HQ,entity:HQ_9-018_Bmo-Execsecret,9.018 BMO EXECSECRET,Level-9,9.018
+HQ,entity:HQ_9-019_Bmo-Execsecret,9.019 BMO EXECSECRET,Level-9,9.019
+HQ,entity:HQ_9-020_Bmo-Execsecret,9.020 BMO EXECSECRET,Level-9,9.020
+HQ,entity:HQ_9-021_Bmo-Oper-Dir-Ensuit,9.021 BMO OPER DIR ENSUIT,Level-9,9.021
+HQ,entity:HQ_9-022_Bmo-Exec-Assist,9.022 BMO EXEC ASSIST,Level-9,9.022
+HQ,entity:HQ_9-023_Bmo-Execsecret,9.023 BMO EXECSECRET,Level-9,9.023
+HQ,entity:HQ_9-024_Bmo-Execsecret,9.024 BMO EXECSECRET,Level-9,9.024
+HQ,entity:HQ_9-025_Bmo-Execsecret,9.025 BMO EXECSECRET,Level-9,9.025
+HQ,entity:HQ_9-026_Bmo-Suppsecret,9.026 BMO SUPPSECRET,Level-9,9.026
+HQ,entity:HQ_9-027_Bmo-Suppsecret,9.027 BMO SUPPSECRET,Level-9,9.027
+HQ,entity:HQ_9-028_Bmo-Suppsecret,9.028 BMO SUPPSECRET,Level-9,9.028
+HQ,entity:HQ_9-029_Bmo-Suppsecret,9.029 BMO SUPPSECRET,Level-9,9.029
+HQ,entity:HQ_9-030_Bmo-Suppsecret,9.030 BMO SUPPSECRET,Level-9,9.030
+HQ,entity:HQ_9-031_Bmo-Print-Copy,9.031 BMO PRINT COPY,Level-9,9.031
+HQ,entity:HQ_9-032_Bmo-Storage,9.032 BMO STORAGE,Level-9,9.032
+HQ,entity:HQ_9-033_Hr-Eduadvadvisor-Ensuit,9.033 HR EDUADVADVISOR ENSUIT,Level-9,9.033
+HQ,entity:HQ_9-034_Hr-Eduadvadvisor-Ensuit,9.034 HR EDUADVADVISOR ENSUIT,Level-9,9.034
+HQ,entity:HQ_9-035_Hr-Eduadvadvisor-Ensuit,9.035 HR EDUADVADVISOR ENSUIT,Level-9,9.035
+HQ,entity:HQ_9-036_Bod-Executive,9.036 BOD EXECUTIVE,Level-9,9.036
+HQ,entity:HQ_9-037_Bod-Secretary,9.037 BOD SECRETARY,Level-9,9.037
+HQ,entity:HQ_9-038_Bod-Executive,9.038 BOD EXECUTIVE,Level-9,9.038
+HQ,entity:HQ_9-039_Meeting-Room,9.039 MEETING ROOM,Level-9,9.039
+HQ,entity:HQ_9-040_Bmo-Safe-Room,9.040 BMO SAFE ROOM,Level-9,9.040
+HQ,entity:HQ_9-041_Bmo-Archive-Room,9.041 BMO ARCHIVE ROOM,Level-9,9.041
+HQ,entity:HQ_9-104_Bmo-Waiting-Area,9.104 BMO WAITING AREA,Level-9,9.104
+HQ,entity:HQ_9-105_Lounge,9.105 LOUNGE,Level-9,9.105
+HQ,entity:HQ_9-108_Support-Space-Prep-Kitchen,9.108 SUPPORT SPACE PREP KITCHEN,Level-9,9.108
+HQ,entity:HQ_9-109_AHU-Room,9.109 AHU ROOM,Level-9,9.109
+HQ,entity:HQ_9-110_Sheika-Wing-Dining-Area-Se,9.110 SHEIKA WING DINING AREA SE,Level-9,9.110
+HQ,entity:HQ_9-111_Plant-Room,9.111 PLANT ROOM,Level-9,9.111
+HQ,entity:HQ_9-112_AV-Room-In-Visitor-Center,9.112 AV ROOM IN VISITOR CENTER,Level-9,9.112
+HQ,entity:HQ_9-512_IDF-Room,9.512 IDF ROOM,Level-9,9.512
+HQ,entity:HQ_9-531_IDF-Room,9.531 IDF ROOM,Level-9,9.531
+HQ,entity:HQ_9-601_Hh-Wing-Corridor-Sw,9.601 HH WING CORRIDOR SW,Level-9,9.601
+HQ,entity:HQ_B1-001_AHU-4,B1.001 AHU 4,Level-B1,B1.001
+HQ,entity:HQ_B1-003_Control-Room,B1.003 CONTROL ROOM,Level-B1,B1.003
+HQ,entity:HQ_B1-006_AHU-1,B1.006 AHU 1,Level-B1,B1.006
+HQ,entity:HQ_B1-014_Support-Space-Dry-Waste-Storage,B1.014 SUPPORT SPACE DRY WASTE STORAGE,Level-B1,B1.014
+HQ,entity:HQ_B1-015_Support-Space-Loading,B1.015 SUPPORT SPACE LOADING,Level-B1,B1.015
+HQ,entity:HQ_B1-016_AHU-2,B1.016 AHU 2,Level-B1,B1.016
+HQ,entity:HQ_B1-019_AHU,B1.019 AHU,Level-B1,B1.019
+HQ,entity:HQ_B1-022_AHU-3,B1.022 AHU 3,Level-B1,B1.022
+HQ,entity:HQ_B1-103_Staff-Lobby,B1.103 STAFF LOBBY,Level-B1,B1.103
+HQ,entity:HQ_B1-107_Dock-Master-Office,B1.107 DOCK MASTER OFFICE,Level-B1,B1.107
+HQ,entity:HQ_B1-110_Male-Break-Room,B1.110 MALE BREAK ROOM,Level-B1,B1.110
+HQ,entity:HQ_B1-116_Sheikha-Lobby,B1.116 SHEIKHA LOBBY,Level-B1,B1.116
+HQ,entity:HQ_B1-117_Chauffer-Room,B1.117 CHAUFFER ROOM,Level-B1,B1.117
+HQ,entity:HQ_B1-122_Support-Space-Food-Storage,B1.122 SUPPORT SPACE FOOD STORAGE,Level-B1,B1.122
+HQ,entity:HQ_B1-123_Support-Space-Food-Storage,B1.123 SUPPORT SPACE FOOD STORAGE,Level-B1,B1.123
+HQ,entity:HQ_B1-124_Waste-Bin-Wash-Up,B1.124 WASTE BIN WASH UP,Level-B1,B1.124
+HQ,entity:HQ_B1-512_IDF-Room,B1.512 IDF ROOM,Level-B1,B1.512
+HQ,entity:HQ_G-001_Pr-And-Market-Staff,G.001 PR AND MARKET STAFF,Level-G,G.001
+HQ,entity:HQ_G-002_Pr-And-Market-Manager,G.002 PR AND MARKET MANAGER,Level-G,G.002
+HQ,entity:HQ_G-003_Pr-And-Market-Manager,G.003 PR AND MARKET MANAGER,Level-G,G.003
+HQ,entity:HQ_G-004_Pr-And-Market-Manager,G.004 PR AND MARKET MANAGER,Level-G,G.004
+HQ,entity:HQ_G-005_Control-Center,G.005 CONTROL CENTER,Level-G,G.005
+HQ,entity:HQ_G-008_Control-Room,G.008 CONTROL ROOM,Level-G,G.008
+HQ,entity:HQ_G-009_Pr-And-Market-Manager,G.009 PR AND MARKET MANAGER,Level-G,G.009
+HQ,entity:HQ_G-010_Pr-And-Market-Staff,G.010 PR AND MARKET STAFF,Level-G,G.010
+HQ,entity:HQ_G-011_Pr-And-Market-Manager,G.011 PR AND MARKET MANAGER,Level-G,G.011
+HQ,entity:HQ_G-012_Pr-And-Market-Staff,G.012 PR AND MARKET STAFF,Level-G,G.012
+HQ,entity:HQ_G-013_Pr-And-Market-Staff,G.013 PR AND MARKET STAFF,Level-G,G.013
+HQ,entity:HQ_G-014_Visitor-Cent-Office,G.014 VISITOR CENT OFFICE,Level-G,G.014
+HQ,entity:HQ_G-015_Pr-And-Market-Staff,G.015 PR AND MARKET STAFF,Level-G,G.015
+HQ,entity:HQ_G-017_Copy-Print,G.017 COPY PRINT,Level-G,G.017
+HQ,entity:HQ_G-018_Pr-And-Market-Staff,G.018 PR AND MARKET STAFF,Level-G,G.018
+HQ,entity:HQ_G-019_Pr-And-Market-Staff,G.019 PR AND MARKET STAFF,Level-G,G.019
+HQ,entity:HQ_G-020_Pr-And-Market-Staff,G.020 PR AND MARKET STAFF,Level-G,G.020
+HQ,entity:HQ_G-021_Pr-And-Market-Staff,G.021 PR AND MARKET STAFF,Level-G,G.021
+HQ,entity:HQ_G-022_Pr-And-Market-Secretary,G.022 PR AND MARKET SECRETARY,Level-G,G.022
+HQ,entity:HQ_G-023_Pr-And-Market-Staff,G.023 PR AND MARKET STAFF,Level-G,G.023
+HQ,entity:HQ_G-025_Vip-Lounge,G.025 VIP LOUNGE,Level-G,G.025
+HQ,entity:HQ_G-026_Finance-Cashier,G.026 FINANCE CASHIER,Level-G,G.026
+HQ,entity:HQ_G-028_Pr-And-Market-Director-Ensuit,G.028 PR AND MARKET DIRECTOR ENSUIT,Level-G,G.028
+HQ,entity:HQ_G-029_Pr-And-Market-Staff,G.029 PR AND MARKET STAFF,Level-G,G.029
+HQ,entity:HQ_G-030_Pr-And-Market-Staff,G.030 PR AND MARKET STAFF,Level-G,G.030
+HQ,entity:HQ_G-031_Pr-And-Market-Staff,G.031 PR AND MARKET STAFF,Level-G,G.031
+HQ,entity:HQ_G-032_Pr-And-Market-Staff,G.032 PR AND MARKET STAFF,Level-G,G.032
+HQ,entity:HQ_G-033_Pr-And-Market-Staff,G.033 PR AND MARKET STAFF,Level-G,G.033
+HQ,entity:HQ_G-034_Pr-And-Market-Staff,G.034 PR AND MARKET STAFF,Level-G,G.034
+HQ,entity:HQ_G-035_Pr-And-Market-Staff,G.035 PR AND MARKET STAFF,Level-G,G.035
+HQ,entity:HQ_G-036_Pr-And-Market-Staff,G.036 PR AND MARKET STAFF,Level-G,G.036
+HQ,entity:HQ_G-037_Pr-And-Market-Staff,G.037 PR AND MARKET STAFF,Level-G,G.037
+HQ,entity:HQ_G-038_Pr-And-Market-Staff,G.038 PR AND MARKET STAFF,Level-G,G.038
+HQ,entity:HQ_G-101_Conference-Room,G.101 CONFERENCE ROOM,Level-G,G.101
+HQ,entity:HQ_G-103_BMS,G.103 BMS,Level-G,G.103
+HQ,entity:HQ_G-104_Lobby,G.104 LOBBY,Level-G,G.104
+HQ,entity:HQ_G-105_Shop,G.105 SHOP,Level-G,G.105
+HQ,entity:HQ_G-107_E-Tower-Lobby,G.107 E TOWER LOBBY,Level-G,G.107
+HQ,entity:HQ_G-108_Consultant-Space-Trainees,G.108 CONSULTANT SPACE TRAINEES,Level-G,G.108
+HQ,entity:HQ_G-400_Corridor-South-West-Sw,G.400 CORRIDOR SOUTH WEST SW,Level-G,G.400
+HQ,entity:HQ_G-405_Toilet,G.405 TOILET,Level-G,G.405
+HQ,entity:HQ_G-511_Vestibule,G.511 VESTIBULE,Level-G,G.511
+HQ,entity:HQ_G-512_IDF-Room,G.512 IDF ROOM,Level-G,G.512
+HQ,entity:HQ_G-531_IDF-Room,G.531 IDF ROOM,Level-G,G.531
+HQ,entity:HQ_G-601_Corridor,G.601 CORRIDOR,Level-G,G.601
+HQ,entity:HQ_G-602_Corridor-South-East,G.602 CORRIDOR SOUTH EAST,Level-G,G.602
+HQ,entity:HQ_G-603_Corridor-South-East,G.603 CORRIDOR SOUTH EAST,Level-G,G.603
+HQ,entity:HQ_RF-001_Roof,RF.001 ROOF,Level-RF,RF.001
+HQ,entity:HQ_RF-002_Roof-Plant-Walkway,RF.002 ROOF PLANT WALKWAY,Level-RF,RF.002
+SSC,entity:SSC_01-001_Corridor,1.001 CORRIDOR,Level-01,01.001
+SSC,entity:SSC_01-002_Shell-Space-S,1.002 SHELL SPACE S,Level-01,01.002
+SSC,entity:SSC_01-003_Open-Space,1.003 OPEN SPACE,Level-01,01.003
+SSC,entity:SSC_01-008_AV-Room,1.008 AV ROOM,Level-01,01.008
+SSC,entity:SSC_01-013_Corridor,1.013 CORRIDOR,Level-01,01.013
+SSC,entity:SSC_01-014_Shell-Space,1.014 SHELL SPACE,Level-01,01.014
+SSC,entity:SSC_01-015_Shell-Space,1.015 SHELL SPACE,Level-01,01.015
+SSC,entity:SSC_01-016_Shell-Space,1.016 SHELL SPACE,Level-01,01.016
+SSC,entity:SSC_01-018_Corridor,1.018 CORRIDOR,Level-01,01.018
+SSC,entity:SSC_01-019_Prayer-Room,1.019 PRAYER ROOM,Level-01,01.019
+SSC,entity:SSC_01-024_Corridor,1.024 CORRIDOR,Level-01,01.024
+SSC,entity:SSC_01-027_IDF-1,1.027 IDF 1,Level-01,01.027
+SSC,entity:SSC_01-028_Corridor,1.028 CORRIDOR,Level-01,01.028
+SSC,entity:SSC_01-029_Room-No-42,1.029 ROOM NO 42,Level-01,01.029
+SSC,entity:SSC_01-029_Room-No-43,1.029 ROOM NO 43,Level-01,01.029
+SSC,entity:SSC_01-029_Room-No-44,1.029 ROOM NO 44,Level-01,01.029
+SSC,entity:SSC_01-029_Shell-Space,1.029 SHELL SPACE,Level-01,01.029
+SSC,entity:SSC_01-039_IDF-2,1.039 IDF 2,Level-01,01.039
+SSC,entity:SSC_01-ST-4_Stair-4,ST-4 STAIR 4,Level-01,01.ST-4
+SSC,entity:SSC_02-001_Foyer,2.001 FOYER,Level-02,02.001
+SSC,entity:SSC_02-002_Lobby,2.002 LOBBY,Level-02,02.002
+SSC,entity:SSC_02-003_Corridor,2.003 CORRIDOR,Level-02,02.003
+SSC,entity:SSC_02-004_Corridor,2.004 CORRIDOR,Level-02,02.004
+SSC,entity:SSC_02-005_Executive-Conference-Room,2.005 EXECUTIVE CONFERENCE ROOM,Level-02,02.005
+SSC,entity:SSC_02-006_Conference-Room,2.006 CONFERENCE ROOM,Level-02,02.006
+SSC,entity:SSC_03-001_Directors-Office,3.001 DIRECTOR S OFFICE,Level-03,03.001
+SSC,entity:SSC_03-002_Director-Meeting-Room,3.002 DIRECTOR MEETING ROOM,Level-03,03.002
+SSC,entity:SSC_03-003_Researcher-Office,3.003 RESEARCHER OFFICE,Level-03,03.003
+SSC,entity:SSC_03-004_Visitors-Cubicle,3.004 VISITOR S CUBICLE,Level-03,03.004
+SSC,entity:SSC_03-005_Researcher-Office,3.005 RESEARCHER OFFICE,Level-03,03.005
+SSC,entity:SSC_03-006A_Room,3.006A ROOM,Level-03,03.006A
+SSC,entity:SSC_03-006B_Room,3.006B ROOM,Level-03,03.006B
+SSC,entity:SSC_03-007_Operations-Managers,3.007 OPERATIONS MANAGERS,Level-03,03.007
+SSC,entity:SSC_03-008_Visitors-Cubicle,3.008 VISITOR S CUBICLE,Level-03,03.008
+SSC,entity:SSC_03-009_Researcher-Office,3.009 RESEARCHER OFFICE,Level-03,03.009
+SSC,entity:SSC_03-010_Researcher-Office,3.010 RESEARCHER OFFICE,Level-03,03.010
+SSC,entity:SSC_03-011_Visitors-Cubicle,3.011 VISITOR S CUBICLE,Level-03,03.011
+SSC,entity:SSC_03-012_Researcher-Office,3.012 RESEARCHER OFFICE,Level-03,03.012
+SSC,entity:SSC_03-013_Researcher-Office,3.013 RESEARCHER OFFICE,Level-03,03.013
+SSC,entity:SSC_03-014_Visitors-Cubicle,3.014 VISITOR S CUBICLE,Level-03,03.014
+SSC,entity:SSC_03-015_Researcher-Office,3.015 RESEARCHER OFFICE,Level-03,03.015
+SSC,entity:SSC_03-016_Lounge,3.016 LOUNGE,Level-03,03.016
+SSC,entity:SSC_03-017_Researcher-Office,3.017 RESEARCHER OFFICE,Level-03,03.017
+SSC,entity:SSC_03-018_Visitors-Cubicle,3.018 VISITOR S CUBICLE,Level-03,03.018
+SSC,entity:SSC_03-019_IT-Managers-Office,3.019 IT MANAGERS OFFICE,Level-03,03.019
+SSC,entity:SSC_03-020_Researcher-Office,3.020 RESEARCHER OFFICE,Level-03,03.020
+SSC,entity:SSC_03-021_Visitors-Cubicle,3.021 VISITOR S CUBICLE,Level-03,03.021
+SSC,entity:SSC_03-022_Researcher-Office,3.022 RESEARCHER OFFICE,Level-03,03.022
+SSC,entity:SSC_03-023_Researcher-Office,3.023 RESEARCHER OFFICE,Level-03,03.023
+SSC,entity:SSC_03-024_Visitors-Cubicle,3.024 VISITOR S CUBICLE,Level-03,03.024
+SSC,entity:SSC_03-025_Secretarial-Area,3.025 SECRETARIAL AREA,Level-03,03.025
+SSC,entity:SSC_03-026_Meeting-Room,3.026 MEETING ROOM,Level-03,03.026
+SSC,entity:SSC_03-027_Researcher-Office,3.027 RESEARCHER OFFICE,Level-03,03.027
+SSC,entity:SSC_03-028_Visitors-Cubicle,3.028 VISITOR S CUBICLE,Level-03,03.028
+SSC,entity:SSC_03-029_Researcher-Office,3.029 RESEARCHER OFFICE,Level-03,03.029
+SSC,entity:SSC_03-030_Assoc-Directors-Meeting-Room,3.030 ASSOC DIRECTORS MEETING ROOM,Level-03,03.030
+SSC,entity:SSC_03-031_Assoc-Directors-Office,3.031 ASSOC DIRECTORS OFFICE,Level-03,03.031
+SSC,entity:SSC_03-032_General-Office-Area,3.032 GENERAL OFFICE AREA,Level-03,03.032
+SSC,entity:SSC_03-033_Printing,3.033 PRINTING,Level-03,03.033
+SSC,entity:SSC_03-034_Corridor,3.034 CORRIDOR,Level-03,03.034
+SSC,entity:SSC_03-041_Corridor,3.041 CORRIDOR,Level-03,03.041
+SSC,entity:SSC_03-042_Corridor,3.042 CORRIDOR,Level-03,03.042
+SSC,entity:SSC_B-008_Vent-Plant,B.008 VENT PLANT,Level-B1,B.008
+SSC,entity:SSC_B-013_Chilled-Water,B.013 CHILLED WATER,Level-B1,B.013
+SSC,entity:SSC_B-014_Vent-Plant,B.014 VENT PLANT,Level-B1,B.014
+SSC,entity:SSC_B-015_Entrance,B.015 ENTRANCE,Level-B1,B.015
+SSC,entity:SSC_B-016_Sprinkler-And-Water,B.016 SPRINKLER AND WATER,Level-B1,B.016
+SSC,entity:SSC_B-025_Main-Sec-Control-Room,B.025 MAIN SEC CONTROL ROOM,Level-B1,B.025
+SSC,entity:SSC_B-030_Corridor,B.030 CORRIDOR,Level-B1,B.030

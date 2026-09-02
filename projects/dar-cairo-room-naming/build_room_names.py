@@ -26,6 +26,7 @@ place.
 """
 import argparse
 import csv
+import difflib
 import os
 import re
 import sys
@@ -36,12 +37,15 @@ from openpyxl.utils import get_column_letter
 
 GREEN = "FF00B050"
 
-# Tokens that stay upper case in an identifier segment, the way Dar Cairo keeps
-# TECH, UPS, RMU and MDB upper case while spelling Pump-Room in title case.
+# Initialisms that stay upper case in an identifier segment, the way Dar Cairo
+# keeps UPS, RMU and MDB upper case while spelling Pump-Room in title case.
+# TECH, MECH and ELEC are deliberately absent: on HQ they are shortened words
+# sitting among other shortened words (STR. PL. DIR. TECH. STAFF), not
+# initialisms, and upper-casing one of them alone reads as a mistake.
 ACRONYMS = {
     "AV", "AVR", "BMS", "IDF", "MDF", "IT", "ST", "UPS", "LV", "HV", "MEP",
     "AHU", "FCU", "VAV", "WC", "TV", "CCTV", "ELV", "MV", "DB", "MDB", "EMDB",
-    "RMU", "TECH", "MECH", "ELEC", "HVAC", "PABX", "SMATV", "AC",
+    "RMU", "HVAC", "PABX", "SMATV", "MCC",
 }
 
 # Dar Cairo writes Boiler-And-Heat-Exchange, so an ampersand becomes a word.
@@ -52,12 +56,38 @@ WORD_FIXES = {"&": "And", "AND": "And"}
 # building profiles - room-reference shape, level segment, building code
 # --------------------------------------------------------------------------
 class Building:
-    def __init__(self, code, sheet_hint, level_width, room_width, level_names):
+    def __init__(self, code, level_style, room_width, pad, entity_style,
+                 level_names=None, level_alias=None):
         self.code = code
-        self.sheet_hint = sheet_hint
-        self.level_width = level_width      # digits in the level part of a ref
-        self.room_width = room_width        # digits in the room part of a ref
-        self.level_names = level_names      # raw level token -> id segment
+        self.level_alias = level_alias or {}
+        self.level_style = level_style      # "pad2" or "strip0"
+        self.room_width = room_width
+        self.pad = pad                      # "left" or "right"
+        self.entity_style = entity_style    # "underscore" or "dotted"
+        self.level_names = level_names or {}
+
+    def norm_level(self, raw):
+        if raw is None:
+            return None
+        raw = raw.strip()
+        raw = self.level_alias.get(raw.upper(), raw)
+        if not raw.isdigit():
+            return raw
+        if self.level_style == "pad2":
+            return raw.zfill(2)
+        return raw.lstrip("0") or "0"       # strip0: 04 -> 4
+
+    def norm_room(self, num, suffix):
+        """R3 - the room number is a fixed-width field.
+
+        SSC prints it left-padded and never lost a digit.  HQ's numbers reached
+        the sheet as decimals, so Excel ate the trailing zero: 1.020 came back
+        as 1.02 and 3.360 as 3.36.  Those pad on the right.
+        """
+        if len(num) < self.room_width:
+            num = (num.zfill(self.room_width) if self.pad == "left"
+                   else num.ljust(self.room_width, "0"))
+        return num + (suffix or "")
 
     def level_segment(self, raw):
         return self.level_names.get(raw, "Level-%s" % raw)
@@ -66,33 +96,34 @@ class Building:
 BUILDINGS = {
     "SSC": Building(
         code="SSC",
-        sheet_hint="SSC",
-        level_width=2,
+        level_style="pad2",
         room_width=3,
-        level_names={
-            "B": "Level-B1",
-            "B1": "Level-B1",
-            "01": "Level-01",
-            "02": "Level-02",
-            "03": "Level-03",
-        },
+        pad="left",
+        entity_style="underscore",          # entity:SSC_01_024_CORRIDOR
+        level_alias={"B1": "B"},            # drawings and BMS both print B.013
+        level_names={"B": "Level-B1", "B1": "Level-B1", "01": "Level-01",
+                     "02": "Level-02", "03": "Level-03"},
+    ),
+    "HQ": Building(
+        code="HQ",
+        level_style="strip0",               # E writes 4.010, D writes 04.010
+        room_width=3,
+        pad="right",
+        entity_style="dotted",              # entity:HQ_4.010_STR_PL_DIR
+        level_alias={"B": "B1"},            # drawings print B.001, E prints B1.001
+        level_names={"B1": "Level-B1", "G": "Level-G", "RF": "Level-RF"},
     ),
 }
 
 # A room reference is a level token, a dot, and a room number with an optional
 # letter suffix: B.013, 01.024, 03.006A, 1.027.
-REF_RE = re.compile(r"\b(B\d?|\d{1,2})\.(\d{1,3})([A-Z])?\b")
+REF_RE = re.compile(r"\b(B\d?|G|RF|\d{1,2})\.(\d{1,3})([A-Z])?\b")
 # Some sources print the reference with no dot at all (ST-4, ROOM NO 42).
 BARE_NUM_RE = re.compile(r"\b(\d{2,3})([A-Z])?\b")
 
 
 def norm_ref(building, level, num, suffix):
-    """R3 - pad to the building's own width."""
-    if level.startswith("B"):
-        lvl = level
-    else:
-        lvl = level.zfill(building.level_width)
-    return lvl, num.zfill(building.room_width) + (suffix or "")
+    return building.norm_level(level), building.norm_room(num, suffix)
 
 
 def split_ref(building, text):
@@ -127,16 +158,22 @@ def parse_entity(building, text):
     if not s.startswith("entity:"):
         return None, None, None
     parts = s[len("entity:"):].split("_")
-    if len(parts) < 3 or parts[0] != building.code:
+    if len(parts) < 2 or parts[0] != building.code:
         return None, None, None
-    lvl, room, name = parts[1], parts[2], "_".join(parts[3:])
-    if lvl == "B1":
-        lvl = "B"
-    if room.isdigit():
-        room = room.zfill(building.room_width)
-    if not lvl.startswith("B"):
-        lvl = lvl.zfill(building.level_width)
-    return lvl, room, name.replace("_", " ").strip()
+    # Both shapes appear: the register writes entity:HQ_4.010_CA_COORD, the
+    # delivered HQ draft writes entity:HQ_10_002A_OFFICE_SPACE.  Read either.
+    if "." in parts[1]:
+        lvl, room = parts[1].split(".", 1)
+        name = "_".join(parts[2:])
+    else:
+        if len(parts) < 3:
+            return None, None, None
+        lvl, room, name = parts[1], parts[2], "_".join(parts[3:])
+    m = re.match(r"^(\d+)([A-Z]?)$", room)
+    if m:
+        room = building.norm_room(m.group(1), m.group(2))
+    return (building.norm_level(lvl), room,
+            name.replace("_", " ").strip())
 
 
 def key(name):
@@ -146,6 +183,73 @@ def key(name):
     s = str(name).upper().replace("&", " AND ")
     s = re.sub(r"[^A-Z0-9]+", " ", s)
     return " ".join(s.split())
+
+
+def squash(name):
+    return re.sub(r"[^A-Z0-9]+", "", str(name or "").upper())
+
+
+def same_name(a, b):
+    """Two spellings of one room name.
+
+    HQ's column E was built from the BMS tokens, so it writes
+    STRPLDIRTECHNSTAFF where the drawings write STR. PL. DIR. TECH. STAFF.
+    Comparing on punctuation alone calls those different names and hands the
+    room the unreadable spelling.
+    """
+    if not a or not b:
+        return False
+    if key(a) == key(b):
+        return True
+    sa, sb = squash(a), squash(b)
+    if not sa or not sb:
+        return False
+    return difflib.SequenceMatcher(None, sa, sb).ratio() >= 0.92
+
+
+def split_prefix(name, candidates):
+    """Break the department prefix off a name column E ran together.
+
+    HQ's E writes EXECDIRLEGAL_ADVISOR where the drawings write LEGAL ADVISOR.
+    The prefix is real and is what tells 11.017 from 11.018, so it is kept -
+    but the boundary is visible wherever another column spells the tail out,
+    and splitting there is the difference between Execdirlegal-Advisor and
+    Execdir-Legal-Advisor.
+    """
+    sq = squash(name)
+    best = None
+    for c in candidates:
+        sc = squash(c)
+        if not sc or sc == sq or not sq.endswith(sc):
+            continue
+        if len(sq) - len(sc) < 3:       # a one- or two-letter prefix is noise
+            continue
+        if best is None or len(sc) > len(squash(best)):
+            best = c
+    if best is None:
+        return name
+    head = name[:len(name) - len(str(best).replace(" ", ""))]
+    # walk back over the characters of the tail as they appear in `name`
+    tail_len, i = len(squash(best)), len(name)
+    seen = 0
+    while i > 0 and seen < tail_len:
+        i -= 1
+        if name[i].isalnum():
+            seen += 1
+    head = name[:i].rstrip(" _-")
+    return "%s %s" % (head, best) if head else name
+
+
+def best_spelling(name, candidates):
+    """R2 - of the spellings of one name, the clearest is the most spaced."""
+    best, best_words = name, len(str(name).split())
+    for c in candidates:
+        if not c or not same_name(name, c):
+            continue
+        w = len(str(c).split())
+        if w > best_words:
+            best, best_words = c, w
+    return best
 
 
 def to_segment(name):
@@ -235,8 +339,12 @@ def decide(building, row):
 
     # R2 + R4 - E arbitrates the name.
     if e_n:
-        if name and key(name) != key(e_n):
-            if d_n and key(d_n) == key(e_n):
+        if not name:
+            notes.append("%s is a bare reference with no name - name taken "
+                         "from E" % tag)
+            name, tag = e_n, tag + "->E"
+        elif not same_name(name, e_n):
+            if d_n and same_name(d_n, e_n):
                 notes.append("column D matches E (%s) and %s does not - D wins"
                              % (e_n, tag))
                 lvl, room, name, tag = d_l, d_r, d_n, "D"
@@ -255,6 +363,14 @@ def decide(building, row):
                              % (lvl, room, e_l, e_r))
         if lvl is None:
             lvl = e_l
+    clearer = best_spelling(name, [d_n, h_n, j_n, e_n])
+    if clearer != name:
+        notes.append("spelled %r on the clearest source" % clearer)
+        name = clearer
+    split = split_prefix(name, [d_n, h_n, j_n])
+    if split != name:
+        notes.append("department prefix split off - %r" % split)
+        name = split
     return lvl, room, name, tag, notes
 
 
@@ -276,7 +392,7 @@ def is_variant(a, b):
     return True
 
 
-def reconcile(rows):
+def reconcile(rows, building):
     """Collapse abbreviation variants sharing one room reference.
 
     Only variants collapse.  01.029 really does hold ROOM NO 42, 43, 44 and a
@@ -287,6 +403,16 @@ def reconcile(rows):
     for r in rows:
         if r["name"] and r["ref"]:
             groups.setdefault((r["level"], r["ref"]), []).append(r)
+
+    # What column E calls each reference, where it calls it one thing.  SSC's
+    # 01.029 is deliberately four rooms in E, so E does not arbitrate there.
+    e_name = {}
+    for r in rows:
+        el, er, en = parse_entity(building, r["E"])
+        if er and en:
+            e_name.setdefault((el, er), set()).add(en)
+    e_name = {k: v.pop() for k, v in e_name.items() if len(v) == 1}
+
     collapsed, split = [], []
     for (lvl, ref), grp in sorted(groups.items()):
         names = {}
@@ -294,6 +420,18 @@ def reconcile(rows):
             names.setdefault(key(r["name"]), r["name"])
         if len(names) < 2:
             continue
+        arb = e_name.get((lvl, ref))
+        if arb:
+            arb = best_spelling(arb, [r["name"] for r in grp] + [arb])
+            for r in grp:
+                if not same_name(r["name"], arb):
+                    was = r["name"]
+                    r["notes"].append(
+                        "%s.%s is spelled %r on other rows; E names it %r, "
+                        "which settles it" % (lvl, ref, was, arb))
+                    collapsed.append((lvl, ref, was, arb))
+                r["name"] = arb
+            names = {key(arb): arb}
         ks = list(names)
         canon = dict()
         for i, a in enumerate(ks):
@@ -345,23 +483,29 @@ def label(lvl, room, name):
 
 
 # --------------------------------------------------------------------------
-def load(path, building):
-    wb = openpyxl.load_workbook(path)
-    ws = None
+def pick_sheet(wb):
+    """The register sheet is the one headed ROOM NAME AS PER DRAWINGS."""
     for cand in wb:
-        if building.sheet_hint.lower() in cand.title.lower() and "log" not in cand.title.lower():
-            ws = cand
-            break
+        for r in cand.iter_rows(min_row=1, max_row=4, values_only=True):
+            if r and any(isinstance(c, str) and "AS PER DRAWINGS" in c.upper()
+                         for c in r):
+                return cand
+    return None
+
+
+def load_one(path, building):
+    wb = openpyxl.load_workbook(path)
+    ws = pick_sheet(wb)
     if ws is None:
-        raise SystemExit("no sheet matching %r in %s" % (building.sheet_hint, path))
-    rows = []
+        raise SystemExit("no register sheet in %s" % path)
+    rows = {}
     for r in ws.iter_rows(min_row=1, max_row=ws.max_row):
         tag = r[0].value
         if not tag or not isinstance(tag, str):
             continue
         if not re.match(r"^[A-Z]+[A-Z_]*\d", tag.strip()):
             continue
-        rows.append({
+        rows[r[0].row] = {
             "excel_row": r[0].row,
             "A": tag.strip(),
             "B": r[1].value,
@@ -371,16 +515,103 @@ def load(path, building):
             "H": r[7].value,
             "J": r[9].value,
             "green": cell_fill(r[0]) == GREEN,
-        })
+        }
     return rows
+
+
+def merge(parts, building):
+    """Combine the per-level-range splits of one building's register.
+
+    HQ came as two workbooks holding the same 761 rows, each with the BMS
+    screen read for its own levels only - B1 to 2 in one, 3 to Roof in the
+    other.  No row carries a screen reading in both, so J is a plain union and
+    the file that supplied it is that row's author.  Green is a union too:
+    each file only marked its own range.
+
+    Where the two disagree on the drawings, the ontology name or the VAV/FCU
+    list, the file that owns the row's level wins and the disagreement is
+    written into the row's notes rather than quietly dropped.
+    """
+    if len(parts) == 1:
+        return sorted(parts[0][1].values(), key=lambda r: r["excel_row"])
+
+    keys = set()
+    for _, rows in parts:
+        keys |= set(rows)
+    out = []
+    for k in sorted(keys):
+        present = [(name, rows[k]) for name, rows in parts if k in rows]
+        owner_name, base = None, None
+        for name, r in present:
+            if r["J"]:
+                owner_name, base = name, r
+                break
+        if base is None:
+            # No screen reading anywhere - fall back to the file whose level
+            # range covers the row, read off whichever E is available.
+            for name, r in present:
+                lvl, _, _ = parse_entity(building, r["E"])
+                if lvl is not None:
+                    owner_name = owner_for_level(parts, lvl)
+                    break
+            for name, r in present:
+                if name == owner_name:
+                    base = r
+                    break
+            if base is None:
+                owner_name, base = present[0]
+        row = dict(base)
+        row["source_file"] = owner_name
+        row["green"] = any(r["green"] for _, r in present)
+        for col in ("D", "E", "H"):
+            vals = {name: r[col] for name, r in present}
+            others = {n: v for n, v in vals.items()
+                      if n != owner_name and v not in (None, "")}
+            if row[col] in (None, "") and others:
+                n, v = sorted(others.items())[0]
+                row[col] = v
+                row.setdefault("merge_notes", []).append(
+                    "column %s was blank in %s, taken from %s" % (col, owner_name, n))
+            else:
+                for n, v in sorted(others.items()):
+                    if str(v).strip() != str(row[col]).strip():
+                        row.setdefault("merge_notes", []).append(
+                            "%s disagrees between the two workbooks - %s says "
+                            "%r, %s says %r; %s owns this level"
+                            % (col, owner_name, row[col], n, v, owner_name))
+        out.append(row)
+    return out
+
+
+def owner_for_level(parts, lvl):
+    """Which split covers a level - by the level ranges the file names state."""
+    low = lvl in ("B", "B1", "G", "1", "2", "01", "02")
+    for name, _ in parts:
+        stem = os.path.basename(name).upper()
+        if low and ("B-2F" in stem or "B2F" in stem):
+            return name
+        if not low and ("3F" in stem):
+            return name
+    return parts[0][0]
+
+
+def load(paths, building):
+    parts = [(p, load_one(p, building)) for p in paths]
+    return merge(parts, building)
+
+
+DELIVERED = {"SSC": "QF_SSC_Ontology_ver02.xlsx",
+             "HQ": "QF_HQ_Ontology_draft0.4.xlsx"}
 
 
 def load_delivered(code):
     """Room reference -> name, from the previously delivered ontology."""
+    name = DELIVERED.get(code)
+    if not name:
+        return None
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                        "..", "..", "reference-models",
-                        {"SSC": "QF_SSC_Ontology_ver02.xlsx"}.get(code, ""))
-    if not os.path.exists(path):
+                        "..", "..", "reference-models", name)
+    if not os.path.isfile(path):
         return None
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     # Pick the ontology sheet by its header, never by name or position -
@@ -466,13 +697,13 @@ def main():
     for spec in args.src:
         code, path = spec.split("=", 1)
         building = BUILDINGS[code]
-        rows = load(path, building)
+        rows = load([p for p in path.split(",") if p], building)
         for r in rows:
             lvl, room, name, src, notes = decide(building, r)
             r["level"], r["ref"], r["name"] = lvl, room, name
-            r["source"], r["notes"] = src, notes
+            r["source"], r["notes"] = src, r.get("merge_notes", []) + notes
 
-        collapsed, split = reconcile(rows)
+        collapsed, split = reconcile(rows, building)
         for lvl, ref, was, now in collapsed:
             print("  collapsed %s.%s  %r -> %r" % (lvl, ref, was, now))
         for lvl, ref, names in split:
@@ -488,13 +719,13 @@ def main():
                 if k not in known["exact"]:
                     if (r["level"], r["ref"]) in known["refs"]:
                         r["notes"].append(
-                            "delivered SSC ontology calls %s.%s %r"
-                            % (r["level"], r["ref"],
+                            "%s calls %s.%s %r"
+                            % (DELIVERED[code], r["level"], r["ref"],
                                known["refs"][(r["level"], r["ref"])]))
                     else:
                         r["notes"].append(
-                            "%s.%s is not in the delivered SSC ontology"
-                            % (r["level"], r["ref"]))
+                            "%s.%s is not in %s"
+                            % (r["level"], r["ref"], DELIVERED[code]))
             if r["subject"]:
                 all_rooms.append((code, r["subject"], r["label"],
                                   building.level_segment(r["level"] or ""),

@@ -4,12 +4,17 @@ One workbook out, one sheet per building, derived from the BMS room-allocation
 registers by `build_room_names.py`.
 
 ```
-python3 build_room_names.py --src SSC=sources/SSC_rooms.xlsx \
-    --out SSC_HQ_Room_Names.xlsx --rooms-csv SSC_rooms_distinct.csv
+python3 build_room_names.py \
+    --src SSC=sources/SSC_rooms.xlsx \
+    --src HQ=sources/HQ_rooms_B-2F.xlsx,sources/HQ_rooms_3F-Roof.xlsx \
+    --out SSC_HQ_Room_Names.xlsx --rooms-csv rooms_distinct.csv
 ```
 
-SSC is done: 124 asset rows, 69 distinct rooms, 1 unresolved. HQ drops in as a
-second `--src` when its workbook arrives, and the output gains an `HQ` sheet.
+SSC: 124 asset rows, 69 rooms, 1 unresolved.
+HQ: 761 asset rows, 599 rooms, 1 unresolved.
+
+A building split across several workbooks is given as one comma-separated
+`--src`; see **Merging HQ's two workbooks**.
 
 ## The shape
 
@@ -75,6 +80,60 @@ ontology name, **H** room per the VAV/FCU list, **J** room per the BMS screen.
 Every row carries the column it was taken from and a note saying why, and the
 notes also flag where the result parts company with the delivered SSC ontology.
 
+## Merging HQ's two workbooks
+
+HQ arrived as two files holding the same 761 rows, each with the BMS screen read
+for its own levels - `B-2F` for B1, G, 1 and 2, `3F-Roof` for 3 to 12 and the
+roof. No row carries a screen reading in both, and the level ranges the file
+names state match where the readings actually are on all 591 of them, so:
+
+- **column J is a union** - whichever file has it;
+- **green is a union** - each file only marked its own range;
+- **D, E and H**: the file that owns the row's level wins, and every
+  disagreement is written into that row's notes rather than dropped.
+
+Twelve rows disagree. Nine are one file leaving a cell blank. Three are real,
+and all three are in the notes and highlighted:
+
+| rows | `B-2F` says | `3F-Roof` says | taken |
+|---|---|---|---|
+| VAV0039-41, VAV0052-53 | `PR & MARKET STAFF G.029/030`, `G.108 CONSULTANT SPACE` | `SENSORY G.029`, `SOFT PLAY & CREATIVE LEARNING G.108` | `B-2F` |
+| VAV0090 | `G.104 LOBBY` | `CONFERENCE ROOM 1.110` | `B-2F` |
+| VAV0092-93 | cashier in 1.116, secure room in 1.106 | the two swapped | `B-2F` |
+| VAV0584-87 | `SHEIKHA ENSUIT 11.202` | `11.208` | `3F-Roof` |
+
+VAV0092-93 is the one worth a second look: `3F-Roof`'s own column H and the
+delivered HQ draft both agree with `3F-Roof`, against the file that owns level 1.
+The level rule was followed rather than overridden by hand, and the row is
+flagged.
+
+## HQ's own quirks
+
+**Rule 3 finally bites.** HQ's references reached the sheet as decimals, so
+Excel dropped the trailing zero: `1.020` came back as `1.02`, `3.360` as `3.36`,
+`11.110` as `11.11`. 155 references pad on the **right**, and D or H spells the
+full three digits on every one of them. SSC pads on the left and never lost a
+digit, so the direction is a per-building setting.
+
+**Levels print two ways.** The drawings write `04.110` and `B.001` where the
+ontology name writes `4.110` and `B1.001`. Numeric levels are normalised to no
+leading zero and `B` to `B1` - the opposite of SSC, whose drawings and BMS both
+print `B.013`.
+
+**Column E runs the department into the room name.** E writes
+`EXECDIRLEGAL_ADVISOR` where the drawings write `LEGAL ADVISOR`, and that prefix
+is not noise: it is what tells 11.017 from 11.018, both of which the drawings
+call `LEGAL ADVISOR`. So E still wins the name. Two passes make it readable:
+
+- spellings are compared with spacing ignored, so `STR. PL. DIR. TECH. STAFF`
+  and `STRPLDIRTECHNSTAFF` are recognised as one name and the spaced one is
+  kept;
+- where another column spells the tail out, the prefix is split off it -
+  `Execdir-Legal-Advisor`, not `Execdirlegal-Advisor`.
+
+That leaves 18 names where no column spells the tail out and the prefix cannot
+be split without guessing. They are listed under the open questions.
+
 ## What is still open
 
 - `VAV0063` has no room in any column - D reads `(NOT FOUND ON DRAWING LEVEL 3)`
@@ -89,6 +148,22 @@ notes also flag where the result parts company with the delivered SSC ontology.
   `Assoc-Directors-Office`, `Vent-Plant`. `SEC.` is ambiguous (security or
   secondary) and these become labels users read, so they want expanding once
   the client says what they stand for.
+- **HQ, 18 run-together names.** `Suppservadminist`, `Execdirexecassist`,
+  `Vice-Chairsecretary`, `Policy-Dirresanalyst` and 14 like them. The
+  department prefix is real and has to stay, but no column spells the boundary
+  out, so splitting it means guessing where one word ends. The prefixes look
+  like a small closed set (`SUPPSERV`, `EXECDIR`, `SHSERVDIR`, `COMMUNICDIR`,
+  `POLICYDIR`, `PLANNINGDIR`, `FACILITYMANAG`, `VICECHAIR`, `VPEDUCHP`,
+  `HREDUADV`, `PROCANDCONTRLDIR`, `LEGALLEGADV`); one list of their expansions
+  settles all 18 at once.
+- **HQ, VAV0558** has no room in any column. Left blank.
+- **The HQ draft disagrees on 64 names.** Advisory only - it never changes a
+  name, it only writes a note. Most are typos in the draft (`SPA FITNESS
+  DTUDIO`, `VACILITY MANAGDIRENSUIT`, `SH. SERV. DIR. ACCOUNUT.`), but a few
+  are real: `CHAUFFER`/`CHAUFFEUR ROOM`, `CONTROL CENTER`/`EMERGENCY CONTROL
+  CENTER`, `MCC/ELEC ROOM`/`ELECTRICAL ROOM`, and the VAV0092-93 swap above.
+  Three HQ rooms are not in the draft at all: `3-630 Corridor-Bridge`,
+  `11-208 Sheikha-Wing-Sheikha-Ensuit`, `B1-124 Waste-Bin-Wash-Up`.
 - Labels are written in the QF SSC house style (`1.024 CORRIDOR`), which is what
   the delivered SSC sheet uses. Dar Cairo instead labels a room with its own
   identifier tail (`Corridor-02-B112`).
