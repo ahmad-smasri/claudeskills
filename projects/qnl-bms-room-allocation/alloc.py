@@ -76,6 +76,7 @@ SCREENS = {
     ('VAV-B-S11-046', 'Corridor east of Receving Area',
      '!right of the Receving Area wall, in the corridor strip with S11-022;'
      ' column D says Receiving Area B.008'),
+    ('KEF-B0004', OPEN_BF, 'open plan - west end'),
  ],
 
  # BF-1: same open Tech Services space at the top; a block of eight small
@@ -95,6 +96,14 @@ SCREENS = {
      '!dot is in the Corridor 4 strip west of the MV Rm wall, the strip the'
      ' Corridor 4 label points into; column D says Art & Humanities B.023'),
     ('CAV-S13-007', 'Corridor 4', ''),
+    # the plant icons on this screen
+    ('DX-B0001', 'Corridor 4',
+     'the dot is in the Corridor 4 strip, one wall west of MV Rm;'
+     ' column D says MV ROOM B.081'),
+    ('DX-B0003', 'Emergency Lighting Battery Rm',
+     'column D says TRANSFORMER ROOM B.082, which is the room north of it'),
+    ('DX-B0014', 'Emergency Lighting Battery Rm',
+     'column D says TRANSFORMER ROOM B.082, which is the room north of it'),
  ],
 
  # BF-2: Plant Rm 1 (purple) and Plant Rm 2 (yellow) with a yellow corridor
@@ -122,6 +131,19 @@ SCREENS = {
     ('VAV-B-S11-023', 'Unlabelled strip between Plant Rm 1 and Plant Rm 2',
      'the strip carries no label on this screen, so it cannot be matched'
      ' against column D either way'),
+    # the plant icons on this screen
+    ('AHU-B0011', 'Plant Rm 1', ''),
+    ('AHU-B0012', 'Plant Rm 1', ''),
+    ('AHU-B0003', 'Plant Rm 2', ''),
+    ('AHU-B0010', 'Plant Rm 2', ''),
+    ('EF-BBV0002', 'Plant Rm 2', ''),
+    ('EF-B0013', 'Plant Rm 2',
+     'the dot is inside Plant Rm 2 with the AHUs, which is where the fan sits;'
+     ' column D names Sprinklers Pumps B.072, a room drawn on BF-3, so the two'
+     ' are answering different questions'),
+    ('EF-B0014', 'Plant Rm 2',
+     'the dot is inside Plant Rm 2 with the AHUs, which is where the fan sits;'
+     ' column D names Fire Command B.071, a room drawn on BF-3'),
  ],
  # BF-3: Plant Rm 2 with a column of yellow rooms - Fire Cmd over Sprinkler
  # Pump - and a second yellow block split into three cells. The west cell is
@@ -153,13 +175,24 @@ SCREENS = {
     ('VAV-B-S14-003', 'Loading Area (north-west grey band)',
      '!the dot is in the grey Loading Area band, two walls west of the pink;'
      ' column D says Office AD For LIT B.057'),
-    ('CAV-S14-001', 'Loading Area (north-west grey band)',
-     'the band is long and narrow and may be the CORRIDOR 3 column D names'),
     ('CAV-S14-006', 'Pink lobby west of Refrigerated Store', ''),
     ('VAV-B-S14-009', OPEN_BF4, 'open plan - Office AD For LIT end'),
     ('VAV-B-S14-008', OPEN_BF4,
      '!the dot is in the Digitization Rm end of the open band; Shell Space is'
      ' the next room east across a wall, which is what column D says'),
+    ('VAV-B-S14-011', OPEN_BF4, 'open plan - Digitization Rm end'),
+    ('VAV-B-S14-012', OPEN_BF4, 'open plan - Digitization Rm end'),
+    ('VAV-B-S14-044', 'Binding & Preservation Space', ''),
+    ('VAV-B-S14-045', 'Binding & Preservation Space', ''),
+    ('VAV-B-S14-049', 'Binding & Preservation Space', ''),
+    ('VAV-B-S14-050', 'Binding & Preservation Space', ''),
+    ('VAV-B-S14-047', 'Fine Binding / Q-Tel Rm',
+     'one cell carrying both labels, west of Binding & Preservation Space'),
+    # the plant icons on this screen
+    ('EF-B0007', 'Loading Area (north-west grey band)', ''),
+    ('DX-B0006', 'Loading Area (pink, south-west)',
+     'the dot is in the pink Loading Area, which is where the condenser sits;'
+     ' column D names HV ROOM B.083, a room drawn on BF-1'),
  ],
  # BF-5: the west half of the zone is one open purple space carrying both
  # `Digitization` and `Instruction Outreach`; the east block is cut into
@@ -180,6 +213,11 @@ SCREENS = {
     ('VAV-B-S10-016', 'Instruction Presentation', ''),
     ('VAV-B-S10-017', 'Instruction Presentation', ''),
     ('VAV-B-S10-024', OPEN_BF5, 'open plan'),
+    # the plant icons on this screen
+    ('DX-B0010', 'Processing Rm',
+     'column D says SECURITY & BMS B.102'),
+    ('DX-B0011', 'Security Equip.',
+     'column D says ITTIGATION CONTROL ROOM B.046_ITT'),
  ],
  # BF-6: the cyan fill is one AHU zone, not one room - it carries both
  # `Plant Rm 3` and `Corridor 5` and no wall runs between them, so a dot
@@ -227,15 +265,17 @@ SCREENS = {
     ('FCU-B-019', 'Plant Rm 4', ''),
     ('FCU-B-020', 'Plant Rm 4', ''),
     ('FCU-B-021', 'Plant Rm 4', ''),
+    ('AHU-B0005', 'Plant Rm 4', ''),
+    ('AHU-B0006', 'Plant Rm 4', ''),
+    ('AHU-B0007', 'Plant Rm 4', ''),
+    ('AHU-B0008', 'Plant Rm 4', ''),
  ],
  # FF: `Info. Literacy Instr.2` and `Writing Head` share one cell with no wall
  # between them. `Rest Rm Women` is printed inside the Computer Class Rm cell
  # but leads out of it to the rest rooms below, so the three units under that
  # text are in the Computer Class Rm.
  'FF': [
-    ('VAV-1F-S11-004', 'Info. Literacy Instr.1', ''),
     ('VAV-1F-S11-005', 'Info. Literacy Instr.1', ''),
-    ('VAV-1F-S11-006', OPEN_FF, 'open plan'),
     ('VAV-1F-S11-010', OPEN_FF, 'open plan'),
     ('VAV-1F-S11-019', OPEN_FF,
      '!the dot is in the Info. Literacy Instr.2 / Writing Head cell, two walls'
@@ -473,8 +513,6 @@ BLANK = {
  'VAV-B-S14-006': 'BF-4: leader not resolved',
  'VAV-B-S14-007': 'BF-4: leader not resolved',
  'VAV-B-S14-010': 'BF-4: two walkers converge off the plan',
- 'VAV-B-S14-011': 'BF-4: leader not resolved',
- 'VAV-B-S14-012': 'BF-4: leader not resolved',
  'VAV-B-S14-013': 'BF-4: leader not resolved',
  'VAV-B-S14-014': 'BF-4: leader not resolved',
  'VAV-B-S14-015': 'BF-4: leader not resolved',
@@ -483,13 +521,8 @@ BLANK = {
  'VAV-B-S14-041': 'BF-4: leader not resolved',
  'VAV-B-S14-042': 'BF-4: leader not resolved',
  'VAV-B-S14-043': 'BF-4: leader not resolved',
- 'VAV-B-S14-044': 'BF-4: leader not resolved',
- 'VAV-B-S14-045': 'BF-4: leader not resolved',
  'VAV-B-S14-046': 'BF-4: leader not resolved',
- 'VAV-B-S14-047': 'BF-4: leader not resolved',
  'VAV-B-S14-048': 'BF-4: dot is in the grey south of the pink, not in a named room',
- 'VAV-B-S14-049': 'BF-4: leader not resolved',
- 'VAV-B-S14-050': 'BF-4: leader not resolved',
  'VAV-B-S14-051': 'BF-4: dot is in the grey south of the pink, not in a named room',
  'CAV-S15-002 (BF-4)': 'BF-4: leader not resolved',
  'CAV-S15-003 (BF-4)': 'BF-4: leader not resolved',
@@ -670,6 +703,48 @@ BLANK = {
  'FCU-2F-001': 'Terrace Floor-2: the plan carries furniture and function labels (Computer Station, Media Station, Shell space) and no room names',
  'FCU-2F-002': 'Terrace Floor-2: the plan carries furniture and function labels (Computer Station, Media Station, Shell space) and no room names',
  'FCU-1F-001': 'Terrace Floor-2: the plan carries furniture and function labels (Computer Station, Media Station, Shell space) and no room names',
+ 'AHU-B0002': 'BF-2: leader ends off the plan',
+ 'AHU-B0013 (BF-2)': 'BF-2: leader not resolved',
+ 'EF-BBV0001': 'BF-2: leader not resolved',
+ 'EFT-B02': 'BF-2: the screen calls this icon EFT-B02 and the register has no such tag - the nearest are TEF_B02A and TEF_B02B, two rows for one icon, so which is meant cannot be decided',
+ 'AHU-B0001': 'BF-10: leader ends off the plan',
+ 'CAV-S14-001': 'BF-4: the dot this was traced to belongs to EF-B0007, whose own leader reaches it in a shorter walk and whose column D room (Loading Room B.109) is the area the dot sits in; CAV-S14-001 has no dot of its own once that is settled',
+ 'VAV-1F-S11-004': 'FF: S11-004 and S11-006 have one dot each in Info. Literacy Instr.1 and Instr.2, and the walker swaps which unit gets which depending on the order the dots are claimed in - the screen does not settle it',
+ 'VAV-1F-S11-006': 'FF: swaps with S11-004, see above',
+ 'DX-B0009': 'BF-5: the dot is in an unlabelled grey cell west of Security Store',
+ 'DX-B0002': 'BF-1: leader not resolved',
+ 'DX-B0007': 'BF-1: leader not resolved',
+ 'DX-B0008': 'BF-1: leader not resolved',
+ 'EF-B0005': 'BF-1: leader not resolved once DX-B0001 claims the dot',
+ 'EF-B0009': 'BF-1: leader not resolved',
+ 'AHU-B0013': 'BF-1, BF-2, BF-3 and SF-3 all draw this AHU and none of its leaders resolves to a dot',
+ 'AHU-B0014': 'BF-4, BF-6 and SF-3 draw it; the BF-6 leader lands in the plant area but not inside a labelled cell',
+ 'AHU-B0015': 'BF-4, BF-6, BF-8, FF and SF-3 draw it; no leader resolves into a labelled room',
+ 'AHU-B0004': 'BF-6: leader not resolved',
+ 'AHU-B0009': 'BF-6: leader not resolved',
+ 'TEF-B0001A': 'BF-6: the screen calls this TEF-B0001A and the register has TEF_B01A; the dot is in the cyan Plant Rm 3 / Corridor 5 space, which cannot be split',
+ 'EF-B0006': 'BF-4: leader not resolved',
+ 'EF-B0008': 'BF-4: leader not resolved once EF-B0007 claims its dot',
+ 'EF-B0015': 'BF-4: leader not resolved',
+ 'EF-B0016': 'BF-4: leader not resolved',
+ 'EF-B0010': 'BF-11: leader not resolved',
+ 'EF-B0011': 'BF-11: dot is east of the plan edge',
+ 'EF-B0012': 'BF-8: leader not resolved',
+ 'DX-B0005': 'BF-4: dot is in an unlabelled grey cell',
+ 'DX-B0013': 'BF-11: dot is east of the plan edge',
+ 'DX-B0015': 'BF-11: leader not resolved',
+ 'CCU-B001': 'BF-4: the dot is west of the Q-Tel Rm wall, in the unlabelled block with Dry store and BOH; column D says QTEL ROOM B.048',
+ 'CCU-B005': 'BF-3: leader not resolved',
+ 'CCU-B006': 'BF-3: dot is on the Storage / Security Equip. boundary',
+ 'CCU-B007': 'BF-3: leader not resolved',
+ 'CCU-8081': 'BF-4: leader not resolved',
+ 'CCU-8082': 'BF-4: leader not resolved',
+ 'CCU-8083': 'BF-4: leader not resolved',
+ 'CCU-8084': 'BF-4: leader not resolved',
+ 'CCU-B002': 'BF-4: leader not resolved',
+ 'CCU-B003': 'BF-4: leader not resolved',
+ 'CCU-B004': 'BF-4: leader not resolved',
+ 'EF-0201': 'FF and SF-3 both draw this fan and neither leader lands in a labelled room',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}

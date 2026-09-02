@@ -1,4 +1,12 @@
 row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
+768,AHUB003,Basement Level Zone 1 Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
+770,AHUB005,Basement Level Zone 4 Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+771,AHUB006,Basement Level Zone 4 Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+772,AHUB007,Basement Level Zone 4 Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+773,AHUB008,Basement Level Zone 4 Plant Room 4 B.220,Plant Rm 4,QNL/BF-10.jpg,SAME,
+775,AHUB010,Basement Level Zone 1 Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
+776,AHUB011,Basement Level Zone 1 Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
+777,AHUB012,Basement Level Zone 1 Plant Room 1 B.063,Plant Rm 1,QNL/BF-2.jpg,SAME,
 783,FCU_1F_003,IDF Room 02 L1.099,IDF Rm,QNL/FF-2.jpg,SAME,
 840,FCU_1F_060,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan - by the Front Kitchen label
 841,FCU_1F_061,Restaurant L1.150,Restaurant / Front Kitchen (open plan),QNL/FF-2.jpg,OPEN,open plan
@@ -42,9 +50,7 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 914,FCU_B_035,Shell Space-Special Collection B.132,Shell Space-Special Collection,QNL/BF-3.jpg,SAME,
 920,VAV_1F_S11_002,Group Study Room2 L1.027,Study Rm2,QNL/FF.jpg,SAME,
 921,VAV_1F_S11_003,Group Study Room3 L1.028,Cell between Study Rm2 and Study Rm 4,QNL/FF.jpg,SAME,the cell carries no label; Study Rm3 labels the large room to the east
-922,VAV_1F_S11_004,Information Literacy Instr 1 L1.020,Info. Literacy Instr.1,QNL/FF.jpg,SAME,
 923,VAV_1F_S11_005,Information Literacy Instr 1 L1.020,Info. Literacy Instr.1,QNL/FF.jpg,SAME,
-924,VAV_1F_S11_006,Infor. Lteracy Instr.2 L1.021,Info. Literacy Instr.2 / Writing Head (open plan),QNL/FF.jpg,OPEN,open plan
 928,VAV_1F_S11_010,Infor. Lteracy Instr.2 L1.021,Info. Literacy Instr.2 / Writing Head (open plan),QNL/FF.jpg,OPEN,open plan
 933,VAV_1F_S11_015,Computer Classroom L1.022,Computer Class Rm,QNL/FF.jpg,SAME,
 934,VAV_1F_S11_016,Computer Classroom L1.022,Computer Class Rm,QNL/FF.jpg,SAME,
@@ -165,10 +171,17 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1120,VAV_B_S13_004,Processing Room B.103,Processing Rm,QNL/BF-5.jpg,SAME,
 1123,VAV_B_S13_007,Shipping CLIRK B.101,Shipping Clerk,QNL/BF-5.jpg,SAME,
 1124,VAV_B_S13_008,SECURITY CONTROL ROOM B.105,Security Store,QNL/BF-5.jpg,DIFF,"the dot is inside the Security Store cell; the screen has no room called Security Control Room, which is what column D says"
-1125,VAV_B_S14_001,Office B.040,Office,QNL/BF-4.jpg,D-BLANK,
+1125,VAV_B_S14_001,Office B.040,Office,QNL/BF-4.jpg,SAME,
 1127,VAV_B_S14_003,Office AD For LIT B.057,Loading Area (north-west grey band),QNL/BF-4.jpg,DIFF,"the dot is in the grey Loading Area band, two walls west of the pink; column D says Office AD For LIT B.057"
 1132,VAV_B_S14_008,Shell Space B.59,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,DIFF,"the dot is in the Digitization Rm end of the open band; Shell Space is the next room east across a wall, which is what column D says"
 1133,VAV_B_S14_009,Digitization Room B.041,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,OPEN,open plan - Office AD For LIT end
+1135,VAV_B_S14_011,Digitization Room B.041,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,OPEN,open plan - Digitization Rm end
+1136,VAV_B_S14_012,Digitization Room B.041,Office AD For LIT / Digitization Rm (open plan),QNL/BF-4.jpg,OPEN,open plan - Digitization Rm end
+1145,VAV_B_S14_044,Binding & Preservation B.043,Binding & Preservation Space,QNL/BF-4.jpg,SAME,
+1146,VAV_B_S14_045,Binding & Preservation B.043,Binding & Preservation Space,QNL/BF-4.jpg,SAME,
+1148,VAV_B_S14_047, Fine Binding B.044,Fine Binding / Q-Tel Rm,QNL/BF-4.jpg,SAME,"one cell carrying both labels, west of Binding & Preservation Space"
+1150,VAV_B_S14_049,Binding & Preservation B.043,Binding & Preservation Space,QNL/BF-4.jpg,SAME,
+1151,VAV_B_S14_050,Binding & Preservation B.043,Binding & Preservation Space,QNL/BF-4.jpg,SAME,
 1162,VAV_B_S15_010,HC DIRECTOR HEAD B.149,Cell north-east of VIP Majlis,QNL/BF-8.jpg,CHECK,the cell carries no label of its own
 1163,VAV_B_S15_011,VIP Majlis B.149,VIP Majlis,QNL/BF-8.jpg,SAME,
 1167,CAV_1F_S11_002,CORRIDOR L1.023,Grey area by L-1 and Rest Rm,QNL/FF.jpg,CHECK,unlabelled; may be the CORRIDOR L1.023 column D names
@@ -199,10 +212,20 @@ row,tag,D room as per drawings,J room per BMS screen,K screen,verdict,note
 1202,CAV_B_S13_014,PEOPLE MOVER B.088,Cell between Gas Suppression and Server Rm,QNL/BF-3.jpg,CHECK,the middle cell carries no label of its own
 1203,CAV_B_S13_015,Server Room B.089,Server Rm,QNL/BF-3.jpg,SAME,
 1205,CAV_B_S13_021,Sprinklers Pumps & Zones Valves B.072,Sprinkler Pump,QNL/BF-3.jpg,SAME,
-1207,CAV_B_S14_001,CORRIDOR 3 B.051,Loading Area (north-west grey band),QNL/BF-4.jpg,CHECK,the band is long and narrow and may be the CORRIDOR 3 column D names
 1210,CAV_B_S14_004,PLANT ROOM 3 B.110,Plant Rm 3 / Corridor 5 (open plan),QNL/BF-6.jpg,OPEN,open plan - level with the Corridor 5 label
 1212,CAV_B_S14_006,Referigerate Store Kitchen Lobby B.044,Pink lobby west of Refrigerated Store,QNL/BF-4.jpg,SAME,
+1217,DX_B01,MV ROOM B.081,Corridor 4,QNL/BF-1.jpg,CHECK,"the dot is in the Corridor 4 strip, one wall west of MV Rm; column D says MV ROOM B.081"
+1219,DX_B03,TRANSFORMER ROOM B.082,Emergency Lighting Battery Rm,QNL/BF-1.jpg,CHECK,"column D says TRANSFORMER ROOM B.082, which is the room north of it"
+1222,DX_B06,HV ROOM B.083,"Loading Area (pink, south-west)",QNL/BF-4.jpg,CHECK,"the dot is in the pink Loading Area, which is where the condenser sits; column D names HV ROOM B.083, a room drawn on BF-1"
+1226,DX_B10,SECURITY & BMS B.102,Processing Rm,QNL/BF-5.jpg,CHECK,column D says SECURITY & BMS B.102
+1227,DX_B11,ITTIGATION CONTROL ROOM B.046_ITT,Security Equip.,QNL/BF-5.jpg,CHECK,column D says ITTIGATION CONTROL ROOM B.046_ITT
+1230,DX_B14,TRANSFORMER ROOM B.082,Emergency Lighting Battery Rm,QNL/BF-1.jpg,CHECK,"column D says TRANSFORMER ROOM B.082, which is the room north of it"
+1249,EF_B07,Loading Room B.109,Loading Area (north-west grey band),QNL/BF-4.jpg,SAME,
+1255,EF_B13,Sprinklers Pumps B.072,Plant Rm 2,QNL/BF-2.jpg,CHECK,"the dot is inside Plant Rm 2 with the AHUs, which is where the fan sits; column D names Sprinklers Pumps B.072, a room drawn on BF-3, so the two are answering different questions"
+1256,EF_B14,Fire Command B.071,Plant Rm 2,QNL/BF-2.jpg,CHECK,"the dot is inside Plant Rm 2 with the AHUs, which is where the fan sits; column D names Fire Command B.071, a room drawn on BF-3"
+1260,EF_BBV02,Plant Room 2 B.070,Plant Rm 2,QNL/BF-2.jpg,SAME,
 1263,EF_RP03,Plant Zone P.007,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"
+1267,KEF_B04,BREAKOUT AREA B.001A,Break Out Area / Tech.Services & Collections Office (open plan),QNL/BF.jpg,OPEN,open plan - west end
 1274,SEF_RP10,Plant Zone P.007,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"
 1275,SEF_RP11,Plant Zone P.006,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"
 1276,SEF_RP12,Plant Zone P.006,Plant Zone,QNL/RF-3.jpg,SAME,"the screen prints Plant Zone with no P-number, so which plant zone it is cannot be checked from it"

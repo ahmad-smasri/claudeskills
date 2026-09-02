@@ -56,14 +56,18 @@ def reg_tag(bms, screen, rows):
         alt = '%s_%s_%s' % (m.group(1), screen_level(screen), m.group(2))
         if alt in rows:
             return alt
-    # the fans are padded to four digits on screen and two in the register:
-    # SEF-RP0010 is SEF_RP10, EF-RP0003 is EF_RP03
-    m = re.match(r'^(.*?)(\d+)$', t)
-    if m:
-        for width in (2, 1, 3):
-            alt = '%s%0*d' % (m.group(1), width, int(m.group(2)))
-            if alt in rows:
-                return alt
+    # The plant tags are padded to four digits on screen and two in the
+    # register, and the AHUs lose their underscore as well: SEF-RP0010 is
+    # SEF_RP10, EF-RP0003 is EF_RP03, AHU-B0011 is AHUB011.
+    for form in (t, t.replace('_', '')):
+        if form in rows:
+            return form
+        m = re.match(r'^(.*?)(\d+)$', form)
+        if m:
+            for width in (2, 1, 3, 4):
+                alt = '%s%0*d' % (m.group(1), width, int(m.group(2)))
+                if alt in rows:
+                    return alt
     return t
 
 

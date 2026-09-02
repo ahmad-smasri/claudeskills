@@ -48,8 +48,12 @@ def words(s):
     `Receving Area`. Four letters is enough to keep `Storage` apart from
     `Stores` while letting those two pairs match.
     """
-    ws = set(re.findall(r'[a-z]+', (s or '').lower())) - STOP
-    return {w[:4] for w in ws if len(w) > 2}
+    all_words = set(re.findall(r'[a-z]+', (s or '').lower()))
+    ws = {w for w in all_words - STOP if len(w) > 2}
+    # `Office B.040` and `HV ROOM B.083` are nothing but stop words and two
+    # letter names, and dropping everything made them read as a blank column D
+    # rather than as something to compare. Fall back to what is there.
+    return {w[:4] for w in (ws or all_words)}
 
 
 def verdict(d, j, tag=None):

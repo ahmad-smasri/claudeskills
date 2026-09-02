@@ -48,7 +48,9 @@ one, so vertical leaders vanished. `qnl_trace.mask` measures both axes.
 | `qnl_dots.py` | finds the discs that terminate the leaders |
 | `qnl_trace.py` | the walker: masks, the gap rule, the corner rule |
 | `annotate_qnl.py` | traces a screen and writes a numbered copy to read by eye |
-| `qnl_icons.py`, `annotate_icons.py` | the same for the equipment icons - fans, AHUs, DX units, CCUs - which are tiles rather than slider bars |
+| `qnl_icons.py` | finds the equipment icons - fans, AHUs, DX units, CCUs - which are tiles rather than slider bars, and follows their leaders |
+| `annotate_all.py` | **the one to use**: traces sliders and icons together against one pool of dots, and writes the tag strip |
+| `annotate_icons.py` | icons only; superseded by `annotate_all.py` |
 | `run_all.sh` | annotates every screen not already done |
 | `trace.py`, `crop.py` | symlinks to the HQ/SSC originals - widget finding, zooming |
 
@@ -101,6 +103,32 @@ Fourteen units land in it. The register splits them between B.001A and B.001;
 the screen does not contradict that, it simply cannot confirm it, so those
 rows are written as the open space and reported `OPEN` rather than `SAME` or
 `DIFF`. Reading a boundary that is not drawn would be inventing one.
+
+## One pool of dots
+
+The sliders and the icons were traced separately at first, and that let two
+units claim the same dot: on BF-4 `CAV-S14-001` and `EF-B0007` came back with
+the same endpoint, and only one of them can have walked it. EF-B0007 reaches
+it in a shorter walk and its column D room - Loading Room B.109 - is the area
+the dot sits in, so the dot is the fan's and CAV-S14-001 has none.
+`annotate_all.py` settles the claim across both families at once.
+
+That pass also swapped two units on FF: `S11-004` and `S11-006` have one dot
+each in Info. Literacy Instr.1 and Instr.2, and which unit gets which depends
+on the order the dots are claimed in. The screen does not settle it, so both
+are blank.
+
+## Plant items answer a different question
+
+For a VAV or an FCU, column D and the serving-area dot are asking the same
+thing. For the plant they are not always: column D for an AHU reads
+`Basement Level Zone 1 Plant Room 1 B.063`, which is where the unit *sits*,
+while the leader points at what it *serves*. Where the two coincide - the
+eight AHUs on BF-2 and BF-10 - the rows are written as agreements. Where they
+do not, the row carries the reading and a note saying so rather than being
+called a difference: EF-B0013 and EF-B0014 sit in Plant Rm 2 while column D
+names Sprinklers Pumps and Fire Command, rooms drawn on BF-3; six DX
+condensers land one room away from the room column D gives them.
 
 ## Coverage
 

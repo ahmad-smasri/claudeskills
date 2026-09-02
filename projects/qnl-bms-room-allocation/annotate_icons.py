@@ -26,9 +26,31 @@ for k in icons:                      # an icon's own body is not leader
 
 im = Image.open(src).convert('RGB')
 d = ImageDraw.Draw(im)
+# One dot serves one unit, the same as on the slider screens: where two icons
+# converge on a dot the shorter walk keeps it and the other goes round again
+# without it.
+def walk(k, banned):
+    return I.leader(m, ink, k, dots=Q.index([p for p in dots if p not in banned]))
+
+
+got = [walk(k, set()) for k in icons]
+for _ in range(3):
+    owner = {}
+    for i, g in enumerate(got):
+        if g and g.get('dot'):
+            owner.setdefault(g['end'], []).append(i)
+    clash = {p: v for p, v in owner.items() if len(v) > 1}
+    if not clash:
+        break
+    for p, v in clash.items():
+        v.sort(key=lambda i: got[i]['dist'])
+        for i in v[1:]:
+            taken = {got[j]['end'] for j in range(len(icons))
+                     if j != i and got[j] and got[j].get('dot')}
+            got[i] = walk(icons[i], taken | {p})
+
 recs, placed = [], []
-for i, k in enumerate(icons, 1):
-    g = I.leader(m, ink, k, dots=idx)
+for i, (k, g) in enumerate(zip(icons, got), 1):
     d.rectangle([k['left'] - 2, k['top'] - 2, k['right'] + 2, k['bottom'] + 2],
                 outline=(0, 140, 0), width=2)
     d.text((k['left'] - 26, k['y'] - 7), str(i), fill=(0, 120, 0))
