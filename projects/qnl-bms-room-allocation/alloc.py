@@ -24,6 +24,7 @@ than a blank.
 OPEN_BF = 'Break Out Area / Tech.Services & Collections Office (open plan)'
 OPEN_BF1 = 'Tech.Services & Collection (open plan)'
 OPEN_BF4 = 'Office AD For LIT / Digitization Rm (open plan)'
+OPEN_BF5 = 'Digitization / Instruction Outreach (open plan)'
 
 SCREENS = {
  'BF': [
@@ -49,7 +50,15 @@ SCREENS = {
     ('VAV-B-S11-028', 'Analog Resource', ''),
     ('VAV-B-S11-030', 'Budget & Payment', 'lower band, west of the partition'),
     ('VAV-B-S11-031', 'Budget & Payment', 'lower band, west of the partition'),
+    ('VAV-B-S11-032', 'Ad Collection', ''),
     ('VAV-B-S11-033', 'Ad Collection', ''),
+    ('VAV-B-S11-043', 'Corridor east of Receving Area',
+     '!east of the Receving Area wall, in the corridor strip with S11-046 and'
+     ' S11-022; column D says Receiving Area B.008'),
+    ('VAV-B-S11-044', 'Budget & Payment (lower band)',
+     'the dot is in the lower band with S11-030 and S11-031; the partition'
+     ' between the cells is only partial, so which cell is not certain.'
+     ' Column D says Receiving Area B.008'),
     ('VAV-B-S11-038', 'Procurement SPC', ''),
     ('VAV-B-S11-045', 'Receving Area', ''),
     ('VAV-B-S11-046', 'Corridor east of Receving Area',
@@ -140,14 +149,31 @@ SCREENS = {
      '!the dot is in the Digitization Rm end of the open band; Shell Space is'
      ' the next room east across a wall, which is what column D says'),
  ],
+ # BF-5: the west half of the zone is one open purple space carrying both
+ # `Digitization` and `Instruction Outreach`; the east block is cut into
+ # Storage Rm, Technical Services and Instruction Presentation.
+ 'BF-5': [
+    ('VAV-B-S13-007', 'Shipping Clerk', ''),
+    ('VAV-B-S13-008', 'Security Store',
+     '!the dot is inside the Security Store cell; the screen has no room'
+     ' called Security Control Room, which is what column D says'),
+    ('VAV-B-S13-003', 'Processing Rm', ''),
+    ('VAV-B-S13-004', 'Processing Rm', ''),
+    ('CAV-S13-009', 'Storage',
+     'the dot sits on the Storage / Security Equip. boundary'),
+    ('CAV-S13-004', 'Corridor 2', ''),
+    ('CAV-S13-005', 'Corridor 2', ''),
+    ('VAV-B-S10-010', 'Technical Services', ''),
+    ('VAV-B-S10-011', 'Technical Services', ''),
+    ('VAV-B-S10-016', 'Instruction Presentation', ''),
+    ('VAV-B-S10-017', 'Instruction Presentation', ''),
+    ('VAV-B-S10-024', OPEN_BF5, 'open plan'),
+ ],
 }
 
 BLANK = {
  'VAV-B-S11-027': 'BF: walker shares an endpoint with S11-015',
  'VAV-B-S11-029': 'BF: leader lost crossing the lower band',
- 'VAV-B-S11-032': 'BF: endpoint not confirmed by eye - lands away from Ad Collection',
- 'VAV-B-S11-043': 'BF: leader stops on the Corridor 1 label',
- 'VAV-B-S11-044': 'BF: walker shares an endpoint with S11-032',
  'VAV-B-S11-034': 'BF-1: three walkers converge on the Licensing Expert cell',
  'VAV-B-S11-035': 'BF-1: leader not resolved',
  'VAV-B-S11-036': 'BF-1: three walkers converge on the Licensing Expert cell',
@@ -194,6 +220,20 @@ BLANK = {
  'CAV-S15-002': 'BF-4: leader not resolved',
  'CAV-S15-003': 'BF-4: leader not resolved',
  'CAV-S14-007': 'BF-4: leader not resolved',
+ 'FCU-B-010': 'BF-5: leader ends in unlabelled grey west of Processing Rm',
+ 'CAV-S14-002': 'BF-5: leader ends off the plan',
+ 'VAV-B-S13-005': 'BF-5: two bars carry this tag and both walkers converge',
+ 'VAV-B-S10-001': 'BF-5: three walkers converge in the open purple',
+ 'VAV-B-S10-002': 'BF-5: leader ends in the grey Heritage Collection, not the purple',
+ 'VAV-B-S10-003': 'BF-5: leader ends in the grey Heritage Collection, not the purple',
+ 'VAV-B-S10-004': 'BF-5: leader ends in the grey Heritage Collection, not the purple',
+ 'VAV-B-S10-005': 'BF-5: two walkers converge',
+ 'VAV-B-S10-006': 'BF-5: leader not resolved',
+ 'VAV-B-S10-007': 'BF-5: two walkers converge',
+ 'VAV-B-S10-008': 'BF-5: two walkers converge',
+ 'VAV-B-S10-009': 'BF-5: two walkers converge in Instruction Presentation',
+ 'VAV-B-S10-015': 'BF-5: two walkers converge',
+ 'VAV-B-S10-018': 'BF-5: two walkers converge in Instruction Presentation',
 }
 
 SCREEN_FILE = {k: 'QNL/%s.jpg' % k for k in SCREENS}

@@ -13,7 +13,6 @@ import trace as T
 DARK = 32          # how far below local background a disc sits
 BOX = 7            # widest a disc may be
 NEAR = 8           # two discs are never this close - letters are
-TOUCH = 3          # a disc never touches something solid and large
 
 
 def _cores(a):
@@ -76,7 +75,7 @@ def find(a, ylo=80, yhi=765):
     core[:ylo] = False
     core[yhi:] = False
     blobs = _blobs(core)
-    cand, big = [], []
+    cand = []
     for comp in blobs:
         yy = [c[0] for c in comp]
         xx = [c[1] for c in comp]
@@ -84,16 +83,11 @@ def find(a, ylo=80, yhi=765):
         c = (int(round(sum(xx) / len(xx))), int(round(sum(yy) / len(yy))))
         if 3 <= h <= BOX and 3 <= w <= BOX and len(comp) >= 0.5 * h * w:
             cand.append(c)
-        else:
-            big.append((min(xx), max(xx), min(yy), max(yy)))
     out = []
     for x, y in cand:
         if any(abs(x - qx) <= NEAR and abs(y - qy) <= NEAR
                for qx, qy in cand if (qx, qy) != (x, y)):
             continue                      # a letter among its neighbours
-        if any(x0 - TOUCH <= x <= x1 + TOUCH and y0 - TOUCH <= y <= y1 + TOUCH
-               for x0, x1, y0, y1 in big):
-            continue                      # part of something solid and large
         if _arms(soft, x, y) > 1:
             continue                      # a bend in the leader, not its end
         out.append((x, y))
