@@ -64,3 +64,31 @@ least one of them is wrong. Every row still needs the endpoint confirming by
 eye on the annotated image, and the two rules from the HQ README hold here
 too: resolve the room polygon before looking for its label, and zoom before
 deciding.
+
+## Reading a screen
+
+Three steps, and the order matters:
+
+1. `labels_qnl.py` writes one strip of the tag printed above every widget,
+   numbered exactly as `annotate_qnl.py` numbers them (both sort by `left, y`).
+   Thirty tags read in one look instead of thirty zooms.
+2. `annotate_qnl.py` writes the traced screen. Red marker = the walk finished
+   on a dot; orange = it did not, and the row is not to be written from it;
+   hollow blue = a dot nothing claimed, so a leader that was missed.
+3. Read the room by eye, zooming. **Resolve the room polygon first, then find
+   the label that points into it** - the QNL screens print several room names
+   inside one open space and lead each to its own room with a dashed pointer of
+   its own, so the nearest text is routinely the wrong answer.
+
+Then `write_j.py` puts the readings into columns J and K of the register, and
+`report_qnl.py` prints column D against column J.
+
+## What the screens can and cannot settle
+
+Some of these plans are open. The whole top half of `BF` is one space carrying
+`Break Out Area` at the west end and `Tech.Services & Collections Office` at
+the east with no wall between them - checked at 3x with the contrast raised.
+Fourteen units land in it. The register splits them between B.001A and B.001;
+the screen does not contradict that, it simply cannot confirm it, so those
+rows are written as the open space and reported `OPEN` rather than `SAME` or
+`DIFF`. Reading a boundary that is not drawn would be inventing one.
