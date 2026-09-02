@@ -324,10 +324,12 @@ def subject(building, lvl, room, name):
     seg_name = to_segment(name)
     if not seg_name:
         return ""
-    parts = ["entity:%s" % building.code, building.level_segment(lvl or "")]
-    parts.append(seg_name)
+    # entity:SSC_01-029_Shell-Space - the reference segment already carries the
+    # level, so a separate Level-01 segment would only repeat it.
+    parts = ["entity:%s" % building.code]
     if room:
         parts.append("%s-%s" % (lvl, room) if lvl else room)
+    parts.append(seg_name)
     return "_".join(parts)
 
 

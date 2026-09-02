@@ -13,30 +13,34 @@ second `--src` when its workbook arrives, and the output gains an `HQ` sheet.
 
 ## The shape
 
-Dar Cairo names a room `entity:<Building>_<Level>_<Room-Name>_<Number>` -
-`entity:Dar-Cairo_Basement-3_Pump-Room_B331`. 454 of its 471 rooms carry those
-four segments, and the number is always last. The same shape on SSC:
+Building, then the room reference, then the name - three segments:
 
 ```
-entity:SSC_Level-01_Shell-Space_01-014
-entity:SSC_Level-B1_Sprinkler-And-Water_B-016
-entity:SSC_Level-01_Stair-4_01-ST-4
+entity:SSC_01-014_Shell-Space
+entity:SSC_B-016_Sprinkler-And-Water
+entity:SSC_01-ST-4_Stair-4
 ```
 
-Dashes separate words inside a segment, underscores separate segments, nothing
-else survives: `VISITOR'S CUBICLE` -> `Visitors-Cubicle`, `SPRINKLER & WATER` ->
-`Sprinkler-And-Water` (Dar Cairo spells the ampersand out in
-`Boiler-And-Heat-Exchange`), `ASSOC. DIR.` -> `Assoc-Directors`. Ordinary words
-are title case; the acronyms in `ACRONYMS` stay upper (`AV-Room`, `IDF-1`,
-`IT-Managers-Office`). The dot in the room reference becomes a dash, so `01.014`
-is the segment `01-014`, matching Dar Cairo's `B331` in fusing level and number
-into the one trailing segment.
+The reference segment already carries the level (`01-014`, `B-016`), so a
+separate level segment would only repeat it. Dar Cairo likewise ends up with the
+level inside its number (`B331`); it just orders the segments the other way,
+`entity:Dar-Cairo_Basement-3_Pump-Room_B331`.
 
-Two segments differ from Dar Cairo on purpose, both because SSC already ships
-them: the building code is `SSC`, and the level segment is `Level-01` /
-`Level-B1`, which is what `QF_SSC_Ontology_ver02.xlsx` already calls its four
-levels. Dar Cairo would write `Floor-1` and `Basement-1`. See the open
-questions.
+Dashes separate words inside a segment, underscores separate segments, and
+nothing else survives into a name: `VISITOR'S CUBICLE` -> `Visitors-Cubicle`,
+`SPRINKLER & WATER` -> `Sprinkler-And-Water` (Dar Cairo spells the ampersand out
+in `Boiler-And-Heat-Exchange`), `ASSOC. DIR. OFFICE` -> `Assoc-Directors-Office`,
+`MAIN SEC. CONTROL ROOM` -> `Main-Sec-Control-Room`. Ordinary words are title
+case; the tokens in `ACRONYMS` stay upper - `AV-Room`, `IDF-1`,
+`IT-Managers-Office`. The dot in the reference becomes a dash, so `01.014` is
+the segment `01-014`.
+
+The building code is `SSC`, not the Dar Cairo-style long form. The four level
+entities the delivered SSC ontology already ships - `entity:SSC_Level-01`
+through `entity:SSC_Level-B1` - are unchanged and are what these rooms hang off
+with `rec:isPartOf`; the level no longer appears in the room subject itself.
+One thing to note: the basement reference reads `B` where the level entity reads
+`B1`, because `B.013` is what the drawings print.
 
 ## Which column the name comes from
 
@@ -79,6 +83,8 @@ notes also flag where the result parts company with the delivered SSC ontology.
   `03.006 MEETING ROOM`. The drawings and the screen also disagree on which of
   the two is A: D calls VAV0062's room `03.006B`, the screen calls it `03.006A`.
   Both rows are green, so the screen was followed; the split needs confirming.
+  Neither room has a name beyond `ROOM` on the drawings or the screen, so the
+  subjects read `entity:SSC_03-006A_Room`.
 - Abbreviations are kept as the source wrote them - `Main-Sec-Control-Room`,
   `Assoc-Directors-Office`, `Vent-Plant`. `SEC.` is ambiguous (security or
   secondary) and these become labels users read, so they want expanding once
