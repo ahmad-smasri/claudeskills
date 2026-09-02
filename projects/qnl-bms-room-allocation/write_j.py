@@ -14,7 +14,7 @@ import shutil
 import sys
 import zipfile
 
-import alloc_bf
+import alloc
 
 SRC = ('/root/.claude/uploads/7abe1193-772a-5e87-a7e1-f943639e6ba5/'
        'd37d3a55-Appendix_A_Asset_Register_SSC_HQ_BMS_rooms_4.xlsx')
@@ -23,16 +23,29 @@ OUT = ('/home/user/claudeskills/projects/qnl-bms-room-allocation/'
 SHEET = 'xl/worksheets/sheet6.xml'
 QNL_LO, QNL_HI = 766, 1316
 
-SCREEN_FILE = {
-    'BF': 'QNL/BF.jpg',
-}
+SCREEN_FILE = alloc.SCREEN_FILE
 
-ALLOC = alloc_bf.BF
+ALLOC = [(tag, room, screen, note)
+         for screen, rows in alloc.SCREENS.items()
+         for tag, room, note in rows]
 
 
-def reg_tag(bms):
-    """screen tag -> register tag: VAV-B-S11-011 -> VAV_B_S11_011"""
-    return bms.strip().upper().replace('-', '_')
+def reg_tag(bms, rows):
+    """screen tag -> register tag.
+
+    `VAV-B-S11-011` is `VAV_B_S11_011`, but the screens drop the level segment
+    on some families - `CAV-S12-003` is `CAV_B_S12_003` in the register - so
+    the level is put back when the plain form is not there.
+    """
+    t = bms.strip().upper().replace('-', '_')
+    if t in rows:
+        return t
+    m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
+    if m:
+        alt = '%s_B_%s' % (m.group(1), m.group(2))
+        if alt in rows:
+            return alt
+    return t
 
 
 def esc(s):
@@ -80,7 +93,7 @@ def main():
 
     targets, missing = {}, []
     for bms, room, screen, _note in ALLOC:
-        t = reg_tag(bms)
+        t = reg_tag(bms, rows)
         if t in rows:
             targets[rows[t]] = (room, SCREEN_FILE[screen])
         else:

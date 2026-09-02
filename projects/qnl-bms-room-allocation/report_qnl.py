@@ -11,11 +11,28 @@ import sys
 
 import openpyxl
 
-import alloc_bf
+import alloc
 
-# tags whose note says the screen disagrees with column D outright
-FLAGGED = {t.upper().replace('-', '_'): n.lstrip('!')
-           for t, _r, _s, n in alloc_bf.BF if n.startswith('!')}
+def keys(tag):
+    """both spellings of a tag: the screen's and the register's
+
+    The screens drop the level segment on some families - `CAV-S13-006` is
+    `CAV_B_S13_006` in the register - and the note has to be found under
+    whichever one the register row carries.
+    """
+    t = tag.upper().replace('-', '_')
+    out = {t}
+    m = re.match(r'^(CAV|VAV|FCU)_(S\d+_.*)$', t)
+    if m:
+        out.add('%s_B_%s' % (m.group(1), m.group(2)))
+    return out
+
+
+ROWS = [(t, n) for rows in alloc.SCREENS.values() for t, _r, n in rows]
+# a note starting with `!` says the screen disagrees with column D outright;
+# any other note says the reading carries a caveat the word test cannot see
+FLAGGED = {k: n.lstrip('!') for t, n in ROWS if n.startswith('!') for k in keys(t)}
+NOTED = {k: n for t, n in ROWS if n and not n.startswith('!') for k in keys(t)}
 
 BOOK = ('/home/user/claudeskills/projects/qnl-bms-room-allocation/'
         'Appendix_A_Asset_Register_QNL_BMS_rooms.xlsx')
@@ -51,7 +68,10 @@ def verdict(d, j, tag=None):
     wd, wj = words(d), words(j)
     if not wd:
         return 'D-BLANK'
-    return 'SAME' if wd & wj else 'DIFF'
+    if wd & wj:
+        return 'SAME'
+    # the reading came with a caveat, so the mismatch is not evidence of one
+    return 'CHECK' if tag in NOTED else 'DIFF'
 
 
 def main():
@@ -65,7 +85,8 @@ def main():
         d = ws.cell(i, 4).value
         tag = str(ws.cell(i, 1).value or '').strip().upper()
         rows.append([i, ws.cell(i, 1).value, d, j, ws.cell(i, 11).value,
-                     verdict(d, j, tag), FLAGGED.get(tag, '')])
+                     verdict(d, j, tag),
+                     FLAGGED.get(tag) or NOTED.get(tag, '')])
     with open(OUT, 'w', newline='') as fh:
         w = csv.writer(fh)
         w.writerow(['row', 'tag', 'D room as per drawings', 'J room per BMS screen',
