@@ -546,3 +546,90 @@ names only; **asset tags were left untouched**, since they are the BMS join key.
 
 Validator after the spelling pass: unchanged by it — the room-name corrections
 introduce no findings of their own. Current totals are in "Validator result" above.
+
+---
+
+## Virtual metering layer — added 2026-09-03
+
+The sheet now carries a metering layer: **1,460 virtual meters, 8,760 rows**, plus
+`para:contributionFraction` on 297 terminal units. Ontology grew 9,985 → 19,351 rows.
+Regenerate it with `python3 projects/QNL/add_virtual_meters.py` (`--dry-run` to count first).
+
+**Where it came from.** `sources/VirtualMeters_QNL_manual_v1.xlsm`, the hand-built
+workbook, supplied the tier matrix on its `Sheet1` — 9 meter classes against
+Building / Floor / Room. That matrix is now encoded in the generator. The
+workbook's own 11,648 rows were **not** imported: none of its 353 room
+identifiers matched the live sheet, because it was built before `align_naming`
+normalised them. The layer is regenerated from the matrix against the live
+ontology instead, so identifiers agree by construction and `L1-145_ILL-Director`
+— added later by the room-retarget pass — is picked up automatically.
+
+| Tier | Meter classes | Count |
+|---|---|---|
+| Building only | `para:Utility_Meter`, `para:UPS_Meter` | 2 |
+| Building + floor | `para:HW_Meter`, `para:SPWR_Meter`, `para:Common_Util_Meter` | 18 |
+| Building + floor + room | `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`, `brick:Electrical_Meter` | 1,440 |
+
+Each meter carries six rows: `brick:isPartOf entity:Metering`, `brick:meters`,
+`brick:isVirtualMeter` (`brick:value TRUE`), `rec:locatedIn`, and a
+Consumption/Demand point pair. Name segments are Dar Cairo's verbatim; the one
+coinage is `HW-Power-Thermal-Virtual-Meter`, mirroring the CHW segment.
+
+**Thermal points take `para:KiloWt` / `para:KiloWt-HR`**, not `unit:KiloW`, on all
+732 CHW and HW points — client decision, so that a building demand rollup cannot
+add chilled-water kW to electrical kW. Both units are declared as `qudt:Unit`
+rows. Note the 7 pre-existing QNL thermal rows still on `unit:KiloW`; they were
+left alone and want a separate pass.
+
+**Early declarations added:** `para:Metering_System`, `para:UPS_Meter`,
+`para:SPWR_Meter`, `para:Common_Util_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`,
+`para:CHW_Meter`, `para:HW_Meter`, `para:contributionFraction`, `para:KiloWt`,
+`para:KiloWt-HR`, and the `entity:Metering` system node under `entity:QF`.
+`para:Utility_Meter` was already declared. All sort ahead of first use.
+
+**`para:contributionFraction` — 297 units** (246 VAV + 51 CAV), every unit an AHU
+feeds, with `ref:hasTimeseriesId` `ContributionFraction` and `para:hasEntityId`
+read off the unit's existing points. The skip-if-in-a-shaft rule matched nothing:
+QNL's shaft-dwelling assets are 62 FCUs and 2 exhaust fans, and no AHU feeds any
+of them. `entity:QNL_CAV-B-S13-050` carries no points, so its entityId was
+derived — the derivation matches all 296 units that do have one.
+
+### Open — needs your decision
+
+1. **`entity:QNL_Utility-Virtual-Meter` duplicates `entity:QNL_Total-Energy`.**
+   Total-Energy was already typed `para:Utility_Meter` and has a real historian
+   tag (`QNL_TotalEnergy.Energy`); the new one has none. Both claim the building
+   utility supply. Either retrofit Total-Energy into the metering layer and drop
+   the virtual one, or say what the virtual one measures that it does not.
+2. **2,920 meter points ship with no `ref:TimeseriesReference`.** The historian
+   (`QNL_Historian_IO_list_CP2.xlsx`) carries no calculated tags — zero `*_CALC`,
+   zero `ContributionFraction`. Every point is listed in
+   `QNL_virtual_meter_timeseries_pending.csv` with the Dar Cairo `hasTimeseriesId`
+   proposed and `hasEntityId` blank, because that half is the historian's key for
+   the space and nothing in the ontology derives it. Hand back the filled file and
+   the rows go in in one pass. They show as `W-PT-1` until then — deliberately, a
+   blank reference row would read as a working link.
+3. **`entity:QNL_L1-144` / `L1-145_ILL-Director` both carry meters.** If the
+   retarget pass was right that these are one room, 144 should be retired and its
+   four meters with it.
+
+### Validator result after the layer
+
+| | Before | After |
+|---|---|---|
+| Errors | 574 | **574** — none added |
+| `W-BN-4` | 0 | 1,460 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
+| `W-PT-1` | 0 | 2,920 — the pending timeseries above |
+| `check_consistency` errors | 590 | 615 |
+
+The 25 new consistency errors are the 14 pre-existing physical meters (MFM, VCB)
+sharing `brick:Electrical_Meter` with the 360 new virtual ones. Dar Cairo files
+both under that class too, so this is named rather than fixed — minting a `para:`
+subclass to quiet the checker would depart from the primary reference. Every
+pure-virtual family (`para:HVAC_Meter`, `para:LTG_Meter`, `para:CHW_Meter`) comes
+back with **0 errors**.
+
+`check_consistency.py` needed one fix to support this layer: `brick:meters`,
+`brick:isMeteredBy` and `brick:isSubMeterOf` joined `VARYING_PREDICATES`. Without
+it every meter reads as missing the 359 targets its siblings carry — 1,440 phantom
+errors. Covered by `tests/virtual-meters-sample.csv`.

@@ -115,6 +115,12 @@ corrupts every calculation downstream of it.
 
 **Points and telemetry** - beyond the IO list itself
 - Which points are aggregations, with function and interval
+- **Virtual meters: which tiers (Building, Floor, Room) and which meter types at
+  each.** Ask as a matrix; the count follows as arithmetic and is worth saying
+  back before building. Ask in the same breath whether the terminal units get
+  `para:contributionFraction`, and where the calculation engine's telemetry keys
+  come from - a field IO list never carries them. `virtual-meters.md` has the
+  wording and the default matrix
 - Virtual meter formulas, and which physical meters feed them
 
 **Scope**

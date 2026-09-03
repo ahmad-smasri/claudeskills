@@ -92,6 +92,18 @@ for code in E-CON-1 E-CON-2 E-CON-3 E-CON-4 E-CON-5 E-CON-6 E-CON-10 E-CON-17 \
     fi
 done
 
+echo "== a virtual metering layer must come back clean"
+# Every meter names a different space, so brick:meters and friends have to sit in
+# VARYING_PREDICATES; drop them and this fixture reports six phantom E-CON-2s.
+out=$("$PY" scripts/check_consistency.py tests/virtual-meters-sample.csv 2>&1)
+if grep -qE "^0 errors" <<<"$out"; then
+    echo "   ok   virtual meters"
+else
+    echo "   FAIL: virtual meter fixture reported consistency errors"
+    echo "$out" | grep -E "^ERROR" | sed 's/^/   /'
+    fail=1
+fi
+
 echo "== highlighting must mark findings and leave the input alone"
 if out=$("$PY" tests/test_highlight.py 2>&1); then
     echo "   ok   $out"
