@@ -546,3 +546,190 @@ names only; **asset tags were left untouched**, since they are the BMS join key.
 
 Validator after the spelling pass: unchanged by it — the room-name corrections
 introduce no findings of their own. Current totals are in "Validator result" above.
+
+---
+
+## Virtual metering layer — added 2026-09-03
+
+The sheet now carries a metering layer: **1,459 virtual meters, 8,754 rows**, plus
+`para:contributionFraction` on 297 terminal units. Ontology grew 9,985 → 19,345 rows.
+Regenerate it with `python3 projects/QNL/add_virtual_meters.py` (`--dry-run` to count first).
+
+**Where it came from.** `sources/VirtualMeters_QNL_manual_v1.xlsm`, the hand-built
+workbook, supplied the tier matrix on its `Sheet1` — 9 meter classes against
+Building / Floor / Room. That matrix is now encoded in the generator. The
+workbook's own 11,648 rows were **not** imported: none of its 353 room
+identifiers matched the live sheet, because it was built before `align_naming`
+normalised them. The layer is regenerated from the matrix against the live
+ontology instead, so identifiers agree by construction and `L1-145_ILL-Director`
+— added later by the room-retarget pass — is picked up automatically.
+
+**A virtual meter is only created where a physical meter does not exist** — that
+is what the layer is for. `entity:QNL_Utility-Virtual-Meter` was therefore *not*
+written: `entity:QNL_Total-Energy` is already a `para:Utility_Meter` with a live
+historian tag. The suppression lives in `ALREADY_METERED` in the generator, each
+entry naming the physical meter that justifies it.
+
+| Tier | Meter classes | Count |
+|---|---|---|
+| Building only | `para:UPS_Meter` (Utility suppressed, see above) | 1 |
+| Building + floor | `para:HW_Meter`, `para:SPWR_Meter`, `para:Common_Util_Meter` | 18 |
+| Building + floor + room | `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`, `brick:Electrical_Meter` | 1,440 |
+
+Each meter carries six rows: `brick:isPartOf entity:Metering`, `brick:meters`,
+`brick:isVirtualMeter` (`brick:value TRUE`), `rec:locatedIn`, and a
+Consumption/Demand point pair. Name segments are Dar Cairo's verbatim; the one
+coinage is `HW-Power-Thermal-Virtual-Meter`, mirroring the CHW segment.
+
+**Thermal points take `para:KiloWt` / `para:KiloWt-HR`**, not `unit:KiloW`, on all
+732 CHW and HW points — client decision, so that a building demand rollup cannot
+add chilled-water kW to electrical kW. Both units are declared as `qudt:Unit`
+rows. Note the 7 pre-existing QNL thermal rows still on `unit:KiloW`; they were
+left alone and want a separate pass.
+
+**Early declarations added:** `para:Metering_System`, `para:UPS_Meter`,
+`para:SPWR_Meter`, `para:Common_Util_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`,
+`para:CHW_Meter`, `para:HW_Meter`, `para:contributionFraction`, `para:KiloWt`,
+`para:KiloWt-HR`, and the `entity:Metering` system node under `entity:QF`.
+`para:Utility_Meter` was already declared. All sort ahead of first use.
+
+**`para:contributionFraction` — 297 units** (246 VAV + 51 CAV), every unit an AHU
+feeds. It is a container point for the unit's chilled water consumption, which
+QNL has no point for; the backend replaces the `ContributionFraction` series with
+its own calculation apportioning the AHU's load across the units it feeds. Written
+with `ref:hasTimeseriesId` `ContributionFraction` and `para:hasEntityId`
+read off the unit's existing points, the same way every other datapoint on that
+unit derives it. The skip-if-in-a-shaft rule matched nothing:
+QNL's shaft-dwelling assets are 62 FCUs and 2 exhaust fans, and no AHU feeds any
+of them. `entity:QNL_CAV-B-S13-050` carries no points, so its entityId was
+derived — the derivation matches all 296 units that do have one.
+
+### Open — needs your decision
+
+1. **`entity:QNL_CHWS-MAIN-LOOP_Energy-Meter` may make the building-tier
+   `para:CHW_Meter` redundant.** It is a `brick:Building_Chilled_Water_Meter` on
+   the main loop with 7 live points, including `CHW-Consumption-KW` and
+   `CHW-CHW-Energy-PV`. By the same rule that removed the Utility virtual meter,
+   `entity:QNL_CHW-Power-Thermal-Virtual-Meter` looks like a duplicate — but the
+   classes differ, so no checker will flag it. Confirm whether the loop meter
+   covers the whole building and I will add it to `ALREADY_METERED`.
+2. **None of the 16 physical meters carries a `brick:meters` row.** They are all
+   `brick:isPartOf entity:Electrical_System` with points, and nothing says what
+   any of them measures — so "is this already metered?" cannot be answered from
+   the sheet, and the suppression list has to be maintained by hand. Adding those
+   rows would make the rule self-checking. Worth a small pass.
+3. **2,918 meter points ship with no `ref:TimeseriesReference`.** The historian
+   (`QNL_Historian_IO_list_CP2.xlsx`) carries no calculated tags — zero `*_CALC`,
+   zero `ContributionFraction`. Every point is listed in
+   `QNL_virtual_meter_timeseries_pending.csv` with the Dar Cairo `hasTimeseriesId`
+   proposed and `hasEntityId` blank, because that half is the historian's key for
+   the space and nothing in the ontology derives it. Hand back the filled file and
+   the rows go in in one pass. They show as `W-PT-1` until then — deliberately, a
+   blank reference row would read as a working link.
+4. **`entity:QNL_L1-144` / `L1-145_ILL-Director` both carry meters.** If the
+   retarget pass was right that these are one room, 144 should be retired and its
+   four meters with it.
+
+### Validator result after the layer
+
+| | Before | After |
+|---|---|---|
+| Errors | 574 | **10** — the layer added none, and filling `para:IFC_ID` cleared 564 |
+| `W-BN-4` | 0 | 1,459 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
+| `W-PT-1` | 0 | 2,918 — the pending timeseries above |
+| `check_consistency` errors | 590 | 608 |
+
+The 18 new consistency errors are the 14 pre-existing physical meters (MFM, VCB)
+sharing `brick:Electrical_Meter` with the 360 new virtual ones. Dar Cairo files
+both under that class too, so this is named rather than fixed — minting a `para:`
+subclass to quiet the checker would depart from the primary reference. Every
+pure-virtual family (`para:HVAC_Meter`, `para:LTG_Meter`, `para:CHW_Meter`) comes
+back with **0 errors**.
+
+`check_consistency.py` needed one fix to support this layer: `brick:meters`,
+`brick:isMeteredBy` and `brick:isSubMeterOf` joined `VARYING_PREDICATES`. Without
+it every meter reads as missing the 359 targets its siblings carry — 1,440 phantom
+errors. Covered by `tests/virtual-meters-sample.csv`.
+
+
+## IFC references filled — 2026-09-03
+
+All 564 `ref:IFCReference` rows declared `para:IFC_ID` with no value, which was
+**564 of the sheet's 574 errors**. Filled with the entity identifier — the same
+string `ref:ifcName` already carried on every one of them, which is QF SSC's
+shape (both columns, same value, on all 165 of its IFC rows).
+
+**The sheet now validates at 10 errors**, all `E-FEED-1`, all visible:
+
+| Entity | Class |
+|---|---|
+| `QNL_CAV-1F-S15-001` | `brick:Constant_Air_Volume_Box` |
+| `QNL_CCU-8081` … `QNL_CCU-8086` | `brick:CRAC` (6 units) |
+| `QNL_CR-DX-EWRC500`, `QNL_DX-RP21` | `para:DXUnit` |
+| `QNL_VAV-B-S13-005` | `brick:Variable_Air_Volume_Box` |
+
+Each is a terminal unit with no `rec:feeds`. Two are the unregistered units
+already recorded above; the other eight want checking against the drawings.
+
+**Caveat on `para:IFC_ID`.** No delivered model carries a real IFC GUID — across
+Dar Cairo, SSC, HQ and QNL, none of 2,133 values matches the 22-character
+`IfcGloballyUniqueId` shape, and the three reference models disagree on which
+column to use at all (Dar Cairo `ref:ifcName` only, HQ `para:IFC_ID` primary, SSC
+both). `CLAUDE.md` describes `para:IFC_ID` as the BIM GUID; in practice it holds
+the asset tag. If the BIM team can export real GUIDs they overwrite these 564 in
+one pass. Worth putting to the PARA team.
+
+
+## Equipment with no room placed at the building — 2026-09-03
+
+**A QNL project assumption, not a house rule** — the skill still says to write no
+location at all when the register gives none. For this building the decision was
+that an asset with no room is still certainly in the building and certainly on
+its system, so **assert both rather than nothing**; a building-level location
+invents nothing that a survey would contradict.
+
+**26 rows added**, `rec:locatedIn entity:QNL` (`rec:Building`), on: 6 CRACs
+(`CCU-8081`–`8086`), 2 DX units, `CAV-1F-S15-001`, `VAV-B-S13-005`,
+`CHWPU-P02`, and the 15 electrical meters. All 26 already carried
+`brick:isPartOf` their system, so no second row was needed. Clears 26 `W-GR-2`.
+
+**`rec:feeds` is still not written.** The served space is the part nobody knows,
+and the feeds rule forbids a placeholder. The 10 `E-FEED-1` errors stand — they
+are the sheet's only remaining errors and want checking against the drawings.
+
+**The 174 parts that also lack a location were excluded** — 137 CHW valves, 22
+supply/return fans, 10 HEX valves, 2 circuit breakers, 2 fuel transfer pumps.
+A part inherits its parent's location; Dar Cairo locates only 19 of its 801
+parts separately. Locating a valve at the building would add noise, not fact.
+
+
+## Virtual meter families not built, and why
+
+Two reasons, and they need different follow-up.
+
+**Suppressed — a physical meter already covers it.** Closed.
+
+- `para:Utility_Meter` at building tier. `entity:QNL_Total-Energy` is already one,
+  with a live historian tag `QNL_TotalEnergy.Energy`.
+
+**Deferred — the points the formula would sum do not exist.** Reopens if the
+points arrive.
+
+- `brick:Water_Meter` — QNL carries no potable-water point at all. Every "water"
+  match in the sheet is a chilled-water temperature or an air flow. Dar Cairo has
+  34 of these at building, level and zone tier.
+- `para:Occupant-Wellbeing_Meter` — its eight-sensor bundle has temperature (310
+  points) and relative humidity (115) available, and **no** CO2, TVOC, PM2.5/10,
+  illuminance, noise or occupancy points anywhere in the building. Dar Cairo's
+  largest virtual meter family, 901 rows.
+
+**Not asked for, and buildable from data QNL already has** — no new site data
+needed, a matrix row each if wanted:
+
+- `para:*_Target` points alongside Consumption and Demand (Dar Cairo attaches 34
+  per class)
+- forecast and KPI points, derived from the series the layer already declares
+- `brick:isSubMeterOf`, chaining the floor and room meters up to the building one
+- `para:General_Util_Meter`, `para:Data-Center_Meter`, `para:Generator_Meter`,
+  `para:Solar_Meter` — 2,335 electric power points to draw on, and
+  `entity:QNL_ELEC-Gen` already exists as a `para:Generator`

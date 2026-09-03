@@ -26,6 +26,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/naming-and-labels.md` | identifier patterns per level, character rules, the label rule, IFC references | naming anything |
 | `references/relationships.md` | predicate families, what Dar Cairo actually uses and how often, the spatial hierarchy, feeds, hasPart vs locatedIn | choosing a predicate |
 | `references/class-resolution.md` | the four-step ladder, extension rules, where the vocabularies come from | a class is missing or ambiguous |
+| `references/virtual-meters.md` | the virtual metering layer - the tier matrix to ask for, the nine meter classes and their Dar Cairo name segments, the six-row block, the thermal-unit trap, `para:contributionFraction`, and what to do when the calculation engine's telemetry keys do not exist yet | adding virtual meters, or `para:contributionFraction` |
 | `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
 | `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
 | `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
@@ -188,6 +189,32 @@ IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
 `ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
 **on the point, never on the equipment.**
 
+**A virtual meter exists only where a physical one does not** - it fills the gaps
+in the metering the building has, so a virtual meter beside a real one is a second
+answer with no data behind it. List the meters the sheet already carries and what
+each measures before generating a tier, and suppress every pair a physical meter
+covers. Expect to need a hand-written list: physical meters routinely carry no
+`brick:meters` row, so the graph cannot answer the question.
+
+**A virtual meter is a formula, so it needs inputs.** Before generating a tier,
+check the sheet carries the points its formula would sum; where it does not,
+defer the meter and say so. A duplicate meter is visible to a reviewer, but a
+meter with no inputs validates clean, renders a tile and returns nothing. On QNL
+this ruled out water metering (no potable-water point exists) and the
+Occupant-Wellbeing bundle (no CO2, TVOC, PM, lux, noise or occupancy points).
+
+**Virtual meters are asked for, never assumed** - `references/virtual-meters.md`.
+Which tiers (Building, Floor, Room) and which meter types at each is the client's
+decision, put to them as a matrix; the count then follows as arithmetic, so say
+the total back before building. `para:Utility_Meter` is building-tier only - it
+measures the incoming municipal supply - while Electrical Meters sum across UPS,
+panels and generator and belong at any tier. Thermal meter points take
+`para:KiloWt` / `para:KiloWt-HR`, never `unit:KiloW`, or a demand rollup adds
+chilled-water kW to electrical kW. **Their points are calculated, so the IO-list
+rule below does not reach them** - the keys come from the calculation engine's
+register, and where that does not exist the points ship with no reference row and
+a pending file, never a blank one.
+
 **Points come from IO lists, and only from IO lists.** Never infer a point list
 from the equipment type. No IO list means no points for that equipment, and a
 line in the handover note. **Cross-check both directions before handover** with
@@ -234,6 +261,9 @@ python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx --
 # one family at a time while building, and findings to their own file
 python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
     --family brick:Fan_Coil_Unit --report findings.xlsx
+
+# add the virtual metering layer to a building (worked example)
+python3 projects/QNL/add_virtual_meters.py --dry-run
 
 # hand the remaining findings to a human, in the sheet itself
 python3 skills/building-ontology/scripts/highlight_findings.py In.xlsx \
