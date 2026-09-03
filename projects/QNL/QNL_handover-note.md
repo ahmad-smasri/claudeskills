@@ -678,3 +678,26 @@ column to use at all (Dar Cairo `ref:ifcName` only, HQ `para:IFC_ID` primary, SS
 both). `CLAUDE.md` describes `para:IFC_ID` as the BIM GUID; in practice it holds
 the asset tag. If the BIM team can export real GUIDs they overwrite these 564 in
 one pass. Worth putting to the PARA team.
+
+
+## Equipment with no room placed at the building — 2026-09-03
+
+House rule changed: an asset the register gives no room for is still certainly
+in the building and certainly on its system, so **assert both rather than
+nothing**. Previously the sheet wrote no `rec:locatedIn` at all, on the grounds
+that inventing a location reads as surveyed fact — a building-level location
+invents nothing.
+
+**26 rows added**, `rec:locatedIn entity:QNL` (`rec:Building`), on: 6 CRACs
+(`CCU-8081`–`8086`), 2 DX units, `CAV-1F-S15-001`, `VAV-B-S13-005`,
+`CHWPU-P02`, and the 15 electrical meters. All 26 already carried
+`brick:isPartOf` their system, so no second row was needed. Clears 26 `W-GR-2`.
+
+**`rec:feeds` is still not written.** The served space is the part nobody knows,
+and the feeds rule forbids a placeholder. The 10 `E-FEED-1` errors stand — they
+are the sheet's only remaining errors and want checking against the drawings.
+
+**The 174 parts that also lack a location were excluded** — 137 CHW valves, 22
+supply/return fans, 10 HEX valves, 2 circuit breakers, 2 fuel transfer pumps.
+A part inherits its parent's location; Dar Cairo locates only 19 of its 801
+parts separately. Locating a valve at the building would add noise, not fact.

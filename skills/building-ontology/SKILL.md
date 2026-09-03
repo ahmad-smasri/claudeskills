@@ -253,7 +253,7 @@ only what is actually known, and record the gap:
 
 | The source says | What to do |
 |---|---|
-| The asset has datapoints but **no location** (in the point sources, absent from the asset register) | Model the asset and its points, but write **no** `rec:locatedIn`, `rec:feeds` or `rec:isFedBy`. Inventing a location would read as surveyed fact. Log it; the resulting `W-GR-2` and `E-FEED-1` are accepted findings, named in the log. |
+| The asset has datapoints but **no location** (in the point sources, absent from the asset register) | Write `rec:locatedIn` the **building** and `brick:isPartOf` its **system** - two rows that assert only what is actually known, since the asset is certainly in the building and certainly on that system. Write **no** `rec:feeds` and no room-level location: the served space is the part nobody knows, and a guess there is invented survey. Dar Cairo has precedent for building-level location (36 entities). Log it; the remaining `E-FEED-1` is an accepted finding. **Applies to standalone equipment only** - a part inherits its parent's location, and Dar Cairo locates only 19 of its 801 parts separately. |
 | The asset is **in the register and the historian but the selected-points sheet omits it** | Take its points from the historian. Let the family's own selected signature decide which ones, so the unit matches its siblings rather than carrying a set nothing else in the family has. Log it. |
 | A source column is **internally inconsistent or misaligned** | Use the columns that agree with each other, say so in the log, and tell the source owner. Never reconstruct a corrupted column by guesswork. |
 
