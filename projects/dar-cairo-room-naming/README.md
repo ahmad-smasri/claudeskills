@@ -266,6 +266,22 @@ be split without guessing. They are listed under the open questions.
   comma-separated path on the same `--src`, but the merge policy is HQ's
   level-range rule; if QNL's parts split some other way, that rule needs
   telling how.
+- **QNL room names are respelled from the delivered QNL ontology.** Where it
+  names a reference, names it once, and the two are the same name spelled two
+  ways, its spelling wins - `SPRIMKLERS` becomes `Sprinklers`, `TRANSH CHAMBER`
+  `Trash-Chamber`, `SHIPPING CLIRK` `Shipping-Clerk`, `ARABIC SUDIES`
+  `Arabic-Studies`. Two guards keep it honest: a genuinely different name is
+  left alone (`B.203` is Technical Services here and Storage Room there, which
+  is a disagreement about the room, not its spelling), and a respelling may
+  never lose a word, or `BINDING & PRESERVATION SPACE` would quietly become
+  `Binding-Preservation-Space`.
+
+  **SSC and HQ are deliberately excluded.** SSC's names are reviewed and are
+  not to be disturbed; HQ's ontology is a draft that carries `SPA FITNESS
+  DTUDIO` and `VACILITY MANAGDIRENSUIT` and runs the department into the room
+  name, so letting it respell would import its typos and undo the readability
+  work. Two QNL tokens no ontology can prove are in `SPELLING_FIXES`, applied to
+  the identifier and the label from one map so the two cannot drift.
 - **42 spelling clashes** across the three buildings, where a name is the same
   in two columns but the letters differ - `SPA FITNESS DTUDIO`, `SECURITY
   CONTOL ROOM`, `STUDENT CARRLES`, `CHAUFFER`/`CHAUFFEUR`. Every one is in

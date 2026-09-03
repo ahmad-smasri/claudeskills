@@ -58,6 +58,20 @@ EXTRA_ACRONYMS = {
 # Dar Cairo writes Boiler-And-Heat-Exchange, so an ampersand becomes a word.
 WORD_FIXES = {"&": "And", "AND": "And"}
 
+# Misspellings, whole tokens only, each one proved by another source spelling
+# the same room correctly - the delivered QNL ontology for the QNL tokens, the
+# delivered SSC ontology for CUBIDE. Nothing here is a dictionary opinion: a
+# token goes in only when a sibling row names the same room and spells it out.
+# Applied to the identifier and the label from this one map, so the two cannot
+# drift apart.
+# Almost every misspelling is settled by the delivered ontology naming the same
+# reference - see `adopt_delivered_spelling`. This map is only for the ones no
+# ontology can prove, each with the source that does.
+SPELLING_FIXES = {
+    "INDIVISTUDY": "Individual-Study",  # QNL L2.070, drawings: INDIVIDUAL STUDY ROOM
+    "ITTIGATION": "Irrigation",         # QNL B.046, drawings: IRRIGATION CONTROL ROOM
+}
+
 
 # --------------------------------------------------------------------------
 # building profiles - room-reference shape, level segment, building code
@@ -128,8 +142,11 @@ BUILDINGS = {
         room_width=3,
         pad="left",                         # B.58 among 3-digit siblings
         entity_style="underscore",          # entity:QNL_B_220_PLANT_ROOM_04
+        # A few QNL references carry a three-letter code - B.106_RES, B.141_VAU -
+        # which tells apart two rooms sharing a number. It is consumed but not
+        # captured, so it does not trail into the name as Vault-Vau.
         ref_re=r"(?<![A-Za-z0-9])(B|L1|L2|P|T1)\.([A-Za-z0-9][A-Za-z0-9-]{0,5})"
-               r"(?![A-Za-z0-9-])",
+               r"(?:_[A-Z]{2,4}\b)?(?![A-Za-z0-9-])",
         ref_from_drawings=True,
         level_names={"B": "B", "L1": "L1", "L2": "L2", "P": "P", "T1": "T1"},
     ),
@@ -345,7 +362,9 @@ def to_segment(name, acronyms=ACRONYMS):
             if not p:
                 continue
             up = p.upper()
-            if up in WORD_FIXES:
+            if up in SPELLING_FIXES:
+                parts.append(SPELLING_FIXES[up])
+            elif up in WORD_FIXES:
                 parts.append(WORD_FIXES[up])
             elif up in acronyms:
                 parts.append(up)
@@ -436,6 +455,16 @@ def decide(building, row):
             notes.append("reference taken from the drawings (%s.%s), not %s.%s"
                          % (d_l, d_r, lvl, room))
         lvl, room = d_l, d_r
+        if e_r is not None and (e_l, e_r) != (d_l, d_r) and d_n:
+            # E's reference is wrong here, which means its segments were split
+            # in the wrong place: entity:QNL_L1-E2_ELEC_SHAFT reads as level
+            # L1-E2, room ELEC, name SHAFT, and the room is really L1.E2 Elec
+            # Shaft. A name cut off by a bad split is no more trustworthy than
+            # the reference was, so the drawings name the room too.
+            if not same_name(d_n, e_n):
+                notes.append("column E is mis-segmented here (%s.%s), so the "
+                             "name comes from the drawings too" % (e_l, e_r))
+            e_n = d_n
 
     # R2 + R4 - E arbitrates the name.
     if e_n:
@@ -629,7 +658,8 @@ def subject(building, lvl, room, name):
 
 def label(lvl, room, name):
     """Reading form in the QF SSC house style - '1.024 CORRIDOR'."""
-    n = key(name)
+    n = " ".join(SPELLING_FIXES.get(t, t).replace("-", " ").upper()
+                 for t in key(name).split())
     if not (lvl and room):
         return n
     if not room[:1].isdigit():          # ST-4 and the like carry no level
@@ -832,6 +862,47 @@ DELIVERED = {"SSC": "QF_SSC_Ontology_ver02.xlsx",
              "HQ": "QF_HQ_Ontology_draft0.4.xlsx",
              "QNL": "../projects/QNL/QNL_Ontology.xlsx"}
 
+# Which of those may respell a room. Only QNL: its ontology is delivered and
+# clean, and QNL is the building whose names were asked to be corrected. HQ's
+# is a draft that carries SPA FITNESS DTUDIO and runs the department into the
+# room name, and SSC's names are already reviewed and are not to be disturbed.
+TRUSTED_SPELLING = {"QNL"}
+
+
+def adopt_delivered_spelling(rows, known, building):
+    """Take the delivered ontology's spelling of a room it already names.
+
+    The register is where the typos are - SPRIMKLERS, TRANSH CHAMBER, SHIPPING
+    CLIRK, RESEARCHER OFFICE - and the delivered ontology has been cleaned. So
+    where it names a reference, and names it once, and the two are the same
+    name spelled differently, its spelling wins. A genuinely different name is
+    left alone: B.203 is Technical Services here and Storage Room there, and
+    that is a disagreement about the room, not about its spelling.
+    """
+    if not known:
+        return 0
+    n = 0
+    for r in rows:
+        if not r["name"] or not r["ref"]:
+            continue
+        want = known["refs"].get((r["level"], r["ref"]))
+        if not want or key(want) == key(r["name"]):
+            continue
+        if not same_name(r["name"], want):
+            continue
+        # Count the ampersand as the word it becomes, or BINDING & PRESERVATION
+        # SPACE and BINDING-PRESERVATION-SPACE look the same length and the
+        # respelling quietly drops the And. The ontology's own label keeps it.
+        words = lambda x: len([t for t in re.split(r"[^A-Za-z0-9]+",
+                                                   str(x).replace("&", " AND ")) if t])
+        if words(want) < words(r["name"]):
+            continue                      # never lose a word to a respelling
+        r["notes"].append("respelled %r as %r, which is how the delivered "
+                          "ontology spells this room" % (r["name"], want))
+        r["name"] = want
+        n += 1
+    return n
+
 
 def load_delivered(code):
     """Room reference -> name, from the previously delivered ontology."""
@@ -865,7 +936,10 @@ def load_delivered(code):
             if not room:
                 continue
             exact.add((lvl, room, key(name)))
-            refs.setdefault((lvl, room), name)
+            if refs.get((lvl, room), name) != name:
+                refs[(lvl, room)] = None          # named more than one way
+            else:
+                refs.setdefault((lvl, room), name)
     return {"exact": exact, "refs": refs}
 
 
@@ -972,6 +1046,10 @@ def main():
                   % (lvl, ref, len(names), ", ".join(names)))
 
         known = load_delivered(code)
+        adopted = (adopt_delivered_spelling(rows, known, building)
+                   if code in TRUSTED_SPELLING else 0)
+        if adopted:
+            print("  %d rooms respelled from %s" % (adopted, DELIVERED[code]))
         for r in rows:
             r["subject"] = subject(building, r["level"], r["ref"], r["name"])
             r["label"] = label(r["level"], r["ref"], r["name"]) if r["name"] else ""
