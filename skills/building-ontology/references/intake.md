@@ -115,6 +115,10 @@ corrupts every calculation downstream of it.
 
 **Points and telemetry** - beyond the IO list itself
 - Which points are aggregations, with function and interval
+- **Which meters the building physically has, and what each one measures.** A
+  virtual meter only fills a gap, so this list decides which ones to build - and
+  it usually cannot be read off the sheet, because physical meters routinely
+  carry no `brick:meters` row
 - **Virtual meters: which tiers (Building, Floor, Room) and which meter types at
   each.** Ask as a matrix; the count follows as arithmetic and is worth saying
   back before building. Ask in the same breath whether the terminal units get

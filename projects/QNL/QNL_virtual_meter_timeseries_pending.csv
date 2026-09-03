@@ -1,6 +1,4 @@
 point,point_class,proposed_hasTimeseriesId,hasEntityId_TO_CONFIRM,meters
-entity:QNL_Utility-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,Utility_KWH,,entity:QNL
-entity:QNL_Utility-Virtual-Meter-Demand,brick:Electric_Power_Sensor,Utility_KW,,entity:QNL
 entity:QNL_UPS-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,UPS_KWH_CALC,,entity:QNL
 entity:QNL_UPS-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,UPS_KW_CALC,,entity:QNL
 entity:QNL_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWTH_CALC,,entity:QNL

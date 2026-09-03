@@ -10,9 +10,13 @@ Emits, in order:
   1. early declarations  - the para: classes, the two thermal units and the
      entity:Metering system node, all of which are referenced by later rows
   2. one virtual meter per (meter class x spatial entity) the tier matrix
-     selects, each carrying the Dar Cairo five-predicate block
+     selects, each carrying the Dar Cairo five-predicate block - skipping any
+     pair a physical meter already measures, which is what a virtual meter is
+     for standing in for
   3. para:contributionFraction on every unit fed by an AHU, except units sitting
-     in a shaft, riser or ceiling void
+     in a shaft, riser or ceiling void. It is a container for the unit's chilled
+     water consumption, which QNL has no point for: the backend replaces the
+     ContributionFraction series with its own calculation
 
 Timeseries references for the meter points are NOT written - the historian
 carries no calculated tags yet (checked: zero *_CALC, zero ContributionFraction).
@@ -96,6 +100,20 @@ TSID = {
     ("para:CHW_Meter",         "Demand"):      "CWPWR_KWT_CALC",
     ("para:HW_Meter",          "Consumption"): "HWPWR_KWTH_CALC",
     ("para:HW_Meter",          "Demand"):      "HWPWR_KWT_CALC",
+}
+
+# A virtual meter exists to stand in for a physical meter that was never
+# installed. Where one *is* installed and already measures the entity, the
+# virtual meter is a second, empty answer to the same question - so the pair is
+# suppressed here.
+#
+# This cannot be derived from the graph: not one of QNL's 16 physical meters
+# carries a brick:meters row, so nothing in the sheet says what any of them
+# measures. Until they do, the exclusions are listed by hand and each one names
+# the physical meter that covers it, so a reviewer can check the claim.
+ALREADY_METERED = {
+    # (meter class, metered entity): the physical meter that covers it
+    ("para:Utility_Meter", "entity:QNL"): "entity:QNL_Total-Energy",
 }
 
 # Everything a later row points at has to be declared before it. para:Utility_Meter
@@ -185,11 +203,15 @@ def spatial_targets(etype):
 
 
 def build_meters(tiers):
-    """The metering layer. Returns (rows, pending timeseries)."""
-    out, pending = [], []
+    """The metering layer. Returns (rows, pending timeseries, suppressed)."""
+    out, pending, suppressed = [], [], []
     for cls, segment, applies, kind in METER_TYPES:
         for tier in applies:
             for target, target_type in tiers[tier]:
+                covered = ALREADY_METERED.get((cls, target))
+                if covered:
+                    suppressed.append((f"{target}_{segment}", cls, covered))
+                    continue
                 meter = f"{target}_{segment}"
                 mlabel = label_of(meter)
                 out.append(row(meter, cls, "brick:isPartOf", METERING, "para:Metering_System",
@@ -204,7 +226,7 @@ def build_meters(tiers):
                                    oprops=[("rdfs:label_en", f"{mlabel} {kindname}"),
                                            ("brick:hasUnit", unit)]))
                     pending.append((point, pcls, TSID.get((cls, kindname), ""), "", target))
-    return out, pending
+    return out, pending, suppressed
 
 
 def build_contribution(etype, located, fedby, entity_id):
@@ -268,12 +290,14 @@ def main():
 
     tiers = spatial_targets(etype)
     decls = build_declarations(declared)
-    meters, pending = build_meters(tiers)
+    meters, pending, suppressed = build_meters(tiers)
     contrib, fed, skipped, derived = build_contribution(etype, located, fedby, entity_id)
 
     print(f"spatial targets   building {len(tiers['B'])}  levels {len(tiers['F'])}  rooms {len(tiers['R'])}")
     print(f"declarations      {len(decls)} rows")
     print(f"virtual meters    {len(meters) // 6} meters, {len(meters)} rows")
+    for m, cls, covered in suppressed:
+        print(f"  suppressed {m} ({cls}) - {covered} already meters it")
     print(f"contributionFraction  {len(contrib) // 2} of {len(fed)} AHU-fed units"
           f"  (skipped in shafts: {len(skipped)})")
     if derived:

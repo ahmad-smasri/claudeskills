@@ -551,8 +551,8 @@ introduce no findings of their own. Current totals are in "Validator result" abo
 
 ## Virtual metering layer — added 2026-09-03
 
-The sheet now carries a metering layer: **1,460 virtual meters, 8,760 rows**, plus
-`para:contributionFraction` on 297 terminal units. Ontology grew 9,985 → 19,351 rows.
+The sheet now carries a metering layer: **1,459 virtual meters, 8,754 rows**, plus
+`para:contributionFraction` on 297 terminal units. Ontology grew 9,985 → 19,345 rows.
 Regenerate it with `python3 projects/QNL/add_virtual_meters.py` (`--dry-run` to count first).
 
 **Where it came from.** `sources/VirtualMeters_QNL_manual_v1.xlsm`, the hand-built
@@ -564,9 +564,15 @@ normalised them. The layer is regenerated from the matrix against the live
 ontology instead, so identifiers agree by construction and `L1-145_ILL-Director`
 — added later by the room-retarget pass — is picked up automatically.
 
+**A virtual meter is only created where a physical meter does not exist** — that
+is what the layer is for. `entity:QNL_Utility-Virtual-Meter` was therefore *not*
+written: `entity:QNL_Total-Energy` is already a `para:Utility_Meter` with a live
+historian tag. The suppression lives in `ALREADY_METERED` in the generator, each
+entry naming the physical meter that justifies it.
+
 | Tier | Meter classes | Count |
 |---|---|---|
-| Building only | `para:Utility_Meter`, `para:UPS_Meter` | 2 |
+| Building only | `para:UPS_Meter` (Utility suppressed, see above) | 1 |
 | Building + floor | `para:HW_Meter`, `para:SPWR_Meter`, `para:Common_Util_Meter` | 18 |
 | Building + floor + room | `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`, `brick:Electrical_Meter` | 1,440 |
 
@@ -588,20 +594,31 @@ left alone and want a separate pass.
 `para:Utility_Meter` was already declared. All sort ahead of first use.
 
 **`para:contributionFraction` — 297 units** (246 VAV + 51 CAV), every unit an AHU
-feeds, with `ref:hasTimeseriesId` `ContributionFraction` and `para:hasEntityId`
-read off the unit's existing points. The skip-if-in-a-shaft rule matched nothing:
+feeds. It is a container point for the unit's chilled water consumption, which
+QNL has no point for; the backend replaces the `ContributionFraction` series with
+its own calculation apportioning the AHU's load across the units it feeds. Written
+with `ref:hasTimeseriesId` `ContributionFraction` and `para:hasEntityId`
+read off the unit's existing points, the same way every other datapoint on that
+unit derives it. The skip-if-in-a-shaft rule matched nothing:
 QNL's shaft-dwelling assets are 62 FCUs and 2 exhaust fans, and no AHU feeds any
 of them. `entity:QNL_CAV-B-S13-050` carries no points, so its entityId was
 derived — the derivation matches all 296 units that do have one.
 
 ### Open — needs your decision
 
-1. **`entity:QNL_Utility-Virtual-Meter` duplicates `entity:QNL_Total-Energy`.**
-   Total-Energy was already typed `para:Utility_Meter` and has a real historian
-   tag (`QNL_TotalEnergy.Energy`); the new one has none. Both claim the building
-   utility supply. Either retrofit Total-Energy into the metering layer and drop
-   the virtual one, or say what the virtual one measures that it does not.
-2. **2,920 meter points ship with no `ref:TimeseriesReference`.** The historian
+1. **`entity:QNL_CHWS-MAIN-LOOP_Energy-Meter` may make the building-tier
+   `para:CHW_Meter` redundant.** It is a `brick:Building_Chilled_Water_Meter` on
+   the main loop with 7 live points, including `CHW-Consumption-KW` and
+   `CHW-CHW-Energy-PV`. By the same rule that removed the Utility virtual meter,
+   `entity:QNL_CHW-Power-Thermal-Virtual-Meter` looks like a duplicate — but the
+   classes differ, so no checker will flag it. Confirm whether the loop meter
+   covers the whole building and I will add it to `ALREADY_METERED`.
+2. **None of the 16 physical meters carries a `brick:meters` row.** They are all
+   `brick:isPartOf entity:Electrical_System` with points, and nothing says what
+   any of them measures — so "is this already metered?" cannot be answered from
+   the sheet, and the suppression list has to be maintained by hand. Adding those
+   rows would make the rule self-checking. Worth a small pass.
+3. **2,918 meter points ship with no `ref:TimeseriesReference`.** The historian
    (`QNL_Historian_IO_list_CP2.xlsx`) carries no calculated tags — zero `*_CALC`,
    zero `ContributionFraction`. Every point is listed in
    `QNL_virtual_meter_timeseries_pending.csv` with the Dar Cairo `hasTimeseriesId`
@@ -609,7 +626,7 @@ derived — the derivation matches all 296 units that do have one.
    the space and nothing in the ontology derives it. Hand back the filled file and
    the rows go in in one pass. They show as `W-PT-1` until then — deliberately, a
    blank reference row would read as a working link.
-3. **`entity:QNL_L1-144` / `L1-145_ILL-Director` both carry meters.** If the
+4. **`entity:QNL_L1-144` / `L1-145_ILL-Director` both carry meters.** If the
    retarget pass was right that these are one room, 144 should be retired and its
    four meters with it.
 
@@ -618,11 +635,11 @@ derived — the derivation matches all 296 units that do have one.
 | | Before | After |
 |---|---|---|
 | Errors | 574 | **574** — none added |
-| `W-BN-4` | 0 | 1,460 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
-| `W-PT-1` | 0 | 2,920 — the pending timeseries above |
-| `check_consistency` errors | 590 | 615 |
+| `W-BN-4` | 0 | 1,459 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
+| `W-PT-1` | 0 | 2,918 — the pending timeseries above |
+| `check_consistency` errors | 590 | 608 |
 
-The 25 new consistency errors are the 14 pre-existing physical meters (MFM, VCB)
+The 18 new consistency errors are the 14 pre-existing physical meters (MFM, VCB)
 sharing `brick:Electrical_Meter` with the 360 new virtual ones. Dar Cairo files
 both under that class too, so this is named rather than fixed — minting a `para:`
 subclass to quiet the checker would depart from the primary reference. Every

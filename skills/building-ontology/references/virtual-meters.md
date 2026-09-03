@@ -6,6 +6,23 @@ points and the result is attached to a space. They are how the front end answers
 derivable from a survey or an IO list - **the tiers and the meter types are the
 client's decision, so both are asked for before any row is written.**
 
+**A virtual meter exists only where a physical one does not.** That is the whole
+point of the layer - it fills the gaps in the metering the building actually has.
+Where a real meter already measures the thing, a virtual meter beside it is a
+second answer to the same question with no data behind it, and the front end has
+no way to choose. So before generating a tier, **list the meters the sheet
+already carries and what each one measures**, and suppress every pair a physical
+meter covers. On QNL that removed the building-tier `para:Utility_Meter`, because
+`entity:QNL_Total-Energy` was already one and had a live historian tag.
+
+Expect this to need a list rather than a query. Physical meters routinely arrive
+with no `brick:meters` row at all - all 16 of QNL's were `brick:isPartOf
+entity:Electrical_System` with points and nothing saying what they metered - so
+the graph cannot answer "is this already metered?" and a human has to say. Ask
+for the answer at intake, name each suppression against the physical meter that
+justifies it, and log it. Adding the missing `brick:meters` rows to the physical
+meters is the durable fix, and worth proposing.
+
 Read this alongside `relationships.md` (the metering predicate family) and
 `class-resolution.md` (the ladder, which applies to meter classes like anything
 else).
@@ -33,8 +50,9 @@ That matrix is QNL's, and it is a reasonable default to offer. Once it is
 answered the count is fixed arithmetic - a `B` costs 1 meter, an `F` costs one
 per level, an `R` costs one per room - so **say the total back before building**:
 QNL's matrix over 1 building, 5 levels and 354 rooms is 1,460 meters and 8,760
-rows. A client who did not realise room tier meant 1,440 meters gets to say so
-while it is still a sentence rather than a sheet.
+rows, less whatever the physical-meter rule above suppresses - 1,459 in the end.
+A client who did not realise room tier meant 1,440 meters gets to say so while it
+is still a sentence rather than a sheet.
 
 **Utility Meter is a building-tier class.** It measures the supply the government
 or municipality delivers, and a building has one incoming supply. Electrical
@@ -44,11 +62,20 @@ every tier the client wants. *Dar Cairo does not follow this*: it puts a
 above is the house rule and it overrides the reference model here - see
 `known-issues.md`.
 
-**2. Whether the terminal units get `para:contributionFraction`.** The fraction
-of its AHU's output that one box accounts for, so the AHU's energy can be split
-across the spaces it serves. If yes, it goes on **every unit an AHU feeds** - VAV,
-CAV, PIM, whatever the building uses - with `ref:hasTimeseriesId` fixed at
-`ContributionFraction` and `para:hasEntityId` the unit's own entity id.
+**2. Whether the terminal units get `para:contributionFraction`.** It is a
+**container point for the chilled water consumption of a unit fed by an AHU**,
+declared because buildings rarely meter a VAV or CAV's own CHW load. The
+`ContributionFraction` series is a placeholder: the backend replaces it with an
+internal calculation that apportions the AHU's load across the units it feeds.
+So the point is real in the model before any telemetry exists for it - that is
+what it is for.
+
+If yes, it goes on **every unit an AHU feeds** - VAV, CAV, PIM, whatever the
+building uses - with `ref:hasTimeseriesId` fixed at the literal
+`ContributionFraction` and `para:hasEntityId` derived exactly as every other
+datapoint on that unit derives it. **Read the entityId off the unit's existing
+points rather than deriving it from the identifier**, and report any unit you had
+to derive because it has no points to read.
 
 **Skip any unit sitting in a shaft, riser or ceiling void.** Those are cable and
 duct spaces; a contribution fraction for one is a number about nothing. Test
@@ -102,7 +129,7 @@ identifier of the thing it meters, so it sorts beside it and reads without a
 lookup. The segments are Dar Cairo's, verbatim:
 
 ```
-entity:QNL_Utility-Virtual-Meter                                       building
+entity:QNL_UPS-Util-Electrical-Virtual-Meter                           building
 entity:QNL_L1_HVAC-Util-Electrical-Virtual-Meter                       floor
 entity:QNL_B-002_Kitchen_LTG-Util-Electrical-Virtual-Meter             room
 entity:QNL_L1_CHW-Power-Thermal-Virtual-Meter                          floor, thermal
@@ -235,11 +262,12 @@ Beyond the standard passes:
   files both under `brick:Electrical_Meter`, so a building with real MFMs will
   report `E-CON-1`/`E-CON-2` between the two populations. Name it in the handover
   rather than minting a `para:` subclass to quiet the checker.
-- **Look for a meter that already exists.** A sheet with a pre-existing
-  building-total meter does not need a second, empty one on top of it; the
-  consistency checker will find it, but only if the classes match. On QNL,
-  `entity:QNL_Total-Energy` was already a `para:Utility_Meter` with real
-  telemetry.
+- **Look for a meter that already exists**, per the rule at the top. The
+  consistency checker finds the overlap only when the classes happen to match -
+  `entity:QNL_Total-Energy` and the proposed `entity:QNL_Utility-Virtual-Meter`
+  were both `para:Utility_Meter`, so it did. A physical `brick:Water_Meter`
+  against a virtual `para:CHW_Meter` measuring the same loop would pass silently.
+  Read the existing meter list yourself; do not wait for the checker.
 
 ## Why not to build this by hand
 

@@ -189,6 +189,13 @@ IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
 `ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
 **on the point, never on the equipment.**
 
+**A virtual meter exists only where a physical one does not** - it fills the gaps
+in the metering the building has, so a virtual meter beside a real one is a second
+answer with no data behind it. List the meters the sheet already carries and what
+each measures before generating a tier, and suppress every pair a physical meter
+covers. Expect to need a hand-written list: physical meters routinely carry no
+`brick:meters` row, so the graph cannot answer the question.
+
 **Virtual meters are asked for, never assumed** - `references/virtual-meters.md`.
 Which tiers (Building, Floor, Room) and which meter types at each is the client's
 decision, put to them as a matrix; the count then follows as arithmetic, so say
