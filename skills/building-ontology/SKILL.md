@@ -232,13 +232,19 @@ stdout or `--report`. `.xlsx` needs `openpyxl`; `.csv` needs nothing extra.
 in the assumption log** - a deliverable in its own right, what lets a reviewer see
 months later why the sheet differs from the register they hold.
 
-One workbook for the estate, `Assumption_Log.xlsx`, **one sheet per building**
-(`SSC`, `HQ`, `QNL`, …), columns `ID · Date · Category · Layer · Entity/Scope ·
-What the source says · What we did · Why/basis · Rows affected`. Categories:
-`Identifier`, `Location`, `Units`, `Spelling`, `Class`, `Structure`, `Scope`,
-`Source defect`. It is **hand-maintained** in Excel; `projects/format_assumption_log.py`
-only propagates the shared format (`--add <NAME>` scaffolds a new building's sheet),
-never row content.
+One workbook for the estate, `projects/Assumption_Log.xlsx`, **one sheet per
+building** (`SSC`, `HQ`, `QNL`, …), columns `ID · Date · Category · Layer ·
+Entity/Scope · What the source says · What we did · Why/basis · Rows affected`.
+Categories: `Identifier`, `Location`, `Units`, `Spelling`, `Class`, `Structure`,
+`Scope`, `Source defect`.
+
+**The CSVs are the source; the workbook is output.** `projects/assumption-log/`
+holds one CSV per building and `build.py` regenerates the workbook from them
+(`--add <NAME>` starts a new building, `--check` says whether the workbook is
+stale and exits non-zero if it is). Edit the CSV and rebuild - an edit made in
+Excel is overwritten by the next build. The workbook was the source until a
+binary merge nearly discarded thirteen QNL entries: git cannot merge an `.xlsx`,
+so two people editing one meant a silent loss.
 
 Log anything where the sheet and the source diverge: a unit changed and why the
 class outranked it; a spelling/separator corrected with the sibling that proves
