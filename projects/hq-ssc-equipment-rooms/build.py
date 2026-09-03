@@ -20,6 +20,7 @@ import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 
+import hq_screens
 import ontology
 import screens
 
@@ -78,7 +79,8 @@ def same_room(a, b):
 
 def collect():
     reading = screens.readings()
-    rows, unlocated = [], []
+    rows, unlocated, extra = [], [], []
+    hq_note = {}
     for building, path in BOOKS:
         eq, label, cls = ontology.equipment(path)
         ws = ontology.sheet(path)
@@ -92,6 +94,13 @@ def collect():
             for k in screens.key(tag_of(e['entity'])):
                 index.setdefault(k, e)
         matched = {}
+        if building == 'HQ':
+            for tag, room, screen, conf, note in hq_screens.READ:
+                for k in screens.key(tag):
+                    if k in index:
+                        matched[index[k]['entity']] = (tag, room, screen, conf)
+                        hq_note[index[k]['entity']] = note
+                        break
         for tag, (bldg, room, screen, conf) in reading.items():
             if bldg != building:
                 continue          # the same tag exists in both buildings
@@ -112,19 +121,36 @@ def collect():
             elif not e['room_label']:
                 why.append('the room entity %s carries no rdfs:label_en, so it'
                            ' has no readable name' % e['room'])
-            if e['class'] == 'brick:CRAC' and 'PARKING' in e['room_label'].upper():
-                why.append('a CRAC is a computer-room unit and the ontology'
-                           ' puts it in a parking bay')
-            agrees = room and same_room(room, e['room_label'])
+            # `Unlabelled cell east of Transformer Substation B.010` shares
+            # words with the room column D names without being that room
+            named = room and not room.lower().startswith('unlabelled')
+            agrees = named and same_room(room, e['room_label'])
+            if room and not named:
+                why.append('the dot is in a cell the screen does not name, so'
+                           ' the ontology room cannot be confirmed from it')
             if room and not agrees:
                 why.append('the BMS screen puts it in %s and the ontology in %s'
                            % (room, e['room_label'] or e['room']))
                 if conf == 'check':
                     why.append('and the screen reading was itself marked as'
                                ' wanting a second look when it was made')
+            # a caveat on how the reading was made is not itself a reason to
+            # revise - it goes in the Why column but does not raise the flag
+            flag = bool(why)
+            if hq_note.get(e['entity']):
+                why.append(hq_note[e['entity']])
+            if e['class'] == 'para:Car-Parking_Exhaust-Fan':
+                deck = hq_screens.DECK.get(e['entity'].rsplit('_', 1)[-1])
+                if deck and not screen:
+                    screen = deck
+                    why.append('the screen shows it on this car park deck, but'
+                               ' the deck carries no room names at all - bay'
+                               ' numbers, Exit and nothing else - so the'
+                               ' placeholder cannot be resolved from it')
+                    flag = True
             rows.append([building, tag, e['class'], e['entity'], e['room'],
                          e['room_label'], room, screen, conf,
-                         'YES' if why else '', '; '.join(why)])
+                         'YES' if flag else '', '; '.join(why)])
 
         for ent in sorted(haspoint - located - parts):
             klass = cls.get(ent, '')
@@ -136,7 +162,12 @@ def collect():
                               '', 'YES',
                               'the ontology gives this equipment no'
                               ' rec:locatedIn at all'])
-    return rows + unlocated
+    for tag, kind, screen in hq_screens.MISSING:
+        extra.append(['HQ', tag, '%s (BMS screen only)' % kind, '', '', '',
+                      '', screen, 'ok', 'YES',
+                      'this unit is drawn on the BMS screen and the ontology'
+                      ' has no entity for it at all'])
+    return rows + unlocated + extra
 
 
 def style_header(ws, row, cols):

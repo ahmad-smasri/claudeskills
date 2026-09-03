@@ -10,12 +10,16 @@ screen pass and are left out here.
 | BMS screens | `Room per BMS screen` | the room the dotted serving-area leader points at, harvested from `../bms-room-allocation/*_alloc.py` |
 | Ontology | `Room per ontology` | `rec:locatedIn` on the equipment entity, named by that room entity's own `rdfs:label_en` |
 
-## The screen column covers SSC only
+## The screen column
 
-19 units, all from the SSC screens. The HQ pass read VAVs and FCUs and never
-traced the plant icons, and the HQ screen images are not in the repo to
-re-read - only the readings were committed. So every HQ row here is judged on
-the ontology alone.
+28 readings: 19 harvested from the earlier SSC pass, and 9 traced fresh off the
+HQ screens with `annotate_all.py` from the QNL project - the HQ pass had only
+ever read VAVs and FCUs, so its plant icons had never been followed.
+
+The HQ car park screens carry no room names at all - parking bay numbers,
+`Exit`, `Public Vehicle Out` and nothing else - so the twenty-seven CEF fans
+get the deck they are drawn on and no room. The ontology's `entity:<Location>`
+placeholder cannot be resolved from those screens.
 
 ## What counts as needing revision
 
@@ -25,13 +29,30 @@ the ontology alone.
 | Reason | Rows |
 |---|---|
 | the ontology points at the placeholder `entity:<Location>` rather than a room | 52 (HQ) |
-| the two sources name different rooms | 11 (SSC) |
-| a CRAC - a computer-room unit - is located in a VVIP parking bay | 8 (HQ) |
+| the car park deck the screen shows carries no room names, so the placeholder cannot be resolved from it | 25 (HQ) |
+| the unit is drawn on a BMS screen and the ontology has no entity for it at all | 18 (HQ) |
+| the two sources name different rooms | 14 (11 SSC, 3 HQ) |
 | the room entity `entity:Level7_Office0367` carries no readable name | 7 (SSC) |
 | the `rec:locatedIn` row carries no room at all | 6 (HQ) |
 | the equipment carries points but has no `rec:locatedIn` | 2 (HQ generators) |
 
-Rows can carry more than one reason, so those do not sum to 85.
+Rows can carry more than one reason, so those do not sum to 99.
+
+## A flag the screens took back
+
+An earlier build flagged eight HQ CRACs because the ontology put them in VVIP
+parking bays and a computer-room unit in a car park reads like a fill error.
+The screens say otherwise: `CCU-B-0005` to `CCU-B-0008` all lead into
+`VIP Parking B.115` on `Basment Floor/BF-2`, which is what the ontology says
+for three of them and fills the placeholder for the fourth. That flag was my
+inference and it was wrong, so it is gone. Only `CCU-B-0003A` survives it - its
+dot is in the Chauffer Room band, one wall north of the VIP parking.
+
+## Equipment the ontology does not have
+
+Ten jet fans (`JF-B-0001` to `JF-B-0010`) and eight induction fans
+(`IF-B-0001` to `IF-B-0008`) are drawn on the HQ car park screens and the HQ
+ontology has no entity for any of them - not a wrong room, no entity at all.
 
 ## Two patterns worth knowing before reading the rows
 
