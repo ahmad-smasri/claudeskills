@@ -22,12 +22,31 @@ import argparse
 import collections
 import csv
 import sys
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 MODELS = ROOT.parent.parent / "reference-models"
 DATA = ROOT / "references" / "data"
-PRIMARY = MODELS / "DarCairo_V93.csv"
+
+
+def dar_cairo(models=None):
+    """The highest-numbered DarCairo_V*.csv in reference-models/.
+
+    Pinning the filename meant every release - V93 to V98 and the next one -
+    was a code change in two scripts, and a missed one silently read the old
+    model. Resolve it by version instead.
+    """
+    d = models or MODELS
+    best, best_v = None, -1
+    for f in d.glob("DarCairo_V*.csv"):
+        m = re.match(r"^DarCairo_V(\d+)\.csv$", f.name)
+        if m and int(m.group(1)) > best_v:
+            best, best_v = f, int(m.group(1))
+    return best or d / "DarCairo.csv"
+
+
+PRIMARY = dar_cairo()
 
 
 def pick_ontology_sheet(wb, path):

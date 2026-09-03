@@ -294,7 +294,7 @@ building, level, zone, room, AHU, VFD, a terminal unit feeding its room, points,
 timeseries references, an aggregation and two `para:` classes - that validates
 clean. Copy its shapes rather than reinventing them.
 
-`reference-models/` holds the source of truth: `DarCairo_V93.csv` (primary),
+`reference-models/` holds the source of truth: `DarCairo_V98.csv` (primary),
 `QF_SSC_Ontology_ver02.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx` (the two
 delivered previous-project ontologies - the step-3 reference in the class ladder;
 read HQ for structure, not units, and pick its sheet by header not by its

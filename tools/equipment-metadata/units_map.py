@@ -1,7 +1,8 @@
 """Source unit -> Dar Cairo (QUDT) unit, with the factor to apply to the value.
 
 Every target below was chosen from what Dar Cairo actually writes, read off
-DarCairo_V93.csv rather than assumed:
+DarCairo_V93.csv rather than assumed, and re-checked against V98 - the unit
+column is identical between the two releases, counts included:
 
   brick:ratedPowerInput          unit:KiloW      (108 rows)
   brick:coolingCapacity          unit:KiloW      (76)

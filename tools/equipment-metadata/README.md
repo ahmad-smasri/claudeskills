@@ -34,7 +34,7 @@ converted to the unit Dar Cairo uses for it.
 | CAV Units | 36 schedule rows, 6 schedules | drawing images supplied in chat |
 | VAV Units | 60 schedule rows, 6 schedules | drawing images supplied in chat |
 | DX Units | DX/B/01-20, DX/RP/21 | DX split system schematic riser |
-| Units | the source-unit to Dar-Cairo-unit mapping | `reference-models/DarCairo_V93.csv` |
+| Units | the source-unit to Dar-Cairo-unit mapping | `reference-models/DarCairo_V98.csv` |
 
 ## Ontology scope
 
@@ -194,6 +194,7 @@ hold the transcription, `Value (Dar Cairo)` / `Unit (QUDT)` hold the same quanti
 in Dar Cairo's unit, and `Conversion` names the arithmetic applied.
 
 `units_map.py` holds the mapping. Every target was read off `DarCairo_V93.csv`
+and still holds on `V98`, whose unit column is identical,
 rather than assumed — the predicate/unit pairings that settled it:
 
 | Dar Cairo predicate | Unit | Rows |

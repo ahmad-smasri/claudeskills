@@ -1,229 +1,243 @@
 class,subClassOf,label,source
-para:3P_Current_Sensor,brick:Current_Sensor,3P Current Sensor,DarCairo_V93.csv
-para:3P_Voltage_Sensor,brick:Voltage_Sensor,3P Voltage Sensor,DarCairo_V93.csv
-para:AHU_Zone,rec:Zone,AHU Zone,DarCairo_V93.csv
-para:Access_Control_System,brick:System,Access Control System,DarCairo_V93.csv
-para:Activation_Frequency,brick:Frequency,Activation Frequency,DarCairo_V93.csv
-para:Arrival_Time,brick:Point,Occupancy Arrival Time,DarCairo_V93.csv
-para:Auto_Status,brick:Manual_Auto_Status,Automatic Status,DarCairo_V93.csv
-para:Avg_Power_Factor_Sensor,brick:Power_Factor_Sensor,Avg Power Factor Sensor,DarCairo_V93.csv
-para:Battery_Bypass_Alarm,brick:Alarm,Battery Bypass Alarm,DarCairo_V93.csv
-para:Battery_EOL_Alarm,brick:Alarm,Battery EOL Alarm,DarCairo_V93.csv
-para:Battery_Mode,brick:Mode_Status,Battery Mode,DarCairo_V93.csv
-para:Building_Operating_Schedule_Bit,brick:Point,Building Operating Schedule,DarCairo_V93.csv
-para:Bypass_Mode,brick:Mode_Status,Bypass Mode,DarCairo_V93.csv
-para:Bypass_Switch_Status,brick:Switch_Status,Bypass Switch Status,DarCairo_V93.csv
-para:Bypass_Trip_Status,para:Trip_Status,Bypass Trip Status,DarCairo_V93.csv
-para:CHW_Meter,brick:Thermal_Power_Meter,Chilled Water Thermal Power Meter,DarCairo_V93.csv
-para:CO2_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:COP,brick:Point,Coefficient of Performance (COP),DarCairo_V93.csv
-para:CO_High_Limit_Setpoint,brick:Setpoint,CO High Limit Setpoint,DarCairo_V93.csv
-para:CO_Level_Sensor_01,brick:CO_Level_Sensor,CO Sensor 01,DarCairo_V93.csv
-para:CO_Level_Sensor_02,brick:CO_Level_Sensor,CO Sensor 02,DarCairo_V93.csv
-para:CO_Level_Sensor_03,brick:CO_Level_Sensor,CO Sensor 03,DarCairo_V93.csv
-para:CO_Level_Sensor_04,brick:CO_Level_Sensor,CO Sensor 04,DarCairo_V93.csv
-para:CO_Level_Sensor_05,brick:CO_Level_Sensor,CO Sensor 05,DarCairo_V93.csv
-para:Charge_Alarm,brick:Alarm,Charge Alarm,DarCairo_V93.csv
-para:Charger_failure,brick:Failure_Alarm,Charger failure,DarCairo_V93.csv
-para:Chilled_Water_Loop_Network,brick:HVAC_Equipment,Chilled Water Loop Network,DarCairo_V93.csv
-para:Chilled_Water_Return_Temperature_Sensor_01,brick:Chilled_Water_Return_Temperature_Sensor,Chilled Water Return Temperature Sensor 01,DarCairo_V93.csv
-para:Chilled_Water_Return_Temperature_Sensor_02,brick:Chilled_Water_Return_Temperature_Sensor,Chilled Water Return Temperature Sensor 02,DarCairo_V93.csv
-para:Close_command,brick:Open_Close_Command,Close Command,QF_SSC_Ontology_ver02.xlsx
-para:Command_Overriden_Status,brick:Overridden_Status,Command Overridden Status,DarCairo_V93.csv
-para:Command_Priority_Array_08,rec:PointOfInterest,Command Priority Array 08,DarCairo_V93.csv
-para:Command_Priority_Array_12,rec:PointOfInterest,Command Priority Array 12,DarCairo_V93.csv
-para:Command_Priority_Array_13,rec:PointOfInterest,Command Priority Array 13,DarCairo_V93.csv
-para:Command_Status,brick:Manual_Auto_Status,Auto Manual Command Status,QF_SSC_Ontology_ver02.xlsx
-para:Common_Util_Meter,brick:Electrical_Meter,Common Utilities Electrical Meter,DarCairo_V93.csv
-para:Coolant_Temperature_Sensor,brick:Temperature_Sensor,Coolant Temperature Sensor,DarCairo_V93.csv
-para:Cooling_Mode_Operation_Hours,para:Operation_Hours,Cooling Mode Operating Duration,DarCairo_V93.csv
-para:DC_Battery_System,brick:Energy_Storage,DC Battery System,DarCairo_V93.csv
-para:DXUnit,brick:HVAC_Equipment,DX Unit,QF_SSC_Ontology_ver02.xlsx
-para:Damper_Position_100,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
-para:Damper_Position_70,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
-para:Damper_Position_77.5,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
-para:Damper_Position_85,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
-para:Damper_Position_92.5,brick:Valve_Position_Command,,QF_SSC_Ontology_ver02.xlsx
-para:Data-Center_Meter,brick:Electrical_Meter,Data Center Electrical Meter,DarCairo_V93.csv
-para:Degree_Days,brick:Point,Degree Days,DarCairo_V93.csv
-para:Dehumid_Mode_Operation_Hours,para:Operation_Hours,Dehumidification Operationg Duration,DarCairo_V93.csv
-para:Dehumidification_Mode_Status,brick:Operating_Mode_Status,Dehumidification Mode Status,DarCairo_V93.csv
-para:Dehumidification_On_Status,brick:Operating_Mode_Status,Dehumidification On Status,QF_SSC_Ontology_ver02.xlsx
-para:Departure_Time,brick:Point,Occupancy Departure Time,DarCairo_V93.csv
-para:Differential_Pressure_Sensor_01,brick:Differential_Pressure_Sensor,Differential Pressure Sensor 01,DarCairo_V93.csv
-para:Differential_Pressure_Sensor_02,brick:Differential_Pressure_Sensor,Differential Pressure Sensor 02,DarCairo_V93.csv
-para:Differential_Pressure_Setpoint_01,brick:Differential_Pressure_Setpoint,Differential Pressure Sensor Setpoint 01,DarCairo_V93.csv
-para:Differential_Pressure_Setpoint_02,brick:Differential_Pressure_Setpoint,Differential Pressure Sensor Setpoint 02,DarCairo_V93.csv
-para:Domestic_Water_System,brick:Water_System,Domestic_Water_System,DarCairo_V93.csv
-para:Electric_Power_Sensor_Forecast,brick:Electric_Power_Sensor,Electric Power Forecast,DarCairo_V93.csv
-para:Electric_Power_Sensor_Pred,brick:Electric_Power_Sensor,Predicted Power Demand,DarCairo_V93.csv
-para:Electric_Power_Target,brick:Electric_Power_Sensor,Electric Power Target,DarCairo_V93.csv
-para:Electrical_Energy_Usage_Sensor_Forecast,brick:Electrical_Energy_Usage_Sensor,Electrical Energy Usage Forecast,DarCairo_V93.csv
-para:Elevator_System,brick:System,Elevator System,DarCairo_V93.csv
-para:Emergency_Switch_Status,brick:Switch_Status,Emergency Switch Status,DarCairo_V93.csv
-para:Emergency_Trip_Status,para:Trip_Status,Emergency Trip Status,DarCairo_V93.csv
-para:Energy_Generation_Sensor_Forecast,brick:Energy_Generation_Sensor,Energy Generation Forecast,DarCairo_V93.csv
-para:Energy_KPI,para:KPI,Energy KPI,DarCairo_V93.csv
-para:Engine_Speed_Sensor,brick:Speed_Sensor,Engine Speed Sensor,DarCairo_V93.csv
-para:Fail_Start_Alarm,brick:Alarm,Fail to Start Alarm,QF_SSC_Ontology_ver02.xlsx
-para:Fail_Stop_Alarm,brick:Alarm,Fail to Stop Alarm,QF_SSC_Ontology_ver02.xlsx
-para:Failure_Frequency,brick:Frequency,Failure Frequency,DarCairo_V93.csv
-para:Fan_Mode_Operation_Hours,para:Operation_Hours,Fan Mode Operating Duration,DarCairo_V93.csv
-para:Feeder_Pillar,brick:Electrical_Equipment,Feeder Pillar,DarCairo_V93.csv
-para:Frequency_sensor_L1,brick:Frequency_Sensor,Frequency sensor L1,DarCairo_V93.csv
-para:Frequency_sensor_L2,brick:Frequency_Sensor,Frequency sensor L2,DarCairo_V93.csv
-para:Frequency_sensor_L3,brick:Frequency_Sensor,Frequency sensor L3,DarCairo_V93.csv
-para:Fuel-Oil-System,brick:System,Fuel Oil System,DarCairo_V93.csv
-para:Fuel_Meter,brick:Meter,Fuel Meter,DarCairo_V93.csv
-para:Fuel_Oil_System,brick:System,Fuel Oil System,DarCairo_V93.csv
-para:Fuel_Sensor,brick:Sensor,Fuel Sensor,DarCairo_V93.csv
-para:Garage_Exhaust_Fan,brick:Exhaust_Fan,Garage Exhaust Fan,DarCairo_V93.csv
-para:General_Util_Meter,brick:Electrical_Meter,General Utilities Electrical Meter,DarCairo_V93.csv
-para:Generation_Sensor_Forecast,brick:Generation_Sensor,Generation Forecast,DarCairo_V93.csv
-para:Generator,brick:Electrical_Equipment,Generator,DarCairo_V93.csv
-para:Generator_Meter,brick:Electrical_Meter,Solar Electrical Meter,DarCairo_V93.csv
-para:Generator_kWh_Sensor,para:Generator,Generator kWh Sensor,DarCairo_V93.csv
-para:Grey_water_System,brick:Water_System,Grey Water System,DarCairo_V93.csv
-para:HRW_Cooling_Temperature_Setpoint,brick:Temperature_Setpoint,HRW Cooling Temperature Setpoint,DarCairo_V93.csv
-para:HRW_Heating_Temperature_Setpoint,brick:Temperature_Setpoint,HRW Heating Temperature Setpoint,DarCairo_V93.csv
-para:HVAC_Meter,brick:Electrical_Meter,HVAC Electrical Meter,DarCairo_V93.csv
-para:HW_Meter,brick:Thermal_Power_Meter,Hot Water Thermal Power Meter,DarCairo_V93.csv
-para:Heater_On_Status,brick:Operating_Mode_Status,Heater On Status,QF_SSC_Ontology_ver02.xlsx
-para:Heating_Mode_Operation_Hours,para:Operation_Hours,Heating Mode Operating Duration,DarCairo_V93.csv
-para:HighPowerFan,para:HighPowerFan,High Power Fan,DarCairo_V93.csv
-para:High_Coolant_Temperature_Sensor,brick:Temperature_Sensor,High Coolant Temperature Sensor,DarCairo_V93.csv
-para:High_Level_Alarm,brick:Max_Water_Level_Alarm,Max Lvl Alarm,DarCairo_V93.csv
-para:Humid_Mode_Operation_Hours,para:Operation_Hours,Humidification Operationg Duration,DarCairo_V93.csv
-para:Humidification_Mode_Status,brick:Operating_Mode_Status,Humidification Mode Status,DarCairo_V93.csv
-para:Humidification_On_Status,brick:Operating_Mode_Status,Humidification On Status,QF_SSC_Ontology_ver02.xlsx
-para:IFC_ID,ref:ifcGlobalID,IFC_Id,DarCairo_V93.csv
-para:Illuminance_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:Input_Alarm,brick:Alarm,Input Alarm,DarCairo_V93.csv
-para:IoT_System,brick:System,IoT System,DarCairo_V93.csv
-para:KPI,brick:Point,Generic KPI,DarCairo_V93.csv
-para:L1_Current_Sensor,brick:Current_Sensor,L1 Current Sensor,DarCairo_V93.csv
-para:L1_L2_Voltage_Sensor,brick:Voltage_Sensor,L1-L2 Voltage Sensor,DarCairo_V93.csv
-para:L1_Voltage_Sensor,brick:Voltage_Sensor,L1 Voltage Sensor,DarCairo_V93.csv
-para:L2_Current_Sensor,brick:Current_Sensor,L2 Current Sensor,DarCairo_V93.csv
-para:L2_L3_Voltage_Sensor,brick:Voltage_Sensor,L2-L3 Voltage Sensor,DarCairo_V93.csv
-para:L2_Voltage_Sensor,brick:Voltage_Sensor,L2 Voltage Sensor,DarCairo_V93.csv
-para:L3_Current_Sensor,brick:Current_Sensor,L3 Current Sensor,DarCairo_V93.csv
-para:L3_L1_Voltage_Sensor,brick:Voltage_Sensor,L3-L1 Voltage Sensor,DarCairo_V93.csv
-para:L3_Voltage_Sensor,brick:Voltage_Sensor,L3 Voltage Sensor,DarCairo_V93.csv
-para:LTG_Meter,brick:Electrical_Meter,Lighting Electrical Meter,DarCairo_V93.csv
-para:Lighting_panel,brick:Breaker_Panel,Lighting Panel,DarCairo_V93.csv
-para:Line1_Power_Factor_Sensor,brick:Power_Factor_Sensor,Line1 Power Factor Sensor,DarCairo_V93.csv
-para:Line2_Power_Factor_Sensor,brick:Power_Factor_Sensor,Line2 Power Factor Sensor,DarCairo_V93.csv
-para:Line3_Power_Factor_Sensor,brick:Power_Factor_Sensor,Line3 Power Factor Sensor,DarCairo_V93.csv
-para:LowPowerFan,para:LowPowerFan,Low Power Fan,DarCairo_V93.csv
-para:Low_Level_Alarm,brick:Min_Water_Level_Alarm,Low Lvl Alarm,DarCairo_V93.csv
-para:Low_Level_Limit,brick:Level_Status,Low_Level_Limit,DarCairo_V93.csv
-para:Main_Distribution_Board,brick:Electrical_Equipment,Main Distribution Board,DarCairo_V93.csv
-para:Manual_Override_Mode,brick:Overridden_Status,Manual Override Mode,DarCairo_V93.csv
-para:Manual_Status,brick:Manual_Auto_Status,Manual Status,DarCairo_V93.csv
-para:MediumPowerFan,para:MediumPowerFan,Medium Power Fan,DarCairo_V93.csv
-para:Metering_System,brick:System,Metering System,DarCairo_V93.csv
-para:Needed_Cooling_Time,brick:Point,Needed Cooling Time,DarCairo_V93.csv
-para:Needed_Heating_Time,brick:Point,Needed Heating Time,DarCairo_V93.csv
-para:Neg_Current_Sensor,brick:Current_Sensor,Negative Sequence Current,DarCairo_V93.csv
-para:Noise_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:Noise_Sensor,brick:Sensor,Noise Sensor,DarCairo_V93.csv
-para:Normal_Switch_Status,brick:Switch_Status,Normal Switch Status,DarCairo_V93.csv
-para:Normal_Trip_Status,para:Trip_Status,Normal Trip Status,DarCairo_V93.csv
-para:OW_KPI,para:KPI,Occupant Wellbeing KPI,DarCairo_V93.csv
-para:Occupant-Wellbeing_Meter,brick:Meter,Occupant Wellbeing Virtual Meter,DarCairo_V93.csv
-para:Occupied_Hours,brick:Duration_Sensor,Occupied Hours,DarCairo_V93.csv
-para:Off_Time_Sensor,brick:Duration_Sensor,,DarCairo_V93.csv
-para:Oil_Loop,brick:Gas_Distribution,Oil Loop,DarCairo_V93.csv
-para:Oil_Pump,brick:Pump,Oil Pump,DarCairo_V93.csv
-para:Oil_Storage_Tank,brick:Storage_Tank,Oil StorageTank,DarCairo_V93.csv
-para:Oil_Temperature_Sensor,brick:Temperature_Sensor,Oil Temperature Sensor,DarCairo_V93.csv
-para:Open_command,brick:Open_Close_Command,Open Command,QF_SSC_Ontology_ver02.xlsx
-para:Operation_Above80_Hours,brick:Duration_Sensor,Operating Hours Above 80 Hours,DarCairo_V93.csv
-para:Operation_Hours,brick:Duration_Sensor,Operating Duration,DarCairo_V93.csv
-para:Outpower_L1,brick:Load_Parameter,Outpower L1%,DarCairo_V93.csv
-para:Outpower_L2,brick:Load_Parameter,Outpower L2%,DarCairo_V93.csv
-para:Outpower_L3,brick:Load_Parameter,Outpower L3%,DarCairo_V93.csv
-para:Output_Alarm,brick:Alarm,Output Alarm,DarCairo_V93.csv
-para:Output_Off_Command,brick:Off_Command,Output Off Command,DarCairo_V93.csv
-para:Output_Off_Status,brick:Off_Status,Output Off Status,DarCairo_V93.csv
-para:Output_Priority_Array_08,rec:PointOfInterest,Output Priority Array 08,DarCairo_V93.csv
-para:Output_Priority_Array_12,rec:PointOfInterest,Output Priority Array 12,DarCairo_V93.csv
-para:Output_Priority_Array_13,rec:PointOfInterest,Output Priority Array 13,DarCairo_V93.csv
-para:Over_Speed_Sensor,brick:Speed_Sensor,Over Speed Sensor,DarCairo_V93.csv
-para:PM10_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:PM2.5_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:Phase_Loss_Alarm,brick:Power_Loss_Alarm,Phase Loss Status Class,DarCairo_V93.csv
-para:Pos_Current_Sensor,brick:Current_Sensor,Positive Sequence Current,DarCairo_V93.csv
-para:Power_Fail_Count,brick:Point,Power Fail Count,DarCairo_V93.csv
-para:Power_panel,brick:Breaker_Panel,Power Panel,DarCairo_V93.csv
-para:Pressure_Independent_Module,brick:Terminal_Unit,Pressure Independent Module,DarCairo_V93.csv
-para:Pressure_Selection_Mode,brick:Mode_Status,Pressure Selection Mode,DarCairo_V93.csv
-para:Prod_Type,brick:Collection,,DarCairo_V93.csv
-para:Rate,brick:Point,Rate,DarCairo_V93.csv
-para:Reactive_Energy_Usage_Sensor,brick:Electrical_Energy_Usage_Sensor,Reactive Energy Usage Sensor,DarCairo_V93.csv
-para:Relative_Humidity_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:Relative_Humidity_Sensor_Forecast,brick:Relative_Humidity_Sensor,Weather Relative Humidity Forecast,DarCairo_V93.csv
-para:Required_Operation_Hours,para:Operation_Hours,Required Operating Duration,DarCairo_V93.csv
-para:Res_Current_Sensor,brick:Current_Sensor,Residual Current,DarCairo_V93.csv
-para:Return_Air_Static_Pressure_Sensor,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure,QF_SSC_Ontology_ver02.xlsx
-para:Return_Air_Static_Pressure_Sensor_01,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 01,QF_SSC_Ontology_ver02.xlsx
-para:Return_Air_Static_Pressure_Sensor_02,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 02,QF_SSC_Ontology_ver02.xlsx
-para:Return_Smoke_Detector,brick:Smoke_Detector,Return Smoke Detector,DarCairo_V93.csv
-para:Room_Air_Temperature,brick:Temperature_Sensor,Room Air Temperature,DarCairo_V93.csv
-para:Rotate_Command,brick:Lead_Lag_Command,Rotate Command,DarCairo_V93.csv
-para:SPWR_Meter,brick:Electrical_Meter,Small Power Electrical Meter,DarCairo_V93.csv
-para:Scheduled_Hrs_Duration,brick:Duration_Sensor,Scheduled Hours of Operation,QF_SSC_Ontology_ver02.xlsx
-para:Solar_Meter,brick:Electrical_Meter,Generator Electrical Meter,DarCairo_V93.csv
-para:Start_Command,brick:Start_Stop_Command,Start Command,QF_SSC_Ontology_ver02.xlsx
-para:Start_Time,brick:Duration_Sensor,Start Time,DarCairo_V93.csv
-para:Start_Time_Buffer,brick:Point,Start Time Buffer,DarCairo_V93.csv
-para:Static_Pressure_Sensor,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor,QF_SSC_Ontology_ver02.xlsx
-para:Static_Pressure_Sensor_01,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 01,DarCairo_V93.csv
-para:Static_Pressure_Sensor_02,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 02,DarCairo_V93.csv
-para:Static_Pressure_Sensor_03,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 03,DarCairo_V93.csv
+para:3P_Current_Sensor,brick:Current_Sensor,3P Current Sensor,DarCairo_V98.csv
+para:3P_Voltage_Sensor,brick:Voltage_Sensor,3P Voltage Sensor,DarCairo_V98.csv
+para:AHU_Zone,rec:Zone,AHU Zone,DarCairo_V98.csv
+para:Access_Control_System,brick:System,Access Control System,DarCairo_V98.csv
+para:Activation_Frequency,brick:Frequency,Activation Frequency,DarCairo_V98.csv
+para:Arrival_Time,brick:Point,Occupancy Arrival Time,DarCairo_V98.csv
+para:Auto_Status,brick:Manual_Auto_Status,Automatic Status,DarCairo_V98.csv
+para:Avg_Power_Factor_Sensor,brick:Power_Factor_Sensor,Avg Power Factor Sensor,DarCairo_V98.csv
+para:Battery_Bypass_Alarm,brick:Alarm,Battery Bypass Alarm,DarCairo_V98.csv
+para:Battery_EOL_Alarm,brick:Alarm,Battery EOL Alarm,DarCairo_V98.csv
+para:Battery_Mode,brick:Mode_Status,Battery Mode,DarCairo_V98.csv
+para:Building_Operating_Schedule_Bit,brick:Point,Building Operating Schedule,DarCairo_V98.csv
+para:Bypass_Mode,brick:Mode_Status,Bypass Mode,DarCairo_V98.csv
+para:Bypass_Switch_Status,brick:Switch_Status,Bypass Switch Status,DarCairo_V98.csv
+para:Bypass_Trip_Status,para:Trip_Status,Bypass Trip Status,DarCairo_V98.csv
+para:CHW_Meter,brick:Thermal_Power_Meter,Chilled Water Thermal Power Meter,DarCairo_V98.csv
+para:CO2_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:COP,brick:Point,Coefficient of Performance (COP),DarCairo_V98.csv
+para:CO_High_Limit_Setpoint,brick:Setpoint,CO High Limit Setpoint,DarCairo_V98.csv
+para:CO_Level_Sensor_01,brick:CO_Level_Sensor,CO Sensor 01,DarCairo_V98.csv
+para:CO_Level_Sensor_02,brick:CO_Level_Sensor,CO Sensor 02,DarCairo_V98.csv
+para:CO_Level_Sensor_03,brick:CO_Level_Sensor,CO Sensor 03,DarCairo_V98.csv
+para:CO_Level_Sensor_04,brick:CO_Level_Sensor,CO Sensor 04,DarCairo_V98.csv
+para:CO_Level_Sensor_05,brick:CO_Level_Sensor,CO Sensor 05,DarCairo_V98.csv
+para:Car-Parking_Exhaust-Fan,brick:Exhaust_Fan,Car Parking Exhaust Fan,QF_HQ_Ontology_draft0.4.xlsx
+para:Charge_Alarm,brick:Alarm,Charge Alarm,DarCairo_V98.csv
+para:Charger_failure,brick:Failure_Alarm,Charger failure,DarCairo_V98.csv
+para:Chilled_Water_Loop_Network,brick:HVAC_Equipment,Chilled Water Loop Network,DarCairo_V98.csv
+para:Chilled_Water_Return_Temperature_Sensor_01,brick:Chilled_Water_Return_Temperature_Sensor,Chilled Water Return Temperature Sensor 01,DarCairo_V98.csv
+para:Chilled_Water_Return_Temperature_Sensor_02,brick:Chilled_Water_Return_Temperature_Sensor,Chilled Water Return Temperature Sensor 02,DarCairo_V98.csv
+para:Close_command,brick:Open_Close_Command,Close Command,QF_HQ_Ontology_draft0.4.xlsx
+para:Command_Overriden_Status,brick:Overridden_Status,Command Overridden Status,DarCairo_V98.csv
+para:Command_Priority_Array_08,rec:PointOfInterest,Command Priority Array 08,DarCairo_V98.csv
+para:Command_Priority_Array_12,rec:PointOfInterest,Command Priority Array 12,DarCairo_V98.csv
+para:Command_Priority_Array_13,rec:PointOfInterest,Command Priority Array 13,DarCairo_V98.csv
+para:Command_Status,brick:Manual_Auto_Status,Auto Manual Command Status,QF_HQ_Ontology_draft0.4.xlsx
+para:Common_Util_Meter,brick:Electrical_Meter,Common Utilities Electrical Meter,DarCairo_V98.csv
+para:Coolant_Temperature_Sensor,brick:Temperature_Sensor,Coolant Temperature Sensor,DarCairo_V98.csv
+para:Cooling_Mode_Operation_Hours,para:Operation_Hours,Cooling Mode Operating Duration,DarCairo_V98.csv
+para:DC_Battery_System,brick:Energy_Storage,DC Battery System,DarCairo_V98.csv
+para:DXUnit,brick:HVAC_Equipment,DX Unit,QF_HQ_Ontology_draft0.4.xlsx
+para:Damper_Position_100,brick:Valve_Position_Command,,QF_HQ_Ontology_draft0.4.xlsx
+para:Damper_Position_70,brick:Valve_Position_Command,,QF_HQ_Ontology_draft0.4.xlsx
+para:Damper_Position_77.5,brick:Valve_Position_Command,,QF_HQ_Ontology_draft0.4.xlsx
+para:Damper_Position_85,brick:Valve_Position_Command,,QF_HQ_Ontology_draft0.4.xlsx
+para:Damper_Position_92.5,brick:Valve_Position_Command,,QF_HQ_Ontology_draft0.4.xlsx
+para:Data-Center_Meter,brick:Electrical_Meter,Data Center Electrical Meter,DarCairo_V98.csv
+para:Degree_Days,brick:Point,Degree Days,DarCairo_V98.csv
+para:Dehumid_Mode_Operation_Hours,para:Operation_Hours,Dehumidification Operationg Duration,DarCairo_V98.csv
+para:Dehumidification_Mode_Status,brick:Operating_Mode_Status,Dehumidification Mode Status,DarCairo_V98.csv
+para:Dehumidification_On_Status,brick:Operating_Mode_Status,Dehumidification On Status,QF_HQ_Ontology_draft0.4.xlsx
+para:Departure_Time,brick:Point,Occupancy Departure Time,DarCairo_V98.csv
+para:Differential_Pressure_Sensor_01,brick:Differential_Pressure_Sensor,Differential Pressure Sensor 01,DarCairo_V98.csv
+para:Differential_Pressure_Sensor_02,brick:Differential_Pressure_Sensor,Differential Pressure Sensor 02,DarCairo_V98.csv
+para:Differential_Pressure_Sensor_03,brick:Differential_Pressure_Sensor,Differential Pressure 03,QF_HQ_Ontology_draft0.4.xlsx
+para:Differential_Pressure_Setpoint_01,brick:Differential_Pressure_Setpoint,Differential Pressure Sensor Setpoint 01,DarCairo_V98.csv
+para:Differential_Pressure_Setpoint_02,brick:Differential_Pressure_Setpoint,Differential Pressure Sensor Setpoint 02,DarCairo_V98.csv
+para:Domestic_Water_System,brick:Water_System,Domestic_Water_System,DarCairo_V98.csv
+para:Electric_Power_Sensor_Forecast,brick:Electric_Power_Sensor,Electric Power Forecast,DarCairo_V98.csv
+para:Electric_Power_Sensor_Pred,brick:Electric_Power_Sensor,Predicted Power Demand,DarCairo_V98.csv
+para:Electric_Power_Target,brick:Electric_Power_Sensor,Electric Power Target,DarCairo_V98.csv
+para:Electrical_Energy_Usage_Sensor_Forecast,brick:Electrical_Energy_Usage_Sensor,Electrical Energy Usage Forecast,DarCairo_V98.csv
+para:Elevator_System,brick:System,Elevator System,DarCairo_V98.csv
+para:Emergency_Switch_Status,brick:Switch_Status,Emergency Switch Status,DarCairo_V98.csv
+para:Emergency_Trip_Status,para:Trip_Status,Emergency Trip Status,DarCairo_V98.csv
+para:Energy_Generation_Sensor_Forecast,brick:Energy_Generation_Sensor,Energy Generation Forecast,DarCairo_V98.csv
+para:Energy_KPI,para:KPI,Energy KPI,DarCairo_V98.csv
+para:Engine_Speed_Sensor,brick:Speed_Sensor,Engine Speed Sensor,DarCairo_V98.csv
+para:Extract_Fan_01,brick:Exhaust_Fan,Extract Fan 01,QF_HQ_Ontology_draft0.4.xlsx
+para:Extract_Fan_02,brick:Exhaust_Fan,Extract Fan 02,QF_HQ_Ontology_draft0.4.xlsx
+para:Fail_Start_Alarm,brick:Alarm,Fail to Start Alarm,QF_HQ_Ontology_draft0.4.xlsx
+para:Fail_Stop_Alarm,brick:Alarm,Fail to Stop Alarm,QF_HQ_Ontology_draft0.4.xlsx
+para:Failure_Frequency,brick:Frequency,Failure Frequency,DarCairo_V98.csv
+para:Fan_High-Speed_SP,brick:Speed_Setpoint,Fan High Speed SP,QF_HQ_Ontology_draft0.4.xlsx
+para:Fan_Low-Speed_SP,brick:Speed_Setpoint,Fan Low Speed SP,QF_HQ_Ontology_draft0.4.xlsx
+para:Fan_Mode_Operation_Hours,para:Operation_Hours,Fan Mode Operating Duration,DarCairo_V98.csv
+para:Feeder_Pillar,brick:Electrical_Equipment,Feeder Pillar,DarCairo_V98.csv
+para:Frequency_sensor_L1,brick:Frequency_Sensor,Frequency sensor L1,DarCairo_V98.csv
+para:Frequency_sensor_L2,brick:Frequency_Sensor,Frequency sensor L2,DarCairo_V98.csv
+para:Frequency_sensor_L3,brick:Frequency_Sensor,Frequency sensor L3,DarCairo_V98.csv
+para:Fuel-Oil-System,brick:System,Fuel Oil System,DarCairo_V98.csv
+para:Fuel_Meter,brick:Meter,Fuel Meter,DarCairo_V98.csv
+para:Fuel_Oil_System,brick:System,Fuel Oil System,DarCairo_V98.csv
+para:Fuel_Sensor,brick:Sensor,Fuel Sensor,DarCairo_V98.csv
+para:Garage_Exhaust_Fan,brick:Exhaust_Fan,Garage Exhaust Fan,DarCairo_V98.csv
+para:General_Exhaust-Fan,brick:Exhaust_Fan,General Exhaust Fan,QF_HQ_Ontology_draft0.4.xlsx
+para:General_Util_Meter,brick:Electrical_Meter,General Utilities Electrical Meter,DarCairo_V98.csv
+para:Generation_Sensor_Forecast,brick:Generation_Sensor,Generation Forecast,DarCairo_V98.csv
+para:Generator,brick:Electrical_Equipment,Generator,DarCairo_V98.csv
+para:Generator_Meter,brick:Electrical_Meter,Solar Electrical Meter,DarCairo_V98.csv
+para:Generator_kWh_Sensor,para:Generator,Generator kWh Sensor,DarCairo_V98.csv
+para:Grey_water_System,brick:Water_System,Grey Water System,DarCairo_V98.csv
+para:HRW_Cooling_Temperature_Setpoint,brick:Temperature_Setpoint,HRW Cooling Temperature Setpoint,DarCairo_V98.csv
+para:HRW_Heating_Temperature_Setpoint,brick:Temperature_Setpoint,HRW Heating Temperature Setpoint,DarCairo_V98.csv
+para:HVAC_Meter,brick:Electrical_Meter,HVAC Electrical Meter,DarCairo_V98.csv
+para:HW_Meter,brick:Thermal_Power_Meter,Hot Water Thermal Power Meter,DarCairo_V98.csv
+para:Heater_On_Status,brick:Operating_Mode_Status,Heater On Status,QF_HQ_Ontology_draft0.4.xlsx
+para:Heating_Mode_Operation_Hours,para:Operation_Hours,Heating Mode Operating Duration,DarCairo_V98.csv
+para:HighPowerFan,para:HighPowerFan,High Power Fan,DarCairo_V98.csv
+para:High_Coolant_Temperature_Sensor,brick:Temperature_Sensor,High Coolant Temperature Sensor,DarCairo_V98.csv
+para:High_Level_Alarm,brick:Max_Water_Level_Alarm,Max Lvl Alarm,DarCairo_V98.csv
+para:Humid_Mode_Operation_Hours,para:Operation_Hours,Humidification Operationg Duration,DarCairo_V98.csv
+para:Humidification_Mode_Status,brick:Operating_Mode_Status,Humidification Mode Status,DarCairo_V98.csv
+para:Humidification_On_Status,brick:Operating_Mode_Status,Humidification On Status,QF_HQ_Ontology_draft0.4.xlsx
+para:IFC_ID,ref:ifcGlobalID,IFC_Id,DarCairo_V98.csv
+para:Illuminance_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:Input_Alarm,brick:Alarm,Input Alarm,DarCairo_V98.csv
+para:IoT_System,brick:System,IoT System,DarCairo_V98.csv
+para:KPI,brick:Point,Generic KPI,DarCairo_V98.csv
+para:L1_Current_Sensor,brick:Current_Sensor,L1 Current Sensor,DarCairo_V98.csv
+para:L1_L2_Voltage_Sensor,brick:Voltage_Sensor,L1-L2 Voltage Sensor,DarCairo_V98.csv
+para:L1_Voltage_Sensor,brick:Voltage_Sensor,L1 Voltage Sensor,DarCairo_V98.csv
+para:L2_Current_Sensor,brick:Current_Sensor,L2 Current Sensor,DarCairo_V98.csv
+para:L2_L3_Voltage_Sensor,brick:Voltage_Sensor,L2-L3 Voltage Sensor,DarCairo_V98.csv
+para:L2_Voltage_Sensor,brick:Voltage_Sensor,L2 Voltage Sensor,DarCairo_V98.csv
+para:L3_Current_Sensor,brick:Current_Sensor,L3 Current Sensor,DarCairo_V98.csv
+para:L3_L1_Voltage_Sensor,brick:Voltage_Sensor,L3-L1 Voltage Sensor,DarCairo_V98.csv
+para:L3_Voltage_Sensor,brick:Voltage_Sensor,L3 Voltage Sensor,DarCairo_V98.csv
+para:LTG_Meter,brick:Electrical_Meter,Lighting Electrical Meter,DarCairo_V98.csv
+para:Lighting_panel,brick:Breaker_Panel,Lighting Panel,DarCairo_V98.csv
+para:Line1_Power_Factor_Sensor,brick:Power_Factor_Sensor,Line1 Power Factor Sensor,DarCairo_V98.csv
+para:Line2_Power_Factor_Sensor,brick:Power_Factor_Sensor,Line2 Power Factor Sensor,DarCairo_V98.csv
+para:Line3_Power_Factor_Sensor,brick:Power_Factor_Sensor,Line3 Power Factor Sensor,DarCairo_V98.csv
+para:LowPowerFan,para:LowPowerFan,Low Power Fan,DarCairo_V98.csv
+para:Low_Level_Alarm,brick:Min_Water_Level_Alarm,Low Lvl Alarm,DarCairo_V98.csv
+para:Low_Level_Limit,brick:Level_Status,Low_Level_Limit,DarCairo_V98.csv
+para:Main_Distribution_Board,brick:Electrical_Equipment,Main Distribution Board,DarCairo_V98.csv
+para:Manual_Override_Mode,brick:Overridden_Status,Manual Override Mode,DarCairo_V98.csv
+para:Manual_Status,brick:Manual_Auto_Status,Manual Status,DarCairo_V98.csv
+para:MediumPowerFan,para:MediumPowerFan,Medium Power Fan,DarCairo_V98.csv
+para:Metering_System,brick:System,Metering System,DarCairo_V98.csv
+para:Needed_Cooling_Time,brick:Point,Needed Cooling Time,DarCairo_V98.csv
+para:Needed_Heating_Time,brick:Point,Needed Heating Time,DarCairo_V98.csv
+para:Neg_Current_Sensor,brick:Current_Sensor,Negative Sequence Current,DarCairo_V98.csv
+para:Noise_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:Noise_Sensor,brick:Sensor,Noise Sensor,DarCairo_V98.csv
+para:Normal_Switch_Status,brick:Switch_Status,Normal Switch Status,DarCairo_V98.csv
+para:Normal_Trip_Status,para:Trip_Status,Normal Trip Status,DarCairo_V98.csv
+para:OW_KPI,para:KPI,Occupant Wellbeing KPI,DarCairo_V98.csv
+para:Occupant-Wellbeing_Meter,brick:Meter,Occupant Wellbeing Virtual Meter,DarCairo_V98.csv
+para:Occupied_Hours,brick:Duration_Sensor,Occupied Hours,DarCairo_V98.csv
+para:Off_Time_Sensor,brick:Duration_Sensor,,DarCairo_V98.csv
+para:Oil_Loop,brick:Gas_Distribution,Oil Loop,DarCairo_V98.csv
+para:Oil_Pump,brick:Pump,Oil Pump,DarCairo_V98.csv
+para:Oil_Storage_Tank,brick:Storage_Tank,Oil StorageTank,DarCairo_V98.csv
+para:Oil_Temperature_Sensor,brick:Temperature_Sensor,Oil Temperature Sensor,DarCairo_V98.csv
+para:Open_command,brick:Open_Close_Command,Open Command,QF_HQ_Ontology_draft0.4.xlsx
+para:Operation_Above80_Hours,brick:Duration_Sensor,Operating Hours Above 80 Hours,DarCairo_V98.csv
+para:Operation_Hours,brick:Duration_Sensor,Operating Duration,DarCairo_V98.csv
+para:Outpower_L1,brick:Load_Parameter,Outpower L1%,DarCairo_V98.csv
+para:Outpower_L2,brick:Load_Parameter,Outpower L2%,DarCairo_V98.csv
+para:Outpower_L3,brick:Load_Parameter,Outpower L3%,DarCairo_V98.csv
+para:Output_Alarm,brick:Alarm,Output Alarm,DarCairo_V98.csv
+para:Output_Off_Command,brick:Off_Command,Output Off Command,DarCairo_V98.csv
+para:Output_Off_Status,brick:Off_Status,Output Off Status,DarCairo_V98.csv
+para:Output_Priority_Array_08,rec:PointOfInterest,Output Priority Array 08,DarCairo_V98.csv
+para:Output_Priority_Array_12,rec:PointOfInterest,Output Priority Array 12,DarCairo_V98.csv
+para:Output_Priority_Array_13,rec:PointOfInterest,Output Priority Array 13,DarCairo_V98.csv
+para:Over_Speed_Sensor,brick:Speed_Sensor,Over Speed Sensor,DarCairo_V98.csv
+para:PM10_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:PM2.5_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:Phase_Loss_Alarm,brick:Power_Loss_Alarm,Phase Loss Status Class,DarCairo_V98.csv
+para:Pos_Current_Sensor,brick:Current_Sensor,Positive Sequence Current,DarCairo_V98.csv
+para:Power_Fail_Count,brick:Point,Power Fail Count,DarCairo_V98.csv
+para:Power_panel,brick:Breaker_Panel,Power Panel,DarCairo_V98.csv
+para:Pressure_Independent_Module,brick:Terminal_Unit,Pressure Independent Module,DarCairo_V98.csv
+para:Pressure_Selection_Mode,brick:Mode_Status,Pressure Selection Mode,DarCairo_V98.csv
+para:Prod_Type,brick:Collection,,DarCairo_V98.csv
+para:Rate,brick:Point,Rate,DarCairo_V98.csv
+para:Reactive_Energy_Usage_Sensor,brick:Electrical_Energy_Usage_Sensor,Reactive Energy Usage Sensor,DarCairo_V98.csv
+para:Relative_Humidity_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:Relative_Humidity_Sensor_Forecast,brick:Relative_Humidity_Sensor,Weather Relative Humidity Forecast,DarCairo_V98.csv
+para:Required_Operation_Hours,para:Operation_Hours,Required Operating Duration,DarCairo_V98.csv
+para:Res_Current_Sensor,brick:Current_Sensor,Residual Current,DarCairo_V98.csv
+para:Return_Air_Static_Pressure_Sensor,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure,QF_HQ_Ontology_draft0.4.xlsx
+para:Return_Air_Static_Pressure_Sensor_01,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 01,QF_HQ_Ontology_draft0.4.xlsx
+para:Return_Air_Static_Pressure_Sensor_02,brick:Air_Static_Pressure_Sensor,Return Air Static Pressure 02,QF_HQ_Ontology_draft0.4.xlsx
+para:Return_Smoke_Detector,brick:Smoke_Detector,Return Smoke Detector,DarCairo_V98.csv
+para:Return_Temperature_Sensor,brick:Temperature_Sensor,TC Valve (Rtn) Temperature,QF_HQ_Ontology_draft0.4.xlsx
+para:Room_Air_Temperature,brick:Temperature_Sensor,Room Air Temperature,DarCairo_V98.csv
+para:Rotate_Command,brick:Lead_Lag_Command,Rotate Command,DarCairo_V98.csv
+para:SPWR_Meter,brick:Electrical_Meter,Small Power Electrical Meter,DarCairo_V98.csv
+para:Scheduled_Hrs_Duration,brick:Duration_Sensor,Scheduled Hours of Operation,QF_HQ_Ontology_draft0.4.xlsx
+para:Solar_Meter,brick:Electrical_Meter,Generator Electrical Meter,DarCairo_V98.csv
+para:Start_Command,brick:Start_Stop_Command,Start Command,QF_HQ_Ontology_draft0.4.xlsx
+para:Start_Time,brick:Duration_Sensor,Start Time,DarCairo_V98.csv
+para:Start_Time_Buffer,brick:Point,Start Time Buffer,DarCairo_V98.csv
+para:Static_Pressure_Sensor,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor,QF_HQ_Ontology_draft0.4.xlsx
+para:Static_Pressure_Sensor_01,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 01,DarCairo_V98.csv
+para:Static_Pressure_Sensor_02,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 02,DarCairo_V98.csv
+para:Static_Pressure_Sensor_03,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Sensor 03,DarCairo_V98.csv
 para:Static_Pressure_Sensor_Remote_01,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Remote Sensor 01,QF_SSC_Ontology_ver02.xlsx
 para:Static_Pressure_Sensor_Remote_02,brick:Supply_Air_Static_Pressure_Sensor,Static Pressure Remote Sensor 02,QF_SSC_Ontology_ver02.xlsx
-para:Static_Pressure_Setpoint_01,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 01,DarCairo_V93.csv
-para:Static_Pressure_Setpoint_02,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 02,DarCairo_V93.csv
-para:Static_Pressure_Setpoint_03,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 03,DarCairo_V93.csv
-para:Stop_Command,brick:Start_Stop_Command,Stop Command,QF_SSC_Ontology_ver02.xlsx
-para:Stop_Time,brick:Duration_Sensor,Stop Time,DarCairo_V93.csv
-para:Sub_Main_Distribution_Board,brick:Breaker_Panel,Sub Main Distribution Panel,DarCairo_V93.csv
-para:Summary_Alarm,brick:Alarm,Summary Alarm,QF_SSC_Ontology_ver02.xlsx
-para:Summer_Supply_Air_Temperature_Setpoint,brick:Supply_Air_Temperature_Setpoint,Summer Supply Air Temperature Setpoint,DarCairo_V93.csv
-para:Sump_Pit,brick:Tank,Sump Pit,DarCairo_V93.csv
-para:Sump_System,brick:System,Sump System,DarCairo_V93.csv
-para:Supply_Air_Flow_Sensor_01,brick:Supply_Air_Flow_Sensor,Supply Air Flow Sensor 01,DarCairo_V93.csv
-para:Supply_Air_Flow_Sensor_02,brick:Supply_Air_Flow_Sensor,Supply Air Flow Sensor 02,DarCairo_V93.csv
-para:Supply_Smoke_Detector,brick:Smoke_Detector,Supply Smoke Detector,DarCairo_V93.csv
-para:TVOC_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:Temperature_KPI,para:OW_KPI,,DarCairo_V93.csv
-para:Temperature_Sensor_Forecast,brick:Temperature_Sensor,Weather Temperature Forecast,DarCairo_V93.csv
-para:Temperature_Setpoint_Mode_Selector,brick:Reset_Setpoint,Temperature Setpoint Selector,DarCairo_V93.csv
-para:Thermal_Energy_Usage_Sensor_Forecast,brick:Thermal_Energy_Usage_Sensor,Thermal Energy Usage Forecast,DarCairo_V93.csv
-para:Thermal_Power_Sensor_Forecast,brick:Thermal_Power_Sensor,Thermal Power Forecast,DarCairo_V93.csv
-para:Thermal_Power_Sensor_Pred,brick:Thermal_Power_Sensor,Predicted Thermal Power Demand,DarCairo_V93.csv
-para:Thermal_Power_Target,brick:Thermal_Power_Sensor,Thermal Power Target,DarCairo_V93.csv
-para:Total_VA_Sensor,brick:Power_Sensor,Total VA Sensor,DarCairo_V93.csv
-para:Trip_Status,brick:Status,Trip Status,DarCairo_V93.csv
-para:UPS_Meter,brick:Electrical_Meter,UPS Electrical Meter,DarCairo_V93.csv
-para:UPS_Off_Command,brick:Off_Command,UPS Off Command,DarCairo_V93.csv
-para:UPS_Off_Status,brick:Off_Status,UPS Off Status,DarCairo_V93.csv
-para:UPS_Status,brick:Status,UPS Status,DarCairo_V93.csv
-para:UPS_Temperature_Alarm,brick:Temperature_Alarm,UPS Temperature Alarm,DarCairo_V93.csv
-para:UPS_Temperature_Sensor,brick:Temperature_Sensor,UPS Temperature Sensor,DarCairo_V93.csv
-para:UnScheduled_Hrs_Duration,brick:Duration_Sensor,UnScheduled Hours of Operation,QF_SSC_Ontology_ver02.xlsx
-para:Unit_failure,brick:Failure_Alarm,Unit failure,DarCairo_V93.csv
-para:Util_Type,brick:Collection,,DarCairo_V93.csv
-para:Utility_Meter,brick:Electrical_Meter,Utility Electrical Meter,DarCairo_V93.csv
-para:Winter_Supply_Air_Temperature_Setpoint,brick:Supply_Air_Temperature_Setpoint,Winter Supply Air Temperature Setpoint,DarCairo_V93.csv
-para:Working_Day_Status,brick:Status,Working Day Status,DarCairo_V93.csv
-para:Zero_Current_Sensor,brick:Current_Sensor,Zero Sequence Current,DarCairo_V93.csv
-para:contributionFraction,brick:Point,Contribution Fraction,DarCairo_V93.csv
-para:fan_failure,brick:Failure_Alarm,Fan Failure,DarCairo_V93.csv
-para:format,brick:timestamp,Format,DarCairo_V93.csv
-para:fuse_failure,brick:Failure_Alarm,Fuse Failure,DarCairo_V93.csv
-para:hasEntityId,ref:hasTimeseriesId,hasEntityId,DarCairo_V93.csv
-para:refrigerant,rec:PointOfInterest,Refrigerant Type,DarCairo_V93.csv
-para:safeShutdown,brick:Point,Safe Shut Down Flag,DarCairo_V93.csv
+para:Static_Pressure_Setpoint_01,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 01,DarCairo_V98.csv
+para:Static_Pressure_Setpoint_02,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 02,DarCairo_V98.csv
+para:Static_Pressure_Setpoint_03,brick:Supply_Air_Static_Pressure_Setpoint,Static Pressure Setpoint 03,DarCairo_V98.csv
+para:Stop_Command,brick:Start_Stop_Command,Stop Command,QF_HQ_Ontology_draft0.4.xlsx
+para:Stop_Time,brick:Duration_Sensor,Stop Time,DarCairo_V98.csv
+para:Sub_Main_Distribution_Board,brick:Breaker_Panel,Sub Main Distribution Panel,DarCairo_V98.csv
+para:Summary_Alarm,brick:Alarm,Summary Alarm,QF_HQ_Ontology_draft0.4.xlsx
+para:Summer_Supply_Air_Temperature_Setpoint,brick:Supply_Air_Temperature_Setpoint,Summer Supply Air Temperature Setpoint,DarCairo_V98.csv
+para:Sump_Pit,brick:Tank,Sump Pit,DarCairo_V98.csv
+para:Sump_System,brick:System,Sump System,DarCairo_V98.csv
+para:Supply_Air_Flow_Sensor_01,brick:Supply_Air_Flow_Sensor,Supply Air Flow Sensor 01,DarCairo_V98.csv
+para:Supply_Air_Flow_Sensor_02,brick:Supply_Air_Flow_Sensor,Supply Air Flow Sensor 02,DarCairo_V98.csv
+para:Supply_Differential_Pressure_Sensor,brick:Differential_Pressure_Sensor,Differential Pressure (Supply),QF_HQ_Ontology_draft0.4.xlsx
+para:Supply_Fan_01,brick:Supply_Fan,Supply Fan 01,QF_HQ_Ontology_draft0.4.xlsx
+para:Supply_Fan_02,brick:Supply_Fan,Supply Fan 02,QF_HQ_Ontology_draft0.4.xlsx
+para:Supply_Smoke_Detector,brick:Smoke_Detector,Supply Smoke Detector,DarCairo_V98.csv
+para:Supply_Temperature_Sensor,brick:Temperature_Sensor,Iso Valve (Sup) Temperature,QF_HQ_Ontology_draft0.4.xlsx
+para:TVOC_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:T_Exhaust-Fan,brick:Exhaust_Fan,T Exhaust Fan,QF_HQ_Ontology_draft0.4.xlsx
+para:Temperature_KPI,para:OW_KPI,,DarCairo_V98.csv
+para:Temperature_Sensor_Forecast,brick:Temperature_Sensor,Weather Temperature Forecast,DarCairo_V98.csv
+para:Temperature_Setpoint_Mode_Selector,brick:Reset_Setpoint,Temperature Setpoint Selector,DarCairo_V98.csv
+para:Thermal_Energy_Usage_Sensor_Forecast,brick:Thermal_Energy_Usage_Sensor,Thermal Energy Usage Forecast,DarCairo_V98.csv
+para:Thermal_Power_Sensor_Forecast,brick:Thermal_Power_Sensor,Thermal Power Forecast,DarCairo_V98.csv
+para:Thermal_Power_Sensor_Pred,brick:Thermal_Power_Sensor,Predicted Thermal Power Demand,DarCairo_V98.csv
+para:Thermal_Power_Target,brick:Thermal_Power_Sensor,Thermal Power Target,DarCairo_V98.csv
+para:Total_VA_Sensor,brick:Power_Sensor,Total VA Sensor,DarCairo_V98.csv
+para:Trip_Status,brick:Status,Trip Status,DarCairo_V98.csv
+para:UPS_Meter,brick:Electrical_Meter,UPS Electrical Meter,DarCairo_V98.csv
+para:UPS_Off_Command,brick:Off_Command,UPS Off Command,DarCairo_V98.csv
+para:UPS_Off_Status,brick:Off_Status,UPS Off Status,DarCairo_V98.csv
+para:UPS_Status,brick:Status,UPS Status,DarCairo_V98.csv
+para:UPS_Temperature_Alarm,brick:Temperature_Alarm,UPS Temperature Alarm,DarCairo_V98.csv
+para:UPS_Temperature_Sensor,brick:Temperature_Sensor,UPS Temperature Sensor,DarCairo_V98.csv
+para:UnScheduled_Hrs_Duration,brick:Duration_Sensor,UnScheduled Hours of Operation,QF_HQ_Ontology_draft0.4.xlsx
+para:Unit_failure,brick:Failure_Alarm,Unit failure,DarCairo_V98.csv
+para:Util_Type,brick:Collection,,DarCairo_V98.csv
+para:Utility_Meter,brick:Electrical_Meter,Utility Electrical Meter,DarCairo_V98.csv
+para:Winter_Supply_Air_Temperature_Setpoint,brick:Supply_Air_Temperature_Setpoint,Winter Supply Air Temperature Setpoint,DarCairo_V98.csv
+para:Working_Day_Status,brick:Status,Working Day Status,DarCairo_V98.csv
+para:Zero_Current_Sensor,brick:Current_Sensor,Zero Sequence Current,DarCairo_V98.csv
+para:contributionFraction,brick:Point,Contribution Fraction,DarCairo_V98.csv
+para:fan_failure,brick:Failure_Alarm,Fan Failure,DarCairo_V98.csv
+para:format,brick:timestamp,Format,DarCairo_V98.csv
+para:fuse_failure,brick:Failure_Alarm,Fuse Failure,DarCairo_V98.csv
+para:hasEntityId,ref:hasTimeseriesId,hasEntityId,DarCairo_V98.csv
+para:heartBeat,brick:Point,Heart Beat,DarCairo_V98.csv
+para:refrigerant,rec:PointOfInterest,Refrigerant Type,DarCairo_V98.csv
+para:safeShutdown,brick:Point,Safe Shut Down Flag,DarCairo_V98.csv

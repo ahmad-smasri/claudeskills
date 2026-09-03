@@ -24,7 +24,8 @@ OUT = ROOT / "references" / "data"
 
 # Only the primary reference model seeds the "verified vocabulary" list. The other
 # models are drafts: their typos must not become accepted terms.
-PRIMARY = {"DarCairo_V93.csv"}
+PRIMARY = {f.name for f in MODELS.glob("DarCairo_V*.csv")
+           if re.match(r"^DarCairo_V\d+\.csv$", f.name)}
 
 # Units observed in Dar Cairo that are fill-down artifacts, not real QUDT units.
 # MicroGM-PER-M3 is micrograms per cubic metre; M4..M27 do not exist.
