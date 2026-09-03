@@ -21,7 +21,21 @@ types, and how many of them are in scope.
 
 SSC: 124 asset rows, 69 rooms, 1 unresolved.
 HQ: 761 asset rows, 599 rooms, 1 unresolved.
-QNL: 551 asset rows, 198 rooms, 14 unresolved (part 1 of the register).
+QNL: 551 asset rows, 198 rooms, 14 unresolved.
+
+**These registers are not the whole estate.** Counted against the equipment
+asset registers in `projects/bms-room-allocation/`, what has been room-allocated
+so far is SSC 124 of 170, HQ 760 of 912, QNL 550 of 551. The 46 SSC and 152 HQ
+assets still to come are the CCUs, DX units, heat exchangers, pumps, control
+panels and zone exhaust fans; the asset registers carry no room columns, so they
+need allocating before they can be named. `RDC` is a fourth building in the same
+workbook, 1,759 rows, not yet in scope.
+
+Until those land, **treat the SSC and HQ names as provisional**. New rows do not
+only add rooms: column E arbitrates a reference's name, and a clearer spelling
+or a green row on a reference already in the sheet can change a name that is
+already there. Rerun the whole build when the rest arrives rather than appending
+to the output.
 
 A building split across several workbooks is given as one comma-separated
 `--src`; see **Merging HQ's two workbooks**.
