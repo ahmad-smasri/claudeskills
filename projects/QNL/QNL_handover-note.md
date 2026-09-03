@@ -634,7 +634,7 @@ derived — the derivation matches all 296 units that do have one.
 
 | | Before | After |
 |---|---|---|
-| Errors | 574 | **574** — none added |
+| Errors | 574 | **10** — the layer added none, and filling `para:IFC_ID` cleared 564 |
 | `W-BN-4` | 0 | 1,459 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
 | `W-PT-1` | 0 | 2,918 — the pending timeseries above |
 | `check_consistency` errors | 590 | 608 |
@@ -650,3 +650,31 @@ back with **0 errors**.
 `brick:isMeteredBy` and `brick:isSubMeterOf` joined `VARYING_PREDICATES`. Without
 it every meter reads as missing the 359 targets its siblings carry — 1,440 phantom
 errors. Covered by `tests/virtual-meters-sample.csv`.
+
+
+## IFC references filled — 2026-09-03
+
+All 564 `ref:IFCReference` rows declared `para:IFC_ID` with no value, which was
+**564 of the sheet's 574 errors**. Filled with the entity identifier — the same
+string `ref:ifcName` already carried on every one of them, which is QF SSC's
+shape (both columns, same value, on all 165 of its IFC rows).
+
+**The sheet now validates at 10 errors**, all `E-FEED-1`, all visible:
+
+| Entity | Class |
+|---|---|
+| `QNL_CAV-1F-S15-001` | `brick:Constant_Air_Volume_Box` |
+| `QNL_CCU-8081` … `QNL_CCU-8086` | `brick:CRAC` (6 units) |
+| `QNL_CR-DX-EWRC500`, `QNL_DX-RP21` | `para:DXUnit` |
+| `QNL_VAV-B-S13-005` | `brick:Variable_Air_Volume_Box` |
+
+Each is a terminal unit with no `rec:feeds`. Two are the unregistered units
+already recorded above; the other eight want checking against the drawings.
+
+**Caveat on `para:IFC_ID`.** No delivered model carries a real IFC GUID — across
+Dar Cairo, SSC, HQ and QNL, none of 2,133 values matches the 22-character
+`IfcGloballyUniqueId` shape, and the three reference models disagree on which
+column to use at all (Dar Cairo `ref:ifcName` only, HQ `para:IFC_ID` primary, SSC
+both). `CLAUDE.md` describes `para:IFC_ID` as the BIM GUID; in practice it holds
+the asset tag. If the BIM team can export real GUIDs they overwrite these 564 in
+one pass. Worth putting to the PARA team.
