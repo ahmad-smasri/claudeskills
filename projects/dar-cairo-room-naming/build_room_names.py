@@ -399,6 +399,7 @@ def decide(building, row):
                 notes.append("green row: took the last populated name (%s)" % tag)
                 if e_n and key(n) != key(e_n):
                     notes.append("overrides column E (%s)" % e_n)
+                row["ref_with_name"] = r is not None
                 if r is None and (d_r or e_r):
                     # The screen names the room but not its number - on QNL it
                     # never does - so the reference comes from the drawings,
@@ -413,6 +414,7 @@ def decide(building, row):
         return None, None, None, "", notes
 
     # R5 - D or J, on whether H carries a room number.
+    row["ref_with_name"] = True
     if h_r is not None:
         pick, tag = (d_l, d_r, d_n), "D"
         notes.append("H carries a room number, so column D stands")
@@ -424,8 +426,12 @@ def decide(building, row):
         notes.append("no usable J, so column D stands")
 
     lvl, room, name = pick
+    if room is None:
+        row["ref_with_name"] = False
 
     if building.ref_from_drawings and d_r is not None:
+        if (lvl, room) != (d_l, d_r):
+            row["ref_with_name"] = False
         if room is not None and (lvl, room) != (d_l, d_r):
             notes.append("reference taken from the drawings (%s.%s), not %s.%s"
                          % (d_l, d_r, lvl, room))
@@ -555,6 +561,55 @@ def reconcile(rows, building):
         if len(left) > 1:
             split.append((lvl, ref, sorted(names[k] for k in left)))
     return collapsed, split
+
+
+def name_index(rows, building):
+    """Room name -> the reference the register gives it elsewhere.
+
+    The BMS screen names a room without numbering it - QNL's screen never
+    numbers one - so a screen-sourced name has to borrow a reference. Borrowing
+    it from the drawings on the same row is wrong whenever the two name
+    different rooms: DX_B01's drawings say MV ROOM B.081 while its screen says
+    Corridor 4, and Corridor 4 is B.035 three hundred rows away. Look the name
+    up instead, and fall back to borrowing only where the register does not
+    know it, or knows it at more than one reference.
+    """
+    idx = {}
+    for r in rows:
+        for col in ("D", "H", "J"):
+            lvl, ref, nm = split_ref(building, r[col])
+            if lvl and ref and nm:
+                idx.setdefault(key(nm), set()).add((lvl, ref))
+        el, er, en = parse_entity(building, r["E"])
+        if er and en:
+            idx.setdefault(key(en), set()).add((el, er))
+    return idx
+
+
+def lookup_ref(idx, name):
+    """The one reference this name carries elsewhere, or None for 0 or many."""
+    if not name or not idx:
+        return None, "unknown"
+    hits = idx.get(key(name))
+    if not hits:                    # spacing- and typo-tolerant second look
+        sq = squash(name)
+        hits = set()
+        for k, v in idx.items():
+            if not same_name(name, k):
+                continue
+            # Stricter than same_name here, because this moves a room rather
+            # than respells one: BRIDGE BR-3 and BRIDGE BR-3B are one letter
+            # apart and are different bridges, and numbering one after the
+            # other puts the equipment on the wrong floor.
+            sk = squash(k)
+            if sq != sk and (sq.startswith(sk) or sk.startswith(sq)):
+                continue
+            hits |= v
+    if not hits:
+        return None, "unknown"
+    if len(hits) > 1:
+        return None, "ambiguous"
+    return next(iter(hits)), "found"
 
 
 def subject(building, lvl, room, name):
@@ -877,6 +932,37 @@ def main():
             lvl, room, name, src, notes = decide(building, r)
             r["level"], r["ref"], r["name"] = lvl, room, name
             r["source"], r["notes"] = src, r.get("merge_notes", []) + notes
+
+        # A name that arrived without a reference of its own is numbered by
+        # what the register calls that room elsewhere, not by whatever the
+        # same row's other column happened to say.
+        idx = name_index(rows, building)
+        moved = 0
+        for r in rows:
+            if not r["name"] or r.get("ref_with_name", True):
+                continue
+            hit, why = lookup_ref(idx, r["name"])
+            was = "%s.%s" % (r["level"], r["ref"]) if r["ref"] else "nothing"
+            if why == "found" and hit != (r["level"], r["ref"]):
+                r["notes"].append(
+                    "the screen names this room without numbering it; the "
+                    "register numbers %r %s.%s, so the reference borrowed from "
+                    "the same row (%s) is dropped"
+                    % (r["name"], hit[0], hit[1], was))
+                r["level"], r["ref"] = hit
+                moved += 1
+            elif why == "ambiguous":
+                r["notes"].append(
+                    "the screen names this room without numbering it and the "
+                    "register gives %r more than one reference, so %s is kept "
+                    "from the same row - needs a check" % (r["name"], was))
+            elif why == "unknown":
+                r["notes"].append(
+                    "the screen names this room without numbering it and the "
+                    "register does not name it anywhere else, so %s is "
+                    "borrowed from the same row - needs a check" % was)
+        if moved:
+            print("  %d rows renumbered by room name" % moved)
 
         collapsed, split = reconcile(rows, building)
         for lvl, ref, was, now in collapsed:

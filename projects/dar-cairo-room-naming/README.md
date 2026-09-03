@@ -153,6 +153,33 @@ the three flagged conflicts and chose `3F-Roof` here and `B-2F` for the other
 two, so the pair sits in `OWNER_OVERRIDE` with that reason written into both
 rows' notes. Every other row still follows the level rule.
 
+## A name without a number is numbered by name, not by its neighbour
+
+The BMS screen names a room without numbering it - on QNL it never numbers one -
+so a screen-sourced name has no reference of its own. Borrowing one from the
+drawings on the same row is wrong whenever the two columns name different rooms.
+`DX_B01`'s drawings say `MV ROOM B.081` and its screen says `Corridor 4`, and
+gluing them together gave `B.081 Corridor 4` - a room that does not exist. The
+register numbers `Corridor 4` `B.035` three hundred rows away, on `CAV_B_S13_006`.
+
+So a name that arrives without a reference is looked up in a register-wide index
+of room name to reference, built from every source string that carried both.
+Matching tolerates spacing and abbreviation (`Plant Rm 2` finds `Plant Room 2`,
+`Emergency Lighting Battery Rm` finds the room spelled `...Room`) but refuses a
+match where one name is the other plus something on the end: `BRIDGE BR-3` and
+`BRIDGE BR-3B` are one letter and two floors apart, and numbering one after the
+other moved four HQ units to the wrong level before the guard went in.
+
+Eight QNL rows are renumbered by this. Two of them were doubly wrong before:
+once the borrowed reference pulled the row into an existing room, column E
+arbitrated that reference's name and overwrote the screen's, so `DX_B03` came
+out as `Transformer-Room` with no trace of the `Emergency Lighting Battery Rm`
+the screen actually read.
+
+Where the register does not know the name, or knows it at more than one
+reference, the borrowed reference is kept and the row says so: 24 rows on HQ and
+23 on QNL. SSC has none - its screen readings all carry their own number.
+
 ## QNL's own quirks
 
 **The BMS screen never carries a room number.** 146 of QNL's 147 screen
