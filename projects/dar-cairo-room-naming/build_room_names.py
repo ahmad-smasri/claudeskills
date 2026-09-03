@@ -378,7 +378,16 @@ def decide(building, row):
     e_l, e_r, e_n = parse_entity(building, row["E"])
 
     if d_r is None and h_r is None and j_r is None and e_r is None:
-        notes.append("no room reference in D, H, J or E - left unresolved")
+        raw_e = str(row["E"] or "").strip()
+        if raw_e.startswith("entity:<"):
+            notes.append("the ontology points at the placeholder %s rather "
+                         "than a room, and no screen reading names one - "
+                         "needs a client check" % raw_e)
+        elif not raw_e or raw_e.lower() == "none":
+            notes.append("the ontology gives this equipment no room and no "
+                         "screen reading names one - needs a client check")
+        else:
+            notes.append("no room reference in D, H, J or E - left unresolved")
         return None, None, None, "", notes
 
     if row["green"]:
@@ -575,44 +584,83 @@ def label(lvl, room, name):
 
 
 # --------------------------------------------------------------------------
+# Two source layouts.  The BMS register is the AHU/VAV/FCU pass; the equipment
+# review sheet is everything else, and names its columns differently:
+#
+#   register            equipment review
+#   -------------------------------------------------
+#   Tag No.             Tag
+#   Equipment Type      Equipment class
+#   room per drawings   Room per ontology
+#   ontology name       Ontology room entity
+#   room per BMS screen Room per BMS screen
+#   green fill          Needs revision = YES
+LAYOUTS = {
+    "register": {
+        "marker": "AS PER DRAWINGS",
+        "cols": {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "H": 7, "J": 9},
+    },
+    "equipment-review": {
+        "marker": "ROOM PER ONTOLOGY",
+        "cols": {"A": 1, "B": 2, "C": None, "D": 5, "E": 4, "H": None, "J": 6},
+        "revision_col": 9,
+    },
+}
+
+
 def pick_sheet(wb):
-    """The register sheet is the one headed ROOM NAME AS PER DRAWINGS."""
+    """Return the data sheet and which layout it is, by its header row."""
     for cand in wb:
         for r in cand.iter_rows(min_row=1, max_row=4, values_only=True):
-            if r and any(isinstance(c, str) and "AS PER DRAWINGS" in c.upper()
-                         for c in r):
-                return cand
-    return None
+            if not r:
+                continue
+            head = " | ".join(str(c).upper() for c in r if isinstance(c, str))
+            for name, spec in LAYOUTS.items():
+                if spec["marker"] in head:
+                    return cand, name
+    return None, None
 
 
 def load_one(path, building):
     wb = openpyxl.load_workbook(path)
-    ws = pick_sheet(wb)
+    ws, layout = pick_sheet(wb)
     if ws is None:
-        raise SystemExit("no register sheet in %s" % path)
+        raise SystemExit("no recognised data sheet in %s" % path)
+    spec = LAYOUTS[layout]
+    col = spec["cols"]
+    rev = spec.get("revision_col")
+
+    def cell(r, key):
+        i = col[key]
+        return r[i].value if i is not None and i < len(r) else None
+
     rows = {}
     for r in ws.iter_rows(min_row=1, max_row=ws.max_row):
-        tag = r[0].value
+        tag = cell(r, "A")
         if not tag or not isinstance(tag, str):
             continue
         # An asset row is one with an equipment type beside the tag. Matching
         # the tag's shape instead dropped nine QNL rows - CCU_MDFRm, ELEC_Gen,
         # CCU_Server_Rm - whose tags end in a word rather than a number.
-        kind = r[1].value
+        kind = cell(r, "B")
         if not isinstance(kind, str) or not kind.strip():
             continue
-        if kind.strip().lower() == "equipment type":
+        if kind.strip().lower() in ("equipment type", "equipment class"):
             continue
-        rows[r[0].row] = {
+        green = cell_fill(r[col["A"]]) == GREEN
+        if rev is not None:
+            green = str(r[rev].value or "").strip().upper() == "YES"
+        rows[tag.strip()] = {
             "excel_row": r[0].row,
+            "layout": layout,
             "A": tag.strip(),
-            "B": r[1].value,
-            "C": r[2].value,
-            "D": r[3].value,
-            "E": r[4].value,
-            "H": r[7].value,
-            "J": r[9].value,
-            "green": cell_fill(r[0]) == GREEN,
+            "B": kind,
+            "C": cell(r, "C"),
+            "D": cell(r, "D"),
+            "E": cell(r, "E"),
+            "H": cell(r, "H"),
+            "J": cell(r, "J"),
+            "green": green,
         }
     return rows
 
@@ -633,14 +681,19 @@ def merge(parts, building, code=None):
     if len(parts) == 1:
         return sorted(parts[0][1].values(), key=lambda r: r["excel_row"])
 
-    keys = set()
-    for _, rows in parts:
+    # Keyed on the tag, not the row number: HQ's two register halves hold the
+    # same tags and are reconciled, while the equipment review sheet holds
+    # different equipment entirely and simply adds its rows.
+    order, keys = {}, set()
+    for i, (_, rows) in enumerate(parts):
         keys |= set(rows)
+        for k, r in rows.items():
+            order.setdefault(k, (i, r["excel_row"]))
     out = []
-    for k in sorted(keys):
+    for k in sorted(keys, key=lambda t: order[t]):
         present = [(name, rows[k]) for name, rows in parts if k in rows]
         owner_name, base = None, None
-        tag = present[0][1]["A"]
+        tag = k
         want = OWNER_OVERRIDE.get((code, tag))
         if want:
             for name, r in present:

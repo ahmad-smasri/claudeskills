@@ -5,9 +5,10 @@ registers by `build_room_names.py`.
 
 ```
 python3 build_room_names.py \
-    --src SSC=sources/SSC_rooms.xlsx \
-    --src HQ=sources/HQ_rooms_B-2F.xlsx,sources/HQ_rooms_3F-Roof.xlsx \
-    --src QNL=sources/QNL_rooms_part1.xlsx \
+    --src SSC=sources/SSC_rooms.xlsx,sources/SSC_remaining_equipment.xlsx \
+    --src HQ=sources/HQ_rooms_B-2F.xlsx,sources/HQ_rooms_3F-Roof.xlsx,\
+sources/HQ_remaining_equipment.xlsx \
+    --src QNL=sources/QNL_rooms.xlsx \
     --out Room_Names.xlsx \
     --rooms-xlsx Rooms_with_Equipment.xlsx \
     --rooms-csv rooms_distinct.csv
@@ -19,23 +20,20 @@ row per asset, carrying the room subject the row resolved to.
 carrying the equipment that serves it - the tags from column A, how many, what
 types, and how many of them are in scope.
 
-SSC: 124 asset rows, 69 rooms, 1 unresolved.
-HQ: 761 asset rows, 599 rooms, 1 unresolved.
-QNL: 551 asset rows, 198 rooms, 14 unresolved.
+SSC: 165 asset rows, 85 rooms, 1 unresolved.
+HQ: 868 asset rows, 610 rooms, 75 unresolved.
+QNL: 551 asset rows, 197 rooms, 14 unresolved.
 
-**These registers are not the whole estate.** Counted against the equipment
-asset registers in `projects/bms-room-allocation/`, what has been room-allocated
-so far is SSC 124 of 170, HQ 760 of 912, QNL 550 of 551. The 46 SSC and 152 HQ
-assets still to come are the CCUs, DX units, heat exchangers, pumps, control
-panels and zone exhaust fans; the asset registers carry no room columns, so they
-need allocating before they can be named. `RDC` is a fourth building in the same
-workbook, 1,759 rows, not yet in scope.
+That is the whole controllable estate for the three buildings: the AHU/VAV/FCU
+pass plus the remaining equipment. `RDC`, a fourth building of 1,759 rows in the
+same source workbook, is not in scope.
 
-Until those land, **treat the SSC and HQ names as provisional**. New rows do not
-only add rooms: column E arbitrates a reference's name, and a clearer spelling
-or a green row on a reference already in the sheet can change a name that is
-already there. Rerun the whole build when the rest arrives rather than appending
-to the output.
+**HQ's 74 unresolved rows are a client question, not a gap in this build.** The
+delivered HQ ontology points 48 of them at the placeholder `entity:<Location>`
+and gives 26 no room at all, and no BMS screen reading names one either. There
+is nothing to name them from, so they are left blank with that reason in the
+notes. Four more placeholder rows *do* have a screen reading and are named from
+it.
 
 A building split across several workbooks is given as one comma-separated
 `--src`; see **Merging HQ's two workbooks**.
@@ -103,6 +101,28 @@ ontology name, **H** room per the VAV/FCU list, **J** room per the BMS screen.
 
 Every row carries the column it was taken from and a note saying why, and the
 notes also flag where the result parts company with the delivered SSC ontology.
+
+## Two source layouts
+
+The BMS register covers the AHU, VAV and FCU pass. Everything else - CRACs, DX
+units, heat exchangers, pumps, control panels, exhaust fans - comes on an
+equipment review sheet with its own column names, mapped onto the same six
+fields:
+
+| register | equipment review |
+|---|---|
+| `Tag No.` | `Tag` |
+| `Equipment Type` | `Equipment class` |
+| room per drawings | `Room per ontology` |
+| ontology name | `Ontology room entity` |
+| room per BMS screen | `Room per BMS screen` |
+| green fill | `Needs revision` = `YES` |
+
+The layout is picked off the header row, so either file can be passed to any
+`--src`. Merging is keyed on the tag rather than the row number: HQ's two
+register halves hold the same tags and are reconciled against each other, while
+an equipment review sheet holds different equipment entirely and simply adds
+its rows.
 
 ## Merging HQ's two workbooks
 
