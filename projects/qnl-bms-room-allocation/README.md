@@ -84,8 +84,16 @@ Three steps, and the order matters:
    its own, so the nearest text is routinely the wrong answer.
 
 Then `write_j.py` puts the readings into columns J and K of the register,
-`report_qnl.py` prints column D against column J, and `highlight_rows.py`
-fills the rows that need a human eye.
+`report_qnl.py` prints column D against column J, `write_findings.py` puts the
+verdict and its reason into columns L and M, and `highlight_rows.py` fills the
+rows that need a human eye. Run them in that order - the verdict is computed
+from what is in column J, and the fill from the verdict.
+
+Columns L and M matter because until they existed the *reason* a row was
+flagged lived only in the CSV. A reviewer with the workbook open saw
+`Processing Rm` in column J with no way to tell that column D says SECURITY &
+BMS B.102, or that for a plant item column D is where the unit sits rather
+than what it serves.
 
 Two things about the register itself, both learned the hard way. The QNL block
 is a **collapsed outline group** - all 551 rows carry `hidden="1"` - so
