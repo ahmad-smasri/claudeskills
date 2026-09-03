@@ -110,6 +110,9 @@ def main():
     ap.add_argument("--names", default="projects/dar-cairo-room-naming/Room_Names.xlsx")
     ap.add_argument("--crosswalk", default="projects/QNL/QNL_naming_crosswalk.csv")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--force", action="store_true",
+                    help="run even if the ontology already carries the new "
+                         "room shape")
     ap.add_argument("--crosswalk-out")
     ap.add_argument("--log")
     args = ap.parse_args()
@@ -141,6 +144,15 @@ def main():
     # ---- 1. the rename map ------------------------------------------------
     parsed = {e: parse_room(building, e) for e in rooms}
     unparsed = [e for e, p in parsed.items() if p is None]
+    # QNL_Ontology.xlsx now IS the converted file - this script overwrote it -
+    # so a second run would find no old-shape rooms to rename and would quietly
+    # produce a copy with nothing done. Stop instead of pretending to work.
+    if rooms and len(unparsed) > len(rooms) / 2 and not args.force:
+        raise SystemExit(
+            "%d of %d rooms in %s are already in the new shape - this looks "
+            "like a file this script has already converted. Re-run it against "
+            "the pre-conversion ontology from git history, or pass --force."
+            % (len(unparsed), len(rooms), args.ontology))
     per_ref = collections.defaultdict(list)
     for e, p in parsed.items():
         if p:

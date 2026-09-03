@@ -1,13 +1,21 @@
-# QNL ontology v2 - room subjects and equipment locations
+# QNL ontology - room subjects and equipment locations
 
-`QNL_Ontology_v2.xlsx`, built from `QNL_Ontology.xlsx` by
-`update_ontology_rooms.py`. 9,985 rows, one more than v1.
+`QNL_Ontology.xlsx` and `QNL_Ontology.csv` **are** this change: the converted
+model replaced the previous one in place, so there is one QNL ontology and not
+a v1 and a v2 to confuse later. 9,985 rows, one more than before. The
+pre-conversion file is in git history at `8c500fb`.
+
+The change was produced by `update_ontology_rooms.py`, which now refuses to run
+against a file it has already converted rather than quietly producing a copy
+with nothing done. To re-derive it, check the old ontology out of history first:
 
 ```
+git show 8c500fb:projects/QNL/QNL_Ontology.xlsx > /tmp/QNL_pre.xlsx
 python3 projects/QNL/update_ontology_rooms.py \
-    --out projects/QNL/QNL_Ontology_v2.xlsx \
-    --crosswalk-out projects/QNL/QNL_room_crosswalk_v2.csv \
-    --log projects/QNL/QNL_ontology_v2_changes.csv
+    --ontology /tmp/QNL_pre.xlsx \
+    --out projects/QNL/QNL_Ontology.xlsx \
+    --crosswalk-out projects/QNL/QNL_room_rename_crosswalk.csv \
+    --log projects/QNL/QNL_room_retarget_changes.csv
 ```
 
 ## What changed
@@ -25,7 +33,7 @@ python3 projects/QNL/update_ontology_rooms.py \
 
 `entity:QNL_B_063_PLANT-ROOM-01` is now `entity:QNL_B-063_Plant-Room-01`.
 Every room used as an object is declared; no subject is malformed; the
-validator reports the same 887 errors and 186 warnings as v1, and the
+validator reports the same 887 errors and 186 warnings as before, and the
 consistency checker the same 590 and 552, so nothing was broken on the way.
 Advisories fell from 35 to 9.
 
@@ -52,7 +60,7 @@ chilled-water pumps. `TEF_B01A` sits in `B.110 Plant Room 03` and serves
 `B.046 Rest Room Men`; `CHW_P01` sits in `B.220 Plant Room 04` and feeds
 `entity:QNL_CHWS-MAIN-LOOP`. The naming sheet gives one room per unit and on
 every one of these it is the location, so it has nothing to say about what they
-serve. The full list is in `QNL_ontology_v2_changes.csv`.
+serve. The full list is in `QNL_room_retarget_changes.csv`.
 
 ## What needs your decision
 
