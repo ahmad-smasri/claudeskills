@@ -7,8 +7,9 @@ registers by `build_room_names.py`.
 python3 build_room_names.py \
     --src SSC=sources/SSC_rooms.xlsx \
     --src HQ=sources/HQ_rooms_B-2F.xlsx,sources/HQ_rooms_3F-Roof.xlsx \
-    --out SSC_HQ_Room_Names.xlsx \
-    --rooms-xlsx SSC_HQ_Rooms_with_Equipment.xlsx \
+    --src QNL=sources/QNL_rooms_part1.xlsx \
+    --out Room_Names.xlsx \
+    --rooms-xlsx Rooms_with_Equipment.xlsx \
     --rooms-csv rooms_distinct.csv
 ```
 
@@ -20,6 +21,7 @@ types, and how many of them are in scope.
 
 SSC: 124 asset rows, 69 rooms, 1 unresolved.
 HQ: 761 asset rows, 599 rooms, 1 unresolved.
+QNL: 551 asset rows, 198 rooms, 14 unresolved (part 1 of the register).
 
 A building split across several workbooks is given as one comma-separated
 `--src`; see **Merging HQ's two workbooks**.
@@ -117,6 +119,35 @@ the three flagged conflicts and chose `3F-Roof` here and `B-2F` for the other
 two, so the pair sits in `OWNER_OVERRIDE` with that reason written into both
 rows' notes. Every other row still follows the level rule.
 
+## QNL's own quirks
+
+**The BMS screen never carries a room number.** 146 of QNL's 147 screen
+readings are a bare name - `IDF Rm`, `Plant Rm 1`, `Restaurant`. So where a
+screen reading wins the name, the reference comes from the drawings. That is
+also why rule 5 hands every non-green row to column D: J can never satisfy
+"has both a number and a name".
+
+**The drawings own the reference outright** (`ref_from_drawings`). Column E and
+the drawings disagree on 15 of QNL's references, and the drawings are right on
+13: E writes `L1023_2` for `L1.023`, `B046_ITT` for `B.046_ITT`, `L1-E2` for
+`L1.E2`, `B141_VAU` for `B.141_VAU` - the level and room ran together or the
+separator became a dash. The other two are genuine conflicts, both flagged:
+`FCU_1F_058` (drawings `L1.145`, E `L1.144`) and `VAV_B_S10_009`
+(drawings `B.203`, E `B.204`).
+
+**Room codes are not all numeric.** `L1.BR6`, `L1.BC1`, `L1.L-3`, `L1.E2`,
+`B.045A`, `B.046_ITT`. Padding applies to purely numeric codes only, so
+`B.58` becomes `B.058` among its three-digit siblings and `BR6` is left alone.
+
+**Levels are `B`, `L1`, `L2`, `P`, `T1` verbatim** - which is what
+`projects/QNL/QNL_Ontology.xlsx` already calls them (`entity:QNL_B`,
+`entity:QNL_L1`).
+
+**Not every asset tag ends in a number.** `CCU_MDFRm`, `ELEC_Gen`,
+`CCU_Server_Rm`. A row is now recognised by having an equipment type beside
+the tag rather than by the tag's shape; matching the shape silently dropped
+nine QNL rows.
+
 ## HQ's own quirks
 
 **Rule 3 finally bites.** HQ's references reached the sheet as decimals, so
@@ -167,6 +198,18 @@ be split without guessing. They are listed under the open questions.
   `HREDUADV`, `PROCANDCONTRLDIR`, `LEGALLEGADV`); one list of their expansions
   settles all 18 at once.
 - **HQ, VAV0558** has no room in any column. Left blank.
+- **QNL, 14 rows** have no room in any column: `VAV0001`, `VAV_B_S13_005`,
+  `CCU_8081` to `CCU_8086`, `CCU_MDFRm`, `CCU_Qtel`, `CCU_Server_Rm`,
+  `CCU_AVServer_Rm`, `CCU_HeritageVault`, `CHWPU_P02`. Left blank.
+- **QNL is part 1 of its register.** A second part drops in as another
+  comma-separated path on the same `--src`, but the merge policy is HQ's
+  level-range rule; if QNL's parts split some other way, that rule needs
+  telling how.
+- **42 spelling clashes** across the three buildings, where a name is the same
+  in two columns but the letters differ - `SPA FITNESS DTUDIO`, `SECURITY
+  CONTOL ROOM`, `STUDENT CARRLES`, `CHAUFFER`/`CHAUFFEUR`. Every one is in
+  the row's notes. Nothing is corrected: a room name is also the label a user
+  reads, so the client decides.
 - **The HQ draft disagrees on 64 names.** Advisory only - it never changes a
   name, it only writes a note. Most are typos in the draft (`SPA FITNESS
   DTUDIO`, `VACILITY MANAGDIRENSUIT`, `SH. SERV. DIR. ACCOUNUT.`), but a few

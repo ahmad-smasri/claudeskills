@@ -45,7 +45,14 @@ GREEN = "FF00B050"
 ACRONYMS = {
     "AV", "AVR", "BMS", "IDF", "MDF", "IT", "ST", "UPS", "LV", "HV", "MEP",
     "AHU", "FCU", "VAV", "WC", "TV", "CCTV", "ELV", "MV", "DB", "MDB", "EMDB",
-    "RMU", "HVAC", "PABX", "SMATV", "MCC",
+    "RMU", "HVAC", "PABX", "SMATV", "MCC", "VIP",
+}
+
+# Per-building additions. FM is why this cannot be one list: on QNL it is
+# Facilities Management, on HQ it is Female (SPA FM TREATMENT sits beside SPA
+# MALE HEAT EXP), and upper-casing it there reads as a mistake.
+EXTRA_ACRONYMS = {
+    "QNL": {"ICT", "FM", "BOH", "ILL", "HC", "KDF", "QTEL"},
 }
 
 # Dar Cairo writes Boiler-And-Heat-Exchange, so an ampersand becomes a word.
@@ -57,7 +64,14 @@ WORD_FIXES = {"&": "And", "AND": "And"}
 # --------------------------------------------------------------------------
 class Building:
     def __init__(self, code, level_style, room_width, pad, entity_style,
-                 level_names=None, level_alias=None):
+                 level_names=None, level_alias=None, ref_re=None,
+                 ref_from_drawings=False):
+        self.acronyms = ACRONYMS | EXTRA_ACRONYMS.get(code, set())
+        self._ref_re = re.compile(ref_re) if ref_re else None
+        # QNL's column E mangles the reference on 15 rows where the drawings
+        # have it right (L1023_2 for L1.023, B046_ITT for B.046), so there the
+        # drawings win the reference outright.
+        self.ref_from_drawings = ref_from_drawings
         self.code = code
         self.level_alias = level_alias or {}
         self.level_style = level_style      # "pad2" or "strip0"
@@ -65,6 +79,10 @@ class Building:
         self.pad = pad                      # "left" or "right"
         self.entity_style = entity_style    # "underscore" or "dotted"
         self.level_names = level_names or {}
+
+    @property
+    def ref_re(self):
+        return self._ref_re or REF_RE
 
     def norm_level(self, raw):
         if raw is None:
@@ -77,14 +95,14 @@ class Building:
             return raw.zfill(2)
         return raw.lstrip("0") or "0"       # strip0: 04 -> 4
 
-    def norm_room(self, num, suffix):
+    def norm_room(self, num, suffix):  # noqa: D401
         """R3 - the room number is a fixed-width field.
 
         SSC prints it left-padded and never lost a digit.  HQ's numbers reached
         the sheet as decimals, so Excel ate the trailing zero: 1.020 came back
         as 1.02 and 3.360 as 3.36.  Those pad on the right.
         """
-        if len(num) < self.room_width:
+        if num.isdigit() and len(num) < self.room_width:
             num = (num.zfill(self.room_width) if self.pad == "left"
                    else num.ljust(self.room_width, "0"))
         return num + (suffix or "")
@@ -103,6 +121,17 @@ BUILDINGS = {
         level_alias={"B1": "B"},            # drawings and BMS both print B.013
         level_names={"B": "Level-B1", "B1": "Level-B1", "01": "Level-01",
                      "02": "Level-02", "03": "Level-03"},
+    ),
+    "QNL": Building(
+        code="QNL",
+        level_style="verbatim",             # B, L1, L2, P, T1 - no padding
+        room_width=3,
+        pad="left",                         # B.58 among 3-digit siblings
+        entity_style="underscore",          # entity:QNL_B_220_PLANT_ROOM_04
+        ref_re=r"(?<![A-Za-z0-9])(B|L1|L2|P|T1)\.([A-Za-z0-9][A-Za-z0-9-]{0,5})"
+               r"(?![A-Za-z0-9-])",
+        ref_from_drawings=True,
+        level_names={"B": "B", "L1": "L1", "L2": "L2", "P": "P", "T1": "T1"},
     ),
     "HQ": Building(
         code="HQ",
@@ -133,10 +162,13 @@ def split_ref(building, text):
     s = str(text).strip()
     if not s:
         return None, None, None
-    m = REF_RE.search(s)
+    m = None
+    for m in building.ref_re.finditer(s):   # the reference trails the name
+        pass
     if not m:
         return None, None, s.strip()
-    lvl, room = norm_ref(building, m.group(1), m.group(2), m.group(3))
+    suffix = m.group(3) if m.re.groups >= 3 else None
+    lvl, room = norm_ref(building, m.group(1), m.group(2), suffix)
     name = (s[: m.start()] + " " + s[m.end():]).strip()
     return lvl, room, name
 
@@ -186,7 +218,16 @@ def key(name):
 
 
 def squash(name):
-    return re.sub(r"[^A-Z0-9]+", "", str(name or "").upper())
+    return re.sub(r"[^A-Z0-9]+", "", str(name or "").upper().replace("&", "AND"))
+
+
+def squash_loose(name):
+    """squash(), with leading zeros off every number.
+
+    PLANT ROOM 04 and Plant Room 4 are the same name padded two ways, not two
+    spellings, and calling that a typo buries the real ones.
+    """
+    return re.sub(r"0+(\d)", r"\1", squash(name))
 
 
 def same_name(a, b):
@@ -222,7 +263,8 @@ def adds_a_token(long_name, short_sq):
     PROTASSIST does not add a token to EXEC. DIR. PROT. ASSIS. - it only
     finishes the last word, which is a respelling.
     """
-    toks = [t for t in re.split(r"[^A-Za-z0-9]+", str(long_name)) if t]
+    toks = [t for t in re.split(r"[^A-Za-z0-9]+",
+                                str(long_name).replace("&", " AND ")) if t]
     for i in range(len(toks) - 1, 0, -1):
         if squash("".join(toks[:i])) == short_sq:
             return True
@@ -250,15 +292,16 @@ def split_prefix(name, candidates):
             best = c
     if best is None:
         return name
-    head = name[:len(name) - len(str(best).replace(" ", ""))]
-    # walk back over the characters of the tail as they appear in `name`
-    tail_len, i = len(squash(best)), len(name)
-    seen = 0
+    # Walk back over the tail's characters in a string normalised the same way
+    # squash() normalises, or an ampersand spelled out as AND makes the walk
+    # over-consume and eat into the last word of the prefix.
+    norm = str(name).replace("&", " AND ")
+    tail_len, i, seen = len(squash(best)), len(norm), 0
     while i > 0 and seen < tail_len:
         i -= 1
-        if name[i].isalnum():
+        if norm[i].isalnum():
             seen += 1
-    head = name[:i].rstrip(" _-")
+    head = norm[:i].rstrip(" _-")
     return "%s %s" % (head, best) if head else name
 
 
@@ -286,7 +329,7 @@ def best_spelling(name, candidates):
     return best
 
 
-def to_segment(name):
+def to_segment(name, acronyms=ACRONYMS):
     """'VISITOR'S CUBICLE' -> 'Visitors-Cubicle'; keeps acronyms upper case."""
     if not name:
         return ""
@@ -304,7 +347,7 @@ def to_segment(name):
             up = p.upper()
             if up in WORD_FIXES:
                 parts.append(WORD_FIXES[up])
-            elif up in ACRONYMS:
+            elif up in acronyms:
                 parts.append(up)
             elif p.isdigit():
                 parts.append(p)
@@ -347,13 +390,15 @@ def decide(building, row):
                 notes.append("green row: took the last populated name (%s)" % tag)
                 if e_n and key(n) != key(e_n):
                     notes.append("overrides column E (%s)" % e_n)
-                if r is None and e_r:
-                    # the screen names the room but not its number - only the
-                    # name was in dispute, so E still supplies the reference.
-                    l, r = e_l, e_r
-                    n = strip_ref(n, e_r)
-                    notes.append("no reference on the screen - taken from E "
-                                 "(%s.%s)" % (e_l, e_r))
+                if r is None and (d_r or e_r):
+                    # The screen names the room but not its number - on QNL it
+                    # never does - so the reference comes from the drawings,
+                    # and only from E when the drawings have none either.
+                    src = "the drawings" if d_r else "E"
+                    l, r = (d_l, d_r) if d_r else (e_l, e_r)
+                    n = strip_ref(n, r)
+                    notes.append("no reference on the screen - taken from %s "
+                                 "(%s.%s)" % (src, l, r))
                 return l, r, n, tag, notes
         notes.append("green row with no name in D, H or J")
         return None, None, None, "", notes
@@ -370,6 +415,12 @@ def decide(building, row):
         notes.append("no usable J, so column D stands")
 
     lvl, room, name = pick
+
+    if building.ref_from_drawings and d_r is not None:
+        if room is not None and (lvl, room) != (d_l, d_r):
+            notes.append("reference taken from the drawings (%s.%s), not %s.%s"
+                         % (d_l, d_r, lvl, room))
+        lvl, room = d_l, d_r
 
     # R2 + R4 - E arbitrates the name.
     if e_n:
@@ -397,6 +448,13 @@ def decide(building, row):
                              % (lvl, room, e_l, e_r))
         if lvl is None:
             lvl = e_l
+    if (e_n and name and same_name(name, e_n)
+            and squash_loose(name) != squash_loose(e_n)):
+        # Same name, different letters - one of the two is a typo. Neither is
+        # corrected here: a room name is also the label a user reads, so the
+        # difference is reported and the client decides.
+        notes.append("spelled %r here and %r in column E - one is a typo"
+                     % (name, e_n))
     clearer = best_spelling(name, [d_n, h_n, j_n, e_n])
     if clearer != name:
         notes.append("spelled %r on the clearest source" % clearer)
@@ -493,7 +551,7 @@ def reconcile(rows, building):
 def subject(building, lvl, room, name):
     if not name:
         return ""
-    seg_name = to_segment(name)
+    seg_name = to_segment(name, building.acronyms)
     if not seg_name:
         return ""
     # entity:SSC_01-029_Shell-Space - the reference segment already carries the
@@ -537,7 +595,13 @@ def load_one(path, building):
         tag = r[0].value
         if not tag or not isinstance(tag, str):
             continue
-        if not re.match(r"^[A-Z]+[A-Z_]*\d", tag.strip()):
+        # An asset row is one with an equipment type beside the tag. Matching
+        # the tag's shape instead dropped nine QNL rows - CCU_MDFRm, ELEC_Gen,
+        # CCU_Server_Rm - whose tags end in a word rather than a number.
+        kind = r[1].value
+        if not isinstance(kind, str) or not kind.strip():
+            continue
+        if kind.strip().lower() == "equipment type":
             continue
         rows[r[0].row] = {
             "excel_row": r[0].row,
@@ -657,7 +721,8 @@ def load(paths, building, code=None):
 
 
 DELIVERED = {"SSC": "QF_SSC_Ontology_ver02.xlsx",
-             "HQ": "QF_HQ_Ontology_draft0.4.xlsx"}
+             "HQ": "QF_HQ_Ontology_draft0.4.xlsx",
+             "QNL": "../projects/QNL/QNL_Ontology.xlsx"}
 
 
 def load_delivered(code):
