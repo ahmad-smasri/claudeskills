@@ -682,11 +682,11 @@ one pass. Worth putting to the PARA team.
 
 ## Equipment with no room placed at the building — 2026-09-03
 
-House rule changed: an asset the register gives no room for is still certainly
-in the building and certainly on its system, so **assert both rather than
-nothing**. Previously the sheet wrote no `rec:locatedIn` at all, on the grounds
-that inventing a location reads as surveyed fact — a building-level location
-invents nothing.
+**A QNL project assumption, not a house rule** — the skill still says to write no
+location at all when the register gives none. For this building the decision was
+that an asset with no room is still certainly in the building and certainly on
+its system, so **assert both rather than nothing**; a building-level location
+invents nothing that a survey would contradict.
 
 **26 rows added**, `rec:locatedIn entity:QNL` (`rec:Building`), on: 6 CRACs
 (`CCU-8081`–`8086`), 2 DX units, `CAV-1F-S15-001`, `VAV-B-S13-005`,

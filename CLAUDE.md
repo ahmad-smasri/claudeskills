@@ -219,12 +219,6 @@ findings it can adjudicate are resolved rather than flagged, which is the pass a
 reviewer would otherwise do by hand. Silence is not confirmation: a unit the list
 says nothing about leaves its finding standing.
 
-**Equipment with no location is placed at the building, not left bare.** Write
-`rec:locatedIn` the building and `brick:isPartOf` its system - both are known even
-when the room is not - and still no `rec:feeds`, because the served space is the
-part nobody knows. Standalone equipment only: a part inherits its parent's
-location, and Dar Cairo locates just 19 of its 801 parts separately.
-
 **Nameplate properties come from manufacturer datasheets.** Ask for them. If a
 datasheet was not submitted, leave the property out - never a typical value,
 never a placeholder.
