@@ -142,8 +142,11 @@ BUILDINGS = {
         room_width=3,
         pad="left",                         # B.58 among 3-digit siblings
         entity_style="underscore",          # entity:QNL_B_220_PLANT_ROOM_04
+        # A few QNL references carry a three-letter code - B.106_RES, B.141_VAU -
+        # which tells apart two rooms sharing a number. It is consumed but not
+        # captured, so it does not trail into the name as Vault-Vau.
         ref_re=r"(?<![A-Za-z0-9])(B|L1|L2|P|T1)\.([A-Za-z0-9][A-Za-z0-9-]{0,5})"
-               r"(?![A-Za-z0-9-])",
+               r"(?:_[A-Z]{2,4}\b)?(?![A-Za-z0-9-])",
         ref_from_drawings=True,
         level_names={"B": "B", "L1": "L1", "L2": "L2", "P": "P", "T1": "T1"},
     ),
@@ -452,6 +455,16 @@ def decide(building, row):
             notes.append("reference taken from the drawings (%s.%s), not %s.%s"
                          % (d_l, d_r, lvl, room))
         lvl, room = d_l, d_r
+        if e_r is not None and (e_l, e_r) != (d_l, d_r) and d_n:
+            # E's reference is wrong here, which means its segments were split
+            # in the wrong place: entity:QNL_L1-E2_ELEC_SHAFT reads as level
+            # L1-E2, room ELEC, name SHAFT, and the room is really L1.E2 Elec
+            # Shaft. A name cut off by a bad split is no more trustworthy than
+            # the reference was, so the drawings name the room too.
+            if not same_name(d_n, e_n):
+                notes.append("column E is mis-segmented here (%s.%s), so the "
+                             "name comes from the drawings too" % (e_l, e_r))
+            e_n = d_n
 
     # R2 + R4 - E arbitrates the name.
     if e_n:

@@ -94,3 +94,20 @@ SSC and HQ were left alone on instruction. HQ would have been wrong to touch
 anyway: its ontology is a draft carrying `SPA FITNESS DTUDIO` and `VACILITY
 MANAGDIRENSUIT`, and it writes the department run into the room name, so
 respelling from it would have imported typos and undone the readability work.
+
+## The 22 units that sit in one room and serve another - checked
+
+Every one was compared against the register, mapping v1 rooms through the
+crosswalk so a rename does not read as a move. **None needs its `rec:locatedIn`
+changed.** 20 agree with the register exactly. The two that appeared not to -
+`TEF_101C` and `TEF_102C` - are the same rooms, `L1.E2` and `L1.E1`; the
+register's name had been cut short to `Shaft` because column E splits
+`entity:QNL_L1-E2_ELEC_SHAFT` as level `L1-E2`, room `ELEC`, name `SHAFT`.
+
+That is fixed at the cause rather than by hand: where the reference is taken
+from the drawings because E's is wrong, E's segments were split in the wrong
+place, so its name is no more trustworthy than its reference was and the
+drawings name the room too. Four QNL rooms change - `Elec-Shaft` twice,
+`L1-023 Corridor` and `L1.L-3` - and the same pass stops the three-letter
+disambiguating code trailing into a name, so `B.141_VAU` is `Vault`, not
+`Vault-Vau`. SSC and HQ are untouched by all of it.
