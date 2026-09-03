@@ -77,3 +77,20 @@ serve. The full list is in `QNL_ontology_v2_changes.csv`.
   If 144 and 145 are one room, 144 should be retired.
 - The 13 QNL rows with no room at all are unchanged and still carry no
   `rec:locatedIn` from this sheet.
+
+## Misspellings
+
+The naming sheet's QNL room names are now respelled from this ontology, which
+is the clean source: `SPRIMKLERS` to `Sprinklers`, `TRANSH CHAMBER` to
+`Trash-Chamber`, `SHIPPING CLIRK` to `Shipping-Clerk`, `ARABIC SUDIES` to
+`Arabic-Studies`, `RESERCHERS` to `Researchers`, `CONTOL` to `Control`,
+`LIBRARIA` to `Librarian`, `WATING` to `Waiting`, `LEVLEL` to `Level`. Eight
+typos, plus four places where the ontology simply chose a different form
+(`Analog` over `Analogue`, `Ad Collections`, `Public Service`, `Furniture
+Storage`). 34 rooms in all; the ontology's own subjects and labels are
+unchanged, because they were already right.
+
+SSC and HQ were left alone on instruction. HQ would have been wrong to touch
+anyway: its ontology is a draft carrying `SPA FITNESS DTUDIO` and `VACILITY
+MANAGDIRENSUIT`, and it writes the department run into the room name, so
+respelling from it would have imported typos and undone the readability work.
