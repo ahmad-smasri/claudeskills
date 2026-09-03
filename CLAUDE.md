@@ -196,6 +196,13 @@ each measures before generating a tier, and suppress every pair a physical meter
 covers. Expect to need a hand-written list: physical meters routinely carry no
 `brick:meters` row, so the graph cannot answer the question.
 
+**A virtual meter is a formula, so it needs inputs.** Before generating a tier,
+check the sheet carries the points its formula would sum; where it does not,
+defer the meter and say so. A duplicate meter is visible to a reviewer, but a
+meter with no inputs validates clean, renders a tile and returns nothing. On QNL
+this ruled out water metering (no potable-water point exists) and the
+Occupant-Wellbeing bundle (no CO2, TVOC, PM, lux, noise or occupancy points).
+
 **Virtual meters are asked for, never assumed** - `references/virtual-meters.md`.
 Which tiers (Building, Floor, Room) and which meter types at each is the client's
 decision, put to them as a matrix; the count then follows as arithmetic, so say

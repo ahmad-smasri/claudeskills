@@ -701,3 +701,35 @@ are the sheet's only remaining errors and want checking against the drawings.
 supply/return fans, 10 HEX valves, 2 circuit breakers, 2 fuel transfer pumps.
 A part inherits its parent's location; Dar Cairo locates only 19 of its 801
 parts separately. Locating a valve at the building would add noise, not fact.
+
+
+## Virtual meter families not built, and why
+
+Two reasons, and they need different follow-up.
+
+**Suppressed — a physical meter already covers it.** Closed.
+
+- `para:Utility_Meter` at building tier. `entity:QNL_Total-Energy` is already one,
+  with a live historian tag `QNL_TotalEnergy.Energy`.
+
+**Deferred — the points the formula would sum do not exist.** Reopens if the
+points arrive.
+
+- `brick:Water_Meter` — QNL carries no potable-water point at all. Every "water"
+  match in the sheet is a chilled-water temperature or an air flow. Dar Cairo has
+  34 of these at building, level and zone tier.
+- `para:Occupant-Wellbeing_Meter` — its eight-sensor bundle has temperature (310
+  points) and relative humidity (115) available, and **no** CO2, TVOC, PM2.5/10,
+  illuminance, noise or occupancy points anywhere in the building. Dar Cairo's
+  largest virtual meter family, 901 rows.
+
+**Not asked for, and buildable from data QNL already has** — no new site data
+needed, a matrix row each if wanted:
+
+- `para:*_Target` points alongside Consumption and Demand (Dar Cairo attaches 34
+  per class)
+- forecast and KPI points, derived from the series the layer already declares
+- `brick:isSubMeterOf`, chaining the floor and room meters up to the building one
+- `para:General_Util_Meter`, `para:Data-Center_Meter`, `para:Generator_Meter`,
+  `para:Solar_Meter` — 2,335 electric power points to draw on, and
+  `entity:QNL_ELEC-Gen` already exists as a `para:Generator`

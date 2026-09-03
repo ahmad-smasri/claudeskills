@@ -23,6 +23,24 @@ for the answer at intake, name each suppression against the physical meter that
 justifies it, and log it. Adding the missing `brick:meters` rows to the physical
 meters is the durable fix, and worth proposing.
 
+**And only where the points it would sum actually exist.** A virtual meter is a
+formula; a formula with no inputs returns nothing, forever. This is the failure
+the tier matrix invites, because a matrix is a grid and a grid tempts you to fill
+it. So for each meter type the client ticks, **check the sheet carries the points
+its formula would draw on**, and where it does not, say so rather than building
+the meter. On QNL that ruled out two families the matrix never asked for:
+`brick:Water_Meter`, because the building has no potable-water point at all -
+every "water" match was a chilled-water temperature or an air flow - and
+`para:Occupant-Wellbeing_Meter`, whose eight-sensor bundle had temperature and
+humidity available and no CO2, TVOC, PM, illuminance, noise or occupancy.
+
+This is the more dangerous of the two tests. A meter that duplicates a physical
+one is a duplicate a reviewer can see; **a meter with no inputs validates clean,
+renders a tile, and returns nothing** - indistinguishable from a broken sensor
+until someone traces the formula back. Keep the two reasons apart when you report
+them, because they need different answers: a duplicate is dropped, a meter with
+no inputs is deferred until the points exist.
+
 Read this alongside `relationships.md` (the metering predicate family) and
 `class-resolution.md` (the ladder, which applies to meter classes like anything
 else).
@@ -46,7 +64,10 @@ para:LTG_Meter                x       x      x
 brick:Electrical_Meter        x       x      x
 ```
 
-That matrix is QNL's, and it is a reasonable default to offer. Once it is
+That matrix is QNL's, and it is a reasonable default to offer - but offer it as a
+starting point, not a checklist to complete: every tick has to survive both tests
+above, a physical meter already covering it and the points its formula needs
+being absent. Once it is
 answered the count is fixed arithmetic - a `B` costs 1 meter, an `F` costs one
 per level, an `R` costs one per room - so **say the total back before building**:
 QNL's matrix over 1 building, 5 levels and 354 rooms is 1,460 meters and 8,760
@@ -268,6 +289,26 @@ Beyond the standard passes:
   were both `para:Utility_Meter`, so it did. A physical `brick:Water_Meter`
   against a virtual `para:CHW_Meter` measuring the same loop would pass silently.
   Read the existing meter list yourself; do not wait for the checker.
+
+## Report what you did not build, and which reason
+
+Two different reasons, two different answers, so name them separately in the
+handover:
+
+```
+Suppressed - a physical meter already covers it:
+  para:Utility_Meter at building tier - entity:QNL_Total-Energy is one already,
+  with a live historian tag.
+
+Deferred - the points its formula would sum do not exist:
+  brick:Water_Meter          - no potable-water point in the building
+  para:Occupant-Wellbeing_Meter - temperature and humidity available; CO2, TVOC,
+                               PM, illuminance, noise and occupancy all absent
+```
+
+A suppressed meter is a closed question. A deferred one reopens the moment the
+missing points arrive, so it belongs in the handover as pending work rather than
+as a decision. Say which points are missing, not just that some are.
 
 ## Why not to build this by hand
 
