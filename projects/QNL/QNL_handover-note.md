@@ -858,15 +858,16 @@ was asked to deliver, and it is the smaller of the two. Reconciled both ways:
 |---|---|
 | Selected tags present in the sheet | **2,754 of 2,754** |
 | Selected tags missing | **0** |
-| Timeseries ids in the sheet that are not selected | **1** — `ContributionFraction`, by design |
+| Timeseries ids in the sheet that are not selected | **4**, each exempt by name — see below |
 
-Getting there removed **149 points, 302 rows**:
+Getting there removed **149 points, 302 rows**, of which 3 points / 6 rows were
+restored the same day under QNL-050 — a net **146 points, 296 rows**:
 
 | Group | Points | Why |
 |---|---|---|
 | TEF | 86 | The group and per-fan sets above |
 | ELEC MFM | 60 | `KWDaily`, `KWMonthly`, `MWDaily`, `MWMonthly`, `kWhpreviousdatadaily`, `kWhpreviousdatamonthly` on 10 MFM units. The list selects only `.KW` and `.KWh` |
-| VAV | 3 | `VAV_1F_S15_039S` — see below |
+| VAV | 3 | `VAV_1F_S15_039S` — since restored, see below |
 
 Plus four `para:` class declarations left with no user: `para:Duty_Priority`,
 `para:Remote_Status`, `para:Start_Count`, `para:Trip_Count`.
@@ -886,7 +887,7 @@ Removals are itemised in `QNL_pruned_points.csv`, and the pruning is
 reproducible: `python3 projects/QNL/prune_to_selected.py`. Logged as
 **QNL-049**.
 
-### One point where the selection looks wrong — `VAV-1F-S15-039S`
+### `VAV-1F-S15-039S` — dropped, then restored
 
 The asset register lists `VAV_1F_S15_039S` as a box in its own right, serving
 **L1-048 Staff Office** — a different room from `VAV_1F_S15_039`, which serves
@@ -894,14 +895,25 @@ L1-002A Green Room. The historian carries five tags for it. The selected list
 carries none: it selects `QNL_VAV_1F_S15_039.DmprPos`, `.DuctAirFlow` and
 `.EffectiveSP` but has no `039S` equivalent.
 
-Its three points were dropped with the rest. The equipment entity is kept, with
-its location, feeds, isFedBy and IFC reference intact.
+Its three points went with the rest of the pruning, then came back the same day
+on your confirmation that this is an omission in the selection rather than a
+decision. The box is real, it serves a room no other box serves, and the
+near-identical `039` is selected; leaving it out would have left Staff Office
+L1-048 with no VAV telemetry in the delivered graph.
 
-This reads as an omission in the selection rather than a decision: the box is
-real, it serves a room no other box serves, and the near-identical `039` is
-selected. As it stands, Staff Office L1-048 has no VAV telemetry in the
-delivered graph. Restoring the three points is a one-line change if you confirm.
-Logged as **QNL-050**, open.
+`prune_to_selected.py` now exempts the three tags by name, alongside
+`ContributionFraction`, so re-running the pruning does not strip them again.
+Logged as **QNL-050**, resolved.
+
+The sheet therefore carries **four** unselected timeseries ids, each exempt for
+a stated reason rather than by oversight:
+
+| Id | Why it is exempt |
+|---|---|
+| `ContributionFraction` | Internal container the backend fills by calculation |
+| `QNL_VAV_1F_S15_039S.DmprPos` | QNL-050 |
+| `QNL_VAV_1F_S15_039S.DuctAirFlow` | QNL-050 |
+| `QNL_VAV_1F_S15_039S.EffectiveSP` | QNL-050 |
 
 ### The 1,314 historian tags — closed, not needed
 
@@ -912,5 +924,5 @@ rows were added. Logged as **QNL-048**, closed.
 
 ## Sheet state
 
-**19,244 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
+**19,250 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
 served room the asset register does not give. All tests pass.

@@ -17,7 +17,19 @@ SEL = 'projects/QNL/sources/Selected_PARA_OS_Data_Points_v4.0.xlsx'
 ONTO = 'projects/QNL/QNL_Ontology.csv'
 SUBJ = [5, 9, 13, 17, 21, 25]
 OBJ = [7, 11, 15, 19, 23]
-KEEP_UNLISTED = {'ContributionFraction'}
+# Unlisted ids that stay in the sheet, each with the reason it is exempt.
+KEEP_UNLISTED = {
+    # An internal container the backend fills by calculation, so its absence
+    # from a list of BMS tags is expected rather than a selection gap.
+    'ContributionFraction',
+    # QNL-050: a real box in the asset register, serving L1-048 Staff Office -
+    # a room no other box serves. The selection omits it while selecting the
+    # near-identical 039, which the client confirmed was an omission in their
+    # document rather than a decision. Restored 2026-09-04.
+    'QNL_VAV_1F_S15_039S.DmprPos',
+    'QNL_VAV_1F_S15_039S.DuctAirFlow',
+    'QNL_VAV_1F_S15_039S.EffectiveSP',
+}
 
 
 def selected_tags():
