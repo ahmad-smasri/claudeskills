@@ -1,0 +1,163 @@
+old_subject,new_subject,named_by
+entity:SSC_01_001_CORRIDOR,entity:SSC_01-001_Corridor,naming sheet
+entity:SSC_01_002_SHELL_SPACE,entity:SSC_01-002_Shell-Space,naming sheet
+entity:SSC_01_003_OPEN_SPACE,entity:SSC_01-003_Open-Space,naming sheet
+entity:SSC_01_004_CORRIDOR,entity:SSC_01-004_Corridor,ontology (reference holds several rooms)
+entity:SSC_01_005_KITCHEN,entity:SSC_01-005_Kitchen,naming sheet
+entity:SSC_01_006_MALE_TOILET,entity:SSC_01-006_Male-Toilet,ontology (reference holds several rooms)
+entity:SSC_01_007_FEMALE_TOILET,entity:SSC_01-007_Female-Toilet,ontology (reference holds several rooms)
+entity:SSC_01_008_AV_ROOM,entity:SSC_01-008_AV-Room,naming sheet
+entity:SSC_01_009_AUDITORIUM,entity:SSC_01-009_Auditorium,ontology (reference holds several rooms)
+entity:SSC_01_010_CORRIDOR,entity:SSC_01-010_Corridor,ontology (reference holds several rooms)
+entity:SSC_01_011_AIR_LOCK,entity:SSC_01-011_Air-Lock,ontology (reference holds several rooms)
+entity:SSC_01_012_STORAGE,entity:SSC_01-012_Storage,ontology (reference holds several rooms)
+entity:SSC_01_013_CORRIDOR,entity:SSC_01-013_Corridor,naming sheet
+entity:SSC_01_014_SHELL_SPACE,entity:SSC_01-014_Shell-Space,naming sheet
+entity:SSC_01_015_SHELL_SPACE,entity:SSC_01-015_Shell-Space,naming sheet
+entity:SSC_01_016_SHELL_SPACE,entity:SSC_01-016_Shell-Space,naming sheet
+entity:SSC_01_017_FEMALE_TOILET,entity:SSC_01-017_Female-Toilet,ontology (reference holds several rooms)
+entity:SSC_01_018_CORRIDOR,entity:SSC_01-018_Corridor,naming sheet
+entity:SSC_01_019_PRAYER_ROOM,entity:SSC_01-019_Prayer-Room,naming sheet
+entity:SSC_01_020_CORRIDOR,entity:SSC_01-020_Corridor,ontology (reference holds several rooms)
+entity:SSC_01_021_ABLUTION_ROOM,entity:SSC_01-021_Ablution-Room,ontology (reference holds several rooms)
+entity:SSC_01_022_ABLUTION_ROOM,entity:SSC_01-022_Ablution-Room,ontology (reference holds several rooms)
+entity:SSC_01_023_CORRIDOR,entity:SSC_01-023_Corridor,ontology (reference holds several rooms)
+entity:SSC_01_024_CORRIDOR,entity:SSC_01-024_Corridor,naming sheet
+entity:SSC_01_025_MALE_TOILET,entity:SSC_01-025_Male-Toilet,ontology (reference holds several rooms)
+entity:SSC_01_026_STORAGE_ROOM,entity:SSC_01-026_Storage-Room,ontology (reference holds several rooms)
+entity:SSC_01_027_IDF_1,entity:SSC_01-027_IDF-1,naming sheet
+entity:SSC_01_028_CORRIDOR,entity:SSC_01-028_Corridor,naming sheet
+entity:SSC_01_029_ROOM_NO_42,entity:SSC_01-029_Room-No-42,ontology (reference holds several rooms)
+entity:SSC_01_029_ROOM_NO_43,entity:SSC_01-029_Room-No-43,ontology (reference holds several rooms)
+entity:SSC_01_029_ROOM_NO_44,entity:SSC_01-029_Room-No-44,ontology (reference holds several rooms)
+entity:SSC_01_029_SHELL_SPACE,entity:SSC_01-029_Shell-Space,ontology (reference holds several rooms)
+entity:SSC_01_030_STORAGE,entity:SSC_01-030_Storage,ontology (reference holds several rooms)
+entity:SSC_01_031_TOILET,entity:SSC_01-031_Toilet,ontology (reference holds several rooms)
+entity:SSC_01_032_VESTIBULE,entity:SSC_01-032_Vestibule,ontology (reference holds several rooms)
+entity:SSC_01_033_JANITORS_CLOSET,entity:SSC_01-033_Janitors-Closet,ontology (reference holds several rooms)
+entity:SSC_01_034_AIR_LOCK,entity:SSC_01-034_Air-Lock,ontology (reference holds several rooms)
+entity:SSC_01_035_CORRIDOR,entity:SSC_01-035_Corridor,ontology (reference holds several rooms)
+entity:SSC_01_036_OUTDOOR_AREA,entity:SSC_01-036_Outdoor-Area,ontology (reference holds several rooms)
+entity:SSC_01_037_OUTDOOR_AREA,entity:SSC_01-037_Outdoor-Area,ontology (reference holds several rooms)
+entity:SSC_01_038_STORAGE_AREA,entity:SSC_01-038_Storage-Area,ontology (reference holds several rooms)
+entity:SSC_01_039_IDF_2,entity:SSC_01-039_IDF-2,naming sheet
+entity:SSC_01_041_STORAGE_ROOM,entity:SSC_01-041_Storage-Room,ontology (reference holds several rooms)
+entity:SSC_01_P-1_P-1,entity:SSC_01-P-1_P-1,ontology (reference holds several rooms)
+entity:SSC_01_P-2_P-2,entity:SSC_01-P-2_P-2,ontology (reference holds several rooms)
+entity:SSC_01_ST-1_STAIR-1,entity:SSC_01-ST-1_Stair-1,ontology (reference holds several rooms)
+entity:SSC_01_ST-2_STAIR-2,entity:SSC_01-ST-2_Stair-2,ontology (reference holds several rooms)
+entity:SSC_01_ST-3_STAIR-3,entity:SSC_01-ST-3_Stair-3,ontology (reference holds several rooms)
+entity:SSC_01_ST-4_STAIR_4,entity:SSC_01-ST-4_Stair-4,naming sheet
+entity:SSC_01_ST-5_STAIR-5,entity:SSC_01-ST-5_Stair-5,ontology (reference holds several rooms)
+entity:SSC_01_ST-8_STAIR-8,entity:SSC_01-ST-8_Stair-8,ontology (reference holds several rooms)
+entity:SSC_01_ST-9_STAIR-9,entity:SSC_01-ST-9_Stair-9,ontology (reference holds several rooms)
+entity:SSC_02_001_FOYER,entity:SSC_02-001_Foyer,naming sheet
+entity:SSC_02_002_LOBBY,entity:SSC_02-002_Lobby,naming sheet
+entity:SSC_02_003_CORRIDOR,entity:SSC_02-003_Corridor,naming sheet
+entity:SSC_02_004_CORRIDOR,entity:SSC_02-004_Corridor,naming sheet
+entity:SSC_02_005_EXECUTIVE_CONFERENCE_ROOM,entity:SSC_02-005_Executive-Conference-Room,naming sheet
+entity:SSC_02_006_CONFERENCE_ROOM,entity:SSC_02-006_Conference-Room,naming sheet
+entity:SSC_02_007_MEZZANINE,entity:SSC_02-007_Mezzanine,ontology (reference holds several rooms)
+entity:SSC_02_008_TOILET,entity:SSC_02-008_Toilet,ontology (reference holds several rooms)
+entity:SSC_02_010_VESTIBULE,entity:SSC_02-010_Vestibule,ontology (reference holds several rooms)
+entity:SSC_02_P-1_LIFT,entity:SSC_02-P-1_Lift,ontology (reference holds several rooms)
+entity:SSC_02_P-2_LIFT,entity:SSC_02-P-2_Lift,ontology (reference holds several rooms)
+entity:SSC_02_ST-1_STAIR-1,entity:SSC_02-ST-1_Stair-1,ontology (reference holds several rooms)
+entity:SSC_02_ST-2_STAIR-2,entity:SSC_02-ST-2_Stair-2,ontology (reference holds several rooms)
+entity:SSC_02_ST-8_STAIR-8,entity:SSC_02-ST-8_Stair-8,ontology (reference holds several rooms)
+entity:SSC_03_001_DIRECTORS_OFFICE,entity:SSC_03-001_Directors-Office,naming sheet
+entity:SSC_03_002_DIRECTORS_MEETING_ROOM,entity:SSC_03-002_Directors-Meeting-Room,naming sheet
+entity:SSC_03_003_RESEARCHERS_OFFICE,entity:SSC_03-003_Researchers-Office,naming sheet
+entity:SSC_03_004_VISITORS_CUBICLE,entity:SSC_03-004_Visitors-Cubicle,naming sheet
+entity:SSC_03_005_RESEARCHERS_OFFICE,entity:SSC_03-005_Researchers-Office,naming sheet
+entity:SSC_03_006_MEETING_ROOM,entity:SSC_03-006_Meeting-Room,ontology (reference holds several rooms)
+entity:SSC_03_007_OPERATIONS_MANAGER,entity:SSC_03-007_Operations-Manager,naming sheet
+entity:SSC_03_008_VISITORS_CUBICLE,entity:SSC_03-008_Visitors-Cubicle,naming sheet
+entity:SSC_03_009_RESEARCHERS_OFFICE,entity:SSC_03-009_Researchers-Office,naming sheet
+entity:SSC_03_010_RESEARCHERS_OFFICE,entity:SSC_03-010_Researchers-Office,naming sheet
+entity:SSC_03_011_VISITORS_CUBICLE,entity:SSC_03-011_Visitors-Cubicle,naming sheet
+entity:SSC_03_012_RESEARCHERS_OFFICE,entity:SSC_03-012_Researchers-Office,naming sheet
+entity:SSC_03_013_RESEARCHERS_OFFICE,entity:SSC_03-013_Researchers-Office,naming sheet
+entity:SSC_03_014_VISITORS_CUBICLE,entity:SSC_03-014_Visitors-Cubicle,naming sheet
+entity:SSC_03_015_RESEARCHERS_OFFICE,entity:SSC_03-015_Researchers-Office,naming sheet
+entity:SSC_03_016_LOUNGE,entity:SSC_03-016_Lounge,naming sheet
+entity:SSC_03_017_RESEARCHERS_OFFICE,entity:SSC_03-017_Researchers-Office,naming sheet
+entity:SSC_03_018_VISITORS_CUBICLE,entity:SSC_03-018_Visitors-Cubicle,naming sheet
+entity:SSC_03_019_IT_MANAGERS_OFFICE,entity:SSC_03-019_IT-Managers-Office,naming sheet
+entity:SSC_03_020_RESEARCHERS_OFFICE,entity:SSC_03-020_Researchers-Office,naming sheet
+entity:SSC_03_021_VISITORS_CUBICLE,entity:SSC_03-021_Visitors-Cubicle,naming sheet
+entity:SSC_03_022_RESEARCHERS_OFFICE,entity:SSC_03-022_Researchers-Office,naming sheet
+entity:SSC_03_023_RESEARCHERS_OFFICE,entity:SSC_03-023_Researchers-Office,naming sheet
+entity:SSC_03_024_VISITORS_CUBICLE,entity:SSC_03-024_Visitors-Cubicle,naming sheet
+entity:SSC_03_025_SECRETARIAL_AREA,entity:SSC_03-025_Secretarial-Area,naming sheet
+entity:SSC_03_026_MEETING_ROOM,entity:SSC_03-026_Meeting-Room,naming sheet
+entity:SSC_03_027_RESEARCHERS_OFFICE,entity:SSC_03-027_Researchers-Office,naming sheet
+entity:SSC_03_028_VISITORS_CUBICLE,entity:SSC_03-028_Visitors-Cubicle,naming sheet
+entity:SSC_03_029_RESEARCHERS_OFFICE,entity:SSC_03-029_Researchers-Office,naming sheet
+entity:SSC_03_030_ASSOC_DIRECTORS_MEETING_ROOM,entity:SSC_03-030_Assoc-Directors-Meeting-Room,naming sheet
+entity:SSC_03_031_ASSOC_DIRECTORS_OFFICE,entity:SSC_03-031_Assoc-Directors-Office,naming sheet
+entity:SSC_03_032_GENERAL_OFFICE_AREA,entity:SSC_03-032_General-Office-Area,naming sheet
+entity:SSC_03_033_PRINTING,entity:SSC_03-033_Printing,naming sheet
+entity:SSC_03_034_CORRIDOR,entity:SSC_03-034_Corridor,naming sheet
+entity:SSC_03_035_STUDY_LIBRARY_AREA,entity:SSC_03-035_Study-Library-Area,ontology (reference holds several rooms)
+entity:SSC_03_036_KITCHEN,entity:SSC_03-036_Kitchen,ontology (reference holds several rooms)
+entity:SSC_03_037_MALE_TOILET,entity:SSC_03-037_Male-Toilet,ontology (reference holds several rooms)
+entity:SSC_03_038_SERVER_ROOM,entity:SSC_03-038_Server-Room,naming sheet
+entity:SSC_03_039_FEMALE_TOILET,entity:SSC_03-039_Female-Toilet,ontology (reference holds several rooms)
+entity:SSC_03_040_CORRIDOR,entity:SSC_03-040_Corridor,ontology (reference holds several rooms)
+entity:SSC_03_041_CORRIDOR,entity:SSC_03-041_Corridor,naming sheet
+entity:SSC_03_042_CORRIDOR,entity:SSC_03-042_Corridor,naming sheet
+entity:SSC_03_043_EXTERIOR_COURTYARD,entity:SSC_03-043_Exterior-Courtyard,ontology (reference holds several rooms)
+entity:SSC_03_044_CORRIDOR,entity:SSC_03-044_Corridor,ontology (reference holds several rooms)
+entity:SSC_03_045_JANITORS_CLOSET,entity:SSC_03-045_Janitors-Closet,naming sheet
+entity:SSC_03_046_STORAGE,entity:SSC_03-046_Storage,ontology (reference holds several rooms)
+entity:SSC_03_047_BALCONY,entity:SSC_03-047_Balcony,ontology (reference holds several rooms)
+entity:SSC_03_048_BALCONY,entity:SSC_03-048_Balcony,ontology (reference holds several rooms)
+entity:SSC_03_049_IT_OFFICE,entity:SSC_03-049_IT-Office,naming sheet
+entity:SSC_03_F7_1_PODIUM,entity:SSC_03-F7_1-Podium,ontology (reference holds several rooms)
+entity:SSC_03_P-1_LIFT,entity:SSC_03-P-1_Lift,ontology (reference holds several rooms)
+entity:SSC_03_P-2_LIFT,entity:SSC_03-P-2_Lift,ontology (reference holds several rooms)
+entity:SSC_03_ST-1_STAIR-1,entity:SSC_03-ST-1_Stair-1,ontology (reference holds several rooms)
+entity:SSC_03_ST-2_STAIR-2,entity:SSC_03-ST-2_Stair-2,ontology (reference holds several rooms)
+entity:SSC_B1_001_FM_STORAGE,entity:SSC_B-001_Fm-Storage,ontology (reference holds several rooms)
+entity:SSC_B1_002_HV_ROOM,entity:SSC_B-002_HV-Room,naming sheet
+entity:SSC_B1_003_TRANSFORMER,entity:SSC_B-003_Transformer,naming sheet
+entity:SSC_B1_004_MV_SWITCH_ROOM,entity:SSC_B-004_MV-Switch-Room,naming sheet
+entity:SSC_B1_005_UPS,entity:SSC_B-005_UPS,naming sheet
+entity:SSC_B1_006_SERVICE_AREA,entity:SSC_B-006_Service-Area,ontology (reference holds several rooms)
+entity:SSC_B1_007_SERVICE_DOCK,entity:SSC_B-007_Service-Dock,ontology (reference holds several rooms)
+entity:SSC_B1_008_VENT_PLANT,entity:SSC_B-008_Vent-Plant,naming sheet
+entity:SSC_B1_009_TOILET,entity:SSC_B-009_Toilet,ontology (reference holds several rooms)
+entity:SSC_B1_010_VESTIBULE,entity:SSC_B-010_Vestibule,ontology (reference holds several rooms)
+entity:SSC_B1_011_JANITORS_CLOSET,entity:SSC_B-011_Janitors-Closet,ontology (reference holds several rooms)
+entity:SSC_B1_012_GENERATOR,entity:SSC_B-012_Generator,naming sheet
+entity:SSC_B1_013_CHILLED_WATER,entity:SSC_B-013_Chilled-Water,naming sheet
+entity:SSC_B1_014_VENT_PLANT,entity:SSC_B-014_Vent-Plant,naming sheet
+entity:SSC_B1_015_ENTRANCE,entity:SSC_B-015_Entrance,naming sheet
+entity:SSC_B1_016_SPRINKLER-WATER,entity:SSC_B-016_Sprinkler-Water,naming sheet
+entity:SSC_B1_017_MDF-2,entity:SSC_B-017_MDF-2,naming sheet
+entity:SSC_B1_018_CONDENSER_ROOM,entity:SSC_B-018_Condenser-Room,ontology (reference holds several rooms)
+entity:SSC_B1_019_FM_STORAGE,entity:SSC_B-019_Fm-Storage,ontology (reference holds several rooms)
+entity:SSC_B1_020_FM_STORAGE,entity:SSC_B-020_Fm-Storage,ontology (reference holds several rooms)
+entity:SSC_B1_021_FM_STORAGE,entity:SSC_B-021_Fm-Storage,ontology (reference holds several rooms)
+entity:SSC_B1_022_SSP,entity:SSC_B-022_Ssp,naming sheet
+entity:SSC_B1_023_Q_TEL,entity:SSC_B-023_Q-Tel,naming sheet
+entity:SSC_B1_024_BIN_STORAGE,entity:SSC_B-024_Bin-Storage,ontology (reference holds several rooms)
+entity:SSC_B1_025_MAIN_SEC_CONTROL_ROOM,entity:SSC_B-025_Main-Sec-Control-Room,naming sheet
+entity:SSC_B1_026_MDF_SER-1,entity:SSC_B-026_MDF-Ser-1,naming sheet
+entity:SSC_B1_027_CORRIDOR,entity:SSC_B-027_Corridor,ontology (reference holds several rooms)
+entity:SSC_B1_028_FILE_STORAGE,entity:SSC_B-028_File-Storage,ontology (reference holds several rooms)
+entity:SSC_B1_029_CORRIDOR,entity:SSC_B-029_Corridor,ontology (reference holds several rooms)
+entity:SSC_B1_030_CORRIDOR,entity:SSC_B-030_Corridor,naming sheet
+entity:SSC_B1_031_CORRIDOR,entity:SSC_B-031_Corridor,ontology (reference holds several rooms)
+entity:SSC_B1_032_CORRIDOR,entity:SSC_B-032_Corridor,ontology (reference holds several rooms)
+entity:SSC_B1_034_CORRIDOR,entity:SSC_B-034_Corridor,ontology (reference holds several rooms)
+entity:SSC_B1_035_CORRIDOR,entity:SSC_B-035_Corridor,ontology (reference holds several rooms)
+entity:SSC_B1_036_STORAGE,entity:SSC_B-036_Storage,ontology (reference holds several rooms)
+entity:SSC_B1_038_SER-2,entity:SSC_B-038_Ser-2,naming sheet
+entity:SSC_B1_039_BMS,entity:SSC_B-039_BMS,ontology (reference holds several rooms)
+entity:SSC_B1_P-1_P1,entity:SSC_B-P-1_P1,ontology (reference holds several rooms)
+entity:SSC_B1_P-2_P2,entity:SSC_B-P-2_P2,ontology (reference holds several rooms)
+entity:SSC_B1_ST-1_STAIR-1,entity:SSC_B-ST-1_Stair-1,ontology (reference holds several rooms)
+entity:SSC_B1_ST-2_STAIR-2,entity:SSC_B-ST-2_Stair-2,ontology (reference holds several rooms)
+entity:SSC_ST-10_STAIR-10,entity:SSC_ST-10_Stair-10,ontology (reference holds several rooms)
