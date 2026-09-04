@@ -840,10 +840,43 @@ it does for the four counters. And `OccSchedule` is a `brick:Occupancy_Status`
 rather than a `brick:Occupancy_Command`, because both delivered projects use
 Status for this and neither uses Command.
 
-**Still open — 50 per-fan tags.** The historian holds 131 TEF tags; 81 now
-resolve. The 50 that do not are `FTSP`, `FTST`, `FltRst`, `RuntimeMtr`,
-`StartsCtr` and `TripCtr` on each of the six twin fans and on `TEF-101C` and
-`TEF-102C`, plus `RemSts` on the two standalone fans. These are per-**fan**
-points, a different set from the group points, and under the skill's rule an IO
-row with no point is a scope call rather than a defect. `FTSP` and `FTST` are
-unexplained abbreviations and want decoding before any class is picked.
+### The 50 per-fan points, added
+
+**All 131 historian TEF tags now resolve.** No new classes were needed — the two
+abbreviations I had flagged as unexplained were explained by the historian's own
+Description column, which I had not read closely enough:
+
+| Suffix | Historian description | Class |
+|---|---|---|
+| `FTSP` | Fail to Stop Alarm | `para:Fail_Stop_Alarm` — SSC's, already declared in QNL |
+| `FTST` | Fail to Start Alarm | `para:Fail_Start_Alarm` — same |
+| `FltRst` | Alarm Reset Command | `brick:Fault_Reset_Command` |
+| `RuntimeMtr` | Runtime Meter | `brick:On_Timer_Sensor`, `unit:HR` |
+| `StartsCtr` | Starts Counter | `para:Start_Count` |
+| `TripCtr` | Trip Counter | `para:Trip_Count` |
+| `RemSts` | Remote status | `para:Remote_Status` |
+
+Six suffixes on each of the six twin fans, seven on each of the two standalone
+fans — the standalone pair also carries `RemSts`, which the twin-fan sets report
+at set level instead. `TEF-B01A` now has 11 points, `TEF-101C` has 13.
+
+### The same gap, 1,314 more points across the building
+
+Running that cross-check past the TEFs found the same seven suffixes unmodelled
+on **28 other equipment families**:
+
+| | | | | |
+|---|---|---|---|---|
+| VAV 247 | AHU 146 | ELE 145 | FCU 137 | EF 136 |
+| DX 120 | CCU 62 | SEF 62 | CAV 51 | SurfaceWtr 45 |
+| CHW 29 | KEF 28 | FoulWtr 18 | WasteWtr 15 | MF 14 |
+
+plus 13 smaller families — **1,314 points, roughly 2,628 rows**, against the
+19,546 the sheet holds today.
+
+Every class is already settled above, so adding them is mechanical rather than a
+modelling exercise. Two questions decide it, neither technical: whether the
+applications this model serves need alarm, runtime and counter points at all, and
+whether all those historian tags are live. Under the skill's rule an IO row with
+no point is a scope call for the client — but a gap this size should be a
+decision rather than an oversight. Logged as **QNL-048**.
