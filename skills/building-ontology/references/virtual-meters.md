@@ -6,22 +6,21 @@ points and the result is attached to a space. They are how the front end answers
 derivable from a survey or an IO list - **the tiers and the meter types are the
 client's decision, so both are asked for before any row is written.**
 
-**A virtual meter exists only where a physical one does not.** That is the whole
-point of the layer - it fills the gaps in the metering the building actually has.
-Where a real meter already measures the thing, a virtual meter beside it is a
-second answer to the same question with no data behind it, and the front end has
-no way to choose. So before generating a tier, **list the meters the sheet
-already carries and what each one measures**, and suppress every pair a physical
-meter covers. On QNL that removed the building-tier `para:Utility_Meter`, because
-`entity:QNL_Total-Energy` was already one and had a live historian tag.
+**A physical meter does not rule out a virtual one.** They answer different
+questions: a physical meter reads what is actually imported or delivered at one
+point in the plant, a virtual meter is a calculated roll-up over a space. The gap
+between them is losses and unmetered load, and seeing that gap is useful - a
+building whose physical intake reads 10% above the sum of its virtual floor
+meters has something unaccounted for. So **report the overlap, do not suppress
+it**: list the physical meters the sheet already carries and what each measures,
+say which virtual meters land on the same subject, and let the reviewer decide.
 
-Expect this to need a list rather than a query. Physical meters routinely arrive
-with no `brick:meters` row at all - all 16 of QNL's were `brick:isPartOf
+Expect that list to need a human. Physical meters routinely arrive with no
+`brick:meters` row at all - all 16 of QNL's were `brick:isPartOf
 entity:Electrical_System` with points and nothing saying what they metered - so
-the graph cannot answer "is this already metered?" and a human has to say. Ask
-for the answer at intake, name each suppression against the physical meter that
-justifies it, and log it. Adding the missing `brick:meters` rows to the physical
-meters is the durable fix, and worth proposing.
+the graph cannot answer "what does this measure?" and someone has to say. Ask at
+intake, and propose adding the missing `brick:meters` rows: that is the durable
+fix, and it is what makes the comparison above possible at all.
 
 **And only where the points it would sum actually exist.** A virtual meter is a
 formula; a formula with no inputs returns nothing, forever. This is the failure
@@ -34,12 +33,10 @@ every "water" match was a chilled-water temperature or an air flow - and
 `para:Occupant-Wellbeing_Meter`, whose eight-sensor bundle had temperature and
 humidity available and no CO2, TVOC, PM, illuminance, noise or occupancy.
 
-This is the more dangerous of the two tests. A meter that duplicates a physical
-one is a duplicate a reviewer can see; **a meter with no inputs validates clean,
-renders a tile, and returns nothing** - indistinguishable from a broken sensor
-until someone traces the formula back. Keep the two reasons apart when you report
-them, because they need different answers: a duplicate is dropped, a meter with
-no inputs is deferred until the points exist.
+**This is the one test that actually removes a meter.** An overlap with a
+physical meter is reported and kept; a meter with no inputs is deferred, because
+it **validates clean, renders a tile, and returns nothing** - indistinguishable
+from a broken sensor until someone traces the formula back.
 
 Read this alongside `relationships.md` (the metering predicate family) and
 `class-resolution.md` (the ladder, which applies to meter classes like anything
@@ -65,14 +62,12 @@ brick:Electrical_Meter        x       x      x
 ```
 
 That matrix is QNL's, and it is a reasonable default to offer - but offer it as a
-starting point, not a checklist to complete: every tick has to survive both tests
-above, a physical meter already covering it and the points its formula needs
-being absent. Once it is
+starting point, not a checklist to complete: every tick has to survive the input test above -
+the points its formula would sum must exist. Once it is
 answered the count is fixed arithmetic - a `B` costs 1 meter, an `F` costs one
 per level, an `R` costs one per room - so **say the total back before building**:
 QNL's matrix over 1 building, 5 levels and 354 rooms is 1,460 meters and 8,760
-rows, less whatever the physical-meter rule above suppresses - 1,459 in the end.
-A client who did not realise room tier meant 1,440 meters gets to say so while it
+rows. A client who did not realise room tier meant 1,440 meters gets to say so while it
 is still a sentence rather than a sheet.
 
 **Utility Meter is a building-tier class.** It measures the supply the government
@@ -290,25 +285,23 @@ Beyond the standard passes:
   against a virtual `para:CHW_Meter` measuring the same loop would pass silently.
   Read the existing meter list yourself; do not wait for the checker.
 
-## Report what you did not build, and which reason
-
-Two different reasons, two different answers, so name them separately in the
-handover:
+## Report what you did not build, and what overlaps
 
 ```
-Suppressed - a physical meter already covers it:
-  para:Utility_Meter at building tier - entity:QNL_Total-Energy is one already,
-  with a live historian tag.
-
 Deferred - the points its formula would sum do not exist:
-  brick:Water_Meter          - no potable-water point in the building
+  brick:Water_Meter             - no potable-water point in the building
   para:Occupant-Wellbeing_Meter - temperature and humidity available; CO2, TVOC,
-                               PM, illuminance, noise and occupancy all absent
+                                  PM, illuminance, noise and occupancy all absent
+
+Built, and overlapping a physical meter - kept deliberately, not duplicates:
+  para:Utility_Meter at building tier   vs entity:QNL_Total-Energy
+  para:CHW_Meter at building tier       vs entity:QNL_CHWS-MAIN-LOOP_Energy-Meter
 ```
 
-A suppressed meter is a closed question. A deferred one reopens the moment the
-missing points arrive, so it belongs in the handover as pending work rather than
-as a decision. Say which points are missing, not just that some are.
+A deferred meter reopens the moment the missing points arrive, so it belongs in
+the handover as pending work; say which points are missing, not just that some
+are. An overlap is not pending work - it is a pairing the front end can show side
+by side, and naming it stops the next reviewer raising it as a defect.
 
 ## Why not to build this by hand
 

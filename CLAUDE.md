@@ -189,12 +189,11 @@ IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
 `ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
 **on the point, never on the equipment.**
 
-**A virtual meter exists only where a physical one does not** - it fills the gaps
-in the metering the building has, so a virtual meter beside a real one is a second
-answer with no data behind it. List the meters the sheet already carries and what
-each measures before generating a tier, and suppress every pair a physical meter
-covers. Expect to need a hand-written list: physical meters routinely carry no
-`brick:meters` row, so the graph cannot answer the question.
+**A physical meter does not rule out a virtual one** - they answer different
+questions, and the gap between an imported reading and a calculated roll-up is
+losses and unmetered load, which is worth seeing. Report the overlap, never
+suppress it. Expect to need a hand-written list of what each physical meter
+measures: they routinely carry no `brick:meters` row, so the graph cannot say.
 
 **A virtual meter is a formula, so it needs inputs.** Before generating a tier,
 check the sheet carries the points its formula would sum; where it does not,

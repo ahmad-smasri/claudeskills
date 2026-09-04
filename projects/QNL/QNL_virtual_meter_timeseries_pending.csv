@@ -2917,3 +2917,5 @@ entity:QNL_T1-276_IDF-Room_Electrical-Virtual-Meter-Consumption,brick:Electrical
 entity:QNL_T1-276_IDF-Room_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,,entity:QNL_T1-276_IDF-Room
 entity:QNL_T1-323_IDF-Room_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,ELEC_KWH_CALC,,entity:QNL_T1-323_IDF-Room
 entity:QNL_T1-323_IDF-Room_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,,entity:QNL_T1-323_IDF-Room
+entity:QNL_Utility-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,Utility_KWH,,entity:QNL
+entity:QNL_Utility-Virtual-Meter-Demand,brick:Electric_Power_Sensor,Utility_KW,,entity:QNL
