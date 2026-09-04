@@ -810,73 +810,107 @@ each have 2 `rec:feeds` triples (`E-CON-6`). That last one is worth a look at th
 checker: a terminal unit legitimately serving two rooms will always trip it, so
 `E-CON-6` may be too strict as an ERROR.
 
-### The 36 group points, added
+### The 36 group points and 50 per-fan points — added, then removed
 
-All 39 group-level historian tags on the base `TEF_B0n` keys now resolve — 13 per
-set. Classes, in ladder order:
+Both sets were built, and both are gone again. They are recorded here because
+the class work behind them stands and would be reused verbatim if the scope
+changes.
 
-| Point | Class | Where it came from | Unit |
-|---|---|---|---|
-| `_Changeover-Hours-Setpoint` | `para:Changeover_Hours_Setpoint` | QNL, 15 uses | `unit:HR` |
-| `_Lead-Lag-Command` | `brick:Lead_Lag_Command` | Brick — it enables lead/lag operation, and the point reads Disable/Enable | `unit:UNITLESS` |
-| `_Enable-Command` | `brick:Enable_Command` | Brick | `unit:UNITLESS` |
-| `_Fire-Alarm` | `brick:Fire_Alarm` | Dar Cairo, 54 uses | `unit:UNITLESS` |
-| `_Local-Status` | `para:Local_Status` | QNL, 71 uses | `unit:UNITLESS` |
-| `_Occupancy-Status` | `brick:Occupancy_Status` | SSC 248, HQ 1522 | `unit:UNITLESS` |
-| `_Duty-Priority-1/2` | `para:Duty_Priority` | **new** — `brick:Parameter` | `unit:UNITLESS` |
-| `_Remote-Status` | `para:Remote_Status` | **new** — `brick:Status`, mirroring `para:Local_Status` | `unit:UNITLESS` |
-| `_Reset-Command` | `brick:Reset_Command` | QNL, 4 uses | `unit:UNITLESS` |
-| `_Run-Time` | `brick:On_Timer_Sensor` | Brick **preferred** — Dar Cairo uses the `brick:Run_Time_Sensor` alias | `unit:HR` |
-| `_Start-Count` | `para:Start_Count` | **new** — `brick:Point` | `unit:UNITLESS` |
-| `_Trip-Count` | `para:Trip_Count` | **new** — `brick:Point` | `unit:UNITLESS` |
-
-**Four new `para:` classes for PARA review.** `para:Start_Count` and
-`para:Trip_Count` take `brick:Point` to match QNL's own `para:Required_Units_Count`
-and its four hours-duration classes.
-
-**Two unit calls worth naming.** `_Run-Time` carries `unit:HR` on the class's
-authority — the historian states no unit and a placeholder 0–10 range for it, as
-it does for the four counters. And `OccSchedule` is a `brick:Occupancy_Status`
-rather than a `brick:Occupancy_Command`, because both delivered projects use
-Status for this and neither uses Command.
-
-### The 50 per-fan points, added
-
-**All 131 historian TEF tags now resolve.** No new classes were needed — the two
-abbreviations I had flagged as unexplained were explained by the historian's own
-Description column, which I had not read closely enough:
+The group set was 12 points per twin-fan node (changeover setpoint, duty
+priority 1 and 2, enable command, fire alarm, lead/lag command, local status,
+occupancy status, remote status, reset command, run time, start count, trip
+count). The per-fan set was 50 points across the eight fans, on seven suffixes,
+all of which resolved on the ladder without coining anything new:
 
 | Suffix | Historian description | Class |
 |---|---|---|
-| `FTSP` | Fail to Stop Alarm | `para:Fail_Stop_Alarm` — SSC's, already declared in QNL |
-| `FTST` | Fail to Start Alarm | `para:Fail_Start_Alarm` — same |
+| `FTSP` | Fail to Stop Alarm | `para:Fail_Stop_Alarm` |
+| `FTST` | Fail to Start Alarm | `para:Fail_Start_Alarm` |
 | `FltRst` | Alarm Reset Command | `brick:Fault_Reset_Command` |
 | `RuntimeMtr` | Runtime Meter | `brick:On_Timer_Sensor`, `unit:HR` |
 | `StartsCtr` | Starts Counter | `para:Start_Count` |
 | `TripCtr` | Trip Counter | `para:Trip_Count` |
 | `RemSts` | Remote status | `para:Remote_Status` |
 
-Six suffixes on each of the six twin fans, seven on each of the two standalone
-fans — the standalone pair also carries `RemSts`, which the twin-fan sets report
-at set level instead. `TEF-B01A` now has 11 points, `TEF-101C` has 13.
+They were removed because none of them is on
+`Selected_PARA_OS_Data_Points_v4.0.xlsx`. That list carries **45 TEF tags**; the
+sheet had grown to 131. The selected shape is `.LocSts` at the twin-fan set and
+five tags on each fan — `AutoManCmd`, `RunSts`, `StartStopCmd`,
+`StartStopCmdSts`, `TripAlm` — which is what the sheet now carries.
 
-### The same gap, 1,314 more points across the building
+The twin-fan structure itself is unaffected, and the selected list is the
+strongest confirmation of it yet: it names `QNL_TEF_B01A` and `QNL_TEF_B01B` as
+separate tag sets with `QNL_TEF_B01.LocSts` sitting at the set. What the pruning
+costs is the group node's content — `TEF-B01`, `-B02` and `-B03` now carry one
+point each, and the consistency checker flags them as thin against their 24
+single-fan siblings. That is a real structural difference, not a defect.
 
-Running that cross-check past the TEFs found the same seven suffixes unmodelled
-on **28 other equipment families**:
+Logged as **QNL-046** and **QNL-047**, both marked reversed.
 
-| | | | | |
-|---|---|---|---|---|
-| VAV 247 | AHU 146 | ELE 145 | FCU 137 | EF 136 |
-| DX 120 | CCU 62 | SEF 62 | CAV 51 | SurfaceWtr 45 |
-| CHW 29 | KEF 28 | FoulWtr 18 | WasteWtr 15 | MF 14 |
+## The sheet now matches the selected datapoint list exactly
 
-plus 13 smaller families — **1,314 points, roughly 2,628 rows**, against the
-19,546 the sheet holds today.
+`Selected_PARA_OS_Data_Points_v4.0.xlsx` — 2,769 rows, 2,754 unique tags, every
+one marked "Must Have" — is the scope authority for points. The historian is an
+inventory of what the BMS publishes; the selected list is what the integration
+was asked to deliver, and it is the smaller of the two. Reconciled both ways:
 
-Every class is already settled above, so adding them is mechanical rather than a
-modelling exercise. Two questions decide it, neither technical: whether the
-applications this model serves need alarm, runtime and counter points at all, and
-whether all those historian tags are live. Under the skill's rule an IO row with
-no point is a scope call for the client — but a gap this size should be a
-decision rather than an oversight. Logged as **QNL-048**.
+| | |
+|---|---|
+| Selected tags present in the sheet | **2,754 of 2,754** |
+| Selected tags missing | **0** |
+| Timeseries ids in the sheet that are not selected | **1** — `ContributionFraction`, by design |
+
+Getting there removed **149 points, 302 rows**:
+
+| Group | Points | Why |
+|---|---|---|
+| TEF | 86 | The group and per-fan sets above |
+| ELEC MFM | 60 | `KWDaily`, `KWMonthly`, `MWDaily`, `MWMonthly`, `kWhpreviousdatadaily`, `kWhpreviousdatamonthly` on 10 MFM units. The list selects only `.KW` and `.KWh` |
+| VAV | 3 | `VAV_1F_S15_039S` — see below |
+
+Plus four `para:` class declarations left with no user: `para:Duty_Priority`,
+`para:Remote_Status`, `para:Start_Count`, `para:Trip_Count`.
+
+The MFM rollups deserve their own line, because dropping them is right on two
+counts rather than one. Daily and monthly kW/kWh are derived from the `.KW` and
+`.KWh` the list does select, and the virtual metering layer computes exactly
+those rollups — so carrying them as raw points would have put two answers to the
+same question in the graph, which is the failure the virtual meter layer exists
+to avoid.
+
+`ContributionFraction` is the one deliberate exemption. It is an internal
+container the backend fills by calculation, so its absence from a list of BMS
+tags is expected, not a selection gap.
+
+Removals are itemised in `QNL_pruned_points.csv`, and the pruning is
+reproducible: `python3 projects/QNL/prune_to_selected.py`. Logged as
+**QNL-049**.
+
+### One point where the selection looks wrong — `VAV-1F-S15-039S`
+
+The asset register lists `VAV_1F_S15_039S` as a box in its own right, serving
+**L1-048 Staff Office** — a different room from `VAV_1F_S15_039`, which serves
+L1-002A Green Room. The historian carries five tags for it. The selected list
+carries none: it selects `QNL_VAV_1F_S15_039.DmprPos`, `.DuctAirFlow` and
+`.EffectiveSP` but has no `039S` equivalent.
+
+Its three points were dropped with the rest. The equipment entity is kept, with
+its location, feeds, isFedBy and IFC reference intact.
+
+This reads as an omission in the selection rather than a decision: the box is
+real, it serves a room no other box serves, and the near-identical `039` is
+selected. As it stands, Staff Office L1-048 has no VAV telemetry in the
+delivered graph. Restoring the three points is a one-line change if you confirm.
+Logged as **QNL-050**, open.
+
+### The 1,314 historian tags — closed, not needed
+
+The earlier finding of 1,314 unmodelled tags across 28 equipment families
+(VAV 247, AHU 146, ELE 145, FCU 137, EF 136, DX 120, and the rest) is now
+settled: **none of them is on the selected list**, so none is in scope and no
+rows were added. Logged as **QNL-048**, closed.
+
+## Sheet state
+
+**19,244 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
+served room the asset register does not give. All tests pass.

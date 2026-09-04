@@ -44,6 +44,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_review_workbook.py` | runs both checkers plus eight checks neither covers, then writes the client review workbook - a `START HERE` tab, the ontology sheet with flagged rows filled yellow/orange, one plain-English tab per entity family, and a `Technical detail` tab holding the coded findings. Findings are collapsed to one line per kind of problem and every rule code is rewritten in ordinary English, because the reader is usually not the person who built the sheet. The tabs and the data sheet are cross-linked: clickable row numbers on every tab, and review columns AB-AD past the data naming each flagged row's problem with a link back to its tab | a delivered sheet needs reviewing, or a client asks what is wrong with a draft |
+| `scripts/check_io_list.py` (see also) | reconciling a sheet against a *selected*-datapoint list is a different job from the IO cross-check - `projects/QNL/prune_to_selected.py` is the worked example | a project supplies an integration-scope sheet |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands - drop the file in and rerun, the scripts resolve `DarCairo_V*.csv` by version |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
 | `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
@@ -213,6 +214,15 @@ chilled-water kW to electrical kW. **Their points are calculated, so the IO-list
 rule below does not reach them** - the keys come from the calculation engine's
 register, and where that does not exist the points ship with no reference row and
 a pending file, never a blank one.
+
+**Where a selected-datapoint list exists, it outranks the IO list on scope.** An
+IO list says what the BMS publishes; a selected-points list says what the project
+agreed to deliver, and it is always smaller. Ask for it at intake. A tag the
+historian carries and the selection omits is a decision someone already made, not
+a gap you found - so reconcile both ways before handover, every selected tag
+present and nothing present that is not selected. Exempt by name only the points
+the sheet invents on purpose, such as a `para:` container the backend fills by
+calculation.
 
 **Points come from IO lists, and only from IO lists.** Never infer a point list
 from the equipment type. No IO list means no points for that equipment, and a

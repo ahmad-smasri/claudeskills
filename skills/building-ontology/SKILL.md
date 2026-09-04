@@ -41,7 +41,10 @@ user:
 6. What each piece of equipment feeds, and what feeds it
 7. **IO lists** - equipment carries data points, and the IO list is where the
    point names, signal types, units and telemetry IDs come from. Ask for it
-   before modelling any points. No IO list means no points for that equipment
+   before modelling any points. No IO list means no points for that equipment.
+   **Ask in the same breath whether a selected-datapoint list exists** - the
+   narrower "what we agreed to integrate" list that sits above the IO list and
+   overrides it on scope
 8. **Manufacturer standards and datasheets** - the source of nameplate
    properties: rated power, voltage, phase count, capacity, flow rates, head,
    model number, manufacturer. **Leave the property out when the datasheet was
@@ -152,6 +155,22 @@ with no data behind it, and nobody can tell whether the sensor is broken or was
 never real. Over-inclusion is worse than omission here. Cross-check with
 `scripts/check_io_list.py` before handover, and never infer a point list from the
 equipment type.
+
+**And where a selected-datapoint list exists, that is the scope authority, not
+the IO list.** The two documents answer different questions. An IO list or
+historian export is an inventory of what the BMS *publishes*; a selected-points
+list - `Selected_..._Data_Points_v*.xlsx`, "Must Have" columns, an integration
+schedule - is what the project was *asked to deliver*, and it is always the
+smaller set. Ask for it at intake alongside the IO list, and if one exists, a
+point that is not on it does not go in the sheet however well the IO list
+evidences it. A tag the historian carries and the selection omits is not a gap
+you found; it is a decision someone already made. Reconcile both ways before
+handover - every selected tag present, and nothing present that is not selected -
+because a point that fails the second test still validates clean and still
+renders a dead tile. The one class of exception is a point the sheet invents on
+purpose, such as a `para:` container the backend fills by calculation: it is
+correctly absent from a list of BMS tags, so exempt it by name and say so in the
+handover note rather than letting it read as an overrun.
 
 ## 3. Naming and labels
 
