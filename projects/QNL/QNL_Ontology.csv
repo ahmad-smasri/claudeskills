@@ -8324,7 +8324,7 @@ entity:QNL_CCU-8086,brick:CRAC,brick:isPartOf,entity:HVAC,brick:HVAC_System,rdfs
 entity:QNL_CCU-8086,brick:CRAC,rec:locatedIn,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
 entity:QNL_CCU-8086,brick:CRAC,ref:hasExternalReference,<blanknode>,ref:IFCReference,,,para:IFC_ID,QNL_CCU-8086,,,ref:ifcName,QNL_CCU-8086,,,,,,,,,,,,,,
 entity:QNL_CHWPU-P02,brick:Chilled_Water_Booster_Pump,brick:isPartOf,entity:CHW-System,brick:Chilled_Water_System,rdfs:label_en,QNL CHWPU P02,,,,,,,,,,,,,,,,,,,,
-entity:QNL_CHWPU-P02,brick:Chilled_Water_Booster_Pump,rec:locatedIn,entity:QNL_B,rec:BasementLevel,,,,,,,,,,,,,,,,,,,,,,
+entity:QNL_CHWPU-P02,brick:Chilled_Water_Booster_Pump,rec:locatedIn,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
 entity:QNL_CHWPU-P02,brick:Chilled_Water_Booster_Pump,rec:feeds,entity:QNL_CHWS-MAIN-LOOP,para:Chilled_Water_Loop_Network,,,,,,,,,,,,,,,,,,,,,,
 entity:QNL_CHWPU-P02,brick:Chilled_Water_Booster_Pump,ref:hasExternalReference,<blanknode>,ref:IFCReference,,,para:IFC_ID,QNL_CHWPU-P02,,,ref:ifcName,QNL_CHWPU-P02,,,,,,,,,,,,,,
 entity:QNL_CCU-8081,brick:CRAC,brick:hasPoint,entity:QNL_CCU-8081_Alm,brick:Alarm,,,rdfs:label_en,Alm,,,brick:hasUnit,unit:UNITLESS,,,,,,,,,,,,,,
