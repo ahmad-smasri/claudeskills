@@ -291,6 +291,7 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
     parent_of: dict[str, str] = {}
     feeds: dict[str, list[str]] = collections.defaultdict(list)
     located: set[str] = set()
+    is_part: set[str] = set()
     points: set[str] = set()
     has_ext_ref: set[str] = set()
     seen_rows: dict[tuple, int] = {}
@@ -422,6 +423,8 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
             feeds[obj].append(stype or "?")
         if pred in ("rec:locatedIn", "brick:hasLocation"):
             located.add(subj)
+        if pred == "brick:hasPart" and obj.startswith("entity:"):
+            is_part.add(obj)
         if pred in SPATIAL_PARENTS and stype in SPATIAL_CLASSES:
             parent_of.setdefault(subj, obj)
         if pred == "brick:hasPoint":
@@ -525,6 +528,12 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
 
     for entity, ts in sorted(types.items()):
         stype = sorted(ts)[0] if ts else ""
+        # A part inherits both from its parent: a twin-fan unit's two fans share
+        # one casing, one duct and one location, so asking each of them to name a
+        # served room and a room of its own is asking for the same fact twice -
+        # and answering it twice is how a rollup comes to double-count the pair.
+        if entity in is_part:
+            continue
         if stype in TERMINAL_EQUIPMENT and entity not in feeds:
             report.add("ERROR", "E-FEED-1", 0,
                        f"{entity} ({stype}) never declares what it feeds - rec:feeds "

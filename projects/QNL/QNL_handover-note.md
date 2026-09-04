@@ -754,3 +754,64 @@ needed, a matrix row each if wanted:
 - `para:General_Util_Meter`, `para:Data-Center_Meter`, `para:Generator_Meter`,
   `para:Solar_Meter` — 2,335 electric power points to draw on, and
   `entity:QNL_ELEC-Gen` already exists as a `para:Generator`
+
+
+## Toilet exhaust fans modelled as twin-fan units — 2026-09-03
+
+`TEF/B/01`, `B02` and `B03` are **twin-fan units**: one casing, two fans, one
+duct, duty/standby with automatic changeover. The sheet previously modelled the
+six fans as independent equipment, each feeding one toilet.
+
+Four sources agree, and the fourth was already in the sheet:
+
+1. The O&M manual states twin fans A and B.
+2. The HVAC drawing shows **one duct** reaching `TEF/B/01`, one riser splitting
+   to serve both toilet blocks.
+3. The BMS carries `ChOverSel` and `ChOverHrsSP` on the base tag — changeover
+   between the twins.
+4. One Nuaire model number per pair and **identical rated flow within each pair**
+   — 1538/1538, 970/970, 400/400. Each fan sized for the full duty is
+   duty/standby; two fans serving two differently sized rooms would not match.
+
+**What changed, per set** — 8 rows added, 8 removed:
+
+```
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | brick:isPartOf | entity:HVAC       + label
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | rec:locatedIn  | B-110 Plant Room 03
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | rec:feeds      | B-046 Rest Room Men
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | rec:feeds      | B-047 Rest Room Women
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | brick:hasPart  | TEF-B01A
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | brick:hasPart  | TEF-B01B
+entity:QNL_TEF-B01 | brick:Exhaust_Fan | brick:hasPoint | TEF-B01_Local-Status
+TEF-B01_Local-Status | para:Local_Status | ref:hasExternalReference | QNL_TEF_B01.LocSts
+```
+
+The fans lost `brick:isPartOf`, `rec:locatedIn` and their single wrong
+`rec:feeds` — they inherit from the unit — and kept their five run/trip/command
+points and their own `para:ratedExhaustAirFlowrate`. **Rated flow stays on the
+fans only**, so nothing restates the unit's duty and the old 2× double-count
+risk is gone: A and B are no longer sibling equipment each rated 1538 l/s.
+
+The three `entity:QNL_TEF_B01/_B02/_B03` rows typed `para:Local_Status` — a point
+class masquerading as equipment under `entity:HVAC` — are gone.
+
+**Validator: still 10 errors, none added.** That needed a fix to
+`validate_ontology.py`: a part is now exempt from `E-FEED-1` and `W-GR-2`,
+because a twin fan's two halves share one casing, one duct and one location, and
+the unit already answers both questions. Without it the six fans reported six
+phantom "never declares what it feeds" errors. Covered by
+`tests/twin-fan-sample.csv`.
+
+**`check_consistency.py` for `brick:Exhaust_Fan` went 31 → 46 errors, and all 15
+are correct observations rather than defects:** the three units have 8 rows where
+15 is typical (their points live on their fans), they lack the per-fan
+Run-Status / Trip / Auto-Manual / Start-Stop the other 24 fans carry, and they
+each have 2 `rec:feeds` triples (`E-CON-6`). That last one is worth a look at the
+checker: a terminal unit legitimately serving two rooms will always trip it, so
+`E-CON-6` may be too strict as an ERROR.
+
+**Still open:** the other 36 group-level points — `ChOverSel`, `ChOverHrsSP`,
+`OccSchedule`, `FireAlm`, `EnableDisableCmd`, `RuntimeMtr`, `StartsCtr`,
+`TripCtr`, `Priority1/2`, `RemSts`, `ResetCmd` — 12 per set, all present in the
+historian and absent from the sheet. They now have a proper owner whenever you
+want them added.

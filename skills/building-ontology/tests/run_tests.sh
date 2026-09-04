@@ -92,6 +92,20 @@ for code in E-CON-1 E-CON-2 E-CON-3 E-CON-4 E-CON-5 E-CON-6 E-CON-10 E-CON-17 \
     fi
 done
 
+echo "== a part must not be asked to name what it feeds"
+# A twin-fan unit's two fans share one casing, one duct and one location. The
+# unit answers rec:feeds and rec:locatedIn; asking each fan the same question is
+# how a rollup comes to double-count the pair. Drop the is_part exemption and
+# this fixture reports two phantom E-FEED-1s.
+out=$("$PY" scripts/validate_ontology.py tests/twin-fan-sample.csv --label-style verbatim 2>&1)
+if grep -qE "^0 errors" <<<"$out"; then
+    echo "   ok   parts exempt from E-FEED-1 / W-GR-2"
+else
+    echo "   FAIL: twin fan fixture reported errors"
+    echo "$out" | grep -E "^ERROR" | sed 's/^/   /'
+    fail=1
+fi
+
 echo "== a virtual metering layer must come back clean"
 # Every meter names a different space, so brick:meters and friends have to sit in
 # VARYING_PREDICATES; drop them and this fixture reports six phantom E-CON-2s.
