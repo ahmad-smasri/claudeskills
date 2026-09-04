@@ -8447,6 +8447,7 @@ entity:QNL_CHWS-MAIN-LOOP_Energy-Meter_CHW-HEX-k-W,brick:Thermal_Power_Sensor,re
 entity:QNL_CHWS-MAIN-LOOP_Energy-Meter,brick:Building_Chilled_Water_Meter,brick:hasPoint,entity:QNL_CHWS-MAIN-LOOP_Energy-Meter_CHW-Consumption-KW,brick:Thermal_Power_Sensor,,,rdfs:label_en,QNL CHWConsumption KW,,,brick:hasUnit,unit:KiloW,,,,,,,,,,,,,,
 entity:QNL_CHWS-MAIN-LOOP_Energy-Meter_CHW-Consumption-KW,brick:Thermal_Power_Sensor,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,,,ref:hasTimeseriesId,QNL_CHWConsumption.KW,,,para:hasEntityId,QNL_CHWConsumption.KW,,,,,,,,,,,,,,
 entity:QNL_CHWS-MAIN-LOOP_Energy-Meter,brick:Building_Chilled_Water_Meter,brick:hasPoint,entity:QNL_CHWS-MAIN-LOOP_Energy-Meter_HEX-Bldg-Util-Energy-PV,brick:Thermal_Power_Sensor,,,rdfs:label_en,QNL HEX BldgUtilEnergy PV,,,brick:hasUnit,unit:KiloW,,,,,,,,,,,,,,
+entity:QNL_CHWS-MAIN-LOOP_Energy-Meter,brick:Building_Chilled_Water_Meter,rec:locatedIn,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
 entity:QNL_CHWS-MAIN-LOOP_Energy-Meter_HEX-Bldg-Util-Energy-PV,brick:Thermal_Power_Sensor,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,,,ref:hasTimeseriesId,QNL_HEX_BldgUtilEnergy.PV,,,para:hasEntityId,QNL_HEX_BldgUtilEnergy.PV,,,,,,,,,,,,,,
 entity:QNL_DX-RP21,para:DXUnit,brick:isPartOf,entity:HVAC,brick:HVAC_System,rdfs:label_en,QNL DX RP21,,,,,,,,,,,,,,,,,,,,
 entity:QNL_DX-RP21,para:DXUnit,rec:locatedIn,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
