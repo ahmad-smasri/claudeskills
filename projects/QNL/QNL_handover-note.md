@@ -802,16 +802,48 @@ the unit already answers both questions. Without it the six fans reported six
 phantom "never declares what it feeds" errors. Covered by
 `tests/twin-fan-sample.csv`.
 
-**`check_consistency.py` for `brick:Exhaust_Fan` went 31 → 46 errors, and all 15
-are correct observations rather than defects:** the three units have 8 rows where
+**`check_consistency.py` for `brick:Exhaust_Fan` went 31 → 70 errors, and they are
+correct observations rather than defects:** the three units have 8 rows where
 15 is typical (their points live on their fans), they lack the per-fan
 Run-Status / Trip / Auto-Manual / Start-Stop the other 24 fans carry, and they
 each have 2 `rec:feeds` triples (`E-CON-6`). That last one is worth a look at the
 checker: a terminal unit legitimately serving two rooms will always trip it, so
 `E-CON-6` may be too strict as an ERROR.
 
-**Still open:** the other 36 group-level points — `ChOverSel`, `ChOverHrsSP`,
-`OccSchedule`, `FireAlm`, `EnableDisableCmd`, `RuntimeMtr`, `StartsCtr`,
-`TripCtr`, `Priority1/2`, `RemSts`, `ResetCmd` — 12 per set, all present in the
-historian and absent from the sheet. They now have a proper owner whenever you
-want them added.
+### The 36 group points, added
+
+All 39 group-level historian tags on the base `TEF_B0n` keys now resolve — 13 per
+set. Classes, in ladder order:
+
+| Point | Class | Where it came from | Unit |
+|---|---|---|---|
+| `_Changeover-Hours-Setpoint` | `para:Changeover_Hours_Setpoint` | QNL, 15 uses | `unit:HR` |
+| `_Lead-Lag-Command` | `brick:Lead_Lag_Command` | Brick — it enables lead/lag operation, and the point reads Disable/Enable | `unit:UNITLESS` |
+| `_Enable-Command` | `brick:Enable_Command` | Brick | `unit:UNITLESS` |
+| `_Fire-Alarm` | `brick:Fire_Alarm` | Dar Cairo, 54 uses | `unit:UNITLESS` |
+| `_Local-Status` | `para:Local_Status` | QNL, 71 uses | `unit:UNITLESS` |
+| `_Occupancy-Status` | `brick:Occupancy_Status` | SSC 248, HQ 1522 | `unit:UNITLESS` |
+| `_Duty-Priority-1/2` | `para:Duty_Priority` | **new** — `brick:Parameter` | `unit:UNITLESS` |
+| `_Remote-Status` | `para:Remote_Status` | **new** — `brick:Status`, mirroring `para:Local_Status` | `unit:UNITLESS` |
+| `_Reset-Command` | `brick:Reset_Command` | QNL, 4 uses | `unit:UNITLESS` |
+| `_Run-Time` | `brick:On_Timer_Sensor` | Brick **preferred** — Dar Cairo uses the `brick:Run_Time_Sensor` alias | `unit:HR` |
+| `_Start-Count` | `para:Start_Count` | **new** — `brick:Point` | `unit:UNITLESS` |
+| `_Trip-Count` | `para:Trip_Count` | **new** — `brick:Point` | `unit:UNITLESS` |
+
+**Four new `para:` classes for PARA review.** `para:Start_Count` and
+`para:Trip_Count` take `brick:Point` to match QNL's own `para:Required_Units_Count`
+and its four hours-duration classes.
+
+**Two unit calls worth naming.** `_Run-Time` carries `unit:HR` on the class's
+authority — the historian states no unit and a placeholder 0–10 range for it, as
+it does for the four counters. And `OccSchedule` is a `brick:Occupancy_Status`
+rather than a `brick:Occupancy_Command`, because both delivered projects use
+Status for this and neither uses Command.
+
+**Still open — 50 per-fan tags.** The historian holds 131 TEF tags; 81 now
+resolve. The 50 that do not are `FTSP`, `FTST`, `FltRst`, `RuntimeMtr`,
+`StartsCtr` and `TripCtr` on each of the six twin fans and on `TEF-101C` and
+`TEF-102C`, plus `RemSts` on the two standalone fans. These are per-**fan**
+points, a different set from the group points, and under the skill's rule an IO
+row with no point is a scope call rather than a defect. `FTSP` and `FTST` are
+unexplained abbreviations and want decoding before any class is picked.
