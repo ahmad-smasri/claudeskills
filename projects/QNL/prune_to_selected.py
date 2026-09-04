@@ -31,6 +31,16 @@ KEEP_UNLISTED = {
     'QNL_VAV_1F_S15_039S.EffectiveSP',
 }
 
+# Whole families exempt from the selection, by tag prefix.
+KEEP_FAMILIES = (
+    # QNL-051: the TEFs carry all 131 historian tags on client direction. The
+    # selected list keeps 45 and drops the changeover, duty-priority, runtime
+    # and counter points - which are the evidence a duty/standby pair is
+    # actually rotating, so a twin-fan set without them cannot be read. This
+    # override is TEF-only; every other family still matches the selection.
+    'QNL_TEF_',
+)
+
 
 def selected_tags():
     ws = openpyxl.load_workbook(SEL, read_only=True)['Sheet1']
@@ -57,7 +67,8 @@ def main():
     for r in body:
         for name, val in props(r):
             if name == 'ref:hasTimeseriesId' and val and val not in sel \
-                    and val not in KEEP_UNLISTED:
+                    and val not in KEEP_UNLISTED \
+                    and not val.startswith(KEEP_FAMILIES):
                 doomed.add(r[0])
                 why[r[0]] = val
 

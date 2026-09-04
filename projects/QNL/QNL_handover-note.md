@@ -810,42 +810,55 @@ each have 2 `rec:feeds` triples (`E-CON-6`). That last one is worth a look at th
 checker: a terminal unit legitimately serving two rooms will always trip it, so
 `E-CON-6` may be too strict as an ERROR.
 
-### The 36 group points and 50 per-fan points — added, then removed
+### The TEFs: one unit, two fan parts, all 131 points
 
-Both sets were built, and both are gone again. They are recorded here because
-the class work behind them stands and would be reused verbatim if the scope
-changes.
+The three basement sets are twin-fan units — one casing, two fans, one duct,
+duty/standby with changeover. Two things were wrong with how that was modelled,
+and both are now fixed.
 
-The group set was 12 points per twin-fan node (changeover setpoint, duty
-priority 1 and 2, enable command, fire alarm, lead/lag command, local status,
-occupancy status, remote status, reset command, run time, start count, trip
-count). The per-fan set was 50 points across the eight fans, on seven suffixes,
-all of which resolved on the ladder without coining anything new:
+**The parts were typed like units.** `TEF-B01A` and `TEF-B01B` carried
+`brick:Exhaust_Fan`, the same class as the `TEF-B01` they are part of — so the
+sheet said an exhaust fan contains two exhaust fans. They are components, not
+units, and they now carry **`brick:Fan`**, on their own rows and as the
+`objectType` of the parent's `brick:hasPart` row. 84 rows changed.
 
-| Suffix | Historian description | Class |
+The ladder gives that answer cleanly. Dar Cairo has no `brick:Fan` — its fan
+parts are an AHU's supply and exhaust fans, which is a different concept from a
+fan as a component. Brick 1.4 carries `brick:Fan` as a preferred term. And QF HQ
+already uses this exact shape:
+
+```
+entity:HQ_CCU_B0001       brick:CRAC   brick:hasPart  entity:HQ_CCU_B0001_Fan  brick:Fan
+entity:HQ_CCU_B0001_Fan   brick:Fan    brick:hasPoint entity:HQ_CCU_B0001_Fan_On_Status
+```
+
+So it is step-3 precedent, not a coinage. `TEF-101C` and `TEF-102C` are single
+standalone fans and stay `brick:Exhaust_Fan` units.
+
+**All 131 historian points are back.** The 86 pruned under QNL-049 are restored
+with their four `para:` class declarations — `para:Duty_Priority`,
+`para:Remote_Status`, `para:Start_Count`, `para:Trip_Count`. The shape now is:
+
+| Entity | Type | Points |
 |---|---|---|
-| `FTSP` | Fail to Stop Alarm | `para:Fail_Stop_Alarm` |
-| `FTST` | Fail to Start Alarm | `para:Fail_Start_Alarm` |
-| `FltRst` | Alarm Reset Command | `brick:Fault_Reset_Command` |
-| `RuntimeMtr` | Runtime Meter | `brick:On_Timer_Sensor`, `unit:HR` |
-| `StartsCtr` | Starts Counter | `para:Start_Count` |
-| `TripCtr` | Trip Counter | `para:Trip_Count` |
-| `RemSts` | Remote status | `para:Remote_Status` |
+| `TEF-B01` / `-B02` / `-B03` | `brick:Exhaust_Fan` | 13 — changeover setpoint, duty priority 1 and 2, enable, fire alarm, lead/lag, local status, occupancy, remote status, reset, run time, start count, trip count |
+| `TEF-B01A` … `-B03B` | `brick:Fan` | 11 each — auto/manual, fail-to-start, fail-to-stop, fault reset, run status, run time, start count, start/stop command, start/stop status, trip count, trip status |
+| `TEF-101C` / `-102C` | `brick:Exhaust_Fan` | 13 each — the per-fan set plus local status and remote status |
 
-They were removed because none of them is on
-`Selected_PARA_OS_Data_Points_v4.0.xlsx`. That list carries **45 TEF tags**; the
-sheet had grown to 131. The selected shape is `.LocSts` at the twin-fan set and
-five tags on each fan — `AutoManCmd`, `RunSts`, `StartStopCmd`,
-`StartStopCmdSts`, `TripAlm` — which is what the sheet now carries.
+Rated exhaust air flow stays on the fans, not the set.
 
-The twin-fan structure itself is unaffected, and the selected list is the
-strongest confirmation of it yet: it names `QNL_TEF_B01A` and `QNL_TEF_B01B` as
-separate tag sets with `QNL_TEF_B01.LocSts` sitting at the set. What the pruning
-costs is the group node's content — `TEF-B01`, `-B02` and `-B03` now carry one
-point each, and the consistency checker flags them as thin against their 24
-single-fan siblings. That is a real structural difference, not a defect.
+**This overrides the selected datapoint list for one family, deliberately.** The
+selected list keeps 45 TEF tags and drops the changeover setpoint, duty
+priorities, runtime meters and counters — which are precisely the evidence that
+a duty/standby pair is actually rotating. A twin-fan set without them cannot be
+read at all. The override is enforced in `prune_to_selected.py` as a named
+family exemption, so re-running the pruning does not strip them again. **Every
+other family still matches the selection exactly.** Logged as **QNL-051**.
 
-Logged as **QNL-046** and **QNL-047**, both marked reversed.
+One consequence to expect in review: `check_consistency.py` now reports 76
+findings on `brick:Exhaust_Fan`, up from 46, because the five TEF units carry
+far more points than their 22 EF and KEF siblings. That is the family-uniformity
+check reporting a difference you asked for, not a defect.
 
 ## The sheet now matches the selected datapoint list exactly
 
@@ -858,14 +871,15 @@ was asked to deliver, and it is the smaller of the two. Reconciled both ways:
 |---|---|
 | Selected tags present in the sheet | **2,754 of 2,754** |
 | Selected tags missing | **0** |
-| Timeseries ids in the sheet that are not selected | **4**, each exempt by name — see below |
+| Timeseries ids in the sheet that are not selected | **90** — 4 exempt by name, 86 by the TEF family override above |
 
-Getting there removed **149 points, 302 rows**, of which 3 points / 6 rows were
-restored the same day under QNL-050 — a net **146 points, 296 rows**:
+Getting there removed **149 points, 302 rows**, of which 89 were restored the
+same day — 3 under QNL-050 and 86 under QNL-051 — for a net **60 points, 120
+rows**:
 
 | Group | Points | Why |
 |---|---|---|
-| TEF | 86 | The group and per-fan sets above |
+| TEF | 86 | Since restored in full under QNL-051, see above |
 | ELEC MFM | 60 | `KWDaily`, `KWMonthly`, `MWDaily`, `MWMonthly`, `kWhpreviousdatadaily`, `kWhpreviousdatamonthly` on 10 MFM units. The list selects only `.KW` and `.KWh` |
 | VAV | 3 | `VAV_1F_S15_039S` — since restored, see below |
 
@@ -911,6 +925,7 @@ a stated reason rather than by oversight:
 | Id | Why it is exempt |
 |---|---|
 | `ContributionFraction` | Internal container the backend fills by calculation |
+| 86 `QNL_TEF_*` tags | QNL-051 — whole-family override |
 | `QNL_VAV_1F_S15_039S.DmprPos` | QNL-050 |
 | `QNL_VAV_1F_S15_039S.DuctAirFlow` | QNL-050 |
 | `QNL_VAV_1F_S15_039S.EffectiveSP` | QNL-050 |
@@ -924,5 +939,5 @@ rows were added. Logged as **QNL-048**, closed.
 
 ## Sheet state
 
-**19,250 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
+**19,426 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
 served room the asset register does not give. All tests pass.
