@@ -214,10 +214,18 @@ def parse_entity(building, text):
     if "." in parts[1]:
         lvl, room = parts[1].split(".", 1)
         name = "_".join(parts[2:])
-    else:
-        if len(parts) < 3:
-            return None, None, None
+    elif "-" in parts[1] and re.match(
+            r"^[A-Za-z0-9]+-(?:[0-9]{1,4}[A-Z]?|[A-Za-z][A-Za-z0-9-]*)$", parts[1]):
+        # The converted shape: entity:SSC_01-024_Corridor, with the level and
+        # the room in one dashed segment. Detected by that segment's shape and
+        # not by counting parts, or entity:QNL_B-021_Arabic-Studies reads as
+        # level B-021 with no name and every respelling silently reverts.
+        m2 = re.match(r"^([A-Za-z0-9]+)-(.+)$", parts[1])
+        lvl, room, name = m2.group(1), m2.group(2), "_".join(parts[2:])
+    elif len(parts) >= 3:
         lvl, room, name = parts[1], parts[2], "_".join(parts[3:])
+    else:
+        return None, None, None
     m = re.match(r"^(\d+)([A-Z]?)$", room)
     if m:
         room = building.norm_room(m.group(1), m.group(2))
@@ -858,7 +866,7 @@ def load(paths, building, code=None):
     return merge(parts, building, code)
 
 
-DELIVERED = {"SSC": "QF_SSC_Ontology_ver02.xlsx",
+DELIVERED = {"SSC": "QF_SSC_Ontology_V03.xlsx",
              "HQ": "QF_HQ_Ontology_draft0.4.xlsx",
              "QNL": "../projects/QNL/QNL_Ontology.xlsx"}
 

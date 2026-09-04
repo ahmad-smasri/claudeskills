@@ -51,7 +51,7 @@ projects. They are in `reference-models/`:
 ```
 python3 - <<'PY'
 import openpyxl
-wb = openpyxl.load_workbook('reference-models/QF_SSC_Ontology_ver02.xlsx', data_only=True)
+wb = openpyxl.load_workbook('reference-models/QF_SSC_Ontology_V03.xlsx', data_only=True)
 ws = wb['SSC_Ontology_Ver0.6']
 hits = {ws.cell(r,2).value for r in range(2, ws.max_row+1)
         if 'YourKeyword' in str(ws.cell(r,2).value)}   # subjectType column
@@ -59,7 +59,7 @@ print(sorted(hits))
 PY
 ```
 
-`QF_SSC_Ontology_ver02.xlsx` (the QF SSC building) is the first to check - it is
+`QF_SSC_Ontology_V03.xlsx` (the QF SSC building) is the first to check - it is
 the current house sheet and carries the 27-column shape we deliver (Dar
 Cairo itself went to 33 at V98).
 `QF_HQ_Ontology_draft0.4.xlsx` (the QF HQ building, 28,929 rows) is the second -

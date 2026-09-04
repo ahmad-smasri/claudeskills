@@ -52,7 +52,7 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V98.csv` | **the primary reference for any ontology we build.** 25,722 rows, 33 columns (V93's 27 plus two more property groups). Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_ver02.xlsx` | the current SSC sheet (cleaned), 5,082 rows on `SSC_Ontology_Ver0.6`, plus a `Claude Log` tab. This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
+| `QF_SSC_Ontology_V03.xlsx` | the current SSC sheet, 5,083 rows on `Sheet1`, 33 columns. Its rooms carry the Dar Cairo shape (`entity:SSC_01-024_Corridor`). This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
 | `QF_HQ_Ontology_draft0.4.xlsx` | the QF HQ draft, 28,929 rows on `HQ_Onotlogy_Draft_v0.4` (note the misspelled tab - pick the sheet by its header, never by name). A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
@@ -96,7 +96,7 @@ onto the equipment; any source column whose meaning is ambiguous.
 2. Is it in Brick? `lookup_reference.py --term ...` or ontology.brickschema.org -
    use the preferred class, never an alias.
 3. Is it in a previous project's ontology? Check the delivered sheets in
-   `reference-models/` (`QF_SSC_Ontology_ver02.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx`) - reuse the class a
+   `reference-models/` (`QF_SSC_Ontology_V03.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx`) - reuse the class a
    prior project already gave the concept, and reuse a `para:` class it already
    coined rather than minting a parallel one.
 4. Not anywhere above? Define a `para:` subclass of the closest Brick parent.

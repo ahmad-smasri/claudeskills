@@ -383,7 +383,7 @@ the opposite: it goes on the physical thing, equipment or room. Where no IO list
 was supplied there are no points and therefore no timeseries references; do not
 add equipment-level stubs to fill the gap.
 
-### QF SSC ver02 (`QF_SSC_Ontology_ver02.xlsx`, 5,082 rows)
+### QF SSC V03 (`QF_SSC_Ontology_V03.xlsx`, 5,083 rows)
 
 The cleaned SSC delivery, replacing `draft0.5_review` (gone from the repo). Two
 sheets: `SSC_Ontology_Ver0.6` holds the triples and `Claude Log` records the
