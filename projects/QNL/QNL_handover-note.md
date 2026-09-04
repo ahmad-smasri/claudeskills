@@ -688,16 +688,33 @@ that an asset with no room is still certainly in the building and certainly on
 its system, so **assert both rather than nothing**; a building-level location
 invents nothing that a survey would contradict.
 
-**26 rows added**, `rec:locatedIn entity:QNL` (`rec:Building`), on: 6 CRACs
-(`CCU-8081`–`8086`), 2 DX units, `CAV-1F-S15-001`, `VAV-B-S13-005`,
-`CHWPU-P02`, and the 15 electrical meters. All 26 already carried
-`brick:isPartOf` their system, so no second row was needed. Clears 26 `W-GR-2`.
+**27 rows added**, at the most specific level the evidence supports — the **floor**
+where the floor is identifiable, the **building** where it is not. All 27 already
+carried `brick:isPartOf` their system, so no second row was needed. Clears 27
+`W-GR-2`.
+
+**Four resolved to a floor:**
+
+| Asset | Level | Evidence |
+|---|---|---|
+| `CAV-1F-S15-001` | `entity:QNL_L1` | the `1F` tag token — resolves to Level 1 on 134 of the 135 located assets carrying it |
+| `VAV-B-S13-005` | `entity:QNL_B` | the `B` token — 202 of 202 |
+| `DX-RP21` | `entity:QNL_P` | `QNL_Full_Metadata.xlsx` states Level "Roof level", room served "PLC 8 / IDF ROOF PLANT"; `entity:QNL_P` is labelled "Roof Plant" |
+| `CHWPU-P02` | `entity:QNL_B` | **inferred, not sourced** — its pair `CHWPU-P01` is in `B-220_Plant-Room-04` and a duty/standby pump pair shares a plant room. Worth confirming on site. |
+
+**Twenty-three stayed at the building**, because no source names a floor: the 6
+CRACs `CCU-8081`–`8086` (a numeric tag family the Closed Control Units metadata,
+which covers `CC/B/01`–`09`, does not reach), `CR-DX-EWRC500`, the 15 electrical
+meters, and `CHWS-MAIN-LOOP_Energy-Meter`. The MV, HV and transformer rooms are
+all in the basement and `ELEC-Gen` sits in `B-080_Generator`, which makes the
+basement likely for the switchgear meters — but likely is not evidence, and the
+electrical review will settle it along with what each meter measures.
 
 **`rec:feeds` is still not written.** The served space is the part nobody knows,
 and the feeds rule forbids a placeholder. The 10 `E-FEED-1` errors stand — they
 are the sheet's only remaining errors and want checking against the drawings.
 
-**The 174 parts that also lack a location were excluded** — 137 CHW valves, 22
+**The 173 parts that still lack a location were excluded** — 137 CHW valves, 22
 supply/return fans, 10 HEX valves, 2 circuit breakers, 2 fuel transfer pumps.
 A part inherits its parent's location; Dar Cairo locates only 19 of its 801
 parts separately. Locating a valve at the building would add noise, not fact.
