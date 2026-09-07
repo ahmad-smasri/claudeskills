@@ -66,6 +66,7 @@ answer is to correct, and the reason asset tags stay untouched either way.
 | 5 | Location of each asset - room or level | asset register column | equipment layer |
 | 6 | Feeds / fed-by for each asset | single-line diagram, schematic, or a schedule column | feeds layer |
 | 7 | **IO lists** | BMS/controls IO schedule | every point |
+| 7b | **The selected-datapoint list, if one exists** | integration scope sheet, "Must Have" columns | which points survive |
 | 8 | **Manufacturer standards and datasheets** | catalogue extracts, submittals | nameplate properties |
 
 Without 6 the model is not deliverable. A terminal unit that does not say what
@@ -86,6 +87,35 @@ sanity-checking the IO list, not for replacing it.
 
 Equipment with no IO list gets modelled without points, and goes in the handover
 note under "no IO list supplied".
+
+### 7b. The selected-datapoint list
+
+An IO list is an inventory of what the BMS publishes. A **selected-datapoint
+list** - a scope sheet, an integration schedule, a column reading "Must Have" -
+is what the project agreed to *deliver*, and it is always the smaller of the two.
+Where both exist, the selected list is the scope authority and the IO list is
+evidence beneath it. Ask for it in the same message as the IO list, because
+finding it late means deleting points rather than never writing them.
+
+> Is there a selected-datapoint or integration-scope list for this project - the
+> agreed subset of BMS tags we are delivering, as opposed to everything the
+> historian carries? If there is, please send it, and tell me which column marks
+> a tag as in scope.
+
+Two failure modes, both of which validate clean:
+
+- **A tag the historian carries and the selection omits is not a gap.** It is a
+  decision someone already made. Adding it back because the IO list evidences it
+  puts a point in the sheet that the integration will never populate.
+- **A point the sheet invents on purpose is not an overrun.** A `para:` container
+  the backend fills by calculation is correctly absent from a list of BMS tags.
+  Exempt it by name in the reconciliation and name it in the handover note.
+
+Reconcile both directions before handover: every selected tag present in the
+sheet, and no timeseries id in the sheet that is not selected, bar the named
+exemptions. Where the selection omits something the asset register proves is
+real - a box serving a room no other box serves - flag it to the client as a
+probable omission in *their* document rather than quietly restoring it.
 
 ### 8. Manufacturer standards and datasheets
 
