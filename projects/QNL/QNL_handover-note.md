@@ -937,7 +937,60 @@ The earlier finding of 1,314 unmodelled tags across 28 equipment families
 settled: **none of them is on the selected list**, so none is in scope and no
 rows were added. Logged as **QNL-048**, closed.
 
+## The six Air Terminal contribution points
+
+Added to **all 299 air terminals** — 247 VAV and 52 CAV — as **1,794 points,
+3,588 rows**. They are the containers the backend writes into when it apportions
+the building's cooling, heating and electrical load down to the terminals that
+caused it.
+
+| Point | Class | Unit | Timeseries id |
+|---|---|---|---|
+| Cooling Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_CWPWR_KWT_CALC` |
+| Cooling Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_CWPWR_KWHT_CALC` |
+| Heating Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_HEATPWR_KWT_CALC` |
+| Heating Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_HEATPWR_KWTH_CALC` |
+| Electrical Power Demand Contribution | `brick:Electric_Power_Sensor` | `unit:KiloW` | `AT_ELEC_KW_CALC` |
+| Electrical Energy Consumption Contribution | `brick:Electrical_Energy_Usage_Sensor` | `unit:KiloW-HR` | `AT_ELEC_KWH_CALC` |
+
+Every one carries the fixed timeseries id plus the terminal's own
+`para:hasEntityId` — `QNL_VAV_1F_S11_001`, underscores throughout — the same
+shape `para:contributionFraction` already uses, so the two agree on the join key.
+
+**None of the six exists in either source document.** Searched the historian IO
+list (11,617 rows) and `Selected_PARA_OS_Data_Points_v4.0` (2,769): no exact
+match, and no `AT_`, `_CALC`, `CWPWR` or `HEATPWR` pattern anywhere. That is
+expected rather than a gap — the `_CALC` suffix says these are calculated, and a
+calculated point's key comes from the calculation engine's register, not the IO
+list, exactly as `ContributionFraction` does. The six ids are exempt by name in
+`prune_to_selected.py`, so re-running the pruning leaves them alone.
+
+### The cooling pair was corrected from electrical to thermal
+
+As supplied, `AT_CWPWR_KWT_CALC` was typed `brick:Electric_Power_Sensor` and
+`AT_CWPWR_KWHT_CALC` `brick:Electrical_Energy_Usage_Sensor` — both with a
+thermal unit. Cooling is a thermal quantity and the tags themselves say so: `CW`
+is chilled water, `KWT` is thermal kW. The heating pair beside them already used
+the thermal classes.
+
+Left as specified this would not have looked wrong in the sheet. It would have
+gone wrong in the applications: a demand rollup filters on the point's **class**,
+so every terminal's chilled-water demand would have been summed into the
+building's electrical demand, and the number would have been wrong with nothing
+to flag it. This is the inverse of the trap the skill already documents under
+thermal units. Corrected on client direction to match the heating pair.
+
+### One thing left as supplied, and flagged
+
+`AT_CWPWR_KWHT_CALC` and `AT_HEATPWR_KWTH_CALC` spell the same suffix two ways —
+**KWHT** against **KWTH**. One is almost certainly a typo. Both are join keys
+into the telemetry database, so they are written verbatim rather than
+normalised; correcting the wrong one silently would break the join it is there
+to make. Worth a minute with whoever owns the calculation register.
+
+Logged as **QNL-052**.
+
 ## Sheet state
 
-**19,426 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
+**23,014 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
 served room the asset register does not give. All tests pass.
