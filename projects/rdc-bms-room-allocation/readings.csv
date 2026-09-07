@@ -315,3 +315,16 @@ North Building/GF/GF-4,NB-FCU4911,MDF Room N-0206A,check,this screen is a second
 South Building/GF/GF-4,SB-FCU0001,Stair 2 S-0ST02,check,the dot sits on the stair's left-hand wall
 South Building/GF/GF-4,SB-VAV0001,Vestbule S-0101,ok,
 North Building/FF/FF-6,NB-VAV6650,Office N-1319,check,the dot sits on the room's left-hand wall
+North Building/FF/FF-1,NB-VAV4565-EV4566,Storage Room N-1215,check,the dot sits on the room's left-hand wall
+North Building/FF/FF-1,NB-VAV4725,Office N-1240,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-1,NB-VAV4730,Office N-1241,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-1,NB-VAV4620-VEV4621,EL Shop N-1216C,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-1,NB-FEV4606,Testing Room N-1216B,check,"the dot sits on the wall between EL Shop N-1216C and Testing Room N-1216B, just inside Testing Room"
+North Building/FF/FF-1,NB-VAV4720,Work Station N-1237,check,the dot is in the open work station area right of Office N-1239
+North Building/FF/FF-1,NB-VAV4600,Testing Room N-1216B,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-1,NB-VAV4080A-VEV4082A,Level 0 Desal High Bay Lab N-0215E,check,read on the first floor screen; the high bay is double height and the register carries this unit on the ground floor
+North Building/FF/FF-1,NB-VAV4070A-VEV4073A,Level 0 Open High Bay Lab N-0215D,check,read on the first floor screen; double-height space
+North Building/FF/FF-1,NB-VAV4071A-VEV4074A,Level 0 Open High Bay Lab N-0215D,check,read on the first floor screen; double-height space
+North Building/FF/FF-1,NB-VAV4071B-VEV4074B,Level 0 Open High Bay Lab N-0215D,check,read on the first floor screen; double-height space
+North Building/FF/FF-1,NB-VAV4090-VEV4091,Level 0 Support Lab N-0215F,check,read on the first floor screen; double-height space
+North Building/FF/FF-1,NB-CEV4502,Level 0 Open High Bay Lab N-0215D,check,the dot sits on the lab's lower wall; double-height space read on the first floor screen
