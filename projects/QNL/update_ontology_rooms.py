@@ -38,7 +38,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                 "..", "dar-cairo-room-naming"))
 import build_room_names as B                                    # noqa: E402
 
-ROOM_RE = re.compile(r"^entity:QNL_([A-Za-z0-9]+)_([A-Za-z0-9-]+)_(.+)$")
+def room_re(code):
+    return re.compile(r"^entity:%s_([A-Za-z0-9]+)_([A-Za-z0-9-]+)_(.+)$" % code)
 
 
 def pick_sheet(wb):
@@ -50,9 +51,14 @@ def pick_sheet(wb):
 
 
 def parse_room(building, ent):
-    m = ROOM_RE.match(ent)
+    m = room_re(building.code).match(ent)
     if not m:
-        return None
+        # A room with no level segment - entity:SSC_ST-10_STAIR-10, a stairwell
+        # that belongs to no floor. Its first segment is the reference.
+        m2 = re.match(r"^entity:%s_([A-Za-z0-9-]+)_(.+)$" % building.code, ent)
+        if not m2:
+            return None
+        return "", m2.group(1), m2.group(2).replace("-", " ")
     lvl, num, name = building.norm_level(m.group(1)), m.group(2), m.group(3)
     d = re.match(r"^(\d+)([A-Z]?)$", num)
     if d:
@@ -72,22 +78,54 @@ def load_sheet(path, code):
     return out
 
 
-def join_tags(tags, entities, crosswalk):
+def join_tags(tags, entities, crosswalk, code):
     """Asset tag -> ontology entity, via the crosswalk then a normalised match."""
     cw = {}
     if os.path.isfile(crosswalk):
         for line in csv.DictReader(open(crosswalk)):
             cw[line["old_identifier"]] = line["new_identifier"]
-    norm = lambda x: re.sub(r"[^A-Z0-9]", "", x.upper())        # noqa: E731
+    def norm(x):
+        """Separators and leading zeros are not differences.
+
+        The register writes CCU-B-001B and KEF-1F-0103 where the ontology
+        writes SSC_CCUB0001B and SSC_KEF1F0103. Collapsing punctuation alone
+        left eight SSC units unjoined; collapsing the padding too joins them.
+        """
+        x = re.sub(r"[^A-Za-z0-9]", "", x.upper())
+        return re.sub(r"0+(\d)", r"\1", x)
+
+    def without_level(x):
+        """The same tag with a level segment dropped.
+
+        The register writes KEF-1F-0103 and TEF-1F-0101 where the ontology
+        writes SSC_KEF0103 and SSC_TEF0101 - every other member of those two
+        families matches exactly, and the odd ones differ only by the level
+        they sit on. Used only when the direct match finds nothing and the
+        result is unique.
+        """
+        parts = [p for p in re.split(r"[^A-Za-z0-9]+", x) if p]
+        kept = [p for p in parts if not re.fullmatch(r"\d?F|B\d?", p.upper())]
+        return norm("".join(kept)) if len(kept) < len(parts) else None
+
     by_norm = collections.defaultdict(list)
     for e in entities:
-        by_norm[norm(e.replace("entity:QNL", ""))].append(e)
-    out = {}
+        by_norm[norm(e.replace("entity:%s" % code, ""))].append(e)
+    out, loosened = {}, []
     for t in tags:
-        cand = [f for f in ("entity:QNL_%s" % t, cw.get("entity:QNL_%s" % t, ""))
+        cand = [f for f in ("entity:%s_%s" % (code, t),
+                            cw.get("entity:%s_%s" % (code, t), ""))
                 if f in entities] or by_norm.get(norm(t), [])
+        if not cand:
+            alt = without_level(t)
+            if alt:
+                cand = by_norm.get(alt, [])
+                if len(cand) == 1:
+                    loosened.append((t, cand[0]))
         if len(cand) == 1:
             out[t] = cand[0]
+    if loosened:
+        print("  joined by dropping a level segment from the tag: %s"
+              % ", ".join("%s = %s" % (t, e) for t, e in loosened))
     return out
 
 
@@ -104,8 +142,29 @@ def target(building, rename, per_ref, by_ref, m):
     return m["subject"]
 
 
+def level_entity(levels, building, lvl):
+    """The level entity this building already uses.
+
+    QNL calls its basement entity:QNL_B; SSC calls the same thing
+    entity:SSC_Level-B1. Guessing entity:SSC_B put three new rooms under a
+    level that does not exist, which the validator caught as orphans.
+    """
+    code = building.code
+    for cand in ("entity:%s_%s" % (code, building.level_segment(lvl)),
+                 "entity:%s_%s" % (code, lvl),
+                 "entity:%s_Level-%s" % (code, lvl)):
+        if cand in levels:
+            return cand
+    raise SystemExit(
+        "no level entity in the ontology for %r - tried %s. The new room "
+        "cannot be attached until the level is declared."
+        % (lvl, ", ".join("entity:%s_%s" % (code, x)
+                          for x in (building.level_segment(lvl), lvl))))
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--code", default="QNL", choices=sorted(B.BUILDINGS))
     ap.add_argument("--ontology", default="projects/QNL/QNL_Ontology.xlsx")
     ap.add_argument("--names", default="projects/dar-cairo-room-naming/Room_Names.xlsx")
     ap.add_argument("--crosswalk", default="projects/QNL/QNL_naming_crosswalk.csv")
@@ -117,18 +176,24 @@ def main():
     ap.add_argument("--log")
     args = ap.parse_args()
 
-    building = B.BUILDINGS["QNL"]
+    code = args.code
+    building = B.BUILDINGS[code]
     wb = openpyxl.load_workbook(args.ontology)
     ws = pick_sheet(wb)
     data = [r for r in ws.iter_rows(min_row=2, values_only=True) if r and r[0]]
 
-    rooms, level_of = set(), {}
+    rooms, level_of, rows_by_level, level_type = set(), {}, set(), {}
     loc, feeds = {}, collections.defaultdict(list)
     for r in data:
         if r[1] == "rec:Room":
             rooms.add(str(r[0]))
             if r[2] == "rec:isPartOf":
                 level_of[str(r[0])] = (str(r[3]), str(r[4]))
+        if r[1] in ("rec:Level", "rec:BasementLevel", "rec:RoofLevel"):
+            rows_by_level.add(str(r[0]))
+            level_type[str(r[0])] = r[1]
+        if r[4] in ("rec:Level", "rec:BasementLevel", "rec:RoofLevel"):
+            rows_by_level.add(str(r[3]))
         if r[4] == "rec:Room":
             rooms.add(str(r[3]))
         if r[2] == "rec:locatedIn":
@@ -136,7 +201,7 @@ def main():
         if r[2] == "rec:feeds":
             feeds[str(r[0])].append(str(r[3]))
 
-    sheet = load_sheet(args.names, "QNL")
+    sheet = load_sheet(args.names, code)
     by_ref = {}
     for tag, m in sheet.items():
         by_ref[(m["level"], m["ref"])] = m
@@ -176,8 +241,8 @@ def main():
         raise SystemExit("rename would merge rooms: %s" % clash)
 
     # ---- 2. the equipment that moved --------------------------------------
-    joined = join_tags(sheet, set(loc) | set(feeds), args.crosswalk)
-    move_loc, move_feeds, kept_feeds = {}, {}, []
+    joined = join_tags(sheet, set(loc) | set(feeds), args.crosswalk, code)
+    move_loc, move_feeds, kept_feeds, odd_location, placeholder = {}, {}, [], [], []
     for tag, ent in joined.items():
         m = sheet[tag]
         want = (m["level"], m["ref"])
@@ -191,7 +256,22 @@ def main():
         diverges = ent in feeds and cur not in feeds[ent]
         if diverges:
             kept_feeds.append((tag, ent, cur, feeds[ent]))
-        if parse_room(building, cur)[:2] == want:
+        here = parse_room(building, cur)
+        if here is None:
+            if cur in rows_by_level:
+                # Located on a level rather than in a room, which is a
+                # deliberate modelling choice, not something to reinterpret.
+                odd_location.append((tag, ent, cur, "left - it is a level"))
+                continue
+            # Neither a room nor a level: a placeholder. SSC points five
+            # exhaust fans at entity:Level7_Office0367, which carries no label
+            # and names no SSC room. A real room from the register beats it.
+            placeholder.append((tag, ent, cur, m["subject"]))
+            move_loc[ent] = (cur, m)
+            if ent in feeds and not diverges:
+                move_feeds[ent] = (cur, m)
+            continue
+        if here[:2] == want:
             continue
         move_loc[ent] = (cur, m)
         if ent in feeds and not diverges:
@@ -240,8 +320,10 @@ def main():
 
     added = 0
     for (lvl, ref), m in sorted(missing.items()):
-        lvl_ent = "entity:QNL_%s" % lvl
-        lvl_type = "rec:BasementLevel" if lvl.startswith("B") else "rec:Level"
+        lvl_ent = level_entity(rows_by_level, building, lvl)
+        lvl_type = level_type.get(lvl_ent,
+                                  "rec:BasementLevel" if lvl.startswith("B")
+                                  else "rec:Level")
         ws.append([m["subject"], "rec:Room", "rec:isPartOf", lvl_ent, lvl_type,
                    "rdfs:label_en", m["label"], "", ""])
         log.append(("new room", m["subject"], "", m["label"]))
@@ -255,6 +337,12 @@ def main():
     print("feeds deliberately left    : %d" % len(kept_feeds))
     print("room labels restated       : %d" % relabelled)
     print("rooms added                : %d" % added)
+    if placeholder:
+        print("locatedIn was a placeholder : %d moved to a real room %s"
+              % (len(placeholder), [x[0] for x in placeholder[:6]]))
+    if odd_location:
+        print("locatedIn is a level, left  : %d %s"
+              % (len(odd_location), [x[0] for x in odd_location[:6]]))
     if unparsed:
         print("room entities not parsed   : %d %s" % (len(unparsed), unparsed[:4]))
     print("wrote %s" % args.out)
@@ -282,6 +370,18 @@ def main():
             w.writerow(["tag", "entity", "sits in", "feeds"])
             for t, e, c, fs in kept_feeds:
                 w.writerow([t, e, c, "; ".join(fs)])
+            if placeholder:
+                w.writerow([])
+                w.writerow(["locatedIn pointed at a placeholder entity, not a "
+                            "room, and was moved to the register's room"])
+                w.writerow(["tag", "entity", "pointed at", "now"])
+                w.writerows(placeholder)
+            if odd_location:
+                w.writerow([])
+                w.writerow(["locatedIn left alone - it does not name a room "
+                            "in this building's shape"])
+                w.writerow(["tag", "entity", "points at", "sheet says"])
+                w.writerows(odd_location)
         print("wrote %s" % args.log)
 
 

@@ -23,7 +23,7 @@ with open('reference-models/DarCairo_V93.csv', encoding='utf-8-sig', newline='')
                 dar[ot][r[i+1].strip()]+=1
 
 # --- SSC: class -> Counter(unit)
-sb=openpyxl.load_workbook('reference-models/QF_SSC_Ontology_ver02.xlsx', data_only=True)
+sb=openpyxl.load_workbook('reference-models/QF_SSC_Ontology_V03.xlsx', data_only=True)
 ss=sb['SSC_Ontology_Ver0.6']
 ssc=collections.defaultdict(collections.Counter)
 for r in range(2, ss.max_row+1):
