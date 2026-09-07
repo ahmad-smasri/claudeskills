@@ -23,22 +23,30 @@ WIDTH = 27
 TERMINALS = ('brick:Variable_Air_Volume_Box', 'brick:Constant_Air_Volume_Box')
 
 # (id segment, label, class, unit, timeseries id)
+#
+# Every name carries "Air Terminal" because the same six quantities exist at
+# other layers - an AHU's cooling demand, the building's - and a reader looking
+# at a chart legend or a tile needs to know which one this is. Written out
+# rather than left as the client's "AT": an abbreviation in a point name becomes
+# an abbreviation in the label a user reads.
 POINTS = [
-    ('Cooling-Power-Demand-Contribution', 'Cooling Power Demand Contribution',
+    ('Air-Terminal-Cooling-Power-Demand-Contribution',
+     'Air Terminal Cooling Power Demand Contribution',
      'brick:Thermal_Power_Sensor', 'para:KiloWt', 'AT_CWPWR_KWT_CALC'),
-    ('Cooling-Energy-Consumption-Contribution',
-     'Cooling Energy Consumption Contribution',
+    ('Air-Terminal-Cooling-Energy-Consumption-Contribution',
+     'Air Terminal Cooling Energy Consumption Contribution',
      'brick:Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_CWPWR_KWHT_CALC'),
-    ('Heating-Power-Demand-Contribution', 'Heating Power Demand Contribution',
+    ('Air-Terminal-Heating-Power-Demand-Contribution',
+     'Air Terminal Heating Power Demand Contribution',
      'brick:Thermal_Power_Sensor', 'para:KiloWt', 'AT_HEATPWR_KWT_CALC'),
-    ('Heating-Energy-Consumption-Contribution',
-     'Heating Energy Consumption Contribution',
+    ('Air-Terminal-Heating-Energy-Consumption-Contribution',
+     'Air Terminal Heating Energy Consumption Contribution',
      'brick:Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_HEATPWR_KWHT_CALC'),
-    ('Electrical-Power-Demand-Contribution',
-     'Electrical Power Demand Contribution',
+    ('Air-Terminal-Electrical-Power-Demand-Contribution',
+     'Air Terminal Electrical Power Demand Contribution',
      'brick:Electric_Power_Sensor', 'unit:KiloW', 'AT_ELEC_KW_CALC'),
-    ('Electrical-Energy-Consumption-Contribution',
-     'Electrical Energy Consumption Contribution',
+    ('Air-Terminal-Electrical-Energy-Consumption-Contribution',
+     'Air Terminal Electrical Energy Consumption Contribution',
      'brick:Electrical_Energy_Usage_Sensor', 'unit:KiloW-HR', 'AT_ELEC_KWH_CALC'),
 ]
 

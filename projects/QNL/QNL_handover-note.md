@@ -946,12 +946,23 @@ caused it.
 
 | Point | Class | Unit | Timeseries id |
 |---|---|---|---|
-| Cooling Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_CWPWR_KWT_CALC` |
-| Cooling Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_CWPWR_KWHT_CALC` |
-| Heating Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_HEATPWR_KWT_CALC` |
-| Heating Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_HEATPWR_KWHT_CALC` |
-| Electrical Power Demand Contribution | `brick:Electric_Power_Sensor` | `unit:KiloW` | `AT_ELEC_KW_CALC` |
-| Electrical Energy Consumption Contribution | `brick:Electrical_Energy_Usage_Sensor` | `unit:KiloW-HR` | `AT_ELEC_KWH_CALC` |
+| Air Terminal Cooling Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_CWPWR_KWT_CALC` |
+| Air Terminal Cooling Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_CWPWR_KWHT_CALC` |
+| Air Terminal Heating Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_HEATPWR_KWT_CALC` |
+| Air Terminal Heating Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_HEATPWR_KWHT_CALC` |
+| Air Terminal Electrical Power Demand Contribution | `brick:Electric_Power_Sensor` | `unit:KiloW` | `AT_ELEC_KW_CALC` |
+| Air Terminal Electrical Energy Consumption Contribution | `brick:Electrical_Energy_Usage_Sensor` | `unit:KiloW-HR` | `AT_ELEC_KWH_CALC` |
+
+Identifiers follow the labels:
+`entity:QNL_VAV-1F-S11-001_Air-Terminal-Cooling-Power-Demand-Contribution`.
+
+The **Air Terminal** prefix is not decoration. The same six quantities exist at
+other layers - an AHU's cooling demand, the building's - so a point called only
+"Cooling Power Demand Contribution" does not say which layer a chart legend or a
+tile is showing. Written out rather than left as the client's `AT`, because an
+abbreviation in a point name becomes an abbreviation in the label a user reads,
+which is the thing intake asks about specifically. Identifier and label are
+generated from one map in `add_air_terminal_points.py`, so the two cannot drift.
 
 Every one carries the fixed timeseries id plus the terminal's own
 `para:hasEntityId` — `QNL_VAV_1F_S11_001`, underscores throughout — the same
