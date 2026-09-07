@@ -48,7 +48,7 @@ KEEP_CALCULATED = {
     'ContributionFraction',
     # QNL-052: the six Air Terminal contribution points, on all 299 VAV/CAV.
     'AT_CWPWR_KWT_CALC', 'AT_CWPWR_KWHT_CALC',
-    'AT_HEATPWR_KWT_CALC', 'AT_HEATPWR_KWTH_CALC',
+    'AT_HEATPWR_KWT_CALC', 'AT_HEATPWR_KWHT_CALC',
     'AT_ELEC_KW_CALC', 'AT_ELEC_KWH_CALC',
 }
 

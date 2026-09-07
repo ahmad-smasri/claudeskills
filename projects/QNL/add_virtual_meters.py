@@ -96,9 +96,9 @@ TSID = {
     ("para:LTG_Meter",         "Demand"):      "LTG_KW_CALC",
     ("brick:Electrical_Meter", "Consumption"): "ELEC_KWH_CALC",
     ("brick:Electrical_Meter", "Demand"):      "ELEC_KW_CALC",
-    ("para:CHW_Meter",         "Consumption"): "CWPWR_KWTH_CALC",
+    ("para:CHW_Meter",         "Consumption"): "CWPWR_KWHT_CALC",
     ("para:CHW_Meter",         "Demand"):      "CWPWR_KWT_CALC",
-    ("para:HW_Meter",          "Consumption"): "HWPWR_KWTH_CALC",
+    ("para:HW_Meter",          "Consumption"): "HWPWR_KWHT_CALC",
     ("para:HW_Meter",          "Demand"):      "HWPWR_KWT_CALC",
 }
 

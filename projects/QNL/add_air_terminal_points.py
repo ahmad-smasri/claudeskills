@@ -33,7 +33,7 @@ POINTS = [
      'brick:Thermal_Power_Sensor', 'para:KiloWt', 'AT_HEATPWR_KWT_CALC'),
     ('Heating-Energy-Consumption-Contribution',
      'Heating Energy Consumption Contribution',
-     'brick:Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_HEATPWR_KWTH_CALC'),
+     'brick:Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_HEATPWR_KWHT_CALC'),
     ('Electrical-Power-Demand-Contribution',
      'Electrical Power Demand Contribution',
      'brick:Electric_Power_Sensor', 'unit:KiloW', 'AT_ELEC_KW_CALC'),
