@@ -1,0 +1,317 @@
+screen,tag,room,confidence,note
+North Building/FF/FF-1,NB-VAV4510,Conference Room N-1205,ok,
+North Building/FF/FF-1,NB-VAV4525-EV4526,Conference Room N-1205,ok,
+North Building/FF/FF-1,NB-VAV4520-EV4521,Conference Room N-1205,check,endpoint is inside the room but the walk ran out before a dot
+North Building/FF/FF-1,NB-VAV4530-EV4531,Office N-1206,ok,
+North Building/FF/FF-1,NB-VAV4535-EV4536,Office N-1207,ok,
+North Building/FF/FF-1,NB-VAV4540-EV4541,Office N-1208,ok,
+North Building/FF/FF-1,NB-VAV4545-EV4546,Office N-1209,ok,
+North Building/FF/FF-1,NB-VAV4550-EV4551,Office N-1210,ok,
+North Building/FF/FF-1,NB-VAV4560-EV4561,Office N-1212,ok,
+North Building/FF/FF-1,NB-VAV4570-EV4571,Office N-1214,ok,
+North Building/FF/FF-1,NB-VAV4740,Office N-1244,ok,
+North Building/FF/FF-1,NB-VAV4735,Work Station N-1242,ok,
+North Building/FF/FF-1,NB-VAV4630-VEV4631,GIS N-1216D,ok,
+North Building/FF/FF-2,NB-VAV4050-VEV4051,CSP High Bay N-0215B,ok,"read on the first floor screen; the high bay is double height and the register carries this unit on the ground floor, which the reading agrees with"
+North Building/FF/FF-2,NB-VAV4060-VEV4061,Machine Shop N-0215C,ok,"read on the first floor screen; double-height space, as NB-VAV4050-VEV4051"
+North Building/FF/FF-3,NB-VAV5740-EV5741,Emer. Elec. N-1137,ok,
+North Building/FF/FF-3,NB-VAV5730-EV5731,Store N-1135,ok,
+North Building/FF/FF-3,NB-VAV5735-EV5736,Corridor N-1138,ok,
+North Building/FF/FF-3,NB-VAV5715-EV5716,Conf. Rm N-1132,ok,
+North Building/FF/FF-3,NB-VAV5695,Office N-1128,ok,
+North Building/FF/FF-3,NB-VAV5680,Office N-1125,ok,
+North Building/FF/FF-3,NB-VAV5670,Office N-1123,ok,
+North Building/FF/FF-3,NB-VAV5660,Office N-1121,ok,
+North Building/FF/FF-3,NB-FEV5624,Robotics N-1115J,ok,
+North Building/FF/FF-3,NB-FEV5575,Cell Culture N-1115E,ok,
+North Building/FF/FF-3,NB-FEV5574,PRe-PCR N-1115B,ok,
+North Building/FF/FF-3,NB-FCU5983,IDF N-1140,check,the dot sits close to the JC N-1139 / IDF N-1140 wall
+North Building/FF/FF-3,NB-VAV5610-VEV5611,Cold Room N-1115F,check,the dot is in open lab floor near the Cold Room N-1115F name; no wall separates it from Robotics N-1115J to its left
+North Building/GF/GF-1,NB-VAV4110-EV4111,Conference Room N-0227,ok,
+North Building/GF/GF-1,NB-VAV4115-EV4116,Office N-0228,ok,
+North Building/GF/GF-1,NB-VAV4120-EV4121,Office N-0229,ok,
+North Building/GF/GF-1,NB-VAV4125-EV4126,Office N-0230,ok,
+North Building/GF/GF-1,NB-VAV4130-EV4131,Office N-0231,ok,
+North Building/GF/GF-1,NB-VAV4135-EV4136,Office N-0232,ok,
+North Building/GF/GF-1,NB-VAV4145-EV4146,Office N-0234,ok,
+North Building/GF/GF-1,NB-VAV4165-EV4166,Office N-0236,ok,
+North Building/GF/GF-1,NB-VAV4105-EV4106,Normal Elec. Room N-0226,ok,
+North Building/GF/GF-1,NB-VAV4100-EV4101,Emergency Elec. Room N-0225,ok,
+North Building/GF/GF-1,NB-VAV4225,Office N-0247,ok,
+North Building/GF/GF-1,NB-VAV4245,Office N-0252,ok,
+North Building/GF/GF-1,NB-VAV4250,Office N-0253,ok,
+North Building/GF/GF-1,NB-VAV4080A-VEV4082A,Desal High Bay Lab N-0215E,ok,
+North Building/GF/GF-1,NB-VAV4081B-VEV4083B,Desal High Bay Lab N-0215E,ok,
+North Building/GF/GF-1,NB-VAV4070A-VEV4073A,Open High Bay Lab N-0215D,ok,
+North Building/GF/GF-1,NB-VAV4090-VEV4091,Support Lab N-0215F,check,the dot sits near the boundary with Desal High Bay Lab N-0215E above it
+North Building/GF/GF-1,NB-CAV4035,Service Corridor N-0207,check,the dot sits near the boundary with Corridor N-0207A to its left
+North Building/GF/GF-1,NB-VAV4210,Desal Lab N-0240D,check,the dot is in open floor carrying the Desal Lab N-0240D name but no wall separates it from Corridor N-0246 below
+North Building/FF/FF-5,NB-VAV5510-EV5511,Conference Room N-1101A,ok,
+North Building/FF/FF-5,NB-VAV5525-EV5526,JC N-1118,check,the dot is inside the round JC N-1118 room but close to its edge
+North Building/FF/FF-5,NB-VAV5845,Reception Area N-1151,check,the dot is in open floor carrying the Reception Area N-1151 name
+North Building/FF/FF-8,NB-FCU6988,Service Corridor N-337,ok,
+North Building/FF/FF-8,NB-FCU6989,Service Corridor N-337,ok,
+North Building/FF/FF-8,NB-VEV6751,TC1 N-345A,check,the dot sits on the wall between Service Corridor N-337 and the lab below it; the leader arrives from the corridor side
+North Building/FF/FF-8,NB-VAV6800-VEV6801,TC3 N-345D,check,as NB-VEV6751 - the dot is on the corridor wall at the top of the room
+North Building/FF/FF-8,NB-VAV6820-VEV6821,Electro Physics N-345F,check,as NB-VEV6751 - the dot is on the corridor wall at the top of the room
+North Building/FF/FF-7,NB-CEV6581,TC3 N-316F,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-7,NB-VAV6620-VEV6621,Mscope Room N-316K,check,"the dot sits on the wall between Mscope Room N-316J and N-316K, just inside K"
+North Building/FF/FF-9,NB-VAV6910,Office N-359,ok,
+North Building/FF/FF-9,NB-VAV6900,Office N-357,ok,
+North Building/FF/FF-9,NB-VAV6915,Office N-360,ok,
+North Building/FF/FF-9,NB-VAV6920,Office N-360B,ok,
+North Building/FF/FF-9,NB-VAV6960,Work Station N-368,ok,
+North Building/FF/FF-9,NB-VAV6935,Work Station N-363,check,the dot sits on the room's right-hand edge
+North Building/FF/FF-9,NB-VAV6950,Office N-366,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-9,NB-VAV6967,Office N-370,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-9,NB-VAV6905,Open Plan N-358,check,the dot is just below the Open Plan N-358 area with Office N-357 to its right
+North Building/FF/FF-10,NB-VAV7560-VEV7561,Imaging N-404F,ok,
+North Building/FF/FF-10,NB-CAV7610-CEV7611,Imaging N-404F,ok,
+North Building/FF/FF-10,NB-VAV7660,Workstation N-423,ok,
+North Building/FF/FF-10,NB-VAV7680-EV7681,Conference N-429,ok,
+North Building/FF/FF-10,NB-VAV7625,Office N-416,check,the dot sits on the room's lower wall
+North Building/FF/FF-10,NB-VAV7640,Office N-419,check,the dot sits on the room's upper wall
+North Building/FF/FF-10,NB-CAV7590-CEV7591,HV Room N-404J,check,the dot sits just inside the room's upper right corner
+North Building/FF/FF-11,NB-CAV7760-CEV7761,A/L N-450D,ok,
+North Building/FF/FF-11,NB-VAV7800-VEV7801,IPS Tissue Culture N-450J,ok,
+North Building/FF/FF-11,NB-VAV7821-VEV7823,STEM/PCR Open Lab N-450M,ok,
+North Building/FF/FF-11,NB-VAV7830-7831,TC2 N-450N,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-11,NB-VAV7870,Office N-462,check,the dot sits on the room's left-hand wall
+North Building/FF/FF-11,NB-VAV7880,Office N-464,check,the dot sits inside the room near its right wall
+North Building/FF/FF-11,NB-VAV7890,Work Station N-466,check,the dot sits on the room's right-hand edge
+North Building/FF/FF-11,NB-VAV7900,Office N-1468,check,the dot sits between Office N-1468 and Office N-470 with no wall drawn at that point
+North Building/FF/FF-4,NB-VAV5760-EV5761,Conference N-143,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-4,NB-VAV5920,Work Station N-168,check,the dot is in the open Work Station N-168 area near its lower edge
+North Building/FF/FF-4,NB-VEV5811A,Nano Lab N-144E,check,the dot sits inside the room near its right-hand edge
+North Building/FF/FF-4,NB-VEV5795B,PRE-PCR N-144D,check,the dot is above the PRE-PCR N-144D name in open lab floor
+North Building/FF/FF-4,NB-FEV5796,PRE-PCR N-144D,check,as NB-VEV5795B - the dot is in the open floor carrying that name
+North Building/FF/FF-4,NB-VAV5900,Office N-162,check,the dot sits on the room's right-hand wall
+North Building/FF/FF-4,NB-VEV5791,Culture & Gel Rm N-144B,check,the dot is above the room name in open lab floor
+North Building/GF/GF-6,NB-VAV5310,Office N-0152,ok,
+North Building/GF/GF-6,NB-CAV5280,Store N-0146,ok,
+North Building/GF/GF-6,NB-VAV5315,Open Office N-0153,check,the dot is in the open office area near its left edge
+North Building/GF/GF-6,NB-VAV5325,Office N-0155,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-6,NB-FEV5272,ORG Chem N-0140K,check,"the dot sits on the lab's upper wall, the leader arriving from the corridor above"
+North Building/GF/GF-6,NB-VEV5211,MBB EVAP Room N-0140E,check,the dot sits on the room's upper wall
+North Building/GF/GF-6,NB-VAV5220,MBB EVAP Room N-0140E,check,"the dot sits on the room's upper wall, east end"
+North Building/GF/GF-6,NB-VAV5180,Analyt Core N-0140A,check,the dot sits on the room's upper wall
+North Building/GF/GF-6,NB-VAV5181,Analyt Core N-0140A,check,the dot is inside the room below its upper wall
+North Building/GF/GF-6,NB-VAV5345,Office N-0159,check,the dot sits on the wall between Office N-0159 and Office N-0161
+North Building/GF/GF-11,NB-VAV7405,Office N-0448,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-11,NB-VAV7400,Office N-0447,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-11,NB-VAV7415,Office N-0450,check,the dot is inside the room near its left wall
+North Building/GF/GF-11,NB-VAV7425,Work Station N-0452,check,the dot is in the open Work Station N-0452 area
+North Building/GF/GF-11,NB-VAV7430,Office N-0453,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-11,NB-VAV7435,Office N-0453,check,"a second dot in the same room, west end"
+North Building/GF/GF-11,NB-VAV7440,Office N-0456,check,the dot sits on the room's right-hand wall
+North Building/GF/GF-11,NB-VAV7310-VEV7311,Sem 3 N-0442J,check,the dot sits just inside the room's upper left corner
+North Building/GF/GF-11,NB-VAV7350-VEV7351,Tem 1 N-0442N,check,the dot sits on the room's upper wall
+North Building/GF/GF-11,NB-VAV7360-VEV7361,Tem 2 N-0442P,check,the dot sits on the room's upper wall
+North Building/GF/GF-11,NB-VAV7460,Corridor N.0451,check,the dot is in the corridor rather than in a room off it
+North Building/GF/GF-11,NB-VAV7499,Office N-0438,check,the dot sits inside the room near its left wall
+North Building/GF/GF-5,NB-VAV5150,Office N-0125,ok,
+North Building/GF/GF-5,NB-VAV5140,Office N-0123,ok,
+North Building/GF/GF-5,NB-VAV5120,Office N-0119,ok,
+North Building/GF/GF-5,NB-VAV5100-EV5101,Office N-0115,ok,
+North Building/GF/GF-5,NB-FCU6982,IDF N-0133,check,the dot sits just outside the room's left wall
+North Building/GF/GF-5,NB-FCU6981,IDF N-0133,check,"a second dot beside NB-FCU6982, same wall"
+North Building/GF/GF-5,NB-VAV5165-EV5166,JC N-0132,check,the dot is left of the JC N-0132 name in circulation space
+North Building/GF/GF-5,NB-CAV5280,JC N-0132,check,a second dot beside NB-VAV5165-EV5166
+North Building/GF/GF-5,NB-FCU5980,Serv Core N-0136,check,the dot is in the open Serv Core N-0136 band
+North Building/GF/GF-5,NB-VEV5071,Dirty Lab N-0114C,check,the dot is below the room name in open lab floor
+North Building/GF/GF-5,NB-FEV5073,Dirty Lab N-0114C,check,as NB-VEV5071 - open lab floor under that name
+North Building/GF/GF-5,NB-VAV5050,Analyt Core N-0114A,check,the dot is below the room name in open lab floor
+North Building/GF/GF-5,NB-FEV5053,Analyt Core N-0114A,check,as NB-VAV5050 - open lab floor under that name
+North Building/GF/GF-5,NB-VAV5070,Serv Core N-0136,check,the dot is in the band below Cold Room N-0114E carrying the Serv Core name
+North Building/GF/GF-10,NB-VAV7080,Office N-0410,check,the dot sits just inside the room's upper left corner
+North Building/GF/GF-10,NB-VAV7135,Office N-0422,check,the dot sits on the room's upper wall
+North Building/GF/GF-10,NB-VAV7040,Control Room N-0404B,check,the dot is inside the room near its lower edge
+North Building/GF/GF-10,NB-FEV7052,Service Equipment Room N-0404C,check,the dot is in the open room below its name
+North Building/GF/GF-10,NB-FEV7053,Service Equipment Room N-0404C,check,a second dot beside NB-FEV7052
+North Building/GF/GF-10,NB-VEV7073,Surf Analysis Lab N-0404F,check,the dot is below the room name in open lab floor
+North Building/GF/GF-10,NB-VAV7175,Corridor N-0432,check,the dot is in the corridor rather than a room off it
+North Building/GF/GF-7,NB-VAV6305,Conference Room N-0364A,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-7,NB-VAV6025-EV6026,IDF N-0311,check,the dot sits just right of the room name
+North Building/GF/GF-2,NB-VAV4050-VEV4051,CSP High Bay N-0215B,ok,
+North Building/GF/GF-2,NB-VAV4060-VEV4061,Machine Shop N-0215C,ok,
+South Building/GF/GF-2,SB-FCU2002,AV S-0210,ok,
+South Building/GF/GF-2,SB-VAV2007,Office S-0213,ok,
+South Building/GF/GF-2,SB-VAV2008,Office S-0214,ok,
+South Building/GF/GF-2,SB-VAV2009,Office S-0215,ok,
+South Building/GF/GF-2,SB-VAV2010,Office S-0216,ok,
+South Building/GF/GF-2,SB-VAV2011,Office S-0217,ok,
+South Building/GF/GF-2,SB-VAV2012,Director Office S-0218,ok,
+South Building/GF/GF-2,SB-VAV2013,Office S-0219,ok,
+South Building/GF/GF-2,SB-VAV2014,Office S-0220,ok,
+South Building/GF/GF-2,SB-VAV2015,Director Office S-0221,ok,
+South Building/GF/GF-2,SB-VAV2016,Director Office S-0222,ok,
+South Building/GF/GF-2,SB-VAV2006,Meeting Room S-0212,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-2,SB-VAV2019,Office S-0227,check,"the dot sits below and right of the room, on its boundary"
+South Building/GF/GF-7,SB-AHU8031,MECH S-0136,ok,
+South Building/GF/GF-7,SB-AHU8032,MECH S-0136,ok,
+South Building/GF/GF-7,SB-AHU8033,MECH S-0136,ok,
+South Building/GF/GF-7,SB-AHU8034,MECH S-0136,ok,
+South Building/GF/GF-7,SB-AHU8035,MECH S-0136,ok,
+South Building/GF/GF-7,SB-FCU1007,MECH S-0136,ok,
+South Building/GF/GF-6,SB-FCU1008,Stair 1 S-0ST01,ok,
+South Building/GF/GF-6,SB-VAV1004,Dedicated Cyber SOC/NOC Lab S-0141,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-6,SB-VAV1003-VEV1002,NOC S-0140A,check,the dot sits just inside the room's upper left corner
+South Building/GF/GF-6,SB-AHU8037,Cyber Server S-0138,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-6,SB-AHU8041,UPS S-0145,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-6,SB-AHU8042,Corridor S-0143,check,the dot is in the corridor below the room name
+South Building/GF/GF-1,SB-VAV3001,Director Office S-0237,ok,
+South Building/GF/GF-1,SB-VAV3019,Corridor S-0251,check,"the dot is in the corridor, which the screen labels only Corridor at that point"
+South Building/GF/GF-1,SB-VAV3028,Office S-0258,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-1,SB-VAV3026,Office S-0256,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-1,SB-VAV3002,Office S-0238,check,the dot is inside the room near its left wall
+South Building/GF/GF-1,SB-VAV3027,Office S-0238,check,a second dot in the same room; SB-VAV3002 also reads here
+South Building/GF/GF-1,SB-VAV3003,Office S-0239,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-1,SB-VAV3025,Office S-0240,check,the dot is inside the room near its left wall
+South Building/GF/GF-1,SB-VAV3004,Office S-0240,check,a second dot in the same room
+South Building/GF/GF-1,SB-VAV3005,Office S-0241,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-1,SB-VAV3030,Open Plan S-0262,check,the dot is in the open plan area near its right edge
+South Building/GF/GF-1,SB-VAV3029,Open Plan S-0261,check,the dot is in the open plan area
+South Building/GF/GF-1,SB-VAV3033,Emergency Elec. S-0266,check,"the dot sits above the room name, left of Normal Elec. S-0267"
+South Building/GF/GF-5,SB-AHU8031,Mech S-0136,ok,
+South Building/GF/GF-5,SB-AHU8032,Mech S-0136,ok,
+South Building/GF/GF-5,SB-AHU8033,Mech S-0136,ok,
+South Building/GF/GF-5,SB-AHU8034,Mech S-0136,ok,
+South Building/GF/GF-5,SB-FCU1007,Mech S-0136,ok,
+South Building/GF/GF-5,SB-FCU1005,EC MDF S-0134,ok,
+South Building/GF/GF-5,SB-FCU1006,EC MDF S-0134,ok,
+South Building/GF/GF-5,SB-FCU1001,Qtel MDF S-0132,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-5,SB-FCU1003,ALT Recording Sound S-0135,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-5,SB-FCU1004,ALT Recording Sound S-0135,check,a second dot beside SB-FCU1003
+South Building/GF/GF-5,SB-VAV0014,Phone Booth S-0116,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-5,SB-VAV1539,Video Conf. Room S-0154,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-5,SB-VAV1545,Office S-0182D,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-5,SB-VAV1547,Office S-0182F,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-5,SB-VAV1505,Sc.Comp.Office2 S-0123,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-5,SB-VAV1506,Sc.Comp.Office3 S-0124,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-5,SB-VAV1503,NCIR Office S-0121,check,the dot is inside the room near its right wall
+South Building/FF/FF-5,SB-VAV1502,NCIR Office S-0121,check,a second dot in the same room
+South Building/FF/FF-5,SB-VAV1540,Confirance Room S-0159,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-5,SB-VAV1501,Workstation S-0119A,check,the dot is in the open workstation area
+South Building/FF/FF-5,SB-VAV0513,NICR Office S-0118,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-5,SB-VAV0514,Sc.Comp.Office3 S-0119,check,the dot is inside the room near its right wall
+South Building/FF/FF-5,SB-VAV0512,NCIR Office S-0117,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-5,SB-VAV0511,NCIR Office S-0116,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-2,SB-VAV2553,Male Prayer S-0278,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-2,SB-VAV2509,Open Plan S-0210,check,the dot sits on the area's left-hand edge
+South Building/FF/FF-2,SB-VAV2552,FPC S-0277,check,the dot is inside the room near its left wall
+South Building/FF/FF-2,SB-VAV2508,Female Prayer S-0207,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-2,SB-VAV2510,Executive Director Office S-0211,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-2,SB-VAV2511,Office S-0212,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-2,SB-VAV2548,Office S-0267,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-2,SB-VAV2549,Office S-0267,check,a second dot beside SB-VAV2548
+South Building/FF/FF-2,SB-VAV2514,Office S-0215,check,the dot is inside the room near its right wall
+South Building/FF/FF-7,SB-VAV1530,Office S-0145,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-7,SB-VAV1527,Conference Room S-0141,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-7,SB-VAV1561,Cyber Sec Office S-0193,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-7,SB-VAV1559,Cyber Sec Office S-0192,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-7,SB-VAV1531,Office S-0146,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-7,SB-VAV1521,Data Analytic Office S-0136,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-7,SB-VAV1520,Data Analytic Office S-0135,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-7,SB-VAV1529,Distub. Syst Office S-0133,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-7,SB-VAV1515,Data Analytic Office S-0131,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-7,SB-VAV1512,Workstation S-0128A,check,the dot is in the open workstation area
+South Building/FF/FF-7,SB-VAV1511,ALT Office 2 S-0128,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-7,SB-VAV1507,Workstation S-0124A,check,the dot sits on the area's left-hand edge
+South Building/FF/FF-7,SB-VAV1528,Workstation S-0136A,check,the dot is below and left of the workstation name
+South Building/FF/FF-3,SB-VAV2526,Open Plan S-0227,check,the dot is in the open plan area near its left edge
+South Building/FF/FF-3,SB-VAV2536,Mech. Chasing S-0249,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-3,SB-VAV2520,Office S-0221,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-3,SB-VAV2521,Office S-0222,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-3,SB-VAV2522,Office S-0223,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-3,SB-VAV2523,Office S-0224,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-3,SB-VAV2524,Office S-0225,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-3,SB-VAV2525,Office S-0226,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-3,SB-VAV2527,Executive Director Office S-0228,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-3,SB-VAV2528,Executive Director Office S-0230,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-3,SB-VAV2529,Office S-0231,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-3,SB-VAV2530,Office S-0232,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3523,Office S-0299,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3505,Open Plan S-0229,check,the dot is in the open plan area near its right edge
+South Building/FF/FF-1,SB-VAV3504,Open Plan S-0229,check,the dot is in the open plan area near its left edge
+South Building/FF/FF-1,SB-VAV3509,Policy Director Office S-0237,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3506,Office S-0233,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3507,Office S-0234,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3508,Office S-0235,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3510,Policy Executive Director Office S-0240,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3514,Office S-0284,check,the dot sits on the room's right-hand wall
+South Building/FF/FF-1,SB-VAV3516,Meeting Room S-0288,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-1,SB-VAV3515,VP R&D S-0285,check,the dot sits on the room's right-hand wall
+South Building/SF/SF-1,SB-FCU1201,IDF S-2102,check,the dot sits on the room's left-hand wall
+South Building/SF/SF-1,SB-FCU1202,South Penthouse S-2101,check,the dot is in the open penthouse below IDF S-2102
+South Building/SF/SF-1,SB-FCU0206,South Penthouse S-2101,ok,
+South Building/SF/SF-1,SB-FCU0208,South Penthouse S-2101,ok,
+South Building/SF/SF-1,SB-EF-8043,South Penthouse S-2101,check,the dot is in the open penthouse right of IDF S-2102
+South Building/SF/SF-1,SB-EF-8042,South Penthouse S-2101,check,one of a cluster of dots at the penthouse's east end
+South Building/SF/SF-1,SB-EF-8044,South Penthouse S-2101,check,one of the same cluster of dots
+South Building/SF/SF-1,SB-AHU-8023,South Penthouse S-2101,check,one of the same cluster of dots
+South Building/SF/SF-1,SB-EF-8041,South Penthouse S-2101,ok,
+South Building/SF/SF-1,SB-FCU0202,South Penthouse S-2101,ok,
+South Building/SF/SF-1,SB-AHU-8022,South Penthouse S-2101,ok,
+Utility Building/MF-2,UB-FCU8506,Mechanical U-101,ok,
+Utility Building/MF-2,UB-AHU-8602,Mechanical U-101,ok,
+Utility Building/MF-2,UB-FCU8511,Mechanical U-101,ok,
+Utility Building/MF-2,UB-FCU8510,Mechanical U-101,ok,
+Utility Building/MF-2,UB-AHU-8609,Mechanical U-101,ok,
+Utility Building/MF-2,UB-AHU-8601,Mechanical U-101,ok,
+Utility Building/MF-2,UB-EF-8642,Mechanical U-101,ok,
+Utility Building/MF-2,UB-EF-8646,Mechanical U-101,ok,
+Utility Building/MF-2,UB-EF-8643,Mechanical U-101,ok,
+Utility Building/MF-2,UB-EF-8644,Mechanical U-101,ok,
+Utility Building/MF-2,UB-EF-8645,Mechanical U-101,ok,
+North Building/SF/SF-2,NB-FCU4918,IDF N-2104,check,the dot sits on the room's left-hand wall
+North Building/SF/SF-1,NB-VAV4910P,Emer. Elec. N-2104,check,the dot sits just inside the room's lower edge
+Utility Building/GF,UB-FCU8002,Shop U-0135,ok,
+Utility Building/GF,UB-FCU8003,Mail Room U-0128,check,the dot sits on the room's right-hand wall
+Utility Building/GF,UB-FCU8006,Dispensing U-0104,check,the dot sits on the room's left-hand wall
+Utility Building/GF,UB-FCU8514,Pump Room U-0121,ok,
+Utility Building/MF-1,UB-AHU-8605,Mechanical U-101,ok,
+Utility Building/MF-1,UB-AHU-8603,Mechanical U-101,ok,
+Utility Building/MF-1,UB-AHU-8604,Mechanical U-101,ok,
+Utility Building/MF-1,UB-AHU-8606,Mechanical U-101,ok,
+Utility Building/MF-1,UB-AHU-8607,Mechanical U-101,ok,
+Utility Building/MF-1,UB-AHU-8608,Mechanical U-101,ok,
+South Building/WALKWAY/WW-1,Walkway-FCU9001,Pedestrian Walkway B/W North & South,ok,
+South Building/WALKWAY/WW-1,Walkway-FCU9003,Pedestrian Walkway B/W North & South,ok,
+South Building/GF/GF-3,SB-VAV2036,Emergency Elec.Room S-0278,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-3,SB-VAV2022,Director Office S-0229,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-3,SB-VAV2023,Office S-0230,check,the dot sits on the room's left-hand wall
+South Building/GF/GF-3,SB-VAV2024,Executive Director Office S-0232,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-3,SB-VAV2026,Office S-0234,check,the dot sits on the room's right-hand wall
+South Building/GF/GF-3,SB-VAV2027,Office S-0235,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0509,NICR Office S-0115,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0528,Office S-0173,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0521,Office S-0164,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0533,Telepresence S-0179,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0527,Office S-0172,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0508,Conf. S-0113,check,the dot sits on the room's left-hand wall
+South Building/FF/FF-6,SB-VAV0529,Corridor S-0174,check,the dot is in the corridor rather than a room off it
+North Building/GF/GF-9,NB-FCU6983,Service Corridor N-0344,ok,
+North Building/GF/GF-9,NB-VAV6345,Office N-0370,check,the dot is inside the room near its left wall
+North Building/GF/GF-9,NB-VAV6340,Office N-0366,check,the dot sits on the wall between Office N-0366 and Office N-0369
+North Building/GF/GF-9,NB-VAV6360,Office N-0375,check,the dot sits on the room's right-hand wall
+North Building/GF/GF-9,NB-VAV6400,Work Station N-0381,check,the dot is in the open work station area left of Office N-0383
+North Building/GF/GF-3,NB-FCU4911,MDF Room N-0206A,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-3,NB-VAV4305,Office N-0264,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-3,NB-VAV4300,Office N-0263,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-3,NB-VEV4041,Air Quality High Bay N-0215A,check,the dot sits on the room's left-hand wall
+South Building/SF/SF-2,SB-AHU-8024,South Penthouse S-2101,ok,
+South Building/SF/SF-2,SB-AHU-8025,South Penthouse S-2101,ok,
+South Building/SF/SF-2,SB-FCU2205,South Penthouse S-2101,ok,
+South Building/SF/SF-2,SB-FCU2204,Emergency Elec. S-2105,ok,
+South Building/SF/SF-2,SB-EF-8012A,South Penthouse S-2101,check,the dot is in the open penthouse just west of IDF S-2107
+North Building/SF/SF-4,NB-VAV6980P,IDF N-2110,check,the dot sits on the room's left-hand wall
+North Building/SF/SF-5,Walkway-FCU9001,Pedestrian Walkway B/W North & South,ok,this screen is the same walkway drawing as South Building/WALKWAY/WW-1
+North Building/SF/SF-5,Walkway-FCU9003,Pedestrian Walkway B/W North & South,ok,as above
+North Building/GF/GF-8,NB-VAV6135,Store N-0316,ok,
+North Building/GF/GF-8,NB-VAV6130-EV6131,Store N-0315,check,the dot sits on the room's right-hand wall
+North Building/GF/GF-8,NB-VAV6220-EV6221,Emergency Elec. Room N-0333,check,the dot sits on the room's left-hand wall
+North Building/GF/GF-8,NB-VAV6190-EV6191,Normal Elec. Room N-0328,check,the dot is inside the room below its name
+North Building/GF/GF-4,NB-FCU4911,MDF Room N-0206A,check,this screen is a second view of the same area as North Building/GF/GF-3; the dot sits on the room's left-hand wall
+South Building/GF/GF-4,SB-FCU0001,Stair 2 S-0ST02,check,the dot sits on the stair's left-hand wall
+South Building/GF/GF-4,SB-VAV0001,Vestbule S-0101,ok,
+North Building/FF/FF-6,NB-VAV6650,Office N-1319,check,the dot sits on the room's left-hand wall
