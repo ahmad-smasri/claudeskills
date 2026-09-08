@@ -274,3 +274,63 @@ Two bugs worth naming, both found by checking the output rather than the code:
 
 The one tag left with a doubled level, `RDC_NB_2F_2F_AHU8513`, is the register's
 own typo and is left as it is.
+
+---
+
+# One clean register, with the room names written in
+
+`build_clean_register.py` writes the register on its own, as one flat table,
+with the agreed room name in column D.
+
+```
+python3 build_clean_register.py --dry-run
+python3 build_clean_register.py
+```
+
+| | |
+|---|---|
+| asset rows | 2,577 |
+| HQ / QNL / SSC / RDC | 761 / 551 / 124 / 1,141 |
+| room names rewritten | 1,446 (HQ 755, QNL 537, SSC 122, RDC 32) |
+| rows still with no room | 18 |
+| cell comments carried across | 38 |
+
+Four tabs: `Asset Register`, `Room name changes` (the crosswalk, also written to
+`clean_room_name_changes.csv`), `Removed from RDC` (all 730 removals and
+renames from the historian pass) and `Read me`.
+
+## What "clean" meant
+
+The working file's registry sheet declared **16,382 columns**, hid **1,141 rows**
+behind two levels of outline grouping, left columns G and I empty between the
+ones it used, and gave columns E and F no header at all. Here every column
+carries data and a header, nothing is hidden, and there is no grouping.
+
+The columns are contiguous, so `ROOM PER BMS SCREEN` is **column H, not column
+J**. Column D is unchanged - it is the one the correction writes and the
+converter reads.
+
+The **HQ / QNL / SSC / RDC banner rows are gone** and the building is column L
+instead. A banner row inside a filtered table sorts into the middle of the data;
+a column filters.
+
+## Following a rename
+
+The RDC readings were taken against the tags the register carried before the
+historian pass, and one of the 32 green rows was a part: `AT-5280`. Its reading
+follows the rename to `CAV5280` rather than being dropped for naming a tag that
+no longer exists.
+
+## What the flat table exposed
+
+**123 tags appear in two buildings at once** - `AHUB_0001`, `FCU0001` and so on.
+None repeats inside its own building, and the banner-row layout hid the
+collision because the two rows were 800 apart. Only RDC prefixes its tags with
+the building code. The ontology needs that prefix on all four.
+
+## What is not in the file
+
+The four source equipment registers, the three room-name tabs and the 55-turn
+`Claude Log` stay in the working workbook. They carry spilling
+`TRANSPOSE(FILTER(...))` formulas and dynamic-array metadata that an openpyxl
+rewrite drops, and none of them is the deliverable.
