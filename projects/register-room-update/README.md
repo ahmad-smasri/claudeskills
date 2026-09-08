@@ -472,30 +472,50 @@ python3 inclusion_rule.py          # measure
 python3 inclusion_rule.py --fill   # propose a verdict for every blank row
 ```
 
-**The verdict belongs to the room, not to the equipment.** 1,682 of the 1,692
-rooms that carry a verdict give the same answer for every unit serving them.
-The 10 that do not are listed at the top of the run - `RF.001 ROOF`,
-`B.063 PLANT ROOM 01`, `1.039 IDF 2` and seven more - and are register errors,
-not a second rule.
+## The register I started from had RDC's column C wrong
 
-A room is **Not included** when it is one of four classes:
+`All_Buildings_Rooms_Inclusion_Status_V1.2.xlsx` and
+`Appendix_A_Asset_Register_QNL_BMS_rooms.xlsx` disagree about column C on **439
+rows**, 277 of them RDC and 264 of those naming the same room in both files. The
+register excludes every RDC laboratory; V1.2 includes them.
+
+V1.2 is right, and it is measurable rather than a matter of opinion. Against the
+rule "exclude technical rooms and executive offices":
+
+| RDC column C from | agreement |
+|---|---|
+| V1.2 | **98.5%** |
+| the register | 85.4% |
+
+So **RDC's column C is taken from V1.2**, on 276 rows. HQ, QNL and SSC keep the
+register's, which fits better than V1.2's there (93.5 / 95.2 / 97.1% against
+86.3 / 93.3 / 96.0%); the 108 rows where those three disagree are listed in
+`inclusion_column_c_conflicts.csv` rather than changed.
+
+## The rule
+
+**The verdict belongs to the room, not to the equipment.** 1,683 of the 1,692
+rooms that carry a verdict give the same answer for every unit serving them. The
+9 that do not - `RF.001 ROOF`, `B.063 PLANT ROOM 01`, `1.039 IDF 2` and six more
+- are register errors, not a second rule.
+
+A room is **Not included** when it is one of:
 
 | class | what it covers | buildings |
 |---|---|---|
-| technical | plant, mechanical, electrical, IT and security - IDF, MDF, MCC, UPS, BMS, server, control rooms, AHU and plant rooms, pumps, penthouses, the roof | all four |
+| technical | plant, mechanical, electrical, IT and security - IDF, MDF, MCC, UPS, BMS, server, control rooms, AHU and plant rooms, pumps, penthouses, the roof, and RDC's flammable, cylinder and recycling stores | all four |
 | executive | the room of someone senior, or the en-suite, waiting or meeting room attached to one - director, manager, head of, VP, president, executive, VIP, the Sheikha and HH wings | all four |
-| laboratory | the labs and everything serving them - tissue culture, microscopy and SEM, PCR, the high bays, the air locks | **RDC only** |
 | common area | corridors, lobbies, lounges, the spa, prayer and ablution rooms, toilets, terraces, the cafeteria, the visitors' centre | **HQ only** |
 
-The laboratory class is the correction to the brief: the client's summary said
-RDC excluded executive offices and technical rooms, but **laboratories are RDC's
-largest excluded class** - 109 rooms against 93 technical and 18 executive.
+**Laboratories are Included.** RDC's 144 lab rows are all Included in V1.3. The
+only two rooms with "Lab" in the name that V1.2 still excludes are the Cyber
+Electrical Lab and the Cyber SOC/NOC Lab, which are technical rooms by nature.
 
 ## HQ names a room `<department> <role>`, and the role decides
 
 `STR PL DIR EXEC SECRE` is the strategic planning director's secretary and is
 Included; `STR PL DIR MANAGER` is not. The department in front is not the
-signal. So a junior role - secretary, assistant, analyst, clerical, archive,
+signal, so a junior role - secretary, assistant, analyst, clerical, archive,
 print, staff - overrides the senior department, except an en-suite, which is
 always the senior's own.
 
@@ -506,22 +526,23 @@ always the senior's own.
 | HQ | 599 | 93.5% | 759 | 91.6% |
 | QNL | 168 | 95.2% | 449 | 96.4% |
 | SSC | 69 | 97.1% | 123 | 96.7% |
-| RDC | 856 | 97.9% | 1,138 | 98.3% |
-| **all** | **1,692** | **96.0%** | **2,469** | **95.8%** |
+| RDC | 856 | **98.6%** | 1,138 | **98.6%** |
+| **all** | **1,692** | **96.1%** | **2,469** | **95.9%** |
 
-The ceiling for any rule read off the room name is 97.8% for HQ, 100% for QNL,
-98.6% for SSC and 99.8% for RDC, because the register gives the same room name
-both verdicts that often - `VP EDU OFFICERS` is excluded 8 times and included 4,
-`FINANCE AUDITOR` excluded once and included twice. The 67 rooms where the rule
-and the register differ are in `inclusion_rule_report.csv`; they are worth a
-read, because several look like the register is wrong rather than the rule.
+The ceiling for any rule read off the room name is 97.8% for HQ, because the
+register gives the same room name both verdicts that often - `VP EDU OFFICERS`
+excluded 8 times and included 4, `FINANCE AUDITOR` excluded once and included
+twice. The 61 rooms where the rule and the register differ are in
+`inclusion_rule_report.csv`; several look like the register is wrong rather than
+the rule.
 
 ## Filling the blanks
 
 105 rows carried no verdict. `--fill` proposes one and writes
 `inclusion_proposed.csv`; `merge_old_columns.py` writes them into V1.3 **only
-where column C was blank**, shaded, and touches nothing the register already
-decided.
+where column C is blank**, shaded, touching nothing already decided. The
+proposals are excluded from the measurement above - scoring the rule against its
+own output would only measure it against itself.
 
 | | rows | verdict |
 |---|---|---|

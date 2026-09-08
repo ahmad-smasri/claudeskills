@@ -28,7 +28,17 @@ same old file, so they now match on the string like everything else.
 A unit with no row in the old file gets empty cells from E on. Nothing is
 carried across from a neighbouring row, and no value is invented.
 
-**Column C is filled where it was blank, and only there.** 105 rows carried no
+**RDC's column C comes from the old file, not from the register.** The two
+disagree on 277 RDC rows, 264 of them naming the same room, and the old file is
+the one that is right: it is the file whose subject is the inclusion status, and
+its RDC verdicts follow the stated rule - exclude technical rooms and executive
+offices - on 98.5% of rooms against the register's 85.4%. The register's RDC
+column excludes every laboratory, which is what the client says it should not
+do. HQ, QNL and SSC keep the register's column C, which fits the rule better
+than the old file's there; the 162 rows where those three differ are listed in
+`inclusion_column_c_conflicts.csv` rather than changed.
+
+**Column C is filled where it is still blank, and only there.** 105 rows carried no
 Included / Not included verdict. `inclusion_rule.py` reads the rule the four
 registers already follow and proposes one; 101 rows take it and the 4 with no
 room name keep their blank, because there is nothing to decide them on. Every
@@ -52,6 +62,10 @@ LOG = HERE / 'rdc_rebuild_log.csv'
 OUT = HERE / 'All_Buildings_Rooms_Inclusion_Status_V1.3.xlsx'
 REPORT = HERE / 'old_column_merge_coverage.csv'
 PROPOSED = HERE / 'inclusion_proposed.csv'
+CONFLICTS = HERE / 'inclusion_column_c_conflicts.csv'
+
+# the building whose Included / Not included the old file, not the register, settles
+C_FROM_OLD = 'RDC'
 
 TABS = (('HQ', 'HQ Asset Registry'), ('QNL', 'QNL Asset Registry'),
         ('SSC', 'SSC Asset Registry'), ('RDC', 'RDC Asset Registry'))
@@ -93,6 +107,12 @@ def no_level(tag):
     return re.sub(r'_(?:GF|1F|2F|MF|L0|B1)(?=_)', '', str(tag))
 
 
+def inclusion(ws):
+    """tag -> the old file's Included / Not included"""
+    return {str(ws.cell(r, 1).value).strip(): str(ws.cell(r, 3).value or '').strip()
+            for r in range(3, ws.max_row + 1) if ws.cell(r, 1).value}
+
+
 def old_block(ws):
     """(headers from E on, tag -> its values from E on)"""
     last = max(c for c in range(1, 60) if ws.cell(2, c).value)
@@ -129,14 +149,23 @@ def main():
             if r['proposed']:
                 proposed[(r['building'], r['tag'])] = (r['proposed'], r['why'])
 
-    out, report = {}, []
+    out, report, conflicts = {}, [], []
     for bld, tab in TABS:
         head, vals = old_block(ob[tab])
+        inc_old = inclusion(ob[tab])
         tags = {str(a[0]).strip() for a in assets[bld]}
 
-        rows, filled, checked, gap, guessed = [], 0, 0, [], []
+        rows, filled, checked, gap, guessed, moved = [], 0, 0, [], [], []
         for tag, kind, inc, room in assets[bld]:
             tag = str(tag).strip()
+            if bld == C_FROM_OLD:
+                was = str(inc or '').strip()
+                src_tag = tag if tag in inc_old else next(
+                    (t for t, u in alias.items() if u == tag and t in inc_old), None)
+                if src_tag and inc_old[src_tag]:
+                    if inc_old[src_tag] != was:
+                        moved.append(tag)
+                    inc = inc_old[src_tag]
             if not str(inc or '').strip() and (bld, tag) in proposed:
                 inc, why = proposed[(bld, tag)]
                 guessed.append(tag)
@@ -172,6 +201,15 @@ def main():
                                          if no_level(x) == no_level(t)) == 1):
                 report.append([bld, '', t, 'old row with no unit to land on'])
         out[bld] = (head, rows, filled, gap, guessed)
+        if moved:
+            print('  %s: column C taken from the old file on %d rows'
+                  % (bld, len(moved)))
+        if bld != C_FROM_OLD:
+            for tag, kind, inc, room in assets[bld]:
+                t = str(tag).strip()
+                o = inc_old.get(t, '')
+                if o and str(inc or '').strip() and o != str(inc).strip():
+                    conflicts.append([bld, t, room, str(inc).strip(), o])
         print('%-4s %5d assets | columns E-%s from the old file | filled %5d | '
               'no old row %4d | column C proposed %3d'
               % (bld, len(rows), get_column_letter(4 + len(head)), filled,
@@ -186,6 +224,13 @@ def main():
                     'what happened'])
         w.writerows(report)
     print('wrote %s' % REPORT.name)
+    with CONFLICTS.open('w', newline='') as f:
+        w = csv.writer(f, lineterminator='\n')
+        w.writerow(['building', 'tag', 'room', 'the register says',
+                    'the old file says'])
+        w.writerows(conflicts)
+    print('wrote %s (%d rows where HQ/QNL/SSC disagree - not changed)'
+          % (CONFLICTS.name, len(conflicts)))
     if args.dry_run:
         return
 

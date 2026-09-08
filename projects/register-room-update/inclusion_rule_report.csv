@@ -48,21 +48,15 @@ QNL,L1.003 TUTORING HEAD,Included,Not Included,rule excludes it as executive
 QNL,B.003 FINANCE COORDINATOR AND BUSINESS SUPPORT OFCR,Not Included,Included,rule includes it
 SSC,B.030 CORRIDOR,Not Included,Included,rule includes it
 SSC,3.030 ASSOC DIRECTORS MEETING ROOM,Not Included,Included,rule includes it
+RDC,Mech S-0136,Included,Not Included,rule excludes it as technical
+RDC,MECH S-0136,Included,Not Included,rule excludes it as technical
+RDC,Cyber Server S-0138,Included,Not Included,rule excludes it as technical
 RDC,Corridor S-0143,Not Included,Included,rule includes it
-RDC,Service Equipm. Room N-0404C,Not Included,Included,rule includes it
-RDC,Dedicated Cyber SOC/NOC Lab S-0141,Included,Not Included,rule excludes it as laboratory
-RDC,TC2 N-1316D,Not Included,Included,rule includes it
-RDC,Mscopy1 N-1316K,Not Included,Included,rule includes it
-RDC,TC1 N-1404A,Not Included,Included,rule includes it
-RDC,TC2 N-1404E,Not Included,Included,rule includes it
-RDC,TC3 N-1404H,Not Included,Included,rule includes it
-RDC,LN2 Stor N-1450B,Not Included,Included,rule includes it
-RDC,TC1 N-1450L,Not Included,Included,rule includes it
-RDC,TC2 N-1450N,Not Included,Included,rule includes it
+RDC,Air Quality High Bay N-0215A,Not Included,Included,rule includes it
+RDC,CSP High Bay N-0215B,Not Included,Included,rule includes it
+RDC,FPC S-1277,Included,Not Included,rule excludes it as technical
+RDC,NOC Lab S-0140A,Included,Not Included,rule excludes it as technical
+RDC,Dedicated Cyber SOC/NOC Lab S-0141,Included,Not Included,rule excludes it as technical
+RDC,EL Shop N-1216C,Included,Not Included,rule excludes it as technical
+RDC,Shared Eq Rm N-1404D,Included,Not Included,rule excludes it as technical
 RDC,LN2 DISPENSER U-0104,Not Included,Included,rule includes it
-RDC,PRE-PCR N-1144D,Included,Not Included,rule excludes it as laboratory
-RDC,TC1 N-1316B,Not Included,Included,rule includes it
-RDC,TC3 N-1316F,Not Included,Included,rule includes it
-RDC,TC1 N-1345A,Not Included,Included,rule includes it
-RDC,TC2 N-1345C,Not Included,Included,rule includes it
-RDC,TC1 N-1404L,Not Included,Included,rule includes it

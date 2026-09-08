@@ -20,10 +20,9 @@ A room is **Not included** when it is one of:
                  meeting room attached to one - director, manager, head of,
                  VP, president, executive, VIP, the Sheikha and HH wings. All
                  four buildings.
-  laboratory     RDC only, and the largest single class there - 41 rooms named
-                 Lab outright, plus the tissue-culture rooms, the microscopy
-                 and SEM suites, PCR, the high bays, the air locks that serve
-                 them. The client's summary did not mention these.
+  (laboratory)   no building excludes laboratories. RDC's labs are Included.
+                 The class is kept below, unused, because the register this
+                 project started from did exclude them and someone will ask.
   common area    HQ only - corridors, lobbies, lounges, the spa, prayer and
                  ablution rooms, toilets, terraces, the cafeteria, the
                  visitors' centre.
@@ -44,7 +43,9 @@ from pathlib import Path
 import openpyxl
 
 HERE = Path(__file__).resolve().parent
-SRC = HERE / 'Appendix_A_Asset_Register_clean.xlsx'
+SRC = HERE / 'All_Buildings_Rooms_Inclusion_Status_V1.3.xlsx'
+TABS = (('HQ', 'HQ Asset Registry'), ('QNL', 'QNL Asset Registry'),
+        ('SSC', 'SSC Asset Registry'), ('RDC', 'RDC Asset Registry'))
 REPORT = HERE / 'inclusion_rule_report.csv'
 FILLED = HERE / 'inclusion_proposed.csv'
 
@@ -56,7 +57,8 @@ TECHNICAL = """
  FIRE.COMMAND CHILLED.WATER VENT.PLANT CONTROL.ROOM CONTROL.CENTER SECURITY
  MISTING BATTERY FURNACE PIPE.CHASE CHASING RISER TELECOM COMMS
  AV.ROOM AV.IT ROOF PLANT.WALKWAY AHU.ROOM MACHINE.SHOP EL.SHOP WET/MECH LN2 UTILITY
- SERVICE.EQUIP SHARED.EQ CYBER.SERVER
+ SERVICE.EQUIP SHARED.EQ CYBER.SERVER FLAMMABLE CYLINDER RECYCLING
+ GENERAL.STORAGE FPC NOC PENT.HOUSE FURNACE PIPE.CHASE IT.SERVER
 """
 EXECUTIVE = """
  DIRECTOR DIR EXEC EXECUTIVE PRESIDENT VP CHAIRMAN MANAGER MANAG HEAD ENSUIT
@@ -86,7 +88,7 @@ APPLIES = {
     'HQ':  ('technical', 'executive', 'common area'),
     'QNL': ('technical', 'executive'),
     'SSC': ('technical', 'executive'),
-    'RDC': ('technical', 'executive', 'laboratory'),
+    'RDC': ('technical', 'executive'),      # laboratories are Included at RDC
 }
 
 # Equipment that serves plant rather than a room: it is not a room question, and
@@ -156,12 +158,17 @@ def verdict(building, room, kind=''):
 
 
 def load():
-    ws = openpyxl.load_workbook(SRC, data_only=True)['Asset Register']
-    return [(ws.cell(r, 12).value, str(ws.cell(r, 1).value).strip(),
-             str(ws.cell(r, 2).value or '').strip(),
-             str(ws.cell(r, 3).value or '').strip(),
-             str(ws.cell(r, 4).value or '').strip())
-            for r in range(3, ws.max_row + 1)]
+    """(building, tag, equipment type, verdict, room) for every asset"""
+    wb = openpyxl.load_workbook(SRC, data_only=True)
+    out = []
+    for bld, tab in TABS:
+        ws = wb[tab]
+        out += [(bld, str(ws.cell(r, 1).value).strip(),
+                 str(ws.cell(r, 2).value or '').strip(),
+                 str(ws.cell(r, 3).value or '').strip(),
+                 str(ws.cell(r, 4).value or '').strip())
+                for r in range(3, ws.max_row + 1) if ws.cell(r, 1).value]
+    return out
 
 
 def main():
@@ -172,10 +179,18 @@ def main():
     args = ap.parse_args()
     rows = load()
 
+    # verdicts this script proposed on an earlier pass are not evidence of what
+    # the client does - measuring against them would only measure the rule
+    # against itself
+    mine = set()
+    if FILLED.exists():
+        mine = {(r['building'], r['tag']) for r in csv.DictReader(FILLED.open())
+                if r['proposed']}
+
     # the register's own room-level verdict, and where it contradicts itself
     byroom = collections.defaultdict(collections.Counter)
     for b, tag, kind, inc, room in rows:
-        if room and inc:
+        if room and inc and (b, tag) not in mine:
             byroom[(b, room)][inc] += 1
     split = {k: dict(c) for k, c in byroom.items() if len(c) > 1}
     truth = {k: c.most_common(1)[0][0] for k, c in byroom.items()}
@@ -222,7 +237,7 @@ def main():
         w.writerows(report)
     print('\nwrote %s (%d rooms where the two differ)' % (REPORT.name, len(report)))
 
-    blank = [x for x in rows if not x[3]]
+    blank = [x for x in rows if not x[3] or (x[0], x[1]) in mine]
     print('\nROWS WITH NO VERDICT: %d' % len(blank))
     print('  %s' % dict(collections.Counter(x[0] for x in blank)))
     if not args.fill:
