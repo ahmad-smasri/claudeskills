@@ -1,0 +1,68 @@
+building,room,the register says,the rule says,note
+HQ,G.031 PR AND MARKET STAFF,Not Included,Included,rule includes it
+HQ,5.602 BRIDGE,Included,Not Included,rule excludes it as common area
+HQ,4.701 VP ADM TERRACE,Included,Not Included,rule excludes it as executive
+HQ,10.111 AV ROOM,Included,Not Included,rule excludes it as technical
+HQ,11.110 ELECTRIC CLOSET,Included,Not Included,rule excludes it as technical
+HQ,11.108 PRINT COPY ROOM,Not Included,Included,rule includes it
+HQ,11.106 MCC ELEC ROOM,Included,Not Included,rule excludes it as technical
+HQ,G.011 PR AND MARKET MANAGER,Included,Not Included,rule excludes it as executive
+HQ,1.027 FINANCE AUDITOR,Not Included,Included,rule includes it
+HQ,1.601 CORRIDOR,Included,Not Included,rule excludes it as common area
+HQ,2.109 SHELL SPACE,Not Included,Included,rule includes it
+HQ,3.214 IT SECRETARY,Not Included,Included,rule includes it
+HQ,5.013 VP EDU SECRETARY,Not Included,Included,rule includes it
+HQ,5.109 ELECTRICAL CABINET,Included,Not Included,rule excludes it as technical
+HQ,5.009 VP1 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.010 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.005 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.006 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.007 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.205 VP EDU MEETING ROOM,Included,Not Included,rule excludes it as executive
+HQ,6.205 VP CAPITAL CONSULTANT,Not Included,Included,rule includes it
+HQ,7.017 CA ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,8.002 VISITORS CENTER OFFICE,Not Included,Included,rule includes it
+HQ,9.033 HR EDUADVADVISOR ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,9.034 HR EDUADVADVISOR ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,9.035 HR EDUADVADVISOR ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,10.007 EXEC DIR PROT ASSIS,Included,Not Included,rule excludes it as executive
+HQ,10.017 PLANNING DIR STRAT PLANNER,Included,Not Included,rule excludes it as executive
+HQ,10.023 SHSERVDIR HR OFFICER,Included,Not Included,rule excludes it as executive
+HQ,10.025 SHSERVDIR PROCUR REPRESENT,Included,Not Included,rule excludes it as executive
+HQ,10.026 SHSERVDIR SERVICE COORD,Included,Not Included,rule excludes it as executive
+HQ,10.027 SHSERVDIRGENSERVSUPERV,Included,Not Included,rule excludes it as executive
+HQ,10.035 SHSERVDIR IT SUPPORT OFFICER,Included,Not Included,rule excludes it as executive
+HQ,10.004 EXECDIRARCH COORD,Included,Not Included,rule excludes it as executive
+HQ,10.112 TRANSLATOR ROOM,Not Included,Included,rule includes it
+HQ,11.017 EXECDIR LEGAL ADVISOR,Included,Not Included,rule excludes it as executive
+HQ,11.020 EXECDIREXECASSIST,Not Included,Included,rule includes it
+HQ,11.002 COMMUNICDIR MED REL OFFICER,Included,Not Included,rule excludes it as executive
+HQ,8.400 VISITORS CENTER,Not Included,Included,rule includes it
+QNL,L1.144 ILL DIRECTOR,Included,Not Included,rule excludes it as executive
+QNL,L1.145 ILL DIRECTOR,Included,Not Included,rule excludes it as executive
+QNL,B.155 FACULTY CARRELS,Not Included,Included,rule includes it
+QNL,B.088 PEOPLE MOVER PLANT,Included,Not Included,rule excludes it as technical
+QNL,B.145 LOBY AND CSECURITY,Not Included,Included,rule includes it
+QNL,B.226 PUMP RM 4,Included,Not Included,rule excludes it as technical
+QNL,L1.003 TUTORING HEAD,Included,Not Included,rule excludes it as executive
+QNL,B.003 FINANCE COORDINATOR AND BUSINESS SUPPORT OFCR,Not Included,Included,rule includes it
+SSC,B.030 CORRIDOR,Not Included,Included,rule includes it
+SSC,3.030 ASSOC DIRECTORS MEETING ROOM,Not Included,Included,rule includes it
+RDC,Corridor S-0143,Not Included,Included,rule includes it
+RDC,Service Equipm. Room N-0404C,Not Included,Included,rule includes it
+RDC,Dedicated Cyber SOC/NOC Lab S-0141,Included,Not Included,rule excludes it as laboratory
+RDC,TC2 N-1316D,Not Included,Included,rule includes it
+RDC,Mscopy1 N-1316K,Not Included,Included,rule includes it
+RDC,TC1 N-1404A,Not Included,Included,rule includes it
+RDC,TC2 N-1404E,Not Included,Included,rule includes it
+RDC,TC3 N-1404H,Not Included,Included,rule includes it
+RDC,LN2 Stor N-1450B,Not Included,Included,rule includes it
+RDC,TC1 N-1450L,Not Included,Included,rule includes it
+RDC,TC2 N-1450N,Not Included,Included,rule includes it
+RDC,LN2 DISPENSER U-0104,Not Included,Included,rule includes it
+RDC,PRE-PCR N-1144D,Included,Not Included,rule excludes it as laboratory
+RDC,TC1 N-1316B,Not Included,Included,rule includes it
+RDC,TC3 N-1316F,Not Included,Included,rule includes it
+RDC,TC1 N-1345A,Not Included,Included,rule includes it
+RDC,TC2 N-1345C,Not Included,Included,rule includes it
+RDC,TC1 N-1404L,Not Included,Included,rule includes it

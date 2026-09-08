@@ -27,6 +27,13 @@ same old file, so they now match on the string like everything else.
 
 A unit with no row in the old file gets empty cells from E on. Nothing is
 carried across from a neighbouring row, and no value is invented.
+
+**Column C is filled where it was blank, and only there.** 105 rows carried no
+Included / Not included verdict. `inclusion_rule.py` reads the rule the four
+registers already follow and proposes one; 101 rows take it and the 4 with no
+room name keep their blank, because there is nothing to decide them on. Every
+verdict the register already carried is left exactly as it was, and the 101
+proposals are shaded so they can be checked before they are trusted.
 """
 import argparse
 import collections
@@ -44,6 +51,7 @@ OLD = HERE / 'All_Buildings_Rooms_Inclusion_Status_V1.2.xlsx'
 LOG = HERE / 'rdc_rebuild_log.csv'
 OUT = HERE / 'All_Buildings_Rooms_Inclusion_Status_V1.3.xlsx'
 REPORT = HERE / 'old_column_merge_coverage.csv'
+PROPOSED = HERE / 'inclusion_proposed.csv'
 
 TABS = (('HQ', 'HQ Asset Registry'), ('QNL', 'QNL Asset Registry'),
         ('SSC', 'SSC Asset Registry'), ('RDC', 'RDC Asset Registry'))
@@ -114,14 +122,24 @@ def main():
     ob = openpyxl.load_workbook(OLD, data_only=True)
     alias, anchor = rename_map()
 
+    # a verdict for the rows that carried none - proposals, not the client's own
+    proposed = {}
+    if PROPOSED.exists():
+        for r in csv.DictReader(PROPOSED.open()):
+            if r['proposed']:
+                proposed[(r['building'], r['tag'])] = (r['proposed'], r['why'])
+
     out, report = {}, []
     for bld, tab in TABS:
         head, vals = old_block(ob[tab])
         tags = {str(a[0]).strip() for a in assets[bld]}
 
-        rows, filled, checked, gap = [], 0, 0, []
+        rows, filled, checked, gap, guessed = [], 0, 0, [], []
         for tag, kind, inc, room in assets[bld]:
             tag = str(tag).strip()
+            if not str(inc or '').strip() and (bld, tag) in proposed:
+                inc, why = proposed[(bld, tag)]
+                guessed.append(tag)
             src = None
             if tag in vals:
                 src = tag
@@ -153,11 +171,11 @@ def main():
                     bld == 'RDC' and sum(1 for x in tags
                                          if no_level(x) == no_level(t)) == 1):
                 report.append([bld, '', t, 'old row with no unit to land on'])
-        out[bld] = (head, rows, filled, gap)
+        out[bld] = (head, rows, filled, gap, guessed)
         print('%-4s %5d assets | columns E-%s from the old file | filled %5d | '
-              'no old row %4d'
+              'no old row %4d | column C proposed %3d'
               % (bld, len(rows), get_column_letter(4 + len(head)), filled,
-                 len(gap)))
+                 len(gap), len(guessed)))
 
     orphan = sum(1 for r in report if r[3] == 'old row with no unit to land on')
     print('old rows with nowhere to land: %d (RDC parts and rows the historian '
@@ -174,13 +192,13 @@ def main():
     wb = openpyxl.Workbook()
     wb.remove(wb.active)
     for bld, tab in TABS:
-        head, rows, _, gap = out[bld]
-        sheet(wb.create_sheet(tab), bld, head, rows, set(gap))
+        head, rows, _, gap, guessed = out[bld]
+        sheet(wb.create_sheet(tab), bld, head, rows, set(gap), set(guessed))
     wb.save(OUT)
     print('wrote %s' % OUT.name)
 
 
-def sheet(ws, building, extra, rows, gap):
+def sheet(ws, building, extra, rows, gap, guessed=()):
     ncol = 4 + len(extra)
     ws.cell(1, 1, '%s - CONTROLLABLE ASSET REGISTRY' % building).font = Font(
         bold=True, size=13, color='FFFFFFFF')
@@ -207,6 +225,8 @@ def sheet(ws, building, extra, rows, gap):
             cell.alignment, cell.border = TOP, GRID
         if not row[3]:
             ws.cell(n, 4).fill = GAP_FILL
+        if str(row[0]).strip() in guessed:
+            ws.cell(n, 3).fill = GAP_FILL
         if str(row[0]).strip() in gap:
             for c in range(5, ncol + 1):
                 ws.cell(n, c).fill = GAP_FILL

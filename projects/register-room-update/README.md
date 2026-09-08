@@ -459,3 +459,76 @@ cells are empty and shaded; nothing was carried over from a neighbour.
 historian carries only as part of an assembly, and the 47 it has never heard of.
 
 Every one of these is in `old_column_merge_coverage.csv`, row by row.
+
+---
+
+# How "Included / Not included" is set, as a rule
+
+`inclusion_rule.py` reads the four registers, states the rule they follow, and
+measures itself against them.
+
+```
+python3 inclusion_rule.py          # measure
+python3 inclusion_rule.py --fill   # propose a verdict for every blank row
+```
+
+**The verdict belongs to the room, not to the equipment.** 1,682 of the 1,692
+rooms that carry a verdict give the same answer for every unit serving them.
+The 10 that do not are listed at the top of the run - `RF.001 ROOF`,
+`B.063 PLANT ROOM 01`, `1.039 IDF 2` and seven more - and are register errors,
+not a second rule.
+
+A room is **Not included** when it is one of four classes:
+
+| class | what it covers | buildings |
+|---|---|---|
+| technical | plant, mechanical, electrical, IT and security - IDF, MDF, MCC, UPS, BMS, server, control rooms, AHU and plant rooms, pumps, penthouses, the roof | all four |
+| executive | the room of someone senior, or the en-suite, waiting or meeting room attached to one - director, manager, head of, VP, president, executive, VIP, the Sheikha and HH wings | all four |
+| laboratory | the labs and everything serving them - tissue culture, microscopy and SEM, PCR, the high bays, the air locks | **RDC only** |
+| common area | corridors, lobbies, lounges, the spa, prayer and ablution rooms, toilets, terraces, the cafeteria, the visitors' centre | **HQ only** |
+
+The laboratory class is the correction to the brief: the client's summary said
+RDC excluded executive offices and technical rooms, but **laboratories are RDC's
+largest excluded class** - 109 rooms against 93 technical and 18 executive.
+
+## HQ names a room `<department> <role>`, and the role decides
+
+`STR PL DIR EXEC SECRE` is the strategic planning director's secretary and is
+Included; `STR PL DIR MANAGER` is not. The department in front is not the
+signal. So a junior role - secretary, assistant, analyst, clerical, archive,
+print, staff - overrides the senior department, except an en-suite, which is
+always the senior's own.
+
+## How close the rule gets
+
+| | rooms | agrees | rows | agrees |
+|---|---|---|---|---|
+| HQ | 599 | 93.5% | 759 | 91.6% |
+| QNL | 168 | 95.2% | 449 | 96.4% |
+| SSC | 69 | 97.1% | 123 | 96.7% |
+| RDC | 856 | 97.9% | 1,138 | 98.3% |
+| **all** | **1,692** | **96.0%** | **2,469** | **95.8%** |
+
+The ceiling for any rule read off the room name is 97.8% for HQ, 100% for QNL,
+98.6% for SSC and 99.8% for RDC, because the register gives the same room name
+both verdicts that often - `VP EDU OFFICERS` is excluded 8 times and included 4,
+`FINANCE AUDITOR` excluded once and included twice. The 67 rooms where the rule
+and the register differ are in `inclusion_rule_report.csv`; they are worth a
+read, because several look like the register is wrong rather than the rule.
+
+## Filling the blanks
+
+105 rows carried no verdict. `--fill` proposes one and writes
+`inclusion_proposed.csv`; `merge_old_columns.py` writes them into V1.3 **only
+where column C was blank**, shaded, and touches nothing the register already
+decided.
+
+| | rows | verdict |
+|---|---|---|
+| QNL plant equipment - DX 24, CCU 22, EF 18, SEF 12, TEF 8, CHW pump 6, HEX 5, KEF 4, generator 1 | 100 | Not included |
+| HQ `FCU0097`, in `B1.512 IDF ROOM` | 1 | Not included - technical |
+| 4 rows with no room name | 4 | left blank |
+
+The 100 QNL rows are plant serving plant, not a room, and every unit of those
+types already in the four registers is Not included. The four with no room name
+keep their blank: there is nothing to decide them on.
