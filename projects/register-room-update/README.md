@@ -534,11 +534,11 @@ always the senior's own.
 
 | | rooms | agrees | rows | agrees |
 |---|---|---|---|---|
-| HQ | 599 | 85.0% | 759 | 84.2% |
-| QNL | 168 | 96.4% | 449 | 97.1% |
+| HQ | 599 | 85.0% | 759 | 86.6% |
+| QNL | 168 | 96.4% | 449 | 95.5% |
 | SSC | 69 | 97.1% | 123 | 96.7% |
 | RDC | 856 | **98.6%** | 1,138 | **98.6%** |
-| **all** | **1,692** | **93.5%** | **2,469** | **93.6%** |
+| **all** | **1,692** | **93.5%** | **2,469** | **94.2%** |
 
 The ceiling for any rule read off the room name is 97.8% for HQ, because the
 register gives the same room name both verdicts that often - `VP EDU OFFICERS`
