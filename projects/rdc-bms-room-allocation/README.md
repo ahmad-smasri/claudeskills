@@ -80,3 +80,35 @@ writes `AHU8601` where the screen writes `AHU-8601`; AHUs carry no level
 segment; and the screens label constant-volume terminals CAV where the register
 labels them AT. That last one is an inference - one CAV row against 510 AT rows
 - so every row joined across it says so in column M.
+
+---
+
+# The section each unit sits in
+
+The section - `A1.1`, `A2.3`, `B2.2 Part1` - is printed in the **title bar of
+the screen** and nowhere else on it. `tag_sheets.py` packs the tag printed above
+every widget on all forty-seven screens into twenty-two sheets, three screens
+side by side, so the whole building can be read in a dozen passes rather than
+forty-seven.
+
+```
+python3 tag_sheets.py out/sections
+```
+
+Two files come out of reading them:
+
+| file | what it holds |
+|---|---|
+| `sections.csv` | the 47 screens and the section in each title bar |
+| `screen_tags.csv` | 1,022 tags and the screen each is printed on |
+
+Two things the titles show that the file names do not: North Building GF-3 and
+GF-4 both say `Section A2.2 Part1`, and South Building GF-4 says `Groung Floor`.
+Both are recorded as printed.
+
+## What could not be derived instead
+
+Equipment numbers do **not** partition by section. On every building and floor
+the ranges overlap - North Building GF has A2.1 running 4005-4920 and A2.2
+running 4041-6982 - so a unit cannot be placed by its number, and interpolating
+one would be indistinguishable from a reading.

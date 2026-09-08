@@ -564,3 +564,40 @@ own output would only measure it against itself.
 The 100 QNL rows are plant serving plant, not a room, and every unit of those
 types already in the four registers is Not included. The four with no room name
 keep their blank: there is nothing to decide them on.
+
+---
+
+# The RDC section, on every RDC row
+
+`add_section.py` writes `All_Buildings_Rooms_Inclusion_Status_V1.4.xlsx` -
+V1.3 with a **Section** column on the RDC tab and nothing else changed.
+
+```
+python3 add_section.py --dry-run
+python3 add_section.py
+```
+
+| | rows |
+|---|---|
+| read from the screen its tag is printed on | 927 |
+| taken from its room, where every other unit there agreed | 34 |
+| **section written** | **961** |
+| left blank | 180 |
+
+The tags do not match as strings - the register writes `RDC_NB_1F_VAV4510` and
+the screen `NB-VAV4510`, `RDC_NB_AHU8511` against `NB-AHU-8511` - so the key is
+the tag with its `RDC_` prefix, its level segment and every separator removed.
+
+## Why 180 are blank
+
+165 carry a number that appears on **no screen at all** - `VAV4230`, `VAV4255`,
+`VAV5270A` and so on. The widget detector found 1,033 units across the
+forty-seven screens against the register's 1,141, and these are the difference:
+units whose box the detector missed, or which are not drawn on any screen. 15
+more sit on two sections at once, mostly at the boundary between `A2.1 Part2`
+and `A2.2 Part1`, where both screens print the tag.
+
+Nothing is interpolated. The equipment numbers overlap between sections on every
+floor, so a unit cannot be placed by its number, and the room fallback only
+reaches a unit whose room already has a placed neighbour. `rdc_section_coverage.csv`
+gives every row, its section and how it was decided.
