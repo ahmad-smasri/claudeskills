@@ -487,19 +487,21 @@ rule "exclude technical rooms and executive offices":
 | V1.2 | **98.5%** |
 | the register | 85.4% |
 
-So **RDC's column C is taken from V1.2**, on 276 rows.
+**Column C is V1.2's on all four buildings**, on the client's instruction - 384
+verdicts changed, RDC 276, HQ 90, QNL 18. Where V1.2 has no value or no row for
+the tag the register's stands: 51 QNL rows and 3 others. `RDC` matches through
+the rename map, so a verdict taken against `AT-1005` reaches `CAV1005`. Every
+change is in `inclusion_column_c_conflicts.csv`.
 
-HQ, QNL and SSC keep the register's. **99 of the 108 rows where those three
-disagree are the same room** - the two files just write the name differently,
-`FINANCE AUDITOR 1.115` against `1.115 FINANCE AUDITOR` - so they are genuine
-reversals, not a room that has been renamed. 76 go Not Included -> Included and
-23 the other way. They are kept because the rule backs the register on **83 of
-the 99** (HQ 72 of 81, QNL 11 of 18), not because they are a formatting
-artefact. Only 9 of the 108 are a different room, and those are rows where V1.2
-carried a zone or a bare number - `NORTH EAST ZONE`, `HQ RF`, `ROOM B.014`.
-
-All 108 are in `inclusion_column_c_conflicts.csv` with both room names, a
-same-room flag, both verdicts and the rule's own reading, for a decision.
+**What that costs at HQ.** The rule reproduced the register's HQ column on 93.5%
+of rooms and reproduces V1.2's on 85.0%: V1.2 excludes **63 HQ rooms that none
+of the three classes explains** - `1.115 FINANCE AUDITOR`, `11.011 SECRETARY`,
+`5.003 VP EDU SECRETARY`, the nine `BD UNIT EXECUTIVE` rooms, `11.108 PRINT COPY
+ROOM`. They are the junior-role rooms sitting inside a senior's department, and
+V1.2 excludes some of them and includes others, so the department is not the
+rule either: dropping the junior-role override entirely takes HQ down to 80.6%,
+not up. QNL improves, 95.2% to 96.4%; SSC and RDC are unchanged at 97.1% and
+98.6%.
 
 ## The rule
 
@@ -532,11 +534,11 @@ always the senior's own.
 
 | | rooms | agrees | rows | agrees |
 |---|---|---|---|---|
-| HQ | 599 | 93.5% | 759 | 91.6% |
-| QNL | 168 | 95.2% | 449 | 96.4% |
+| HQ | 599 | 85.0% | 759 | 84.2% |
+| QNL | 168 | 96.4% | 449 | 97.1% |
 | SSC | 69 | 97.1% | 123 | 96.7% |
 | RDC | 856 | **98.6%** | 1,138 | **98.6%** |
-| **all** | **1,692** | **96.1%** | **2,469** | **95.9%** |
+| **all** | **1,692** | **93.5%** | **2,469** | **93.6%** |
 
 The ceiling for any rule read off the room name is 97.8% for HQ, because the
 register gives the same room name both verdicts that often - `VP EDU OFFICERS`

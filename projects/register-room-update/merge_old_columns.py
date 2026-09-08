@@ -64,8 +64,10 @@ REPORT = HERE / 'old_column_merge_coverage.csv'
 PROPOSED = HERE / 'inclusion_proposed.csv'
 CONFLICTS = HERE / 'inclusion_column_c_conflicts.csv'
 
-# the building whose Included / Not included the old file, not the register, settles
-C_FROM_OLD = 'RDC'
+# Column C - Included / Not included - is the old file's, for every building.
+# It is the file whose subject is the inclusion status. Where it has no value,
+# or no row for the tag, the register's verdict stands.
+C_FROM_OLD = {'HQ', 'QNL', 'SSC', 'RDC'}
 
 TABS = (('HQ', 'HQ Asset Registry'), ('QNL', 'QNL Asset Registry'),
         ('SSC', 'SSC Asset Registry'), ('RDC', 'RDC Asset Registry'))
@@ -135,9 +137,12 @@ def main():
 
     reg = openpyxl.load_workbook(NEW, data_only=True)['Asset Register']
     assets = collections.defaultdict(list)
+    reg_c = collections.defaultdict(dict)
     for r in range(3, reg.max_row + 1):
-        assets[reg.cell(r, 12).value].append(
-            [reg.cell(r, c).value for c in (1, 2, 3, 4)])
+        bld = reg.cell(r, 12).value
+        assets[bld].append([reg.cell(r, c).value for c in (1, 2, 3, 4)])
+        reg_c[bld][str(reg.cell(r, 1).value).strip()] = str(
+            reg.cell(r, 3).value or '').strip()
 
     ob = openpyxl.load_workbook(OLD, data_only=True)
     alias, anchor = rename_map()
@@ -158,7 +163,7 @@ def main():
         rows, filled, checked, gap, guessed, moved = [], 0, 0, [], [], []
         for tag, kind, inc, room in assets[bld]:
             tag = str(tag).strip()
-            if bld == C_FROM_OLD:
+            if bld in C_FROM_OLD:
                 was = str(inc or '').strip()
                 src_tag = tag if tag in inc_old else next(
                     (t for t, u in alias.items() if u == tag and t in inc_old), None)
@@ -204,12 +209,14 @@ def main():
         if moved:
             print('  %s: column C taken from the old file on %d rows'
                   % (bld, len(moved)))
-        if bld != C_FROM_OLD:
-            for tag, kind, inc, room in assets[bld]:
-                t = str(tag).strip()
-                o = inc_old.get(t, '')
-                if o and str(inc or '').strip() and o != str(inc).strip():
-                    conflicts.append([bld, t, room, str(inc).strip(), o])
+        for tag, kind, inc, room in assets[bld]:
+            t = str(tag).strip()
+            src_tag = t if t in inc_old else next(
+                (x for x, u in alias.items() if u == t and x in inc_old), None)
+            o = inc_old.get(src_tag, '') if src_tag else ''
+            was = reg_c[bld].get(t, '')
+            if o and was and o != was:
+                conflicts.append([bld, t, room, was, o])
         print('%-4s %5d assets | columns E-%s from the old file | filled %5d | '
               'no old row %4d | column C proposed %3d'
               % (bld, len(rows), get_column_letter(4 + len(head)), filled,
@@ -226,10 +233,10 @@ def main():
     print('wrote %s' % REPORT.name)
     with CONFLICTS.open('w', newline='') as f:
         w = csv.writer(f, lineterminator='\n')
-        w.writerow(['building', 'tag', 'room', 'the register says',
-                    'the old file says'])
+        w.writerow(['building', 'tag', 'room', 'the register said',
+                    'the old file says - and this is what the sheet now carries'])
         w.writerows(conflicts)
-    print('wrote %s (%d rows where HQ/QNL/SSC disagree - not changed)'
+    print('wrote %s (%d verdicts changed to the old file\'s)'
           % (CONFLICTS.name, len(conflicts)))
     if args.dry_run:
         return
