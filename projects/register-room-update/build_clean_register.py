@@ -352,6 +352,17 @@ def readme(rows, changes, blank):
          'parts, not controllable assets, and belong in the ontology under '
          'brick:hasPart. Every removal and rename is on the Removed from RDC '
          'tab.'),
+        ('Names that had nowhere to go',
+         '74 tags in Room_Names_4.xlsx carry an agreed room name but have no '
+         'row in this register - 41 SSC, 33 HQ, all of them CCU, DX, chilled '
+         'water heat exchangers and pumps, exhaust fans and the MV generator. '
+         'None exists in the register under any spelling, so the name could '
+         'not be placed. Either the register is missing this equipment or '
+         'these assets are deliberately out of scope; it has not been decided.'),
+        ('Names the source did not settle',
+         '90 rows in Room_Names_4.xlsx have an empty rdfs:label_en - 75 HQ, 14 '
+         'QNL, 1 SSC. No source won for them, so their register rows keep the '
+         'room they already had rather than being blanked or guessed.'),
         ('Tags are not unique across buildings',
          '123 tags appear in two buildings at once - AHUB_0001, FCU0001 and so '
          'on. No tag repeats inside its own building, so column L tells them '

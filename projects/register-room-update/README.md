@@ -334,3 +334,34 @@ The four source equipment registers, the three room-name tabs and the 55-turn
 `Claude Log` stay in the working workbook. They carry spilling
 `TRANSPOSE(FILTER(...))` formulas and dynamic-array metadata that an openpyxl
 rewrite drops, and none of them is the deliverable.
+
+## Auditing the correction from the source side
+
+Checking that the changes I made landed is not the same as checking that
+nothing in the sources was skipped, so the audit runs the other way round:
+every non-empty `rdfs:label_en` in `Room_Names_4.xlsx` and every green row in
+`RDC_reviewed.xlsx`, looked up in the finished register.
+
+| | |
+|---|---|
+| SSC names placed | 123 of 123 with a register row |
+| HQ names placed | 760 of 760 with a register row |
+| QNL names placed | 537 of 537 |
+| RDC green readings placed | 32 of 32 |
+| mismatches | 0 |
+| column D changed without a crosswalk row | 0 |
+| crosswalk rows that did not actually change | 0 |
+
+Two gaps, neither of them a failure of the correction:
+
+- **74 source names had no register row** - 41 SSC, 33 HQ, every one a CCU, DX,
+  chilled-water heat exchanger or pump, exhaust fan, or the MV generator. None
+  of them exists in the register under any spelling either, so the name had
+  nowhere to go. Either the register is missing this equipment or it is out of
+  scope, and that has not been decided.
+- **90 source rows have an empty `rdfs:label_en`** - 75 HQ, 14 QNL, 1 SSC. No
+  source settled the room, so those register rows keep what they had.
+
+50 RDC rows that are not green carry a column J reading equal to column D. That
+is the reviewer leaving J filled where the screen and the drawings agreed, not
+a rejected reading leaking in - the crosswalk carries 32 RDC rows and no more.
