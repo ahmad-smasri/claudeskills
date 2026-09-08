@@ -75,3 +75,64 @@ something the written value depends on, and it is coarse in one place: HQ's
 `CORRIDOR BRIDGE 3.63` -> `3.630 CORRIDOR BRIDGE` is counted as a different room
 because 63 and 630 are different numbers, when it is the same room with the
 reference written out in full.
+
+---
+
+# RDC: one unit, several register rows
+
+`match_terminals.py` and `build_assembly_review.py` group the RDC register's
+rows back into the physical units the BMS screens draw.
+
+```
+python3 match_terminals.py          # the matching, and the conflicts it exposes
+python3 build_assembly_review.py    # RDC_assembly_review.xlsx
+```
+
+The RDC register lists one air-terminal assembly across several rows: a VAV box
+is `VAV4110_EV4111` - the box and its valve - and the air terminal it feeds is a
+row of its own, `AT-4110`. The screens draw the assembly as one widget labelled
+the way the register writes the box, `NB-VAV4110-EV4111`. **No widget is ever
+labelled `AT-`**, which is why 644 AT rows came back with no reading: they have
+no widget to click, not no service.
+
+This is RDC only. HQ, QNL and SSC have no AT rows at all.
+
+## What ties the rows together, and what must not
+
+The unit number, within one building, one level and one zone, across the
+air-terminal families only - `AT`, `EV`, `VEV`, `CEV`, `FEV`, `VAV`, `CAV`,
+`EAV`. Four things that grouping has to get right, each found by checking the
+groups it produced rather than by reasoning about it first:
+
+- **FCU and AHU are excluded.** `FCU1004` and `VAV1004` share a number and are
+  different units - both are drawn as their own widget on South GF-6.
+- **`L0` and `GF` are the same floor** in the south building, which registers
+  terminals on one and boxes on the other. Every other level is kept apart, or
+  `NB_1F_AT-5930` merges with `NB_2F_AT-5930`.
+- **The trailing letter is part of the number.** `VEV-5192a` and `VEV-5192b` are
+  two units; a regex that only accepted an upper-case suffix read both as 5192.
+- **The zone segment counts.** `SB_L0_A1.2_AT-2001` and `SB_L0_A1.3_AT-2001` are
+  two terminals in two zones.
+
+Groups are the connected components of the shares-a-number relation, not each
+row's own neighbours. Sharing a number is not transitive: `AT-1002` sees only
+the box `VAV1003_VEV1002`, while that box sees four rows, so taking each row's
+neighbours listed ten rows twice under two different groups.
+
+## What the grouping is worth
+
+**It corroborates itself.** On most AT rows the register's own column D already
+equals the room the screen gives the box - `AT-4110` says `Conference Room
+N-0227` and so does the reading for `VAV4110_EV4111`. The grouping was derived
+from the tag numbers alone, so the room names agreeing is independent evidence
+that it is right.
+
+**49 terminal rows inherit a reading** they could not have had otherwise.
+
+**28 assemblies contradict themselves** about the room - 14 on the room number
+and 14 on wording alone (`Conf` against `Conference`, and a `Director Ofice`
+typo). Those are register defects, found without reference to any screen.
+
+A box feeding several terminals is not a contradiction: `AT-7120` runs to nine
+of them, `-N1` to `-N9`, in nine different rooms. Those rows keep their own room
+and are never given the box's.
