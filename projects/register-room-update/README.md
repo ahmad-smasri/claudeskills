@@ -195,3 +195,63 @@ Each of these was found by checking the output, not by reasoning first:
   strings called 26 air handling units unknown when every one is present.
 - **FCU and AHU cannot host a part.** Letting them gave 31 rows two candidate
   hosts, because `FCU1004` and `VAV1004` share a number and are different units.
+
+---
+
+# Rebuilding the RDC section around the units the historian carries
+
+`rebuild_register.py` does the three changes, all confined to RDC.
+
+```
+python3 rebuild_register.py --dry-run
+python3 rebuild_register.py
+```
+
+| | rows |
+|---|---|
+| RDC section in | 1,759 |
+| kept as units | 1,029 |
+| removed - parts of a unit | 683 |
+| removed - not in the historian | 47 |
+| units added, named by their parts | 112 |
+| **RDC section out** | **1,141** |
+
+The 47 removed are tabulated on their own in
+`RDC_removed_not_in_historian.xlsx`; every removal and addition is in
+`rdc_rebuild_log.csv`.
+
+## Adding the unit a part points at
+
+The register lists the terminals of 62 CAVs and 48 EAVs without listing the CAV
+or EAV itself, so removing the parts alone would lose the equipment. Each such
+unit is added, named as the historian names it, taking the room its parts agreed
+on - or no room and a note saying so, where they did not.
+
+Whether the unit is already in the register is decided on the set of families
+and numbers a tag names, not on the string. The historian writes
+`RDC_NB_1F_VAV7830_7831` where the register writes `RDC_NB_1F_VAV7830_VEV7831`;
+comparing strings reported a unit as missing that was already there.
+
+## Editing the workbook without breaking it
+
+The RDC section is the last block of rows, so the rows above it are copied
+through untouched and only the tail is rebuilt. Everything is done as XML inside
+the zip - after a run, only `sheet6.xml`, `comments1.xml` and the VML that
+positions the comments differ, and the HQ, QNL and SSC rows are identical.
+
+**The 38 cell comments are the client's own review notes** and had to survive.
+They are moved with their rows in both `comments1.xml` and the VML anchors,
+which count rows from zero. A note on a part row follows the part to its unit -
+the note on `AT-0503` now sits on the `CAV0503` row that replaced it. 37 of the
+38 end on exactly the tag they started on, and the 38th is that one.
+
+Two bugs worth naming, both found by checking the output rather than the code:
+
+- A row is `<row .../>` or `<row ...>...</row>`. Matching `.*?(?:/>|</row>)`
+  stops at the first self-closing *cell* inside the row and cuts it in half,
+  which silently dropped two thirds of the sheet.
+- `register_style` must not add a level segment the historian's name already
+  carries, or `CAV0503` becomes `RDC_SB_1F_1F_CAV0503`.
+
+The one tag left with a doubled level, `RDC_NB_2F_2F_AHU8513`, is the register's
+own typo and is left as it is.
