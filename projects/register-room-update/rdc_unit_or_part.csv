@@ -1,0 +1,1760 @@
+row,tag,type,room in column D,verdict,historian object it belongs to,points of its own
+1443,RDC_NB_AHU8511,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1444,RDC_NB_AHU8512,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1445,RDC_NB_2F_2F_AHU8513,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1446,RDC_NB_2F_AHU8514,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1447,RDC_NB_2F_AHU8515,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1448,RDC_NB_2F_AHU8516,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1449,RDC_NB_2F_AHU8517,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1450,RDC_NB_2F_AHU8518,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1451,RDC_NB_2F_AHU8519,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1452,RDC_NB_2F_AHU8520,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1453,RDC_NB_2F_AHU8521,AHU,NORTH BUILDING PENT HOUSE N-2101,unit - has its own historian object,,8
+1454,RDC_SB_2F_AHU8011,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1455,RDC_SB_2F_AHU8012,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1456,RDC_SB_2F_AHU8021,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1457,RDC_SB_2F_AHU8022,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1458,RDC_SB_2F_AHU8023,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1459,RDC_SB_2F_AHU8024,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1460,RDC_SB_2F_AHU8025,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1461,RDC_SB_2F_AHU8026,AHU,SOUTH BUILDING PENTHOUSE S-2101,unit - has its own historian object,,8
+1462,RDC_SB_GF_AHU8031,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,8
+1463,RDC_SB_GF_AHU8032,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,8
+1464,RDC_SB_GF_AHU8033,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,8
+1465,RDC_SB_GF_AHU8034,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,8
+1466,RDC_SB_GF_AHU8035,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,8
+1467,RDC_SB_GF_AHU8036,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,7
+1468,RDC_SB_GF_AHU8037,AHU,COMPUTER RESEARCH LAB S-1112,unit - has its own historian object,,7
+1469,RDC_SB_GF_AHU8041,AHU,UPS ROOM S-0145,unit - has its own historian object,,7
+1470,RDC_SB_GF_AHU8042,AHU,UPS ROOM S-0145,unit - has its own historian object,,7
+1471,RDC_UB_AHU8601,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1472,RDC_UB_AHU8602,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1473,RDC_UB_AHU8603,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1474,RDC_UB_AHU8604,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1475,RDC_UB_AHU8605,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1476,RDC_UB_AHU8606,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1477,RDC_UB_AHU8607,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1478,RDC_UB_AHU8608,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1479,RDC_UB_AHU8609,AHU,UTILITY BUILDING MECHANICAL ROOM U-1101,unit - has its own historian object,,8
+1480,RDC_NB_GF_VAV4001,VAV,Store N-0201,unit - has its own historian object,,9
+1481,RDC_NB_GF_VAV4005_EV4006,EV,Electrical N-0202,unit - has its own historian object,,10
+1482,RDC_NB_GF_VAV4040,VAV,Air Quality High Bay N-0215A,unit - has its own historian object,,4
+1483,RDC_NB_GF_VAV4050_VEV4051,VEV,CSP High Bay N-0215B,unit - has its own historian object,,7
+1484,RDC_NB_GF_VAV4060_VEV4061,VEV,Machine Shop N-0215C,unit - has its own historian object,,7
+1485,RDC_NB_GF_VAV4070A_VEV4073A,VAV,Open High Bay Lab N-0215D,unit - has its own historian object,,7
+1486,RDC_NB_GF_VAV4070B_VEV4073B,VAV,Open High Bay Lab N-0215D,unit - has its own historian object,,5
+1487,RDC_NB_GF_VAV4071A_VEV4074A,VAV,Open High Bay Lab N-0215D,unit - has its own historian object,,6
+1488,RDC_NB_GF_VAV4071B_VEV4074B,VAV,Open High Bay Lab N-0215D,unit - has its own historian object,,5
+1489,RDC_NB_GF_VAV4072A_VEV4075A,VAV,Open High Bay Lab N-0215D,unit - has its own historian object,,6
+1490,RDC_NB_GF_VAV4072B_VEV4075B,VAV,Open High Bay Lab N-0215D,unit - has its own historian object,,5
+1491,RDC_NB_GF_VAV4080A_VEV4082A,VAV,Desal High Bay Lab N-0215E,unit - has its own historian object,,6
+1492,RDC_NB_GF_VAV4080B_VEV4082B,VAV,Desal High Bay Lab N-0215E,unit - has its own historian object,,5
+1493,RDC_NB_GF_VAV4081A_VEV4083A,VAV,Desal High Bay Lab N-0215E,unit - has its own historian object,,7
+1494,RDC_NB_GF_VAV4081B_VEV4083B,VAV,Desal High Bay Lab N-0215E,unit - has its own historian object,,5
+1495,RDC_NB_GF_VAV4090_VEV4091,VEV,Support Lab N-0215F,unit - has its own historian object,,7
+1496,RDC_NB_GF_VAV4100_EV4101,EV,Emergency Elec. Room N-0225,unit - has its own historian object,,10
+1497,RDC_NB_GF_VAV4105_EV4106,EV,Normal Electrical Room N-0225,unit - has its own historian object,,10
+1498,RDC_NB_GF_VAV4110_EV4111,EV,Conference Room N-0227,unit - has its own historian object,,10
+1499,RDC_NB_GF_VAV4115_EV4116,EV,Office N-0228,unit - has its own historian object,,10
+1500,RDC_NB_GF_VAV4120_EV4121,EV,Office N-0229,unit - has its own historian object,,10
+1501,RDC_NB_GF_VAV4125_EV4126,EV,Office N-0230,unit - has its own historian object,,10
+1502,RDC_NB_GF_VAV4130_EV4131,EV,Office N-0231,unit - has its own historian object,,10
+1503,RDC_NB_GF_VAV4135_EV4136,EV,Office N-0232,unit - has its own historian object,,10
+1504,RDC_NB_GF_VAV4140_EV4141,EV,Conference Room N-0233,unit - has its own historian object,,10
+1505,RDC_NB_GF_VAV4145_EV4146,EV,Office N-0234,unit - has its own historian object,,10
+1506,RDC_NB_GF_VAV4165_EV4166,EV,Office N-0236,unit - has its own historian object,,10
+1507,RDC_NB_GF_VAV4180_VEV4181,VEV,Test Room N-0240A,unit - has its own historian object,,7
+1508,RDC_NB_GF_VAV4190_VEV4192,VEV,CSP Lab N-0240B,unit - has its own historian object,,7
+1509,RDC_NB_GF_VAV4191,VAV,CSP Lab N-0240B,unit - has its own historian object,,4
+1510,RDC_NB_GF_VAV4200_VEV4201,VEV,Test Room 1 N-0240C,unit - has its own historian object,,7
+1511,RDC_NB_GF_VAV4210,VAV,Desalination Lab N-0240D,unit - has its own historian object,,4
+1512,RDC_NB_GF_VAV4211,VAV,Desalination Lab N-0240D,unit - has its own historian object,,4
+1513,RDC_NB_GF_VAV4212,VAV,Desalination Lab N-0240D,unit - has its own historian object,,3
+1514,RDC_NB_GF_VAV4225,VAV,Office N-0247,unit - has its own historian object,,9
+1515,RDC_NB_GF_VAV4230,VAV,Office N-0248,unit - has its own historian object,,9
+1516,RDC_NB_GF_VAV4235,VAV,Office 05 -8WS- N-0250,unit - has its own historian object,,9
+1517,RDC_NB_GF_VAV4240,VAV,Office 04 N-0251,unit - has its own historian object,,9
+1518,RDC_NB_GF_VAV4245,VAV,Office N-0252,unit - has its own historian object,,9
+1519,RDC_NB_GF_VAV4250,VAV,Office N-0253,unit - has its own historian object,,9
+1520,RDC_NB_GF_VAV4255,VAV,Office N-0254,unit - has its own historian object,,9
+1521,RDC_NB_GF_VAV4260,VAV,Office 05 -8WS- N-0255,unit - has its own historian object,,9
+1522,RDC_NB_GF_VAV4265,VAV,Office N-0256,unit - has its own historian object,,9
+1523,RDC_NB_GF_VAV4270,VAV,Office N-0257,unit - has its own historian object,,9
+1524,RDC_NB_GF_VAV4275,VAV,Office N-0258,unit - has its own historian object,,9
+1525,RDC_NB_GF_VAV4280,VAV,Office N-0259,unit - has its own historian object,,9
+1526,RDC_NB_GF_VAV4285,VAV,Workstation N-0260,unit - has its own historian object,,9
+1527,RDC_NB_GF_VAV4290,VAV,Office 04 N-0261,unit - has its own historian object,,9
+1528,RDC_NB_GF_VAV4295,VAV,Office N-0262,unit - has its own historian object,,9
+1529,RDC_NB_GF_VAV4300,VAV,Office N-0263,unit - has its own historian object,,9
+1530,RDC_NB_GF_VAV4305,VAV,Office N-0264,unit - has its own historian object,,9
+1531,RDC_NB_GF_VAV4310,VAV,Workstation N-0265,unit - has its own historian object,,9
+1532,RDC_NB_GF_VAV4312,VAV,Breakout N-0265B,unit - has its own historian object,,9
+1533,RDC_NB_GF_VAV5000_EV5002,EV,Lobby North N-0101,unit - has its own historian object,,10
+1534,RDC_NB_GF_VAV5001_EV5003,EV,Lobby North N-0101,unit - has its own historian object,,10
+1535,RDC_NB_GF_VAV5010_EV5011,EV,Conf N-0106,unit - has its own historian object,,10
+1536,RDC_NB_GF_VAV5015_EV5016,EV,Conference N-0107,unit - has its own historian object,,10
+1537,RDC_NB_GF_VAV5025,VAV,Corridor N-0110,unit - has its own historian object,,9
+1538,RDC_NB_GF_VAV5030_EV5031,EV,Confr Room N-0112,unit - has its own historian object,,10
+1539,RDC_NB_GF_VAV5040_EV5041,EV,Normal Elec. N-0113,unit - has its own historian object,,10
+1540,RDC_NB_GF_VAV5045_EV5046,EV,Emergency Elec. N-0114,unit - has its own historian object,,10
+1541,RDC_NB_GF_VAV5050,VAV,Analytical Core Lab 1 N-0114A,unit - has its own historian object,,4
+1542,RDC_NB_GF_VAV5051,VAV,Analytical Core Lab 1 N-0114A,unit - has its own historian object,,4
+1543,RDC_NB_GF_VAV5054,VAV,Clean Lab N-0114B,unit - has its own historian object,,4
+1544,RDC_NB_GF_VAV5060_CEV5061,CEV,Clean Lab N-0114B,unit - has its own historian object,,7
+1545,RDC_NB_GF_VAV5070,VAV,Dirty Lab N-0114C,unit - has its own historian object,,4
+1546,RDC_NB_GF_VAV5080_VEV5081,VEV,Bio Analyt N-0114D,unit - has its own historian object,,7
+1547,RDC_NB_GF_VAV5090,VAV,Air Quality N-0114F,unit - has its own historian object,,2
+1548,RDC_NB_GF_VAV5091,VAV,Air Quality N-0114F,unit - has its own historian object,,2
+1549,RDC_NB_GF_VAV5100_EV5101,EV,Office N-0115,unit - has its own historian object,,10
+1550,RDC_NB_GF_VAV5105,VAV,Office N-0116,unit - has its own historian object,,9
+1551,RDC_NB_GF_VAV5110,VAV,Office N-0117,unit - has its own historian object,,9
+1552,RDC_NB_GF_VAV5115,VAV,Office N-0118,unit - has its own historian object,,9
+1553,RDC_NB_GF_VAV5120,VAV,Office N-0119,unit - has its own historian object,,9
+1554,RDC_NB_GF_VAV5125,VAV,Office N-0120,unit - has its own historian object,,9
+1555,RDC_NB_GF_VAV5130,VAV,Office N-0121,unit - has its own historian object,,9
+1556,RDC_NB_GF_VAV5135,VAV,Office N-0122,unit - has its own historian object,,9
+1557,RDC_NB_GF_VAV5140,VAV,Office N-0123,unit - has its own historian object,,9
+1558,RDC_NB_GF_VAV5145,VAV,Office N-0124,unit - has its own historian object,,9
+1559,RDC_NB_GF_VAV5150,VAV,Office N-0125,unit - has its own historian object,,9
+1560,RDC_NB_GF_VAV5152,VAV,Office N-0126,unit - has its own historian object,,9
+1561,RDC_NB_GF_VAV5155,VAV,Office N-0127,unit - has its own historian object,,9
+1562,RDC_NB_GF_VAV5156,VAV,Office 04 N-0129,unit - has its own historian object,,9
+1563,RDC_NB_GF_VAV5165_EV5166,EV,Corridor N-0134,unit - has its own historian object,,10
+1564,RDC_NB_GF_VAV5180,VAV,Analytical Core Lab 2 N-0140A,unit - has its own historian object,,4
+1565,RDC_NB_GF_VAV5181,VAV,Analytical Core Lab 2 N-0140A,unit - has its own historian object,,4
+1566,RDC_NB_GF_VAV5190,VAV,Furnace Room N-0140B,unit - has its own historian object,,4
+1567,RDC_NB_GF_VAV5200,VAV,Prep Lab N-0140C,unit - has its own historian object,,4
+1568,RDC_NB_GF_VAV5210,VAV,Sputter Room N-0140D,unit - has its own historian object,,4
+1569,RDC_NB_GF_VAV5220,VAV,MBE/Evap Room N-0140E,unit - has its own historian object,,4
+1570,RDC_NB_GF_VAV5230,VAV,ALD Room N-0140F,unit - has its own historian object,,4
+1571,RDC_NB_GF_VAV5250_VEV5251,VEV,Support Room N-0140H,unit - has its own historian object,,7
+1572,RDC_NB_GF_VAV5260_VEV5261,VEV,PLD Room N-0140J,unit - has its own historian object,,7
+1573,RDC_NB_GF_VAV5270A,VAV,Organic Chemistry Lab N-0140K,unit - has its own historian object,,4
+1574,RDC_NB_GF_VAV5270B,VAV,Org Chem N-0140K,unit - has its own historian object,,2
+1575,RDC_NB_GF_VAV5295_EV5296,EV,Conference Room N-0149,unit - has its own historian object,,10
+1576,RDC_NB_GF_VAV5300,VAV,Corridor N-0150,unit - has its own historian object,,9
+1577,RDC_NB_GF_VAV5305,VAV,Office N-0151,unit - has its own historian object,,9
+1578,RDC_NB_GF_VAV5310,VAV,Office N-0152,unit - has its own historian object,,9
+1579,RDC_NB_GF_VAV5315,VAV,Open Office N-0153,unit - has its own historian object,,9
+1580,RDC_NB_GF_VAV5325,VAV,Office N-0155,unit - has its own historian object,,9
+1581,RDC_NB_GF_VAV5330,VAV,Office N-0156,unit - has its own historian object,,9
+1582,RDC_NB_GF_VAV5335,VAV,Office N-0157,unit - has its own historian object,,9
+1583,RDC_NB_GF_VAV5340,VAV,Office N-0158,unit - has its own historian object,,9
+1584,RDC_NB_GF_VAV5345,VAV,Office N-0159,unit - has its own historian object,,9
+1585,RDC_NB_GF_VAV5355,VAV,Office N-0161,unit - has its own historian object,,9
+1586,RDC_NB_GF_VAV5360,VAV,Office N-0162,unit - has its own historian object,,9
+1587,RDC_NB_GF_VAV5365,VAV,Office N-0163,unit - has its own historian object,,9
+1588,RDC_NB_GF_VAV5370,VAV,Office N-0164,unit - has its own historian object,,9
+1589,RDC_NB_GF_VAV5380,VAV,Office N-0166,unit - has its own historian object,,9
+1590,RDC_NB_GF_VAV5385,VAV,Office N-0167A,unit - has its own historian object,,9
+1591,RDC_NB_GF_VAV5390,VAV,Office 04 N-0168,unit - has its own historian object,,9
+1592,RDC_NB_GF_VAV5395,VAV,Exp. Office N-0169,unit - has its own historian object,,9
+1593,RDC_NB_GF_VAV5400,VAV,Reception Area N-0170,unit - has its own historian object,,9
+1594,RDC_NB_GF_VAV5405,VAV,Exp. Office N-0172,unit - has its own historian object,,9
+1595,RDC_NB_GF_VAV5410_EV5411,EV,Conf Room N-0173,unit - has its own historian object,,10
+1596,RDC_NB_GF_VAV5415,VAV,Office 04 N-0174,unit - has its own historian object,,9
+1597,RDC_NB_GF_VAV6000_EV6001,EV,Conf Room N-0301,unit - has its own historian object,,10
+1598,RDC_NB_GF_VAV6010_EV6011,EV,Conf N-0304,unit - has its own historian object,,10
+1599,RDC_NB_GF_VAV6025_EV6026,EV,Normal Elec. N-0310,unit - has its own historian object,,10
+1600,RDC_NB_GF_VAV6130_EV6131,EV,Store N-0315,unit - has its own historian object,,10
+1601,RDC_NB_GF_VAV6135,VAV,Store N-0316,unit - has its own historian object,,9
+1602,RDC_NB_GF_VAV6140,VAV,Workstation N-0317,unit - has its own historian object,,9
+1603,RDC_NB_GF_VAV6145,VAV,Office N-0318,unit - has its own historian object,,9
+1604,RDC_NB_GF_VAV6150,VAV,Office N-0319,unit - has its own historian object,,9
+1605,RDC_NB_GF_VAV6155,VAV,Workstation N-0320,unit - has its own historian object,,9
+1606,RDC_NB_GF_VAV6160,VAV,Office N-0321,unit - has its own historian object,,9
+1607,RDC_NB_GF_VAV6170,VAV,Office N-0323,unit - has its own historian object,,9
+1608,RDC_NB_GF_VAV6175,VAV,Workstation N-0324,unit - has its own historian object,,9
+1609,RDC_NB_GF_VAV6180,VAV,Office N-0325,unit - has its own historian object,,9
+1610,RDC_NB_GF_VAV6185_EV6186,EV,Office N-0326,unit - has its own historian object,,10
+1611,RDC_NB_GF_VAV6190_EV6191,EV,Normal Elec. N-0328,unit - has its own historian object,,10
+1612,RDC_NB_GF_VAV6195,VAV,Store N-0329,unit - has its own historian object,,9
+1613,RDC_NB_GF_VAV6200_EV6201,EV,Conf N-0330,unit - has its own historian object,,10
+1614,RDC_NB_GF_VAV6205_EV6206,EV,Conf N-0331,unit - has its own historian object,,10
+1615,RDC_NB_GF_VAV6210,VAV,Corr. +N-033B N-0332C,unit - has its own historian object,,9
+1616,RDC_NB_GF_VAV6220_EV6221,EV,Emergency Elec. N-0333,unit - has its own historian object,,10
+1617,RDC_NB_GF_VAV6240_EV6241,EV,Emergency Electrical N-0350A,unit - has its own historian object,,10
+1618,RDC_NB_GF_VAV6285_EV6286,EV,Conf N-0358,unit - has its own historian object,,10
+1619,RDC_NB_GF_VAV6295_EV6296,EV,Conference N-0360,unit - has its own historian object,,10
+1620,RDC_NB_GF_VAV6300,VAV,Store N-0362B,unit - has its own historian object,,9
+1621,RDC_NB_GF_VAV6305,VAV,Office N-0363,unit - has its own historian object,,9
+1622,RDC_NB_GF_VAV6310,VAV,Office N-0364,unit - has its own historian object,,9
+1623,RDC_NB_GF_VAV6315_EV6316,EV,Conf Room N-0364A,unit - has its own historian object,,10
+1624,RDC_NB_GF_VAV6320,VAV,Corridor N-0365,unit - has its own historian object,,9
+1625,RDC_NB_GF_VAV6325,VAV,Office N-0366,unit - has its own historian object,,9
+1626,RDC_NB_GF_VAV6330,VAV,Office 04 N-0367,unit - has its own historian object,,9
+1627,RDC_NB_GF_VAV6335,VAV,Office N-0368,unit - has its own historian object,,9
+1628,RDC_NB_GF_VAV6340,VAV,Office N-0369,unit - has its own historian object,,9
+1629,RDC_NB_GF_VAV6345,VAV,Office N-0370,unit - has its own historian object,,9
+1630,RDC_NB_GF_VAV6350,VAV,Office N-0371,unit - has its own historian object,,9
+1631,RDC_NB_GF_VAV6355,VAV,Workstation N-0372,unit - has its own historian object,,9
+1632,RDC_NB_GF_VAV6360,VAV,Office N-0374,unit - has its own historian object,,9
+1633,RDC_NB_GF_VAV6365,VAV,Office N-0375,unit - has its own historian object,,9
+1634,RDC_NB_GF_VAV6370,VAV,Office N-0376,unit - has its own historian object,,9
+1635,RDC_NB_GF_VAV6375,VAV,Office N-0377,unit - has its own historian object,,9
+1636,RDC_NB_GF_VAV6380,VAV,Workstation N-0378,unit - has its own historian object,,9
+1637,RDC_NB_GF_VAV6390,VAV,Office N-0379,unit - has its own historian object,,9
+1638,RDC_NB_GF_VAV6395,VAV,Office N-0380,unit - has its own historian object,,9
+1639,RDC_NB_GF_VAV6400,VAV,Workstation N-0381,unit - has its own historian object,,9
+1640,RDC_NB_GF_VAV6405,VAV,Office N-0382,unit - has its own historian object,,9
+1641,RDC_NB_GF_VAV6410,VAV,Office N-0383,unit - has its own historian object,,9
+1642,RDC_NB_GF_VAV7000,VAV,Vestibule Staging N-0401,unit - has its own historian object,,9
+1643,RDC_NB_GF_VAV7020A,VAV,NMR Lab N-0404A,unit - has its own historian object,,2
+1644,RDC_NB_GF_VAV7020B,VAV,NMR Lab N-0404A,unit - has its own historian object,,2
+1645,RDC_NB_GF_VAV7021A,VAV,NMR Lab N-0404A,unit - has its own historian object,,2
+1646,RDC_NB_GF_VAV7021B,VAV,NMR Lab N-0404A,unit - has its own historian object,,2
+1647,RDC_NB_GF_VAV7030_VEV7031,VEV,CONTROL ROOM N-0404B,unit - has its own historian object,,7
+1648,RDC_NB_GF_VAV7040,VAV,Service Equipm. Room N-0404C,unit - has its own historian object,,4
+1649,RDC_NB_GF_VAV7050_VEV7051,VEV,EM Prep 1 - MAT N-0404D,unit - has its own historian object,,7
+1650,RDC_NB_GF_VAV7060_VEV7061,VEV,EM Prep 2 - BIO N-0404E,unit - has its own historian object,,7
+1651,RDC_NB_GF_VAV7070A,VAV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+1652,RDC_NB_GF_VAV7070B,VAV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+1653,RDC_NB_GF_VAV7071A,VAV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+1654,RDC_NB_GF_VAV7071B,VAV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+1655,RDC_NB_GF_VAV7080,VAV,Exp. Office N-0410,unit - has its own historian object,,9
+1656,RDC_NB_GF_VAV7085,VAV,Office N-0411,unit - has its own historian object,,9
+1657,RDC_NB_GF_VAV7090,VAV,Office N-0412,unit - has its own historian object,,9
+1658,RDC_NB_GF_VAV7095,VAV,Office N-0413,unit - has its own historian object,,9
+1659,RDC_NB_GF_VAV7100,VAV,Office N-0414,unit - has its own historian object,,9
+1660,RDC_NB_GF_VAV7105,VAV,Office N-0415,unit - has its own historian object,,9
+1661,RDC_NB_GF_VAV7110,VAV,Office N-0416,unit - has its own historian object,,9
+1662,RDC_NB_GF_VAV7115,VAV,Office N-0417,unit - has its own historian object,,9
+1663,RDC_NB_GF_VAV7120,VAV,Office N-0418,unit - has its own historian object,,9
+1664,RDC_NB_GF_VAV7125_EV7126,EV,Normal Elec. Room N-0420,unit - has its own historian object,,10
+1665,RDC_NB_GF_VAV7130,VAV,Office N-0421,unit - has its own historian object,,9
+1666,RDC_NB_GF_VAV7135,VAV,Office N-0422,unit - has its own historian object,,9
+1667,RDC_NB_GF_VAV7140_EV7141,EV,Conference N-0423,unit - has its own historian object,,10
+1668,RDC_NB_GF_VAV7145,VAV,Office N-0425,unit - has its own historian object,,9
+1669,RDC_NB_GF_VAV7155,VAV,Office N-0427,unit - has its own historian object,,9
+1670,RDC_NB_GF_VAV7165,VAV,Office N-0429,unit - has its own historian object,,9
+1671,RDC_NB_GF_VAV7175,VAV,Office 05-15-WS N-0431,unit - has its own historian object,,9
+1672,RDC_NB_GF_VAV7176,VAV,Office 05-15-WS N-0431,unit - has its own historian object,,9
+1673,RDC_NB_GF_VAV7180,VAV,Corridor N-0432,unit - has its own historian object,,9
+1674,RDC_NB_GF_VAV7185_EV7186,EV,Emer. Elec. Room N-0433,unit - has its own historian object,,10
+1675,RDC_NB_GF_VAV7195,VAV,Office 04 N-0436,unit - has its own historian object,,9
+1676,RDC_NB_GF_VAV7205,VAV,Office 04 N-0438,unit - has its own historian object,,9
+1677,RDC_NB_GF_VAV7215_EV7216,EV,Conference Room N-0440,unit - has its own historian object,,10
+1678,RDC_NB_GF_VAV7220_CEV7221,CEV,Service Corridor N-0441,unit - has its own historian object,,7
+1679,RDC_NB_GF_VAV7230_VEV7231,VEV,Inter Lab N-0442A,unit - has its own historian object,,7
+1680,RDC_NB_GF_VAV7240_VEV7241A,VAV,Optical Lab N-0442B,unit - has its own historian object,,7
+1681,RDC_NB_GF_VAV7250_VEV7251,VEV,CONF N-0442C,unit - has its own historian object,,7
+1682,RDC_NB_GF_VAV7260_VEV7261,VEV,SEM 1 Room N-0442D,unit - has its own historian object,,7
+1683,RDC_NB_GF_VAV7270_VEV7271,VEV,SERV 1 N-0442E,unit - has its own historian object,,7
+1684,RDC_NB_GF_VAV7280_VEV7281,VEV,Confocal 2 Room N-0442F,unit - has its own historian object,,7
+1685,RDC_NB_GF_VAV7290_VEV7291,VEV,SEM 2 N-0442G,unit - has its own historian object,,7
+1686,RDC_NB_GF_VAV7300,VAV,Air Lock 1 N-0442H,unit - has its own historian object,,4
+1687,RDC_NB_GF_VAV7310_VEV7311,VEV,SEM 3 N-0442J,unit - has its own historian object,,7
+1688,RDC_NB_GF_VAV7320_VEV7321,VEV,SEM 4 N-0442K,unit - has its own historian object,,7
+1689,RDC_NB_GF_VAV7330_VEV7331,VEV,SEM 5 N-0442L,unit - has its own historian object,,7
+1690,RDC_NB_GF_VAV7340_VEV7341,VEV,SERV 2 N-0442M,unit - has its own historian object,,7
+1691,RDC_NB_GF_VAV7350_VEV7351,VEV,SEM Lab N-0442N,unit - has its own historian object,,7
+1692,RDC_NB_GF_VAV7360_VEV7361,VEV,SEM Lab N-0442p,unit - has its own historian object,,7
+1693,RDC_NB_GF_VAV7370_VEV7371,VEV,A/L 2 N-0442R,unit - has its own historian object,,7
+1694,RDC_NB_GF_VAV7385,VAV,Office N-0444,unit - has its own historian object,,9
+1695,RDC_NB_GF_VAV7390,VAV,Office 04 N-0445,unit - has its own historian object,,9
+1696,RDC_NB_GF_VAV7395,VAV,Workstation N-0446,unit - has its own historian object,,9
+1697,RDC_NB_GF_VAV7400,VAV,Office N-0447,unit - has its own historian object,,9
+1698,RDC_NB_GF_VAV7405,VAV,Office N-0448,unit - has its own historian object,,9
+1699,RDC_NB_GF_VAV7410,VAV,Office N-0449,unit - has its own historian object,,9
+1700,RDC_NB_GF_VAV7415,VAV,Office N-0450,unit - has its own historian object,,9
+1701,RDC_NB_GF_VAV7425,VAV,Office 05-8-WKS N-0452,unit - has its own historian object,,9
+1702,RDC_NB_GF_VAV7430,VAV,Office N-0453,unit - has its own historian object,,9
+1703,RDC_NB_GF_VAV7435,VAV,Office N-0454,unit - has its own historian object,,9
+1704,RDC_NB_GF_VAV7440,VAV,Office N-0455,unit - has its own historian object,,9
+1705,RDC_NB_GF_VAV7445,VAV,Office 04 N-0456,unit - has its own historian object,,9
+1706,RDC_NB_GF_VAV7460,VAV,Office 05-8-WKS N-0457,unit - has its own historian object,,9
+1707,RDC_NB_GF_VAV7465,VAV,Office N-0458,unit - has its own historian object,,9
+1708,RDC_NB_GF_VAV7470,VAV,Office N-0459,unit - has its own historian object,,9
+1709,RDC_NB_GF_VAV7475,VAV,Office N-0460,unit - has its own historian object,,9
+1710,RDC_NB_GF_VAV7480,VAV,Office N-0461,unit - has its own historian object,,9
+1711,RDC_NB_GF_VAV7485,VAV,Office 05-8-WKS N-0462,unit - has its own historian object,,9
+1712,RDC_NB_GF_VAV7490_EV7495,EV,Confer N-0463,unit - has its own historian object,,10
+1713,RDC_NB_GF_VAV7496,VAV,Office 04 N-0464,unit - has its own historian object,,9
+1714,RDC_NB_GF_VAV7498,VAV,Office N-0465,unit - has its own historian object,,9
+1715,RDC_NB_GF_VAV7499,VAV,Office 04 N-0466,unit - has its own historian object,,9
+1716,RDC_SB_1F_VAV0506,VAV,Conf. S-1110,unit - has its own historian object,,9
+1717,RDC_SB_1F_VAV0507,VAV,Computer Research Lab-4 S-1112,unit - has its own historian object,,9
+1718,RDC_SB_1F_VAV0508,VAV,Conf S-1113,unit - has its own historian object,,9
+1719,RDC_SB_1F_VAV0509,VAV,NCIR Office S-1115,unit - has its own historian object,,9
+1720,RDC_SB_1F_VAV0510,VAV,Workstation S-1115A,unit - has its own historian object,,9
+1721,RDC_SB_1F_VAV0511,VAV,NCIR Office S-1116,unit - has its own historian object,,9
+1722,RDC_SB_1F_VAV0512,VAV,NCIR Office S-1117,unit - has its own historian object,,9
+1723,RDC_SB_1F_VAV0513,VAV,NCIR Office S-1118,unit - has its own historian object,,9
+1724,RDC_SB_1F_VAV0514,VAV,NCIR Office S-1119,unit - has its own historian object,,9
+1725,RDC_SB_1F_VAV0518,VAV,Office S-1161,unit - has its own historian object,,9
+1726,RDC_SB_1F_VAV0519,VAV,Office S-1162,unit - has its own historian object,,9
+1727,RDC_SB_1F_VAV0520,VAV,Office S-1163,unit - has its own historian object,,9
+1728,RDC_SB_1F_VAV0521,VAV,Office S-1164,unit - has its own historian object,,9
+1729,RDC_SB_1F_VAV0522,VAV,Office S-1165,unit - has its own historian object,,9
+1730,RDC_SB_1F_VAV0523,VAV,Office S-1166,unit - has its own historian object,,9
+1731,RDC_SB_1F_VAV0526,VAV,Office S-1171,unit - has its own historian object,,9
+1732,RDC_SB_1F_VAV0527,VAV,Office S-1172,unit - has its own historian object,,9
+1733,RDC_SB_1F_VAV0528,VAV,Office S-1173,unit - has its own historian object,,9
+1734,RDC_SB_1F_VAV0529,VAV,Corridor S-1174,unit - has its own historian object,,9
+1735,RDC_SB_1F_VAV0530,VAV,Situation Room S-1175,unit - has its own historian object,,9
+1736,RDC_SB_1F_VAV0531,VAV,Immersive Viz Lab S-1176,unit - has its own historian object,,9
+1737,RDC_SB_1F_VAV0532,VAV,Conference Room S-1177,unit - has its own historian object,,9
+1738,RDC_SB_1F_VAV0533,VAV,Telepresence S-1179,unit - has its own historian object,,9
+1739,RDC_SB_1F_VAV0538,VAV,Workstation S-1151A,unit - has its own historian object,,9
+1740,RDC_SB_1F_VAV1501,VAV,Workstation S-1119A,unit - has its own historian object,,9
+1741,RDC_SB_1F_VAV1502,VAV,NCIR Office S-1120,unit - has its own historian object,,9
+1742,RDC_SB_1F_VAV1503,VAV,NCIR Office S-1121,unit - has its own historian object,,9
+1743,RDC_SB_1F_VAV1505,VAV,SC. Comp Office 2 S-1123,unit - has its own historian object,,9
+1744,RDC_SB_1F_VAV1506,VAV,SC. Comp Office 3 S-1124,unit - has its own historian object,,9
+1745,RDC_SB_1F_VAV1507,VAV,Workstation S-1124A,unit - has its own historian object,,9
+1746,RDC_SB_1F_VAV1508,VAV,Scientific Comp. Office 1 S-1125,unit - has its own historian object,,9
+1747,RDC_SB_1F_VAV1509,VAV,Scientific Comp. Office S-1126,unit - has its own historian object,,9
+1748,RDC_SB_1F_VAV1510,VAV,ALT Office 2 S-1127,unit - has its own historian object,,9
+1749,RDC_SB_1F_VAV1511,VAV,ALT Office 3 S-1128,unit - has its own historian object,,9
+1750,RDC_SB_1F_VAV1512,VAV,Workstation S-1128A,unit - has its own historian object,,9
+1751,RDC_SB_1F_VAV1513,VAV,ALT Office 1 S-1129,unit - has its own historian object,,9
+1752,RDC_SB_1F_VAV1514,VAV,ALT Office S-1130,unit - has its own historian object,,9
+1753,RDC_SB_1F_VAV1515,VAV,Distub. Syst Office 1 S-1131,unit - has its own historian object,,9
+1754,RDC_SB_1F_VAV1516,VAV,Distub. Syst Office S-1132,unit - has its own historian object,,9
+1755,RDC_SB_1F_VAV1517,VAV,Workstation S-1132A,unit - has its own historian object,,9
+1756,RDC_SB_1F_VAV1518,VAV,Distub. Syst Office S-1133,unit - has its own historian object,,9
+1757,RDC_SB_1F_VAV1519,VAV,Distub. Syst Office S-1134,unit - has its own historian object,,9
+1758,RDC_SB_1F_VAV1520,VAV,Data Analytic Office S-1135,unit - has its own historian object,,9
+1759,RDC_SB_1F_VAV1521,VAV,Data Analytic Office S-1136,unit - has its own historian object,,9
+1760,RDC_SB_1F_VAV1522,VAV,Workstation S-1136A,unit - has its own historian object,,9
+1761,RDC_SB_1F_VAV1523,VAV,Data Analytic Office S-1137,unit - has its own historian object,,9
+1762,RDC_SB_1F_VAV1524,VAV,Data Analytic Office S-1138,unit - has its own historian object,,9
+1763,RDC_SB_1F_VAV1525,VAV,Office S-1139,unit - has its own historian object,,9
+1764,RDC_SB_1F_VAV1526,VAV,Office S-1140,unit - has its own historian object,,9
+1765,RDC_SB_1F_VAV1527,VAV,Conference Room S-1141,unit - has its own historian object,,9
+1766,RDC_SB_1F_VAV1528,VAV,Office S-1142,unit - has its own historian object,,9
+1767,RDC_SB_1F_VAV1529,VAV,Office S-1144,unit - has its own historian object,,9
+1768,RDC_SB_1F_VAV1530,VAV,Office S-1145,unit - has its own historian object,,9
+1769,RDC_SB_1F_VAV1531,VAV,Office S-1146,unit - has its own historian object,,9
+1770,RDC_SB_1F_VAV1532,VAV,Workstation S-1146A,unit - has its own historian object,,9
+1771,RDC_SB_1F_VAV1533,VAV,Office S-1148,unit - has its own historian object,,9
+1772,RDC_SB_1F_VAV1534,VAV,Office S-1149,unit - has its own historian object,,9
+1773,RDC_SB_1F_VAV1536,VAV,Office S-1150,unit - has its own historian object,,9
+1774,RDC_SB_1F_VAV1539,VAV,Video Conf. Room S-1154,unit - has its own historian object,,9
+1775,RDC_SB_1F_VAV1540,VAV,Conf S-1159,unit - has its own historian object,,9
+1776,RDC_SB_1F_VAV1542,VAV,Office S-1182,unit - has its own historian object,,9
+1777,RDC_SB_1F_VAV1543,VAV,Workstation S-1182A,unit - has its own historian object,,9
+1778,RDC_SB_1F_VAV1544,VAV,Office S-1182C,unit - has its own historian object,,9
+1779,RDC_SB_1F_VAV1545,VAV,Office S-1182D,unit - has its own historian object,,9
+1780,RDC_SB_1F_VAV1546,VAV,Office S-1182E,unit - has its own historian object,,9
+1781,RDC_SB_1F_VAV1547,VAV,Office S-1182F,unit - has its own historian object,,9
+1782,RDC_SB_1F_VAV1548,VAV,Office S-1183,unit - has its own historian object,,9
+1783,RDC_SB_1F_VAV1549,VAV,Workstation S-1183A,unit - has its own historian object,,9
+1784,RDC_SB_1F_VAV1550,VAV,Office S-1184,unit - has its own historian object,,9
+1785,RDC_SB_1F_VAV1551,VAV,Social Comp Office S-1185,unit - has its own historian object,,9
+1786,RDC_SB_1F_VAV1552,VAV,Social Comp Office S-1186,unit - has its own historian object,,9
+1787,RDC_SB_1F_VAV1553,VAV,Workstation S-1186A,unit - has its own historian object,,9
+1788,RDC_SB_1F_VAV1554,VAV,Social Comp Office S-1187,unit - has its own historian object,,9
+1789,RDC_SB_1F_VAV1555,VAV,Social Comp Office S-1188,unit - has its own historian object,,9
+1790,RDC_SB_1F_VAV1556,VAV,Cyber Sec Office S-1189,unit - has its own historian object,,9
+1791,RDC_SB_1F_VAV1557,VAV,Cyber Sec Office S-1190,unit - has its own historian object,,9
+1792,RDC_SB_1F_VAV1558,VAV,Workstation S-1190A,unit - has its own historian object,,9
+1793,RDC_SB_1F_VAV1559,VAV,Office S-1191,unit - has its own historian object,,9
+1794,RDC_SB_1F_VAV1560,VAV,Cyber Sec Office S-1192,unit - has its own historian object,,9
+1795,RDC_SB_1F_VAV1561,VAV,Cyber Sec Office S-1193,unit - has its own historian object,,9
+1796,RDC_SB_1F_VAV2501,VAV,Lobby S-1201,unit - has its own historian object,,9
+1797,RDC_SB_1F_VAV2502,VAV,Lobby S-1202,unit - has its own historian object,,9
+1798,RDC_SB_1F_VAV2503,VAV,Lobby S-1202,unit - has its own historian object,,9
+1799,RDC_SB_1F_VAV2504,VAV,Lobby S-1202,unit - has its own historian object,,9
+1800,RDC_SB_1F_VAV2505,VAV,Lobby S-1202,unit - has its own historian object,,9
+1801,RDC_SB_1F_VAV2506,VAV,Lobby S-1202,unit - has its own historian object,,9
+1802,RDC_SB_1F_VAV2508,VAV,Female Prayer S-1207,unit - has its own historian object,,9
+1803,RDC_SB_1F_VAV2509,VAV,Open Plan S-1210,unit - has its own historian object,,9
+1804,RDC_SB_1F_VAV2510,VAV,Exc. Dir. Office S-1211,unit - has its own historian object,,9
+1805,RDC_SB_1F_VAV2511,VAV,Office S-1212,unit - has its own historian object,,9
+1806,RDC_SB_1F_VAV2512,VAV,Office S-1213,unit - has its own historian object,,9
+1807,RDC_SB_1F_VAV2513,VAV,Office S-1214,unit - has its own historian object,,9
+1808,RDC_SB_1F_VAV2514,VAV,Office S-1215,unit - has its own historian object,,9
+1809,RDC_SB_1F_VAV2515,VAV,Office S-1216,unit - has its own historian object,,9
+1810,RDC_SB_1F_VAV2516,VAV,Executive Director Office S-1217,unit - has its own historian object,,9
+1811,RDC_SB_1F_VAV2517,VAV,Executive Director Office S-1218,unit - has its own historian object,,9
+1812,RDC_SB_1F_VAV2518,VAV,Office S-1219,unit - has its own historian object,,9
+1813,RDC_SB_1F_VAV2519,VAV,Office S-1220,unit - has its own historian object,,9
+1814,RDC_SB_1F_VAV2520,VAV,Office S-1221,unit - has its own historian object,,9
+1815,RDC_SB_1F_VAV2521,VAV,Office S-1222,unit - has its own historian object,,9
+1816,RDC_SB_1F_VAV2522,VAV,Office S-1223,unit - has its own historian object,,9
+1817,RDC_SB_1F_VAV2523,VAV,Office S-1224,unit - has its own historian object,,9
+1818,RDC_SB_1F_VAV2524,VAV,Office S-1225,unit - has its own historian object,,9
+1819,RDC_SB_1F_VAV2525,VAV,Office S-1226,unit - has its own historian object,,9
+1820,RDC_SB_1F_VAV2526,VAV,Open Plan S-1227,unit - has its own historian object,,9
+1821,RDC_SB_1F_VAV2527,VAV,Director Office S-1228,unit - has its own historian object,,9
+1822,RDC_SB_1F_VAV2528,VAV,Director Office S-1230,unit - has its own historian object,,9
+1823,RDC_SB_1F_VAV2529,VAV,Office S-1231,unit - has its own historian object,,9
+1824,RDC_SB_1F_VAV2530,VAV,Office S-1232,unit - has its own historian object,,9
+1825,RDC_SB_1F_VAV2531,VAV,Director Office S-1241,unit - has its own historian object,,9
+1826,RDC_SB_1F_VAV2532,VAV,Office S-1242,unit - has its own historian object,,9
+1827,RDC_SB_1F_VAV2533,VAV,Cooridor S-1246,unit - has its own historian object,,9
+1828,RDC_SB_1F_VAV2534,VAV,Meeting Room S-1247,unit - has its own historian object,,9
+1829,RDC_SB_1F_VAV2535,VAV,Store S-1248,unit - has its own historian object,,9
+1830,RDC_SB_1F_VAV2536,VAV,Normal Elec. S-1251,unit - has its own historian object,,9
+1831,RDC_SB_1F_VAV2538,VAV,Office S-1257,unit - has its own historian object,,9
+1832,RDC_SB_1F_VAV2539,VAV,Office S-1257B,unit - has its own historian object,,9
+1833,RDC_SB_1F_VAV2540,VAV,Executive Director S-1260,unit - has its own historian object,,9
+1834,RDC_SB_1F_VAV2541,VAV,Assistant S-1261,unit - has its own historian object,,9
+1835,RDC_SB_1F_VAV2542,VAV,Open Plan S-1263,unit - has its own historian object,,9
+1836,RDC_SB_1F_VAV2543,VAV,Office S-1264,unit - has its own historian object,,9
+1837,RDC_SB_1F_VAV2544,VAV,Office S-1265,unit - has its own historian object,,9
+1838,RDC_SB_1F_VAV2545,VAV,Office S-1266,unit - has its own historian object,,9
+1839,RDC_SB_1F_VAV2546,VAV,Office S-1267,unit - has its own historian object,,9
+1840,RDC_SB_1F_VAV2547,VAV,Office S-1268,unit - has its own historian object,,9
+1841,RDC_SB_1F_VAV2548,VAV,Office S-1269,unit - has its own historian object,,9
+1842,RDC_SB_1F_VAV2549,VAV,Office S-1270,unit - has its own historian object,,9
+1843,RDC_SB_1F_VAV2550,VAV,Office S-1271,unit - has its own historian object,,9
+1844,RDC_SB_1F_VAV2551,VAV,Meeting Room S-1272,unit - has its own historian object,,9
+1845,RDC_SB_1F_VAV2552,VAV,Vestibule S-1273,unit - has its own historian object,,9
+1846,RDC_SB_1F_VAV2553,VAV,Male Prayer S-1278,unit - has its own historian object,,9
+1847,RDC_SB_1F_VAV3504,VAV,Open Plan S-1229,unit - has its own historian object,,9
+1848,RDC_SB_1F_VAV3505,VAV,Open Plan S-1229,unit - has its own historian object,,9
+1849,RDC_SB_1F_VAV3506,VAV,Office S-1233,unit - has its own historian object,,9
+1850,RDC_SB_1F_VAV3507,VAV,Office S-1234,unit - has its own historian object,,9
+1851,RDC_SB_1F_VAV3508,VAV,Office S-1235,unit - has its own historian object,,9
+1852,RDC_SB_1F_VAV3509,VAV,Policy Director Office S-1237,unit - has its own historian object,,9
+1853,RDC_SB_1F_VAV3510,VAV,Policy Executive Director Office S-1240,unit - has its own historian object,,9
+1854,RDC_SB_1F_VAV3511,VAV,Corridor S-1280,unit - has its own historian object,,9
+1855,RDC_SB_1F_VAV3512,VAV,Pantry S-1282,unit - has its own historian object,,9
+1856,RDC_SB_1F_VAV3513,VAV,Office S-1283,unit - has its own historian object,,9
+1857,RDC_SB_1F_VAV3514,VAV,Office S-1284,unit - has its own historian object,,9
+1858,RDC_SB_1F_VAV3515,VAV,S-1285 VP R&D,unit - has its own historian object,,9
+1859,RDC_SB_1F_VAV3516,VAV,Meeting Room S-1288,unit - has its own historian object,,9
+1860,RDC_SB_1F_VAV3517,VAV,Dressing Room S-1290,unit - has its own historian object,,9
+1861,RDC_SB_1F_VAV3518,VAV,Waiting Area S-1292,unit - has its own historian object,,9
+1862,RDC_SB_1F_VAV3519,VAV,Open Plan S-1293,unit - has its own historian object,,9
+1863,RDC_SB_1F_VAV3520,VAV,Office S-1294,unit - has its own historian object,,9
+1864,RDC_SB_1F_VAV3521,VAV,Office S-1295,unit - has its own historian object,,9
+1865,RDC_SB_1F_VAV3522,VAV,Conference Room S-1296,unit - has its own historian object,,9
+1866,RDC_SB_1F_VAV3523,VAV,Office S-1299,unit - has its own historian object,,9
+1867,RDC_SB_1F_VAV3524,VAV,Normal Elec. S-1238,unit - has its own historian object,,9
+1868,RDC_SB_GF_VAV0001,VAV,Vestibule S-0101,unit - has its own historian object,,9
+1869,RDC_SB_GF_VAV0002,VAV,Main Lobby S-0102,unit - has its own historian object,,9
+1870,RDC_SB_GF_VAV0003,VAV,Entrance Lobby S-0102,unit - has its own historian object,,9
+1871,RDC_SB_GF_VAV0007,VAV,Conference S-0109,unit - has its own historian object,,9
+1872,RDC_SB_GF_VAV0008,VAV,Computer Research Lab 3 S-0110,unit - has its own historian object,,9
+1873,RDC_SB_GF_VAV0009,VAV,Phone Booth S-0111,unit - has its own historian object,,9
+1874,RDC_SB_GF_VAV0010,VAV,Phone Booth S-0112,unit - has its own historian object,,9
+1875,RDC_SB_GF_VAV0011,VAV,Conference S-0113,unit - has its own historian object,,9
+1876,RDC_SB_GF_VAV0012,VAV,Computer Research Lab 2 S-0114,unit - has its own historian object,,9
+1877,RDC_SB_GF_VAV0013,VAV,Phone Booth S-0115,unit - has its own historian object,,9
+1878,RDC_SB_GF_VAV0014,VAV,Phone Booth S-0116,unit - has its own historian object,,9
+1879,RDC_SB_GF_VAV0016,VAV,Conference S-0118,unit - has its own historian object,,9
+1880,RDC_SB_GF_VAV0017,VAV,Computer Research Lab 1 S-0119,unit - has its own historian object,,9
+1881,RDC_SB_GF_VAV0018,VAV,Restaurant S-0123,unit - has its own historian object,,9
+1882,RDC_SB_GF_VAV0019,VAV,Restaurant S-0123,unit - has its own historian object,,9
+1883,RDC_SB_GF_VAV0025,VAV,Alt Recording Sound S-0135,unit - has its own historian object,,9
+1884,RDC_SB_GF_VAV1003_VEV1002,VEV,NOC Lab S-0140A,unit - has its own historian object,,10
+1885,RDC_SB_GF_VAV1004,VAV,Corridor S-0137 / S-0143,unit - has its own historian object,,9
+1886,RDC_SB_GF_VAV1008,VAV,Cyber Embedded Sys. S-0146,unit - has its own historian object,,9
+1887,RDC_SB_GF_VAV2002,VAV,Conference Room S-0207,unit - has its own historian object,,9
+1888,RDC_SB_GF_VAV2003,VAV,Multi Purpose Hall S-0208,unit - has its own historian object,,9
+1889,RDC_SB_GF_VAV2004,VAV,Multi Purpose Hall S-0208,unit - has its own historian object,,9
+1890,RDC_SB_GF_VAV2005,VAV,Technical Open Plan S-0211,unit - has its own historian object,,9
+1891,RDC_SB_GF_VAV2006,VAV,Meeting Room S-0212,unit - has its own historian object,,9
+1892,RDC_SB_GF_VAV2007,VAV,Office S-0213,unit - has its own historian object,,9
+1893,RDC_SB_GF_VAV2008,VAV,Office S-0214,unit - has its own historian object,,9
+1894,RDC_SB_GF_VAV2009,VAV,Office S-0215,unit - has its own historian object,,9
+1895,RDC_SB_GF_VAV2010,VAV,Office S-0216,unit - has its own historian object,,9
+1896,RDC_SB_GF_VAV2011,VAV,Office S-0217,unit - has its own historian object,,9
+1897,RDC_SB_GF_VAV2012,VAV,Director Office S-0218,unit - has its own historian object,,9
+1898,RDC_SB_GF_VAV2013,VAV,Office S-0219,unit - has its own historian object,,9
+1899,RDC_SB_GF_VAV2014,VAV,Office S-0220,unit - has its own historian object,,9
+1900,RDC_SB_GF_VAV2015,VAV,Director Office S-0221,unit - has its own historian object,,9
+1901,RDC_SB_GF_VAV2016,VAV,Director Office S-0222,unit - has its own historian object,,9
+1902,RDC_SB_GF_VAV2017,VAV,Meeting Room S-0223,unit - has its own historian object,,9
+1903,RDC_SB_GF_VAV2018,VAV,Print Hub S-0225,unit - has its own historian object,,9
+1904,RDC_SB_GF_VAV2019,VAV,Office S-0227,unit - has its own historian object,,9
+1905,RDC_SB_GF_VAV2020,VAV,Informal Meeting S-0231,unit - has its own historian object,,9
+1906,RDC_SB_GF_VAV2021,VAV,Open Plan S-0228,unit - has its own historian object,,9
+1907,RDC_SB_GF_VAV2022,VAV,Director Office S-0229,unit - has its own historian object,,9
+1908,RDC_SB_GF_VAV2023,VAV,Office S-0230,unit - has its own historian object,,9
+1909,RDC_SB_GF_VAV2024,VAV,Executive Director Office S-0232,unit - has its own historian object,,9
+1910,RDC_SB_GF_VAV2025,VAV,Executive Director Office S-0233,unit - has its own historian object,,9
+1911,RDC_SB_GF_VAV2026,VAV,Office S-0234,unit - has its own historian object,,9
+1912,RDC_SB_GF_VAV2027,VAV,Office S-0235,unit - has its own historian object,,9
+1913,RDC_SB_GF_VAV2028,VAV,Office S-0236,unit - has its own historian object,,9
+1914,RDC_SB_GF_VAV2029,VAV,Waiting Area S-0251,unit - has its own historian object,,9
+1915,RDC_SB_GF_VAV2030,VAV,Office S-0259,unit - has its own historian object,,9
+1916,RDC_SB_GF_VAV2031,VAV,Office S-0260,unit - has its own historian object,,9
+1917,RDC_SB_GF_VAV2032,VAV,Open Plan S-0269,unit - has its own historian object,,9
+1918,RDC_SB_GF_VAV2033,VAV,Store S-0275,unit - has its own historian object,,9
+1919,RDC_SB_GF_VAV2034,VAV,Meeting Room S-0274,unit - has its own historian object,,9
+1920,RDC_SB_GF_VAV2035,VAV,Pantry S-0270,unit - has its own historian object,,9
+1921,RDC_SB_GF_VAV2036,VAV,Emergency Elec. Room S-0278,unit - has its own historian object,,9
+1922,RDC_SB_GF_VAV2037,VAV,Men S-0284,unit - has its own historian object,,9
+1923,RDC_SB_GF_VAV2038,VAV,Informal Meeting S-0285,unit - has its own historian object,,9
+1924,RDC_SB_GF_VAV2039,VAV,Meeting Room S-0286,unit - has its own historian object,,9
+1925,RDC_SB_GF_VAV2040,VAV,Open Plan S-0289,unit - has its own historian object,,9
+1926,RDC_SB_GF_VAV2041,VAV,Open Plan S-0289,unit - has its own historian object,,9
+1927,RDC_SB_GF_VAV2042,VAV,Corridor S-0273,unit - has its own historian object,,9
+1928,RDC_SB_GF_VAV2043,VAV,Women S-0281,unit - has its own historian object,,9
+1929,RDC_SB_GF_VAV2044,VAV,Lobby S-0294,unit - has its own historian object,,9
+1930,RDC_SB_GF_VAV2045,VAV,Lobby S-0294,unit - has its own historian object,,9
+1931,RDC_SB_GF_VAV2046,VAV,Lobby S-0294,unit - has its own historian object,,9
+1932,RDC_SB_GF_VAV2047,VAV,Lobby S-0294,unit - has its own historian object,,9
+1933,RDC_SB_GF_VAV3001,VAV,Director Office S-0237,unit - has its own historian object,,9
+1934,RDC_SB_GF_VAV3002,VAV,Office S-0238,unit - has its own historian object,,9
+1935,RDC_SB_GF_VAV3003,VAV,Office S-0239,unit - has its own historian object,,9
+1936,RDC_SB_GF_VAV3004,VAV,Office S-0240,unit - has its own historian object,,9
+1937,RDC_SB_GF_VAV3005,VAV,Office S-0241,unit - has its own historian object,,9
+1938,RDC_SB_GF_VAV3006,VAV,Office S-0242,unit - has its own historian object,,9
+1939,RDC_SB_GF_VAV3007,VAV,Director Office S-0243,unit - has its own historian object,,9
+1940,RDC_SB_GF_VAV3008,VAV,Open Plan S-0244,unit - has its own historian object,,9
+1941,RDC_SB_GF_VAV3009,VAV,Open Plan S-0244,unit - has its own historian object,,9
+1942,RDC_SB_GF_VAV3010,VAV,Open Plan S-0244,unit - has its own historian object,,9
+1943,RDC_SB_GF_VAV3011,VAV,Meeting Room S-0245,unit - has its own historian object,,9
+1944,RDC_SB_GF_VAV3012,VAV,Office S-0246,unit - has its own historian object,,9
+1945,RDC_SB_GF_VAV3013,VAV,Office S-0247,unit - has its own historian object,,9
+1946,RDC_SB_GF_VAV3014,VAV,Office S-0248,unit - has its own historian object,,9
+1947,RDC_SB_GF_VAV3015,VAV,Security S-0249,unit - has its own historian object,,9
+1948,RDC_SB_GF_VAV3016,VAV,Corridor S-0250,unit - has its own historian object,,9
+1949,RDC_SB_GF_VAV3017,VAV,Office S-0251,unit - has its own historian object,,9
+1950,RDC_SB_GF_VAV3018,VAV,Corridor S-0251,unit - has its own historian object,,9
+1951,RDC_SB_GF_VAV3019,VAV,Corridor S-0251,unit - has its own historian object,,9
+1952,RDC_SB_GF_VAV3020,VAV,Office S-0252,unit - has its own historian object,,9
+1953,RDC_SB_GF_VAV3021,VAV,Office S-0252,unit - has its own historian object,,9
+1954,RDC_SB_GF_VAV3022,VAV,Office S-0253,unit - has its own historian object,,9
+1955,RDC_SB_GF_VAV3023,VAV,Office S-0253,unit - has its own historian object,,9
+1956,RDC_SB_GF_VAV3024,VAV,Office S-0254,unit - has its own historian object,,9
+1957,RDC_SB_GF_VAV3025,VAV,Office S-0255,unit - has its own historian object,,9
+1958,RDC_SB_GF_VAV3026,VAV,Office S-0256,unit - has its own historian object,,9
+1959,RDC_SB_GF_VAV3027,VAV,Office S-0257,unit - has its own historian object,,9
+1960,RDC_SB_GF_VAV3028,VAV,Office S-0258,unit - has its own historian object,,9
+1961,RDC_SB_GF_VAV3029,VAV,Open Plan S-0261,unit - has its own historian object,,9
+1962,RDC_SB_GF_VAV3030,VAV,Open Plan S-0262,unit - has its own historian object,,9
+1963,RDC_SB_GF_VAV3031,VAV,Server S-0264,unit - has its own historian object,,9
+1964,RDC_SB_GF_VAV3032,VAV,Open Plan S-0265,unit - has its own historian object,,9
+1965,RDC_SB_GF_VAV3033,VAV,Corridor / Print / Emergency Elec Rm / Normal Elec Rm S-0251 / S-0263 / S-0266 / S-0267,unit - has its own historian object,,9
+1966,RDC_SB_GF_VAV3034,VAV,Vestibule S-0293,unit - has its own historian object,,9
+1967,RDC_SB_GF_VAV3035,VAV,Lobby S-0294,unit - has its own historian object,,9
+1968,RDC_SB_GF_VAV3036,VAV,Lobby S-0294,unit - has its own historian object,,9
+1969,RDC_SB_GF_VAV3501,VAV,Lobby S-0294,unit - has its own historian object,,9
+1970,RDC_SB_GF_VAV3502,VAV,Lobby S-0294,unit - has its own historian object,,9
+1971,RDC_SB_GF_VAV3503,VAV,Vestibule S-0293,unit - has its own historian object,,9
+1972,RDC_NB_1F_VAV4510,VAV,Corridor N-1202A,unit - has its own historian object,,9
+1973,RDC_NB_1F_VAV4515_EV4516,EV,Emergency Electrical Room N-1203,unit - has its own historian object,,10
+1974,RDC_NB_1F_VAV4520_EV4521,EV,Normal Electrical Room N-1204,unit - has its own historian object,,10
+1975,RDC_NB_1F_VAV4525_EV4526,EV,Conference Room N-1205,unit - has its own historian object,,10
+1976,RDC_NB_1F_VAV4530_EV4531,EV,Office N-1206,unit - has its own historian object,,10
+1977,RDC_NB_1F_VAV4535_EV4536,EV,Office N-1207,unit - has its own historian object,,10
+1978,RDC_NB_1F_VAV4540_EV4541,EV,Office N-1208,unit - has its own historian object,,10
+1979,RDC_NB_1F_VAV4545_EV4546,EV,Office N-1209,unit - has its own historian object,,10
+1980,RDC_NB_1F_VAV4550_EV4551,EV,Office N-1210,unit - has its own historian object,,10
+1981,RDC_NB_1F_VAV4555_EV4556,EV,Confer Room N-1211,unit - has its own historian object,,10
+1982,RDC_NB_1F_VAV4560_EV4561,EV,Office N-1212,unit - has its own historian object,,10
+1983,RDC_NB_1F_VAV4565_EV4566,EV,Conference N-1213,unit - has its own historian object,,10
+1984,RDC_NB_1F_VAV4570_EV4571,EV,Office 04 N-1214,unit - has its own historian object,,10
+1985,RDC_NB_1F_VAV4575_EV4576,EV,Storage N-1215,unit - has its own historian object,,10
+1986,RDC_NB_1F_VAV4580,VAV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+1987,RDC_NB_1F_VAV4600,VAV,Testing Room N-1216B,unit - has its own historian object,,5
+1988,RDC_NB_1F_VAV4601,VAV,Testing Room N-1216B,unit - has its own historian object,,5
+1989,RDC_NB_1F_VAV4620_VEV4621,VEV,EL Shop N-1216C,unit - has its own historian object,,7
+1990,RDC_NB_1F_VAV4630_VEV4631,VEV,GIS N-1216D,unit - has its own historian object,,7
+1991,RDC_NB_1F_VAV4650,VAV,Breakout N-1225,unit - has its own historian object,,9
+1992,RDC_NB_1F_VAV4660,VAV,Expansion Workstation N-1227,unit - has its own historian object,,9
+1993,RDC_NB_1F_VAV4665,VAV,Office N-1228,unit - has its own historian object,,9
+1994,RDC_NB_1F_VAV4670,VAV,Office N-1229,unit - has its own historian object,,9
+1995,RDC_NB_1F_VAV4675,VAV,Office N-1230,unit - has its own historian object,,9
+1996,RDC_NB_1F_VAV4680,VAV,Office N-1231,unit - has its own historian object,,9
+1997,RDC_NB_1F_VAV4685,VAV,Workstation N-1232,unit - has its own historian object,,9
+1998,RDC_NB_1F_VAV4690,VAV,Office N-1233,unit - has its own historian object,,9
+1999,RDC_NB_1F_VAV4695,VAV,Office N-1234,unit - has its own historian object,,9
+2000,RDC_NB_1F_VAV4700,VAV,Office N-1235,unit - has its own historian object,,9
+2001,RDC_NB_1F_VAV4705,VAV,Office N-1236,unit - has its own historian object,,9
+2002,RDC_NB_1F_VAV4710,VAV,Workstation N-1237,unit - has its own historian object,,9
+2003,RDC_NB_1F_VAV4715,VAV,Office N-1238,unit - has its own historian object,,9
+2004,RDC_NB_1F_VAV4720,VAV,Office N-1239,unit - has its own historian object,,9
+2005,RDC_NB_1F_VAV4725,VAV,Office N-1240,unit - has its own historian object,,9
+2006,RDC_NB_1F_VAV4730,VAV,Office N-1241,unit - has its own historian object,,9
+2007,RDC_NB_1F_VAV4735,VAV,Workstation N-1242,unit - has its own historian object,,9
+2008,RDC_NB_1F_VAV4740,VAV,Exp Office N-1243,unit - has its own historian object,,9
+2009,RDC_NB_1F_VAV4745,VAV,Office N-1244,unit - has its own historian object,,9
+2010,RDC_NB_1F_VAV4900P,VAV,Normal Electric N-2102,unit - has its own historian object,,9
+2011,RDC_NB_1F_VAV4910P,VAV,Emergency Electr N-2103,unit - has its own historian object,,9
+2012,RDC_NB_1F_VAV5500,VAV,Lobby N-1101,unit - has its own historian object,,9
+2013,RDC_NB_1F_VAV5501,VAV,Lobby N-1101,unit - has its own historian object,,9
+2014,RDC_NB_1F_VAV5510_EV5511,EV,Conference N-1101A,unit - has its own historian object,,10
+2015,RDC_NB_1F_VAV5515_EV5516,EV,Emergency Electrical Room N-1102,unit - has its own historian object,,10
+2016,RDC_NB_1F_VAV5520_EV5521,EV,Conference N-1106,unit - has its own historian object,,10
+2017,RDC_NB_1F_VAV5525_EV5526,EV,Conference N-1107,unit - has its own historian object,,10
+2018,RDC_NB_1F_VAV5535_EV5536,EV,Conference N-1112,unit - has its own historian object,,10
+2019,RDC_NB_1F_VAV5540_EV5541,EV,Normal Electrical Room N-1113,unit - has its own historian object,,10
+2020,RDC_NB_1F_VAV5550_VEV5551,VEV,PCR N-1115A,unit - has its own historian object,,7
+2021,RDC_NB_1F_VAV5560_VEV5561,VEV,PRE-PCR N-1115B,unit - has its own historian object,,7
+2022,RDC_NB_1F_VAV5570,VAV,Met/Prot Lab N-1115C,unit - has its own historian object,,2
+2023,RDC_NB_1F_VAV5571,VAV,Met/Prot Lab N-1115C,unit - has its own historian object,,2
+2024,RDC_NB_1F_VAV5580_VEV5581,VEV,DNA/RNA N-1115D,unit - has its own historian object,,7
+2025,RDC_NB_1F_VAV5590,VAV,Cell Culture N-1115E,unit - has its own historian object,,3
+2026,RDC_NB_1F_VAV5600_VEV5601,VEV,Library N-1115H,unit - has its own historian object,,7
+2027,RDC_NB_1F_VAV5610_VEV5611,VEV,Robotics N-1115J,unit - has its own historian object,,7
+2028,RDC_NB_1F_VAV5620_VEV5622,VEV,Sequence Lab N-1115K,unit - has its own historian object,,7
+2029,RDC_NB_1F_VAV5621_VEV5623,VEV,Sequence Lab N-1115K,unit - has its own historian object,,7
+2030,RDC_NB_1F_VAV5630_VEV5631,VEV,Genom Med Lab N-1115K1,unit - has its own historian object,,7
+2031,RDC_NB_1F_VAV5650,VAV,Office N-1120,unit - has its own historian object,,9
+2032,RDC_NB_1F_VAV5655_EV5656,EV,Store N-1120B,unit - has its own historian object,,10
+2033,RDC_NB_1F_VAV5660,VAV,Office N-1121,unit - has its own historian object,,9
+2034,RDC_NB_1F_VAV5665,VAV,Office N-1122,unit - has its own historian object,,9
+2035,RDC_NB_1F_VAV5670,VAV,Office N-1123,unit - has its own historian object,,9
+2036,RDC_NB_1F_VAV5675,VAV,Office N-1124,unit - has its own historian object,,9
+2037,RDC_NB_1F_VAV5680,VAV,Office N-1125,unit - has its own historian object,,9
+2038,RDC_NB_1F_VAV5685,VAV,Corridor N-1126,unit - has its own historian object,,9
+2039,RDC_NB_1F_VAV5690,VAV,Office N-1127,unit - has its own historian object,,9
+2040,RDC_NB_1F_VAV5695,VAV,Office N-1128,unit - has its own historian object,,9
+2041,RDC_NB_1F_VAV5700,VAV,Office N-1129,unit - has its own historian object,,9
+2042,RDC_NB_1F_VAV5705,VAV,Office N-1130,unit - has its own historian object,,9
+2043,RDC_NB_1F_VAV5710,VAV,Office N-1131,unit - has its own historian object,,9
+2044,RDC_NB_1F_VAV5715_EV5716,EV,Conf Rm N-1132,unit - has its own historian object,,10
+2045,RDC_NB_1F_VAV5730_EV5731,EV,Store N-1135,unit - has its own historian object,,10
+2046,RDC_NB_1F_VAV5735_EV5736,EV,Normal Elec. N-1136,unit - has its own historian object,,10
+2047,RDC_NB_1F_VAV5740_EV5741,EV,Emer. Elec. N-1137,unit - has its own historian object,,10
+2048,RDC_NB_1F_VAV5745,VAV,Corridor N-1138,unit - has its own historian object,,9
+2049,RDC_NB_1F_VAV5760_EV5761,EV,Conf N-1143,unit - has its own historian object,,10
+2050,RDC_NB_1F_VAV5770_VEV5771,VEV,Histology N-1144A,unit - has its own historian object,,7
+2051,RDC_NB_1F_VAV5780_VEV5781,VEV,Culture & Gel Rm N-1144B,unit - has its own historian object,,7
+2052,RDC_NB_1F_VAV5790,VAV,Shafallah N-1144C,unit - has its own historian object,,3
+2053,RDC_NB_1F_VAV5792_VEV5793,VEV,Sample Accession N-1144C1,unit - has its own historian object,,7
+2054,RDC_NB_1F_VAV5794_VEV5795A,VAV,Storage and Archives N-1144C2,unit - has its own historian object,,7
+2055,RDC_NB_1F_VAV5800_VEV5801,VEV,Pre-PCR N-1144D,unit - has its own historian object,,7
+2056,RDC_NB_1F_VAV5810,VAV,Nano Lab N-1144E,unit - has its own historian object,,3
+2057,RDC_NB_1F_VAV5814,VAV,Nano Lab N-1144E,unit - has its own historian object,,4
+2058,RDC_NB_1F_VAV5835_EV5836,EV,P/C/S Pantry N-1146,unit - has its own historian object,,10
+2059,RDC_NB_1F_VAV5840,VAV,Corridor N-1150,unit - has its own historian object,,9
+2060,RDC_NB_1F_VAV5845,VAV,Reception+N-1151B Storage N-1151,unit - has its own historian object,,9
+2061,RDC_NB_1F_VAV5850,VAV,Office 04 N-1151A,unit - has its own historian object,,9
+2062,RDC_NB_1F_VAV5855,VAV,Office 04 N-1152,unit - has its own historian object,,9
+2063,RDC_NB_1F_VAV5860,VAV,Office N-1154,unit - has its own historian object,,9
+2064,RDC_NB_1F_VAV5865,VAV,Office N-1155,unit - has its own historian object,,9
+2065,RDC_NB_1F_VAV5870,VAV,Exp Office N-1156,unit - has its own historian object,,9
+2066,RDC_NB_1F_VAV5875,VAV,Office N-1157,unit - has its own historian object,,9
+2067,RDC_NB_1F_VAV5880,VAV,Office N-1158,unit - has its own historian object,,9
+2068,RDC_NB_1F_VAV5885,VAV,Office N-1159,unit - has its own historian object,,9
+2069,RDC_NB_1F_VAV5890,VAV,Workstation N-1160,unit - has its own historian object,,9
+2070,RDC_NB_1F_VAV5895,VAV,Office N-1161,unit - has its own historian object,,9
+2071,RDC_NB_1F_VAV5900,VAV,Office N-1162,unit - has its own historian object,,9
+2072,RDC_NB_1F_VAV5905,VAV,Office N-1163,unit - has its own historian object,,9
+2073,RDC_NB_1F_VAV5910,VAV,Office N-1164,unit - has its own historian object,,9
+2074,RDC_NB_1F_VAV5915,VAV,Office N-1167,unit - has its own historian object,,9
+2075,RDC_NB_1F_VAV5920,VAV,Workstation N-1168,unit - has its own historian object,,9
+2076,RDC_NB_1F_VAV5925,VAV,Office N-1169,unit - has its own historian object,,9
+2077,RDC_NB_1F_VAV5930,VAV,Office N-1170,unit - has its own historian object,,9
+2078,RDC_NB_1F_VAV5930P,VAV,Normal Elec. N-2105,unit - has its own historian object,,9
+2079,RDC_NB_1F_VAV5935,VAV,Office N-1166,unit - has its own historian object,,9
+2080,RDC_NB_1F_VAV5940,VAV,Workstation N-1165,unit - has its own historian object,,9
+2081,RDC_NB_1F_VAV5940P,VAV,Emer. Elec. N-2106,unit - has its own historian object,,9
+2082,RDC_NB_1F_VAV6505_EV6506,EV,Conference N-1302,unit - has its own historian object,,10
+2083,RDC_NB_1F_VAV6510_EV6511,EV,Conference N-1303,unit - has its own historian object,,10
+2084,RDC_NB_1F_VAV6525_EV6526,EV,Normal Electrical Room N-1310,unit - has its own historian object,,10
+2085,RDC_NB_1F_VAV6530_VEV6531,VEV,AAV N-1316A,unit - has its own historian object,,7
+2086,RDC_NB_1F_VAV6540,VAV,Tissure Culture 1 N-1316B,unit - has its own historian object,,4
+2087,RDC_NB_1F_VAV6550,VAV,Gene Therapy Lab N-1316C,unit - has its own historian object,,2
+2088,RDC_NB_1F_VAV6551,VAV,Gene Therapy Lab N-1316C,unit - has its own historian object,,2
+2089,RDC_NB_1F_VAV6560_VEV6561,VEV,TC2 N-1316D,unit - has its own historian object,,7
+2090,RDC_NB_1F_VAV6570_VEV6571,VEV,STORE ROOM N-1316E,unit - has its own historian object,,7
+2091,RDC_NB_1F_VAV6590_VEV6591,VEV,LENTIV N-1316G,unit - has its own historian object,,7
+2092,RDC_NB_1F_VAV6600_VEV6601,VEV,Analytical Core N-1316H,unit - has its own historian object,,7
+2093,RDC_NB_1F_VAV6610_VEV6611,VEV,Microscope Room N-1316H,unit - has its own historian object,,7
+2094,RDC_NB_1F_VAV6620_VEV6621,VEV,Mscopy1 N-1316K,unit - has its own historian object,,7
+2095,RDC_NB_1F_VAV6630A,VAV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,4
+2096,RDC_NB_1F_VAV6630B,VAV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+2097,RDC_NB_1F_VAV6631A,VAV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,4
+2098,RDC_NB_1F_VAV6631B,VAV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+2099,RDC_NB_1F_VAV6650,VAV,Office N-1319,unit - has its own historian object,,9
+2100,RDC_NB_1F_VAV6655,VAV,Office N-1320,unit - has its own historian object,,9
+2101,RDC_NB_1F_VAV6660,VAV,Workstation N-1321,unit - has its own historian object,,9
+2102,RDC_NB_1F_VAV6665,VAV,Office N-1322,unit - has its own historian object,,9
+2103,RDC_NB_1F_VAV6670,VAV,Office N-1323,unit - has its own historian object,,9
+2104,RDC_NB_1F_VAV6675,VAV,Workstation N-1324,unit - has its own historian object,,9
+2105,RDC_NB_1F_VAV6680,VAV,Office N-1325,unit - has its own historian object,,9
+2106,RDC_NB_1F_VAV6685,VAV,Office N-1326,unit - has its own historian object,,9
+2107,RDC_NB_1F_VAV6690,VAV,Exp. Workstation N-1327,unit - has its own historian object,,9
+2108,RDC_NB_1F_VAV6695,VAV,Office N-1328,unit - has its own historian object,,9
+2109,RDC_NB_1F_VAV6700_EV6701,EV,NORMAL ELEC. N-1329,unit - has its own historian object,,10
+2110,RDC_NB_1F_VAV6705,VAV,Office N-1330,unit - has its own historian object,,9
+2111,RDC_NB_1F_VAV6710,VAV,Office N-1331,unit - has its own historian object,,9
+2112,RDC_NB_1F_VAV6715,VAV,Office N-1332,unit - has its own historian object,,9
+2113,RDC_NB_1F_VAV6720,VAV,Corridor N-1335,unit - has its own historian object,,9
+2114,RDC_NB_1F_VAV6725_EV6726,EV,Emer. Elec. N-1336,unit - has its own historian object,,10
+2115,RDC_NB_1F_VAV6750,VAV,Tissue Culture 1 N-1345A,unit - has its own historian object,,4
+2116,RDC_NB_1F_VAV6760,VAV,Diabetes Lab N-1345B,unit - has its own historian object,,2
+2117,RDC_NB_1F_VAV6761,VAV,Diabetes Lab N-1345B,unit - has its own historian object,,4
+2118,RDC_NB_1F_VAV6800_VEV6801,VEV,Tissue Culture 3 N-1345D,unit - has its own historian object,,3
+2119,RDC_NB_1F_VAV6810_VEV6811,VEV,Calc Imaging N-1345E,unit - has its own historian object,,7
+2120,RDC_NB_1F_VAV6820_VEV6821,VEV,Electro Physics N-1345F,unit - has its own historian object,,7
+2121,RDC_NB_1F_VAV6830_VEV6831,VEV,Shared Cold Lab N-1345G,unit - has its own historian object,,3
+2122,RDC_NB_1F_VAV6840_VEV6841,VEV,Bacterlgy Lab N-1345H,unit - has its own historian object,,7
+2123,RDC_NB_1F_VAV6850,VAV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,4
+2124,RDC_NB_1F_VAV6851,VAV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,4
+2125,RDC_NB_1F_VAV6870_EV6871,EV,Emergency Electrical Room N-1353,unit - has its own historian object,,10
+2126,RDC_NB_1F_VAV6880,VAV,Reception+N-1355C Storage N-1355,unit - has its own historian object,,9
+2127,RDC_NB_1F_VAV6885,VAV,Office 04 N-1355A,unit - has its own historian object,,9
+2128,RDC_NB_1F_VAV6890_EV6891,EV,Conference Room N-1355B,unit - has its own historian object,,10
+2129,RDC_NB_1F_VAV6895,VAV,Office 04 N-1356,unit - has its own historian object,,9
+2130,RDC_NB_1F_VAV6900,VAV,Office N-1357,unit - has its own historian object,,9
+2131,RDC_NB_1F_VAV6905,VAV,Open Plan N-1358,unit - has its own historian object,,9
+2132,RDC_NB_1F_VAV6910,VAV,Office N-1359,unit - has its own historian object,,9
+2133,RDC_NB_1F_VAV6915,VAV,Office N-1360,unit - has its own historian object,,9
+2134,RDC_NB_1F_VAV6920,VAV,Office N-1360B,unit - has its own historian object,,9
+2135,RDC_NB_1F_VAV6925,VAV,Office N-1361,unit - has its own historian object,,9
+2136,RDC_NB_1F_VAV6930,VAV,Office N-1362,unit - has its own historian object,,9
+2137,RDC_NB_1F_VAV6935,VAV,Workstation N-1363,unit - has its own historian object,,9
+2138,RDC_NB_1F_VAV6940,VAV,Office N-1364,unit - has its own historian object,,9
+2139,RDC_NB_1F_VAV6945,VAV,Office N-1365,unit - has its own historian object,,9
+2140,RDC_NB_1F_VAV6950,VAV,Office N-1366,unit - has its own historian object,,9
+2141,RDC_NB_1F_VAV6955,VAV,Office N-1367,unit - has its own historian object,,9
+2142,RDC_NB_1F_VAV6960,VAV,Workstation N-1368,unit - has its own historian object,,9
+2143,RDC_NB_1F_VAV6965,VAV,Office N-1369,unit - has its own historian object,,9
+2144,RDC_NB_1F_VAV6967,VAV,Office N-1370,unit - has its own historian object,,9
+2145,RDC_NB_1F_VAV6968,VAV,Workstation N-1371,unit - has its own historian object,,9
+2146,RDC_NB_1F_VAV6970_EV6971,EV,PANTRY N-1372,unit - has its own historian object,,10
+2147,RDC_NB_1F_VAV6972,VAV,Office N-1374,unit - has its own historian object,,9
+2148,RDC_NB_1F_VAV6974,VAV,Office N-1375,unit - has its own historian object,,9
+2149,RDC_NB_1F_VAV6976,VAV,Office N-1376,unit - has its own historian object,,9
+2150,RDC_NB_1F_VAV6978,VAV,Office N-1377,unit - has its own historian object,,9
+2151,RDC_NB_1F_VAV6979P,VAV,Normal Elec. N-2107,unit - has its own historian object,,9
+2152,RDC_NB_1F_VAV6980P,VAV,Emer. Elec. N-2108,unit - has its own historian object,,9
+2153,RDC_NB_1F_VAV7510_VEV7511,VEV,TC1 N-1404A,unit - has its own historian object,,7
+2154,RDC_NB_1F_VAV7530_VEV7532,VEV,Cell Bio N-1404C,unit - has its own historian object,,7
+2155,RDC_NB_1F_VAV7531_VEV7533,VEV,Cell Bio N-1404C,unit - has its own historian object,,7
+2156,RDC_NB_1F_VAV7540_VEV7541,VEV,Shared Eq Rm N-1404D,unit - has its own historian object,,7
+2157,RDC_NB_1F_VAV7550_VEV7551,VEV,TC2 N-1404E,unit - has its own historian object,,7
+2158,RDC_NB_1F_VAV7560_VEV7561,VEV,Imaging N-1404F,unit - has its own historian object,,7
+2159,RDC_NB_1F_VAV7570_VEV7571,VEV,Cell Bio Lab2 N-1404G,unit - has its own historian object,,7
+2160,RDC_NB_1F_VAV7580_VEV7581,VEV,TC3 N-1404H,unit - has its own historian object,,7
+2161,RDC_NB_1F_VAV7600_VEV7601,VEV,Cell Bio Lab3 N-1404K,unit - has its own historian object,,7
+2162,RDC_NB_1F_VAV7620,VAV,Office N-1415,unit - has its own historian object,,9
+2163,RDC_NB_1F_VAV7625,VAV,Office N-1416,unit - has its own historian object,,9
+2164,RDC_NB_1F_VAV7630,VAV,Office 05 - 2 WKS- N-1407,unit - has its own historian object,,9
+2165,RDC_NB_1F_VAV7635,VAV,Office N-1418,unit - has its own historian object,,9
+2166,RDC_NB_1F_VAV7640,VAV,Office N-1419,unit - has its own historian object,,9
+2167,RDC_NB_1F_VAV7645,VAV,Exp. Workstation N-1420,unit - has its own historian object,,9
+2168,RDC_NB_1F_VAV7650,VAV,Office N-1421,unit - has its own historian object,,9
+2169,RDC_NB_1F_VAV7655,VAV,Office N-1422,unit - has its own historian object,,9
+2170,RDC_NB_1F_VAV7660,VAV,Office 05 - 2 WKS- N-1401,unit - has its own historian object,,9
+2171,RDC_NB_1F_VAV7665_EV7666,EV,Normal Elec. N-1425,unit - has its own historian object,,10
+2172,RDC_NB_1F_VAV7670,VAV,Office N-1426,unit - has its own historian object,,9
+2173,RDC_NB_1F_VAV7675,VAV,Office N-1428,unit - has its own historian object,,9
+2174,RDC_NB_1F_VAV7680_EV7681,EV,Conf N-1429,unit - has its own historian object,,10
+2175,RDC_NB_1F_VAV7685,VAV,Office N-1433,unit - has its own historian object,,9
+2176,RDC_NB_1F_VAV7690,VAV,Office N-1435,unit - has its own historian object,,9
+2177,RDC_NB_1F_VAV7695,VAV,Office N-1437,unit - has its own historian object,,9
+2178,RDC_NB_1F_VAV7700_EV7701,EV,Emer. Elec. N-1438,unit - has its own historian object,,10
+2179,RDC_NB_1F_VAV7705,VAV,Office 05 - 24 WKS + N-1441 Room N-1442,unit - has its own historian object,,9
+2180,RDC_NB_1F_VAV7710,VAV,Workstation N-1442,unit - has its own historian object,,9
+2181,RDC_NB_1F_VAV7730_VEV7731,VEV,Microscope 2 N-1450A,unit - has its own historian object,,7
+2182,RDC_NB_1F_VAV7740_VEV7741,VEV,LN2 Stor N-1450B,unit - has its own historian object,,7
+2183,RDC_NB_1F_VAV7750_VEV7751,VEV,Flow Cyto N-1450C,unit - has its own historian object,,7
+2184,RDC_NB_1F_VAV7770_VEV7771,VEV,Qurnt N-1450E,unit - has its own historian object,,7
+2185,RDC_NB_1F_VAV7780_VEV7781,VEV,iPS-TC N-1450F,unit - has its own historian object,,7
+2186,RDC_NB_1F_VAV7800_VEV7801,VEV,IPS TISSUE CULTURE N-1450J,unit - has its own historian object,,7
+2187,RDC_NB_1F_VAV7810_VEV7811,VEV,TC1 N-1450L,unit - has its own historian object,,7
+2188,RDC_NB_1F_VAV7820_VEV7822,VEV,STEM/PCR Open Lab N-1450M,unit - has its own historian object,,7
+2189,RDC_NB_1F_VAV7821_VEV7823,VEV,STEM/PCR Open Lab N-1450M,unit - has its own historian object,,7
+2190,RDC_NB_1F_VAV7830_VEV7831,VEV,TC2 N-1450N,part - the historian carries the whole assembly,RDC_NB_1F_VAV7830_7831,0
+2191,RDC_NB_1F_VAV7840_EV7841,EV,Conf N-1458,unit - has its own historian object,,10
+2192,RDC_NB_1F_VAV7845_EV7846,EV,Conf N-1459,unit - has its own historian object,,10
+2193,RDC_NB_1F_VAV7850,VAV,Office N-1459A,unit - has its own historian object,,9
+2194,RDC_NB_1F_VAV7860,VAV,Exp. Workstation N-1461,unit - has its own historian object,,9
+2195,RDC_NB_1F_VAV7865,VAV,Workstation N-1461A,unit - has its own historian object,,9
+2196,RDC_NB_1F_VAV7870,VAV,Office N-1462,unit - has its own historian object,,9
+2197,RDC_NB_1F_VAV7875,VAV,Office N-1463,unit - has its own historian object,,9
+2198,RDC_NB_1F_VAV7880,VAV,Office N-1464,unit - has its own historian object,,9
+2199,RDC_NB_1F_VAV7885,VAV,Office N-1465,unit - has its own historian object,,9
+2200,RDC_NB_1F_VAV7890,VAV,Workstation N-1466,unit - has its own historian object,,9
+2201,RDC_NB_1F_VAV7895,VAV,Office N-1467,unit - has its own historian object,,9
+2202,RDC_NB_1F_VAV7900,VAV,Office N-1468,unit - has its own historian object,,9
+2203,RDC_NB_1F_VAV7905,VAV,Office N-1469,unit - has its own historian object,,9
+2204,RDC_NB_1F_VAV7910,VAV,Office N-1470,unit - has its own historian object,,9
+2205,RDC_NB_1F_VAV7915,VAV,Workstation N-1471,unit - has its own historian object,,9
+2206,RDC_NB_1F_VAV7920,VAV,Office N-1472,unit - has its own historian object,,9
+2207,RDC_NB_1F_VAV7925,VAV,Office N-1473,unit - has its own historian object,,9
+2208,RDC_NB_1F_VAV7930,VAV,Office N-1474,unit - has its own historian object,,9
+2209,RDC_NB_1F_VAV7935,VAV,Office N-1475,unit - has its own historian object,,9
+2210,RDC_NB_1F_VAV7940,VAV,Workstation N-1476,unit - has its own historian object,,9
+2211,RDC_NB_1F_VAV7945,VAV,Office N-1477,unit - has its own historian object,,9
+2212,RDC_NB_1F_VAV7950,VAV,Office N-1478,unit - has its own historian object,,9
+2213,RDC_NB_1F_VAV7955,VAV,Office N-1479,unit - has its own historian object,,9
+2214,RDC_NB_1F_VAV7960,VAV,Office N-1480,unit - has its own historian object,,9
+2215,RDC_NB_1F_VAV7975P,VAV,Normal Elec. N-2111,unit - has its own historian object,,9
+2216,RDC_NB_1F_VAV7980P,VAV,Emer. Elec. N-2112,unit - has its own historian object,,9
+2217,RDC_NB_1F_FCU4910,FCU,Stair 1 N-1ST01,unit - has its own historian object,,13
+2218,RDC_NB_1F_FCU4914,FCU,Mech/ FPC  N- L1 A2.1,unit - has its own historian object,,13
+2219,RDC_NB_1F_FCU4915,FCU,MDF N-1201,unit - has its own historian object,,13
+2220,RDC_NB_1F_FCU4916,FCU,Stair 1 N-1ST01,unit - has its own historian object,,13
+2221,RDC_NB_1F_FCU4917,FCU,Stair N-1ST02,unit - has its own historian object,,13
+2222,RDC_NB_1F_FCU5983,FCU,IDF N-1140,unit - has its own historian object,,13
+2223,RDC_NB_1F_FCU5984,FCU,ROBOTICS N-115J,unit - has its own historian object,,13
+2224,RDC_NB_1F_FCU5985,FCU,Corridor N-1142,unit - has its own historian object,,13
+2225,RDC_NB_1F_FCU5986,FCU,Corridor N-1142,unit - has its own historian object,,13
+2226,RDC_NB_1F_FCU5987,FCU,Stair 3 N-L1 A2.3,unit - has its own historian object,,13
+2227,RDC_NB_1F_FCU5993,FCU,Conference Room N-L0 A2.2,unit - has its own historian object,,13
+2228,RDC_NB_1F_FCU5994,FCU,Conference Room N-L0 A2.2,unit - has its own historian object,,13
+2229,RDC_NB_1F_FCU6988,FCU,Service Corridor N-1337,unit - has its own historian object,,13
+2230,RDC_NB_1F_FCU6989,FCU,Service Corridor N-1337,unit - has its own historian object,,13
+2231,RDC_NB_1F_FCU6990,FCU,Mech/ FPC N-L1 A2.3,unit - has its own historian object,,13
+2232,RDC_NB_1F_FCU6991,FCU,Mech/ FPC N-L1 A2.3,unit - has its own historian object,,13
+2233,RDC_NB_1F_FCU6992,FCU,Stair 4 N-L1 A2.3,unit - has its own historian object,,13
+2234,RDC_NB_1F_FCU7790,FCU,Stair 6 N-1ST06,unit - has its own historian object,,13
+2235,RDC_NB_1F_FCU7984,FCU,Stair 6 N-1ST06,unit - has its own historian object,,13
+2236,RDC_NB_1F_FCU7985,FCU,IDF N-1424,unit - has its own historian object,,13
+2237,RDC_NB_1F_FCU7986,FCU,IDF N-1424,unit - has its own historian object,,13
+2238,RDC_NB_1F_FCU7987,FCU,Service Corridor N-1446,unit - has its own historian object,,13
+2239,RDC_NB_1F_FCU7988,FCU,Service Corridor N-1446,unit - has its own historian object,,13
+2240,RDC_NB_1F_FCU7989,FCU,Stair 5 N-1ST05,unit - has its own historian object,,13
+2241,RDC_NB_2F_FCU4918,FCU,IDF N-2104,unit - has its own historian object,,13
+2242,RDC_NB_2F_FCU4919,FCU,IDF N-2104,unit - has its own historian object,,13
+2243,RDC_NB_2F_FCU5988,FCU,Mechanical (AHU 8512),unit - has its own historian object,,13
+2244,RDC_NB_2F_FCU5989,FCU,Stair 2 N-2ST02,unit - has its own historian object,,13
+2245,RDC_NB_2F_FCU5990,FCU,Mechanical (AHU 8512/8514),unit - has its own historian object,,13
+2246,RDC_NB_2F_FCU6993,FCU,Mechanical (AHU 8516),unit - has its own historian object,,13
+2247,RDC_NB_2F_FCU6994,FCU,Normal Elec. N-2105,unit - has its own historian object,,13
+2248,RDC_NB_2F_FCU6995,FCU,IDF N-2110,unit - has its own historian object,,13
+2249,RDC_NB_2F_FCU6996,FCU,IDF N-2110,unit - has its own historian object,,13
+2250,RDC_NB_2F_FCU7991,FCU,Normal Elec. N-2111,unit - has its own historian object,,13
+2251,RDC_NB_2F_FCU7992,FCU,Emer. Elec. N-2112,unit - has its own historian object,,13
+2252,RDC_NB_GF_FCU4911,FCU,MDF Room N-0206A,unit - has its own historian object,,13
+2253,RDC_NB_GF_FCU4912,FCU,MDF Room N-0206A,unit - has its own historian object,,13
+2254,RDC_NB_GF_FCU4913,FCU,Store N-0201,unit - has its own historian object,,13
+2255,RDC_NB_GF_FCU4920,FCU,Emergency Electrical Landing Room N-0205,unit - has its own historian object,,13
+2256,RDC_NB_GF_FCU5980,FCU,Serv Core N-0136,unit - has its own historian object,,13
+2257,RDC_NB_GF_FCU5981,FCU,Serv Core N-0136,unit - has its own historian object,,13
+2258,RDC_NB_GF_FCU5982,FCU,Stair 3 N-OST03,unit - has its own historian object,,13
+2259,RDC_NB_GF_FCU5991,FCU,Vestibule N-0103,unit - has its own historian object,,13
+2260,RDC_NB_GF_FCU5992,FCU,Vestibule N-0102,unit - has its own historian object,,13
+2261,RDC_NB_GF_FCU6981,FCU,IDF N-0133,unit - has its own historian object,,13
+2262,RDC_NB_GF_FCU6982,FCU,Mech/FPC N-0128,unit - has its own historian object,,13
+2263,RDC_NB_GF_FCU6983,FCU,Service Corridor N-0344,unit - has its own historian object,,13
+2264,RDC_NB_GF_FCU6984,FCU,Service Corridor N-0344,unit - has its own historian object,,13
+2265,RDC_NB_GF_FCU6985,FCU,IDF N-0311,unit - has its own historian object,,13
+2266,RDC_NB_GF_FCU6986,FCU,IDF N-0311,unit - has its own historian object,,13
+2267,RDC_NB_GF_FCU6987,FCU,Stair 4 N-0ST04,unit - has its own historian object,,13
+2268,RDC_NB_GF_FCU7981,FCU,SURF ANALYSIS LAB N-0404F,unit - has its own historian object,,13
+2269,RDC_NB_GF_FCU7982,FCU,SURF ANALYSIS LAB N-0404F,unit - has its own historian object,,13
+2270,RDC_NB_GF_FCU7983,FCU,Stair 5 N-0ST05,unit - has its own historian object,,13
+2271,RDC_NB_SB_Walkway_FCU9001,FCU,Pedestrian Walkway between North & South Buildings,unit - has its own historian object,,13
+2272,RDC_NB_SB_Walkway_FCU9002,FCU,Pedestrian Walkway between North & South Buildings,unit - has its own historian object,,13
+2273,RDC_NB_SB_Walkway_FCU9003,FCU,Pedestrian Walkway between North & South Buildings,unit - has its own historian object,,13
+2274,RDC_NB_SB_Walkway_FCU9004,FCU,Pedestrian Walkway between North & South Buildings,unit - has its own historian object,,13
+2275,RDC_NB_SB_Walkway_FCU9005,FCU,Pedestrian Walkway between North & South Buildings,unit - has its own historian object,,13
+2276,RDC_SB_1F_FCU0501,FCU,STAIR-04 1ST04,unit - has its own historian object,,13
+2277,RDC_SB_1F_FCU0502,FCU,UPS ROOM S-1107D,unit - has its own historian object,,13
+2278,RDC_SB_1F_FCU0503,FCU,UPS ROOM S-1107D,unit - has its own historian object,,13
+2279,RDC_SB_1F_FCU1501,FCU,IDF ROOM S-1156,unit - has its own historian object,,13
+2280,RDC_SB_1F_FCU1502,FCU,IDF ROOM S-1156,unit - has its own historian object,,13
+2281,RDC_SB_1F_FCU1503,FCU,STAIR-01 1ST01,unit - has its own historian object,,13
+2282,RDC_SB_1F_FCU2501,FCU,STAIR-03 1ST03,unit - has its own historian object,,13
+2283,RDC_SB_1F_FCU2502,FCU,IDF ROOM S-1244,unit - has its own historian object,,13
+2284,RDC_SB_1F_FCU2503,FCU,IDF ROOM S-1244,unit - has its own historian object,,13
+2285,RDC_SB_1F_FCU2504,FCU,UPS ROOM S-1276,unit - has its own historian object,,13
+2286,RDC_SB_1F_FCU2505,FCU,UPS ROOM S-1276,unit - has its own historian object,,13
+2287,RDC_SB_1F_FCU3501,FCU,STAIR-04 1ST04,unit - has its own historian object,,13
+2288,RDC_SB_2F_FCU0201,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2289,RDC_SB_2F_FCU0202,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2290,RDC_SB_2F_FCU0203,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2291,RDC_SB_2F_FCU0204,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2292,RDC_SB_2F_FCU0205,FCU,Normal Elec. S-2103,unit - has its own historian object,,13
+2293,RDC_SB_2F_FCU0206,FCU,Normal Elec. S-2103,unit - has its own historian object,,13
+2294,RDC_SB_2F_FCU0207,FCU,Emerg. Elec. S-2104,unit - has its own historian object,,13
+2295,RDC_SB_2F_FCU0208,FCU,Emerg. Elec. S-2104,unit - has its own historian object,,13
+2296,RDC_SB_2F_FCU1201,FCU,IDF S-2102,unit - has its own historian object,,13
+2297,RDC_SB_2F_FCU1202,FCU,IDF S-2102,unit - has its own historian object,,13
+2298,RDC_SB_2F_FCU2201,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2299,RDC_SB_2F_FCU2202,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2300,RDC_SB_2F_FCU2203,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2301,RDC_SB_2F_FCU2204,FCU,Emerg. Elec. S-2105,unit - has its own historian object,,13
+2302,RDC_SB_2F_FCU2205,FCU,Emerg. Elec. S-2105,unit - has its own historian object,,13
+2303,RDC_SB_2F_FCU2206,FCU,Normal Elec. S-2106,unit - has its own historian object,,13
+2304,RDC_SB_2F_FCU2207,FCU,Normal Elec. S-2106,unit - has its own historian object,,13
+2305,RDC_SB_2F_FCU2208,FCU,IDF S-2107,unit - has its own historian object,,13
+2306,RDC_SB_2F_FCU2209,FCU,IDF S-2107,unit - has its own historian object,,13
+2307,RDC_SB_2F_FCU2210,FCU,South Penthouse S-2101,unit - has its own historian object,,13
+2308,RDC_SB_GF_FCU0001,FCU,STAIR-02 S-02T02,unit - has its own historian object,,13
+2309,RDC_SB_GF_FCU1001,FCU,QTEL ROOM S-0132,unit - has its own historian object,,13
+2310,RDC_SB_GF_FCU1002,FCU,QTEL ROOM S-0132,unit - has its own historian object,,13
+2311,RDC_SB_GF_FCU1003,FCU,IDF ROOM S-0133,unit - has its own historian object,,13
+2312,RDC_SB_GF_FCU1004,FCU,IDF ROOM S-0133,unit - has its own historian object,,13
+2313,RDC_SB_GF_FCU1005,FCU,EC MDF ROOM S-0134,unit - has its own historian object,,13
+2314,RDC_SB_GF_FCU1006,FCU,EC MDF ROOM S-0134,unit - has its own historian object,,13
+2315,RDC_SB_GF_FCU1007,FCU,MECHANICAL ROOM S-0136,unit - has its own historian object,,13
+2316,RDC_SB_GF_FCU1008,FCU,STAIR-01 S-01T01,unit - has its own historian object,,13
+2317,RDC_SB_GF_FCU2001,FCU,STAIR-03 S-0ST03,unit - has its own historian object,,13
+2318,RDC_SB_GF_FCU2002,FCU,AV ROOM S-0210,unit - has its own historian object,,13
+2319,RDC_SB_GF_FCU2003,FCU,AV ROOM S-0210,unit - has its own historian object,,13
+2320,RDC_SB_GF_FCU2004,FCU,IDF ROOM S-0271,unit - has its own historian object,,13
+2321,RDC_SB_GF_FCU2005,FCU,IDF ROOM S-0271,unit - has its own historian object,,13
+2322,RDC_SB_GF_FCU3001,FCU,STAIR-04 S-0ST04,unit - has its own historian object,,13
+2323,RDC_UB_GF_FCU8001,FCU,GENERAL STORAGE ROOM U-0129,unit - has its own historian object,,13
+2324,RDC_UB_GF_FCU8002,FCU,SHOP U-0135,unit - has its own historian object,,13
+2325,RDC_UB_GF_FCU8003,FCU,MAIL ROOM U-0128,unit - has its own historian object,,13
+2326,RDC_UB_GF_FCU8004,FCU,GENERAL STORAGE U-0108,unit - has its own historian object,,13
+2327,RDC_UB_GF_FCU8005,FCU,RECYCLING ROOM U-0109,unit - has its own historian object,,13
+2328,RDC_UB_GF_FCU8006,FCU,CYLINDER STORAGE U-0105,unit - has its own historian object,,13
+2329,RDC_UB_GF_FCU8007,FCU,LN2 DISPENSER U-0104,unit - has its own historian object,,13
+2330,RDC_UB_GF_FCU8008,FCU,FLAMMABLE STORAGE U-0103,unit - has its own historian object,,13
+2331,RDC_UB_GF_FCU8009,FCU,FLAMMABLE WASTE STORAGE U-0102,unit - has its own historian object,,13
+2332,RDC_UB_GF_FCU8010,FCU,BMS ROOM U-0117,unit - has its own historian object,,13
+2333,RDC_UB_GF_FCU8011,FCU,BREAK ROOM U-0118,unit - has its own historian object,,13
+2334,RDC_UB_GF_FCU8012,FCU,OFFICE SPACE U-0119,unit - has its own historian object,,13
+2335,RDC_UB_GF_FCU8013,FCU,WET/MECH/FIRE ROOM U-0120,unit - has its own historian object,,13
+2336,RDC_UB_GF_FCU8014,FCU,WET/MECH/FIRE ROOM U-0120,unit - has its own historian object,,13
+2337,RDC_UB_GF_FCU8502,FCU,SHIPPING AND RECEIVING L0,unit - has its own historian object,,13
+2338,RDC_UB_GF_FCU8503,FCU,SHIPPING AND RECEIVING L0,unit - has its own historian object,,13
+2339,RDC_UB_GF_FCU8504,FCU,SHIPPING AND RECEIVING L0,unit - has its own historian object,,13
+2340,RDC_UB_GF_FCU8505,FCU,SHIPPING AND RECEIVING L0,unit - has its own historian object,,13
+2341,RDC_UB_GF_FCU8512,FCU,WET/MECH/FIRE ROOM U-0120,unit - has its own historian object,,13
+2342,RDC_UB_GF_FCU8513,FCU,WET/MECH/FIRE ROOM U-0120,unit - has its own historian object,,13
+2343,RDC_UB_GF_FCU8514,FCU,WET/MECH/FIRE ROOM U-0120,unit - has its own historian object,,13
+2344,RDC_UB_GF_FCU8515,FCU,WET/MECH/FIRE ROOM U-0120,unit - has its own historian object,,13
+2345,RDC_UB_MF_FCU8501,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2346,RDC_UB_MF_FCU8506,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2347,RDC_UB_MF_FCU8507,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2348,RDC_UB_MF_FCU8508,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2349,RDC_UB_MF_FCU8509,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2350,RDC_UB_MF_FCU8510,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2351,RDC_UB_MF_FCU8511,FCU,MECHANICAL ROOM U-1101,unit - has its own historian object,,13
+2352,RDC_SB_L0_AT-1001,AT,Corridor S-0137,part - the historian carries the whole assembly,RDC_SB_GF_CAV1001,0
+2353,RDC_SB_L0_AT-1002,AT,Computer Lab S-0139,"part - but more than one host, needs a decision",RDC_SB_GF_CAV1002 / RDC_SB_GF_VAV1003_VEV1002,0
+2354,RDC_SB_L0_EV-1001,EV,Computer Lab S-0139,part - the historian carries the whole assembly,RDC_SB_GF_CAV1001,0
+2355,RDC_SB_L0_AT-1003,AT,NOC S-0140A,part - the historian carries the whole assembly,RDC_SB_GF_VAV1003_VEV1002,0
+2356,RDC_SB_L0_EV-1002,EV,NOC S-0140A,"part - but more than one host, needs a decision",RDC_SB_GF_CAV1002 / RDC_SB_GF_VAV1003_VEV1002,0
+2357,RDC_SB_L0_AT-1004,AT,Dedicated Cyber SOC/NOC Lab S-0141,part - the historian carries the whole assembly,RDC_SB_GF_VAV1004,0
+2358,RDC_SB_L0_AT-1005,AT,Normal & Emergency Elec. Landing S-0142,part - the historian carries the whole assembly,RDC_SB_GF_CAV1005,0
+2359,RDC_SB_L0_AT-1006,AT,Corridor S-0137,part - the historian carries the whole assembly,RDC_SB_GF_CAV1006,0
+2360,RDC_SB_L0_AT-1007,AT,UPS S-0145,part - the historian carries the whole assembly,RDC_SB_GF_CAV1007,0
+2361,RDC_SB_L0_EV-1003,EV,UPS S-0145,part - the historian carries the whole assembly,RDC_SB_GF_VAV1003_VEV1002,0
+2362,RDC_SB_L0_AT-1008,AT,Cyber/Embedded/Dist System Electrical Lab S-0146,part - the historian carries the whole assembly,RDC_SB_GF_VAV1008,0
+2363,RDC_SB_L0_AT-1009,AT,Service Dock S-0151,part - the historian carries the whole assembly,RDC_SB_GF_CAV1009,0
+2364,RDC_NB_GF_AT-4005,AT,Electrical N-0202,part - the historian carries the whole assembly,RDC_NB_GF_VAV4005_EV4006,0
+2365,RDC_NB_GF_AT-4035,AT,Corridor N-0207A,part - the historian carries the whole assembly,RDC_NB_GF_CAV4035,0
+2366,RDC_NB_GF_AT-4100,AT,Emergency Elec. Room N-0225,part - the historian carries the whole assembly,RDC_NB_GF_VAV4100_EV4101,0
+2367,RDC_NB_GF_AT-4105,AT,Normal Electrical Room N-0225,part - the historian carries the whole assembly,RDC_NB_GF_VAV4105_EV4106,0
+2368,RDC_NB_GF_AT-4110,AT,Conference Room N-0227,part - the historian carries the whole assembly,RDC_NB_GF_VAV4110_EV4111,0
+2369,RDC_NB_GF_AT-4115,AT,Office N-0228,part - the historian carries the whole assembly,RDC_NB_GF_VAV4115_EV4116,0
+2370,RDC_NB_GF_AT-4120,AT,Office N-0229,part - the historian carries the whole assembly,RDC_NB_GF_VAV4120_EV4121,0
+2371,RDC_NB_GF_AT-4125,AT,Office N-0230,part - the historian carries the whole assembly,RDC_NB_GF_VAV4125_EV4126,0
+2372,RDC_NB_GF_AT-4130,AT,Office N-0231,part - the historian carries the whole assembly,RDC_NB_GF_VAV4130_EV4131,0
+2373,RDC_NB_GF_AT-4135,AT,Office N-0232,part - the historian carries the whole assembly,RDC_NB_GF_VAV4135_EV4136,0
+2374,RDC_NB_GF_AT-4140,AT,Conference Room N-0233,part - the historian carries the whole assembly,RDC_NB_GF_VAV4140_EV4141,0
+2375,RDC_NB_GF_AT-4145,AT,Office N-0234,part - the historian carries the whole assembly,RDC_NB_GF_VAV4145_EV4146,0
+2376,RDC_NB_GF_AT-4165,AT,Office N-0236,part - the historian carries the whole assembly,RDC_NB_GF_VAV4165_EV4166,0
+2377,RDC_NB_GF_AT-4170,AT,Storage Room N-0237,part - the historian carries the whole assembly,RDC_NB_GF_CAV4170,0
+2378,RDC_NB_GF_AT-4225,AT,Office N-0247,part - the historian carries the whole assembly,RDC_NB_GF_VAV4225,0
+2379,RDC_NB_GF_AT-4230,AT,Office N-0248,part - the historian carries the whole assembly,RDC_NB_GF_VAV4230,0
+2380,RDC_NB_GF_AT-4235,AT,Workstation N-0250,part - the historian carries the whole assembly,RDC_NB_GF_VAV4235,0
+2381,RDC_NB_GF_AT-4240,AT,Office N-0251,part - the historian carries the whole assembly,RDC_NB_GF_VAV4240,0
+2382,RDC_NB_GF_AT-4245,AT,Office N-0252,part - the historian carries the whole assembly,RDC_NB_GF_VAV4245,0
+2383,RDC_NB_GF_AT-4250,AT,Office N-0253,part - the historian carries the whole assembly,RDC_NB_GF_VAV4250,0
+2384,RDC_NB_GF_AT-4255,AT,Office N-0254,part - the historian carries the whole assembly,RDC_NB_GF_VAV4255,0
+2385,RDC_NB_GF_AT-4260,AT,Workstation N-0255,part - the historian carries the whole assembly,RDC_NB_GF_VAV4260,0
+2386,RDC_NB_GF_AT-4265,AT,Office N-0256,part - the historian carries the whole assembly,RDC_NB_GF_VAV4265,0
+2387,RDC_NB_GF_AT-4270,AT,Office N-0257,part - the historian carries the whole assembly,RDC_NB_GF_VAV4270,0
+2388,RDC_NB_GF_AT-4275,AT,Office N-0258,part - the historian carries the whole assembly,RDC_NB_GF_VAV4275,0
+2389,RDC_NB_GF_AT-4280,AT,Office N-0259,part - the historian carries the whole assembly,RDC_NB_GF_VAV4280,0
+2390,RDC_NB_GF_AT-4285,AT,Workstation N-0260,part - the historian carries the whole assembly,RDC_NB_GF_VAV4285,0
+2391,RDC_NB_GF_AT-4290,AT,Office N-0261,part - the historian carries the whole assembly,RDC_NB_GF_VAV4290,0
+2392,RDC_NB_GF_AT-4295,AT,Office N-0262,part - the historian carries the whole assembly,RDC_NB_GF_VAV4295,0
+2393,RDC_NB_GF_AT-4300,AT,Office N-0263,part - the historian carries the whole assembly,RDC_NB_GF_VAV4300,0
+2394,RDC_NB_GF_AT-4305,AT,Office N-0264,part - the historian carries the whole assembly,RDC_NB_GF_VAV4305,0
+2395,RDC_NB_GF_AT-4310,AT,Workstation N-0265,part - the historian carries the whole assembly,RDC_NB_GF_VAV4310,0
+2396,RDC_NB_GF_CEV-4031,CEV,Service Corridor N-0207,unit - has its own historian object,,3
+2397,RDC_NB_GF_EV-4028,EV,MDF ROOM N-0206A,part - the historian carries the whole assembly,RDC_NB_GF_EAV4028,0
+2398,RDC_NB_GF_EV-4236,EV,Office 05 -8WS- N-0250,part - the historian carries the whole assembly,RDC_NB_GF_EAV4236,0
+2399,RDC_NB_GF_EV-4261,EV,Office 05 -8WS- N-0255,part - the historian carries the whole assembly,RDC_NB_GF_EAV4261,0
+2400,RDC_NB_GF_EV-4286,EV,Office 05 -8WS- N-0260,part - the historian carries the whole assembly,RDC_NB_GF_EAV4286,0
+2401,RDC_NB_GF_EV-4311,EV,WORKSTATION N-0265,part - the historian carries the whole assembly,RDC_NB_GF_EAV4311,0
+2402,RDC_NB_GF_VEV-4041,VEV,Air Quality High Bay N-0215A,unit - has its own historian object,,3
+2403,RDC_NB_GF_FEV-4193,FEV,CSP Lab N-0240B,unit - has its own historian object,,2
+2404,RDC_NB_GF_FEV-4194,FEV,CSP Lab N-0240B,unit - has its own historian object,,2
+2405,RDC_NB_GF_VEV-4213A,VEV,Desal Lab N-0240D,unit - has its own historian object,,3
+2406,RDC_NB_GF_VEV-4213B,VEV,Desal Lab N-0240D,unit - has its own historian object,,2
+2407,RDC_NB_GF_FEV-4214,FEV,Desal Lab N-0240D,unit - has its own historian object,,2
+2408,RDC_NB_GF_FEV-4215,FEV,Desal Lab N-0240D,unit - has its own historian object,,2
+2409,RDC_NB_GF_FEV-4216,FEV,Desal Lab N-0240D,unit - has its own historian object,,2
+2410,RDC_SB_L0_AT-0003,AT,Entrance Lobby S-0102,part - the historian carries the whole assembly,RDC_SB_GF_VAV0003,0
+2411,RDC_SB_L0_AT-0006,AT,Normal Elec. S-0107,part - the historian carries the whole assembly,RDC_SB_GF_CAV0006,0
+2412,RDC_SB_L0_AT-0007,AT,Conf S-0109,part - the historian carries the whole assembly,RDC_SB_GF_VAV0007,0
+2413,RDC_SB_L0_AT-0008,AT,Computer Research Lab 3 S-0110,part - the historian carries the whole assembly,RDC_SB_GF_VAV0008,0
+2414,RDC_SB_L0_AT-0009,AT,Phone Booth S-0111,part - the historian carries the whole assembly,RDC_SB_GF_VAV0009,0
+2415,RDC_SB_L0_AT-0010,AT,Phone Booth S-0112,part - the historian carries the whole assembly,RDC_SB_GF_VAV0010,0
+2416,RDC_SB_L0_AT-0011,AT,Conference Room S-0113,part - the historian carries the whole assembly,RDC_SB_GF_VAV0011,0
+2417,RDC_SB_L0_AT-0012,AT,Computer Research Lab 2 S-0114,part - the historian carries the whole assembly,RDC_SB_GF_VAV0012,0
+2418,RDC_SB_L0_AT-0013,AT,Phone Booth S-0115,part - the historian carries the whole assembly,RDC_SB_GF_VAV0013,0
+2419,RDC_SB_L0_AT-0014,AT,Phone Booth S-0116,part - the historian carries the whole assembly,RDC_SB_GF_VAV0014,0
+2420,RDC_SB_L0_AT-0015,AT,Corridor S-0117,part - the historian carries the whole assembly,RDC_SB_GF_CAV0015,0
+2421,RDC_SB_L0_AT-0016,AT,Conf S-0118,part - the historian carries the whole assembly,RDC_SB_GF_VAV0016,0
+2422,RDC_SB_L0_AT-0017,AT,Computer Research Lab 1 S-0119,part - the historian carries the whole assembly,RDC_SB_GF_VAV0017,0
+2423,RDC_SB_L0_AT-0018,AT,Restaurant S-0123,part - the historian carries the whole assembly,RDC_SB_GF_VAV0018,0
+2424,RDC_SB_L0_AT-0019,AT,Restaurant S-0123,part - the historian carries the whole assembly,RDC_SB_GF_VAV0019,0
+2425,RDC_SB_L0_AT-0020,AT,Storage S-0120B,part - the historian carries the whole assembly,RDC_SB_GF_CAV0020,0
+2426,RDC_SB_L0_AT-0021,AT,Vestibule S-0125,part - the historian carries the whole assembly,RDC_SB_GF_CAV0021,0
+2427,RDC_SB_L0_AT-0022,AT,Men S-0126,part - the historian carries the whole assembly,RDC_SB_GF_CAV0022,0
+2428,RDC_SB_L0_AT-0023,AT,Women S-0127,part - the historian carries the whole assembly,RDC_SB_GF_CAV0023,0
+2429,RDC_SB_L0_AT-0024,AT,NORM. ELEC. S-0129,part - the historian carries the whole assembly,RDC_SB_GF_CAV0024,0
+2430,RDC_SB_L0_AT-0025,AT,Alt Recording/Sound S-0135,part - the historian carries the whole assembly,RDC_SB_GF_VAV0025,0
+2431,RDC_NB_GF_AT-4001,AT,Store N-0201,part - the historian carries the whole assembly,RDC_NB_GF_VAV4001,0
+2432,RDC_NB_GF_AT-4312,AT,Breakout N-0265B,part - the historian carries the whole assembly,RDC_NB_GF_VAV4312,0
+2433,RDC_NB_GF_AT-4315,AT,Vestibule N-0270A,part - the historian carries the whole assembly,RDC_NB_GF_CAV4315_EV4316,0
+2434,RDC_NB_GF_AT-5025,AT,Corridor N-0110,part - the historian carries the whole assembly,RDC_NB_GF_VAV5025,0
+2435,RDC_NB_GF_AT-5100,AT,Office N-0115,part - the historian carries the whole assembly,RDC_NB_GF_VAV5100_EV5101,0
+2436,RDC_NB_GF_AT-5105,AT,Office N-0116,part - the historian carries the whole assembly,RDC_NB_GF_VAV5105,0
+2437,RDC_NB_GF_AT-5110,AT,Office N-0117,part - the historian carries the whole assembly,RDC_NB_GF_VAV5110,0
+2438,RDC_NB_GF_AT-5115,AT,Office N-0118,part - the historian carries the whole assembly,RDC_NB_GF_VAV5115,0
+2439,RDC_NB_GF_AT-5120,AT,Office N-0119,part - the historian carries the whole assembly,RDC_NB_GF_VAV5120,0
+2440,RDC_NB_GF_AT-5125,AT,Office N-0120,part - the historian carries the whole assembly,RDC_NB_GF_VAV5125,0
+2441,RDC_NB_GF_AT-5130,AT,Office N-0121,part - the historian carries the whole assembly,RDC_NB_GF_VAV5130,0
+2442,RDC_NB_GF_AT-5135,AT,Office N-0122,part - the historian carries the whole assembly,RDC_NB_GF_VAV5135,0
+2443,RDC_NB_GF_AT-5140,AT,Office N-0123,part - the historian carries the whole assembly,RDC_NB_GF_VAV5140,0
+2444,RDC_NB_GF_AT-5145,AT,Office N-0124,part - the historian carries the whole assembly,RDC_NB_GF_VAV5145,0
+2445,RDC_NB_GF_AT-5150,AT,Office N-0125,part - the historian carries the whole assembly,RDC_NB_GF_VAV5150,0
+2446,RDC_NB_GF_AT-5152,AT,Office N-0126,part - the historian carries the whole assembly,RDC_NB_GF_VAV5152,0
+2447,RDC_NB_GF_AT-5155,AT,Office N-0127,part - the historian carries the whole assembly,RDC_NB_GF_VAV5155,0
+2448,RDC_NB_GF_AT-5156,AT,Office 04 N-0129,part - the historian carries the whole assembly,RDC_NB_GF_VAV5156,0
+2449,RDC_NB_GF_AT-5160,AT,MENS ROOM N-0130,part - the historian carries the whole assembly,RDC_NB_GF_CAV5160_EV5161,0
+2450,RDC_NB_GF_AT-5165,AT,Corridor N-0134,part - the historian carries the whole assembly,RDC_NB_GF_VAV5165_EV5166,0
+2451,RDC_NB_GF_AT-5280,AT,Store N-0146,part - the historian carries the whole assembly,RDC_NB_GF_CAV5280,0
+2452,RDC_NB_GF_AT-5290,AT,Pantry N-0148,part - the historian carries the whole assembly,RDC_NB_GF_CAV5290_EV5291,0
+2453,RDC_NB_GF_AT-5295,AT,Conference Room N-0149,part - the historian carries the whole assembly,RDC_NB_GF_VAV5295_EV5296,0
+2454,RDC_NB_GF_AT-5300,AT,Corridor N-0150,part - the historian carries the whole assembly,RDC_NB_GF_VAV5300,0
+2455,RDC_NB_GF_AT-5305,AT,Office N-0151,part - the historian carries the whole assembly,RDC_NB_GF_VAV5305,0
+2456,RDC_NB_GF_AT-5310,AT,Office N-0152,part - the historian carries the whole assembly,RDC_NB_GF_VAV5310,0
+2457,RDC_NB_GF_AT-5315,AT,Open Office N-0153,part - the historian carries the whole assembly,RDC_NB_GF_VAV5315,0
+2458,RDC_NB_GF_AT-5320,AT,Office N-0154,part - the historian carries the whole assembly,RDC_NB_GF_CAV5320,0
+2459,RDC_NB_GF_AT-5325,AT,Office N-0155,part - the historian carries the whole assembly,RDC_NB_GF_VAV5325,0
+2460,RDC_NB_GF_AT-5330,AT,Office N-0156,part - the historian carries the whole assembly,RDC_NB_GF_VAV5330,0
+2461,RDC_NB_GF_AT-5335,AT,Office N-0157,part - the historian carries the whole assembly,RDC_NB_GF_VAV5335,0
+2462,RDC_NB_GF_AT-5340,AT,Office N-0158,part - the historian carries the whole assembly,RDC_NB_GF_VAV5340,0
+2463,RDC_NB_GF_AT-5345,AT,Office N-0159,part - the historian carries the whole assembly,RDC_NB_GF_VAV5345,0
+2464,RDC_NB_GF_AT-5350,AT,Open Office N-0160,part - the historian carries the whole assembly,RDC_NB_GF_CAV5350,0
+2465,RDC_NB_GF_AT-5355,AT,Office N-0161,part - the historian carries the whole assembly,RDC_NB_GF_VAV5355,0
+2466,RDC_NB_GF_AT-5360,AT,Office N-0162,part - the historian carries the whole assembly,RDC_NB_GF_VAV5360,0
+2467,RDC_NB_GF_AT-5365,AT,Office N-0163,part - the historian carries the whole assembly,RDC_NB_GF_VAV5365,0
+2468,RDC_NB_GF_AT-5370,AT,Office N-0164,part - the historian carries the whole assembly,RDC_NB_GF_VAV5370,0
+2469,RDC_NB_GF_AT-5375,AT,Open Office N-0165,part - the historian carries the whole assembly,RDC_NB_GF_CAV5375,0
+2470,RDC_NB_GF_AT-5380,AT,Office N-0166,part - the historian carries the whole assembly,RDC_NB_GF_VAV5380,0
+2471,RDC_NB_GF_AT-5385,AT,Office N-0167A,part - the historian carries the whole assembly,RDC_NB_GF_VAV5385,0
+2472,RDC_NB_GF_AT-5390,AT,Office 04 N-0168,part - the historian carries the whole assembly,RDC_NB_GF_VAV5390,0
+2473,RDC_NB_GF_AT-5415,AT,Office 04 N-0174,part - the historian carries the whole assembly,RDC_NB_GF_VAV5415,0
+2474,RDC_NB_GF_EV-4316,EV,Vestibule N-0270A,part - the historian carries the whole assembly,RDC_NB_GF_CAV4315_EV4316,0
+2475,RDC_NB_GF_EV-5026,EV,Corridor N-0110,part - the historian carries the whole assembly,RDC_NB_GF_EAV5026,0
+2476,RDC_NB_GF_EV-5161,EV,Womens+N-0130A+N-0132 JC N-0130,part - the historian carries the whole assembly,RDC_NB_GF_CAV5160_EV5161,0
+2477,RDC_NB_GF_EV-5163,EV,IDF N-0133,part - the historian carries the whole assembly,RDC_NB_GF_EAV5163,0
+2478,RDC_NB_GF_EV-5291,EV,Pantry N-0148,part - the historian carries the whole assembly,RDC_NB_GF_CAV5290_EV5291,0
+2479,RDC_NB_GF_VEV-5052A,VEV,Analytical Core Lab 1 N-0114A,unit - has its own historian object,,3
+2480,RDC_NB_GF_VEV-5052B,VEV,Analytical Core Lab 1 N-0114A,unit - has its own historian object,,2
+2481,RDC_NB_GF_FEV-5053,FEV,Analytical Core Lab 1 N-0114A,unit - has its own historian object,,2
+2482,RDC_NB_GF_VEV-5055,VEV,Analytical Core Lab 1 N-0114A,unit - has its own historian object,,2
+2483,RDC_NB_GF_FEV-5062,FEV,Clean Lab N-0114B,unit - has its own historian object,,2
+2484,RDC_NB_GF_VEV-5071,VEV,Dirty Lab N-0114C,unit - has its own historian object,,3
+2485,RDC_NB_GF_FEV-5072,FEV,Dirty Lab N-0114C,unit - has its own historian object,,2
+2486,RDC_NB_GF_FEV-5073,FEV,Dirty Lab N-0114C,unit - has its own historian object,,2
+2487,RDC_NB_GF_FEV-5074,FEV,Dirty Lab N-0114C,unit - has its own historian object,,2
+2488,RDC_NB_GF_FEV-5082,FEV,Bio Analyt N-0114D,unit - has its own historian object,,2
+2489,RDC_NB_GF_FEV-5083,FEV,Bio Analyt N-0114D,unit - has its own historian object,,2
+2490,RDC_NB_GF_VEV-5092,VEV,Air Quality N-0114F,unit - has its own historian object,,3
+2491,RDC_NB_GF_FEV-5093,FEV,Air Quality N-0114F,unit - has its own historian object,,2
+2492,RDC_NB_GF_FEV-5094,FEV,Air Quality N-0114F,unit - has its own historian object,,2
+2493,RDC_NB_GF_FEV-5095A,FEV,Air Quality N-0114F,unit - has its own historian object,,2
+2494,RDC_NB_GF_FEV-5095B,FEV,Air Quality N-0114F,unit - has its own historian object,,2
+2495,RDC_NB_GF_VEV-5182A,VEV,Analyt Core-2 N-0140A,unit - has its own historian object,,3
+2496,RDC_NB_GF_VEV-5182B,VEV,Analyt Core-2 N-0140A,unit - has its own historian object,,2
+2497,RDC_NB_GF_FEV-5183,FEV,Analytical Core Lab 2 N-0140A,unit - has its own historian object,,2
+2498,RDC_NB_GF_VEV-5192a,VEV,Furnace Room N-0140B,part - the historian carries the whole assembly,RDC_NB_GF_FEV5192A,0
+2499,RDC_NB_GF_VEV-5192b,VEV,Furnace Room N-0140B,part - the historian carries the whole assembly,RDC_NB_GF_FEV5192B,0
+2500,RDC_NB_GF_FEV-5203,FEV,Prep Lab N-0140C,unit - has its own historian object,,2
+2501,RDC_NB_GF_VEV-5211,VEV,Sputter Room N-0140D,unit - has its own historian object,,2
+2502,RDC_NB_GF_VEV-5221,VEV,MBE/Evap Room N-0140E,unit - has its own historian object,,2
+2503,RDC_NB_GF_FEV-5222,FEV,Evap Room N-0140E,unit - has its own historian object,,2
+2504,RDC_NB_GF_FEV-5223,FEV,Evap Room N-0140E,unit - has its own historian object,,2
+2505,RDC_NB_GF_VEV-5231,VEV,ALD Room N-0140F,unit - has its own historian object,,3
+2506,RDC_NB_GF_CEV-5241,CEV,Air Lock N-0140G,part - the historian carries the whole assembly,RDC_NB_GF_CAV5240_CEV5241,0
+2507,RDC_NB_GF_FEV-5271,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2508,RDC_NB_GF_FEV-5272,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2509,RDC_NB_GF_FEV-5273,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2510,RDC_NB_GF_FEV-5274,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2511,RDC_NB_GF_FEV-5275,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2512,RDC_NB_GF_FEV-5276,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2513,RDC_NB_GF_FEV-5277,FEV,Org Chem N-0140K,unit - has its own historian object,,2
+2514,RDC_SB_L0_AT-0001,AT,Vestibule S-0101,part - the historian carries the whole assembly,RDC_SB_GF_VAV0001,0
+2515,RDC_SB_L0_AT-0002,AT,Employee Entry Lobby S-0102,part - the historian carries the whole assembly,RDC_SB_GF_VAV0002,0
+2516,RDC_SB_L0_AT-0004,AT,Corridor S-0104,part - the historian carries the whole assembly,RDC_SB_GF_CAV0004,0
+2517,RDC_SB_L0_AT-0005,AT,Men S-0105,part - the historian carries the whole assembly,RDC_SB_GF_CAV0005,0
+2518,RDC_SB_L0_A1.2_AT-2001,AT,High-Density Room S-0206,part - the historian carries the whole assembly,RDC_SB_GF_CAV2001,0
+2519,RDC_SB_L0_A1.3_AT-2001,AT,WOMEN S-0205,part - the historian carries the whole assembly,RDC_SB_GF_CAV2001,0
+2520,RDC_NB_GF_AT-5005,AT,Vestibule N-0105,part - the historian carries the whole assembly,RDC_NB_GF_CAV5005,0
+2521,RDC_NB_GF_AT-5010,AT,Conf N-0106,part - the historian carries the whole assembly,RDC_NB_GF_VAV5010_EV5011,0
+2522,RDC_NB_GF_AT-5015,AT,Conference N-0107,part - the historian carries the whole assembly,RDC_NB_GF_VAV5015_EV5016,0
+2523,RDC_NB_GF_AT-5020,AT,Mens + Vestibule + N-0109 N-0108,part - the historian carries the whole assembly,RDC_NB_GF_CAV5020_EV5021,0
+2524,RDC_NB_GF_AT-5030,AT,Confr Room N-0112,part - the historian carries the whole assembly,RDC_NB_GF_VAV5030_EV5031,0
+2525,RDC_NB_GF_AT-5040,AT,Normal Elec. N-0113,part - the historian carries the whole assembly,RDC_NB_GF_VAV5040_EV5041,0
+2526,RDC_NB_GF_AT-5045,AT,Emergency Elec. N-0114,part - the historian carries the whole assembly,RDC_NB_GF_VAV5045_EV5046,0
+2527,RDC_NB_GF_AT-5395,AT,Exp. Office N-0169,part - the historian carries the whole assembly,RDC_NB_GF_VAV5395,0
+2528,RDC_NB_GF_AT-5400,AT,Reception Area N-0170,part - the historian carries the whole assembly,RDC_NB_GF_VAV5400,0
+2529,RDC_NB_GF_AT-5405,AT,Exp. Office N-0172,part - the historian carries the whole assembly,RDC_NB_GF_VAV5405,0
+2530,RDC_NB_GF_AT-5410,AT,Conf Room N-0173,part - the historian carries the whole assembly,RDC_NB_GF_VAV5410_EV5411,0
+2531,RDC_NB_GF_AT-5000,AT,Lobby North N-0101,part - the historian carries the whole assembly,RDC_NB_GF_VAV5000_EV5002,0
+2532,RDC_NB_GF_AT-5001,AT,Lobby North N-0101,part - the historian carries the whole assembly,RDC_NB_GF_VAV5001_EV5003,0
+2533,RDC_NB_GF_AT-6000,AT,Conf Room N-0301,part - the historian carries the whole assembly,RDC_NB_GF_VAV6000_EV6001,0
+2534,RDC_NB_GF_AT-6005,AT,Vestibule N-0302,part - the historian carries the whole assembly,RDC_NB_GF_CAV6005,0
+2535,RDC_NB_GF_AT-6010,AT,Conf N-0304,part - the historian carries the whole assembly,RDC_NB_GF_VAV6010_EV6011,0
+2536,RDC_NB_GF_AT-6015,AT,Men N-0306,part - the historian carries the whole assembly,RDC_NB_GF_CAV6015_EV6016,0
+2537,RDC_NB_GF_AT-6020,AT,Vestibule N-0308,part - the historian carries the whole assembly,RDC_NB_GF_CAV6020,0
+2538,RDC_NB_GF_AT-6025,AT,Normal Elec. N-0310,part - the historian carries the whole assembly,RDC_NB_GF_VAV6025_EV6026,0
+2539,RDC_NB_GF_AT-6240,AT,Emergency Electrical N-0350A,part - the historian carries the whole assembly,RDC_NB_GF_VAV6240_EV6241,0
+2540,RDC_NB_GF_AT-6300,AT,Store N-0362B,part - the historian carries the whole assembly,RDC_NB_GF_VAV6300,0
+2541,RDC_NB_GF_AT-6305,AT,Office N-0363,part - the historian carries the whole assembly,RDC_NB_GF_VAV6305,0
+2542,RDC_NB_GF_AT-6310,AT,Office N-0364,part - the historian carries the whole assembly,RDC_NB_GF_VAV6310,0
+2543,RDC_NB_GF_AT-6315,AT,Conf Room N-0364A,part - the historian carries the whole assembly,RDC_NB_GF_VAV6315_EV6316,0
+2544,RDC_NB_GF_EV-6316,EV,Conf Room N-0364A,part - the historian carries the whole assembly,RDC_NB_GF_VAV6315_EV6316,0
+2545,RDC_NB_GF_EV-5021,EV,Mens + Vestibule + N-0109 N-0108,part - the historian carries the whole assembly,RDC_NB_GF_CAV5020_EV5021,0
+2546,RDC_NB_GF_EV-5035,EV,Confr Room N-0112,neither - nothing in the historian knows this number,,0
+2547,RDC_NB_GF_EV-6016,EV,Men N-0306,part - the historian carries the whole assembly,RDC_NB_GF_CAV6015_EV6016,0
+2548,RDC_NB_GF_EV-6127,EV,IDF N-0311,part - the historian carries the whole assembly,RDC_NB_GF_EAV6127,0
+2549,RDC_SB_L0_AT-2002,AT,Conference Room S-0207,part - the historian carries the whole assembly,RDC_SB_GF_VAV2002,0
+2550,RDC_SB_L0_AT-2003,AT,Multi Purpose Hall S-0208,part - the historian carries the whole assembly,RDC_SB_GF_VAV2003,0
+2551,RDC_SB_L0_AT-2004,AT,Multi Purpose Hall S-0208,part - the historian carries the whole assembly,RDC_SB_GF_VAV2004,0
+2552,RDC_SB_L0_AT-2006,AT,Meeting Room S-0212,part - the historian carries the whole assembly,RDC_SB_GF_VAV2006,0
+2553,RDC_SB_L0_AT-2007,AT,Office S-0213,part - the historian carries the whole assembly,RDC_SB_GF_VAV2007,0
+2554,RDC_SB_L0_AT-2008,AT,Office S-0214,part - the historian carries the whole assembly,RDC_SB_GF_VAV2008,0
+2555,RDC_SB_L0_AT-2009,AT,Office S-0215,part - the historian carries the whole assembly,RDC_SB_GF_VAV2009,0
+2556,RDC_SB_L0_AT-2010,AT,Office S-0216,part - the historian carries the whole assembly,RDC_SB_GF_VAV2010,0
+2557,RDC_SB_L0_AT-2011,AT,Office S-0217,part - the historian carries the whole assembly,RDC_SB_GF_VAV2011,0
+2558,RDC_SB_L0_AT-2012,AT,Director Office S-0218,part - the historian carries the whole assembly,RDC_SB_GF_VAV2012,0
+2559,RDC_SB_L0_AT-2013,AT,Office S-0219,part - the historian carries the whole assembly,RDC_SB_GF_VAV2013,0
+2560,RDC_SB_L0_AT-2014,AT,Office S-0220,part - the historian carries the whole assembly,RDC_SB_GF_VAV2014,0
+2561,RDC_SB_L0_AT-2015,AT,Director Office S-0221,part - the historian carries the whole assembly,RDC_SB_GF_VAV2015,0
+2562,RDC_SB_L0_AT-2016,AT,Director Office S-0222,part - the historian carries the whole assembly,RDC_SB_GF_VAV2016,0
+2563,RDC_SB_L0_AT-2017,AT,Meeting Room S-0223,part - the historian carries the whole assembly,RDC_SB_GF_VAV2017,0
+2564,RDC_SB_L0_AT-2018,AT,PANTRY S-0226,part - the historian carries the whole assembly,RDC_SB_GF_VAV2018,0
+2565,RDC_SB_L0_AT-2019,AT,Office S-0227,part - the historian carries the whole assembly,RDC_SB_GF_VAV2019,0
+2566,RDC_SB_L0_AT-2020,AT,Informal Meeting S-0231,part - the historian carries the whole assembly,RDC_SB_GF_VAV2020,0
+2567,RDC_SB_L0_AT-2021,AT,Open Plan S-0228,part - the historian carries the whole assembly,RDC_SB_GF_VAV2021,0
+2568,RDC_SB_L0_AT-2022,AT,Director Office S-0229,part - the historian carries the whole assembly,RDC_SB_GF_VAV2022,0
+2569,RDC_SB_L0_AT-2023,AT,Office S-0230,part - the historian carries the whole assembly,RDC_SB_GF_VAV2023,0
+2570,RDC_SB_L0_AT-2024,AT,Executive Director Office S-0232,part - the historian carries the whole assembly,RDC_SB_GF_VAV2024,0
+2571,RDC_SB_L0_AT-2025,AT,Executive Director Office S-0233,part - the historian carries the whole assembly,RDC_SB_GF_VAV2025,0
+2572,RDC_SB_L0_AT-2026,AT,Office S-0234,part - the historian carries the whole assembly,RDC_SB_GF_VAV2026,0
+2573,RDC_SB_L0_AT-2027,AT,Office S-0235,part - the historian carries the whole assembly,RDC_SB_GF_VAV2027,0
+2574,RDC_SB_L0_AT-2028,AT,Office S-0236,part - the historian carries the whole assembly,RDC_SB_GF_VAV2028,0
+2575,RDC_SB_L0_AT-2029,AT,Waiting Area S-0251,part - the historian carries the whole assembly,RDC_SB_GF_VAV2029,0
+2576,RDC_SB_L0_AT-2030,AT,Office S-0259,part - the historian carries the whole assembly,RDC_SB_GF_VAV2030,0
+2577,RDC_SB_L0_AT-2031,AT,Office S-0260,part - the historian carries the whole assembly,RDC_SB_GF_VAV2031,0
+2578,RDC_SB_L0_AT-2032,AT,Open Plan S-0269,part - the historian carries the whole assembly,RDC_SB_GF_VAV2032,0
+2579,RDC_SB_L0_AT-2033,AT,CORRIDOR S-0273,part - the historian carries the whole assembly,RDC_SB_GF_VAV2033,0
+2580,RDC_SB_L0_AT-2034,AT,Meeting Room S-0274,part - the historian carries the whole assembly,RDC_SB_GF_VAV2034,0
+2581,RDC_SB_L0_AT-2035,AT,MECH S-0272,part - the historian carries the whole assembly,RDC_SB_GF_VAV2035,0
+2582,RDC_SB_L0_AT-2036,AT,Emergency Elec. Room S-0278,part - the historian carries the whole assembly,RDC_SB_GF_VAV2036,0
+2583,RDC_SB_L0_AT-2037,AT,Men S-0284,part - the historian carries the whole assembly,RDC_SB_GF_VAV2037,0
+2584,RDC_SB_L0_AT-2038,AT,Informal Meeting S-0285,part - the historian carries the whole assembly,RDC_SB_GF_VAV2038,0
+2585,RDC_SB_L0_AT-2039,AT,Meeting Room S-0286,part - the historian carries the whole assembly,RDC_SB_GF_VAV2039,0
+2586,RDC_SB_L0_AT-2040,AT,Open Plan S-0289,part - the historian carries the whole assembly,RDC_SB_GF_VAV2040,0
+2587,RDC_SB_L0_AT-2041,AT,Open Plan S-0289,part - the historian carries the whole assembly,RDC_SB_GF_VAV2041,0
+2588,RDC_SB_L0_AT-2042,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV2042,0
+2589,RDC_SB_L0_AT-2043,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV2043,0
+2590,RDC_SB_L0_AT-2044,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV2044,0
+2591,RDC_SB_L0_AT-2045,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV2045,0
+2592,RDC_SB_L0_AT-2046,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV2046,0
+2593,RDC_SB_L0_AT-2047,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV2047,0
+2594,RDC_SB_L0_AT-0115,AT,Office S-0233A,neither - nothing in the historian knows this number,,0
+2595,RDC_SB_L0_AT-0116,AT,Office S-0232A,neither - nothing in the historian knows this number,,0
+2596,RDC_SB_L0_AT-0117,AT,Open Plan S-0228,neither - nothing in the historian knows this number,,0
+2597,RDC_SB_L0_AT-0118,AT,Open Plan S-0228B,neither - nothing in the historian knows this number,,0
+2598,RDC_SB_L0_AT-0120,AT,Open Plan S-0228A,neither - nothing in the historian knows this number,,0
+2599,RDC_SB_L0_AT-0122,AT,Office S-0211A,neither - nothing in the historian knows this number,,0
+2600,RDC_SB_L0_AT-0123,AT,Office S-0211B,neither - nothing in the historian knows this number,,0
+2601,RDC_SB_L0_AT-0124,AT,Technical Open Plan S-0211,neither - nothing in the historian knows this number,,0
+2602,RDC_NB_GF_AT-6130,AT,Store N-0315,part - the historian carries the whole assembly,RDC_NB_GF_VAV6130_EV6131,0
+2603,RDC_NB_GF_AT-6135,AT,Store N-0316,part - the historian carries the whole assembly,RDC_NB_GF_VAV6135,0
+2604,RDC_NB_GF_AT-6140,AT,Workstation N-0317,part - the historian carries the whole assembly,RDC_NB_GF_VAV6140,0
+2605,RDC_NB_GF_AT-6145,AT,Office N-0318,part - the historian carries the whole assembly,RDC_NB_GF_VAV6145,0
+2606,RDC_NB_GF_AT-6150,AT,Office N-0319,part - the historian carries the whole assembly,RDC_NB_GF_VAV6150,0
+2607,RDC_NB_GF_AT-6155,AT,Workstation N-0320,part - the historian carries the whole assembly,RDC_NB_GF_VAV6155,0
+2608,RDC_NB_GF_AT-6160,AT,Office N-0321,part - the historian carries the whole assembly,RDC_NB_GF_VAV6160,0
+2609,RDC_NB_GF_AT-6170,AT,Office N-0323,part - the historian carries the whole assembly,RDC_NB_GF_VAV6170,0
+2610,RDC_NB_GF_AT-6175,AT,Workstation N-0324,part - the historian carries the whole assembly,RDC_NB_GF_VAV6175,0
+2611,RDC_NB_GF_AT-6180,AT,Office N-0325,part - the historian carries the whole assembly,RDC_NB_GF_VAV6180,0
+2612,RDC_NB_GF_AT-6185,AT,Office N-0326,part - the historian carries the whole assembly,RDC_NB_GF_VAV6185_EV6186,0
+2613,RDC_NB_GF_AT-7000,AT,Vestibule / Staging N-0401,part - the historian carries the whole assembly,RDC_NB_GF_VAV7000,0
+2614,RDC_NB_GF_AT-6195,AT,Store N-0329,part - the historian carries the whole assembly,RDC_NB_GF_VAV6195,0
+2615,RDC_NB_GF_AT-6190,AT,Normal Elec. N-0328,part - the historian carries the whole assembly,RDC_NB_GF_VAV6190_EV6191,0
+2616,RDC_NB_GF_AT-6200,AT,Conf N-0330,part - the historian carries the whole assembly,RDC_NB_GF_VAV6200_EV6201,0
+2617,RDC_NB_GF_AT-7005,AT,WOMEN N-0402,part - the historian carries the whole assembly,RDC_NB_GF_CAV7005_EV7006,0
+2618,RDC_NB_GF_AT-6220,AT,Emergency Elec. N-0333,part - the historian carries the whole assembly,RDC_NB_GF_VAV6220_EV6221,0
+2619,RDC_NB_GF_AT-6205,AT,Conference N-0331,part - the historian carries the whole assembly,RDC_NB_GF_VAV6205_EV6206,0
+2620,RDC_NB_GF_AT-6285,AT,Conference N-0358,part - the historian carries the whole assembly,RDC_NB_GF_VAV6285_EV6286,0
+2621,RDC_NB_GF_AT-7380,AT,Pipe Chase N-0443B,part - the historian carries the whole assembly,RDC_NB_GF_CAV7380_EV7381,0
+2622,RDC_NB_GF_AT-6210,AT,Corridor N-0332C,part - the historian carries the whole assembly,RDC_NB_GF_VAV6210,0
+2623,RDC_NB_GF_AT-6280,AT,Pantry N-0356,part - the historian carries the whole assembly,RDC_NB_GF_CAV6280_EV6281,0
+2624,RDC_NB_GF_AT-6295,AT,Conference N-0360,part - the historian carries the whole assembly,RDC_NB_GF_VAV6295_EV6296,0
+2625,RDC_NB_GF_AT-6320,AT,Corridor N-0365,part - the historian carries the whole assembly,RDC_NB_GF_VAV6320,0
+2626,RDC_NB_GF_AT-6325,AT,Office N-0366,part - the historian carries the whole assembly,RDC_NB_GF_VAV6325,0
+2627,RDC_NB_GF_AT-6330,AT,Office 04 N-0367,part - the historian carries the whole assembly,RDC_NB_GF_VAV6330,0
+2628,RDC_NB_GF_AT-6335,AT,Office N-0368,part - the historian carries the whole assembly,RDC_NB_GF_VAV6335,0
+2629,RDC_NB_GF_AT-6340,AT,Office N-0369,part - the historian carries the whole assembly,RDC_NB_GF_VAV6340,0
+2630,RDC_NB_GF_AT-6345,AT,Office N-0370,part - the historian carries the whole assembly,RDC_NB_GF_VAV6345,0
+2631,RDC_NB_GF_AT-6350,AT,Office N-0371,part - the historian carries the whole assembly,RDC_NB_GF_VAV6350,0
+2632,RDC_NB_GF_AT-6355,AT,Workstation N-0372,part - the historian carries the whole assembly,RDC_NB_GF_VAV6355,0
+2633,RDC_NB_GF_AT-6360,AT,Office N-0374,part - the historian carries the whole assembly,RDC_NB_GF_VAV6360,0
+2634,RDC_NB_GF_AT-6365,AT,Office N-0375,part - the historian carries the whole assembly,RDC_NB_GF_VAV6365,0
+2635,RDC_NB_GF_AT-6370,AT,Office N-0376,part - the historian carries the whole assembly,RDC_NB_GF_VAV6370,0
+2636,RDC_NB_GF_AT-6375,AT,Office N-0377,part - the historian carries the whole assembly,RDC_NB_GF_VAV6375,0
+2637,RDC_NB_GF_AT-6380,AT,Workstation N-0378,part - the historian carries the whole assembly,RDC_NB_GF_VAV6380,0
+2638,RDC_NB_GF_AT-6390,AT,Office N-0379,part - the historian carries the whole assembly,RDC_NB_GF_VAV6390,0
+2639,RDC_NB_GF_AT-6395,AT,Office N-0380,part - the historian carries the whole assembly,RDC_NB_GF_VAV6395,0
+2640,RDC_NB_GF_AT-6400,AT,Workstation N-0381,part - the historian carries the whole assembly,RDC_NB_GF_VAV6400,0
+2641,RDC_NB_GF_AT-6405,AT,Office N-0382,part - the historian carries the whole assembly,RDC_NB_GF_VAV6405,0
+2642,RDC_NB_GF_AT-6410,AT,Office N-0383,part - the historian carries the whole assembly,RDC_NB_GF_VAV6410,0
+2643,RDC_NB_GF_AT-7385,AT,Office N-0444,part - the historian carries the whole assembly,RDC_NB_GF_VAV7385,0
+2644,RDC_NB_GF_AT-7390,AT,Office 04 N-0445,part - the historian carries the whole assembly,RDC_NB_GF_VAV7390,0
+2645,RDC_NB_GF_EV-6141,EV,Workstation N-0317,part - the historian carries the whole assembly,RDC_NB_GF_EAV6141,0
+2646,RDC_NB_GF_EV-6156,EV,Workstation N-0320,part - the historian carries the whole assembly,RDC_NB_GF_EAV6156,0
+2647,RDC_NB_GF_EV-6176,EV,Workstation N-0324,part - the historian carries the whole assembly,RDC_NB_GF_EAV6176,0
+2648,RDC_NB_GF_EV-6281,EV,Pantry N-0356,part - the historian carries the whole assembly,RDC_NB_GF_CAV6280_EV6281,0
+2649,RDC_NB_GF_EV-6356,EV,Office 05-8-WKS N-0372,part - the historian carries the whole assembly,RDC_NB_GF_EAV6356,0
+2650,RDC_NB_GF_EV-6381,EV,Office 05-8-WKS N-0378,part - the historian carries the whole assembly,RDC_NB_GF_EAV6381,0
+2651,RDC_NB_GF_EV-6401,EV,Office 05-8-WKS N-0381,part - the historian carries the whole assembly,RDC_NB_GF_EAV6401,0
+2652,RDC_NB_GF_EV-7006,EV,WOMEN N-0402,part - the historian carries the whole assembly,RDC_NB_GF_CAV7005_EV7006,0
+2653,RDC_NB_GF_EV-7381,EV,Pipe Chase N-0443B,part - the historian carries the whole assembly,RDC_NB_GF_CAV7380_EV7381,0
+2654,RDC_NB_GF_VEV-6053,VEV,Open Lab 1 N-0310C,neither - nothing in the historian knows this number,,0
+2655,RDC_NB_GF_VEV-6061,VEV,Lab Support 3 N-0310D,neither - nothing in the historian knows this number,,0
+2656,RDC_NB_GF_VEV-6071,VEV,Lab Support 4 N-0310E,neither - nothing in the historian knows this number,,0
+2657,RDC_NB_GF_VEV-6081,VEV,Lab Support 5 N-0310F,neither - nothing in the historian knows this number,,0
+2658,RDC_NB_GF_VEV-6091,VEV,Lab Support 6 N-0310G,neither - nothing in the historian knows this number,,0
+2659,RDC_NB_GF_VAV-6080,VAV,Lab Support 5 N-0310F,neither - nothing in the historian knows this number,,0
+2660,RDC_NB_GF_FCU6997,FCU,Lab Sup 2 N-0310B,neither - nothing in the historian knows this number,,0
+2661,RDC_SB_L0_AT-3001,AT,Director Office S-0237,part - the historian carries the whole assembly,RDC_SB_GF_VAV3001,0
+2662,RDC_SB_L0_AT-3002,AT,Office S-0238,part - the historian carries the whole assembly,RDC_SB_GF_VAV3002,0
+2663,RDC_SB_L0_AT-3003,AT,Office S-0239,part - the historian carries the whole assembly,RDC_SB_GF_VAV3003,0
+2664,RDC_SB_L0_AT-3004,AT,Office S-0240,part - the historian carries the whole assembly,RDC_SB_GF_VAV3004,0
+2665,RDC_SB_L0_AT-3005,AT,Office S-0241,part - the historian carries the whole assembly,RDC_SB_GF_VAV3005,0
+2666,RDC_SB_L0_AT-3006,AT,Office S-0242,part - the historian carries the whole assembly,RDC_SB_GF_VAV3006,0
+2667,RDC_SB_L0_AT-3007,AT,Director Office S-0243,part - the historian carries the whole assembly,RDC_SB_GF_VAV3007,0
+2668,RDC_SB_L0_AT-3010,AT,Open Plan S-0244,part - the historian carries the whole assembly,RDC_SB_GF_VAV3010,0
+2669,RDC_SB_L0_AT-3011,AT,Meeting Room S-0245,part - the historian carries the whole assembly,RDC_SB_GF_VAV3011,0
+2670,RDC_SB_L0_AT-3012,AT,Office S-0246,part - the historian carries the whole assembly,RDC_SB_GF_VAV3012,0
+2671,RDC_SB_L0_AT-3013,AT,Office S-0247,part - the historian carries the whole assembly,RDC_SB_GF_VAV3013,0
+2672,RDC_SB_L0_AT-3014,AT,Office S-0248,part - the historian carries the whole assembly,RDC_SB_GF_VAV3014,0
+2673,RDC_SB_L0_AT-3015,AT,Security S-0249,part - the historian carries the whole assembly,RDC_SB_GF_VAV3015,0
+2674,RDC_SB_L0_AT-3016,AT,Corridor S-0250,part - the historian carries the whole assembly,RDC_SB_GF_VAV3016,0
+2675,RDC_SB_L0_AT-3017,AT,Office S-0251,part - the historian carries the whole assembly,RDC_SB_GF_VAV3017,0
+2676,RDC_SB_L0_AT-3018,AT,Corridor S-0251B,part - the historian carries the whole assembly,RDC_SB_GF_VAV3018,0
+2677,RDC_SB_L0_AT-3019,AT,Corridor S-0251B,part - the historian carries the whole assembly,RDC_SB_GF_VAV3019,0
+2678,RDC_SB_L0_AT-3020,AT,Office S-0252,part - the historian carries the whole assembly,RDC_SB_GF_VAV3020,0
+2679,RDC_SB_L0_AT-3021,AT,Office S-0252,part - the historian carries the whole assembly,RDC_SB_GF_VAV3021,0
+2680,RDC_SB_L0_AT-3022,AT,Office S-0253,part - the historian carries the whole assembly,RDC_SB_GF_VAV3022,0
+2681,RDC_SB_L0_AT-3023,AT,Office S-0253,part - the historian carries the whole assembly,RDC_SB_GF_VAV3023,0
+2682,RDC_SB_L0_AT-3024,AT,Office S-0254,part - the historian carries the whole assembly,RDC_SB_GF_VAV3024,0
+2683,RDC_SB_L0_AT-3025,AT,Office S-0255,part - the historian carries the whole assembly,RDC_SB_GF_VAV3025,0
+2684,RDC_SB_L0_AT-3026,AT,Office S-0256,part - the historian carries the whole assembly,RDC_SB_GF_VAV3026,0
+2685,RDC_SB_L0_AT-3027,AT,Office S-0257,part - the historian carries the whole assembly,RDC_SB_GF_VAV3027,0
+2686,RDC_SB_L0_AT-3028,AT,Office S-0258,part - the historian carries the whole assembly,RDC_SB_GF_VAV3028,0
+2687,RDC_SB_L0_AT-3031,AT,IT Server S-0264,part - the historian carries the whole assembly,RDC_SB_GF_VAV3031,0
+2688,RDC_SB_L0_AT-3032,AT,Open Plan S-0265,part - the historian carries the whole assembly,RDC_SB_GF_VAV3032,0
+2689,RDC_SB_L0_AT-3033,AT,Emergency Elec. S-0266,part - the historian carries the whole assembly,RDC_SB_GF_VAV3033,0
+2690,RDC_SB_L0_AT-3034,AT,Reception / Vestibule S-0293,part - the historian carries the whole assembly,RDC_SB_GF_VAV3034,0
+2691,RDC_SB_L0_AT-3035,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV3035,0
+2692,RDC_SB_L0_AT-3036,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV3036,0
+2693,RDC_SB_L0_AT-0101,AT,Office S-0244A,neither - nothing in the historian knows this number,,0
+2694,RDC_SB_L0_AT-0102,AT,Office S-0244B,neither - nothing in the historian knows this number,,0
+2695,RDC_SB_L0_AT-0103,AT,Office S-0244C,neither - nothing in the historian knows this number,,0
+2696,RDC_SB_L0_AT-0104,AT,Office S-0244D,neither - nothing in the historian knows this number,,0
+2697,RDC_SB_L0_AT-0105,AT,Office S-0244E,neither - nothing in the historian knows this number,,0
+2698,RDC_SB_L0_AT-0107,AT,Office S-0262A,neither - nothing in the historian knows this number,,0
+2699,RDC_SB_L0_AT-0108,AT,Office S-0262B,neither - nothing in the historian knows this number,,0
+2700,RDC_SB_L0_AT-0109,AT,Office S-0262C,neither - nothing in the historian knows this number,,0
+2701,RDC_SB_L0_AT-0110,AT,Office S-0262H,neither - nothing in the historian knows this number,,0
+2702,RDC_SB_L0_AT-0111,AT,Office S-0262E,neither - nothing in the historian knows this number,,0
+2703,RDC_SB_L0_AT-0112,AT,Office S-0262F,neither - nothing in the historian knows this number,,0
+2704,RDC_SB_L0_AT-0113,AT,Office S-0262G,neither - nothing in the historian knows this number,,0
+2705,RDC_SB_L0_AT-0114,AT,Office S-0262D,neither - nothing in the historian knows this number,,0
+2706,RDC_NB_GF_AT-7080,AT,Exp. Office N-0410,part - the historian carries the whole assembly,RDC_NB_GF_VAV7080,0
+2707,RDC_NB_GF_AT-7085,AT,Office N-0411,part - the historian carries the whole assembly,RDC_NB_GF_VAV7085,0
+2708,RDC_NB_GF_AT-7095,AT,Office N-0413,part - the historian carries the whole assembly,RDC_NB_GF_VAV7095,0
+2709,RDC_NB_GF_AT-7100,AT,Office N-0414,part - the historian carries the whole assembly,RDC_NB_GF_VAV7100,0
+2710,RDC_NB_GF_AT-7110,AT,Office N-0416,part - the historian carries the whole assembly,RDC_NB_GF_VAV7110,0
+2711,RDC_NB_GF_AT-7115,AT,Office N-0417,part - the historian carries the whole assembly,RDC_NB_GF_VAV7115,0
+2712,RDC_NB_GF_AT-7125,AT,NORMAL ELEC. ROOM N-0420,part - the historian carries the whole assembly,RDC_NB_GF_VAV7125_EV7126,0
+2713,RDC_NB_GF_AT-7130,AT,Office N-0421,part - the historian carries the whole assembly,RDC_NB_GF_VAV7130,0
+2714,RDC_NB_GF_AT-7135,AT,Office N-0422,part - the historian carries the whole assembly,RDC_NB_GF_VAV7135,0
+2715,RDC_NB_GF_AT-7140,AT,Conference N-0423,part - the historian carries the whole assembly,RDC_NB_GF_VAV7140_EV7141,0
+2716,RDC_NB_GF_AT-7145,AT,Office N-0425,part - the historian carries the whole assembly,RDC_NB_GF_VAV7145,0
+2717,RDC_NB_GF_AT-7155,AT,Office N-0427,part - the historian carries the whole assembly,RDC_NB_GF_VAV7155,0
+2718,RDC_NB_GF_AT-7165,AT,Office N-0429,part - the historian carries the whole assembly,RDC_NB_GF_VAV7165,0
+2719,RDC_NB_GF_AT-7180,AT,Corridor N-0432,part - the historian carries the whole assembly,RDC_NB_GF_VAV7180,0
+2720,RDC_NB_GF_AT-7185,AT,Emer. Elec. Room N-0433,part - the historian carries the whole assembly,RDC_NB_GF_VAV7185_EV7186,0
+2721,RDC_NB_GF_AT-7195,AT,OFFICE N-0436,part - the historian carries the whole assembly,RDC_NB_GF_VAV7195,0
+2722,RDC_NB_GF_AT-7205,AT,Office 04 N-0438,part - the historian carries the whole assembly,RDC_NB_GF_VAV7205,0
+2723,RDC_NB_GF_AT-7215,AT,CONFERENCE ROOM N-0440,part - the historian carries the whole assembly,RDC_NB_GF_VAV7215_EV7216,0
+2724,RDC_NB_GF_AT-7395,AT,Workstation N-0446,part - the historian carries the whole assembly,RDC_NB_GF_VAV7395,0
+2725,RDC_NB_GF_AT-7400,AT,Office N-0447,part - the historian carries the whole assembly,RDC_NB_GF_VAV7400,0
+2726,RDC_NB_GF_AT-7405,AT,Office N-0448,part - the historian carries the whole assembly,RDC_NB_GF_VAV7405,0
+2727,RDC_NB_GF_AT-7410,AT,Office N-0449,part - the historian carries the whole assembly,RDC_NB_GF_VAV7410,0
+2728,RDC_NB_GF_AT-7415,AT,Office N-0450,part - the historian carries the whole assembly,RDC_NB_GF_VAV7415,0
+2729,RDC_NB_GF_AT-7425,AT,Workstation N-0452,part - the historian carries the whole assembly,RDC_NB_GF_VAV7425,0
+2730,RDC_NB_GF_AT-7430,AT,Office N-0453,part - the historian carries the whole assembly,RDC_NB_GF_VAV7430,0
+2731,RDC_NB_GF_AT-7435,AT,Office N-0454,part - the historian carries the whole assembly,RDC_NB_GF_VAV7435,0
+2732,RDC_NB_GF_AT-7440,AT,Office N-0455,part - the historian carries the whole assembly,RDC_NB_GF_VAV7440,0
+2733,RDC_NB_GF_AT-7445,AT,Office N-0456,part - the historian carries the whole assembly,RDC_NB_GF_VAV7445,0
+2734,RDC_NB_GF_AT-7460,AT,Workstation N-0457,part - the historian carries the whole assembly,RDC_NB_GF_VAV7460,0
+2735,RDC_NB_GF_AT-7465,AT,Office N-0458,part - the historian carries the whole assembly,RDC_NB_GF_VAV7465,0
+2736,RDC_NB_GF_AT-7470,AT,Office N-0459,part - the historian carries the whole assembly,RDC_NB_GF_VAV7470,0
+2737,RDC_NB_GF_AT-7475,AT,Office N-0460,part - the historian carries the whole assembly,RDC_NB_GF_VAV7475,0
+2738,RDC_NB_GF_AT-7480,AT,Office N-0461,part - the historian carries the whole assembly,RDC_NB_GF_VAV7480,0
+2739,RDC_NB_GF_AT-7485,AT,WORKSTATION N-0462,part - the historian carries the whole assembly,RDC_NB_GF_VAV7485,0
+2740,RDC_NB_GF_AT-7490,AT,Confer N-0463,part - the historian carries the whole assembly,RDC_NB_GF_VAV7490_EV7495,0
+2741,RDC_NB_GF_AT-7496,AT,Office N-0464,part - the historian carries the whole assembly,RDC_NB_GF_VAV7496,0
+2742,RDC_NB_GF_AT-7498,AT,Office N-0465,part - the historian carries the whole assembly,RDC_NB_GF_VAV7498,0
+2743,RDC_NB_GF_AT-7499,AT,Office N-0466,part - the historian carries the whole assembly,RDC_NB_GF_VAV7499,0
+2744,RDC_NB_GF_AT-7090-N1,AT,Office N-0412,part - the historian carries the whole assembly,RDC_NB_GF_VAV7090,0
+2745,RDC_NB_GF_AT-7090-N2,AT,Office N-0412A,part - the historian carries the whole assembly,RDC_NB_GF_VAV7090,0
+2746,RDC_NB_GF_AT-7105-N1,AT,Office N-0415,part - the historian carries the whole assembly,RDC_NB_GF_VAV7105,0
+2747,RDC_NB_GF_AT-7105-N2,AT,Office N-0415A,part - the historian carries the whole assembly,RDC_NB_GF_VAV7105,0
+2748,RDC_NB_GF_AT-7120-N1,AT,Office N-0418,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2749,RDC_NB_GF_AT-7120-N2,AT,Office N-0418A,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2750,RDC_NB_GF_AT-7120-N3,AT,Office N-0430A,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2751,RDC_NB_GF_AT-7120-N4,AT,Office N-0430B,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2752,RDC_NB_GF_AT-7120-N5,AT,Office N-0430C,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2753,RDC_NB_GF_AT-7120-N6,AT,Office N-0430D,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2754,RDC_NB_GF_AT-7120-N7,AT,Office N-0430E,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2755,RDC_NB_GF_AT-7120-N8,AT,Office N-0430F,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2756,RDC_NB_GF_AT-7120-N9,AT,Corridor N-0418A,part - the historian carries the whole assembly,RDC_NB_GF_VAV7120,0
+2757,RDC_NB_GF_EV-7091,EV,Office N-0412A,part - the historian carries the whole assembly,RDC_NB_GF_EAV7091,0
+2758,RDC_NB_GF_EV-7106,EV,Office N-0415A,part - the historian carries the whole assembly,RDC_NB_GF_EAV7106,0
+2759,RDC_NB_GF_EV-7121,EV,Office 05-4-WS N-0418,part - the historian carries the whole assembly,RDC_NB_GF_EAV7121,0
+2760,RDC_NB_GF_EV-7122,EV,IDF Room N-0419,part - the historian carries the whole assembly,RDC_NB_GF_EAV7122,0
+2761,RDC_NB_GF_EV-7396,EV,Office 05-8-WKS N-0446,part - the historian carries the whole assembly,RDC_NB_GF_EAV7396,0
+2762,RDC_NB_GF_EV-7426,EV,Office 05-8-WKS N-0452,part - the historian carries the whole assembly,RDC_NB_GF_EAV7426,0
+2763,RDC_NB_GF_EV-7461,EV,Office 05-8-WKS N-0457,part - the historian carries the whole assembly,RDC_NB_GF_EAV7461,0
+2764,RDC_NB_GF_EV-7486,EV,Office 05-8-WKS N-0462,part - the historian carries the whole assembly,RDC_NB_GF_EAV7486,0
+2765,RDC_NB_GF_VEV-7022A,VEV,NMR Lab N-0404A,unit - has its own historian object,,2
+2766,RDC_NB_GF_VEV-7022B,VEV,NMR Lab N-0404A,unit - has its own historian object,,2
+2767,RDC_NB_GF_VEV-7023A,VEV,NMR Lab N-0404A,unit - has its own historian object,,3
+2768,RDC_NB_GF_VEV-7023B,VEV,NMR Lab N-0404A,unit - has its own historian object,,2
+2769,RDC_NB_GF_VEV-7024A,VEV,NMR Lab N-0404A,unit - has its own historian object,,2
+2770,RDC_NB_GF_VEV-7024B,VEV,NMR Lab N-0404A,unit - has its own historian object,,2
+2771,RDC_NB_GF_FEV-7052,FEV,EM Prep 1 - MAT N-0404D,unit - has its own historian object,,2
+2772,RDC_NB_GF_FEV-7053,FEV,EM Prep 1 - MAT N-0404D,unit - has its own historian object,,2
+2773,RDC_NB_GF_FEV-7062,FEV,EM Prep 2 - BIO N-0404E,unit - has its own historian object,,2
+2774,RDC_NB_GF_VEV-7072A,VEV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+2775,RDC_NB_GF_VEV-7072B,VEV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+2776,RDC_NB_GF_VEV-7073,VEV,Surf Analysis Lab N-0404F,unit - has its own historian object,,3
+2777,RDC_NB_GF_FEV-7074,FEV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+2778,RDC_NB_GF_FEV-7075,FEV,Surf Analysis Lab N-0404F,unit - has its own historian object,,2
+2779,RDC_NB_GF_FEV-7232,FEV,Inter Lab N-0442A,unit - has its own historian object,,2
+2780,RDC_NB_GF_VEV-7241B,VEV,Optical Lab N-0442B,unit - has its own historian object,,2
+2781,RDC_NB_GF_VEV-7301,VEV,A/L 1 N-0442H,unit - has its own historian object,,3
+2782,RDC_NB_GF_FCU7993,FCU,Stair 5 N-0ST05,neither - nothing in the historian knows this number,,0
+2783,RDC_SB_1F_AT-1504,AT,Corridor S-1122,part - the historian carries the whole assembly,RDC_SB_1F_CAV1504,0
+2784,RDC_SB_1F_AT-1507,AT,Workstation S-1124A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1507,0
+2785,RDC_SB_1F_AT-1508,AT,Scientific Comp. Office 1 S-1125,part - the historian carries the whole assembly,RDC_SB_1F_VAV1508,0
+2786,RDC_SB_1F_AT-1509,AT,Scientific Comp. Office S-1126,part - the historian carries the whole assembly,RDC_SB_1F_VAV1509,0
+2787,RDC_SB_1F_AT-1510,AT,ALT Office 2 S-1127,part - the historian carries the whole assembly,RDC_SB_1F_VAV1510,0
+2788,RDC_SB_1F_AT-1511,AT,ALT Office 3 S-1128,part - the historian carries the whole assembly,RDC_SB_1F_VAV1511,0
+2789,RDC_SB_1F_AT-1512,AT,Workstation S-1128A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1512,0
+2790,RDC_SB_1F_AT-1513,AT,ALT Office 1 S-1129,part - the historian carries the whole assembly,RDC_SB_1F_VAV1513,0
+2791,RDC_SB_1F_AT-1514,AT,ALT Office S-1130,part - the historian carries the whole assembly,RDC_SB_1F_VAV1514,0
+2792,RDC_SB_1F_AT-1515,AT,Distub. Syst Office 1 S-1131,part - the historian carries the whole assembly,RDC_SB_1F_VAV1515,0
+2793,RDC_SB_1F_AT-1516,AT,Distub. Syst Office S-1132,part - the historian carries the whole assembly,RDC_SB_1F_VAV1516,0
+2794,RDC_SB_1F_AT-1517,AT,Workstation S-1132A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1517,0
+2795,RDC_SB_1F_AT-1518,AT,Distub. Syst Office S-1133,part - the historian carries the whole assembly,RDC_SB_1F_VAV1518,0
+2796,RDC_SB_1F_AT-1519,AT,Distub. Syst Office S-1134,part - the historian carries the whole assembly,RDC_SB_1F_VAV1519,0
+2797,RDC_SB_1F_AT-1520,AT,Data Analytic Office S-1135,part - the historian carries the whole assembly,RDC_SB_1F_VAV1520,0
+2798,RDC_SB_1F_AT-1521,AT,Data Analytic Office S-1136,part - the historian carries the whole assembly,RDC_SB_1F_VAV1521,0
+2799,RDC_SB_1F_AT-1522,AT,Workstation S-1136A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1522,0
+2800,RDC_SB_1F_AT-1523,AT,Data Analytic Office S-1137,part - the historian carries the whole assembly,RDC_SB_1F_VAV1523,0
+2801,RDC_SB_1F_AT-1524,AT,Data Analytic Office S-1138,part - the historian carries the whole assembly,RDC_SB_1F_VAV1524,0
+2802,RDC_SB_1F_AT-1525,AT,Office S-1139,part - the historian carries the whole assembly,RDC_SB_1F_VAV1525,0
+2803,RDC_SB_1F_AT-1526,AT,Office S-1140,part - the historian carries the whole assembly,RDC_SB_1F_VAV1526,0
+2804,RDC_SB_1F_AT-1527,AT,Conference Room S-1141,part - the historian carries the whole assembly,RDC_SB_1F_VAV1527,0
+2805,RDC_SB_1F_AT-1528,AT,Office S-1142,part - the historian carries the whole assembly,RDC_SB_1F_VAV1528,0
+2806,RDC_SB_1F_AT-1529,AT,Office S-1144,part - the historian carries the whole assembly,RDC_SB_1F_VAV1529,0
+2807,RDC_SB_1F_AT-1530,AT,Office S-1145,part - the historian carries the whole assembly,RDC_SB_1F_VAV1530,0
+2808,RDC_SB_1F_AT-1531,AT,Office S-1146,part - the historian carries the whole assembly,RDC_SB_1F_VAV1531,0
+2809,RDC_SB_1F_AT-1532,AT,Workstation S-1146A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1532,0
+2810,RDC_SB_1F_AT-1533,AT,Office S-1148,part - the historian carries the whole assembly,RDC_SB_1F_VAV1533,0
+2811,RDC_SB_1F_AT-1534,AT,Office S-1149,part - the historian carries the whole assembly,RDC_SB_1F_VAV1534,0
+2812,RDC_SB_1F_AT-1535,AT,Pantry S-1149A,part - the historian carries the whole assembly,RDC_SB_1F_CAV1535,0
+2813,RDC_SB_1F_AT-1536,AT,Office S-1150,part - the historian carries the whole assembly,RDC_SB_1F_VAV1536,0
+2814,RDC_SB_1F_AT-1537,AT,Normal Elec. S-1147,part - the historian carries the whole assembly,RDC_SB_1F_CAV1537,0
+2815,RDC_SB_1F_AT-1542,AT,Office S-1182,part - the historian carries the whole assembly,RDC_SB_1F_VAV1542,0
+2816,RDC_SB_1F_AT-1546,AT,Office S-1182E,part - the historian carries the whole assembly,RDC_SB_1F_VAV1546,0
+2817,RDC_SB_1F_AT-1548,AT,Office S-1183,part - the historian carries the whole assembly,RDC_SB_1F_VAV1548,0
+2818,RDC_SB_1F_AT-1549,AT,Workstation S-1183A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1549,0
+2819,RDC_SB_1F_AT-1550,AT,Office S-1184,part - the historian carries the whole assembly,RDC_SB_1F_VAV1550,0
+2820,RDC_SB_1F_AT-1551,AT,Social Comp Office S-1185,part - the historian carries the whole assembly,RDC_SB_1F_VAV1551,0
+2821,RDC_SB_1F_AT-1552,AT,Social Comp Office S-1186,part - the historian carries the whole assembly,RDC_SB_1F_VAV1552,0
+2822,RDC_SB_1F_AT-1553,AT,Workstation S-1186A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1553,0
+2823,RDC_SB_1F_AT-1554,AT,Social Comp Office S-1187,part - the historian carries the whole assembly,RDC_SB_1F_VAV1554,0
+2824,RDC_SB_1F_AT-1555,AT,Social Comp Office S-1188,part - the historian carries the whole assembly,RDC_SB_1F_VAV1555,0
+2825,RDC_SB_1F_AT-1556,AT,Cyber Sec Office S-1189,part - the historian carries the whole assembly,RDC_SB_1F_VAV1556,0
+2826,RDC_SB_1F_AT-1557,AT,Cyber Sec Office S-1190,part - the historian carries the whole assembly,RDC_SB_1F_VAV1557,0
+2827,RDC_SB_1F_AT-1558,AT,Workstation S-1190A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1558,0
+2828,RDC_SB_1F_AT-1559,AT,Office S-1191,part - the historian carries the whole assembly,RDC_SB_1F_VAV1559,0
+2829,RDC_SB_1F_AT-1560,AT,Cyber Sec Office S-1192,part - the historian carries the whole assembly,RDC_SB_1F_VAV1560,0
+2830,RDC_SB_1F_AT-1561,AT,Cyber Sec Office S-1193,part - the historian carries the whole assembly,RDC_SB_1F_VAV1561,0
+2831,RDC_SB_1F_AT-0538,AT,Workstation S-1151A,part - the historian carries the whole assembly,RDC_SB_1F_VAV0538,0
+2832,RDC_NB_1F_AT-4660,AT,Expansion Workstation N-1227,part - the historian carries the whole assembly,RDC_NB_1F_VAV4660,0
+2833,RDC_NB_1F_AT-4665,AT,Office N-1228,part - the historian carries the whole assembly,RDC_NB_1F_VAV4665,0
+2834,RDC_NB_1F_AT-4680,AT,Office N-1231,part - the historian carries the whole assembly,RDC_NB_1F_VAV4680,0
+2835,RDC_NB_1F_AT-4690,AT,Office N-1233,part - the historian carries the whole assembly,RDC_NB_1F_VAV4690,0
+2836,RDC_NB_1F_AT-4705,AT,Office N-1236,part - the historian carries the whole assembly,RDC_NB_1F_VAV4705,0
+2837,RDC_NB_1F_AT-4720,AT,Office N-1239,part - the historian carries the whole assembly,RDC_NB_1F_VAV4720,0
+2838,RDC_NB_1F_AT-4730,AT,Office N-1241,part - the historian carries the whole assembly,RDC_NB_1F_VAV4730,0
+2839,RDC_NB_1F_AT-4745,AT,Office N-1244,part - the historian carries the whole assembly,RDC_NB_1F_VAV4745,0
+2840,RDC_NB_1F_EV-4500,EV,MDF N-1201,part - the historian carries the whole assembly,RDC_NB_1F_EAV4500,0
+2841,RDC_NB_1F_CEV-4502,CEV,Corridor N-1202,unit - has its own historian object,,3
+2842,RDC_NB_1F_EV-4661,EV,Office 05 - 8 WKS- N-1227,part - the historian carries the whole assembly,RDC_NB_1F_EAV4661,0
+2843,RDC_NB_1F_EV-4686,EV,Office 05 - 8 WKS- N-1232,part - the historian carries the whole assembly,RDC_NB_1F_EAV4686,0
+2844,RDC_NB_1F_EV-4711,EV,Office 05 - 8 WKS- N-1237,part - the historian carries the whole assembly,RDC_NB_1F_EAV4711,0
+2845,RDC_NB_1F_EV-4736,EV,Office 05 - 8 WKS- N-1242,part - the historian carries the whole assembly,RDC_NB_1F_EAV4736,0
+2846,RDC_NB_1F_VEV-4602,VEV,Testing Room N-1216B,unit - has its own historian object,,3
+2847,RDC_NB_1F_FEV-4603,FEV,Testing Room N-1216B,unit - has its own historian object,,2
+2848,RDC_NB_1F_FEV-4604,FEV,Testing Room N-1216B,unit - has its own historian object,,2
+2849,RDC_NB_1F_FEV-4605,FEV,Testing Room N-1216B,unit - has its own historian object,,2
+2850,RDC_NB_1F_FEV-4606,FEV,Testing Room N-1216B,unit - has its own historian object,,2
+2851,RDC_NB_1F_FEV-4622,FEV,EL Shop N-1216C,unit - has its own historian object,,2
+2852,RDC_NB_1F_CAV-4581B,CAV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+2853,RDC_NB_1F_VEV-4585A,VEV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+2854,RDC_NB_1F_VEV-4585B,VEV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+2855,RDC_NB_1F_VEV-4586A,VEV,Photovoltaic Lab N-1216A,unit - has its own historian object,,3
+2856,RDC_NB_1F_VEV-4586B,VEV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+2857,RDC_NB_1F_FEV-4587,FEV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+2858,RDC_NB_1F_FEV-4588,FEV,Photovoltaic Lab N-1216A,unit - has its own historian object,,2
+2859,RDC_NB_1F_FCU2004,FCU,Corridor N-1202,neither - nothing in the historian knows this number,,0
+2860,RDC_SB_1F_AT-0501,AT,Lobby S-1102,part - the historian carries the whole assembly,RDC_SB_1F_CAV0501,0
+2861,RDC_SB_1F_AT-0502,AT,Vestibule S-1105,part - the historian carries the whole assembly,RDC_SB_1F_CAV0502,0
+2862,RDC_SB_1F_AT-0503,AT,Women S-1106B,part - the historian carries the whole assembly,RDC_SB_1F_CAV0503,0
+2863,RDC_SB_1F_AT-0504,AT,Vestibule S-1107,part - the historian carries the whole assembly,RDC_SB_1F_CAV0504,0
+2864,RDC_SB_1F_AT-0505,AT,EMERGENCY Elec. S-1107B,part - the historian carries the whole assembly,RDC_SB_1F_CAV0505,0
+2865,RDC_SB_1F_AT-0515,AT,Corridor S-1122,part - the historian carries the whole assembly,RDC_SB_1F_CAV0515,0
+2866,RDC_SB_1F_AT-0516,AT,Pantry S-1158,part - the historian carries the whole assembly,RDC_SB_1F_CAV0516,0
+2867,RDC_SB_1F_AT-0517,AT,Normal Elec. S-1160,part - the historian carries the whole assembly,RDC_SB_1F_CAV0517,0
+2868,RDC_SB_1F_AT-0524,AT,Women S-1169,part - the historian carries the whole assembly,RDC_SB_1F_CAV0524,0
+2869,RDC_SB_1F_AT-0525,AT,Men S-1170,part - the historian carries the whole assembly,RDC_SB_1F_CAV0525,0
+2870,RDC_SB_1F_AT-0534,AT,CORRIDOR S-1180,part - the historian carries the whole assembly,RDC_SB_1F_CAV0534,0
+2871,RDC_SB_1F_AT-0535,AT,Cooridor S-1180,part - the historian carries the whole assembly,RDC_SB_1F_CAV0535,0
+2872,RDC_SB_1F_AT-1541,AT,Cooridor S-1181,part - the historian carries the whole assembly,RDC_SB_1F_CAV1541,0
+2873,RDC_SB_1F_AT-0506,AT,Conf. S-1110,part - the historian carries the whole assembly,RDC_SB_1F_VAV0506,0
+2874,RDC_SB_1F_AT-0507,AT,Computer Research Lab-4 S-1112,part - the historian carries the whole assembly,RDC_SB_1F_VAV0507,0
+2875,RDC_SB_1F_AT-0508,AT,Conf S-1113,part - the historian carries the whole assembly,RDC_SB_1F_VAV0508,0
+2876,RDC_SB_1F_AT-0509,AT,NCIR OFFICE S-1115,part - the historian carries the whole assembly,RDC_SB_1F_VAV0509,0
+2877,RDC_SB_1F_AT-0510,AT,Workstation S-1115A,part - the historian carries the whole assembly,RDC_SB_1F_VAV0510,0
+2878,RDC_SB_1F_AT-0511,AT,NCIR Office S-1116,part - the historian carries the whole assembly,RDC_SB_1F_VAV0511,0
+2879,RDC_SB_1F_AT-0512,AT,NCIR Office S-1117,part - the historian carries the whole assembly,RDC_SB_1F_VAV0512,0
+2880,RDC_SB_1F_AT-0513,AT,NCIR Office S-1118,part - the historian carries the whole assembly,RDC_SB_1F_VAV0513,0
+2881,RDC_SB_1F_AT-0514,AT,NCIR Office S-1119,part - the historian carries the whole assembly,RDC_SB_1F_VAV0514,0
+2882,RDC_SB_1F_AT-0518,AT,Office S-1161,part - the historian carries the whole assembly,RDC_SB_1F_VAV0518,0
+2883,RDC_SB_1F_AT-0519,AT,Office S-1162,part - the historian carries the whole assembly,RDC_SB_1F_VAV0519,0
+2884,RDC_SB_1F_AT-0520,AT,Office S-1163,part - the historian carries the whole assembly,RDC_SB_1F_VAV0520,0
+2885,RDC_SB_1F_AT-0521,AT,Office S-1164,part - the historian carries the whole assembly,RDC_SB_1F_VAV0521,0
+2886,RDC_SB_1F_AT-0522,AT,Office S-1165,part - the historian carries the whole assembly,RDC_SB_1F_VAV0522,0
+2887,RDC_SB_1F_AT-0523,AT,Office S-1166,part - the historian carries the whole assembly,RDC_SB_1F_VAV0523,0
+2888,RDC_SB_1F_AT-0526,AT,Office S-1171,part - the historian carries the whole assembly,RDC_SB_1F_VAV0526,0
+2889,RDC_SB_1F_AT-0527,AT,Office S-1172,part - the historian carries the whole assembly,RDC_SB_1F_VAV0527,0
+2890,RDC_SB_1F_AT-0528,AT,Office S-1173,part - the historian carries the whole assembly,RDC_SB_1F_VAV0528,0
+2891,RDC_SB_1F_AT-0529,AT,Corridor S-1174,part - the historian carries the whole assembly,RDC_SB_1F_VAV0529,0
+2892,RDC_SB_1F_AT-0530,AT,Situation Room S-1175,part - the historian carries the whole assembly,RDC_SB_1F_VAV0530,0
+2893,RDC_SB_1F_AT-0531,AT,Immersive Viz Lab S-1176,part - the historian carries the whole assembly,RDC_SB_1F_VAV0531,0
+2894,RDC_SB_1F_AT-0532,AT,Conference Room S-1177,part - the historian carries the whole assembly,RDC_SB_1F_VAV0532,0
+2895,RDC_SB_1F_AT-0533,AT,Telepresence S-1179,part - the historian carries the whole assembly,RDC_SB_1F_VAV0533,0
+2896,RDC_SB_1F_AT-1501,AT,Workstation S-1119A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1501,0
+2897,RDC_SB_1F_AT-1502,AT,NCIR Office S-1120,part - the historian carries the whole assembly,RDC_SB_1F_VAV1502,0
+2898,RDC_SB_1F_AT-1503,AT,NCIR Office S-1121,part - the historian carries the whole assembly,RDC_SB_1F_VAV1503,0
+2899,RDC_SB_1F_AT-1505,AT,SC. Comp Office 2 S-1123,part - the historian carries the whole assembly,RDC_SB_1F_VAV1505,0
+2900,RDC_SB_1F_AT-1506,AT,SC. Comp Office 3 S-1124,part - the historian carries the whole assembly,RDC_SB_1F_VAV1506,0
+2901,RDC_SB_1F_AT-1539,AT,Video Conf. Room S-1154,part - the historian carries the whole assembly,RDC_SB_1F_VAV1539,0
+2902,RDC_SB_1F_AT-1540,AT,Conf S-1159,part - the historian carries the whole assembly,RDC_SB_1F_VAV1540,0
+2903,RDC_SB_1F_AT-1543,AT,Workstation S-1182A,part - the historian carries the whole assembly,RDC_SB_1F_VAV1543,0
+2904,RDC_SB_1F_AT-1544,AT,Office S-1182C,part - the historian carries the whole assembly,RDC_SB_1F_VAV1544,0
+2905,RDC_SB_1F_AT-1545,AT,Office S-1182D,part - the historian carries the whole assembly,RDC_SB_1F_VAV1545,0
+2906,RDC_SB_1F_AT-1547,AT,Office S-1182F,part - the historian carries the whole assembly,RDC_SB_1F_VAV1547,0
+2907,RDC_NB_1F_AT-5650,AT,Office N-1120,part - the historian carries the whole assembly,RDC_NB_1F_VAV5650,0
+2908,RDC_NB_1F_AT-5655,AT,Store N-1120B,part - the historian carries the whole assembly,RDC_NB_1F_VAV5655_EV5656,0
+2909,RDC_NB_1F_AT-5660,AT,Office N-1121,part - the historian carries the whole assembly,RDC_NB_1F_VAV5660,0
+2910,RDC_NB_1F_AT-5665,AT,Office N-1122,part - the historian carries the whole assembly,RDC_NB_1F_VAV5665,0
+2911,RDC_NB_1F_AT-5670,AT,Office N-1123,part - the historian carries the whole assembly,RDC_NB_1F_VAV5670,0
+2912,RDC_NB_1F_AT-5675,AT,Office N-1124,part - the historian carries the whole assembly,RDC_NB_1F_VAV5675,0
+2913,RDC_NB_1F_AT-5680,AT,Office N-1125,part - the historian carries the whole assembly,RDC_NB_1F_VAV5680,0
+2914,RDC_NB_1F_AT-5685,AT,Corridor N-1126,part - the historian carries the whole assembly,RDC_NB_1F_VAV5685,0
+2915,RDC_NB_1F_AT-5690,AT,Office N-1127,part - the historian carries the whole assembly,RDC_NB_1F_VAV5690,0
+2916,RDC_NB_1F_AT-5695,AT,Office N-1128,part - the historian carries the whole assembly,RDC_NB_1F_VAV5695,0
+2917,RDC_NB_1F_AT-5700,AT,Office N-1129,part - the historian carries the whole assembly,RDC_NB_1F_VAV5700,0
+2918,RDC_NB_1F_AT-5705,AT,Office N-1130,part - the historian carries the whole assembly,RDC_NB_1F_VAV5705,0
+2919,RDC_NB_1F_AT-5710,AT,Office N-1131,part - the historian carries the whole assembly,RDC_NB_1F_VAV5710,0
+2920,RDC_NB_1F_AT-5715,AT,Conf Rm N-1132,part - the historian carries the whole assembly,RDC_NB_1F_VAV5715_EV5716,0
+2921,RDC_NB_1F_AT-5730,AT,Store N-1135,part - the historian carries the whole assembly,RDC_NB_1F_VAV5730_EV5731,0
+2922,RDC_NB_1F_AT-5735,AT,Normal Elec. N-1136,part - the historian carries the whole assembly,RDC_NB_1F_VAV5735_EV5736,0
+2923,RDC_NB_1F_AT-5740,AT,Emer. Elec. N-1137,part - the historian carries the whole assembly,RDC_NB_1F_VAV5740_EV5741,0
+2924,RDC_NB_1F_AT-5745,AT,Corridor N-1138,part - the historian carries the whole assembly,RDC_NB_1F_VAV5745,0
+2925,RDC_NB_1F_AT-5760,AT,Conf N-1143,part - the historian carries the whole assembly,RDC_NB_1F_VAV5760_EV5761,0
+2926,RDC_NB_1F_AT-5835,AT,P/C/S Pantry N-1146,part - the historian carries the whole assembly,RDC_NB_1F_VAV5835_EV5836,0
+2927,RDC_NB_1F_AT-5840,AT,Corridor N-1150,part - the historian carries the whole assembly,RDC_NB_1F_VAV5840,0
+2928,RDC_NB_1F_AT-5860,AT,Office N-1154,part - the historian carries the whole assembly,RDC_NB_1F_VAV5860,0
+2929,RDC_NB_1F_AT-5865,AT,Office N-1155,part - the historian carries the whole assembly,RDC_NB_1F_VAV5865,0
+2930,RDC_NB_1F_AT-5870,AT,Exp Office N-1156,part - the historian carries the whole assembly,RDC_NB_1F_VAV5870,0
+2931,RDC_NB_1F_AT-5875,AT,Office N-1157,part - the historian carries the whole assembly,RDC_NB_1F_VAV5875,0
+2932,RDC_NB_1F_AT-5880,AT,Office N-1158,part - the historian carries the whole assembly,RDC_NB_1F_VAV5880,0
+2933,RDC_NB_1F_AT-5885,AT,Office N-1159,part - the historian carries the whole assembly,RDC_NB_1F_VAV5885,0
+2934,RDC_NB_1F_AT-5890,AT,Workstation N-1160,part - the historian carries the whole assembly,RDC_NB_1F_VAV5890,0
+2935,RDC_NB_1F_AT-5895,AT,Office N-1161,part - the historian carries the whole assembly,RDC_NB_1F_VAV5895,0
+2936,RDC_NB_1F_AT-5900,AT,Office N-1162,part - the historian carries the whole assembly,RDC_NB_1F_VAV5900,0
+2937,RDC_NB_1F_AT-5905,AT,Office N-1163,part - the historian carries the whole assembly,RDC_NB_1F_VAV5905,0
+2938,RDC_NB_1F_AT-5910,AT,Office N-1164,part - the historian carries the whole assembly,RDC_NB_1F_VAV5910,0
+2939,RDC_NB_1F_AT-5915,AT,Office N-1167,part - the historian carries the whole assembly,RDC_NB_1F_VAV5915,0
+2940,RDC_NB_1F_AT-5920,AT,Workstation N-1168,part - the historian carries the whole assembly,RDC_NB_1F_VAV5920,0
+2941,RDC_NB_1F_AT-5925,AT,Office N-1169,part - the historian carries the whole assembly,RDC_NB_1F_VAV5925,0
+2942,RDC_NB_1F_AT-5930,AT,Office N-1170,part - the historian carries the whole assembly,RDC_NB_1F_VAV5930,0
+2943,RDC_NB_1F_AT-5935,AT,Office N-1166,part - the historian carries the whole assembly,RDC_NB_1F_VAV5935,0
+2944,RDC_NB_1F_AT-5940,AT,Workstation N-1165,part - the historian carries the whole assembly,RDC_NB_1F_VAV5940,0
+2945,RDC_NB_1F_AT-5720,AT,Men N-1134,part - the historian carries the whole assembly,RDC_NB_1F_CAV5720_EV5721,0
+2946,RDC_NB_1F_AT-5750,AT,Store N-1141,part - the historian carries the whole assembly,RDC_NB_1F_CAV5750,0
+2947,RDC_NB_1F_AT-4640,AT,Women N-1221,part - the historian carries the whole assembly,RDC_NB_1F_CAV4640_EV4641,0
+2948,RDC_NB_1F_AT-4650,AT,Breakout N-1225,part - the historian carries the whole assembly,RDC_NB_1F_VAV4650,0
+2949,RDC_NB_1F_EV-5686,EV,Corridor N-1126,part - the historian carries the whole assembly,RDC_NB_1F_EAV5686,0
+2950,RDC_NB_1F_EV-5721,EV,Men N-1134,part - the historian carries the whole assembly,RDC_NB_1F_CAV5720_EV5721,0
+2951,RDC_NB_1F_EV-5747,EV,IDF N-1140,part - the historian carries the whole assembly,RDC_NB_1F_EAV5747,0
+2952,RDC_NB_1F_EV-4641,EV,Women N-1221,part - the historian carries the whole assembly,RDC_NB_1F_CAV4640_EV4641,0
+2953,RDC_NB_1F_EV-5891,EV,Office 05 - 8 WKS- North N-1160,part - the historian carries the whole assembly,RDC_NB_1F_EAV5891,0
+2954,RDC_NB_1F_EV-5921,EV,Office 05 - 8 WKS- N-1168,part - the historian carries the whole assembly,RDC_NB_1F_EAV5921,0
+2955,RDC_NB_1F_EV-5941,EV,Office 05 - 8 WKS- N-1165,part - the historian carries the whole assembly,RDC_NB_1F_EAV5941,0
+2956,RDC_NB_1F_FEV-5624,FEV,Sequence Lab N-1115K,unit - has its own historian object,,2
+2957,RDC_NB_1F_VEV-5572,VEV,Met/Prot Lab N-1115C,unit - has its own historian object,,3
+2958,RDC_NB_1F_VEV-5573A,VEV,Met/Prot Lab N-1115C,unit - has its own historian object,,2
+2959,RDC_NB_1F_VEV-5573B,VEV,Met/Prot Lab N-1115C,unit - has its own historian object,,2
+2960,RDC_NB_1F_FEV-5574,FEV,Met/Prot Lab N-1115C,unit - has its own historian object,,2
+2961,RDC_NB_1F_FEV-5575,FEV,Met/Prot Lab N-1115C,unit - has its own historian object,,2
+2962,RDC_NB_1F_VEV-5591,VEV,Cell Culture N-1115E,unit - has its own historian object,,3
+2963,RDC_NB_1F_FEV-5772,FEV,Histology N-1144A,unit - has its own historian object,,2
+2964,RDC_NB_1F_VEV-5791,VEV,Shafallah N-1144C,unit - has its own historian object,,3
+2965,RDC_NB_1F_VEV-5795B,VEV,Storage and Archives N-1144C2,unit - has its own historian object,,2
+2966,RDC_NB_1F_FEV-5796,FEV,Shafallah N-1144C,unit - has its own historian object,,2
+2967,RDC_NB_1F_VEV-5811A,VEV,Nano Lab N-1144E,unit - has its own historian object,,3
+2968,RDC_NB_1F_VEV-5811B,VEV,Nano Lab N-1144E,unit - has its own historian object,,2
+2969,RDC_NB_1F_FEV-5812,FEV,Nano Lab N-1144E,unit - has its own historian object,,2
+2970,RDC_NB_1F_FEV-5813,FEV,Nano Lab N-1144E,unit - has its own historian object,,2
+2971,RDC_NB_1F_VEV-5821,VEV,Nano Lab N-1144E,unit - has its own historian object,,3
+2972,RDC_SB_1F_AT-2501,AT,Lobby S-1201,part - the historian carries the whole assembly,RDC_SB_1F_VAV2501,0
+2973,RDC_SB_1F_AT-2507,AT,Female S-1204,part - the historian carries the whole assembly,RDC_SB_1F_CAV2507,0
+2974,RDC_SB_1F_AT-2502,AT,Lobby S-1202,part - the historian carries the whole assembly,RDC_SB_1F_VAV2502,0
+2975,RDC_SB_1F_AT-2503,AT,Lobby S-1202,part - the historian carries the whole assembly,RDC_SB_1F_VAV2503,0
+2976,RDC_SB_1F_AT-2504,AT,Lobby S-1202,part - the historian carries the whole assembly,RDC_SB_1F_VAV2504,0
+2977,RDC_SB_1F_AT-2505,AT,Lobby S-1202,part - the historian carries the whole assembly,RDC_SB_1F_VAV2505,0
+2978,RDC_SB_1F_AT-2506,AT,Lobby S-1202,part - the historian carries the whole assembly,RDC_SB_1F_VAV2506,0
+2979,RDC_SB_1F_AT-2508,AT,Female Prayer S-1207,part - the historian carries the whole assembly,RDC_SB_1F_VAV2508,0
+2980,RDC_SB_1F_AT-2509,AT,Open Plan S-1210,part - the historian carries the whole assembly,RDC_SB_1F_VAV2509,0
+2981,RDC_SB_1F_AT-2510,AT,Exc. Dir. Office S-1211,part - the historian carries the whole assembly,RDC_SB_1F_VAV2510,0
+2982,RDC_SB_1F_AT-2511,AT,Office S-1212,part - the historian carries the whole assembly,RDC_SB_1F_VAV2511,0
+2983,RDC_SB_1F_AT-2512,AT,Office S-1213,part - the historian carries the whole assembly,RDC_SB_1F_VAV2512,0
+2984,RDC_SB_1F_AT-2513,AT,Office S-1214,part - the historian carries the whole assembly,RDC_SB_1F_VAV2513,0
+2985,RDC_SB_1F_AT-2514,AT,Office S-1215,part - the historian carries the whole assembly,RDC_SB_1F_VAV2514,0
+2986,RDC_SB_1F_AT-2515,AT,Office S-1216,part - the historian carries the whole assembly,RDC_SB_1F_VAV2515,0
+2987,RDC_SB_1F_AT-2516,AT,Executive Director Office S-1217,part - the historian carries the whole assembly,RDC_SB_1F_VAV2516,0
+2988,RDC_SB_1F_AT-2517,AT,Executive Director Office S-1218,part - the historian carries the whole assembly,RDC_SB_1F_VAV2517,0
+2989,RDC_SB_1F_AT-2518,AT,Office S-1219,part - the historian carries the whole assembly,RDC_SB_1F_VAV2518,0
+2990,RDC_SB_1F_AT-2519,AT,Office S-1220,part - the historian carries the whole assembly,RDC_SB_1F_VAV2519,0
+2991,RDC_SB_1F_AT-2520,AT,Office S-1221,part - the historian carries the whole assembly,RDC_SB_1F_VAV2520,0
+2992,RDC_SB_1F_AT-2521,AT,Office S-1222,part - the historian carries the whole assembly,RDC_SB_1F_VAV2521,0
+2993,RDC_SB_1F_AT-2522,AT,Office S-1223,part - the historian carries the whole assembly,RDC_SB_1F_VAV2522,0
+2994,RDC_SB_1F_AT-2523,AT,Office S-1224,part - the historian carries the whole assembly,RDC_SB_1F_VAV2523,0
+2995,RDC_SB_1F_AT-2524,AT,Office S-1225,part - the historian carries the whole assembly,RDC_SB_1F_VAV2524,0
+2996,RDC_SB_1F_AT-2525,AT,Office S-1226,part - the historian carries the whole assembly,RDC_SB_1F_VAV2525,0
+2997,RDC_SB_1F_AT-2526,AT,Open Plan S-1227,part - the historian carries the whole assembly,RDC_SB_1F_VAV2526,0
+2998,RDC_SB_1F_AT-2527,AT,Director Office S-1228,part - the historian carries the whole assembly,RDC_SB_1F_VAV2527,0
+2999,RDC_SB_1F_AT-2528,AT,Director Office S-1230,part - the historian carries the whole assembly,RDC_SB_1F_VAV2528,0
+3000,RDC_SB_1F_AT-2529,AT,Office S-1231,part - the historian carries the whole assembly,RDC_SB_1F_VAV2529,0
+3001,RDC_SB_1F_AT-2530,AT,Office S-1232,part - the historian carries the whole assembly,RDC_SB_1F_VAV2530,0
+3002,RDC_SB_1F_AT-2531,AT,Director Ofice S-1241,part - the historian carries the whole assembly,RDC_SB_1F_VAV2531,0
+3003,RDC_SB_1F_AT-2532,AT,Office S-1242,part - the historian carries the whole assembly,RDC_SB_1F_VAV2532,0
+3004,RDC_SB_1F_AT-2533,AT,Cooridor S-1246,part - the historian carries the whole assembly,RDC_SB_1F_VAV2533,0
+3005,RDC_SB_1F_AT-2534,AT,Meeting Room S-1247,part - the historian carries the whole assembly,RDC_SB_1F_VAV2534,0
+3006,RDC_SB_1F_AT-2535,AT,Store S-1248,part - the historian carries the whole assembly,RDC_SB_1F_VAV2535,0
+3007,RDC_SB_1F_AT-2536,AT,Normal Elec. S-1251,part - the historian carries the whole assembly,RDC_SB_1F_VAV2536,0
+3008,RDC_SB_1F_AT-2538,AT,Office S-1257,part - the historian carries the whole assembly,RDC_SB_1F_VAV2538,0
+3009,RDC_SB_1F_AT-2539,AT,Office S-1257B,part - the historian carries the whole assembly,RDC_SB_1F_VAV2539,0
+3010,RDC_SB_1F_AT-2540,AT,Executive Director S-1260,part - the historian carries the whole assembly,RDC_SB_1F_VAV2540,0
+3011,RDC_SB_1F_AT-2541,AT,Assistant S-1261,part - the historian carries the whole assembly,RDC_SB_1F_VAV2541,0
+3012,RDC_SB_1F_AT-2542,AT,Open Plan S-1263,part - the historian carries the whole assembly,RDC_SB_1F_VAV2542,0
+3013,RDC_SB_1F_AT-2543,AT,Office S-1264,part - the historian carries the whole assembly,RDC_SB_1F_VAV2543,0
+3014,RDC_SB_1F_AT-2544,AT,Office S-1265,part - the historian carries the whole assembly,RDC_SB_1F_VAV2544,0
+3015,RDC_SB_1F_AT-2545,AT,Office S-1266,part - the historian carries the whole assembly,RDC_SB_1F_VAV2545,0
+3016,RDC_SB_1F_AT-2546,AT,Office S-1267,part - the historian carries the whole assembly,RDC_SB_1F_VAV2546,0
+3017,RDC_SB_1F_AT-2547,AT,Office S-1268,part - the historian carries the whole assembly,RDC_SB_1F_VAV2547,0
+3018,RDC_SB_1F_AT-2548,AT,Office S-1269,part - the historian carries the whole assembly,RDC_SB_1F_VAV2548,0
+3019,RDC_SB_1F_AT-2549,AT,Office S-1270,part - the historian carries the whole assembly,RDC_SB_1F_VAV2549,0
+3020,RDC_SB_1F_AT-2550,AT,Office S-1271,part - the historian carries the whole assembly,RDC_SB_1F_VAV2550,0
+3021,RDC_SB_1F_AT-2551,AT,Meeting Room S-1272,part - the historian carries the whole assembly,RDC_SB_1F_VAV2551,0
+3022,RDC_SB_1F_AT-2552,AT,Vestibule S-1273,part - the historian carries the whole assembly,RDC_SB_1F_VAV2552,0
+3023,RDC_SB_1F_AT-2553,AT,Male Prayer S-1278,part - the historian carries the whole assembly,RDC_SB_1F_VAV2553,0
+3024,RDC_SB_1F_AT-4260,AT,Office 05 -8WS- N-0255,neither - nothing in the historian knows this number,,0
+3025,RDC_NB_1F_AT-6650,AT,Office N-1319,part - the historian carries the whole assembly,RDC_NB_1F_VAV6650,0
+3026,RDC_NB_1F_AT-6655,AT,Office N-1320,part - the historian carries the whole assembly,RDC_NB_1F_VAV6655,0
+3027,RDC_NB_1F_AT-6660,AT,Workstation N-1321,part - the historian carries the whole assembly,RDC_NB_1F_VAV6660,0
+3028,RDC_NB_1F_AT-6665,AT,Office N-1322,part - the historian carries the whole assembly,RDC_NB_1F_VAV6665,0
+3029,RDC_NB_1F_AT-6670,AT,Office N-1323,part - the historian carries the whole assembly,RDC_NB_1F_VAV6670,0
+3030,RDC_NB_1F_AT-6675,AT,Workstation N-1324,part - the historian carries the whole assembly,RDC_NB_1F_VAV6675,0
+3031,RDC_NB_1F_AT-6680,AT,Office N-1325,part - the historian carries the whole assembly,RDC_NB_1F_VAV6680,0
+3032,RDC_NB_1F_AT-6685,AT,Office N-1326,part - the historian carries the whole assembly,RDC_NB_1F_VAV6685,0
+3033,RDC_NB_1F_AT-6690,AT,Exp. Workstation N-1327,part - the historian carries the whole assembly,RDC_NB_1F_VAV6690,0
+3034,RDC_NB_1F_AT-6695,AT,Office N-1328,part - the historian carries the whole assembly,RDC_NB_1F_VAV6695,0
+3035,RDC_NB_1F_AT-6700,AT,NORMAL ELEC. N-1329,part - the historian carries the whole assembly,RDC_NB_1F_VAV6700_EV6701,0
+3036,RDC_NB_1F_AT-6705,AT,Office N-1330,part - the historian carries the whole assembly,RDC_NB_1F_VAV6705,0
+3037,RDC_NB_1F_AT-6710,AT,Office N-1331,part - the historian carries the whole assembly,RDC_NB_1F_VAV6710,0
+3038,RDC_NB_1F_AT-6715,AT,Office N-1332,part - the historian carries the whole assembly,RDC_NB_1F_VAV6715,0
+3039,RDC_NB_1F_AT-6720,AT,Corridor N-1335,part - the historian carries the whole assembly,RDC_NB_1F_VAV6720,0
+3040,RDC_NB_1F_AT-6725,AT,Emer. Elec. N-1336,part - the historian carries the whole assembly,RDC_NB_1F_VAV6725_EV6726,0
+3041,RDC_NB_1F_AT-6740,AT,Men N-1340,part - the historian carries the whole assembly,RDC_NB_1F_CAV6740_EV6741,0
+3042,RDC_NB_1F_AT-7500,AT,Women N-1403,part - the historian carries the whole assembly,RDC_NB_1F_CAV7500_EV7501,0
+3043,RDC_NB_1F_AT-6900,AT,Office N-1357,part - the historian carries the whole assembly,RDC_NB_1F_VAV6900,0
+3044,RDC_NB_1F_AT-6905,AT,Open Plan N-1358,part - the historian carries the whole assembly,RDC_NB_1F_VAV6905,0
+3045,RDC_NB_1F_AT-6910,AT,Office N-1359,part - the historian carries the whole assembly,RDC_NB_1F_VAV6910,0
+3046,RDC_NB_1F_AT-6915,AT,Office N-1360,part - the historian carries the whole assembly,RDC_NB_1F_VAV6915,0
+3047,RDC_NB_1F_AT-6920,AT,Office N-1360B,part - the historian carries the whole assembly,RDC_NB_1F_VAV6920,0
+3048,RDC_NB_1F_AT-6925,AT,Office N-1361,part - the historian carries the whole assembly,RDC_NB_1F_VAV6925,0
+3049,RDC_NB_1F_AT-6930,AT,Office N-1362,part - the historian carries the whole assembly,RDC_NB_1F_VAV6930,0
+3050,RDC_NB_1F_AT-6935,AT,Workstation N-1363,part - the historian carries the whole assembly,RDC_NB_1F_VAV6935,0
+3051,RDC_NB_1F_AT-6940,AT,Office N-1364,part - the historian carries the whole assembly,RDC_NB_1F_VAV6940,0
+3052,RDC_NB_1F_AT-6945,AT,Office N-1365,part - the historian carries the whole assembly,RDC_NB_1F_VAV6945,0
+3053,RDC_NB_1F_AT-6950,AT,Office N-1366,part - the historian carries the whole assembly,RDC_NB_1F_VAV6950,0
+3054,RDC_NB_1F_AT-6955,AT,Office N-1367,part - the historian carries the whole assembly,RDC_NB_1F_VAV6955,0
+3055,RDC_NB_1F_AT-6960,AT,Workstation N-1368,part - the historian carries the whole assembly,RDC_NB_1F_VAV6960,0
+3056,RDC_NB_1F_AT-6965,AT,Office N-1369,part - the historian carries the whole assembly,RDC_NB_1F_VAV6965,0
+3057,RDC_NB_1F_AT-6967,AT,Office N-1370,part - the historian carries the whole assembly,RDC_NB_1F_VAV6967,0
+3058,RDC_NB_1F_AT-6968,AT,Workstation N-1371,part - the historian carries the whole assembly,RDC_NB_1F_VAV6968,0
+3059,RDC_NB_1F_AT-6970,AT,PANTRY N-1372,part - the historian carries the whole assembly,RDC_NB_1F_VAV6970_EV6971,0
+3060,RDC_NB_1F_AT-7865,AT,Workstation N-1461A,part - the historian carries the whole assembly,RDC_NB_1F_VAV7865,0
+3061,RDC_NB_1F_AT-6372,AT,Office N-1374,neither - nothing in the historian knows this number,,0
+3062,RDC_NB_1F_AT-6374,AT,Office N-1375,neither - nothing in the historian knows this number,,0
+3063,RDC_NB_1F_AT-6376,AT,Office N-1376,neither - nothing in the historian knows this number,,0
+3064,RDC_NB_1F_AT-6378,AT,Office N-1377,neither - nothing in the historian knows this number,,0
+3065,RDC_NB_1F_EV-6661,EV,Workstation N-1321,part - the historian carries the whole assembly,RDC_NB_1F_EAV6661,0
+3066,RDC_NB_1F_EV-6676,EV,Workstation N-1324,part - the historian carries the whole assembly,RDC_NB_1F_EAV6676,0
+3067,RDC_NB_1F_EV-6691,EV,Exp. Workstation N-1327,part - the historian carries the whole assembly,RDC_NB_1F_EAV6691,0
+3068,RDC_NB_1F_EV-6741,EV,Men N-1340,part - the historian carries the whole assembly,RDC_NB_1F_CAV6740_EV6741,0
+3069,RDC_NB_1F_EV-7501,EV,Women N-1403,part - the historian carries the whole assembly,RDC_NB_1F_CAV7500_EV7501,0
+3070,RDC_NB_1F_EV-6936,EV,Workstation N-1363,part - the historian carries the whole assembly,RDC_NB_1F_EAV6936,0
+3071,RDC_NB_1F_EV-6961,EV,Workstation N-1368,part - the historian carries the whole assembly,RDC_NB_1F_EAV6961,0
+3072,RDC_NB_1F_EV-6969,EV,Workstation N-1371,part - the historian carries the whole assembly,RDC_NB_1F_EAV6969,0
+3073,RDC_NB_1F_VEV-6541,VEV,TC1 N-1316B,unit - has its own historian object,,2
+3074,RDC_NB_1F_VEV-6552,VEV,Gene Therapy Lab N-1316C,unit - has its own historian object,,2
+3075,RDC_NB_1F_VEV-6553,VEV,Gene Therapy Lab N-1316C,unit - has its own historian object,,3
+3076,RDC_NB_1F_FEV-6554,FEV,Gene Therapy Lab N-1316C,unit - has its own historian object,,2
+3077,RDC_NB_1F_FEV-6555,FEV,Gene Therapy Lab N-1316C,unit - has its own historian object,,2
+3078,RDC_NB_1F_CEV-6581,CEV,TC3 N-1316F,unit - has its own historian object,,2
+3079,RDC_NB_1F_FEV-6602,FEV,Analytical Core N-1316H,unit - has its own historian object,,2
+3080,RDC_NB_1F_FEV-6632,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3081,RDC_NB_1F_FEV-6633,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3082,RDC_NB_1F_FEV-6634,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3083,RDC_NB_1F_FEV-6635,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3084,RDC_NB_1F_FEV-6636,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3085,RDC_NB_1F_FEV-6637,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3086,RDC_NB_1F_FEV-6638,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3087,RDC_NB_1F_FEV-6639,FEV,Bio-Med Chem Lab 1 N-1316L,unit - has its own historian object,,2
+3088,RDC_NB_1F_FEV-6731,FEV,SERIVICE CORRRIDOR N-1337,unit - has its own historian object,,2
+3089,RDC_NB_1F_VEV-6751,VEV,TC1 N-1345A,unit - has its own historian object,,3
+3090,RDC_NB_1F_VEV-6762,VEV,Diabetes Lab / Open Lab N-1345B,unit - has its own historian object,,2
+3091,RDC_NB_1F_VEV-6763,VEV,Diabetes Lab / Open Lab N-1345B,unit - has its own historian object,,3
+3092,RDC_NB_1F_FEV-6764,FEV,Diabetes Lab / Open Lab N-1345B,unit - has its own historian object,,2
+3093,RDC_NB_1F_FEV-6765,FEV,Diabetes Lab / Open Lab N-1345B,unit - has its own historian object,,2
+3094,RDC_NB_1F_FEV-6766,FEV,Diabetes Lab / Open Lab N-1345B,unit - has its own historian object,,2
+3095,RDC_NB_1F_CEV-6791,CEV,TC2 N-1345C,part - the historian carries the whole assembly,RDC_NB_1F_CAV6790_CEV6791,0
+3096,RDC_NB_1F_FEV-6852,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3097,RDC_NB_1F_FEV-6853,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3098,RDC_NB_1F_FEV-6854,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3099,RDC_NB_1F_FEV-6855,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3100,RDC_NB_1F_FEV-6856,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3101,RDC_NB_1F_FEV-6857,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3102,RDC_NB_1F_FEV-6858,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3103,RDC_NB_1F_FEV-6859,FEV,Bio-Med Chem Lab 2 N-1345J,unit - has its own historian object,,2
+3104,RDC_SB_1F_AT-3501,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV3501,0
+3105,RDC_SB_1F_AT-3502,AT,Lobby S-0294,part - the historian carries the whole assembly,RDC_SB_GF_VAV3502,0
+3106,RDC_SB_1F_AT-3503,AT,Reception S-0293,part - the historian carries the whole assembly,RDC_SB_GF_VAV3503,0
+3107,RDC_SB_1F_AT-3504,AT,Open Plan S-1229,part - the historian carries the whole assembly,RDC_SB_1F_VAV3504,0
+3108,RDC_SB_1F_AT-3505,AT,Open Plan S-1229,part - the historian carries the whole assembly,RDC_SB_1F_VAV3505,0
+3109,RDC_SB_1F_AT-3506,AT,Office S-1233,part - the historian carries the whole assembly,RDC_SB_1F_VAV3506,0
+3110,RDC_SB_1F_AT-3507,AT,Office S-1234,part - the historian carries the whole assembly,RDC_SB_1F_VAV3507,0
+3111,RDC_SB_1F_AT-3508,AT,Office S-1235,part - the historian carries the whole assembly,RDC_SB_1F_VAV3508,0
+3112,RDC_SB_1F_AT-3509,AT,Policy Director Office S-1237,part - the historian carries the whole assembly,RDC_SB_1F_VAV3509,0
+3113,RDC_SB_1F_AT-3510,AT,Policy Executive Director Office S-1240,part - the historian carries the whole assembly,RDC_SB_1F_VAV3510,0
+3114,RDC_SB_1F_AT-3511,AT,CORRIDOR S-1280,part - the historian carries the whole assembly,RDC_SB_1F_VAV3511,0
+3115,RDC_SB_1F_AT-3512,AT,Pantry S-1282,part - the historian carries the whole assembly,RDC_SB_1F_VAV3512,0
+3116,RDC_SB_1F_AT-3513,AT,Office S-1283,part - the historian carries the whole assembly,RDC_SB_1F_VAV3513,0
+3117,RDC_SB_1F_AT-3514,AT,Office S-1284,part - the historian carries the whole assembly,RDC_SB_1F_VAV3514,0
+3118,RDC_SB_1F_AT-3515,AT,S-1285 VP R&D,part - the historian carries the whole assembly,RDC_SB_1F_VAV3515,0
+3119,RDC_SB_1F_AT-3516,AT,Meeting Room S-1288,part - the historian carries the whole assembly,RDC_SB_1F_VAV3516,0
+3120,RDC_SB_1F_AT-3517,AT,Dressing Room S-1290,part - the historian carries the whole assembly,RDC_SB_1F_VAV3517,0
+3121,RDC_SB_1F_AT-3518,AT,Waiting Area S-1292,part - the historian carries the whole assembly,RDC_SB_1F_VAV3518,0
+3122,RDC_SB_1F_AT-3520,AT,Office S-1294,part - the historian carries the whole assembly,RDC_SB_1F_VAV3520,0
+3123,RDC_SB_1F_AT-3521,AT,Office S-1295,part - the historian carries the whole assembly,RDC_SB_1F_VAV3521,0
+3124,RDC_SB_1F_AT-3522,AT,Conference Room S-1296,part - the historian carries the whole assembly,RDC_SB_1F_VAV3522,0
+3125,RDC_SB_1F_AT-3523,AT,Office S-1299,part - the historian carries the whole assembly,RDC_SB_1F_VAV3523,0
+3126,RDC_SB_1F_AT-3524,AT,Normal Elec. S-1238,part - the historian carries the whole assembly,RDC_SB_1F_VAV3524,0
+3127,RDC_SB_1F_AT-0207,AT,Open Plan S-1293A,neither - nothing in the historian knows this number,,0
+3128,RDC_SB_1F_AT-0208,AT,Open Plan S-1293,neither - nothing in the historian knows this number,,0
+3129,RDC_SB_1F_AT-0201A,AT,Policy Executive Director Office S-1240,neither - nothing in the historian knows this number,,0
+3130,RDC_SB_1F_AT-0201B,AT,Open Plan S-1229,neither - nothing in the historian knows this number,,0
+3131,RDC_SB_1F_AT-0206,AT,Policy Executive Director Office S-1240,neither - nothing in the historian knows this number,,0
+3132,RDC_NB_1F_AT-7620,AT,Office N-1415,part - the historian carries the whole assembly,RDC_NB_1F_VAV7620,0
+3133,RDC_NB_1F_AT-7625,AT,Office N-1416,part - the historian carries the whole assembly,RDC_NB_1F_VAV7625,0
+3134,RDC_NB_1F_AT-7630,AT,Office 05 - 2 WKS- N-1407,part - the historian carries the whole assembly,RDC_NB_1F_VAV7630,0
+3135,RDC_NB_1F_AT-7635,AT,Office N-1418,part - the historian carries the whole assembly,RDC_NB_1F_VAV7635,0
+3136,RDC_NB_1F_AT-7640,AT,Office N-1419,part - the historian carries the whole assembly,RDC_NB_1F_VAV7640,0
+3137,RDC_NB_1F_AT-7645,AT,Exp. Workstation N-1420,part - the historian carries the whole assembly,RDC_NB_1F_VAV7645,0
+3138,RDC_NB_1F_AT-7650,AT,Office N-1421,part - the historian carries the whole assembly,RDC_NB_1F_VAV7650,0
+3139,RDC_NB_1F_AT-7655,AT,Office N-1422,part - the historian carries the whole assembly,RDC_NB_1F_VAV7655,0
+3140,RDC_NB_1F_AT-7660,AT,Office 05 - 2 WKS- N-1401,part - the historian carries the whole assembly,RDC_NB_1F_VAV7660,0
+3141,RDC_NB_1F_AT-7665,AT,Normal Elec. N-1425,part - the historian carries the whole assembly,RDC_NB_1F_VAV7665_EV7666,0
+3142,RDC_NB_1F_AT-7670,AT,Office N-1426,part - the historian carries the whole assembly,RDC_NB_1F_VAV7670,0
+3143,RDC_NB_1F_AT-7675,AT,Office N-1428,part - the historian carries the whole assembly,RDC_NB_1F_VAV7675,0
+3144,RDC_NB_1F_AT-7680,AT,Conf N-1429,part - the historian carries the whole assembly,RDC_NB_1F_VAV7680_EV7681,0
+3145,RDC_NB_1F_AT-7685,AT,Office N-1433,part - the historian carries the whole assembly,RDC_NB_1F_VAV7685,0
+3146,RDC_NB_1F_AT-7690,AT,Office N-1435,part - the historian carries the whole assembly,RDC_NB_1F_VAV7690,0
+3147,RDC_NB_1F_AT-7695,AT,Office N-1437,part - the historian carries the whole assembly,RDC_NB_1F_VAV7695,0
+3148,RDC_NB_1F_AT-7700,AT,Emer. Elec. N-1438,part - the historian carries the whole assembly,RDC_NB_1F_VAV7700_EV7701,0
+3149,RDC_NB_1F_AT-7705,AT,Expansion WORKstation N-1442,part - the historian carries the whole assembly,RDC_NB_1F_VAV7705,0
+3150,RDC_NB_1F_AT-7710,AT,Office 05 - 24 WKS + N-1441 Room N-1442,part - the historian carries the whole assembly,RDC_NB_1F_VAV7710,0
+3151,RDC_NB_1F_AT-7840,AT,Conf N-1458,part - the historian carries the whole assembly,RDC_NB_1F_VAV7840_EV7841,0
+3152,RDC_NB_1F_AT-7845,AT,Conf N-1459,part - the historian carries the whole assembly,RDC_NB_1F_VAV7845_EV7846,0
+3153,RDC_NB_1F_AT-7850,AT,Office N-1459A,part - the historian carries the whole assembly,RDC_NB_1F_VAV7850,0
+3154,RDC_NB_1F_AT-7860,AT,Exp. Workstation N-1461,part - the historian carries the whole assembly,RDC_NB_1F_VAV7860,0
+3155,RDC_NB_1F_AT-7870,AT,Office N-1462,part - the historian carries the whole assembly,RDC_NB_1F_VAV7870,0
+3156,RDC_NB_1F_AT-7875,AT,Office N-1463,part - the historian carries the whole assembly,RDC_NB_1F_VAV7875,0
+3157,RDC_NB_1F_AT-7880,AT,Office N-1464,part - the historian carries the whole assembly,RDC_NB_1F_VAV7880,0
+3158,RDC_NB_1F_AT-7885,AT,Office N-1465,part - the historian carries the whole assembly,RDC_NB_1F_VAV7885,0
+3159,RDC_NB_1F_AT-7890,AT,Workstation N-1466,part - the historian carries the whole assembly,RDC_NB_1F_VAV7890,0
+3160,RDC_NB_1F_AT-7895,AT,Office N-1467,part - the historian carries the whole assembly,RDC_NB_1F_VAV7895,0
+3161,RDC_NB_1F_AT-7900,AT,Office N-1468,part - the historian carries the whole assembly,RDC_NB_1F_VAV7900,0
+3162,RDC_NB_1F_AT-7905,AT,Office N-1469,part - the historian carries the whole assembly,RDC_NB_1F_VAV7905,0
+3163,RDC_NB_1F_AT-7910,AT,Office N-1470,part - the historian carries the whole assembly,RDC_NB_1F_VAV7910,0
+3164,RDC_NB_1F_AT-7915,AT,Workstation N-1471,part - the historian carries the whole assembly,RDC_NB_1F_VAV7915,0
+3165,RDC_NB_1F_AT-7920,AT,Office N-1472,part - the historian carries the whole assembly,RDC_NB_1F_VAV7920,0
+3166,RDC_NB_1F_AT-7925,AT,Office N-1473,part - the historian carries the whole assembly,RDC_NB_1F_VAV7925,0
+3167,RDC_NB_1F_AT-7930,AT,Office N-1474,part - the historian carries the whole assembly,RDC_NB_1F_VAV7930,0
+3168,RDC_NB_1F_AT-7935,AT,Office N-1475,part - the historian carries the whole assembly,RDC_NB_1F_VAV7935,0
+3169,RDC_NB_1F_AT-7940,AT,Workstation N-1476,part - the historian carries the whole assembly,RDC_NB_1F_VAV7940,0
+3170,RDC_NB_1F_AT-7945,AT,Office N-1477,part - the historian carries the whole assembly,RDC_NB_1F_VAV7945,0
+3171,RDC_NB_1F_AT-7950,AT,Office N-1478,part - the historian carries the whole assembly,RDC_NB_1F_VAV7950,0
+3172,RDC_NB_1F_AT-7955,AT,Office N-1479,part - the historian carries the whole assembly,RDC_NB_1F_VAV7955,0
+3173,RDC_NB_1F_AT-7960,AT,Office N-1480,part - the historian carries the whole assembly,RDC_NB_1F_VAV7960,0
+3174,RDC_NB_1F_EV-7631,EV,Office 05 - 2 WKS- N-1407,part - the historian carries the whole assembly,RDC_NB_1F_EAV7631,0
+3175,RDC_NB_1F_EV-7646,EV,Exp. Workstation N-1420,part - the historian carries the whole assembly,RDC_NB_1F_EAV7646,0
+3176,RDC_NB_1F_EV-7661,EV,Office 05 - 2 WKS- N-1401,part - the historian carries the whole assembly,RDC_NB_1F_EAV7661,0
+3177,RDC_NB_1F_EV-7663,EV,IDF N-1424,part - the historian carries the whole assembly,RDC_NB_1F_EAV7663,0
+3178,RDC_NB_1F_EV-7711,EV,Workstation N-1442,part - the historian carries the whole assembly,RDC_NB_1F_EAV7711,0
+3179,RDC_NB_1F_EV-7712,EV,Workstation N-1442,part - the historian carries the whole assembly,RDC_NB_1F_EAV7712,0
+3180,RDC_NB_1F_EV-7861,EV,Office 05 - 9 WKS N-1461,part - the historian carries the whole assembly,RDC_NB_1F_EAV7861,0
+3181,RDC_NB_1F_EV-7916,EV,Office 05 - 8 WKS N-1471,part - the historian carries the whole assembly,RDC_NB_1F_EAV7916,0
+3182,RDC_NB_1F_CEV-7521,CEV,Isotope N-1404B,part - the historian carries the whole assembly,RDC_NB_1F_CAV7520_CEV7521,0
+3183,RDC_NB_1F_FEV-7522,FEV,Isotope N-1404B,unit - has its own historian object,,2
+3184,RDC_NB_1F_CEV-7591,CEV,HY Room N-1404J,part - the historian carries the whole assembly,RDC_NB_1F_CAV7590_CEV7591,0
+3185,RDC_NB_1F_CEV-7581,CEV,TC3 N-1404H,part - the historian carries the whole assembly,RDC_NB_1F_VAV7580_VEV7581,0
+3186,RDC_NB_1F_FEV-7602,FEV,CELL BIO LABS N-1404K,unit - has its own historian object,,2
+3187,RDC_NB_1F_CEV-7611,CEV,TC1 N-1404L,part - the historian carries the whole assembly,RDC_NB_1F_CAV7610_CEV7611,0
+3188,RDC_NB_1F_CEV-6831,CEV,SHARED COLD LAB N-1345G,part - the historian carries the whole assembly,RDC_NB_1F_VAV6830_VEV6831,0
+3189,RDC_NB_1F_CEV-7761,CEV,A/L N-1450D,part - the historian carries the whole assembly,RDC_NB_1F_CAV7760_CEV7761,0
+3190,RDC_NB_1F_CEV-7791,CEV,A/L N-1450G,part - the historian carries the whole assembly,RDC_NB_1F_CAV7790_CEV7791,0
+3191,RDC_NB_1F_FEV-7824,FEV,STEM/PCR Open Lab N-1450M,unit - has its own historian object,,2
+3192,RDC_NB_2F_AT-4900,AT,Normal Electric N-2102,neither - nothing in the historian knows this number,,0
+3193,RDC_NB_2F_AT-4910,AT,Emergency Electr N-2103,neither - nothing in the historian knows this number,,0
+3194,RDC_NB_2F_EV-4920,EV,IDF N-2104,part - the historian carries the whole assembly,RDC_NB_2F_EAV4920,0
+3195,RDC_NB_2F_AT-5930,AT,Office 04 N-1170,part - the historian carries the whole assembly,RDC_NB_1F_VAV5930,0
+3196,RDC_NB_2F_AT-5940,AT,Office 05 - 8 WKS- N-1165,part - the historian carries the whole assembly,RDC_NB_1F_VAV5940,0
+3197,RDC_NB_2F_AT-6979,AT,Normal Elec. N-2107,neither - nothing in the historian knows this number,,0
+3198,RDC_NB_2F_AT-6980,AT,Emer. Elec. N-2108,neither - nothing in the historian knows this number,,0
+3199,RDC_NB_2F_EV-6981,EV,IDF N-2110,part - the historian carries the whole assembly,RDC_NB_2F_EAV6981,0
+3200,RDC_NB_2F_AT-7975,AT,Normal Elec. N-2111,neither - nothing in the historian knows this number,,0
+3201,RDC_NB_2F_AT-7980,AT,Emer. Elec. N-2112,neither - nothing in the historian knows this number,,0

@@ -136,3 +136,62 @@ typo). Those are register defects, found without reference to any screen.
 A box feeding several terminals is not a contradiction: `AT-7120` runs to nine
 of them, `-N1` to `-N9`, in nine different rooms. Those rows keep their own room
 and are never given the box's.
+
+---
+
+# Which RDC rows are units, and which are parts of one
+
+`classify_parts.py` decides, against the historian.
+
+```
+python3 classify_parts.py   # writes rdc_unit_or_part.csv
+```
+
+The test is the historian, not the tag family. A row is a controllable asset if
+the historian carries an object for it - that is what controllable means, and
+what the Controllable Asset Registry is for. A row with no historian object has
+no points, cannot be commanded and cannot be read.
+
+`RDC_Historian_IO_list_CP2.xlsx` holds 30,197 tags over 5,993 objects, and
+**not one of them is an AT**. The historian names the whole assembly the way the
+register writes the box - `RDC_NB_GF_VAV4110_EV4111`, ten points - and the
+register's `AT-4110` has no object at all.
+
+## The result, air handling units aside
+
+| | rows |
+|---|---|
+| unit - its own historian object | 992 |
+| part - the historian carries the whole assembly | 683 |
+| nothing in the historian knows the number | 47 |
+
+By family, and this is the point: **the rule cannot be a family rule.**
+
+| family | unit | part | unknown |
+|---|---|---|---|
+| AT | 0 | 607 | 37 |
+| EV | 80 | 64 | 1 |
+| VEV | 114 | 3 | 5 |
+| CEV | 5 | 9 | 0 |
+| FEV | **73** | 0 | 0 |
+| VAV | 584 | 0 | 1 |
+| FCU | 135 | 0 | 3 |
+
+Every FEV, and 114 of 122 VEV, have their own historian object and their own
+points. Treating those families as parts would delete 192 real controllable
+assets.
+
+## What the matching has to be careful about
+
+Each of these was found by checking the output, not by reasoning first:
+
+- **Feed `numbers()` the raw object name, not the key.** Stripping the
+  separators first turns `VAV4110_EV4111` into one unit numbered `4110E`, and
+  every AT then finds no host.
+- **Key the host index on the building.** `RDC_NB_1F_FCU2004` was matched to
+  `RDC_SB_GF_VAV2004`, a unit in the other building.
+- **Strip level segments before comparing.** The register writes
+  `RDC_NB_2F_2F_AHU8513` and the historian `RDC_NB_AHU8513`; comparing whole
+  strings called 26 air handling units unknown when every one is present.
+- **FCU and AHU cannot host a part.** Letting them gave 31 rows two candidate
+  hosts, because `FCU1004` and `VAV1004` share a number and are different units.
