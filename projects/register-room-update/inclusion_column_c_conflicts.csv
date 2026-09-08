@@ -1,109 +1,109 @@
-building,tag,room,the register says,the old file says
-HQ,AHU12_0002,RF.001 ROOF,Included,Not Included
-HQ,AHU12_0003,RF.001 ROOF,Included,Not Included
-HQ,AHUB_0001,B1.001 AHU 4,Included,Not Included
-HQ,AHUB_0002,B1.001 AHU 4,Included,Not Included
-HQ,AHUB_0003,B1.006 AHU 1,Included,Not Included
-HQ,AHUB_0004,B1.006 AHU 1,Included,Not Included
-HQ,AHUB_0005,B1.016 AHU 2,Included,Not Included
-HQ,AHUB_0006,B1.016 AHU 2,Included,Not Included
-HQ,AHUB_0007,B1.022 AHU 3,Included,Not Included
-HQ,AHUB_0009,B1.019 AHU,Included,Not Included
-HQ,AHUB_0010,B1.019 AHU,Included,Not Included
-HQ,AHUB_0011,B1.019 AHU,Included,Not Included
-HQ,FCU0003,B1.107 DOCK MASTER OFFICE,Included,Not Included
-HQ,FCU0006,B1.122 SUPPORT SPACE FOOD STORAGE,Included,Not Included
-HQ,FCU0007,B1.123 SUPPORT SPACE FOOD STORAGE,Included,Not Included
-HQ,FCU0008,B1.015 SUPPORT SPACE LOADING,Included,Not Included
-HQ,FCU0009,B1.014 SUPPORT SPACE DRY WASTE STORAGE,Included,Not Included
-HQ,FCU0010,B1.124 WASTE BIN WASH UP,Included,Not Included
-HQ,FCU0015,G.031 PR AND MARKET STAFF,Not Included,Included
-HQ,FCU0067,5.602 BRIDGE,Included,Not Included
-HQ,FCU0068,5.602 BRIDGE,Included,Not Included
-HQ,FCU0069,5.602 BRIDGE,Included,Not Included
-HQ,FCU0070,5.602 BRIDGE,Included,Not Included
-HQ,FCU0077,4.701 VP ADM TERRACE,Included,Not Included
-HQ,FCU0078,4.701 VP ADM TERRACE,Included,Not Included
-HQ,FCU0079,4.701 VP ADM TERRACE,Included,Not Included
-HQ,FCU0080,4.701 VP ADM TERRACE,Included,Not Included
-HQ,FCU0121,11.110 ELECTRIC CLOSET,Included,Not Included
-HQ,VAV0001,B1.103 STAFF LOBBY,Not Included,Included
-HQ,VAV0002,B1.103 STAFF LOBBY,Not Included,Included
-HQ,VAV0003,B1.103 STAFF LOBBY,Not Included,Included
-HQ,VAV0011,G.011 PR AND MARKET MANAGER,Included,Not Included
-HQ,VAV0083,1.101 STAFF LOUNGE,Not Included,Included
-HQ,VAV0084,1.101 STAFF LOUNGE,Not Included,Included
-HQ,VAV0085,1.101 STAFF LOUNGE,Not Included,Included
-HQ,VAV0086,1.101 STAFF LOUNGE,Not Included,Included
-HQ,VAV0091,1.105 PRAYER ROOM,Not Included,Included
-HQ,VAV0094,1.117 FINANCE AUDITOR,Included,Not Included
-HQ,VAV0095,1.115 FINANCE AUDITOR,Included,Not Included
-HQ,VAV0096,1.101 STAFF LOUNGE,Not Included,Included
-HQ,VAV0099,1.601 CORRIDOR,Included,Not Included
-HQ,VAV0107,1.701 STAFF CAFETERIA,Not Included,Included
-HQ,VAV0108,1.701 STAFF CAFETERIA,Not Included,Included
-HQ,VAV0131,2.109 SHELL SPACE,Not Included,Included
-HQ,VAV0178,3.105A FEMALE PRAYER ROOM,Not Included,Included
-HQ,VAV0256,4.208 VP ADM EXECSECRET,Included,Not Included
-HQ,VAV0257,4.208 VP ADM EXECSECRET,Included,Not Included
-HQ,VAV0284,5.109 ELECTRICAL CABINET,Included,Not Included
-HQ,VAV0285,5.108 VP EDU ASSISTANT,Included,Not Included
-HQ,VAV0286,5.107 VP EDUCATION SUPPSECRET,Included,Not Included
-HQ,VAV0287,5.107 VP EDUCATION SUPPSECRET,Included,Not Included
-HQ,VAV0294,5.003 VP EDU SECRETARY,Included,Not Included
-HQ,VAV0315,5.211 VP EDU CHPEXECSECRET,Included,Not Included
-HQ,VAV0338,6.027 VP CAPITAL CONSULTANT,Included,Not Included
-HQ,VAV0339,6.028 VP CAPITAL CONSULTANT,Included,Not Included
-HQ,VAV0376,7.020 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0377,7.021 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0378,7.022 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0379,7.023 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0380,7.024 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0381,7.025 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0382,7.026 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0383,7.027 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0384,7.028 BD UNIT EXECUTIVE,Included,Not Included
-HQ,VAV0421,7.208 PRESIDENT SUPPORT SECRET,Included,Not Included
-HQ,VAV0423,7.209 PRESIDENT EXECSECRET,Included,Not Included
-HQ,VAV0424,7.210 PRESIDENT EXECSECRET,Included,Not Included
-HQ,VAV0427,7.213 VICE CHAIRPERSON ENSULT,Included,Not Included
-HQ,VAV0428,7.214 VICE CHAIRSECRETARY,Included,Not Included
-HQ,VAV0429,7.215 VICE CHAIRPERSON MEETING ROOM,Included,Not Included
-HQ,VAV0451,9.018 BMO EXECSECRET,Included,Not Included
-HQ,VAV0452,9.019 BMO EXECSECRET,Included,Not Included
-HQ,VAV0453,9.020 BMO EXECSECRET,Included,Not Included
-HQ,VAV0456,9.023 BMO EXECSECRET,Included,Not Included
-HQ,VAV0457,9.024 BMO EXECSECRET,Included,Not Included
-HQ,VAV0458,9.025 BMO EXECSECRET,Included,Not Included
-HQ,VAV0459,9.025 BMO EXECSECRET,Included,Not Included
-HQ,VAV0460,9.026 BMO SUPPSECRET,Included,Not Included
-HQ,VAV0461,9.027 BMO SUPPSECRET,Included,Not Included
-HQ,VAV0462,9.028 BMO SUPPSECRET,Included,Not Included
-HQ,VAV0463,9.029 BMO SUPPSECRET,Included,Not Included
-HQ,VAV0464,9.030 BMO SUPPSECRET,Included,Not Included
-HQ,VAV0471,9.037 BOD SECRETARY,Included,Not Included
-HQ,VAV0486,9.008 LEGAL LEGSUPSEC,Included,Not Included
-HQ,VAV0487,9.009 LEGAL LEGSUPSEC,Included,Not Included
-HQ,VAV0488,9.010 LEGAL LEGADVENSUIT,Included,Not Included
-HQ,VAV0496,9.108 SUPPORT SPACE PREP KITCHEN,Included,Not Included
-HQ,VAV0576,11.008 EXEC DIR CONSULTANT,Included,Not Included
-HQ,VAV0577,11.009 SECRETARY,Included,Not Included
-HQ,VAV0579,11.011 SECRETARY,Included,Not Included
-QNL,AHUB002,B.063 PLANT ROOM 01,Not Included,Included
-QNL,AHUB003,B.070 PLANT ROOM 02,Not Included,Included
-QNL,AHUB004,B.110 PLANT ROOM 03,Not Included,Included
-QNL,AHUB005,B.220 PLANT ROOM 04,Not Included,Included
-QNL,AHUB006,B.220 PLANT ROOM 04,Not Included,Included
-QNL,AHUB007,B.220 PLANT ROOM 04,Not Included,Included
-QNL,AHUB009,B.110 PLANT ROOM 03,Not Included,Included
-QNL,FCU_1F_002,L1.030 ICT ROOM 02,Included,Not Included
-QNL,FCU_1F_057,L1.144 ILL DIRECTOR,Included,Not Included
-QNL,FCU_1F_058,L1.145 ILL DIRECTOR,Included,Not Included
-QNL,FCU_B_002,B.085 FUMIGATION ROOM,Included,Not Included
-QNL,FCU_B_009,B.088 PEOPLE MOVER PLANT,Included,Not Included
-QNL,FCU_B_030,B.226 PUMP RM 4,Included,Not Included
-QNL,VAV_B_S11_024,B.002 KITCHEN,Included,Not Included
-QNL,VAV_B_S13_006,B.085 FUMIGATION ROOM,Included,Not Included
-QNL,VAV_B_S15_002,B.145 LOBY AND CSECURITY,Not Included,Included
-QNL,VAV_B_S15_003,B.145 LOBY AND CSECURITY,Not Included,Included
-QNL,VAV_B_S15_004,B.145 LOBY AND CSECURITY,Not Included,Included
+building,tag,room in V1.2,room now,same room?,V1.2 says,the register says,the rule says
+HQ,AHU12_0002,HQ RF,RF.001 ROOF,no - different room,Not Included,Included,Not Included
+HQ,AHU12_0003,HQ RF,RF.001 ROOF,no - different room,Not Included,Included,Not Included
+HQ,AHUB_0001,B.001,B1.001 AHU 4,yes,Not Included,Included,Included
+HQ,AHUB_0002,B.001,B1.001 AHU 4,yes,Not Included,Included,Included
+HQ,AHUB_0003,B.006,B1.006 AHU 1,yes,Not Included,Included,Included
+HQ,AHUB_0004,B.006,B1.006 AHU 1,yes,Not Included,Included,Included
+HQ,AHUB_0005,B.016,B1.016 AHU 2,yes,Not Included,Included,Included
+HQ,AHUB_0006,B.016,B1.016 AHU 2,yes,Not Included,Included,Included
+HQ,AHUB_0007,B.022,B1.022 AHU 3,yes,Not Included,Included,Included
+HQ,AHUB_0009,B.019,B1.019 AHU,yes,Not Included,Included,Included
+HQ,AHUB_0010,B.019,B1.019 AHU,yes,Not Included,Included,Included
+HQ,AHUB_0011,B.019,B1.019 AHU,yes,Not Included,Included,Included
+HQ,FCU0003,DOCK MASTER OFFICE B.107,B1.107 DOCK MASTER OFFICE,yes,Not Included,Included,Included
+HQ,FCU0006,ROOM B.122,B1.122 SUPPORT SPACE FOOD STORAGE,yes,Not Included,Included,Included
+HQ,FCU0007,ROOM B.123,B1.123 SUPPORT SPACE FOOD STORAGE,yes,Not Included,Included,Included
+HQ,FCU0008,ROOM B.014,B1.015 SUPPORT SPACE LOADING,no - different room,Not Included,Included,Included
+HQ,FCU0009,ROOM B.014,B1.014 SUPPORT SPACE DRY WASTE STORAGE,yes,Not Included,Included,Included
+HQ,FCU0010,ROOM B.124,B1.124 WASTE BIN WASH UP,yes,Not Included,Included,Included
+HQ,FCU0015,NURSERY CONSULT. G.031,G.031 PR AND MARKET STAFF,yes,Included,Not Included,Included
+HQ,FCU0067,NORTH EAST ZONE,5.602 BRIDGE,no - different room,Not Included,Included,Not Included
+HQ,FCU0068,NORTH EAST ZONE,5.602 BRIDGE,no - different room,Not Included,Included,Not Included
+HQ,FCU0069,NORTH EAST ZONE,5.602 BRIDGE,no - different room,Not Included,Included,Not Included
+HQ,FCU0070,NORTH EAST ZONE,5.602 BRIDGE,no - different room,Not Included,Included,Not Included
+HQ,FCU0077,VP ADM TERRACE 04.701,4.701 VP ADM TERRACE,yes,Not Included,Included,Not Included
+HQ,FCU0078,VP ADM TERRACE 04.701,4.701 VP ADM TERRACE,yes,Not Included,Included,Not Included
+HQ,FCU0079,VP ADM TERRACE 04.701,4.701 VP ADM TERRACE,yes,Not Included,Included,Not Included
+HQ,FCU0080,VP ADM TERRACE 04.701,4.701 VP ADM TERRACE,yes,Not Included,Included,Not Included
+HQ,FCU0121,ELECT. CLOSET 11.110,11.110 ELECTRIC CLOSET,yes,Not Included,Included,Not Included
+HQ,VAV0001,STAFF ENTRANCE B.004,B1.103 STAFF LOBBY,no - different room,Included,Not Included,Not Included
+HQ,VAV0002,STAFF LOBBY B.103,B1.103 STAFF LOBBY,yes,Included,Not Included,Not Included
+HQ,VAV0003,STAFF LOBBY B.103,B1.103 STAFF LOBBY,yes,Included,Not Included,Not Included
+HQ,VAV0011,PR & MARK. MANA. G.011,G.011 PR AND MARKET MANAGER,yes,Not Included,Included,Not Included
+HQ,VAV0083,STAFF LOUNGE 1.101,1.101 STAFF LOUNGE,yes,Included,Not Included,Not Included
+HQ,VAV0084,STAFF LOUNGE 1.101,1.101 STAFF LOUNGE,yes,Included,Not Included,Not Included
+HQ,VAV0085,STAFF LOUNGE 1.101,1.101 STAFF LOUNGE,yes,Included,Not Included,Not Included
+HQ,VAV0086,STAFF LOUNGE 1.101,1.101 STAFF LOUNGE,yes,Included,Not Included,Not Included
+HQ,VAV0091,PRAYER ROOM 1.105,1.105 PRAYER ROOM,yes,Included,Not Included,Not Included
+HQ,VAV0094,FINANCE AUDITOR 1.117,1.117 FINANCE AUDITOR,yes,Not Included,Included,Included
+HQ,VAV0095,FINANCE AUDITOR 1.115,1.115 FINANCE AUDITOR,yes,Not Included,Included,Included
+HQ,VAV0096,STAFF LOUNGE 1.101,1.101 STAFF LOUNGE,yes,Included,Not Included,Not Included
+HQ,VAV0099,SOUTH EAST ZONE,1.601 CORRIDOR,no - different room,Not Included,Included,Not Included
+HQ,VAV0107,STAFF CAFETERIA 1.701,1.701 STAFF CAFETERIA,yes,Included,Not Included,Not Included
+HQ,VAV0108,STAFF CAFETERIA 1.701,1.701 STAFF CAFETERIA,yes,Included,Not Included,Not Included
+HQ,VAV0131,FEMALE PRAYER ROOM 2.109,2.109 SHELL SPACE,yes,Included,Not Included,Included
+HQ,VAV0178,FEMALE PRAYER ROOM 3.105A,3.105A FEMALE PRAYER ROOM,yes,Included,Not Included,Not Included
+HQ,VAV0256,VP ADM SEC. 04.208,4.208 VP ADM EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0257,VP ADM SEC. 04.208,4.208 VP ADM EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0284,VP EDU ASS. 5.109,5.109 ELECTRICAL CABINET,yes,Not Included,Included,Not Included
+HQ,VAV0285,VP EDU SEC. 5.108,5.108 VP EDU ASSISTANT,yes,Not Included,Included,Included
+HQ,VAV0286,VP EDU SEC. 5.107,5.107 VP EDUCATION SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0287,VP EDU SEC. 5.107,5.107 VP EDUCATION SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0294,VP EDU SECRE. 5.003,5.003 VP EDU SECRETARY,yes,Not Included,Included,Included
+HQ,VAV0315,VP EDU SEC. 5.211,5.211 VP EDU CHPEXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0338,VP CAPITAL CONSUL. 06.027,6.027 VP CAPITAL CONSULTANT,yes,Not Included,Included,Included
+HQ,VAV0339,VP CAPITAL CONSUL. 06.028,6.028 VP CAPITAL CONSULTANT,yes,Not Included,Included,Included
+HQ,VAV0376,BD UNIT EXECU. 7.020,7.020 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0377,BD UNIT EXECU. 7.021,7.021 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0378,BD UNIT EXECU. 7.022,7.022 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0379,BD UNIT EXECU. 7.023,7.023 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0380,BD UNIT EXECU. 7.024,7.024 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0381,BD UNIT EXECU. 7.025,7.025 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0382,BD UNIT EXECU. 7.026,7.026 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0383,BD UNIT EXECU. 7.027,7.027 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0384,BD UNIT EXECU. 7.028,7.028 BD UNIT EXECUTIVE,yes,Not Included,Included,Included
+HQ,VAV0421,PRESIDENT SUPP. SEC. 7.208,7.208 PRESIDENT SUPPORT SECRET,yes,Not Included,Included,Included
+HQ,VAV0423,PRESIDENT EXEC. SEC. 7.209,7.209 PRESIDENT EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0424,PRESIDENT EXEC. SEC. 7.210,7.210 PRESIDENT EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0427,VICE CHAIRPERSON ENSULT 7.213,7.213 VICE CHAIRPERSON ENSULT,yes,Not Included,Included,Included
+HQ,VAV0428,VICE CHAIRPERSON SEC. 7.214,7.214 VICE CHAIRSECRETARY,yes,Not Included,Included,Included
+HQ,VAV0429,MEETING ROOM 7.215,7.215 VICE CHAIRPERSON MEETING ROOM,yes,Not Included,Included,Included
+HQ,VAV0451,BMO EXEC. SEC. 9.018,9.018 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0452,BMO EXEC. SEC. 9.019,9.019 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0453,BMO EXEC. SEC. 9.020,9.020 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0456,BMO EXEC. SEC. 9.023,9.023 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0457,BMO EXEC. SEC. 9.024,9.024 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0458,BMO EXEC. SEC. 9.025,9.025 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0459,BMO EXEC. SEC. 9.025,9.025 BMO EXECSECRET,yes,Not Included,Included,Included
+HQ,VAV0460,BMO SUPP. SEC. 9.026,9.026 BMO SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0461,BMO SUPP. SEC. 9.027,9.027 BMO SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0462,BMO SUPP. SEC. 9.028,9.028 BMO SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0463,BMO SUPP. SEC. 9.029,9.029 BMO SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0464,BMO SUPP. SEC. 9.030,9.030 BMO SUPPSECRET,yes,Not Included,Included,Included
+HQ,VAV0471,BOD SEC. 9.037,9.037 BOD SECRETARY,yes,Not Included,Included,Included
+HQ,VAV0486,LEGAL SUP. SEC. 9.008,9.008 LEGAL LEGSUPSEC,yes,Not Included,Included,Included
+HQ,VAV0487,LEGAL SUP. SEC. 9.009,9.009 LEGAL LEGSUPSEC,yes,Not Included,Included,Included
+HQ,VAV0488,LEGAL ADV. ENSUIT 9.010,9.010 LEGAL LEGADVENSUIT,yes,Not Included,Included,Included
+HQ,VAV0496,KITCHEN 9.108,9.108 SUPPORT SPACE PREP KITCHEN,yes,Not Included,Included,Included
+HQ,VAV0576,EXEC. DIR. CONSULTANT 11.008,11.008 EXEC DIR CONSULTANT,yes,Not Included,Included,Included
+HQ,VAV0577,SEC. 11.009,11.009 SECRETARY,yes,Not Included,Included,Included
+HQ,VAV0579,SECRETARY 11.011,11.011 SECRETARY,yes,Not Included,Included,Included
+QNL,AHUB002,Basement Level Zone 1 Plant Room 1 B.063,B.063 PLANT ROOM 01,yes,Included,Not Included,Not Included
+QNL,AHUB003,Basement Level Zone 1 Plant Room 2 B.070,B.070 PLANT ROOM 02,yes,Included,Not Included,Not Included
+QNL,AHUB004,Basement Level Zone 2 Plant Room 3 B.110,B.110 PLANT ROOM 03,yes,Included,Not Included,Not Included
+QNL,AHUB005,Basement Level Zone 4 Plant Room 4 B.220,B.220 PLANT ROOM 04,yes,Included,Not Included,Not Included
+QNL,AHUB006,Basement Level Zone 4 Plant Room 4 B.220,B.220 PLANT ROOM 04,yes,Included,Not Included,Not Included
+QNL,AHUB007,Basement Level Zone 4 Plant Room 4 B.220,B.220 PLANT ROOM 04,yes,Included,Not Included,Not Included
+QNL,AHUB009,Basement Level Zone 2 Plant Room 3 B.110,B.110 PLANT ROOM 03,yes,Included,Not Included,Not Included
+QNL,FCU_1F_002,ICT Room 02 L1.030,L1.030 ICT ROOM 02,yes,Not Included,Included,Included
+QNL,FCU_1F_057,ILL DIRECTOR L1.144,L1.144 ILL DIRECTOR,yes,Not Included,Included,Not Included
+QNL,FCU_1F_058,ILL DIRECTOR L1.145,L1.145 ILL DIRECTOR,yes,Not Included,Included,Not Included
+QNL,FCU_B_002,FUMIGATION B.085,B.085 FUMIGATION ROOM,yes,Not Included,Included,Included
+QNL,FCU_B_009,PEOPLE MOVER ROOM B.088,B.088 PEOPLE MOVER PLANT,yes,Not Included,Included,Not Included
+QNL,FCU_B_030,WATER FEATURE ROOM B.226,B.226 PUMP RM 4,yes,Not Included,Included,Not Included
+QNL,VAV_B_S11_024,Kitchen B.002,B.002 KITCHEN,yes,Not Included,Included,Included
+QNL,VAV_B_S13_006,Fumigation Room B.085,B.085 FUMIGATION ROOM,yes,Not Included,Included,Included
+QNL,VAV_B_S15_002,Lobby and Security B.145,B.145 LOBY AND CSECURITY,yes,Included,Not Included,Included
+QNL,VAV_B_S15_003,Lobby and Security B.145,B.145 LOBY AND CSECURITY,yes,Included,Not Included,Included
+QNL,VAV_B_S15_004,Lobby and Security B.145,B.145 LOBY AND CSECURITY,yes,Included,Not Included,Included

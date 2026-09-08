@@ -487,10 +487,19 @@ rule "exclude technical rooms and executive offices":
 | V1.2 | **98.5%** |
 | the register | 85.4% |
 
-So **RDC's column C is taken from V1.2**, on 276 rows. HQ, QNL and SSC keep the
-register's, which fits better than V1.2's there (93.5 / 95.2 / 97.1% against
-86.3 / 93.3 / 96.0%); the 108 rows where those three disagree are listed in
-`inclusion_column_c_conflicts.csv` rather than changed.
+So **RDC's column C is taken from V1.2**, on 276 rows.
+
+HQ, QNL and SSC keep the register's. **99 of the 108 rows where those three
+disagree are the same room** - the two files just write the name differently,
+`FINANCE AUDITOR 1.115` against `1.115 FINANCE AUDITOR` - so they are genuine
+reversals, not a room that has been renamed. 76 go Not Included -> Included and
+23 the other way. They are kept because the rule backs the register on **83 of
+the 99** (HQ 72 of 81, QNL 11 of 18), not because they are a formatting
+artefact. Only 9 of the 108 are a different room, and those are rows where V1.2
+carried a zone or a bare number - `NORTH EAST ZONE`, `HQ RF`, `ROOM B.014`.
+
+All 108 are in `inclusion_column_c_conflicts.csv` with both room names, a
+same-room flag, both verdicts and the rule's own reading, for a decision.
 
 ## The rule
 
