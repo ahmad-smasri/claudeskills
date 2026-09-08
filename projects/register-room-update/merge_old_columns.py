@@ -21,9 +21,9 @@ renamed 111 part rows into the unit they are part of, so the old file's
 `AT-1005` row carries the zones and readings that now belong to `CAV1005`. The
 rename map from `rdc_rebuild_log.csv` carries them across; where several old
 part rows land on one unit the row that became the unit wins, and the others are
-checked against it rather than trusted. Two AHUs are matched with the level
-segment ignored, because the two files disagree about whether the tag carries
-one - see the coverage report.
+checked against it rather than trusted. The three AHU tags whose level segment
+the register had wrong are corrected in `build_clean_register.py` against this
+same old file, so they now match on the string like everything else.
 
 A unit with no row in the old file gets empty cells from E on. Nothing is
 carried across from a neighbouring row, and no value is invented.

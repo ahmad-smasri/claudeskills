@@ -63,9 +63,21 @@ RDC = HERE / 'RDC_reviewed.xlsx'
 LOG = HERE / 'rdc_rebuild_log.csv'
 OUT = HERE / 'Appendix_A_Asset_Register_clean.xlsx'
 CROSSWALK = HERE / 'clean_room_name_changes.csv'
+TAG_FIXES = HERE / 'tag_corrections.csv'
 
 SHEET = 'Controllable Asset Registry'
 GREEN = 'FF00B050'
+
+# Three AHU tags whose level segment is wrong: the register drops it on two and
+# doubles it on the third. All_Buildings_Rooms_Inclusion_Status_V1.2.xlsx spells
+# all three the same way, which settles what it should have been; corrected on
+# the client's instruction. One map, applied as the rows are read, so the tag
+# cannot drift from what the downstream sheets carry.
+TAG_FIX = {
+    'RDC_NB_AHU8511': 'RDC_NB_2F_AHU8511',
+    'RDC_NB_AHU8512': 'RDC_NB_2F_AHU8512',
+    'RDC_NB_2F_2F_AHU8513': 'RDC_NB_2F_AHU8513',
+}
 
 # the section banner rows in the source, and the block each one opens
 SECTIONS = (('HQ', 3, 764), ('QNL', 765, 1316), ('SSC', 1317, 1441),
@@ -162,7 +174,7 @@ def read_source():
     for name, first, last in SECTIONS:
         for r in range(first, last + 1):
             band[r] = name
-    rows, notes = [], {}
+    rows, notes, read_source.fixed = [], {}, []
     for r in range(3, ws.max_row + 1):
         tag = ws.cell(r, 1).value
         if not tag or str(tag).strip() in {n for n, _, _ in SECTIONS}:
@@ -172,6 +184,10 @@ def read_source():
             vals.append(None if src is None
                         else ws.cell(r, src).value)
         vals[-1] = band.get(r, '')
+        fixed = TAG_FIX.get(str(vals[0]).strip())
+        if fixed:
+            read_source.fixed.append((str(vals[0]).strip(), fixed))
+            vals[0] = fixed
         rows.append(vals)
         for src, _, _ in COLUMNS:
             if src is None:
@@ -227,6 +243,16 @@ def main():
         for bld, tag, old, new, why, _ in changes:
             w.writerow([bld, tag, old, new, why])
     print('wrote %s' % CROSSWALK.name)
+
+    with TAG_FIXES.open('w', newline='') as f:
+        w = csv.writer(f, lineterminator='\n')
+        w.writerow(['tag before', 'tag after', 'why'])
+        for old, new in read_source.fixed:
+            w.writerow([old, new, 'level segment corrected against '
+                                  'All_Buildings_Rooms_Inclusion_Status_V1.2'])
+    print('tags corrected: %d' % len(read_source.fixed))
+    for old, new in read_source.fixed:
+        print('  %s -> %s' % (old, new))
 
     if args.dry_run:
         return
@@ -363,6 +389,12 @@ def readme(rows, changes, blank):
          '90 rows in Room_Names_4.xlsx have an empty rdfs:label_en - 75 HQ, 14 '
          'QNL, 1 SSC. No source won for them, so their register rows keep the '
          'room they already had rather than being blanked or guessed.'),
+        ('Three tags corrected',
+         'RDC_NB_AHU8511 and RDC_NB_AHU8512 carried no level segment and '
+         'RDC_NB_2F_2F_AHU8513 carried it twice. They are now '
+         'RDC_NB_2F_AHU8511, 8512 and 8513, the way '
+         'All_Buildings_Rooms_Inclusion_Status_V1.2.xlsx spells all three. No '
+         'other tag was touched - identifiers are the join key to SCADA.'),
         ('Tags are not unique across buildings',
          '123 tags appear in two buildings at once - AHUB_0001, FCU0001 and so '
          'on. No tag repeats inside its own building, so column L tells them '

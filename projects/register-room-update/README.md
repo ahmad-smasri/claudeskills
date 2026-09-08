@@ -430,18 +430,23 @@ old file's `AT-1005` row carries the zones and readings that are now
 land on one unit the row that became the unit wins and the others are compared
 against it rather than trusted - on this data all 14 such cases agree exactly.
 
-1,027 RDC rows matched on the tag, 111 through the rename, 3 with the level
-segment ignored:
+1,030 RDC rows matched on the tag and 111 through the rename. Nothing needed a
+loose match, because the three AHU tags that would have are now corrected.
 
-| register | old file |
+## Three tags corrected
+
+| before | after |
 |---|---|
 | `RDC_NB_AHU8511` | `RDC_NB_2F_AHU8511` |
 | `RDC_NB_AHU8512` | `RDC_NB_2F_AHU8512` |
 | `RDC_NB_2F_2F_AHU8513` | `RDC_NB_2F_AHU8513` |
 
-The old file spells all three the same way. The register drops the level on two
-and doubles it on the third, which is the typo already noted above - the old
-file settles what it should have been.
+The register dropped the level segment on two of these and doubled it on the
+third; V1.2 spells all three the same way and settles what it should have been.
+Corrected on the client's instruction, from one map in `build_clean_register.py`
+applied as the rows are read, so the tag cannot drift between the register, the
+equipment list and V1.3. The crosswalk is `tag_corrections.csv`. No other tag
+was touched - identifiers are the join key to SCADA.
 
 ## What did not match
 

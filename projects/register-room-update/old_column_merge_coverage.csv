@@ -99,9 +99,6 @@ QNL,CHW_P04,,no row in the old file
 QNL,CHWPU_P01,,no row in the old file
 QNL,CHWPU_P02,,no row in the old file
 QNL,ELEC_Gen,,no row in the old file
-RDC,RDC_NB_AHU8511,RDC_NB_2F_AHU8511,matched with the level segment ignored
-RDC,RDC_NB_AHU8512,RDC_NB_2F_AHU8512,matched with the level segment ignored
-RDC,RDC_NB_2F_2F_AHU8513,RDC_NB_2F_AHU8513,matched with the level segment ignored
 RDC,,RDC_SB_L0_AT-1002,old row with no unit to land on
 RDC,,RDC_SB_L0_AT-1003,old row with no unit to land on
 RDC,,RDC_SB_L0_EV-1002,old row with no unit to land on
