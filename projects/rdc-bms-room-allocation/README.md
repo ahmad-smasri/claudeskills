@@ -112,3 +112,23 @@ Equipment numbers do **not** partition by section. On every building and floor
 the ranges overlap - North Building GF has A2.1 running 4005-4920 and A2.2
 running 4041-6982 - so a unit cannot be placed by its number, and interpolating
 one would be indistinguishable from a reading.
+
+## Chasing the units the box detector missed
+
+`rdc_widgets.py` finds a unit by its box - a red alarm badge or a bordered white
+rectangle - and a box another graphic overlaps is a box it does not find. That
+cost 165 register rows their section.
+
+`tag_text.py` finds the tag instead of the box. The tag is near-black text on
+the grey plan, one line, and does not care what is drawn under it, so this
+thresholds the dark **neutral** pixels - the alarm pane below the plan is blue
+on yellow and the Wonderware mark is teal - closes them horizontally into words
+and then into lines, keeps every line shaped like a tag, and drops the ones a
+detected widget already accounts for.
+
+```
+python3 tag_text.py out/missed
+```
+
+It found **140 more tags**, almost all EAV and CAV units whose box sits under a
+duct or a room outline. `screen_tags.csv` is now 1,162 rows.

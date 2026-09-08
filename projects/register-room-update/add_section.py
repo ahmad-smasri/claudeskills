@@ -13,6 +13,11 @@ into `screen_tags.csv`; this joins the two onto the register.
 The tags do not match as strings - the register writes `RDC_NB_1F_VAV4510` and
 the screen `NB-VAV4510`, `RDC_NB_AHU8511` against `NB-AHU-8511` - so the key is
 the tag with its `RDC_` prefix, its level segment and every separator removed.
+A tag printed on two screens - the sections overlap at their boundary - is
+settled by **its room number**: whichever candidate section already holds the
+nearest room wins, `Mech S-0136` going to `B1.1` because that section holds
+`S-0132`..`S-0135` and the other holds no room at all.
+
 A row whose tag is on no screen takes the section of **its room**, where every
 other unit in that room agrees on one. A section is an area of the plan, so the
 units in a room are in the same section by construction - this is a second
@@ -86,9 +91,19 @@ def main():
     ws.column_dimensions[get_column_letter(col)].width = 16
     ws.cell(1, col).fill = PatternFill('solid', fgColor='FF1F4E79')
 
+    def room_no(room):
+        m = re.search(r'\b([NSU])-\s?(\d{4})', str(room).upper())
+        return (m.group(1), int(m.group(2))) if m else None
+
     # pass one: the tag. pass two: the room, from what pass one settled.
     decided = {}
     for phase in (1, 2):
+      sec_rooms = collections.defaultdict(set)
+      if phase == 2:
+        for rr, (v, _) in decided.items():
+            k = room_no(ws.cell(rr, 4).value)
+            if v and k:
+                sec_rooms[v].add(k)
       room_sec = collections.defaultdict(collections.Counter)
       if phase == 2:
         for rr, (v, _) in decided.items():
@@ -107,6 +122,28 @@ def main():
             report.append([tag, str(ws.cell(r, 4).value or ''), v, note])
             continue
         if phase == 2:
+            was = decided.get(r, ('', ''))[1]
+            if was.startswith('on '):
+                k = room_no(ws.cell(r, 4).value)
+                cands = was.split(': ', 1)[1].split(', ')
+                near = []
+                for c in cands:
+                    d = [abs(n - k[1]) for b, n in sec_rooms.get(c, ())
+                         if b == k[0]] if k else []
+                    near.append((min(d) if d else 10 ** 6, c))
+                near.sort()
+                if len(near) > 1 and near[0][0] < near[1][0]:
+                    v = near[0][1]
+                    ws.cell(r, col, v)
+                    ws.cell(r, col).fill = PatternFill()
+                    how['settled by its room number'] += 1
+                    report.append([tag, str(ws.cell(r, 4).value or ''), v,
+                                   'printed on %d sections; its room is %d '
+                                   'from the nearest room in %s and %s from %s'
+                                   % (len(cands), near[0][0], near[0][1],
+                                      near[1][0] if near[1][0] < 10 ** 6
+                                      else 'no', near[1][1])])
+                    continue
             room = str(ws.cell(r, 4).value or '').strip().upper()
             got = room_sec.get(room)
             if got and len(got) == 1:

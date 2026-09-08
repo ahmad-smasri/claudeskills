@@ -579,25 +579,33 @@ python3 add_section.py
 
 | | rows |
 |---|---|
-| read from the screen its tag is printed on | 927 |
-| taken from its room, where every other unit there agreed | 34 |
-| **section written** | **961** |
-| left blank | 180 |
+| read from the screen its tag is printed on | 1,071 |
+| printed on two sections, settled by its room number | 24 |
+| taken from its room, where every other unit there agreed | 13 |
+| **section written** | **1,108** |
+| left blank | 33 |
 
 The tags do not match as strings - the register writes `RDC_NB_1F_VAV4510` and
 the screen `NB-VAV4510`, `RDC_NB_AHU8511` against `NB-AHU-8511` - so the key is
 the tag with its `RDC_` prefix, its level segment and every separator removed.
 
-## Why 180 are blank
+## A tag on two sections is settled by its room number
 
-165 carry a number that appears on **no screen at all** - `VAV4230`, `VAV4255`,
-`VAV5270A` and so on. The widget detector found 1,033 units across the
-forty-seven screens against the register's 1,141, and these are the difference:
-units whose box the detector missed, or which are not drawn on any screen. 15
-more sit on two sections at once, mostly at the boundary between `A2.1 Part2`
-and `A2.2 Part1`, where both screens print the tag.
+The sections overlap at their boundary and both screens print the tag. The room
+decides: whichever candidate already holds the nearest room number wins.
+`Mech S-0136` goes to `B1.1`, which holds `S-0132`..`S-0135`, against
+`B1.2 Part2`, which holds no room at all; `Air Quality High Bay N-0215A` goes to
+`A2.1 Part2`, which holds `N-0215` exactly, against `A2.2 Part1` fourteen rooms
+away. 24 rows settled this way, and 3 left blank because the two candidates are
+equally near.
+
+## Why 33 are still blank
+
+30 carry a tag that appears on **no screen** even after `tag_text.py` read the
+text rather than the boxes - `VAV5025`, `VAV2003`, `EAV7091` - so either they are
+not drawn on any of the forty-seven screens, or their tag is obscured. 3 sit on
+two sections whose nearest rooms are the same distance away.
 
 Nothing is interpolated. The equipment numbers overlap between sections on every
-floor, so a unit cannot be placed by its number, and the room fallback only
-reaches a unit whose room already has a placed neighbour. `rdc_section_coverage.csv`
-gives every row, its section and how it was decided.
+floor, so a unit cannot be placed by its number.
+`rdc_section_coverage.csv` gives every row, its section and how it was decided.

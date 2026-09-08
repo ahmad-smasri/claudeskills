@@ -18,11 +18,11 @@ RDC_SB_2F_AHU8023,SOUTH BUILDING PENTHOUSE S-2101,Part1,tag
 RDC_SB_2F_AHU8024,SOUTH BUILDING PENTHOUSE S-2101,Part2,tag
 RDC_SB_2F_AHU8025,SOUTH BUILDING PENTHOUSE S-2101,Part2,tag
 RDC_SB_2F_AHU8026,SOUTH BUILDING PENTHOUSE S-2101,Part2,tag
-RDC_SB_GF_AHU8031,Mech S-0136,,"on 2 sections: B1.1, B1.2 Part2"
-RDC_SB_GF_AHU8032,Mech S-0136,,"on 2 sections: B1.1, B1.2 Part2"
-RDC_SB_GF_AHU8033,Mech S-0136,,"on 2 sections: B1.1, B1.2 Part2"
-RDC_SB_GF_AHU8034,Mech S-0136,,"on 2 sections: B1.1, B1.2 Part2"
-RDC_SB_GF_AHU8035,MECH S-0136,,"on 2 sections: B1.1, B1.2 Part2"
+RDC_SB_GF_AHU8031,Mech S-0136,B1.1,printed on 2 sections; its room is 1 from the nearest room in B1.1 and no from B1.2 Part2
+RDC_SB_GF_AHU8032,Mech S-0136,B1.1,printed on 2 sections; its room is 1 from the nearest room in B1.1 and no from B1.2 Part2
+RDC_SB_GF_AHU8033,Mech S-0136,B1.1,printed on 2 sections; its room is 1 from the nearest room in B1.1 and no from B1.2 Part2
+RDC_SB_GF_AHU8034,Mech S-0136,B1.1,printed on 2 sections; its room is 1 from the nearest room in B1.1 and no from B1.2 Part2
+RDC_SB_GF_AHU8035,MECH S-0136,B1.1,printed on 2 sections; its room is 1 from the nearest room in B1.1 and no from B1.2 Part2
 RDC_SB_GF_AHU8036,COMPUTER RESEARCH LAB S-1112,B1.2 Part1,tag
 RDC_SB_GF_AHU8037,Cyber Server S-0138,B1.2 Part1,tag
 RDC_SB_GF_AHU8041,UPS ROOM S-0145,B1.2 Part1,tag
@@ -37,10 +37,10 @@ RDC_UB_AHU8607,UTILITY BUILDING MECHANICAL ROOM U-1101,Mezzanine Part1,tag
 RDC_UB_AHU8608,UTILITY BUILDING MECHANICAL ROOM U-1101,Mezzanine Part1,tag
 RDC_UB_AHU8609,UTILITY BUILDING MECHANICAL ROOM U-1101,Mezzanine Part2,tag
 RDC_NB_GF_VAV4001,Store N-0201,A2.2 Part1,tag
-RDC_NB_GF_VAV4005_EV4006,Electrical N-0202,,"on 2 sections: A2.1 Part2, A2.2 Part1"
-RDC_NB_GF_VAV4040,Air Quality High Bay N-0215A,,"on 2 sections: A2.1 Part2, A2.2 Part1"
-RDC_NB_GF_VAV4050_VEV4051,CSP High Bay N-0215B,,"on 2 sections: A2.1 Part2, A2.2 Part1"
-RDC_NB_GF_VAV4060_VEV4061,Machine Shop N-0215C,,"on 2 sections: A2.1 Part2, A2.2 Part1"
+RDC_NB_GF_VAV4005_EV4006,Electrical N-0202,A2.2 Part1,printed on 2 sections; its room is 1 from the nearest room in A2.2 Part1 and 3 from A2.1 Part2
+RDC_NB_GF_VAV4040,Air Quality High Bay N-0215A,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 14 from A2.2 Part1
+RDC_NB_GF_VAV4050_VEV4051,CSP High Bay N-0215B,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 14 from A2.2 Part1
+RDC_NB_GF_VAV4060_VEV4061,Machine Shop N-0215C,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 14 from A2.2 Part1
 RDC_NB_GF_VAV4070A_VEV4073A,Open High Bay Lab N-0215D,A2.1 Part1,tag
 RDC_NB_GF_VAV4070B_VEV4073B,Open High Bay Lab N-0215D,A2.1 Part1,tag
 RDC_NB_GF_VAV4071A_VEV4074A,Open High Bay Lab N-0215D,A2.1,tag - on 2 parts of the section
@@ -63,7 +63,7 @@ RDC_NB_GF_VAV4135_EV4136,Office N-0232,A2.1 Part1,tag
 RDC_NB_GF_VAV4140_EV4141,Conference Room N-0233,A2.1 Part1,tag
 RDC_NB_GF_VAV4145_EV4146,Office N-0234,A2.1 Part1,tag
 RDC_NB_GF_VAV4165_EV4166,Office N-0236,A2.1 Part1,tag
-RDC_NB_GF_VAV4180_VEV4181,Test Room N-0240A,,"on 2 sections: A2.1 Part2, A2.2 Part1"
+RDC_NB_GF_VAV4180_VEV4181,Test Room N-0240A,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 25 from A2.2 Part1
 RDC_NB_GF_VAV4190_VEV4192,CSP Lab N-0240B,A2.1 Part2,tag
 RDC_NB_GF_VAV4191,CSP Lab N-0240B,A2.1 Part2,tag
 RDC_NB_GF_VAV4200_VEV4201,Test Room 1 N-0240C,A2.1 Part2,tag
@@ -71,23 +71,23 @@ RDC_NB_GF_VAV4210,Desalination Lab N-0240D,A2.1 Part1,tag
 RDC_NB_GF_VAV4211,Desalination Lab N-0240D,A2.1 Part1,tag
 RDC_NB_GF_VAV4212,Desalination Lab N-0240D,A2.1 Part1,tag
 RDC_NB_GF_VAV4225,Office N-0247,A2.1 Part1,tag
-RDC_NB_GF_VAV4230,Office N-0248,,its tag is on no screen
-RDC_NB_GF_VAV4235,Office 05 -8WS- N-0250,,its tag is on no screen
+RDC_NB_GF_VAV4230,Office N-0248,A2.1 Part1,tag
+RDC_NB_GF_VAV4235,Office 05 -8WS- N-0250,A2.1 Part1,tag
 RDC_NB_GF_VAV4240,Office 04 N-0251,A2.1 Part1,tag
 RDC_NB_GF_VAV4245,Office N-0252,A2.1 Part1,tag
 RDC_NB_GF_VAV4250,Office N-0253,A2.1 Part1,tag
-RDC_NB_GF_VAV4255,Office N-0254,,its tag is on no screen
-RDC_NB_GF_VAV4260,Office 05 -8WS- N-0255,A1.2 Part2,tag
-RDC_NB_GF_VAV4265,Office N-0256,,its tag is on no screen
-RDC_NB_GF_VAV4270,Office N-0257,,its tag is on no screen
-RDC_NB_GF_VAV4275,Office N-0258,,its tag is on no screen
-RDC_NB_GF_VAV4280,Office N-0259,,its tag is on no screen
+RDC_NB_GF_VAV4255,Office N-0254,A2.1 Part1,tag
+RDC_NB_GF_VAV4260,Office 05 -8WS- N-0255,A2.1 Part1,printed on 2 sections; its room is 1 from the nearest room in A2.1 Part1 and no from A1.2 Part2
+RDC_NB_GF_VAV4265,Office N-0256,A2.1 Part2,tag
+RDC_NB_GF_VAV4270,Office N-0257,A2.1 Part2,tag
+RDC_NB_GF_VAV4275,Office N-0258,A2.1 Part2,tag
+RDC_NB_GF_VAV4280,Office N-0259,A2.1 Part2,tag
 RDC_NB_GF_VAV4285,Workstation N-0260,A2.1 Part2,tag
-RDC_NB_GF_VAV4290,Office 04 N-0261,,its tag is on no screen
-RDC_NB_GF_VAV4295,Office N-0262,,its tag is on no screen
-RDC_NB_GF_VAV4300,Office N-0263,A2.2 Part1,tag
-RDC_NB_GF_VAV4305,Office N-0264,A2.2 Part1,tag
-RDC_NB_GF_VAV4310,Workstation N-0265,A2.2 Part1,tag
+RDC_NB_GF_VAV4290,Office 04 N-0261,A2.1 Part2,tag
+RDC_NB_GF_VAV4295,Office N-0262,A2.1 Part2,tag
+RDC_NB_GF_VAV4300,Office N-0263,A2.1 Part2,printed on 2 sections; its room is 1 from the nearest room in A2.1 Part2 and 2 from A2.2 Part1
+RDC_NB_GF_VAV4305,Office N-0264,,"on 2 sections: A2.1 Part2, A2.2 Part1"
+RDC_NB_GF_VAV4310,Workstation N-0265,A2.1 Part2,every other unit in this room is in A2.1 Part2
 RDC_NB_GF_VAV4312,Breakout N-0265B,A2.2 Part1,tag
 RDC_NB_GF_VAV5000_EV5002,Lobby North N-0101,A2.3,tag
 RDC_NB_GF_VAV5001_EV5003,Lobby North N-0101,A2.3,tag
@@ -129,23 +129,23 @@ RDC_NB_GF_VAV5220,MBE/Evap Room N-0140E,A2.2 Part3,tag
 RDC_NB_GF_VAV5230,ALD Room N-0140F,A2.2 Part3,tag
 RDC_NB_GF_VAV5250_VEV5251,Support Room N-0140H,A2.2 Part3,tag
 RDC_NB_GF_VAV5260_VEV5261,PLD Room N-0140J,A2.2 Part3,tag
-RDC_NB_GF_VAV5270A,Organic Chemistry Lab N-0140K,,its tag is on no screen
-RDC_NB_GF_VAV5270B,Org Chem N-0140K,A2.2 Part3,every other unit in this room is in A2.2 Part3
+RDC_NB_GF_VAV5270A,Organic Chemistry Lab N-0140K,A2.2 Part3,tag
+RDC_NB_GF_VAV5270B,Org Chem N-0140K,A2.2 Part3,tag
 RDC_NB_GF_VAV5295_EV5296,Conference Room N-0149,,its tag is on no screen
 RDC_NB_GF_VAV5300,Corridor N-0150,,its tag is on no screen
-RDC_NB_GF_VAV5305,Office N-0151,,its tag is on no screen
+RDC_NB_GF_VAV5305,Office N-0151,A2.2 Part3,tag
 RDC_NB_GF_VAV5310,Office N-0152,A2.2 Part3,tag
 RDC_NB_GF_VAV5315,Open Office N-0153,A2.2 Part3,tag
 RDC_NB_GF_VAV5325,Office N-0155,A2.2 Part3,tag
 RDC_NB_GF_VAV5330,Office N-0156,A2.2 Part3,tag
-RDC_NB_GF_VAV5335,Office N-0157,,its tag is on no screen
+RDC_NB_GF_VAV5335,Office N-0157,A2.2 Part3,tag
 RDC_NB_GF_VAV5340,Office N-0158,,its tag is on no screen
 RDC_NB_GF_VAV5345,Office N-0159,A2.2 Part3,tag
 RDC_NB_GF_VAV5355,Office N-0161,A2.2 Part3,tag
-RDC_NB_GF_VAV5360,Office N-0162,,its tag is on no screen
+RDC_NB_GF_VAV5360,Office N-0162,A2.2 Part3,tag
 RDC_NB_GF_VAV5365,Office N-0163,A2.2 Part3,tag
 RDC_NB_GF_VAV5370,Office N-0164,A2.2 Part3,tag
-RDC_NB_GF_VAV5380,Office N-0166,,its tag is on no screen
+RDC_NB_GF_VAV5380,Office N-0166,A2.2 Part3,tag
 RDC_NB_GF_VAV5385,Office N-0167A,A2.2 Part3,tag
 RDC_NB_GF_VAV5390,Office 04 N-0168,A2.2 Part3,tag
 RDC_NB_GF_VAV5395,Exp. Office N-0169,A2.3,tag
@@ -174,30 +174,30 @@ RDC_NB_GF_VAV6205_EV6206,Conf N-0331,B2.1 Part1,tag
 RDC_NB_GF_VAV6210,Corr. +N-033B N-0332C,,its tag is on no screen
 RDC_NB_GF_VAV6220_EV6221,Emergency Elec. N-0333,B2.1 Part1,tag
 RDC_NB_GF_VAV6240_EV6241,Emergency Electrical N-0350A,A2.3,tag
-RDC_NB_GF_VAV6285_EV6286,Conf N-0358,,its tag is on no screen
+RDC_NB_GF_VAV6285_EV6286,Conf N-0358,B2.1 Part2,tag
 RDC_NB_GF_VAV6295_EV6296,Conference N-0360,B2.1 Part2,tag
 RDC_NB_GF_VAV6300,Store N-0362B,A2.3,tag
 RDC_NB_GF_VAV6305,Office N-0363,A2.3,tag
 RDC_NB_GF_VAV6310,Office N-0364,A2.3,tag
 RDC_NB_GF_VAV6315_EV6316,Conf Room N-0364A,A2.3,tag
 RDC_NB_GF_VAV6320,Corridor N-0365,B2.1 Part2,tag
-RDC_NB_GF_VAV6325,Office N-0366,,its tag is on no screen
-RDC_NB_GF_VAV6330,Office 04 N-0367,,its tag is on no screen
-RDC_NB_GF_VAV6335,Office N-0368,,its tag is on no screen
+RDC_NB_GF_VAV6325,Office N-0366,B2.1 Part2,tag
+RDC_NB_GF_VAV6330,Office 04 N-0367,B2.1 Part2,tag
+RDC_NB_GF_VAV6335,Office N-0368,B2.1 Part2,tag
 RDC_NB_GF_VAV6340,Office N-0369,B2.1 Part2,tag
 RDC_NB_GF_VAV6345,Office N-0370,B2.1 Part2,tag
 RDC_NB_GF_VAV6350,Office N-0371,B2.1 Part2,tag
 RDC_NB_GF_VAV6355,Workstation N-0372,B2.1 Part2,tag
-RDC_NB_GF_VAV6360,Office N-0374,,its tag is on no screen
+RDC_NB_GF_VAV6360,Office N-0374,B2.1 Part2,tag
 RDC_NB_GF_VAV6365,Office N-0375,B2.1 Part2,tag
 RDC_NB_GF_VAV6370,Office N-0376,B2.1 Part2,tag
-RDC_NB_GF_VAV6375,Office N-0377,,its tag is on no screen
-RDC_NB_GF_VAV6380,Workstation N-0378,,its tag is on no screen
-RDC_NB_GF_VAV6390,Office N-0379,,its tag is on no screen
-RDC_NB_GF_VAV6395,Office N-0380,,its tag is on no screen
+RDC_NB_GF_VAV6375,Office N-0377,B2.1 Part2,tag
+RDC_NB_GF_VAV6380,Workstation N-0378,B2.1 Part2,tag
+RDC_NB_GF_VAV6390,Office N-0379,B2.1 Part2,tag
+RDC_NB_GF_VAV6395,Office N-0380,B2.1 Part2,tag
 RDC_NB_GF_VAV6400,Workstation N-0381,B2.1 Part2,tag
-RDC_NB_GF_VAV6405,Office N-0382,,its tag is on no screen
-RDC_NB_GF_VAV6410,Office N-0383,,its tag is on no screen
+RDC_NB_GF_VAV6405,Office N-0382,B2.1 Part2,tag
+RDC_NB_GF_VAV6410,Office N-0383,B2.1 Part2,tag
 RDC_NB_GF_VAV7000,Vestibule Staging N-0401,B2.1 Part1,tag
 RDC_NB_GF_VAV7020A,NMR Lab N-0404A,B2.2 Part1,tag
 RDC_NB_GF_VAV7020B,NMR Lab N-0404A,B2.2 Part1,tag
@@ -250,7 +250,7 @@ RDC_NB_GF_VAV7340_VEV7341,SERV 2 N-0442M,B2.2 Part2,tag
 RDC_NB_GF_VAV7350_VEV7351,SEM Lab N-0442N,B2.2 Part2,tag
 RDC_NB_GF_VAV7360_VEV7361,SEM Lab N-0442p,B2.2 Part2,tag
 RDC_NB_GF_VAV7370_VEV7371,A/L 2 N-0442R,B2.2 Part2,tag
-RDC_NB_GF_VAV7385,Office N-0444,,its tag is on no screen
+RDC_NB_GF_VAV7385,Office N-0444,B2.1 Part2,tag
 RDC_NB_GF_VAV7390,Office 04 N-0445,B2.1 Part2,tag
 RDC_NB_GF_VAV7395,Workstation N-0446,B2.2 Part2,tag
 RDC_NB_GF_VAV7400,Office N-0447,B2.2 Part2,tag
@@ -443,7 +443,7 @@ RDC_SB_GF_VAV0025,Alt Recording Sound S-0135,B1.1,tag
 RDC_SB_GF_VAV1003_VEV1002,NOC Lab S-0140A,B1.2 Part1,tag
 RDC_SB_GF_VAV1004,Dedicated Cyber SOC/NOC Lab S-0141,B1.2 Part1,tag
 RDC_SB_GF_VAV1008,Cyber Embedded Sys. S-0146,B1.2 Part1,tag
-RDC_SB_GF_VAV2002,Conference Room S-0207,,its tag is on no screen
+RDC_SB_GF_VAV2002,Conference Room S-0207,A1.2 Part1,tag
 RDC_SB_GF_VAV2003,Multi Purpose Hall S-0208,,its tag is on no screen
 RDC_SB_GF_VAV2004,Multi Purpose Hall S-0208,,its tag is on no screen
 RDC_SB_GF_VAV2005,Technical Open Plan S-0211,A1.2 Part1,tag
@@ -458,7 +458,7 @@ RDC_SB_GF_VAV2013,Office S-0219,A1.2 Part1,tag
 RDC_SB_GF_VAV2014,Office S-0220,A1.2 Part1,tag
 RDC_SB_GF_VAV2015,Director Office S-0221,A1.2 Part1,tag
 RDC_SB_GF_VAV2016,Director Office S-0222,A1.2 Part1,tag
-RDC_SB_GF_VAV2017,Meeting Room S-0223,,its tag is on no screen
+RDC_SB_GF_VAV2017,Meeting Room S-0223,A1.2 Part1,tag
 RDC_SB_GF_VAV2018,Print Hub S-0225,A1.2 Part1,tag
 RDC_SB_GF_VAV2019,Office S-0227,A1.2 Part1,tag
 RDC_SB_GF_VAV2020,Informal Meeting S-0231,A1.2 Part2,tag
@@ -466,11 +466,11 @@ RDC_SB_GF_VAV2021,Open Plan S-0228,A1.2 Part2,tag
 RDC_SB_GF_VAV2022,Director Office S-0229,A1.2 Part2,tag
 RDC_SB_GF_VAV2023,Office S-0230,A1.2 Part2,tag
 RDC_SB_GF_VAV2024,Executive Director Office S-0232,A1.2 Part2,tag
-RDC_SB_GF_VAV2025,Executive Director Office S-0233,,its tag is on no screen
+RDC_SB_GF_VAV2025,Executive Director Office S-0233,A1.2 Part2,tag
 RDC_SB_GF_VAV2026,Office S-0234,A1.2 Part2,tag
 RDC_SB_GF_VAV2027,Office S-0235,A1.2 Part2,tag
 RDC_SB_GF_VAV2028,Office S-0236,A1.2 Part2,tag
-RDC_SB_GF_VAV2029,Waiting Area S-0251,,its tag is on no screen
+RDC_SB_GF_VAV2029,Waiting Area S-0251,A1.2 Part2,tag
 RDC_SB_GF_VAV2030,Office S-0259,A1.2 Part2,tag
 RDC_SB_GF_VAV2031,Office S-0260,A1.2 Part2,tag
 RDC_SB_GF_VAV2032,Open Plan S-0269,A1.2 Part2,tag
@@ -479,15 +479,15 @@ RDC_SB_GF_VAV2034,Meeting Room S-0274,A1.2 Part2,tag
 RDC_SB_GF_VAV2035,Pantry S-0270,A1.2 Part2,tag
 RDC_SB_GF_VAV2036,Emergency Elec. Room S-0278,A1.2 Part2,tag
 RDC_SB_GF_VAV2037,Men S-0284,A1.2 Part2,tag
-RDC_SB_GF_VAV2038,Informal Meeting S-0285,,its tag is on no screen
-RDC_SB_GF_VAV2039,Meeting Room S-0286,,its tag is on no screen
-RDC_SB_GF_VAV2040,Open Plan S-0289,,its tag is on no screen
-RDC_SB_GF_VAV2041,Open Plan S-0289,,its tag is on no screen
-RDC_SB_GF_VAV2042,Corridor S-0273,,"on 2 sections: A1.1, A1.2 Part2"
+RDC_SB_GF_VAV2038,Informal Meeting S-0285,A1.2 Part1,tag
+RDC_SB_GF_VAV2039,Meeting Room S-0286,A1.2 Part1,tag
+RDC_SB_GF_VAV2040,Open Plan S-0289,A1.2 Part1,tag
+RDC_SB_GF_VAV2041,Open Plan S-0289,A1.2 Part1,tag
+RDC_SB_GF_VAV2042,Corridor S-0273,A1.2 Part2,printed on 2 sections; its room is 1 from the nearest room in A1.2 Part2 and 8 from A1.1
 RDC_SB_GF_VAV2043,Women S-0281,A1.2 Part2,tag
 RDC_SB_GF_VAV2044,Lobby S-0294,A1.2 Part2,tag
-RDC_SB_GF_VAV2045,Lobby S-0294,,its tag is on no screen
-RDC_SB_GF_VAV2046,Lobby S-0294,,its tag is on no screen
+RDC_SB_GF_VAV2045,Lobby S-0294,A1.2 Part1,tag
+RDC_SB_GF_VAV2046,Lobby S-0294,A1.2 Part1,tag
 RDC_SB_GF_VAV2047,Lobby S-0294,,its tag is on no screen
 RDC_SB_GF_VAV3001,Director Office S-0237,A1.1,tag
 RDC_SB_GF_VAV3002,Office S-0238,A1.1,tag
@@ -547,15 +547,15 @@ RDC_NB_1F_VAV4600,Testing Room N-1216B,A2.1 Part1,tag
 RDC_NB_1F_VAV4601,Testing Room N-1216B,A2.1 Part1,tag
 RDC_NB_1F_VAV4620_VEV4621,EL Shop N-1216C,A2.1 Part1,tag
 RDC_NB_1F_VAV4630_VEV4631,GIS N-1216D,A2.1 Part1,tag
-RDC_NB_1F_VAV4650,Breakout N-1225,,its tag is on no screen
-RDC_NB_1F_VAV4660,Expansion Workstation N-1227,,its tag is on no screen
-RDC_NB_1F_VAV4665,Office N-1228,,its tag is on no screen
-RDC_NB_1F_VAV4670,Office N-1229,,its tag is on no screen
-RDC_NB_1F_VAV4675,Office N-1230,,its tag is on no screen
-RDC_NB_1F_VAV4680,Office N-1231,,its tag is on no screen
-RDC_NB_1F_VAV4685,Workstation N-1232,,its tag is on no screen
-RDC_NB_1F_VAV4690,Office N-1233,,its tag is on no screen
-RDC_NB_1F_VAV4695,Office N-1234,,its tag is on no screen
+RDC_NB_1F_VAV4650,Breakout N-1225,A2.2 Part2,tag
+RDC_NB_1F_VAV4660,Expansion Workstation N-1227,A2.1 Part2,tag
+RDC_NB_1F_VAV4665,Office N-1228,A2.1 Part2,tag
+RDC_NB_1F_VAV4670,Office N-1229,A2.1 Part2,tag
+RDC_NB_1F_VAV4675,Office N-1230,A2.1 Part2,tag
+RDC_NB_1F_VAV4680,Office N-1231,A2.1 Part2,tag
+RDC_NB_1F_VAV4685,Workstation N-1232,A2.1 Part2,tag
+RDC_NB_1F_VAV4690,Office N-1233,A2.1 Part2,tag
+RDC_NB_1F_VAV4695,Office N-1234,A2.1 Part2,tag
 RDC_NB_1F_VAV4700,Office N-1235,A2.1 Part2,tag
 RDC_NB_1F_VAV4705,Office N-1236,A2.1 Part2,tag
 RDC_NB_1F_VAV4710,Workstation N-1237,A2.1 Part1,tag
@@ -579,9 +579,9 @@ RDC_NB_1F_VAV5540_EV5541,Normal Electrical Room N-1113,A2.3,tag
 RDC_NB_1F_VAV5550_VEV5551,PCR N-1115A,A2.2 Part1,tag
 RDC_NB_1F_VAV5560_VEV5561,PRE-PCR N-1115B,A2.2 Part1,tag
 RDC_NB_1F_VAV5570,Met/Prot Lab N-1115C,A2.2 Part1,every other unit in this room is in A2.2 Part1
-RDC_NB_1F_VAV5571,Met/Prot Lab N-1115C,A2.2 Part1,every other unit in this room is in A2.2 Part1
+RDC_NB_1F_VAV5571,Met/Prot Lab N-1115C,A2.2 Part1,tag
 RDC_NB_1F_VAV5580_VEV5581,DNA/RNA N-1115D,A2.2 Part1,tag
-RDC_NB_1F_VAV5590,Cell Culture N-1115E,A2.2 Part1,every other unit in this room is in A2.2 Part1
+RDC_NB_1F_VAV5590,Cell Culture N-1115E,A2.2 Part1,tag
 RDC_NB_1F_VAV5600_VEV5601,Library N-1115H,A2.2 Part1,tag
 RDC_NB_1F_VAV5610_VEV5611,Cold Room N-1115F,A2.2 Part1,tag
 RDC_NB_1F_VAV5620_VEV5622,Sequence Lab N-1115K,A2.2 Part1,tag
@@ -612,38 +612,38 @@ RDC_NB_1F_VAV5790,Shafallah N-1144C,A2.2 Part2,tag
 RDC_NB_1F_VAV5792_VEV5793,Sample Accession N-1144C1,,its tag is on no screen
 RDC_NB_1F_VAV5794_VEV5795A,Storage and Archives N-1144C2,,its tag is on no screen
 RDC_NB_1F_VAV5800_VEV5801,Pre-PCR N-1144D,A2.2 Part2,tag
-RDC_NB_1F_VAV5810,Nano Lab N-1144E,A2.2 Part2,every other unit in this room is in A2.2 Part2
+RDC_NB_1F_VAV5810,Nano Lab N-1144E,A2.2 Part2,tag
 RDC_NB_1F_VAV5814,Nano Lab N-1144E,A2.2 Part2,tag
 RDC_NB_1F_VAV5835_EV5836,P/C/S Pantry N-1146,A2.2 Part2,tag
-RDC_NB_1F_VAV5840,Corridor N-1150,,its tag is on no screen
+RDC_NB_1F_VAV5840,Corridor N-1150,A2.2 Part2,tag
 RDC_NB_1F_VAV5845,Reception+N-1151B Storage N-1151,A2.3,tag
 RDC_NB_1F_VAV5850,Office 04 N-1151A,A2.3,tag
 RDC_NB_1F_VAV5855,Office 04 N-1152,A2.3,tag
 RDC_NB_1F_VAV5860,Office N-1154,A2.2 Part2,tag
 RDC_NB_1F_VAV5865,Office N-1155,A2.2 Part2,tag
 RDC_NB_1F_VAV5870,Exp Office N-1156,A2.2 Part2,tag
-RDC_NB_1F_VAV5875,Office N-1157,,its tag is on no screen
+RDC_NB_1F_VAV5875,Office N-1157,A2.2 Part2,tag
 RDC_NB_1F_VAV5880,Office N-1158,A2.2 Part2,tag
-RDC_NB_1F_VAV5885,Office N-1159,,its tag is on no screen
-RDC_NB_1F_VAV5890,Workstation N-1160,,its tag is on no screen
-RDC_NB_1F_VAV5895,Office N-1161,,its tag is on no screen
+RDC_NB_1F_VAV5885,Office N-1159,A2.2 Part2,tag
+RDC_NB_1F_VAV5890,Workstation N-1160,A2.2 Part2,tag
+RDC_NB_1F_VAV5895,Office N-1161,A2.2 Part2,tag
 RDC_NB_1F_VAV5900,Office N-1162,A2.2 Part2,tag
 RDC_NB_1F_VAV5905,Office N-1163,A2.2 Part2,tag
-RDC_NB_1F_VAV5910,Office N-1164,,its tag is on no screen
+RDC_NB_1F_VAV5910,Office N-1164,A2.2 Part2,tag
 RDC_NB_1F_VAV5915,Office N-1167,A2.2 Part2,tag
 RDC_NB_1F_VAV5920,Workstation N-1168,A2.2 Part2,tag
 RDC_NB_1F_VAV5925,Office N-1169,A2.2 Part2,tag
-RDC_NB_1F_VAV5930,Office N-1170,Part2,tag
-RDC_NB_1F_VAV5930P,Normal Elec. N-2105,Part2,first unit in the tag
-RDC_NB_1F_VAV5935,Office N-1166,,its tag is on no screen
-RDC_NB_1F_VAV5940,Workstation N-1165,Part2,tag
-RDC_NB_1F_VAV5940P,Emer. Elec. N-2106,Part2,first unit in the tag
+RDC_NB_1F_VAV5930,Office N-1170,A2.2 Part2,printed on 2 sections; its room is 1 from the nearest room in A2.2 Part2 and 931 from Part2
+RDC_NB_1F_VAV5930P,Normal Elec. N-2105,Part2,printed on 2 sections; its room is 0 from the nearest room in Part2 and 880 from A2.2 Part2
+RDC_NB_1F_VAV5935,Office N-1166,A2.2 Part2,tag
+RDC_NB_1F_VAV5940,Workstation N-1165,A2.2 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.2 Part2 and 936 from Part2
+RDC_NB_1F_VAV5940P,Emer. Elec. N-2106,Part2,printed on 2 sections; its room is 1 from the nearest room in Part2 and 881 from A2.2 Part2
 RDC_NB_1F_VAV6505_EV6506,Conference N-1302,A2.3,tag
 RDC_NB_1F_VAV6510_EV6511,Conference N-1303,A2.3,tag
 RDC_NB_1F_VAV6525_EV6526,Normal Electrical Room N-1310,A2.3,tag
 RDC_NB_1F_VAV6530_VEV6531,AAV N-1316A,B2.1 Part2,tag
 RDC_NB_1F_VAV6540,Tissure Culture 1 N-1316B,B2.1 Part2,tag
-RDC_NB_1F_VAV6550,Gene Therapy Lab N-1316C,B2.1 Part2,every other unit in this room is in B2.1 Part2
+RDC_NB_1F_VAV6550,Gene Therapy Lab N-1316C,B2.1 Part2,tag
 RDC_NB_1F_VAV6551,Gene Therapy Lab N-1316C,B2.1 Part2,tag
 RDC_NB_1F_VAV6560_VEV6561,TC2 N-1316D,B2.1 Part2,tag
 RDC_NB_1F_VAV6570_VEV6571,STORE ROOM N-1316E,B2.1 Part2,tag
@@ -656,20 +656,20 @@ RDC_NB_1F_VAV6630B,Bio-Med Chem Lab 1 N-1316L,B2.1 Part2,tag
 RDC_NB_1F_VAV6631A,Bio-Med Chem Lab 1 N-1316L,B2.1 Part2,tag
 RDC_NB_1F_VAV6631B,Bio-Med Chem Lab 1 N-1316L,B2.1 Part2,tag
 RDC_NB_1F_VAV6650,Office N-1319,B2.1 Part1,tag
-RDC_NB_1F_VAV6655,Office N-1320,,its tag is on no screen
-RDC_NB_1F_VAV6660,Workstation N-1321,,its tag is on no screen
-RDC_NB_1F_VAV6665,Office N-1322,,its tag is on no screen
-RDC_NB_1F_VAV6670,Office N-1323,,its tag is on no screen
-RDC_NB_1F_VAV6675,Workstation N-1324,,its tag is on no screen
-RDC_NB_1F_VAV6680,Office N-1325,,its tag is on no screen
-RDC_NB_1F_VAV6685,Office N-1326,,its tag is on no screen
-RDC_NB_1F_VAV6690,Exp. Workstation N-1327,,its tag is on no screen
-RDC_NB_1F_VAV6695,Office N-1328,,its tag is on no screen
+RDC_NB_1F_VAV6655,Office N-1320,B2.1 Part1,tag
+RDC_NB_1F_VAV6660,Workstation N-1321,B2.1 Part1,tag
+RDC_NB_1F_VAV6665,Office N-1322,B2.1 Part1,tag
+RDC_NB_1F_VAV6670,Office N-1323,B2.1 Part1,tag
+RDC_NB_1F_VAV6675,Workstation N-1324,B2.1 Part1,tag
+RDC_NB_1F_VAV6680,Office N-1325,B2.1 Part1,tag
+RDC_NB_1F_VAV6685,Office N-1326,B2.1 Part1,tag
+RDC_NB_1F_VAV6690,Exp. Workstation N-1327,B2.1 Part1,tag
+RDC_NB_1F_VAV6695,Office N-1328,B2.1 Part1,tag
 RDC_NB_1F_VAV6700_EV6701,NORMAL ELEC. N-1329,B2.1 Part2,tag
-RDC_NB_1F_VAV6705,Office N-1330,,its tag is on no screen
+RDC_NB_1F_VAV6705,Office N-1330,B2.1 Part1,tag
 RDC_NB_1F_VAV6710,Office N-1331,B2.1 Part1,tag
 RDC_NB_1F_VAV6715,Office N-1332,B2.1 Part1,tag
-RDC_NB_1F_VAV6720,Corridor N-1335,,its tag is on no screen
+RDC_NB_1F_VAV6720,Corridor N-1335,B2.1 Part3,tag
 RDC_NB_1F_VAV6725_EV6726,Emer. Elec. N-1336,B2.1 Part2,tag
 RDC_NB_1F_VAV6750,Tissue Culture 1 N-1345A,B2.1 Part3,tag
 RDC_NB_1F_VAV6760,Diabetes Lab N-1345B,B2.1 Part3,tag
@@ -718,17 +718,17 @@ RDC_NB_1F_VAV7560_VEV7561,Imaging N-1404F,B2.2 Part1,tag
 RDC_NB_1F_VAV7570_VEV7571,Cell Bio Lab2 N-1404G,B2.2 Part1,tag
 RDC_NB_1F_VAV7580_VEV7581,TC3 N-1404H,B2.2 Part1,tag
 RDC_NB_1F_VAV7600_VEV7601,Cell Bio Lab3 N-1404K,B2.2 Part1,tag
-RDC_NB_1F_VAV7620,Office N-1415,,its tag is on no screen
+RDC_NB_1F_VAV7620,Office N-1415,B2.2 Part1,tag
 RDC_NB_1F_VAV7625,Office N-1416,B2.2 Part1,tag
-RDC_NB_1F_VAV7630,Office 05 - 2 WKS- N-1407,,its tag is on no screen
-RDC_NB_1F_VAV7635,Office N-1418,,its tag is on no screen
+RDC_NB_1F_VAV7630,Office 05 - 2 WKS- N-1407,B2.2 Part1,every other unit in this room is in B2.2 Part1
+RDC_NB_1F_VAV7635,Office N-1418,B2.2 Part1,tag
 RDC_NB_1F_VAV7640,Office N-1419,B2.2 Part1,tag
-RDC_NB_1F_VAV7645,Exp. Workstation N-1420,,its tag is on no screen
-RDC_NB_1F_VAV7650,Office N-1421,,its tag is on no screen
+RDC_NB_1F_VAV7645,Exp. Workstation N-1420,B2.2 Part1,every other unit in this room is in B2.2 Part1
+RDC_NB_1F_VAV7650,Office N-1421,B2.2 Part1,tag
 RDC_NB_1F_VAV7655,Office N-1422,B2.2 Part1,tag
 RDC_NB_1F_VAV7660,Workstation N-1423,B2.2 Part1,tag
-RDC_NB_1F_VAV7665_EV7666,Normal Elec. N-1425,,its tag is on no screen
-RDC_NB_1F_VAV7670,Office N-1426,,its tag is on no screen
+RDC_NB_1F_VAV7665_EV7666,Normal Elec. N-1425,B2.2 Part1,tag
+RDC_NB_1F_VAV7670,Office N-1426,B2.2 Part1,tag
 RDC_NB_1F_VAV7675,Office N-1428,B2.2 Part1,tag
 RDC_NB_1F_VAV7680_EV7681,Conf N-1429,B2.2 Part1,tag
 RDC_NB_1F_VAV7685,Office N-1433,B2.2 Part1,tag
@@ -808,8 +808,8 @@ RDC_NB_2F_FCU6995,IDF N-2110,Part4,tag
 RDC_NB_2F_FCU6996,IDF N-2110,Part4,tag
 RDC_NB_2F_FCU7991,Normal Elec. N-2111,Part3,tag
 RDC_NB_2F_FCU7992,Emer. Elec. N-2112,Part3,tag
-RDC_NB_GF_FCU4911,MDF Room N-0206A,,"on 2 sections: A2.1 Part2, A2.2 Part1"
-RDC_NB_GF_FCU4912,MDF Room N-0206A,,"on 2 sections: A2.1 Part2, A2.2 Part1"
+RDC_NB_GF_FCU4911,MDF Room N-0206A,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 5 from A2.2 Part1
+RDC_NB_GF_FCU4912,MDF Room N-0206A,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 5 from A2.2 Part1
 RDC_NB_GF_FCU4913,Store N-0201,A2.2 Part1,every other unit in this room is in A2.2 Part1
 RDC_NB_GF_FCU4920,Emergency Electrical Landing Room N-0205,A2.1 Part2,tag
 RDC_NB_GF_FCU5980,Serv Core N-0136,A2.2 Part2,tag
@@ -871,7 +871,7 @@ RDC_SB_GF_FCU1003,IDF ROOM S-0133,B1.1,tag
 RDC_SB_GF_FCU1004,IDF ROOM S-0133,B1.1,tag
 RDC_SB_GF_FCU1005,EC MDF ROOM S-0134,B1.1,tag
 RDC_SB_GF_FCU1006,EC MDF ROOM S-0134,B1.1,tag
-RDC_SB_GF_FCU1007,MECHANICAL ROOM S-0136,,"on 2 sections: B1.1, B1.2 Part2"
+RDC_SB_GF_FCU1007,MECHANICAL ROOM S-0136,B1.1,printed on 2 sections; its room is 1 from the nearest room in B1.1 and no from B1.2 Part2
 RDC_SB_GF_FCU1008,STAIR-01 S-01T01,B1.2 Part1,tag
 RDC_SB_GF_FCU2001,STAIR-03 S-0ST03,A1.3,tag
 RDC_SB_GF_FCU2002,AV ROOM S-0210,A1.2 Part1,tag
@@ -908,20 +908,20 @@ RDC_UB_MF_FCU8508,MECHANICAL ROOM U-1101,Mezzanine Part2,tag
 RDC_UB_MF_FCU8509,MECHANICAL ROOM U-1101,Mezzanine Part2,tag
 RDC_UB_MF_FCU8510,MECHANICAL ROOM U-1101,Mezzanine Part2,tag
 RDC_UB_MF_FCU8511,MECHANICAL ROOM U-1101,Mezzanine Part2,tag
-RDC_SB_GF_CAV1001,,,its tag is on no screen
-RDC_SB_GF_CAV1005,Normal & Emergency Elec. Landing S-0142,,its tag is on no screen
-RDC_SB_GF_CAV1006,Corridor S-0137,,its tag is on no screen
-RDC_SB_GF_CAV1007,UPS S-0145,,its tag is on no screen
-RDC_SB_GF_CAV1009,Service Dock S-0151,,its tag is on no screen
+RDC_SB_GF_CAV1001,,B1.2 Part2,tag
+RDC_SB_GF_CAV1005,Normal & Emergency Elec. Landing S-0142,B1.2 Part1,tag
+RDC_SB_GF_CAV1006,Corridor S-0137,B1.2 Part1,tag
+RDC_SB_GF_CAV1007,UPS S-0145,B1.2 Part1,tag
+RDC_SB_GF_CAV1009,Service Dock S-0151,B1.2 Part1,tag
 RDC_NB_GF_CAV4035,Corridor N-0207A,A2.1 Part1,tag
-RDC_NB_GF_CAV4170,Storage Room N-0237,,its tag is on no screen
+RDC_NB_GF_CAV4170,Storage Room N-0237,A2.1 Part1,tag
 RDC_NB_GF_CEV-4031,Service Corridor N-0207,A2.1 Part2,tag
-RDC_NB_GF_EAV4028,MDF ROOM N-0206A,,its tag is on no screen
-RDC_NB_GF_EAV4236,Office 05 -8WS- N-0250,,its tag is on no screen
-RDC_NB_GF_EAV4261,Office 05 -8WS- N-0255,A1.2 Part2,every other unit in this room is in A1.2 Part2
-RDC_NB_GF_EAV4286,Office 05 -8WS- N-0260,,its tag is on no screen
-RDC_NB_GF_EAV4311,WORKSTATION N-0265,A2.2 Part1,every other unit in this room is in A2.2 Part1
-RDC_NB_GF_VEV-4041,Air Quality High Bay N-0215A,,"on 2 sections: A2.1 Part2, A2.2 Part1"
+RDC_NB_GF_EAV4028,MDF ROOM N-0206A,A2.1 Part2,tag
+RDC_NB_GF_EAV4236,Office 05 -8WS- N-0250,A2.1 Part1,every other unit in this room is in A2.1 Part1
+RDC_NB_GF_EAV4261,Office 05 -8WS- N-0255,,its tag is on no screen
+RDC_NB_GF_EAV4286,Office 05 -8WS- N-0260,A2.1 Part2,tag
+RDC_NB_GF_EAV4311,WORKSTATION N-0265,A2.1 Part2,tag
+RDC_NB_GF_VEV-4041,Air Quality High Bay N-0215A,A2.1 Part2,printed on 2 sections; its room is 0 from the nearest room in A2.1 Part2 and 14 from A2.2 Part1
 RDC_NB_GF_FEV-4193,CSP Lab N-0240B,A2.1 Part2,tag
 RDC_NB_GF_FEV-4194,CSP Lab N-0240B,A2.1 Part2,tag
 RDC_NB_GF_VEV-4213A,Desal Lab N-0240D,A2.1 Part1,tag
@@ -929,22 +929,22 @@ RDC_NB_GF_VEV-4213B,Desal Lab N-0240D,A2.1 Part1,tag
 RDC_NB_GF_FEV-4214,Desal Lab N-0240D,A2.1 Part1,tag
 RDC_NB_GF_FEV-4215,Desal Lab N-0240D,A2.1 Part1,tag
 RDC_NB_GF_FEV-4216,Desal Lab N-0240D,A2.1 Part1,tag
-RDC_SB_GF_CAV0006,Normal Elec. S-0107,,its tag is on no screen
+RDC_SB_GF_CAV0006,Normal Elec. S-0107,,"on 2 sections: A1.3, B1.1"
 RDC_SB_GF_CAV0015,Corridor S-0117,,its tag is on no screen
 RDC_SB_GF_CAV0020,Storage S-0120B,,its tag is on no screen
-RDC_SB_GF_CAV0021,Vestibule S-0125,,its tag is on no screen
+RDC_SB_GF_CAV0021,Vestibule S-0125,B1.1,tag
 RDC_SB_GF_CAV0022,Men S-0126,,its tag is on no screen
 RDC_SB_GF_CAV0023,Women S-0127,,its tag is on no screen
-RDC_SB_GF_CAV0024,NORM. ELEC. S-0129,,its tag is on no screen
-RDC_NB_GF_CAV4315_EV4316,Vestibule N-0270A,,its tag is on no screen
-RDC_NB_GF_CAV5160_EV5161,,,its tag is on no screen
+RDC_SB_GF_CAV0024,NORM. ELEC. S-0129,B1.1,tag
+RDC_NB_GF_CAV4315_EV4316,Vestibule N-0270A,A2.2 Part1,tag
+RDC_NB_GF_CAV5160_EV5161,,A2.2 Part2,tag
 RDC_NB_GF_CAV5280,Serv Core N-0136,A2.2,tag - on 2 parts of the section
-RDC_NB_GF_CAV5290_EV5291,Pantry N-0148,,its tag is on no screen
-RDC_NB_GF_CAV5320,Office N-0154,,its tag is on no screen
-RDC_NB_GF_CAV5350,Open Office N-0160,,its tag is on no screen
+RDC_NB_GF_CAV5290_EV5291,Pantry N-0148,A2.2 Part3,tag
+RDC_NB_GF_CAV5320,Office N-0154,A2.2 Part3,tag
+RDC_NB_GF_CAV5350,Open Office N-0160,A2.2 Part3,tag
 RDC_NB_GF_CAV5375,Open Office N-0165,,its tag is on no screen
 RDC_NB_GF_EAV5026,Corridor N-0110,,its tag is on no screen
-RDC_NB_GF_EAV5163,IDF N-0133,A2.2 Part2,every other unit in this room is in A2.2 Part2
+RDC_NB_GF_EAV5163,IDF N-0133,A2.2 Part2,tag
 RDC_NB_GF_VEV-5052A,Analytical Core Lab 1 N-0114A,A2.2 Part2,tag
 RDC_NB_GF_VEV-5052B,Analytical Core Lab 1 N-0114A,A2.2 Part2,tag
 RDC_NB_GF_FEV-5053,Analytical Core Lab 1 N-0114A,A2.2 Part2,tag
@@ -968,43 +968,43 @@ RDC_NB_GF_FEV5192A,Furnace Room N-0140B,A2.2 Part3,tag
 RDC_NB_GF_FEV5192B,Furnace Room N-0140B,A2.2 Part3,tag
 RDC_NB_GF_FEV-5203,Prep Lab N-0140C,A2.2 Part3,every other unit in this room is in A2.2 Part3
 RDC_NB_GF_VEV-5211,MBE EVAP Room N-0140E,A2.2 Part3,tag
-RDC_NB_GF_VEV-5221,MBE/Evap Room N-0140E,A2.2 Part3,every other unit in this room is in A2.2 Part3
-RDC_NB_GF_FEV-5222,Evap Room N-0140E,A2.2 Part3,every other unit in this room is in A2.2 Part3
+RDC_NB_GF_VEV-5221,MBE/Evap Room N-0140E,A2.2 Part3,tag
+RDC_NB_GF_FEV-5222,Evap Room N-0140E,A2.2 Part3,tag
 RDC_NB_GF_FEV-5223,Evap Room N-0140E,A2.2 Part3,tag
 RDC_NB_GF_VEV-5231,ALD Room N-0140F,A2.2 Part3,tag
 RDC_NB_GF_CAV5240_CEV5241,Air Lock N-0140G,,its tag is on no screen
 RDC_NB_GF_FEV-5271,Org Chem N-0140K,A2.2 Part3,tag
 RDC_NB_GF_FEV-5272,Org Chem N-0140K,A2.2 Part3,tag
 RDC_NB_GF_FEV-5273,Org Chem N-0140K,A2.2 Part3,tag
-RDC_NB_GF_FEV-5274,Org Chem N-0140K,A2.2 Part3,every other unit in this room is in A2.2 Part3
-RDC_NB_GF_FEV-5275,Org Chem N-0140K,A2.2 Part3,every other unit in this room is in A2.2 Part3
+RDC_NB_GF_FEV-5274,Org Chem N-0140K,A2.2 Part3,tag
+RDC_NB_GF_FEV-5275,Org Chem N-0140K,A2.2 Part3,tag
 RDC_NB_GF_FEV-5276,Org Chem N-0140K,A2.2 Part3,tag
 RDC_NB_GF_FEV-5277,Org Chem N-0140K,A2.2 Part3,tag
-RDC_SB_GF_CAV0004,Corridor S-0104,,its tag is on no screen
-RDC_SB_GF_CAV0005,Men S-0105,,its tag is on no screen
-RDC_SB_GF_CAV2001,,,its tag is on no screen
+RDC_SB_GF_CAV0004,Corridor S-0104,A1.3,tag
+RDC_SB_GF_CAV0005,Men S-0105,A1.3,tag
+RDC_SB_GF_CAV2001,,,"on 2 sections: A1.2 Part1, A1.3"
 RDC_NB_GF_CAV5005,Vestibule N-0105,A2.3,tag
-RDC_NB_GF_CAV5020_EV5021,Mens + Vestibule + N-0109 N-0108,,its tag is on no screen
+RDC_NB_GF_CAV5020_EV5021,Mens + Vestibule + N-0109 N-0108,A2.3,tag
 RDC_NB_GF_CAV6005,Vestibule N-0302,A2.3,tag
-RDC_NB_GF_CAV6015_EV6016,Men N-0306,,its tag is on no screen
+RDC_NB_GF_CAV6015_EV6016,Men N-0306,A2.3,tag
 RDC_NB_GF_CAV6020,Vestibule N-0308,A2.3,tag
-RDC_NB_GF_EAV6127,IDF N-0311,A2.3,every other unit in this room is in A2.3
-RDC_NB_GF_CAV7005_EV7006,WOMEN N-0402,,its tag is on no screen
-RDC_NB_GF_CAV7380_EV7381,Pipe Chase N-0443B,,its tag is on no screen
-RDC_NB_GF_CAV6280_EV6281,Pantry N-0356,,its tag is on no screen
+RDC_NB_GF_EAV6127,IDF N-0311,A2.3,tag
+RDC_NB_GF_CAV7005_EV7006,WOMEN N-0402,B2.1 Part1,tag
+RDC_NB_GF_CAV7380_EV7381,Pipe Chase N-0443B,B2.1 Part2,tag
+RDC_NB_GF_CAV6280_EV6281,Pantry N-0356,B2.1 Part2,tag
 RDC_NB_GF_EAV6141,Workstation N-0317,B2.1 Part1,every other unit in this room is in B2.1 Part1
-RDC_NB_GF_EAV6156,Workstation N-0320,B2.1 Part1,every other unit in this room is in B2.1 Part1
-RDC_NB_GF_EAV6176,Workstation N-0324,B2.1 Part1,every other unit in this room is in B2.1 Part1
-RDC_NB_GF_EAV6356,Office 05-8-WKS N-0372,,its tag is on no screen
-RDC_NB_GF_EAV6381,Office 05-8-WKS N-0378,,its tag is on no screen
-RDC_NB_GF_EAV6401,Office 05-8-WKS N-0381,,its tag is on no screen
+RDC_NB_GF_EAV6156,Workstation N-0320,B2.1 Part1,tag
+RDC_NB_GF_EAV6176,Workstation N-0324,B2.1 Part1,tag
+RDC_NB_GF_EAV6356,Office 05-8-WKS N-0372,B2.1 Part2,tag
+RDC_NB_GF_EAV6381,Office 05-8-WKS N-0378,B2.1 Part2,tag
+RDC_NB_GF_EAV6401,Office 05-8-WKS N-0381,B2.1 Part2,tag
 RDC_NB_GF_EAV7091,Office N-0412A,,its tag is on no screen
 RDC_NB_GF_EAV7106,Office N-0415A,,its tag is on no screen
-RDC_NB_GF_EAV7121,Office 05-4-WS N-0418,,its tag is on no screen
-RDC_NB_GF_EAV7122,IDF Room N-0419,,its tag is on no screen
-RDC_NB_GF_EAV7396,Office 05-8-WKS N-0446,,its tag is on no screen
+RDC_NB_GF_EAV7121,Office 05-4-WS N-0418,B2.2 Part1,tag
+RDC_NB_GF_EAV7122,IDF Room N-0419,B2.2 Part1,tag
+RDC_NB_GF_EAV7396,Office 05-8-WKS N-0446,B2.2 Part2,tag
 RDC_NB_GF_EAV7426,Office 05-8-WKS N-0452,B2.2 Part2,every other unit in this room is in B2.2 Part2
-RDC_NB_GF_EAV7461,Office 05-8-WKS N-0457,,its tag is on no screen
+RDC_NB_GF_EAV7461,Office 05-8-WKS N-0457,B2.2 Part2,tag
 RDC_NB_GF_EAV7486,Office 05-8-WKS N-0462,B2.2 Part2,every other unit in this room is in B2.2 Part2
 RDC_NB_GF_VEV-7022A,NMR Lab N-0404A,B2.2 Part1,tag
 RDC_NB_GF_VEV-7022B,NMR Lab N-0404A,B2.2 Part1,tag
@@ -1023,15 +1023,15 @@ RDC_NB_GF_FEV-7075,Surf Analysis Lab N-0404F,B2.2 Part1,tag
 RDC_NB_GF_FEV-7232,Inter Lab N-0442A,B2.2 Part2,tag
 RDC_NB_GF_VEV-7241B,Optical Lab N-0442B,B2.2 Part2,tag
 RDC_NB_GF_VEV-7301,A/L 1 N-0442H,B2.2 Part2,tag
-RDC_SB_1F_CAV1504,Corridor S-1122,,its tag is on no screen
-RDC_SB_1F_CAV1535,Pantry S-1149A,,its tag is on no screen
-RDC_SB_1F_CAV1537,Normal Elec. S-1147,,its tag is on no screen
-RDC_NB_1F_EAV4500,MDF N-1201,A2.1 Part2,every other unit in this room is in A2.1 Part2
+RDC_SB_1F_CAV1504,Corridor S-1122,B1.1 Part1,printed on 2 sections; its room is 0 from the nearest room in B1.1 Part1 and 2 from B1.2
+RDC_SB_1F_CAV1535,Pantry S-1149A,B1.2,tag
+RDC_SB_1F_CAV1537,Normal Elec. S-1147,B1.2,tag
+RDC_NB_1F_EAV4500,MDF N-1201,A2.1 Part2,tag
 RDC_NB_1F_CEV-4502,Corridor N-1202,A2.1 Part1,tag
-RDC_NB_1F_EAV4661,Office 05 - 8 WKS- N-1227,,its tag is on no screen
-RDC_NB_1F_EAV4686,Office 05 - 8 WKS- N-1232,,its tag is on no screen
-RDC_NB_1F_EAV4711,Office 05 - 8 WKS- N-1237,,its tag is on no screen
-RDC_NB_1F_EAV4736,Office 05 - 8 WKS- N-1242,,its tag is on no screen
+RDC_NB_1F_EAV4661,Office 05 - 8 WKS- N-1227,A2.1 Part2,tag
+RDC_NB_1F_EAV4686,Office 05 - 8 WKS- N-1232,A2.1 Part2,tag
+RDC_NB_1F_EAV4711,Office 05 - 8 WKS- N-1237,A2.1 Part1,tag
+RDC_NB_1F_EAV4736,Office 05 - 8 WKS- N-1242,A2.1 Part1,tag
 RDC_NB_1F_VEV-4602,Testing Room N-1216B,A2.1 Part1,tag
 RDC_NB_1F_FEV-4603,Testing Room N-1216B,A2.1 Part1,tag
 RDC_NB_1F_FEV-4604,Testing Room N-1216B,A2.1 Part1,tag
@@ -1045,27 +1045,27 @@ RDC_NB_1F_VEV-4586A,Photovoltaic Lab N-1216A,A2.1 Part2,tag
 RDC_NB_1F_VEV-4586B,Photovoltaic Lab N-1216A,A2.1 Part2,tag
 RDC_NB_1F_FEV-4587,Photovoltaic Lab N-1216A,A2.1 Part2,tag
 RDC_NB_1F_FEV-4588,Photovoltaic Lab N-1216A,A2.1 Part2,tag
-RDC_SB_1F_CAV0501,Lobby S-1102,,its tag is on no screen
-RDC_SB_1F_CAV0502,Vestibule S-1105,,its tag is on no screen
-RDC_SB_1F_CAV0503,Women S-1106B,,its tag is on no screen
-RDC_SB_1F_CAV0504,Vestibule S-1107,,its tag is on no screen
-RDC_SB_1F_CAV0505,EMERGENCY Elec. S-1107B,,its tag is on no screen
-RDC_SB_1F_CAV0515,Corridor S-1122,,its tag is on no screen
-RDC_SB_1F_CAV0516,Pantry S-1158,,its tag is on no screen
-RDC_SB_1F_CAV0517,Normal Elec. S-1160,,its tag is on no screen
-RDC_SB_1F_CAV0524,Women S-1169,,its tag is on no screen
-RDC_SB_1F_CAV0525,Men S-1170,,its tag is on no screen
-RDC_SB_1F_CAV0534,CORRIDOR S-1180,,its tag is on no screen
-RDC_SB_1F_CAV0535,Cooridor S-1180,,its tag is on no screen
-RDC_SB_1F_CAV1541,Cooridor S-1181,,its tag is on no screen
-RDC_NB_1F_CAV5720_EV5721,Men N-1134,,its tag is on no screen
+RDC_SB_1F_CAV0501,Lobby S-1102,B1.1 Part2,tag
+RDC_SB_1F_CAV0502,Vestibule S-1105,A1.3,printed on 2 sections; its room is 1 from the nearest room in A1.3 and 2 from B1.1 Part2
+RDC_SB_1F_CAV0503,Women S-1106B,A1.3,tag
+RDC_SB_1F_CAV0504,Vestibule S-1107,B1.1 Part2,tag
+RDC_SB_1F_CAV0505,EMERGENCY Elec. S-1107B,B1.1 Part2,printed on 2 sections; its room is 0 from the nearest room in B1.1 Part2 and 1 from A1.3
+RDC_SB_1F_CAV0515,Corridor S-1122,B1.1 Part1,tag
+RDC_SB_1F_CAV0516,Pantry S-1158,B1.1 Part1,tag
+RDC_SB_1F_CAV0517,Normal Elec. S-1160,B1.1 Part1,tag
+RDC_SB_1F_CAV0524,Women S-1169,B1.1 Part1,tag
+RDC_SB_1F_CAV0525,Men S-1170,B1.1 Part1,tag
+RDC_SB_1F_CAV0534,CORRIDOR S-1180,B1.1 Part1,tag
+RDC_SB_1F_CAV0535,Cooridor S-1180,B1.1 Part1,tag
+RDC_SB_1F_CAV1541,Cooridor S-1181,B1.1 Part1,tag
+RDC_NB_1F_CAV5720_EV5721,Men N-1134,A2.2 Part1,tag
 RDC_NB_1F_CAV5750,Store N-1141,A2.2 Part2,tag
-RDC_NB_1F_CAV4640_EV4641,Women N-1221,,its tag is on no screen
-RDC_NB_1F_EAV5686,Corridor N-1126,A2.2 Part1,every other unit in this room is in A2.2 Part1
-RDC_NB_1F_EAV5747,IDF N-1140,A2.2 Part1,every other unit in this room is in A2.2 Part1
-RDC_NB_1F_EAV5891,Office 05 - 8 WKS- North N-1160,,its tag is on no screen
-RDC_NB_1F_EAV5921,Office 05 - 8 WKS- N-1168,,its tag is on no screen
-RDC_NB_1F_EAV5941,Office 05 - 8 WKS- N-1165,,its tag is on no screen
+RDC_NB_1F_CAV4640_EV4641,Women N-1221,A2.2 Part2,tag
+RDC_NB_1F_EAV5686,Corridor N-1126,A2.2 Part1,tag
+RDC_NB_1F_EAV5747,IDF N-1140,A2.2 Part1,tag
+RDC_NB_1F_EAV5891,Office 05 - 8 WKS- North N-1160,A2.2 Part2,tag
+RDC_NB_1F_EAV5921,Office 05 - 8 WKS- N-1168,A2.2 Part2,tag
+RDC_NB_1F_EAV5941,Office 05 - 8 WKS- N-1165,A2.2 Part2,tag
 RDC_NB_1F_FEV-5624,Robotics N-1115J,A2.2 Part1,tag
 RDC_NB_1F_VEV-5572,Met/Prot Lab N-1115C,A2.2 Part1,tag
 RDC_NB_1F_VEV-5573A,Met/Prot Lab N-1115C,A2.2 Part1,tag
@@ -1082,15 +1082,15 @@ RDC_NB_1F_VEV-5811B,Nano Lab N-1144E,A2.2 Part2,tag
 RDC_NB_1F_FEV-5812,Nano Lab N-1144E,A2.2 Part2,tag
 RDC_NB_1F_FEV-5813,Nano Lab N-1144E,A2.2 Part2,tag
 RDC_NB_1F_VEV-5821,Nano Lab N-1144E,A2.2 Part2,tag
-RDC_SB_1F_CAV2507,Female S-1204,,its tag is on no screen
-RDC_NB_1F_CAV6740_EV6741,Men N-1340,,its tag is on no screen
-RDC_NB_1F_CAV7500_EV7501,Women N-1403,,its tag is on no screen
-RDC_NB_1F_EAV6661,Workstation N-1321,,its tag is on no screen
-RDC_NB_1F_EAV6676,Workstation N-1324,,its tag is on no screen
-RDC_NB_1F_EAV6691,Exp. Workstation N-1327,,its tag is on no screen
-RDC_NB_1F_EAV6936,Workstation N-1363,B2.1 Part4,every other unit in this room is in B2.1 Part4
-RDC_NB_1F_EAV6961,Workstation N-1368,B2.1 Part4,every other unit in this room is in B2.1 Part4
-RDC_NB_1F_EAV6969,Workstation N-1371,B2.1 Part4,every other unit in this room is in B2.1 Part4
+RDC_SB_1F_CAV2507,Female S-1204,A1.3,tag
+RDC_NB_1F_CAV6740_EV6741,Men N-1340,B2.1 Part3,tag
+RDC_NB_1F_CAV7500_EV7501,Women N-1403,B2.1 Part2,tag
+RDC_NB_1F_EAV6661,Workstation N-1321,B2.1 Part1,tag
+RDC_NB_1F_EAV6676,Workstation N-1324,B2.1 Part1,tag
+RDC_NB_1F_EAV6691,Exp. Workstation N-1327,B2.1 Part1,tag
+RDC_NB_1F_EAV6936,Workstation N-1363,B2.1 Part4,tag
+RDC_NB_1F_EAV6961,Workstation N-1368,B2.1 Part4,tag
+RDC_NB_1F_EAV6969,Workstation N-1371,B2.1 Part4,tag
 RDC_NB_1F_VEV-6541,TC1 N-1316B,B2.1 Part2,tag
 RDC_NB_1F_VEV-6552,Gene Therapy Lab N-1316C,B2.1 Part2,tag
 RDC_NB_1F_VEV-6553,Gene Therapy Lab N-1316C,B2.1 Part2,tag
@@ -1122,13 +1122,13 @@ RDC_NB_1F_FEV-6856,Bio-Med Chem Lab 2 N-1345J,B2.1 Part3,tag
 RDC_NB_1F_FEV-6857,Bio-Med Chem Lab 2 N-1345J,B2.1 Part3,tag
 RDC_NB_1F_FEV-6858,Bio-Med Chem Lab 2 N-1345J,B2.1 Part3,tag
 RDC_NB_1F_FEV-6859,Bio-Med Chem Lab 2 N-1345J,B2.1 Part3,tag
-RDC_NB_1F_EAV7631,Office 05 - 2 WKS- N-1407,,its tag is on no screen
-RDC_NB_1F_EAV7646,Exp. Workstation N-1420,,its tag is on no screen
+RDC_NB_1F_EAV7631,Office 05 - 2 WKS- N-1407,B2.2 Part1,tag
+RDC_NB_1F_EAV7646,Exp. Workstation N-1420,B2.2 Part1,tag
 RDC_NB_1F_EAV7661,Office 05 - 2 WKS- N-1401,,its tag is on no screen
 RDC_NB_1F_EAV7663,IDF N-1424,B2.2 Part1,every other unit in this room is in B2.2 Part1
-RDC_NB_1F_EAV7711,Workstation N-1442,B2.2 Part2,every other unit in this room is in B2.2 Part2
-RDC_NB_1F_EAV7712,Workstation N-1442,B2.2 Part2,every other unit in this room is in B2.2 Part2
-RDC_NB_1F_EAV7861,Office 05 - 9 WKS N-1461,,its tag is on no screen
+RDC_NB_1F_EAV7711,Workstation N-1442,B2.2 Part1,tag
+RDC_NB_1F_EAV7712,Workstation N-1442,B2.2 Part1,tag
+RDC_NB_1F_EAV7861,Office 05 - 9 WKS N-1461,B2.2 Part2,tag
 RDC_NB_1F_EAV7916,Office 05 - 8 WKS N-1471,,its tag is on no screen
 RDC_NB_1F_CAV7520_CEV7521,Isotope N-1404B,B2.2 Part1,tag
 RDC_NB_1F_FEV-7522,Isotope N-1404B,B2.2 Part1,tag
@@ -1138,5 +1138,5 @@ RDC_NB_1F_CAV7610_CEV7611,TC1 N-1404L,B2.2 Part1,tag
 RDC_NB_1F_CAV7760_CEV7761,A/L N-1450D,B2.2 Part2,tag
 RDC_NB_1F_CAV7790_CEV7791,A/L N-1450G,B2.2 Part2,tag
 RDC_NB_1F_FEV-7824,STEM/PCR Open Lab N-1450M,B2.2 Part2,tag
-RDC_NB_2F_EAV4920,IDF N-2104,Part2,every other unit in this room is in Part2
-RDC_NB_2F_EAV6981,IDF N-2110,Part4,every other unit in this room is in Part4
+RDC_NB_2F_EAV4920,IDF N-2104,Part2,tag
+RDC_NB_2F_EAV6981,IDF N-2110,Part4,tag
