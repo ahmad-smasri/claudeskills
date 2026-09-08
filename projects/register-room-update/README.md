@@ -211,26 +211,45 @@ python3 rebuild_register.py
 |---|---|
 | RDC section in | 1,759 |
 | kept as units | 1,029 |
-| removed - parts of a unit | 683 |
+| kept - already the whole assembly | 1 |
+| part rows renamed into their unit | 111 |
+| removed - parts of a unit | 571 |
 | removed - not in the historian | 47 |
-| units added, named by their parts | 112 |
 | **RDC section out** | **1,141** |
 
 The 47 removed are tabulated on their own in
-`RDC_removed_not_in_historian.xlsx`; every removal and addition is in
+`RDC_removed_not_in_historian.xlsx`; every removal, rename and retention is in
 `rdc_rebuild_log.csv`.
 
-## Adding the unit a part points at
+## The unit a part points at takes the part's own row
 
 The register lists the terminals of 62 CAVs and 48 EAVs without listing the CAV
-or EAV itself, so removing the parts alone would lose the equipment. Each such
-unit is added, named as the historian names it, taking the room its parts agreed
-on - or no room and a note saying so, where they did not.
+or EAV itself, so removing the parts alone would lose the equipment. **The first
+of those part rows becomes the unit, where it sits** - same row, same position in
+the section, same review note, same highlight - renamed as the historian names
+it and keeping the room its parts agreed on, or no room and a note saying so
+where they did not. Its siblings are removed.
 
-Whether the unit is already in the register is decided on the set of families
-and numbers a tag names, not on the string. The historian writes
-`RDC_NB_1F_VAV7830_7831` where the register writes `RDC_NB_1F_VAV7830_VEV7831`;
-comparing strings reported a unit as missing that was already there.
+The first pass did this the other way round: it deleted every part row and
+appended 112 fresh unit rows at the end of the section. That threw away the
+review already done on those rows and filed the new equipment 200 rows away from
+the units it belongs beside. Renaming in place is what the instruction asked for
+- *replace it with it* - and it is why the note on `AT-0503` needs no special
+handling to end up on `CAV0503`: it never moves.
+
+## A row that is already the whole assembly is not a part of one
+
+`RDC_NB_1F_VAV7830_VEV7831` names both halves of the assembly the historian
+carries as `RDC_NB_1F_VAV7830_7831`. The two differ on spelling, not on what
+they name, so the register's row is the unit and stays exactly as it is - the
+first pass removed it as a part and wrote the historian's spelling back as a new
+row, which is a rename dressed up as a deletion.
+
+The test is the **leading family and number**, not the whole set: `AT-1005` and
+`CAV1005` share a number but not a family, so the AT is a part; `VAV7830_VEV7831`
+and `VAV7830_7831` share `(VAV, 7830)`, so they are one unit. Comparing the full
+set of `(family, number)` pairs gets the first case right and the second wrong,
+because the historian drops the family from the second number.
 
 ## Editing the workbook without breaking it
 
@@ -242,8 +261,8 @@ positions the comments differ, and the HQ, QNL and SSC rows are identical.
 **The 38 cell comments are the client's own review notes** and had to survive.
 They are moved with their rows in both `comments1.xml` and the VML anchors,
 which count rows from zero. A note on a part row follows the part to its unit -
-the note on `AT-0503` now sits on the `CAV0503` row that replaced it. 37 of the
-38 end on exactly the tag they started on, and the 38th is that one.
+the note on `AT-0503` sits on the `CAV0503` that row became. 37 of the 38 end on
+exactly the tag they started on, and the 38th is that one.
 
 Two bugs worth naming, both found by checking the output rather than the code:
 

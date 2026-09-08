@@ -16,16 +16,22 @@ historian carries whole as `VAV4110_EV4111`; it has no object, no points and no
 widget on any screen. It belongs in the ontology as `brick:hasPart` of its unit,
 not as a controllable asset.
 
-**A part whose unit is not in the register puts that unit in.** The register
-lists the terminals of 62 CAVs and 48 EAVs without listing the CAV or EAV, so
-removing the parts alone would lose the equipment entirely. The new row is named
-as the historian names it, and takes the room its parts agreed on - or no room
-at all, said plainly, where they did not.
+**A part whose unit is not in the register renames itself into that unit, where
+it sits.** The register lists the terminals of 62 CAVs and 48 EAVs without
+listing the CAV or EAV, so removing the parts alone would lose the equipment
+entirely. The first of those part rows becomes the unit - same row, same
+position, same review note, same highlight - named as the historian names it and
+taking the room its parts agreed on, or no room at all, said plainly, where they
+did not. Its siblings are removed. Deleting the part rows and appending fresh
+unit rows at the end of the section would throw away the review that had already
+been done on them and file the equipment away from the units it sits beside.
 
-Whether a unit is already in the register is decided on the set of families and
-numbers it names, not on the string: the historian writes
-`RDC_NB_1F_VAV7830_7831` where the register writes `RDC_NB_1F_VAV7830_VEV7831`,
-and comparing strings reports a unit as missing that is already there.
+**A row the register already writes as the whole assembly is the unit, not a
+part of it.** `RDC_NB_1F_VAV7830_VEV7831` names both halves of the assembly the
+historian carries as `RDC_NB_1F_VAV7830_7831`; the two differ on spelling, not
+on what they name, so the register's row stays exactly as it is. The test is the
+leading family and number, which is what makes `AT-1005` a part of `CAV1005` -
+same number, different family - and leaves `VAV7830_VEV7831` alone.
 """
 import argparse
 import collections
@@ -37,7 +43,7 @@ from pathlib import Path
 
 import openpyxl
 from openpyxl.styles import Alignment, Font, PatternFill
-from openpyxl.utils import get_column_letter
+from openpyxl.utils import column_index_from_string, get_column_letter
 
 import classify_parts as C
 
@@ -53,12 +59,17 @@ LOG = HERE / 'rdc_rebuild_log.csv'
 SHEET = 'Controllable Asset Registry'
 RDC_FIRST, RDC_LAST = 1443, 3201
 HEAD_FILL = PatternFill('solid', fgColor='FF1F4E79')
-NEW_FILL = PatternFill('solid', fgColor='FFFFF2CC')   # a row this pass added
 
 
 def signature(tag):
     """the families and numbers a tag names, as a set - its identity"""
     return frozenset(C.numbers(tag))
+
+
+def primary(tag):
+    """the leading (family, number) a tag names - the thing the row is about"""
+    n = C.numbers(tag)
+    return n[0] if n else None
 
 
 def register_style(obj, sample):
@@ -109,6 +120,24 @@ def main():
         else:
             keep.append((i, row))
 
+    total_in = len(keep) + len(parts) + len(gone)
+
+    # A row that already names the whole assembly is that assembly, however the
+    # historian spells it. Removing it and writing the historian's spelling back
+    # as a fresh row throws away a row that was right to begin with.
+    same, rest = [], []
+    for i, row, v in parts:
+        hosts = [h.strip() for h in
+                 v['historian object it belongs to'].split(' / ') if h.strip()]
+        tag = str(row[0]).strip()
+        if len(hosts) == 1 and primary(tag) == primary(hosts[0]):
+            same.append((i, row, hosts[0]))
+            keep.append((i, row))
+        else:
+            rest.append((i, row, v))
+    parts = rest
+    keep.sort()
+
     kept_sig = {signature(str(r[0]).strip()) for _, r in keep}
     kept_sig.discard(frozenset())
 
@@ -120,33 +149,39 @@ def main():
         if len(hosts) != 1:
             continue
         host = hosts[0]
-        if signature(host) & frozenset() or signature(host) in kept_sig:
+        if signature(host) in kept_sig:
             continue
-        entry = wanted.setdefault(host, {'rooms': [], 'from': [], 'sample': ''})
+        entry = wanted.setdefault(host, {'rooms': [], 'from': [], 'rows': []})
         entry['rooms'].append(str(row[3] or '').strip())
         entry['from'].append(str(row[0]).strip())
-        entry['sample'] = entry['sample'] or str(row[0]).strip()
+        entry['rows'].append(i)
 
-    added = []
+    # the first of those part rows becomes the unit, in place
+    promote = {}
     for host, e in wanted.items():
-        tag = register_style(host, e['sample'])
+        tag = register_style(host, e['from'][0])
         fams = {f for f, _ in C.numbers(host)}
         kind = ('CAV' if 'CAV' in fams else 'EAV' if 'EAV' in fams
                 else 'VAV' if 'VAV' in fams else sorted(fams)[0] if fams else '')
         rooms = {r for r in e['rooms'] if r}
         room = rooms.pop() if len(rooms) == 1 else ''
-        note = ('room taken from its %d part row(s)' % len(e['from']) if room
+        note = ('room kept from its %d part row(s)' % len(e['from']) if room
                 else 'its parts named %d different rooms - left blank'
                      % len(set(e['rooms'])))
-        added.append((tag, kind, room, note, e['from'],
-                      read.get(e['from'][0], '')))
+        promote[e['rows'][0]] = (tag, kind, room, note, e['from'])
 
-    print('RDC section: %d rows in' % (len(keep) + len(parts) + len(gone)))
-    print('  kept as units                 %4d' % len(keep))
-    print('  removed - parts of a unit     %4d' % len(parts))
-    print('  removed - not in the historian%4d' % len(gone))
-    print('  units added, named by their parts %4d' % len(added))
-    print('  RDC section out               %4d' % (len(keep) + len(added)))
+    keep.extend((i, row) for i, row, v in parts if i in promote)
+    keep.sort()
+    parts = [(i, row, v) for i, row, v in parts if i not in promote]
+
+    print('RDC section: %d rows in' % total_in)
+    print('  kept as units                     %4d' % (len(keep) - len(promote)
+                                                       - len(same)))
+    print('  kept - already the whole assembly %4d' % len(same))
+    print('  part rows renamed into their unit %4d' % len(promote))
+    print('  removed - parts of a unit         %4d' % len(parts))
+    print('  removed - not in the historian    %4d' % len(gone))
+    print('  RDC section out                   %4d' % len(keep))
 
     with LOG.open('w', newline='') as f:
         w = csv.writer(f, lineterminator='\n')
@@ -156,9 +191,15 @@ def main():
         for i, row, v in parts:
             w.writerow(['removed - part', row[0], row[1], row[3],
                         'part of %s' % v['historian object it belongs to']])
-        for tag, kind, room, note, frm, _ in added:
-            w.writerow(['added - unit', tag, kind, room,
-                        '%s; replaces %s' % (note, ' '.join(frm))])
+        for i, row, host in same:
+            w.writerow(['kept - already the assembly', row[0], row[1], row[3],
+                        'the register already names the whole assembly; the '
+                        'historian spells it %s' % host])
+        for i in sorted(promote):
+            tag, kind, room, note, frm = promote[i]
+            w.writerow(['renamed in place - unit', tag, kind, room,
+                        '%s; was %s, and takes the place of %s'
+                        % (note, frm[0], ', '.join(frm))])
     print('\nwrote %s' % LOG.name)
 
     if args.dry_run:
@@ -184,7 +225,7 @@ def main():
     wb.save(DROPPED)
     print('wrote %s (%d rows)' % (DROPPED.name, len(gone)))
 
-    rewrite(keep, added, parts, gone)
+    rewrite(keep, promote, parts, gone)
     print('wrote %s' % OUT.name)
 
 
@@ -193,20 +234,44 @@ COMMENTS = 'xl/comments1.xml'
 VML = 'xl/drawings/vmlDrawing1.vml'
 
 
-def cell_xml(row, values, fill_style=None):
-    """one <row> of inline-string cells"""
-    out = ['<row r="%d">' % row]
-    for c, v in enumerate(values, 1):
-        if v is None or str(v) == '':
-            continue
-        ref = '%s%d' % (get_column_letter(c), row)
-        text = (str(v).replace('&', '&amp;').replace('<', '&lt;')
-                .replace('>', '&gt;'))
-        style = ' s="%s"' % fill_style if fill_style else ''
-        out.append('<c r="%s"%s t="inlineStr"><is><t xml:space="preserve">%s'
-                   '</t></is></c>' % (ref, style, text))
-    out.append('</row>')
-    return ''.join(out)
+def set_cell(row_xml, row, col, value):
+    """the same <row> with one cell replaced, added or cleared
+
+    The cell keeps whatever style it had, so a row the client highlighted stays
+    highlighted through a rename. An empty value clears the cell rather than
+    writing a blank string, because a blank string reads as a room name of one
+    space to anything that only tests for a value.
+    """
+    ref = '%s%d' % (col, row)
+    pat = re.compile(r'<c\b[^>]*\sr="%s"(?:[^>]*/>|[^>]*>.*?</c>)' % ref, re.S)
+    m = pat.search(row_xml)
+    if value is None or str(value) == '':
+        return pat.sub('', row_xml) if m else row_xml
+    style = ''
+    if m:
+        s = re.search(r'\ss="(\d+)"', m.group(0))
+        style = ' s="%s"' % s.group(1) if s else ''
+    text = (str(value).replace('&', '&amp;').replace('<', '&lt;')
+            .replace('>', '&gt;'))
+    cell = ('<c r="%s"%s t="inlineStr"><is><t xml:space="preserve">%s</t></is>'
+            '</c>' % (ref, style, text))
+    if m:
+        return row_xml[:m.start()] + cell + row_xml[m.end():]
+    n = column_index_from_string(col)
+    for c in re.finditer(r'<c\b[^>]*\sr="([A-Z]+)%d"' % row, row_xml):
+        if column_index_from_string(c.group(1)) > n:
+            return row_xml[:c.start()] + cell + row_xml[c.start():]
+    return row_xml.replace('</row>', cell + '</row>')
+
+
+def fix_spans(row_xml, row):
+    """the row's declared span, recomputed from the cells it actually holds"""
+    cols = [column_index_from_string(m.group(1)) for m in
+            re.finditer(r'<c\b[^>]*\sr="([A-Z]+)%d"' % row, row_xml)]
+    if not cols:
+        return row_xml
+    return re.sub(r'\sspans="\d+:\d+"',
+                  ' spans="%d:%d"' % (min(cols), max(cols)), row_xml)
 
 
 def renumber(row_xml, old, new):
@@ -216,7 +281,7 @@ def renumber(row_xml, old, new):
     return re.sub(r'(\sr="[A-Z]+)%d(")' % old, r'\g<1>%d\g<2>' % new, row_xml)
 
 
-def rewrite(keep, added, parts=(), gone=()):
+def rewrite(keep, promote, parts=(), gone=()):
     """the master workbook with the RDC section rebuilt, everything else intact
 
     Done as XML inside the zip. The RDC section is the last block of rows, so
@@ -249,18 +314,22 @@ def rewrite(keep, added, parts=(), gone=()):
         if r < RDC_FIRST:
             body.append(rows_xml[r])
     at = RDC_FIRST
+    promoted_at = {}
     for old_row, _ in keep:
-        body.append(renumber(rows_xml[old_row], old_row, at))
+        x = renumber(rows_xml[old_row], old_row, at)
+        if old_row in promote:
+            tag, kind, room, note, frm = promote[old_row]
+            x = set_cell(x, at, 'A', tag)
+            x = set_cell(x, at, 'B', kind)
+            x = set_cell(x, at, 'D', room)
+            x = set_cell(x, at, 'M', 'was %s - the historian carries the '
+                                     'assembly, not the terminal; %s'
+                                     % (frm[0], note))
+            x = fix_spans(x, at)
+            for f in frm:
+                promoted_at[f] = at
+        body.append(x)
         moved[old_row] = at
-        at += 1
-    added_at = {}
-    for tag, kind, room, note, frm, screen in added:
-        body.append(cell_xml(at, [tag, kind, 'Included', room, None, None, None,
-                                  None, None, screen, None, None,
-                                  'added by the historian pass - %s. Replaces %s'
-                                  % (note, ', '.join(frm))]))
-        for f in frm:
-            added_at[f] = at
         at += 1
     last = at - 1
 
@@ -280,7 +349,7 @@ def rewrite(keep, added, parts=(), gone=()):
         tag = str(row[0]).strip()
         hosts = [h.strip() for h in
                  v['historian object it belongs to'].split(' / ') if h.strip()]
-        dest = added_at.get(tag)
+        dest = promoted_at.get(tag)
         if dest is None and len(hosts) == 1:
             dest = sig_row.get(signature(hosts[0]))
         if dest:
