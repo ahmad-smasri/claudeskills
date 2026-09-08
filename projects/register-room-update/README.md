@@ -396,3 +396,61 @@ equipment family and level, and sorting by tag scatters every family.
 The 18 assets with no agreed room keep an empty cell, shaded, rather than a
 guess. Verified row-for-row against the clean register: all four tabs match
 exactly.
+
+---
+
+# Carrying the old registry's columns E onward across
+
+`merge_old_columns.py` writes `All_Buildings_Rooms_Inclusion_Status_V1.3.xlsx`:
+columns A-D from the corrected register, columns E onward from
+`All_Buildings_Rooms_Inclusion_Status_V1.2.xlsx`, matched on the tag, four tabs.
+
+```
+python3 merge_old_columns.py --dry-run
+python3 merge_old_columns.py
+```
+
+| tab | assets | old columns | filled from the old file | no old row |
+|---|---|---|---|---|
+| HQ | 761 | E-K (7) | 761 | 0 |
+| QNL | 551 | E-L (8) | 451 | 100 |
+| SSC | 124 | E-S (15) | 124 | 0 |
+| RDC | 1,141 | E-K (7) | 1,141 | 0 |
+
+Each building carries a different set - HQ has occupied and unoccupied
+setpoints, SSC fifteen columns including room unit setpoints and an occupancy
+status, RDC outside and exhaust air - so the headers are per tab, exactly as the
+old file names them. Only `ZONES SERVED` is retyped, as `Zones Served`.
+
+## The RDC match is not a string match
+
+The historian pass renamed 111 part rows into the unit they belong to, so the
+old file's `AT-1005` row carries the zones and readings that are now
+`CAV1005`'s. `rdc_rebuild_log.csv` supplies the map. Where several old part rows
+land on one unit the row that became the unit wins and the others are compared
+against it rather than trusted - on this data all 14 such cases agree exactly.
+
+1,027 RDC rows matched on the tag, 111 through the rename, 3 with the level
+segment ignored:
+
+| register | old file |
+|---|---|
+| `RDC_NB_AHU8511` | `RDC_NB_2F_AHU8511` |
+| `RDC_NB_AHU8512` | `RDC_NB_2F_AHU8512` |
+| `RDC_NB_2F_2F_AHU8513` | `RDC_NB_2F_AHU8513` |
+
+The old file spells all three the same way. The register drops the level on two
+and doubles it on the third, which is the typo already noted above - the old
+file settles what it should have been.
+
+## What did not match
+
+**100 QNL assets have no row in the old file** - 24 DX units, 19 exhaust fans,
+23 CCUs, 5 heat exchangers, 6 chilled-water pumps, the generator and the rest.
+The old QNL tab carries 451 rows against the register's 551. Their E-onward
+cells are empty and shaded; nothing was carried over from a neighbour.
+
+**604 old rows had no unit to land on** - the RDC air terminals and valves the
+historian carries only as part of an assembly, and the 47 it has never heard of.
+
+Every one of these is in `old_column_merge_coverage.csv`, row by row.
