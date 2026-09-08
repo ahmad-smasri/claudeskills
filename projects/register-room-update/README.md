@@ -365,3 +365,34 @@ Two gaps, neither of them a failure of the correction:
 50 RDC rows that are not green carry a column J reading equal to column D. That
 is the reviewer leaving J filled where the screen and the drawings agreed, not
 a rejected reading leaking in - the crosswalk carries 32 RDC rows and no more.
+
+---
+
+# The reading copy: equipment and its room
+
+`build_equipment_rooms.py` writes `Appendix_A_Equipment_Rooms.xlsx` - three
+columns, four tabs, nothing else.
+
+```
+python3 build_equipment_rooms.py
+```
+
+| tab | assets | no agreed room |
+|---|---|---|
+| HQ | 761 | 1 |
+| QNL | 551 | 14 |
+| SSC | 124 | 0 |
+| RDC | 1,141 | 3 |
+| **total** | **2,577** | **18** |
+
+Tag, equipment type, room. Every other column of the register is provenance -
+which source won, what the BMS screen said, which drawing it came from - and
+that belongs in the working file, not in the sheet somebody opens to find out
+where a unit is.
+
+Row order is the register's own, not alphabetical: the register groups by
+equipment family and level, and sorting by tag scatters every family.
+
+The 18 assets with no agreed room keep an empty cell, shaded, rather than a
+guess. Verified row-for-row against the clean register: all four tabs match
+exactly.
