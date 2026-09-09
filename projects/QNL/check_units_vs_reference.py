@@ -12,7 +12,11 @@ for r in range(2,ws.max_row+1):
 
 # --- Dar Cairo: class -> Counter(unit)
 dar=collections.defaultdict(collections.Counter)
-with open('reference-models/DarCairo_V93.csv', encoding='utf-8-sig', newline='') as fh:
+# resolve Dar Cairo by version rather than by a pinned name, the way
+# build_vocab.py does - V93 was pinned here and had been dead since V98 landed
+import glob
+DARCAIRO = max(glob.glob('reference-models/DarCairo_V*.csv'))
+with open(DARCAIRO, encoding='utf-8-sig', newline='') as fh:
     rd=csv.reader(fh); next(rd)
     for r in rd:
         if len(r)<6: continue
@@ -23,8 +27,16 @@ with open('reference-models/DarCairo_V93.csv', encoding='utf-8-sig', newline='')
                 dar[ot][r[i+1].strip()]+=1
 
 # --- SSC: class -> Counter(unit)
-sb=openpyxl.load_workbook('reference-models/QF_SSC_Ontology_V03.xlsx', data_only=True)
-ss=sb['SSC_Ontology_Ver0.6']
+sb=openpyxl.load_workbook('reference-models/QF_SSC_Ontology_V04.xlsx', data_only=True)
+# pick the ontology sheet by its header, never by tab name - this was pinned to
+# 'SSC_Ontology_Ver0.6' and died the moment the export moved the triples to
+# 'Sheet1'. The header is the only stable identifier a delivery carries.
+HEADER = ('subject', 'subjecttype', 'predicate', 'object', 'objecttype')
+ss = next((w for w in sb.worksheets
+           if tuple(str(c.value or '').strip().lower()
+                    for c in next(w.iter_rows(min_row=1, max_row=1))[:5]) == HEADER), None)
+if ss is None:
+    raise SystemExit('no ontology sheet in the SSC workbook')
 ssc=collections.defaultdict(collections.Counter)
 for r in range(2, ss.max_row+1):
     ot=str(ss.cell(r,5).value or '')

@@ -388,7 +388,21 @@ the opposite: it goes on the physical thing, equipment or room. Where no IO list
 was supplied there are no points and therefore no timeseries references; do not
 add equipment-level stubs to fill the gap.
 
-### QF SSC V03 (`QF_SSC_Ontology_V03.xlsx`, 5,083 rows)
+### QF SSC V04 (`QF_SSC_Ontology_V04.xlsx`, 5,083 rows)
+
+**The repo copy is V04 with V03's labels restored, and that is a deliberate
+divergence from the file as supplied.** V04 arrived identical to V03 in every
+row, column, class, predicate and unit except one thing: 1,994 `rdfs:label_en`
+values on the object side had their spaces deleted - `Chilled Water Coil` became
+`ChilledWaterCoil`, `Qatar Foundation` became `QatarFoundation`, and
+`Pre Filter and Bag Filter` became `PreFilterandBagFilter`. Every changed value
+was exactly the V03 text minus spaces, which is the signature of a blind
+find-and-replace rather than a naming convention - a deliberate CamelCase would
+have capitalised the `and`. `rdfs:label_en` is what the front end shows a user,
+so the spaces were put back on client direction (2026-09-09) and the repo copy
+is content-identical to V03. Raise it with whoever produces the SSC export; until
+they confirm, do not copy V04's object-side labels as house style and do not
+assume a fresh export carries them.
 
 The cleaned SSC delivery, replacing `draft0.5_review` (gone from the repo). Two
 sheets: `SSC_Ontology_Ver0.6` holds the triples and `Claude Log` records the

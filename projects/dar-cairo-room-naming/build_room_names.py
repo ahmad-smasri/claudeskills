@@ -866,7 +866,7 @@ def load(paths, building, code=None):
     return merge(parts, building, code)
 
 
-DELIVERED = {"SSC": "QF_SSC_Ontology_V03.xlsx",
+DELIVERED = {"SSC": "QF_SSC_Ontology_V04.xlsx",
              "HQ": "QF_HQ_Ontology_draft0.4.xlsx",
              "QNL": "../projects/QNL/QNL_Ontology.xlsx"}
 
