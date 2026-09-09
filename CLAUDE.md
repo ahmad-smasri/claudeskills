@@ -26,8 +26,9 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/naming-and-labels.md` | identifier patterns per level, character rules, the label rule, IFC references | naming anything |
 | `references/relationships.md` | predicate families, what Dar Cairo actually uses and how often, the spatial hierarchy, feeds, hasPart vs locatedIn | choosing a predicate |
 | `references/class-resolution.md` | the four-step ladder, extension rules, where the vocabularies come from | a class is missing or ambiguous |
+| `references/corrections.md` | **the third job: editing a sheet you did not write.** Baseline the per-code census first; match by exact equality in both columns, never substring or prefix; assert what must survive; count the block not the row; a class lives in two cells per point; type maps read both columns; guards assert no-new not none; dry-run and read the per-row output | **before editing any delivered sheet - always** |
 | `references/virtual-meters.md` | the virtual metering layer - the tier matrix to ask for, the nine meter classes and their Dar Cairo name segments, the **eight-row** block, the thermal-unit trap, `para:contributionFraction`, and how to derive both halves of a telemetry key when the calculation engine's register does not exist yet | adding virtual meters, or `para:contributionFraction` |
-| `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
+| `references/known-issues.md` | all 47 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
 | `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
 | `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
 | `references/data/para-classes.csv` | 242 `para:` classes and their parents | generated |
@@ -37,7 +38,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
 | `scripts/align_naming.py` | retrofits a sheet's identifiers to Dar Cairo's convention - dashed-English datapoints, `_`-segments/`-`-words, no camelCase - keeping the timeseries join keys and writing an old → new crosswalk; one-shot | a sheet built with raw/BMS ids needs Dar-Cairo naming |
-| `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
+| `scripts/validate_ontology.py` | the row-level validator, 47 rule codes. Three of them exist because this project shipped the defect first: `E-REF-2` a series with no point, `E-REF-3` a tag belonging to another unit of the same class, `W-CLS-1` a class declared and used by nothing | before every handover |
 | `scripts/io_list.py` | shared IO-list loader; answers "does this unit have this point" and "what is its key" for all three checkers | changing how an IO list is read |
 | `scripts/highlight_findings.py` | writes a copy of a workbook with unresolved findings filled yellow and written into `validator_code` / `validator_finding` columns past the data, for a manual pass | findings need a human |
 | `references/data/accepted-terms.txt` | terms that override the generated Brick extract, each with the reason it is there | a real term reads as a typo, or a deliberate alias floods the warnings |
@@ -74,6 +75,19 @@ they carry the resolutions.
 
 Each rule appears once. If you need the reasoning or the worked examples, the
 skill's reference file named beside it carries them.
+
+**Editing a sheet you did not write is a different job with a different failure
+mode** - `references/corrections.md`. A creation bug fails validation; a
+correction bug **passes** it and is wrong. Substring matching is the recurring
+killer: `CHW-Power-Thermal-Virtual-Meter` contains `HW-Power`, rooms are named
+UPS and carry meters of their own, and `..._RA_P-Static` is a prefix of
+`..._RA_P-Static_01`. Match by exact equality in both the subject and object
+columns against a named list, assert what must survive as well as what must go,
+count the block (8 rows a meter, 2 a point) rather than the row, remember a class
+lives in two cells per point, build type maps from both columns because an entity
+can be declared only as an object, make guards assert *no new* rather than none,
+and read the `--dry-run` output row by row against what you predicted. Baseline
+the per-code finding census before, compare it code by code after.
 
 **Scope.** If the user named what to create, create exactly that and nothing
 more. If they did not narrow it, build everything the building requires. Say

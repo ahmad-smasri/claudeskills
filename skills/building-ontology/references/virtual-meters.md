@@ -320,6 +320,29 @@ they look like unselected points and a re-run deletes the entire metering layer.
 Add every meter token to the named-exemption list in the same commit that adds
 the rows.
 
+## Removing a meter class later
+
+Classes get eliminated - a client decides a meter has no inputs and never will.
+That is a **correction**, so `corrections.md` governs it, and two traps are
+specific to this layer:
+
+- **Segments contain other segments.** `CHW-Power-Thermal-Virtual-Meter` contains
+  `HW-Power-Thermal-Virtual-Meter`. Removing HW by substring deletes every
+  chilled-water meter in the sheet and validates clean afterwards. Anchor on the
+  separator - `subject.endswith("_" + segment)` - or name the subjects outright.
+- **A class match finds six rows of eight.** The two `ref:hasExternalReference`
+  rows are subjected on the POINTS, whose class column names a sensor class, not
+  the meter's. Match the meter and both its points, and assert the removal is a
+  whole number of eight-row blocks.
+
+Remove the class from the tier matrix **and** from the declaration list, or the
+next rebuild re-adds a class with nothing under it - `W-CLS-1`. Better: have the
+generator emit only what the matrix uses, so the two cannot drift.
+
+A meter of a class no tier uses should also come out of the pending file: a
+calculation team asked to build a series for a meter that no longer exists will
+build it.
+
 ## Check it before handover
 
 Beyond the standard passes:

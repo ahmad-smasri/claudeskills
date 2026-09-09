@@ -46,6 +46,9 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `W-LBL-2` | an entity that never gets an `rdfs:label_en` |
 | `W-GR-2` | terminal equipment with no `rec:locatedIn` |
 | `W-PT-1` | a data point with no `ref:hasExternalReference` |
+| `E-REF-2` | the mirror of `W-PT-1` and the harder half to see: a `ref:hasExternalReference` row whose subject no `brick:hasPoint`, `brick:hasPart` or `isPartOf` row declares. A real historian tag wired to an entity the graph never introduces - every row well-formed, nothing else fires, and the tag reaches nothing. SSC shipped six |
+| `E-REF-3` | a `ref:hasTimeseriesId` whose leading segment names a **different entity of the same class** than the row's `para:hasEntityId`. The point shows another unit's reading as its own and its real tag reaches nothing. Two SSC AHUs shipped displaying a third AHU's return-air pressure. Only fires on a same-class sibling on a different branch, so a tag that merely starts with the building code, or does not name an entity at all (`Utility_KWH`, `AT_CWPWR_KWT_CALC`), never matches |
+| `W-CLS-1` | an `owl:Class` declared and used by no row. Reads to every later reviewer as a deliberate modelling decision and is really a leak - a class left behind when the thing that used it was removed, or emitted by a generator that declares everything it knows rather than what this building uses |
 | `W-DUP-1` | a row identical to an earlier one |
 | `W-EXT-4` | a property declared as its own super-property |
 | `W-EXT-5` | a property related with `rdfs:subClassOf`; properties take `rdfs:subPropertyOf` |
