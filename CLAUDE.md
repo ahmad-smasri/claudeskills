@@ -44,6 +44,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_review_workbook.py` | runs both checkers plus eight checks neither covers, then writes the client review workbook - a `START HERE` tab, the ontology sheet with flagged rows filled yellow/orange, one plain-English tab per entity family, and a `Technical detail` tab holding the coded findings. Findings are collapsed to one line per kind of problem and every rule code is rewritten in ordinary English, because the reader is usually not the person who built the sheet. The tabs and the data sheet are cross-linked: clickable row numbers on every tab, and review columns AB-AD past the data naming each flagged row's problem with a link back to its tab | a delivered sheet needs reviewing, or a client asks what is wrong with a draft |
+| `scripts/check_io_list.py` (see also) | reconciling a sheet against a *selected*-datapoint list is a different job from the IO cross-check - `projects/QNL/prune_to_selected.py` is the worked example | a project supplies an integration-scope sheet |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands - drop the file in and rerun, the scripts resolve `DarCairo_V*.csv` by version |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
 | `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
@@ -53,7 +54,7 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V98.csv` | **the primary reference for any ontology we build.** 25,722 rows, 33 columns (V93's 27 plus two more property groups). Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_ver02.xlsx` | the current SSC sheet (cleaned), 5,082 rows on `SSC_Ontology_Ver0.6`, plus a `Claude Log` tab. This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
+| `QF_SSC_Ontology_V03.xlsx` | the current SSC sheet, 5,083 rows on `Sheet1`, 33 columns. Its rooms carry the Dar Cairo shape (`entity:SSC_01-024_Corridor`). This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
 | `QF_HQ_Ontology_draft0.4.xlsx` | the QF HQ draft, 28,929 rows on `HQ_Onotlogy_Draft_v0.4` (note the misspelled tab - pick the sheet by its header, never by name). A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
@@ -97,7 +98,7 @@ onto the equipment; any source column whose meaning is ambiguous.
 2. Is it in Brick? `lookup_reference.py --term ...` or ontology.brickschema.org -
    use the preferred class, never an alias.
 3. Is it in a previous project's ontology? Check the delivered sheets in
-   `reference-models/` (`QF_SSC_Ontology_ver02.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx`) - reuse the class a
+   `reference-models/` (`QF_SSC_Ontology_V03.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx`) - reuse the class a
    prior project already gave the concept, and reuse a `para:` class it already
    coined rather than minting a parallel one.
 4. Not anywhere above? Define a `para:` subclass of the closest Brick parent.
@@ -189,12 +190,11 @@ IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
 `ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
 **on the point, never on the equipment.**
 
-**A virtual meter exists only where a physical one does not** - it fills the gaps
-in the metering the building has, so a virtual meter beside a real one is a second
-answer with no data behind it. List the meters the sheet already carries and what
-each measures before generating a tier, and suppress every pair a physical meter
-covers. Expect to need a hand-written list: physical meters routinely carry no
-`brick:meters` row, so the graph cannot answer the question.
+**A physical meter does not rule out a virtual one** - they answer different
+questions, and the gap between an imported reading and a calculated roll-up is
+losses and unmetered load, which is worth seeing. Report the overlap, never
+suppress it. Expect to need a hand-written list of what each physical meter
+measures: they routinely carry no `brick:meters` row, so the graph cannot say.
 
 **A virtual meter is a formula, so it needs inputs.** Before generating a tier,
 check the sheet carries the points its formula would sum; where it does not,
@@ -214,6 +214,15 @@ chilled-water kW to electrical kW. **Their points are calculated, so the IO-list
 rule below does not reach them** - the keys come from the calculation engine's
 register, and where that does not exist the points ship with no reference row and
 a pending file, never a blank one.
+
+**Where a selected-datapoint list exists, it outranks the IO list on scope.** An
+IO list says what the BMS publishes; a selected-points list says what the project
+agreed to deliver, and it is always smaller. Ask for it at intake. A tag the
+historian carries and the selection omits is a decision someone already made, not
+a gap you found - so reconcile both ways before handover, every selected tag
+present and nothing present that is not selected. Exempt by name only the points
+the sheet invents on purpose, such as a `para:` container the backend fills by
+calculation.
 
 **Points come from IO lists, and only from IO lists.** Never infer a point list
 from the equipment type. No IO list means no points for that equipment, and a

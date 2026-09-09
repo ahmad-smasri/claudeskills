@@ -25,7 +25,7 @@ import ontology
 import screens
 
 REF = '/home/user/claudeskills/reference-models'
-BOOKS = [('SSC', os.path.join(REF, 'QF_SSC_Ontology_ver02.xlsx')),
+BOOKS = [('SSC', os.path.join(REF, 'QF_SSC_Ontology_V03.xlsx')),
          ('HQ', os.path.join(REF, 'QF_HQ_Ontology_draft0.4.xlsx'))]
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                    'HQ_SSC_equipment_rooms.xlsx')
