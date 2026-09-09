@@ -139,27 +139,102 @@ def target(building, rename, per_ref, by_ref, m):
     here = per_ref.get(ref, [])
     if len(here) == 1:
         return rename[here[0]]
+    if here:
+        # The reference holds several rooms. The sheet's own subject is right
+        # when it is one of them, and otherwise names no declared room at all -
+        # HQ's 4.105 is JAN JANITORS CLOSET and PAN PANTRY, and the sheet says
+        # Pantry, which pointed equipment at a room nothing declares.
+        if m["subject"] in {rename[e] for e in here}:
+            return m["subject"]
+        return None
     return m["subject"]
 
 
-def level_entity(levels, building, lvl):
-    """The level entity this building already uses.
+# A level written one way in a room reference and another as an entity.
+# HQ's rooms say 3, G and RF; its level entities say HQ-Level-03,
+# HQ-Level-Ground-Floor and HQ-Level-Roof.
+LEVEL_ALIASES = {"G": "GROUNDFLOOR", "GF": "GROUNDFLOOR",
+                 "RF": "ROOF", "R": "ROOF"}
 
-    QNL calls its basement entity:QNL_B; SSC calls the same thing
-    entity:SSC_Level-B1. Guessing entity:SSC_B put three new rooms under a
-    level that does not exist, which the validator caught as orphans.
+
+def meter_template(ws, rooms_new, labels):
+    """The block of virtual-meter rows a room carries, taken from a real room.
+
+    HQ gives every room three virtual meters - HVAC, CHW and LTG - as 24 rows:
+    each meter is part of entity:Metering, meters and is located in the room,
+    is flagged brick:isVirtualMeter, and carries a Consumption and a Demand
+    point with a timeseries reference. A room added without them is a room the
+    energy pages cannot show.
+
+    Rather than hand-write 24 rows and get a label or a class subtly wrong, one
+    complete room is read out of the ontology and used as the pattern. The
+    donor is the first room, in sorted order, whose block is complete, so a
+    re-run picks the same one.
     """
-    code = building.code
-    for cand in ("entity:%s_%s" % (code, building.level_segment(lvl)),
-                 "entity:%s_%s" % (code, lvl),
-                 "entity:%s_Level-%s" % (code, lvl)):
-        if cand in levels:
-            return cand
+    blocks = collections.defaultdict(list)
+    for r in ws.iter_rows(min_row=2):
+        subj = r[0].value
+        if not isinstance(subj, str):
+            continue
+        for room in rooms_new:
+            if subj.startswith(room + "_") and "Virtual-Meter" in subj:
+                blocks[room].append([c.value for c in r])
+                break
+    if not blocks:
+        return None, None, None
+    best = max(len(v) for v in blocks.values())
+    donors = sorted(k for k, v in blocks.items() if len(v) == best)
+    donor = donors[0]
+    return donor, labels.get(donor), blocks[donor]
+
+
+def meter_rows(template, donor, donor_label, subject, label, width):
+    """The donor's block with its room swapped for another."""
+    out = []
+    for row in template:
+        new = []
+        for c in row:
+            if isinstance(c, str):
+                c = c.replace(donor, subject)
+                # Anchored, not a global replace: a donor whose label is a
+                # short string like "10 P-1" would otherwise be substituted
+                # anywhere it happened to appear inside another value.
+                if donor_label and label and c.startswith(donor_label):
+                    c = label + c[len(donor_label):]
+            new.append(c)
+        new += [None] * (width - len(new))
+        out.append(new[:width])
+    return out
+
+
+def level_key(text):
+    """Compare levels without caring about padding, case or separators."""
+    t = re.sub(r"^entity:[A-Za-z]+[-_]?", "", str(text))
+    t = re.sub(r"^level[-_]?", "", t, flags=re.I)
+    t = re.sub(r"[^A-Za-z0-9]", "", t).upper()
+    t = LEVEL_ALIASES.get(t, t)
+    return re.sub(r"^0+(\d)", r"\1", t)
+
+
+def level_entity(levels, building, lvl):
+    """The level entity this building already declares.
+
+    Matched on the level itself rather than on a guessed spelling: QNL calls
+    its basement entity:QNL_B, SSC calls it entity:SSC_Level-B1 and HQ calls
+    its third floor entity:HQ-Level-03 while its rooms call it 3.
+    """
+    # Both the reference's own spelling and the building profile's, because
+    # SSC's rooms say B where its level entity says Level-B1 and only the
+    # profile knows that; HQ's rooms say 3 where the entity says Level-03 and
+    # only the key comparison does.
+    want = {level_key(lvl), level_key(building.level_segment(lvl))}
+    for ent in sorted(levels):
+        if level_key(ent) in want:
+            return ent
     raise SystemExit(
-        "no level entity in the ontology for %r - tried %s. The new room "
-        "cannot be attached until the level is declared."
-        % (lvl, ", ".join("entity:%s_%s" % (code, x)
-                          for x in (building.level_segment(lvl), lvl))))
+        "no level entity in the ontology matches %r - it declares %s. The new "
+        "room cannot be attached until the level is."
+        % (lvl, ", ".join(sorted(levels))))
 
 
 def main():
@@ -234,11 +309,32 @@ def main():
             continue
         lvl, num, name = p
         rename[e] = B.subject(building, lvl, num, name)
+
+    # Padding a reference can collide two rooms that the ontology declares
+    # separately - HQ has entity:HQ_10_03_PANTRY beside entity:HQ_10_030_PANTRY,
+    # the same room with Excel's trailing zero eaten off one of them. Merging
+    # them is a data decision, not this pass's, so the unpadded one keeps its
+    # own reference and the pair is reported.
+    duplicates = []
+    taken = collections.Counter(rename.values())
+    for e, p in sorted(parsed.items()):
+        if p is None or taken[rename[e]] < 2:
+            continue
+        raw = room_re(building.code).match(e)
+        raw_num = raw.group(2) if raw else None
+        if raw_num and raw_num != p[1]:
+            duplicates.append((e, rename[e]))
+            rename[e] = B.subject(building, p[0], raw_num, p[2])
+            taken = collections.Counter(rename.values())
     clash = {v: k for v, k in
              ((v, [a for a in rename if rename[a] == v]) for v in set(rename.values()))
              if len(k) > 1}
     if clash:
         raise SystemExit("rename would merge rooms: %s" % clash)
+    if duplicates:
+        print("  %d room(s) kept an unpadded reference to avoid merging a "
+              "duplicate declaration: %s"
+              % (len(duplicates), ", ".join(e for e, _ in duplicates)))
 
     # ---- 2. the equipment that moved --------------------------------------
     joined = join_tags(sheet, set(loc) | set(feeds), args.crosswalk, code)
@@ -295,7 +391,7 @@ def main():
             obj.value = rename[obj.value]
             changed_cells += 1
 
-    retargeted = 0
+    retargeted, ambiguous = 0, []
     for row in ws.iter_rows(min_row=2):
         s = row[0].value
         if not isinstance(s, str):
@@ -303,14 +399,19 @@ def main():
         pred = row[2].value
         if pred == "rec:locatedIn" and s in move_loc:
             was, m = move_loc[s]
-            row[3].value = target(building, rename, per_ref, by_ref, m)
+            to = target(building, rename, per_ref, by_ref, m)
+            if to is None:
+                ambiguous.append((s, was, "%s.%s" % (m["level"], m["ref"])))
+                continue
+            row[3].value = to
             row[4].value = "rec:Room"
             log.append(("rec:locatedIn", s, rename.get(was, was), row[3].value))
             retargeted += 1
         elif pred == "rec:feeds" and s in move_feeds:
             was, m = move_feeds[s]
-            if row[3].value in (was, rename.get(was)):
-                row[3].value = target(building, rename, per_ref, by_ref, m)
+            to = target(building, rename, per_ref, by_ref, m)
+            if to is not None and row[3].value in (was, rename.get(was)):
+                row[3].value = to
                 row[4].value = "rec:Room"
                 log.append(("rec:feeds", s, rename.get(was, was), row[3].value))
                 retargeted += 1
@@ -318,7 +419,15 @@ def main():
     # one label per renamed room reference that the sheet restates
     relabelled = 0        # names are unchanged, so labels are too
 
-    added = 0
+    room_labels = {}
+    for row in ws.iter_rows(min_row=2):
+        if row[1].value == "rec:Room" and row[5].value == "rdfs:label_en":
+            room_labels[str(row[0].value)] = row[6].value
+    donor, donor_label, template = meter_template(
+        ws, set(rename.values()), room_labels)
+    width = ws.max_column
+
+    added, metered = 0, 0
     for (lvl, ref), m in sorted(missing.items()):
         lvl_ent = level_entity(rows_by_level, building, lvl)
         lvl_type = level_type.get(lvl_ent,
@@ -328,6 +437,13 @@ def main():
                    "rdfs:label_en", m["label"], "", ""])
         log.append(("new room", m["subject"], "", m["label"]))
         added += 1
+        if template:
+            for row in meter_rows(template, donor, donor_label,
+                                  m["subject"], m["label"], width):
+                ws.append(row)
+            metered += 1
+            log.append(("virtual meters", m["subject"],
+                        "copied from %s" % donor, "%d rows" % len(template)))
 
     wb.save(args.out)
     print("room subjects renamed      : %d (shape only - every name kept)"
@@ -337,6 +453,12 @@ def main():
     print("feeds deliberately left    : %d" % len(kept_feeds))
     print("room labels restated       : %d" % relabelled)
     print("rooms added                : %d" % added)
+    if template:
+        print("virtual meters added       : %d rooms x %d rows, patterned on %s"
+              % (metered, len(template), donor))
+    if ambiguous:
+        print("left - the reference holds  : %d %s"
+              % (len(ambiguous), sorted({a[2] for a in ambiguous})))
     if placeholder:
         print("locatedIn was a placeholder : %d moved to a real room %s"
               % (len(placeholder), [x[0] for x in placeholder[:6]]))
@@ -370,6 +492,12 @@ def main():
             w.writerow(["tag", "entity", "sits in", "feeds"])
             for t, e, c, fs in kept_feeds:
                 w.writerow([t, e, c, "; ".join(fs)])
+            if ambiguous:
+                w.writerow([])
+                w.writerow(["left alone - the ontology holds more than one "
+                            "room at the reference the register gives"])
+                w.writerow(["entity", "still in", "reference"])
+                w.writerows(ambiguous)
             if placeholder:
                 w.writerow([])
                 w.writerow(["locatedIn pointed at a placeholder entity, not a "

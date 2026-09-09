@@ -62,7 +62,7 @@ PY
 `QF_SSC_Ontology_V03.xlsx` (the QF SSC building) is the first to check - it is
 the current house sheet and carries the 27-column shape we deliver (Dar
 Cairo itself went to 33 at V98).
-`QF_HQ_Ontology_draft0.4.xlsx` (the QF HQ building, 28,929 rows) is the second -
+`QF_HQ_Ontology_V02.xlsx` (the QF HQ building, 64,426 rows) is the second -
 read it for class and structure precedent, not for units (several of its rows
 carry a wrong `brick:hasUnit`), and pick its sheet by the header contract, not by
 its misspelled tab `HQ_Onotlogy_Draft_v0.4`. Later projects go here too as they
