@@ -937,7 +937,129 @@ The earlier finding of 1,314 unmodelled tags across 28 equipment families
 settled: **none of them is on the selected list**, so none is in scope and no
 rows were added. Logged as **QNL-048**, closed.
 
+## The six Air Terminal contribution points
+
+Added to **all 299 air terminals** — 247 VAV and 52 CAV — as **1,794 points,
+3,588 rows**. They are the containers the backend writes into when it apportions
+the building's cooling, heating and electrical load down to the terminals that
+caused it.
+
+| Point | Class | Unit | Timeseries id |
+|---|---|---|---|
+| Air Terminal Cooling Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_CWPWR_KWT_CALC` |
+| Air Terminal Cooling Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_CWPWR_KWHT_CALC` |
+| Air Terminal Heating Power Demand Contribution | `brick:Thermal_Power_Sensor` | `para:KiloWt` | `AT_HEATPWR_KWT_CALC` |
+| Air Terminal Heating Energy Consumption Contribution | `brick:Thermal_Energy_Usage_Sensor` | `para:KiloWt-HR` | `AT_HEATPWR_KWHT_CALC` |
+| Air Terminal Electrical Power Demand Contribution | `brick:Electric_Power_Sensor` | `unit:KiloW` | `AT_ELEC_KW_CALC` |
+| Air Terminal Electrical Energy Consumption Contribution | `brick:Electrical_Energy_Usage_Sensor` | `unit:KiloW-HR` | `AT_ELEC_KWH_CALC` |
+
+Identifiers follow the labels:
+`entity:QNL_VAV-1F-S11-001_Air-Terminal-Cooling-Power-Demand-Contribution`.
+
+The **Air Terminal** prefix is not decoration. The same six quantities exist at
+other layers - an AHU's cooling demand, the building's - so a point called only
+"Cooling Power Demand Contribution" does not say which layer a chart legend or a
+tile is showing. Written out rather than left as the client's `AT`, because an
+abbreviation in a point name becomes an abbreviation in the label a user reads,
+which is the thing intake asks about specifically. Identifier and label are
+generated from one map in `add_air_terminal_points.py`, so the two cannot drift.
+
+Every one carries the fixed timeseries id plus the terminal's own
+`para:hasEntityId` — `QNL_VAV_1F_S11_001`, underscores throughout — the same
+shape `para:contributionFraction` already uses, so the two agree on the join key.
+
+**None of the six exists in either source document.** Searched the historian IO
+list (11,617 rows) and `Selected_PARA_OS_Data_Points_v4.0` (2,769): no exact
+match, and no `AT_`, `_CALC`, `CWPWR` or `HEATPWR` pattern anywhere. That is
+expected rather than a gap — the `_CALC` suffix says these are calculated, and a
+calculated point's key comes from the calculation engine's register, not the IO
+list, exactly as `ContributionFraction` does. The six ids are exempt by name in
+`prune_to_selected.py`, so re-running the pruning leaves them alone.
+
+### The cooling pair was corrected from electrical to thermal
+
+As supplied, `AT_CWPWR_KWT_CALC` was typed `brick:Electric_Power_Sensor` and
+`AT_CWPWR_KWHT_CALC` `brick:Electrical_Energy_Usage_Sensor` — both with a
+thermal unit. Cooling is a thermal quantity and the tags themselves say so: `CW`
+is chilled water, `KWT` is thermal kW. The heating pair beside them already used
+the thermal classes.
+
+Left as specified this would not have looked wrong in the sheet. It would have
+gone wrong in the applications: a demand rollup filters on the point's **class**,
+so every terminal's chilled-water demand would have been summed into the
+building's electrical demand, and the number would have been wrong with nothing
+to flag it. This is the inverse of the trap the skill already documents under
+thermal units. Corrected on client direction to match the heating pair.
+
+### The KWHT / KWTH misspelling, corrected everywhere
+
+`AT_CWPWR_KWHT_CALC` and `AT_HEATPWR_KWTH_CALC` spelled the same suffix two
+ways. **KWHT is correct**, confirmed by the client, so `AT_HEATPWR_KWTH_CALC` is
+now `AT_HEATPWR_KWHT_CALC` — 299 rows.
+
+The fix turned out to be wider than the point that raised it. The virtual
+metering layer had independently used the same wrong spelling in its proposed
+keys — `CWPWR_KWTH_CALC` on the CHW meters and `HWPWR_KWTH_CALC` on the HW
+meters, **366 keys** in `QNL_virtual_meter_timeseries_pending.csv`. Fixing only
+the air terminal point would have left the two layers disagreeing about the same
+suffix, and the calculation register would have been built against a
+misspelling. All 366 are corrected, along with both generators.
+
+Those 366 are proposals awaiting the calculation engine's register rather than
+live join keys, so correcting them costs nothing.
+
+### On the units
+
+All four are Dar Cairo's own:
+
+| Unit | Uses in Dar Cairo |
+|---|---|
+| `unit:KiloW` | 2,426 |
+| `unit:KiloW-HR` | 889 |
+| `para:KiloWt-HR` | 318 |
+| `para:KiloWt` | 295 |
+
+The thermal pair is a `para:` extension rather than a QUDT unit for a reason
+worth stating plainly: **QUDT has no thermal kilowatt** — a kilowatt is a
+kilowatt. Dar Cairo coined `para:KiloWt` and `para:KiloWt-HR` precisely so a
+demand rollup cannot add chilled-water kW to electrical kW. You cannot have both
+"standard units only" and "thermal separated from electrical"; Dar Cairo chose
+the separation, and this sheet follows it.
+
+Brick itself does not define units at all — it points at QUDT — and QUDT's
+`KiloW` and `KiloW-HR` are unchanged between Brick 1.4 and the 1.5 release
+candidate. On which: **Brick 1.5 is not released.** The latest stable is v1.4.4
+(May 2025); v1.5.0-rc1 is a pre-release from June 2025, adding controller
+modelling, point collections and HVAC return-path modelling. The repo targets
+1.4 and should stay there until 1.5 ships — the term list in
+`references/data/brick-vocab.txt` is generated from the 1.4 ontology, and
+building against a release candidate would mean regenerating it against a moving
+target.
+
+Logged as **QNL-052** and **QNL-053**.
+
+### The two terminals that had no contribution fraction
+
+297 of the 299 terminals carried `para:contributionFraction`; `CAV-1F-S15-001`
+and `VAV-B-S13-005` did not. Both now do — **all 299 carry it.**
+
+The omission was a side effect of how that pass was keyed: on equipment *fedBy
+an AHU*. These two are the assets retargeted from the building to a floor under
+QNL-044 — the register gives them no room, so they carry `rec:locatedIn` a Level
+rather than a Room, and no `rec:isFedBy` at all.
+
+Missing location is not a reason to leave the point off. The backend apportions
+by calculation and never reads the `isFedBy` row, so a terminal whose AHU is
+unknown still has a contribution to record. Leaving it off made two real
+terminals invisible to every apportioning view while the sheet looked complete —
+and they are real: the historian carries five tags for each.
+
+Logged as **QNL-054**.
+
+
+
+
 ## Sheet state
 
-**19,426 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
+**23,018 rows. 10 errors**, all pre-existing `E-FEED-1` on terminal units whose
 served room the asset register does not give. All tests pass.

@@ -41,6 +41,17 @@ KEEP_FAMILIES = (
     'QNL_TEF_',
 )
 
+# Calculated points: the timeseries id is the same literal on every entity,
+# written by the calculation engine rather than published by the BMS, so it is
+# correctly absent from both the historian and the selection.
+KEEP_CALCULATED = {
+    'ContributionFraction',
+    # QNL-052: the six Air Terminal contribution points, on all 299 VAV/CAV.
+    'AT_CWPWR_KWT_CALC', 'AT_CWPWR_KWHT_CALC',
+    'AT_HEATPWR_KWT_CALC', 'AT_HEATPWR_KWHT_CALC',
+    'AT_ELEC_KW_CALC', 'AT_ELEC_KWH_CALC',
+}
+
 
 def selected_tags():
     ws = openpyxl.load_workbook(SEL, read_only=True)['Sheet1']
@@ -68,6 +79,7 @@ def main():
         for name, val in props(r):
             if name == 'ref:hasTimeseriesId' and val and val not in sel \
                     and val not in KEEP_UNLISTED \
+                    and val not in KEEP_CALCULATED \
                     and not val.startswith(KEEP_FAMILIES):
                 doomed.add(r[0])
                 why[r[0]] = val
