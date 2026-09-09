@@ -93,6 +93,13 @@ datapoint on that unit derives it. **Read the entityId off the unit's existing
 points rather than deriving it from the identifier**, and report any unit you had
 to derive because it has no points to read.
 
+**Count the block: contributionFraction is two rows per unit, not one.** The
+`brick:hasPoint` row is the container; the `ref:hasExternalReference` row is what
+gives it a series. This is the same failure the meter block had - a point that is
+the object of one row and the subject of nothing validates as `W-PT-1` and
+nothing else, and there is no other signal that a whole family shipped inert.
+Write both rows in the same pass that writes the point.
+
 **Skip any unit sitting in a shaft, riser or ceiling void.** Those are cable and
 duct spaces; a contribution fraction for one is a number about nothing. Test
 `rec:locatedIn` against the room identifier, not the unit's name.

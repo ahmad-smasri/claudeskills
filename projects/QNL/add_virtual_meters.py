@@ -186,10 +186,11 @@ BUILDINGS = {
         "overlap":  {},
         # para:contributionFraction is a SEPARATE question the client has to be
         # asked (virtual-meters.md, "Ask first" question 2), not a side effect of
-        # asking for meters. It is what would give SSC's 61 VAV-served rooms a
-        # real chilled-water input; without it the room-tier CHW meters there sum
-        # nothing. Off until asked.
-        "contribution": False,
+        # asking for meters. Asked and answered yes on 2026-09-09: it is what
+        # gives SSC's 61 VAV-served rooms a real chilled-water input, and without
+        # it the room-tier CHW meters there sum nothing. Added after the metering
+        # layer had already landed, so it went in with --only-contribution.
+        "contribution": True,
     },
 }
 
@@ -408,6 +409,10 @@ def main():
     ap.add_argument("--ontology")
     ap.add_argument("--out")
     ap.add_argument("--pending")
+    ap.add_argument("--only-contribution", action="store_true",
+                    help="add para:contributionFraction alone, to a sheet whose\n"
+                         "metering layer already landed. Writes no meters and does\n"
+                         "not touch the pending file, which belongs to that layer.")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
@@ -427,13 +432,29 @@ def main():
     segments = tuple(seg for _, seg, _, _ in b["matrix"])
     existing = {r[0] for r in rows[1:]
                 if any(r[0].endswith("_" + g) for g in segments)}
-    if existing:
+    if existing and not args.only_contribution:
         raise SystemExit("sheet already carries a space-tier metering layer "
                          f"({len(existing)} meters) - rerun on a clean ontology")
 
-    tiers = spatial_targets(etype)
-    decls = build_declarations(declared)
-    meters, pending, overlaps = build_meters(tiers, b["matrix"], b["overlap"])
+    if args.only_contribution:
+        # contributionFraction was decided separately from the metering layer on
+        # both buildings, so it has to be addable to a sheet the layer already
+        # landed on. The layer's own guard above is therefore skipped, and this
+        # one takes its place: the points are what must not be written twice.
+        if not b["contribution"]:
+            raise SystemExit(f'{args.code} has contribution=False - set it before '
+                             'asking for the points')
+        already = {r[0] for r in rows[1:] if r[1] == "para:contributionFraction"}
+        if already:
+            raise SystemExit("sheet already carries para:contributionFraction on "
+                             f"{len(already)} points - nothing to add")
+        tiers = {"B": [], "F": [], "R": []}
+        decls, meters, pending, overlaps = [], [], [], []
+    else:
+        tiers = spatial_targets(etype)
+        decls = build_declarations(declared)
+        meters, pending, overlaps = build_meters(tiers, b["matrix"], b["overlap"])
+
     if b["contribution"]:
         contrib, fed, skipped, derived = build_contribution(etype, located, fedby, entity_id)
     else:
@@ -464,6 +485,11 @@ def main():
     body.sort(key=lambda r: 0 if r[1] in ("owl:Class", "qudt:Unit") else 1)
     write_ontology(out_path, header, body)
     print(f"wrote {out_path}  ({len(body)} rows, was {len(rows) - 1})")
+
+    if args.only_contribution:
+        # The pending file is the meter layer's checklist. A contribution-only
+        # run has no meter keys to write and must not blank it.
+        return
 
     with open(pending_path, "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
