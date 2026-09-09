@@ -24,6 +24,12 @@ TERMINALS = ('brick:Variable_Air_Volume_Box', 'brick:Constant_Air_Volume_Box')
 
 # (id segment, label, class, unit, timeseries id)
 #
+# The thermal four take para: subclasses, not the Brick classes. Brick gives
+# cooling and heating the same two - brick:Thermal_Power_Sensor and
+# brick:Thermal_Energy_Usage_Sensor - so the distinction would survive only in
+# the entity name and the tsid, where no query can reach it. A QNL-only override
+# (client direction 2026-09-09); the reference models all use the plain classes.
+#
 # Every name carries "Air Terminal" because the same six quantities exist at
 # other layers - an AHU's cooling demand, the building's - and a reader looking
 # at a chart legend or a tile needs to know which one this is. Written out
@@ -32,16 +38,16 @@ TERMINALS = ('brick:Variable_Air_Volume_Box', 'brick:Constant_Air_Volume_Box')
 POINTS = [
     ('Air-Terminal-Cooling-Power-Demand-Contribution',
      'Air Terminal Cooling Power Demand Contribution',
-     'brick:Thermal_Power_Sensor', 'para:KiloWt', 'AT_CWPWR_KWT_CALC'),
+     'para:Cooling_Thermal_Power_Sensor', 'para:KiloWt', 'AT_CWPWR_KWT_CALC'),
     ('Air-Terminal-Cooling-Energy-Consumption-Contribution',
      'Air Terminal Cooling Energy Consumption Contribution',
-     'brick:Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_CWPWR_KWHT_CALC'),
+     'para:Cooling_Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_CWPWR_KWHT_CALC'),
     ('Air-Terminal-Heating-Power-Demand-Contribution',
      'Air Terminal Heating Power Demand Contribution',
-     'brick:Thermal_Power_Sensor', 'para:KiloWt', 'AT_HEATPWR_KWT_CALC'),
+     'para:Heating_Thermal_Power_Sensor', 'para:KiloWt', 'AT_HEATPWR_KWT_CALC'),
     ('Air-Terminal-Heating-Energy-Consumption-Contribution',
      'Air Terminal Heating Energy Consumption Contribution',
-     'brick:Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_HEATPWR_KWHT_CALC'),
+     'para:Heating_Thermal_Energy_Usage_Sensor', 'para:KiloWt-HR', 'AT_HEATPWR_KWHT_CALC'),
     ('Air-Terminal-Electrical-Power-Demand-Contribution',
      'Air Terminal Electrical Power Demand Contribution',
      'brick:Electric_Power_Sensor', 'unit:KiloW', 'AT_ELEC_KW_CALC'),
@@ -126,4 +132,5 @@ def main():
     print('written:', ONTO)
 
 
-main()
+if __name__ == '__main__':
+    main()

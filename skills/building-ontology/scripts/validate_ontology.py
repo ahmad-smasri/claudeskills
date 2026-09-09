@@ -294,6 +294,10 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
     is_part: set[str] = set()
     points: set[str] = set()
     has_ext_ref: set[str] = set()
+    declared_by: set[str] = set()          # object of a hasPoint / hasPart row
+    owner_of: dict[str, str] = {}          # point -> the equipment that declares it
+    ref_rows: list[tuple[int, str, str, str]] = []   # rownum, subject, tsid, entityId
+    class_defs: dict[str, int] = {}        # owl:Class subject -> rownum
     seen_rows: dict[tuple, int] = {}
 
     for rownum, raw in body:
@@ -429,6 +433,17 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
             parent_of.setdefault(subj, obj)
         if pred == "brick:hasPoint":
             points.add(obj)
+            declared_by.add(obj)
+            owner_of.setdefault(obj, subj)
+        if pred == "brick:hasPart" and obj:
+            declared_by.add(obj)
+        # A sensor can belong straight to a system rather than hanging off a piece
+        # of equipment - QNL models its standalone room sensors that way - so
+        # brick:isPartOf declares an entity just as hasPoint and hasPart do.
+        if pred in ("brick:isPartOf", "rec:isPartOf") and subj:
+            declared_by.add(subj)
+        if stype == "owl:Class":
+            class_defs.setdefault(subj, rownum)
         if pred == "ref:hasExternalReference":
             has_ext_ref.add(subj)
             if otype not in ("ref:TimeseriesReference", "ref:IFCReference", "ref:BACnetReference"):
@@ -438,6 +453,7 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
         # --- property pairs ------------------------------------------------------
         object_props = 0
         row_props: set[str] = set()
+        row_props_val: dict[str, str] = {}
         i = 5
         while i + 1 < len(header) + 1 and i < len(header):
             name_col = header[i].lower()
@@ -452,6 +468,7 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
                 report.add("ERROR", "E-PAIR-2", rownum, f"value {pval!r} has no property name")
             if pname:
                 row_props.add(pname)
+                row_props_val[pname] = pval
                 side = "subject" if name_col.startswith("subject") else "object"
                 target = subj if side == "subject" else obj
                 if side == "object":
@@ -482,6 +499,9 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
             report.add("WARN", "W-BN-4", rownum,
                        "brick:value with no brick:hasUnit - use unit:UNITLESS if the "
                        "quantity is genuinely dimensionless")
+        if pred == "ref:hasExternalReference" and otype == "ref:TimeseriesReference":
+            ref_rows.append((rownum, subj, row_props_val.get("ref:hasTimeseriesId", ""),
+                             row_props_val.get("para:hasEntityId", "")))
         if "ref:hasTimeseriesId" in row_props and "para:hasEntityId" not in row_props:
             report.add("WARN", "W-BN-5", rownum,
                        "ref:hasTimeseriesId with no para:hasEntityId - the telemetry "
@@ -563,6 +583,86 @@ def validate(path: Path, report: Report, label_style: str = "para", io=None):
         else:
             report.add("WARN", "W-PT-1", 0,
                        f"{point} is a data point with no ref:hasExternalReference")
+
+    # --- E-REF-2: a reference row whose subject nothing declares -------------
+    # The mirror of W-PT-1, and the harder half to see. W-PT-1 finds a point with
+    # no series; this finds a SERIES WITH NO POINT - a real historian tag wired to
+    # an entity that no brick:hasPoint or brick:hasPart row ever declares. Every
+    # row involved is well-formed, so nothing else fires; the front end simply has
+    # nothing to draw and the tag is silently stranded. SSC shipped six of these.
+    for rownum, subj, tsid, _ in ref_rows:
+        if subj not in declared_by:
+            report.add("ERROR", "E-REF-2", rownum,
+                       f"{subj} carries a timeseries reference"
+                       f"{f' ({tsid})' if tsid else ''} but no brick:hasPoint or "
+                       "brick:hasPart row declares it - the tag reaches nothing")
+
+    # --- E-REF-3: a timeseries id that names a DIFFERENT entity ---------------
+    # The worst kind of defect this checker sees, because the row is complete,
+    # well-formed and wrong: the point displays another unit's reading as its own
+    # and its real tag reaches nothing. Two SSC AHUs shipped showing a third AHU's
+    # return-air pressure.
+    #
+    # Only fires when the tag's own leading segment IS a declared entity in this
+    # sheet and is not the entity the row claims. Tags that do not start with an
+    # entity id at all - Utility_KWH, AT_CWPWR_KWT_CALC, ContributionFraction -
+    # cannot match and are never flagged.
+    known = {e.split(":", 1)[-1] for e in subjects if e.startswith("entity:")}
+    for rownum, subj, tsid, eid in ref_rows:
+        if not tsid or not eid:
+            continue
+        # The tag may address the entity with any separator its BMS uses, so test
+        # the boundary, not just "_": SSC_AHUB0001.ExAirDmprSts addresses
+        # SSC_AHUB0001 perfectly well.
+        if any(tsid.startswith(eid + sep) for sep in ("_", ".", "-", ":")) or tsid == eid:
+            continue
+        # Candidates come from the TAG, not from the entity set: every prefix that
+        # ends on a separator, longest first. Scanning the sheet's entities per row
+        # instead is O(rows x entities) and takes minutes on a 26,000-row sheet.
+        named, candidates = "", []
+        for m in re.finditer(r"[_.\-:]", tsid):
+            cand = tsid[:m.start()]
+            # A SHORTER FORM OF THE SAME HIERARCHY IS NOT ANOTHER ENTITY. "SSC" is
+            # a prefix of "SSC_AHUB0001" - the tag names the building, not another
+            # AHU. Only a candidate on a genuinely different branch is a finding,
+            # and of those the most specific one names the culprit.
+            if eid.startswith(cand) or cand.startswith(eid):
+                continue
+            if cand in known:
+                candidates.append(cand)
+        # A SIBLING OF THE SAME CLASS is the defect; a coincidence of names is not.
+        # HVAC_KWH_CALC has "HVAC" in front and entity:HVAC is a brick:HVAC_System
+        # while the meter meters a rec:Building - different kinds, no finding. Two
+        # brick:Air_Handling_Unit entities on the same building is the real thing.
+        #
+        # TEST EVERY CANDIDATE, not just the longest. A tag like TST_AHU01_Prs.PV
+        # yields both TST_AHU01 (the sibling AHU - the finding) and TST_AHU01_Prs
+        # (its point, a different class). Taking the longest silently picks the
+        # point and the defect goes unreported.
+        mine = types.get("entity:" + eid, set())
+        for cand in sorted(candidates, key=len, reverse=True):
+            if mine and (mine & types.get("entity:" + cand, set())):
+                named = cand
+                break
+        if named:
+            report.add("ERROR", "E-REF-3", rownum,
+                       f"{subj}: ref:hasTimeseriesId {tsid!r} belongs to {named}, but "
+                       f"para:hasEntityId says {eid} - this point would show another "
+                       "entity's reading as its own")
+
+    # --- W-CLS-1: a class declared and used by nothing -----------------------
+    # A dangling declaration reads to every later reviewer as a deliberate
+    # modelling decision when it is really a leak - a class left behind when the
+    # thing that used it was removed, or emitted by a generator that declares
+    # everything it knows rather than what this building uses.
+    used_classes = set()
+    for e, ts in types.items():
+        used_classes |= ts
+    for cls, rownum in sorted(class_defs.items()):
+        if cls not in used_classes:
+            report.add("WARN", "W-CLS-1", rownum,
+                       f"{cls} is declared as an owl:Class and used by no row - remove "
+                       "the declaration or the thing that should carry it is missing")
 
     # spatial connectivity: walk each spatial entity up to a rec:Building / rec:Site
     roots = {e for e, ts in types.items() if ts & {"rec:Building", "rec:Site"}}

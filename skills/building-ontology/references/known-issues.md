@@ -46,6 +46,9 @@ unit of a class against its siblings and carries the `-CON-` codes further down.
 | `W-LBL-2` | an entity that never gets an `rdfs:label_en` |
 | `W-GR-2` | terminal equipment with no `rec:locatedIn` |
 | `W-PT-1` | a data point with no `ref:hasExternalReference` |
+| `E-REF-2` | the mirror of `W-PT-1` and the harder half to see: a `ref:hasExternalReference` row whose subject no `brick:hasPoint`, `brick:hasPart` or `isPartOf` row declares. A real historian tag wired to an entity the graph never introduces - every row well-formed, nothing else fires, and the tag reaches nothing. SSC shipped six |
+| `E-REF-3` | a `ref:hasTimeseriesId` whose leading segment names a **different entity of the same class** than the row's `para:hasEntityId`. The point shows another unit's reading as its own and its real tag reaches nothing. Two SSC AHUs shipped displaying a third AHU's return-air pressure. Only fires on a same-class sibling on a different branch, so a tag that merely starts with the building code, or does not name an entity at all (`Utility_KWH`, `AT_CWPWR_KWT_CALC`), never matches |
+| `W-CLS-1` | an `owl:Class` declared and used by no row. Reads to every later reviewer as a deliberate modelling decision and is really a leak - a class left behind when the thing that used it was removed, or emitted by a generator that declares everything it knows rather than what this building uses |
 | `W-DUP-1` | a row identical to an earlier one |
 | `W-EXT-4` | a property declared as its own super-property |
 | `W-EXT-5` | a property related with `rdfs:subClassOf`; properties take `rdfs:subPropertyOf` |
@@ -237,6 +240,8 @@ with the PARA team.
 | 13 | Dar Cairo puts a `para:Utility_Meter` on every floor as well as the building, chained with `brick:isSubMeterOf`; the house rule is that a Utility Meter measures the incoming municipal supply, of which a building has one | the house rule - `para:Utility_Meter` at building tier only, every sub-tier metered with `brick:Electrical_Meter` or a `para:*_Meter` |
 | 14 | Dar Cairo's thermal units are split: `brick:Thermal_Power_Meter` uses `para:KiloWt`/`para:KiloWt-HR` (81/82 rows), its own `para:CHW_Meter` uses `unit:KiloW`/`unit:KiloW-HR` on 70 rows against 2 on the thermal pair | `para:KiloWt` and `para:KiloWt-HR` on every thermal meter point. Thermal kW written as `unit:KiloW` cannot be told from electrical kW, so a building demand rollup double-counts |
 | 15 | Dar Cairo labels `para:Generator_Meter` "Solar Electrical Meter" and `para:Solar_Meter` "Generator Electrical Meter" | the class names; the two labels are swapped in the source |
+| 16 | The thermal-hour suffix: Dar Cairo writes `CWPWR_KWTH_CALC` (250 rows) and `CWPWR_KWHT_CALC` (0); QNL's client supplied `AT_CWPWR_KWHT_CALC` and confirmed **KWHT** as their spelling | **the client, per project.** These are join keys into a specific calculation engine, so the client's register outranks the reference model. QNL writes `KWHT` throughout, including where it diverges from Dar Cairo's token. Ask before assuming a new building follows either |
+| 17 | Brick gives cooling and heating the same two thermal point classes, so the distinction survives only in the entity name and the tsid | Brick's classes, as all three reference models do. QNL overrides this **for that project only** with `para:Cooling_Thermal_Power_Sensor` and three siblings, on client direction - a project override recorded in its assumption log, not a house rule |
 
 ## Units: the class outranks every source column
 
@@ -386,7 +391,21 @@ the opposite: it goes on the physical thing, equipment or room. Where no IO list
 was supplied there are no points and therefore no timeseries references; do not
 add equipment-level stubs to fill the gap.
 
-### QF SSC V03 (`QF_SSC_Ontology_V03.xlsx`, 5,083 rows)
+### QF SSC V04 (`QF_SSC_Ontology_V04.xlsx`, 5,083 rows)
+
+**The repo copy is V04 with V03's labels restored, and that is a deliberate
+divergence from the file as supplied.** V04 arrived identical to V03 in every
+row, column, class, predicate and unit except one thing: 1,994 `rdfs:label_en`
+values on the object side had their spaces deleted - `Chilled Water Coil` became
+`ChilledWaterCoil`, `Qatar Foundation` became `QatarFoundation`, and
+`Pre Filter and Bag Filter` became `PreFilterandBagFilter`. Every changed value
+was exactly the V03 text minus spaces, which is the signature of a blind
+find-and-replace rather than a naming convention - a deliberate CamelCase would
+have capitalised the `and`. `rdfs:label_en` is what the front end shows a user,
+so the spaces were put back on client direction (2026-09-09) and the repo copy
+is content-identical to V03. Raise it with whoever produces the SSC export; until
+they confirm, do not copy V04's object-side labels as house style and do not
+assume a fresh export carries them.
 
 The cleaned SSC delivery, replacing `draft0.5_review` (gone from the repo). Two
 sheets: `SSC_Ontology_Ver0.6` holds the triples and `Claude Log` records the

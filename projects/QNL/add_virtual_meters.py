@@ -1,4 +1,9 @@
-"""Add the virtual metering layer to the QNL ontology.
+"""Add the virtual metering layer to a building's ontology.
+
+Drives off the BUILDINGS registry below: --code picks the tier matrix (the
+CLIENT's answer, per building), the sheet paths, and the physical-meter overlap
+table. QNL and SSC are registered. Reads and writes .csv or .xlsx.
+
 
 Regenerates the layer from the tier matrix against the *live* ontology rather
 than patching the hand-built workbook, so the room identifiers agree by
@@ -18,13 +23,13 @@ Emits, in order:
      water consumption, which QNL has no point for: the backend replaces the
      ContributionFraction series with its own calculation
 
-Timeseries references for the meter points are NOT written - the historian
-carries no calculated tags yet (checked: zero *_CALC, zero ContributionFraction).
-They go to a pending file instead, with the Dar Cairo tsid proposed and the
-entityId left for the calculation-engine team. contributionFraction *is*
-referenced, because both halves of its key are known: the tsid is fixed at
-"ContributionFraction" and the entityId is the one the unit's existing points
-already carry.
+Timeseries references for the meter points ARE written, one per point. Both
+halves of the key are derivable without the calculation engine's register: the
+tsid is Dar Cairo's token for the meter class, and the entityId is the space the
+meter meters. They are still derived rather than confirmed, so the pending file
+remains as the checklist to hand that team. contributionFraction takes the same
+shape, its tsid fixed at "ContributionFraction" and its entityId read off the
+unit's existing points.
 
     python3 projects/QNL/add_virtual_meters.py
 """
@@ -34,8 +39,14 @@ import collections
 import csv
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+# One derivation of the telemetry entity id, shared with the air terminal layer,
+# so the two cannot drift. `entity_id` is already taken in this module for the
+# map of ids read off a unit's existing points, hence the alias.
+from add_air_terminal_points import entity_id as space_key
 ONTOLOGY = ROOT / "projects/QNL/QNL_Ontology.csv"
 WIDTH = 27
 
@@ -55,8 +66,14 @@ ELEC, THERMAL = "elec", "thermal"
 METER_TYPES = [
     # class,                    segment,                               tiers,   kind
     ("para:Utility_Meter",      "Utility-Virtual-Meter",               "B",     ELEC),
-    ("para:UPS_Meter",          "UPS-Util-Electrical-Virtual-Meter",   "B",     ELEC),
-    ("para:HW_Meter",           "HW-Power-Thermal-Virtual-Meter",      "BF",    THERMAL),
+    # para:UPS_Meter is deliberately absent from both matrices: a UPS meter
+    # sums UPS load, and neither building publishes a UPS datapoint. Removed
+    # from both sheets on 2026-09-09 at the client's direction. Do not put it
+    # back without an input to sum - it would render an empty tile.
+    # para:HW_Meter is deliberately absent: it measures DOMESTIC hot water and
+    # neither building has an energy point for any. QNL's only DHW asset is a
+    # calorifier carrying two alarms and a temperature, outside the selected
+    # scope; SSC's heating is electric. Removed 2026-09-09, client direction.
     ("para:SPWR_Meter",         "SPWR-Util-Electrical-Virtual-Meter",  "BF",    ELEC),
     ("para:Common_Util_Meter",  "Common-Util-Electrical-Virtual-Meter","BF",    ELEC),
     ("para:CHW_Meter",          "CHW-Power-Thermal-Virtual-Meter",     "BFR",   THERMAL),
@@ -78,9 +95,16 @@ POINTS = {
     ],
 }
 
-# Dar Cairo's timeseries token per (meter class, point kind). Proposed only -
-# the entityId half is the historian's key for the metered space and does not
-# exist for QNL yet, so these go to the pending file, not into the sheet.
+# Dar Cairo's timeseries token per (meter class, point kind). These are WRITTEN
+# into the sheet, on the point's own ref:hasExternalReference row - Dar Cairo does
+# the same (entity:Dar-Cairo_UPS-Util-Electrical-Virtual-Meter-Consumption carries
+# UPS_KWH_CALC with para:hasEntityId "Smart Village"). The entityId half is the
+# space the meter meters, underscored: QNL, QNL_L1, QNL_B_001A_Break_Out_Area.
+# Dar Cairo puts one site constant on all of them, which only works where there
+# is a single meter per class; QNL has 360 room-tier CHW meters that would
+# collide on it. The pending file survives as the calculation-engine team's
+# confirmation checklist, now with both halves filled rather than the entityId
+# blank.
 TSID = {
     ("para:Utility_Meter",     "Consumption"): "Utility_KWH",
     ("para:Utility_Meter",     "Demand"):      "Utility_KW",
@@ -114,20 +138,83 @@ PHYSICAL_OVERLAP = {
     ("para:CHW_Meter", "entity:QNL"): "entity:QNL_CHWS-MAIN-LOOP_Energy-Meter",
 }
 
-# Everything a later row points at has to be declared before it. para:Utility_Meter
-# is already in the sheet, so it is not repeated here.
+# --- per-building data ------------------------------------------------------
+# The tier matrix is the CLIENT'S answer, not a house default, so it lives here
+# per building rather than as one module constant. Same for the paths and the
+# physical-meter overlaps, which are read off each building's own meter list.
+#
+# SSC (2026-09-09). Audited against SSC_Historian_IO_list_CP2.xlsx, 5,751 tags:
+#   Utility    - SSC_MV_InACB, SSC_ELEC_MFM_MV_OG_I3.kW/.kWh, SSC_EnergyConsumptionCalc.kW
+#   SPWR       - SPWR is SMALL POWER, not solar; Dar Cairo labels it "Small Power
+#                Electrical Meter". 200 SMDB power/energy tags are the candidate
+#                inputs, pending the electrical schedule to say which circuits.
+#   Common     - same SMDB boards, same pending schedule
+#   CHW        - SSC_CHWConsumption.KWh + 20 thermal points
+#   HVAC       - 22 AHU kW/kWh, 8 CHW pump, 49 MCC power tags
+#   Electrical - 100 SMDB kW, 100 SMDB MWh, 110 MV tags
+#   LTG        - NO energy input: 55 SSC_LCPB_* circuits are all On/Off status.
+#                Built at the client's direction to match QNL, which is in the
+#                same position. Every one renders empty until a kWh tag exists.
+#   UPS        - ELIMINATED: no inputs at all, no UPS datapoint in either
+#                building. Client direction 2026-09-09.
+#   HW         - ELIMINATED: SSC's heating is electric (5 AHU heater commands,
+#                14 CRAC heater statuses). No hot-water loop, 0 hot-water tags.
+SSC_MATRIX = [
+    ("para:Utility_Meter",      "Utility-Virtual-Meter",               "B",     ELEC),
+    ("para:SPWR_Meter",         "SPWR-Util-Electrical-Virtual-Meter",  "BF",    ELEC),
+    ("para:Common_Util_Meter",  "Common-Util-Electrical-Virtual-Meter","BF",    ELEC),
+    ("para:CHW_Meter",          "CHW-Power-Thermal-Virtual-Meter",     "BFR",   THERMAL),
+    ("para:HVAC_Meter",         "HVAC-Util-Electrical-Virtual-Meter",  "BFR",   ELEC),
+    ("para:LTG_Meter",          "LTG-Util-Electrical-Virtual-Meter",   "BFR",   ELEC),
+    ("brick:Electrical_Meter",  "Electrical-Virtual-Meter",            "BFR",   ELEC),
+]
+
+BUILDINGS = {
+    "QNL": {
+        "ontology": ROOT / "projects/QNL/QNL_Ontology.csv",
+        "out":      ROOT / "projects/QNL/QNL_Ontology.csv",
+        "pending":  ROOT / "projects/QNL/QNL_virtual_meter_timeseries_pending.csv",
+        "matrix":   None,          # filled with METER_TYPES below
+        "overlap":  None,          # filled with PHYSICAL_OVERLAP below
+        "contribution": True,      # client asked for it (QNL-036)
+    },
+    "SSC": {
+        "ontology": ROOT / "reference-models/QF_SSC_Ontology_V04.xlsx",
+        "out":      ROOT / "reference-models/QF_SSC_Ontology_V04.xlsx",
+        "pending":  ROOT / "projects/SSC/SSC_virtual_meter_timeseries_pending.csv",
+        "matrix":   SSC_MATRIX,
+        # SSC's 45 existing meters are equipment-tier and NOT ONE carries a
+        # brick:meters row, so the graph cannot say what any of them covers and
+        # no overlap can be computed. Reported in the handover instead of guessed.
+        "overlap":  {},
+        # para:contributionFraction is a SEPARATE question the client has to be
+        # asked (virtual-meters.md, "Ask first" question 2), not a side effect of
+        # asking for meters. Asked and answered yes on 2026-09-09: it is what
+        # gives SSC's 61 VAV-served rooms a real chilled-water input, and without
+        # it the room-tier CHW meters there sum nothing. Added after the metering
+        # layer had already landed, so it went in with --only-contribution.
+        "contribution": True,
+    },
+}
+
 DECLARATIONS = [
     ("para:Metering_System",     "brick:System",              "Metering System"),
-    ("para:UPS_Meter",           "brick:Electrical_Meter",    "UPS Electrical Meter"),
+    # QNL already carried this one, which is why it was originally omitted;
+    # build_declarations() skips a class the sheet already declares, so naming
+    # it here is a no-op for QNL and the difference between a working and a
+    # dangling reference for any building that does not.
+    ("para:Utility_Meter",       "brick:Electrical_Meter",    "Utility Electrical Meter"),
     ("para:SPWR_Meter",          "brick:Electrical_Meter",    "Small Power Electrical Meter"),
     ("para:Common_Util_Meter",   "brick:Electrical_Meter",    "Common Utilities Electrical Meter"),
     ("para:HVAC_Meter",          "brick:Electrical_Meter",    "HVAC Electrical Meter"),
     ("para:LTG_Meter",           "brick:Electrical_Meter",    "Lighting Electrical Meter"),
     ("para:CHW_Meter",           "brick:Thermal_Power_Meter", "Chilled Water Thermal Power Meter"),
-    ("para:HW_Meter",            "brick:Thermal_Power_Meter", "Hot Water Thermal Power Meter"),
     ("para:contributionFraction", "brick:Point",              "Contribution Fraction"),
 ]
 UNIT_DECLARATIONS = [("para:KiloWt", "kWt"), ("para:KiloWt-HR", "kWt·hr")]
+
+BUILDINGS["QNL"]["matrix"] = METER_TYPES
+BUILDINGS["QNL"]["overlap"] = PHYSICAL_OVERLAP
 
 
 # Which side a property belongs on is a property of the ROW, not of the property
@@ -154,9 +241,45 @@ def label_of(identifier):
     return identifier.split(":", 1)[1].replace("_", " ").replace("-", " ")
 
 
+def ontology_sheet(wb):
+    """The triples sheet, picked by its header - never by tab name or .active."""
+    head = ("subject", "subjecttype", "predicate", "object", "objecttype")
+    for ws in wb.worksheets:
+        first = next(ws.iter_rows(min_row=1, max_row=1, values_only=True))
+        if tuple(str(c or "").strip().lower() for c in first[:5]) == head:
+            return ws
+    raise SystemExit("no ontology sheet in the workbook")
+
+
 def read_ontology(path):
+    """Rows from a .csv or .xlsx sheet, padded to the sheet width."""
+    if str(path).lower().endswith(".xlsx"):
+        import openpyxl
+        ws = ontology_sheet(openpyxl.load_workbook(path, read_only=True, data_only=True))
+        rows = [["" if c is None else str(c).strip() for c in r]
+                for r in ws.iter_rows(values_only=True)]
+        width = max(len(r) for r in rows)
+        return [r + [""] * (width - len(r)) for r in rows]
     with open(path, encoding="utf-8-sig", newline="") as fh:
         return list(csv.reader(fh))
+
+
+def write_ontology(path, header, body):
+    """Write back in the format the sheet arrived in."""
+    if str(path).lower().endswith(".xlsx"):
+        import openpyxl
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+        ws.append(header)
+        for r in body:
+            ws.append(r + [""] * (len(header) - len(r)) if len(r) < len(header) else r)
+        wb.save(path)
+        return
+    with open(path, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(header)
+        w.writerows(body)
 
 
 def index(rows):
@@ -200,13 +323,13 @@ def spatial_targets(etype):
     return {k: sorted(v) for k, v in tiers.items()}
 
 
-def build_meters(tiers):
+def build_meters(tiers, matrix, overlap):
     """The metering layer. Returns (rows, pending timeseries, physical overlaps)."""
     out, pending, overlaps = [], [], []
-    for cls, segment, applies, kind in METER_TYPES:
+    for cls, segment, applies, kind in matrix:
         for tier in applies:
             for target, target_type in tiers[tier]:
-                covered = PHYSICAL_OVERLAP.get((cls, target))
+                covered = overlap.get((cls, target))
                 if covered:
                     overlaps.append((f"{target}_{segment}", cls, covered))
                 meter = f"{target}_{segment}"
@@ -219,10 +342,21 @@ def build_meters(tiers):
                 out.append(row(meter, cls, "rec:locatedIn", target, target_type))
                 for kindname, pcls, unit in POINTS[kind]:
                     point = f"{meter}-{kindname}"
+                    key = TSID.get((cls, kindname), "")
+                    eid = space_key(target)
                     out.append(row(meter, cls, "brick:hasPoint", point, pcls,
                                    oprops=[("rdfs:label_en", f"{mlabel} {kindname}"),
                                            ("brick:hasUnit", unit)]))
-                    pending.append((point, pcls, TSID.get((cls, kindname), ""), "", target))
+                    # The point's own reference row. A meter block is EIGHT rows,
+                    # not six: without this the point is the object of one
+                    # hasPoint row and the subject of nothing, so the front end
+                    # draws a tile with no series behind it.
+                    if key:
+                        out.append(row(point, pcls, "ref:hasExternalReference",
+                                       "<blanknode>", "ref:TimeseriesReference",
+                                       oprops=[("ref:hasTimeseriesId", key),
+                                               ("para:hasEntityId", eid)]))
+                    pending.append((point, pcls, key, eid, target))
     return out, pending, overlaps
 
 
@@ -255,16 +389,30 @@ def build_contribution(etype, located, fedby, entity_id):
     return out, fed, skipped, derived
 
 
-def build_declarations(declared):
+def build_declarations(declared, matrix, contribution):
+    """Only what THIS building's matrix actually uses.
+
+    Declaring everything in DECLARATIONS regardless of the matrix is how SSC
+    ended up with a para:HW_Meter owl:Class row and no HW meter under it - a
+    dangling class that reads as a modelling decision and is really a leak. The
+    same bug had already put a para:UPS_Meter declaration in a sheet whose
+    matrix never asked for one. The matrix is the authority.
+    """
+    needed = {"para:Metering_System"} | {cls for cls, _, _, _ in matrix}
+    if contribution:
+        needed.add("para:contributionFraction")
     out = []
     for cls, parent, label in DECLARATIONS:
-        if cls in declared:
+        if cls in declared or cls not in needed:
             continue
         out.append(row(cls, "owl:Class", "rdfs:subClassOf", parent,
                        sprops=[("rdfs:label_en", label)]))
-    for unit, symbol in UNIT_DECLARATIONS:
-        out.append(row(unit, "qudt:Unit", "rdf:type", "qudt:Unit",
-                       sprops=[("qudt:symbol", symbol)]))
+    # The thermal units follow the matrix too: a building with no THERMAL row
+    # has no use for para:KiloWt and should not be handed one.
+    if any(kind == THERMAL for *_, kind in matrix):
+        for unit, symbol in UNIT_DECLARATIONS:
+            out.append(row(unit, "qudt:Unit", "rdf:type", "qudt:Unit",
+                           sprops=[("qudt:symbol", symbol)]))
     out.append(row(METERING, "para:Metering_System", "brick:isPartOf", SITE, "rec:Site",
                    sprops=[("rdfs:label_en", "Metering System")]))
     return out
@@ -272,31 +420,72 @@ def build_declarations(declared):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--ontology", default=str(ONTOLOGY))
-    ap.add_argument("--out", default=str(ROOT / "projects/QNL/QNL_Ontology.csv"))
-    ap.add_argument("--pending", default=str(ROOT / "projects/QNL/QNL_virtual_meter_timeseries_pending.csv"))
+    ap.add_argument("--code", default="QNL", choices=sorted(BUILDINGS),
+                    help="which building's tier matrix and paths to use")
+    ap.add_argument("--ontology")
+    ap.add_argument("--out")
+    ap.add_argument("--pending")
+    ap.add_argument("--only-contribution", action="store_true",
+                    help="add para:contributionFraction alone, to a sheet whose\n"
+                         "metering layer already landed. Writes no meters and does\n"
+                         "not touch the pending file, which belongs to that layer.")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    rows = read_ontology(args.ontology)
+    b = BUILDINGS[args.code]
+    ontology = args.ontology or str(b["ontology"])
+    out_path = args.out or str(b["out"])
+    pending_path = args.pending or str(b["pending"])
+
+    rows = read_ontology(ontology)
     header = rows[0]
     etype, located, fedby, entity_id, declared = index(rows)
 
-    if any("Virtual-Meter" in r[0] for r in rows[1:]):
-        raise SystemExit("sheet already carries a metering layer - rerun on a clean ontology")
+    # Narrowed to the SPACE-tier segments this script writes. The bare string
+    # "Virtual-Meter" also matches equipment-tier meters a delivered sheet may
+    # already carry - SSC has 27 of them, on AHU coil valves and FCUs - and those
+    # are a different family that this layer neither replaces nor duplicates.
+    segments = tuple(seg for _, seg, _, _ in b["matrix"])
+    existing = {r[0] for r in rows[1:]
+                if any(r[0].endswith("_" + g) for g in segments)}
+    if existing and not args.only_contribution:
+        raise SystemExit("sheet already carries a space-tier metering layer "
+                         f"({len(existing)} meters) - rerun on a clean ontology")
 
-    tiers = spatial_targets(etype)
-    decls = build_declarations(declared)
-    meters, pending, overlaps = build_meters(tiers)
-    contrib, fed, skipped, derived = build_contribution(etype, located, fedby, entity_id)
+    if args.only_contribution:
+        # contributionFraction was decided separately from the metering layer on
+        # both buildings, so it has to be addable to a sheet the layer already
+        # landed on. The layer's own guard above is therefore skipped, and this
+        # one takes its place: the points are what must not be written twice.
+        if not b["contribution"]:
+            raise SystemExit(f'{args.code} has contribution=False - set it before '
+                             'asking for the points')
+        already = {r[0] for r in rows[1:] if r[1] == "para:contributionFraction"}
+        if already:
+            raise SystemExit("sheet already carries para:contributionFraction on "
+                             f"{len(already)} points - nothing to add")
+        tiers = {"B": [], "F": [], "R": []}
+        decls, meters, pending, overlaps = [], [], [], []
+    else:
+        tiers = spatial_targets(etype)
+        decls = build_declarations(declared, b["matrix"], b["contribution"])
+        meters, pending, overlaps = build_meters(tiers, b["matrix"], b["overlap"])
+
+    if b["contribution"]:
+        contrib, fed, skipped, derived = build_contribution(etype, located, fedby, entity_id)
+    else:
+        contrib, fed, skipped, derived = [], [], [], []
 
     print(f"spatial targets   building {len(tiers['B'])}  levels {len(tiers['F'])}  rooms {len(tiers['R'])}")
     print(f"declarations      {len(decls)} rows")
-    print(f"virtual meters    {len(meters) // 6} meters, {len(meters)} rows")
+    print(f"virtual meters    {len(meters) // 8} meters, {len(meters)} rows")
     for m, cls, covered in overlaps:
         print(f"  note: {m} overlaps physical {covered} - both kept, they are not duplicates")
-    print(f"contributionFraction  {len(contrib) // 2} of {len(fed)} AHU-fed units"
-          f"  (skipped in shafts: {len(skipped)})")
+    if b["contribution"]:
+        print(f"contributionFraction  {len(contrib) // 2} of {len(fed)} AHU-fed units"
+              f"  (skipped in shafts: {len(skipped)})")
+    else:
+        print("contributionFraction  not requested for this building - skipped")
     if derived:
         print(f"  entityId derived rather than reused for: {[u for u, _ in derived]}")
     if skipped:
@@ -310,18 +499,20 @@ def main():
     # Declarations have to precede their first use, and the converter reads the
     # sheet top to bottom.
     body.sort(key=lambda r: 0 if r[1] in ("owl:Class", "qudt:Unit") else 1)
-    with open(args.out, "w", encoding="utf-8-sig", newline="") as fh:
-        w = csv.writer(fh)
-        w.writerow(header)
-        w.writerows(body)
-    print(f"wrote {args.out}  ({len(body)} rows, was {len(rows) - 1})")
+    write_ontology(out_path, header, body)
+    print(f"wrote {out_path}  ({len(body)} rows, was {len(rows) - 1})")
 
-    with open(args.pending, "w", encoding="utf-8", newline="") as fh:
+    if args.only_contribution:
+        # The pending file is the meter layer's checklist. A contribution-only
+        # run has no meter keys to write and must not blank it.
+        return
+
+    with open(pending_path, "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["point", "point_class", "proposed_hasTimeseriesId",
                     "hasEntityId_TO_CONFIRM", "meters"])
         w.writerows(pending)
-    print(f"wrote {args.pending}  ({len(pending)} points awaiting telemetry keys)")
+    print(f"wrote {pending_path}  ({len(pending)} derived keys for the calculation engine to confirm)")
 
 
 if __name__ == "__main__":

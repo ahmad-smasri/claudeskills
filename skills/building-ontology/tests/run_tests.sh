@@ -29,6 +29,28 @@ for code in E-TYP-2 E-LBL-1 E-PH-1 E-TYP-1 E-WS-1 E-PAIR-2 E-BN-1 E-GR-1 E-UNIT-
     fi
 done
 
+echo "== the correction fixture must trip the three rules this project shipped first"
+out=$("$PY" scripts/validate_ontology.py tests/correction-sample.csv 2>&1)
+for code in E-REF-2 E-REF-3 W-CLS-1; do
+    if grep -q "$code" <<<"$out"; then
+        echo "   ok   $code"
+    else
+        echo "   FAIL $code was not reported"
+        fail=1
+    fi
+done
+# Negative controls. E-REF-3 must not fire on a tag that merely starts with the
+# building code, nor on one that names no entity at all - those false positives
+# made it useless on a real sheet before they were fixed.
+for quiet in TST_AHU01_Bldg TST_AHU01_Calc; do
+    if grep -q "E-REF-3.*$quiet" <<<"$out"; then
+        echo "   FAIL E-REF-3 false positive on $quiet"
+        fail=1
+    else
+        echo "   ok   E-REF-3 stays quiet on $quiet"
+    fi
+done
+
 echo "== the IO cross-check must trip every rule it was built to trip"
 out=$("$PY" scripts/check_io_list.py tests/io-sample-ontology.csv \
         --io tests/io-sample-list.csv 2>&1)
