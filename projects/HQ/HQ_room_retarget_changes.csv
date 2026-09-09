@@ -1,0 +1,96 @@
+change,subject,was,now
+rec:locatedIn,entity:HQ_AHU12_0001,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0002,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0003,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0004,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0006,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0007,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0008,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0009,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:locatedIn,entity:HQ_AHU12_0010,entity:HQ_RF_001,entity:HQ_RF-001_Roof
+rec:feeds,entity:HQ_CCU_B0003A,entity:HQ_B1-106_Vvip-Parking-6-Car-Spots,entity:HQ_B1-117_Chauffeur-Room
+rec:locatedIn,entity:HQ_CCU_B0003A,entity:HQ_B1-106_Vvip-Parking-6-Car-Spots,entity:HQ_B1-117_Chauffeur-Room
+rec:locatedIn,entity:HQ_DX_B0003,entity:HQ_B1-010_Transformer-Substation,entity:HQ_B1-012_Generator
+rec:feeds,entity:HQ_DX_B0003,entity:HQ_B1-010_Transformer-Substation,entity:HQ_B1-012_Generator
+rec:locatedIn,entity:HQ_DX_B0011,entity:HQ_B1-009_MV-Switch-Room,entity:HQ_B1-026_UPS-Room
+rec:feeds,entity:HQ_DX_B0011,entity:HQ_B1-009_MV-Switch-Room,entity:HQ_B1-026_UPS-Room
+rec:locatedIn,entity:HQ_DX_B0016,entity:HQ_B1-018_Pa-Room,entity:HQ_B1-022_AHU-3
+rec:feeds,entity:HQ_DX_B0016,entity:HQ_B1-018_Pa-Room,entity:HQ_B1-022_AHU-3
+rec:feeds,entity:HQ_FCU0004,entity:HQ_B1-113_Sheikha-Lobby-Security-Room,entity:HQ_B1-116_Sheikha-Lobby
+rec:locatedIn,entity:HQ_FCU0004,entity:HQ_B1-113_Sheikha-Lobby-Security-Room,entity:HQ_B1-116_Sheikha-Lobby
+rec:feeds,entity:HQ_FCU0005,entity:HQ_B1-401_Male-Toilet,entity:HQ_B1-003_Control-Room
+rec:locatedIn,entity:HQ_FCU0005,entity:HQ_B1-401_Male-Toilet,entity:HQ_B1-003_Control-Room
+rec:feeds,entity:HQ_FCU0008,entity:HQ_B1-014_Support-Space-Dry-Waste-Storage,entity:HQ_B1-015_Support-Space-Loading
+rec:locatedIn,entity:HQ_FCU0008,entity:HQ_B1-014_Support-Space-Dry-Waste-Storage,entity:HQ_B1-015_Support-Space-Loading
+rec:feeds,entity:HQ_FCU0009,entity:HQ_B1-108_Support-Space-Wet-Waste-Storage,entity:HQ_B1-014_Support-Space-Dry-Waste-Storage
+rec:locatedIn,entity:HQ_FCU0009,entity:HQ_B1-108_Support-Space-Wet-Waste-Storage,entity:HQ_B1-014_Support-Space-Dry-Waste-Storage
+rec:feeds,entity:HQ_FCU0010,entity:HQ_B1-015_Support-Space-Loading,entity:HQ_B1-124_Support-Space-Waste-Bin-Wash-Up-Area
+rec:locatedIn,entity:HQ_FCU0010,entity:HQ_B1-015_Support-Space-Loading,entity:HQ_B1-124_Support-Space-Waste-Bin-Wash-Up-Area
+rec:feeds,entity:HQ_FCU0058,entity:HQ_2-302_Spa-Plantroom,entity:HQ_2-311_Spa-Fm-Heat-Exp
+rec:locatedIn,entity:HQ_FCU0058,entity:HQ_2-302_Spa-Plantroom,entity:HQ_2-311_Spa-Fm-Heat-Exp
+rec:feeds,entity:HQ_FCU0064,entity:HQ_3-603_Corridor-Bridge,entity:HQ_3-630_Corridor-Bridge
+rec:locatedIn,entity:HQ_FCU0064,entity:HQ_3-603_Corridor-Bridge,entity:HQ_3-630_Corridor-Bridge
+rec:feeds,entity:HQ_FCU0065,entity:HQ_3-603_Corridor-Bridge,entity:HQ_3-630_Corridor-Bridge
+rec:locatedIn,entity:HQ_FCU0065,entity:HQ_3-603_Corridor-Bridge,entity:HQ_3-630_Corridor-Bridge
+rec:feeds,entity:HQ_FCU0066,entity:HQ_3-603_Corridor-Bridge,entity:HQ_3-630_Corridor-Bridge
+rec:locatedIn,entity:HQ_FCU0066,entity:HQ_3-603_Corridor-Bridge,entity:HQ_3-630_Corridor-Bridge
+rec:feeds,entity:HQ_FCU0074,entity:HQ_5-202_Vp-Edu-Members-Of-Edu,entity:HQ_4-202_Print-Copy
+rec:locatedIn,entity:HQ_FCU0074,entity:HQ_5-202_Vp-Edu-Members-Of-Edu,entity:HQ_4-202_Print-Copy
+rec:feeds,entity:HQ_FCU0075,entity:HQ_5-214_Gsm-Room,entity:HQ_4-214_Gsm-Room
+rec:locatedIn,entity:HQ_FCU0075,entity:HQ_5-214_Gsm-Room,entity:HQ_4-214_Gsm-Room
+rec:feeds,entity:HQ_FCU0076,entity:HQ_5-214_Gsm-Room,entity:HQ_4-214_Gsm-Room
+rec:locatedIn,entity:HQ_FCU0076,entity:HQ_5-214_Gsm-Room,entity:HQ_4-214_Gsm-Room
+rec:feeds,entity:HQ_FCU0097,entity:HQ_1-512_IDF-Room,entity:HQ_B1-512_IDF-Room
+rec:locatedIn,entity:HQ_FCU0097,entity:HQ_1-512_IDF-Room,entity:HQ_B1-512_IDF-Room
+rec:feeds,entity:HQ_FCU0122,entity:HQ_11-106_Electrical-Room,entity:HQ_11-108_Print-Copy
+rec:locatedIn,entity:HQ_FCU0122,entity:HQ_11-106_Electrical-Room,entity:HQ_11-108_Print-Copy
+rec:feeds,entity:HQ_FCU0123,entity:HQ_11-108_Print-Copy,entity:HQ_11-106_Electrical-Room
+rec:locatedIn,entity:HQ_FCU0123,entity:HQ_11-108_Print-Copy,entity:HQ_11-106_Electrical-Room
+rec:feeds,entity:HQ_FCU0132,entity:HQ_9-101_Visitors-Center,entity:HQ_9-112_Storage
+rec:locatedIn,entity:HQ_FCU0132,entity:HQ_9-101_Visitors-Center,entity:HQ_9-112_Storage
+rec:feeds,entity:HQ_VAV0001,entity:HQ_B1-004_Staff-Entrance,entity:HQ_B1-103_Staff-Lobby
+rec:locatedIn,entity:HQ_VAV0001,entity:HQ_B1-004_Staff-Entrance,entity:HQ_B1-103_Staff-Lobby
+rec:feeds,entity:HQ_VAV0068,entity:HQ_1-025_Finance-Profstaff,entity:HQ_G-405_Toilet
+rec:locatedIn,entity:HQ_VAV0068,entity:HQ_1-025_Finance-Profstaff,entity:HQ_G-405_Toilet
+rec:feeds,entity:HQ_VAV0090,entity:HQ_1-110_Conference-Room,entity:HQ_G-104_Lobby
+rec:locatedIn,entity:HQ_VAV0090,entity:HQ_1-110_Conference-Room,entity:HQ_G-104_Lobby
+rec:feeds,entity:HQ_VAV0233,entity:HQ_4-015C_Office-Space,entity:HQ_4-015A_Office-Space
+rec:locatedIn,entity:HQ_VAV0233,entity:HQ_4-015C_Office-Space,entity:HQ_4-015A_Office-Space
+rec:feeds,entity:HQ_VAV0234,entity:HQ_4-015A_Office-Space,entity:HQ_4-015C_Office-Space
+rec:locatedIn,entity:HQ_VAV0234,entity:HQ_4-015A_Office-Space,entity:HQ_4-015C_Office-Space
+rec:feeds,entity:HQ_VAV0491,entity:HQ_9-403_Male-Toilet,entity:HQ_9-104_Bmo-Waiting-Area
+rec:locatedIn,entity:HQ_VAV0491,entity:HQ_9-403_Male-Toilet,entity:HQ_9-104_Bmo-Waiting-Area
+rec:feeds,entity:HQ_VAV0584,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:locatedIn,entity:HQ_VAV0584,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:feeds,entity:HQ_VAV0585,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:locatedIn,entity:HQ_VAV0585,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:feeds,entity:HQ_VAV0586,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:locatedIn,entity:HQ_VAV0586,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:feeds,entity:HQ_VAV0587,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:locatedIn,entity:HQ_VAV0587,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit
+rec:feeds,entity:HQ_VAV0595,entity:HQ_B1-109_Room,entity:HQ_B1-116_Sheikha-Lobby
+rec:locatedIn,entity:HQ_VAV0595,entity:HQ_B1-109_Room,entity:HQ_B1-116_Sheikha-Lobby
+new room,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit,,11.208 SHEIKHA WING SHEIKHA ENSUIT
+virtual meters,entity:HQ_11-208_Sheikha-Wing-Sheikha-Ensuit,copied from entity:HQ_10_P-1,24 rows
+new room,entity:HQ_3-630_Corridor-Bridge,,3.630 CORRIDOR BRIDGE
+virtual meters,entity:HQ_3-630_Corridor-Bridge,copied from entity:HQ_10_P-1,24 rows
+new room,entity:HQ_B1-105_Support-Space-Loading,,B1.105 SUPPORT SPACE LOADING
+virtual meters,entity:HQ_B1-105_Support-Space-Loading,copied from entity:HQ_10_P-1,24 rows
+new room,entity:HQ_RF-001_Roof,,RF.001 ROOF
+virtual meters,entity:HQ_RF-001_Roof,copied from entity:HQ_10_P-1,24 rows
+
+feeds left untouched - the unit already serves a room other than the one it sits in
+tag,entity,sits in,feeds
+GEFB_0007,entity:HQ_GEFB_0007,entity:HQ-Level-Roof,None
+GEFB_0010,entity:HQ_GEFB_0010,entity:HQ-Level-Roof,entity:HQ_B1_115_VVIP_PARKING_4_CAR_SPOTS; entity:HQ_B1_106_VVIP_PARKING_6_CAR_SPOTS
+GEFB_0011,entity:HQ_GEFB_0011,entity:HQ-Level-Roof,entity:HQ_B1_108_SUPPORT_SPACE_WET_WASTE_STORAGE; entity:HQ_B1_124_SUPPORT_SPACE_WASTE_BIN_WASH_UP_AREA; entity:HQ_B1_014_SUPPORT_SPACE_DRY_WASTE_STORAGE
+
+left alone - the ontology holds more than one room at the reference the register gives
+entity,still in,reference
+entity:HQ_FCU0072,entity:HQ_4_531_IDF_ROOM,4.105
+
+locatedIn left alone - it does not name a room in this building's shape
+tag,entity,points at,sheet says
+GEFB_0007,entity:HQ_GEFB_0007,entity:HQ-Level-Roof,left - it is a level
+GEFB_0010,entity:HQ_GEFB_0010,entity:HQ-Level-Roof,left - it is a level
+GEFB_0011,entity:HQ_GEFB_0011,entity:HQ-Level-Roof,left - it is a level
