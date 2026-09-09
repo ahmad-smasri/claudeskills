@@ -1,0 +1,97 @@
+screen,tag,reason
+North Building/FF/FF-1,NB-VAV4515-EV4516,"its leader ends beside the dot NB-VAV4525-EV4526 also walks to, in Conference Room N-1205. One dot serves one unit and nothing on the screen says which of the two owns it"
+North Building/FF/FF-1,NB-VAV4555-EV4556,"the walk ran out in open floor south of the office range, in no named room"
+North Building/FF/FF-1,NB-VAV4575-EV4576,the endpoint sits on the wall between Corridor N-1202A and Storage Room N-1215 and could be either
+North Building/FF/FF-1,NB-FCU4916,endpoint falls between the Stair 1 N-1ST01 label and the stair graphic; the room polygon there is not drawn closed
+North Building/FF/FF-1,NB-FCU4910,as NB-FCU4916 - same unnamed area beside Stair 1 N-1ST01
+North Building/FF/FF-3,NB-CAV5720-EV5721,the dot sits on the wall between Normal Elec. Room N-1136 and Emer. Elec. N-1137 and could be either
+North Building/GF/GF-1,NB-VAV4140-EV4141,the dot sits exactly on the wall between Conf. Room N-0233 and Storage Room N-0237 and could be either
+North Building/GF/GF-1,NB-VAV4081A-VEV4083A,"the leader could not be followed clear of the widget - this unit is drawn in alarm, boxed in red, and the box border runs where the leader leaves"
+North Building/GF/GF-1,NB-VAV4080B-VEV4082B,as NB-VAV4081A-VEV4083A - no leader could be followed away from the widget
+North Building/GF/GF-1,NB-VAV4070B-VEV4073B,as NB-VAV4081A-VEV4083A - no leader could be followed away from the widget
+North Building/GF/GF-1,NB-FEV4214,"the walk ended below the plan among the widget labels, not in any room"
+North Building/GF/GF-1,NB-FEV4215,as NB-FEV4214 - the walk never entered the plan
+North Building/GF/GF-1,NB-CAV4030,"the walk ended at the right-hand edge of the plan, outside any drawn room"
+North Building/GF/GF-1,NB-VAV4211,"its leader converges with NB-VAV4210, NB-VEV4213A and NB-VEV4213B on one point; nothing on the screen says which owns it"
+North Building/GF/GF-1,NB-VAV4212,as NB-VAV4211 - four leaders share one endpoint
+North Building/GF/GF-1,NB-VEV4213A,as NB-VAV4211 - four leaders share one endpoint
+North Building/GF/GF-1,NB-VEV4213B,as NB-VAV4211 - four leaders share one endpoint
+North Building/FF/FF-5,NB-VAV5540-EV5541,the dot falls in the narrow angled band of small rooms between Normal Elec. N-1113 and Emergency Elec. N-1102; at the size the screen draws them it cannot be assigned to one
+North Building/FF/FF-5,NB-CAV5530,as NB-VAV5540-EV5541 - the dot is among the angled rooms between Vestibule N-1119 and Women N-1117
+North Building/FF/FF-5,NB-VAV5515-EV5516,the dot falls in the same angled band and cannot be assigned to a single room
+North Building/FF/FF-5,NB-VAV5000-EV5002,the dot sits between Store N-151B and Exp. Office N-151A with no wall drawn between them at that point
+North Building/FF/FF-5,NB-VAV6885,the dot sits between Exp. Office N-355A and Conf Rm N-355B and could be either
+North Building/FF/FF-5,NB-VAV6895,the dot falls in the angled band of small rooms on the east wing and cannot be assigned to one
+North Building/FF/FF-8,NB-FEV6858,the dot lands just below the Service Corridor N-337 wall in a cell the screen does not name
+North Building/FF/FF-8,NB-FEV6854,the dot lands in open lab floor east of Diabetes Lab Open Lab N-345B that carries no room name
+North Building/FF/FF-7,NB-VAV6590-VEV6591,the dot lands in the open lab band below Corridor N-315 at a point the screen gives no room name; Gene Therapy Lab N-316C and Analytical Core N-316H are either side of it
+North Building/FF/FF-10,NB-FCU7989,the dot lands in the unnamed lobby strip west of Stair 5 N-0ST05
+North Building/FF/FF-10,NB-VAV7655,the dot sits on the wall between Office N-421 and Office N-422 and could be either
+North Building/FF/FF-11,NB-VAV7820-VEV7822,"the dot lands in the gap between TC1 N-450L and TC2 N-450N, in floor the screen does not name"
+North Building/FF/FF-11,NB-FEV7824,as NB-VAV7820-VEV7822 - the dot is in the unnamed gap between TC1 N-450L and TC2 N-450N
+North Building/FF/FF-4,NB-FEV5813,the dot lands at the top of the open lab band below Corridor N-150 where the screen prints no room name
+North Building/GF/GF-6,NB-FEV5273,the dot sits on the wall between ORG Chem N-0140K and MBB EVAP Room N-0140E and could be either
+North Building/GF/GF-6,NB-VAV5230,the dot lands at the top of the band east of MBB EVAP Room N-0140E where the screen prints no room name
+North Building/GF/GF-6,NB-FEV5277,the dot lands in open floor between ORG Chem N-0140K and Open Office N-0160 that carries no name
+North Building/GF/GF-6,NB-VAV5250-VEV5251,the dot lands just west of Office N-0158 in circulation space the screen does not name
+North Building/GF/GF-6,NB-VEV5182A,the dot lands below Analyt Core N-0140A in floor the screen does not name
+North Building/GF/GF-11,NB-VAV7260-VEV7261,the dot lands at the top of A/L 1 N-0442H on the wall it shares with Corridor N.0451
+North Building/GF/GF-11,NB-VEV7301,as NB-VAV7260-VEV7261 - the dot is on the same corridor wall and could belong to either side
+North Building/GF/GF-11,NB-VAV7320-VEV7321,the dot lands between Sem 3 N-0442J and A/L 1 N-0442H with no wall drawn at that point
+North Building/GF/GF-5,NB-FEV5095B,the dot lands just above the Cold Room N-0114E box in open lab floor the screen does not name
+North Building/GF/GF-5,NB-FEV5082,as NB-FEV5095B - open lab floor between Bio Analyt N-0114D and Cold Room N-0114E with no name
+North Building/GF/GF-5,NB-FEV5083,as NB-FEV5095B - the same unnamed strip
+North Building/GF/GF-5,NB-FEV5062,the dot lands in the open lab band north of Serv Core N-0136 where no room name is printed
+North Building/GF/GF-5,NB-FEV5074,the dot lands between Dirty Lab N-0114C and Analyt Core N-0114A in floor the screen does not name
+North Building/GF/GF-10,NB-FEV7074,"the dot lands high in the open lab band above EM Prep 2 BIO N-0404E and Surf Analysis Lab N-0404F, where the screen prints no name"
+North Building/GF/GF-10,NB-FCU7982,the dot lands below Normal Elec. Room N-0420 and right of IDF N-0419 in floor the screen does not name
+North Building/GF/GF-7,NB-VAV5040-EV5041,the dot falls in the angled band of small rooms between Vestibule N-0136A and the Elevator; at the size the screen draws them it cannot be assigned to one
+North Building/GF/GF-7,NB-VAV5030-EV5031,as NB-VAV5040-EV5041 - the same angled band
+North Building/GF/GF-7,NB-VAV5010-EV5011,the dot falls among the angled rooms between Conf N-0106 and JC N-0108 and cannot be assigned to one
+North Building/GF/GF-7,NB-VAV5000-EV5002,the dot lands between Exp. Office N-0172 and Store N-0362B with no wall drawn at that point
+North Building/GF/GF-7,NB-VAV5001-EV5003,the dot lands left of Office N-0363 in circulation space the screen does not name
+North Building/GF/GF-2,NB-VAV4180-VEV4181,the walk ended east of Service Corridor N-0207 in floor the screen does not name
+North Building/GF/GF-2,NB-VAV4005-EV4006,no leader could be followed away from the widget
+North Building/GF/GF-2,NB-FCU4920,no leader could be followed away from the widget
+South Building/GF/GF-6,SB-VAV1008,the dot sits exactly on the corner where Refrig Waste S-0149 and Cyber Embeded Dist System Electrical Lab S-0146 meet and could be either
+South Building/FF/FF-2,SB-VAV2502,"the walk ended above the building outline, outside the plan"
+South Building/FF/FF-2,SB-VAV2551,the dot sits between Vestibule S-0206 and Female Ablution S-0208 and could be either
+South Building/FF/FF-2,SB-VAV2513,the dot sits on the wall between Office S-0213 and Office S-0214 and could be either
+South Building/FF/FF-2,SB-VAV2550,as SB-VAV2513 - the dot is on the S-0213 / S-0214 wall
+South Building/FF/FF-2,SB-VAV2512,as SB-VAV2513 - the dot is on the S-0213 / S-0214 wall
+South Building/FF/FF-2,SB-VAV2515,the dot sits on the wall between Office S-0215 and Office S-0216 and could be either
+South Building/FF/FF-7,SB-FCU1503,the dot sits between Stair S-ST01 and Conference Room S-0141 and could be either
+South Building/FF/FF-7,SB-VAV1510,the dot sits between ALT Office 2 S-0127 and Scientific Comp. Office1 S-0125 and could be either
+South Building/FF/FF-1,SB-VAV3511,the dot lands between VP R&D S-0285 and Meeting Room S-0288 in floor the screen does not name
+North Building/SF/SF-2,NB-AHU-8513,"the dot lands in the large second-floor penthouse space, which this screen prints no room name for"
+North Building/SF/SF-2,NB-FCU4919,as NB-AHU-8513 - the penthouse space carries no room name
+North Building/SF/SF-2,NB-AHU-8511,as NB-AHU-8513 - the penthouse space carries no room name
+North Building/SF/SF-2,NB-FCU5988,as NB-AHU-8513 - the penthouse space carries no room name
+North Building/SF/SF-2,NB-FCU5990,as NB-AHU-8513 - the penthouse space carries no room name
+North Building/SF/SF-2,NB-AHU-8515,as NB-AHU-8513 - the penthouse space carries no room name
+North Building/SF/SF-2,NB-AHU-8514,as NB-AHU-8513 - the penthouse space carries no room name
+North Building/SF/SF-2,NB-AHU-8516,the dot lands west of Emer. Elec. N-2106 in penthouse floor the screen does not name
+North Building/SF/SF-1,NB-ERU8532,"the dot lands in the large second-floor penthouse space, which this screen prints no room name for"
+North Building/SF/SF-1,NB-ERU8533,as NB-ERU8532 - the penthouse space carries no room name
+North Building/SF/SF-1,NB-ERU8534,as NB-ERU8532 - the penthouse space carries no room name
+North Building/SF/SF-1,NB-ERU8535,as NB-ERU8532 - the penthouse space carries no room name
+North Building/SF/SF-1,NB-ERU8536,as NB-ERU8532 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-ERU8537,"the dot lands in the second-floor penthouse space, which this screen prints no room name for; only Normal Elec. N-2111 and Emer. Elec. N-2112 are named on it"
+North Building/SF/SF-3,NB-ERU8538,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-ERU8539,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-ERU8540,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-ERU8541,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-EF-8553,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-EF-8554,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-FCU7991,as NB-ERU8537 - the penthouse space carries no room name
+North Building/SF/SF-3,NB-FCU7992,as NB-ERU8537 - the penthouse space carries no room name
+Utility Building/GF,UB-FCU8502,"the dot lands beside the loading Dock, which the screen labels only Dock and gives no room number"
+Utility Building/GF,UB-FCU8503,as UB-FCU8502 - the dot is beside the unnumbered Dock
+South Building/GF/GF-3,SB-VAV2021,"the dot lands on the left edge of the Director Office S-0229 block, in floor between it and Open Plan S-0228 that the screen does not name"
+South Building/GF/GF-3,SB-VAV2020,"as SB-VAV2021 - the dot is on the same unnamed strip, beside Informal Meeting Room S-0231"
+North Building/GF/GF-3,NB-VAV4310,"the dot lands on the outer wall at the bottom of the plan, below Work Station N-0265, and is not inside any room"
+North Building/GF/GF-3,NB-VAV4312,as NB-VAV4310 - the dot is on the outer wall below Breakout N-0265B
+North Building/SF/SF-4,NB-AHU-8518,"the dot lands in the second-floor penthouse space, which this screen prints no room name for; only Normal Elec. N-2107, Emer. Elec. N-2108 and IDF N-2110 are named on it"
+North Building/SF/SF-4,NB-AHU-8519,as NB-AHU-8518 - the penthouse space carries no room name
+North Building/SF/SF-4,NB-AHU-8520,as NB-AHU-8518 - the penthouse space carries no room name
+South Building/FF/FF-4,SB-FCU0501,"the walk ended in blank space west of the Stair 2 S-ST02 wall, outside any drawn room"
