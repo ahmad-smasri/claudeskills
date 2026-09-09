@@ -1,4 +1,4 @@
-subject,subjectType,predicate,object,objectType,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val
+﻿subject,subjectType,predicate,object,objectType,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val
 para:Remote_Status,owl:Class,rdfs:subClassOf,brick:Status,,rdfs:label_en,Remote Status,,,,,,,,,,,,,,,,,,,,
 para:Duty_Priority,owl:Class,rdfs:subClassOf,brick:Parameter,,rdfs:label_en,Duty Priority,,,,,,,,,,,,,,,,,,,,
 para:Start_Count,owl:Class,rdfs:subClassOf,brick:Point,,rdfs:label_en,Start Count,,,,,,,,,,,,,,,,,,,,
@@ -38,7 +38,6 @@ para:Stage_Up_Delay_Setpoint,owl:Class,rdfs:subClassOf,brick:Setpoint,,rdfs:labe
 para:Utility_Meter,owl:Class,rdfs:subClassOf,brick:Electrical_Meter,,rdfs:label_en,Utility Meter,,,,,,,,,,,,,,,,,,,,
 para:Valve_Actuator,owl:Class,rdfs:subClassOf,brick:HVAC_Equipment,,rdfs:label_en,Valve Actuator,,,,,,,,,,,,,,,,,,,,
 para:Metering_System,owl:Class,rdfs:subClassOf,brick:System,,rdfs:label_en,Metering System,,,,,,,,,,,,,,,,,,,,
-para:UPS_Meter,owl:Class,rdfs:subClassOf,brick:Electrical_Meter,,rdfs:label_en,UPS Electrical Meter,,,,,,,,,,,,,,,,,,,,
 para:SPWR_Meter,owl:Class,rdfs:subClassOf,brick:Electrical_Meter,,rdfs:label_en,Small Power Electrical Meter,,,,,,,,,,,,,,,,,,,,
 para:Common_Util_Meter,owl:Class,rdfs:subClassOf,brick:Electrical_Meter,,rdfs:label_en,Common Utilities Electrical Meter,,,,,,,,,,,,,,,,,,,,
 para:HVAC_Meter,owl:Class,rdfs:subClassOf,brick:Electrical_Meter,,rdfs:label_en,HVAC Electrical Meter,,,,,,,,,,,,,,,,,,,,
@@ -10103,14 +10102,6 @@ entity:QNL_HEX04,brick:Heat_Exchanger,brick:hasPart,entity:QNL_HEX04_DC-Valve,br
 entity:QNL_HEX05,brick:Heat_Exchanger,brick:hasPart,entity:QNL_HEX05_DC-Valve,brick:Cooling_Valve,,,rdfs:label_en,HEX05 DC Valve,,,rec:modelNumber,ITQ-100Q,,,,,,,,,,,,,,
 entity:QNL_L1-145_ILL-Director,rec:Room,rec:isPartOf,entity:QNL_L1,rec:Level,rdfs:label_en,L1.145 ILL DIRECTOR,,,,,,,,,,,,,,,,,,,,
 entity:Metering,para:Metering_System,brick:isPartOf,entity:QF,rec:Site,rdfs:label_en,Metering System,,,,,,,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter,para:UPS_Meter,brick:isPartOf,entity:Metering,para:Metering_System,rdfs:label_en,QNL UPS Util Electrical Virtual Meter,,,,,,,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter,para:UPS_Meter,brick:meters,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter,para:UPS_Meter,brick:isVirtualMeter,<blanknode>,<blanknode>,,,brick:value,TRUE,,,,,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter,para:UPS_Meter,rec:locatedIn,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter,para:UPS_Meter,brick:hasPoint,entity:QNL_UPS-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,,,rdfs:label_en,QNL UPS Util Electrical Virtual Meter Consumption,,,brick:hasUnit,unit:KiloW-HR,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,,,ref:hasTimeseriesId,UPS_KWH_CALC,,,para:hasEntityId,QNL,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter,para:UPS_Meter,brick:hasPoint,entity:QNL_UPS-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,,,rdfs:label_en,QNL UPS Util Electrical Virtual Meter Demand,,,brick:hasUnit,unit:KiloW,,,,,,,,,,,,,,
-entity:QNL_UPS-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ref:hasExternalReference,<blanknode>,ref:TimeseriesReference,,,ref:hasTimeseriesId,UPS_KW_CALC,,,para:hasEntityId,QNL,,,,,,,,,,,,,,
 entity:QNL_Utility-Virtual-Meter,para:Utility_Meter,brick:isPartOf,entity:Metering,para:Metering_System,rdfs:label_en,QNL Utility Virtual Meter,,,,,,,,,,,,,,,,,,,,
 entity:QNL_Utility-Virtual-Meter,para:Utility_Meter,brick:meters,entity:QNL,rec:Building,,,,,,,,,,,,,,,,,,,,,,
 entity:QNL_Utility-Virtual-Meter,para:Utility_Meter,brick:isVirtualMeter,<blanknode>,<blanknode>,,,brick:value,TRUE,,,,,,,,,,,,,,,,,,

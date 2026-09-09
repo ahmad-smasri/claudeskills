@@ -1,8 +1,6 @@
 point,point_class,proposed_hasTimeseriesId,hasEntityId_TO_CONFIRM,meters
 entity:SSC_Utility-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,Utility_KWH,SSC,entity:SSC
 entity:SSC_Utility-Virtual-Meter-Demand,brick:Electric_Power_Sensor,Utility_KW,SSC,entity:SSC
-entity:SSC_UPS-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,UPS_KWH_CALC,SSC,entity:SSC
-entity:SSC_UPS-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,UPS_KW_CALC,SSC,entity:SSC
 entity:SSC_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,SSC,entity:SSC
 entity:SSC_SPWR-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,SPWR_KW_CALC,SSC,entity:SSC
 entity:SSC_Level-01_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,SSC_Level_01,entity:SSC_Level-01

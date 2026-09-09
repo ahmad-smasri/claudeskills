@@ -66,7 +66,10 @@ ELEC, THERMAL = "elec", "thermal"
 METER_TYPES = [
     # class,                    segment,                               tiers,   kind
     ("para:Utility_Meter",      "Utility-Virtual-Meter",               "B",     ELEC),
-    ("para:UPS_Meter",          "UPS-Util-Electrical-Virtual-Meter",   "B",     ELEC),
+    # para:UPS_Meter is deliberately absent from both matrices: a UPS meter
+    # sums UPS load, and neither building publishes a UPS datapoint. Removed
+    # from both sheets on 2026-09-09 at the client's direction. Do not put it
+    # back without an input to sum - it would render an empty tile.
     ("para:HW_Meter",           "HW-Power-Thermal-Virtual-Meter",      "BF",    THERMAL),
     ("para:SPWR_Meter",         "SPWR-Util-Electrical-Virtual-Meter",  "BF",    ELEC),
     ("para:Common_Util_Meter",  "Common-Util-Electrical-Virtual-Meter","BF",    ELEC),
@@ -132,8 +135,6 @@ PHYSICAL_OVERLAP = {
     ("para:CHW_Meter", "entity:QNL"): "entity:QNL_CHWS-MAIN-LOOP_Energy-Meter",
 }
 
-# Everything a later row points at has to be declared before it. para:Utility_Meter
-# is already in the sheet, so it is not repeated here.
 # --- per-building data ------------------------------------------------------
 # The tier matrix is the CLIENT'S answer, not a house default, so it lives here
 # per building rather than as one module constant. Same for the paths and the
@@ -151,12 +152,12 @@ PHYSICAL_OVERLAP = {
 #   LTG        - NO energy input: 55 SSC_LCPB_* circuits are all On/Off status.
 #                Built at the client's direction to match QNL, which is in the
 #                same position. Every one renders empty until a kWh tag exists.
-#   UPS        - no inputs at all. Client direction.
+#   UPS        - ELIMINATED: no inputs at all, no UPS datapoint in either
+#                building. Client direction 2026-09-09.
 #   HW         - ELIMINATED: SSC's heating is electric (5 AHU heater commands,
 #                14 CRAC heater statuses). No hot-water loop, 0 hot-water tags.
 SSC_MATRIX = [
     ("para:Utility_Meter",      "Utility-Virtual-Meter",               "B",     ELEC),
-    ("para:UPS_Meter",          "UPS-Util-Electrical-Virtual-Meter",   "B",     ELEC),
     ("para:SPWR_Meter",         "SPWR-Util-Electrical-Virtual-Meter",  "BF",    ELEC),
     ("para:Common_Util_Meter",  "Common-Util-Electrical-Virtual-Meter","BF",    ELEC),
     ("para:CHW_Meter",          "CHW-Power-Thermal-Virtual-Meter",     "BFR",   THERMAL),
@@ -199,7 +200,6 @@ DECLARATIONS = [
     # it here is a no-op for QNL and the difference between a working and a
     # dangling reference for any building that does not.
     ("para:Utility_Meter",       "brick:Electrical_Meter",    "Utility Electrical Meter"),
-    ("para:UPS_Meter",           "brick:Electrical_Meter",    "UPS Electrical Meter"),
     ("para:SPWR_Meter",          "brick:Electrical_Meter",    "Small Power Electrical Meter"),
     ("para:Common_Util_Meter",   "brick:Electrical_Meter",    "Common Utilities Electrical Meter"),
     ("para:HVAC_Meter",          "brick:Electrical_Meter",    "HVAC Electrical Meter"),

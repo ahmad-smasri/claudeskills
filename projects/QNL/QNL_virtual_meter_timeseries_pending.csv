@@ -2915,7 +2915,5 @@ entity:QNL_T1_LTG-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Ene
 entity:QNL_T1_LTG-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,LTG_KW_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_SPWR-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,SPWR_KW_CALC,QNL_T1,entity:QNL_T1
-entity:QNL_UPS-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,UPS_KWH_CALC,QNL,entity:QNL
-entity:QNL_UPS-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,UPS_KW_CALC,QNL,entity:QNL
 entity:QNL_Utility-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,Utility_KWH,QNL,entity:QNL
 entity:QNL_Utility-Virtual-Meter-Demand,brick:Electric_Power_Sensor,Utility_KW,QNL,entity:QNL

@@ -66,7 +66,7 @@ starting point, not a checklist to complete: every tick has to survive the input
 the points its formula would sum must exist. Once it is
 answered the count is fixed arithmetic - a `B` costs 1 meter, an `F` costs one
 per level, an `R` costs one per room - so **say the total back before building**:
-QNL's matrix over 1 building, 5 levels and 354 rooms is 1,460 meters and 8,760
+QNL's matrix over 1 building, 5 levels and 354 rooms is 1,459 meters and 11,672
 rows. A client who did not realise room tier meant 1,440 meters gets to say so while it
 is still a sentence rather than a sheet.
 
@@ -202,12 +202,12 @@ Five things about that block are easy to get wrong:
   easy to read past when there are thousands of them. QNL shipped 2,920 meter
   points in exactly that state because this section said "six rows"; the fix was
   2,920 rows added after the fact. Count the block: a meter with points is eight
-  rows, and a family of 1,460 meters is 11,680.
+  rows, and a family of 1,459 meters is 11,672.
 
 - **`rdfs:label_en` on the `isPartOf` row is a SUBJECT property** - it labels the
   meter. On the `hasPoint` rows it is an OBJECT property, because it labels the
   point. Same column name, different side, same block. A build script that maps
-  property names to sides globally will silently label `entity:Metering` 1,460
+  property names to sides globally will silently label `entity:Metering` 1,459
   times and leave every meter unlabelled.
 - **`brick:isVirtualMeter` carries `brick:value TRUE` and no unit.** It fires
   `W-BN-4`, which suggests `unit:UNITLESS`. Do not add one - a boolean is not a

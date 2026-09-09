@@ -551,9 +551,15 @@ introduce no findings of their own. Current totals are in "Validator result" abo
 
 ## Virtual metering layer — added 2026-09-03
 
-The sheet now carries a metering layer: **1,459 virtual meters, 8,754 rows**, plus
-`para:contributionFraction` on 297 terminal units. Ontology grew 9,985 → 19,345 rows.
+The sheet now carries a metering layer: **1,459 virtual meters, 11,672 rows**, plus
+`para:contributionFraction` on 299 terminal units. The sheet stands at 25,933 rows.
 Regenerate it with `python3 projects/QNL/add_virtual_meters.py` (`--dry-run` to count first).
+
+Two later changes moved these figures, and this section carries both: the meter
+block grew from six rows to eight when the missing `ref:hasExternalReference`
+rows were added (QNL-056), and `para:UPS_Meter` was removed on 2026-09-09 —
+a UPS meter sums UPS load and QNL publishes no UPS datapoint, so it would have
+rendered an empty tile. Removal was `projects/QNL/remove_ups_meter.py`.
 
 **Where it came from.** `sources/VirtualMeters_QNL_manual_v1.xlsm`, the hand-built
 workbook, supplied the tier matrix on its `Sheet1` — 9 meter classes against
@@ -564,21 +570,26 @@ normalised them. The layer is regenerated from the matrix against the live
 ontology instead, so identifiers agree by construction and `L1-145_ILL-Director`
 — added later by the room-retarget pass — is picked up automatically.
 
-**A virtual meter is only created where a physical meter does not exist** — that
-is what the layer is for. `entity:QNL_Utility-Virtual-Meter` was therefore *not*
-written: `entity:QNL_Total-Energy` is already a `para:Utility_Meter` with a live
-historian tag. The suppression lives in `ALREADY_METERED` in the generator, each
-entry naming the physical meter that justifies it.
+**A physical meter does not rule out a virtual one** — they answer different
+questions, and the gap between an imported reading and a calculated roll-up is
+losses and unmetered load, which is worth seeing. `entity:QNL_Utility-Virtual-Meter`
+was briefly suppressed on 2026-09-03 because `entity:QNL_Total-Energy` is already
+a `para:Utility_Meter` with a live historian tag, then **restored the same day**
+on client direction (QNL-037). The generator now *reports* each overlap instead of
+skipping it: `PHYSICAL_OVERLAP` in the generator lists the pairs, each entry
+naming the physical meter that also measures that space.
 
 | Tier | Meter classes | Count |
 |---|---|---|
-| Building only | `para:UPS_Meter` (Utility suppressed, see above) | 1 |
+| Building only | `para:Utility_Meter` | 1 |
 | Building + floor | `para:HW_Meter`, `para:SPWR_Meter`, `para:Common_Util_Meter` | 18 |
 | Building + floor + room | `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`, `brick:Electrical_Meter` | 1,440 |
 
-Each meter carries six rows: `brick:isPartOf entity:Metering`, `brick:meters`,
-`brick:isVirtualMeter` (`brick:value TRUE`), `rec:locatedIn`, and a
-Consumption/Demand point pair. Name segments are Dar Cairo's verbatim; the one
+Each meter carries **eight** rows: `brick:isPartOf entity:Metering`,
+`brick:meters`, `brick:isVirtualMeter` (`brick:value TRUE`), `rec:locatedIn`, a
+Consumption/Demand point pair, and one `ref:hasExternalReference` row per point.
+The last two are not optional — a meter point without one has no series behind
+it, which is what QNL-056 fixed. Name segments are Dar Cairo's verbatim; the one
 coinage is `HW-Power-Thermal-Virtual-Meter`, mirroring the CHW segment.
 
 **Thermal points take `para:KiloWt` / `para:KiloWt-HR`**, not `unit:KiloW`, on all
@@ -587,14 +598,15 @@ add chilled-water kW to electrical kW. Both units are declared as `qudt:Unit`
 rows. Note the 7 pre-existing QNL thermal rows still on `unit:KiloW`; they were
 left alone and want a separate pass.
 
-**Early declarations added:** `para:Metering_System`, `para:UPS_Meter`,
+**Early declarations added:** `para:Metering_System`,
 `para:SPWR_Meter`, `para:Common_Util_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`,
 `para:CHW_Meter`, `para:HW_Meter`, `para:contributionFraction`, `para:KiloWt`,
 `para:KiloWt-HR`, and the `entity:Metering` system node under `entity:QF`.
 `para:Utility_Meter` was already declared. All sort ahead of first use.
 
-**`para:contributionFraction` — 297 units** (246 VAV + 51 CAV), every unit an AHU
-feeds. It is a container point for the unit's chilled water consumption, which
+**`para:contributionFraction` — 299 units** (247 VAV + 52 CAV) — every VAV and
+CAV in the sheet, including the two whose room is not yet identified (client
+direction: they get one regardless). It is a container point for the unit's chilled water consumption, which
 QNL has no point for; the backend replaces the `ContributionFraction` series with
 its own calculation apportioning the AHU's load across the units it feeds. Written
 with `ref:hasTimeseriesId` `ContributionFraction` and `para:hasEntityId`
