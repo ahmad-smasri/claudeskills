@@ -276,8 +276,9 @@ python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx --
 python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
     --family brick:Fan_Coil_Unit --report findings.xlsx
 
-# add the virtual metering layer to a building (worked example)
-python3 projects/QNL/add_virtual_meters.py --dry-run
+# add the virtual metering layer to a building - --code picks the tier matrix,
+# paths and physical-meter overlaps from the BUILDINGS registry in the script
+python3 projects/QNL/add_virtual_meters.py --code SSC --dry-run
 
 # hand the remaining findings to a human, in the sheet itself
 python3 skills/building-ontology/scripts/highlight_findings.py In.xlsx \

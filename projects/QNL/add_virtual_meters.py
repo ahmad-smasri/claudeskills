@@ -1,4 +1,9 @@
-"""Add the virtual metering layer to the QNL ontology.
+"""Add the virtual metering layer to a building's ontology.
+
+Drives off the BUILDINGS registry below: --code picks the tier matrix (the
+CLIENT's answer, per building), the sheet paths, and the physical-meter overlap
+table. QNL and SSC are registered. Reads and writes .csv or .xlsx.
+
 
 Regenerates the layer from the tier matrix against the *live* ontology rather
 than patching the hand-built workbook, so the room identifiers agree by
@@ -129,8 +134,71 @@ PHYSICAL_OVERLAP = {
 
 # Everything a later row points at has to be declared before it. para:Utility_Meter
 # is already in the sheet, so it is not repeated here.
+# --- per-building data ------------------------------------------------------
+# The tier matrix is the CLIENT'S answer, not a house default, so it lives here
+# per building rather than as one module constant. Same for the paths and the
+# physical-meter overlaps, which are read off each building's own meter list.
+#
+# SSC (2026-09-09). Audited against SSC_Historian_IO_list_CP2.xlsx, 5,751 tags:
+#   Utility    - SSC_MV_InACB, SSC_ELEC_MFM_MV_OG_I3.kW/.kWh, SSC_EnergyConsumptionCalc.kW
+#   SPWR       - SPWR is SMALL POWER, not solar; Dar Cairo labels it "Small Power
+#                Electrical Meter". 200 SMDB power/energy tags are the candidate
+#                inputs, pending the electrical schedule to say which circuits.
+#   Common     - same SMDB boards, same pending schedule
+#   CHW        - SSC_CHWConsumption.KWh + 20 thermal points
+#   HVAC       - 22 AHU kW/kWh, 8 CHW pump, 49 MCC power tags
+#   Electrical - 100 SMDB kW, 100 SMDB MWh, 110 MV tags
+#   LTG        - NO energy input: 55 SSC_LCPB_* circuits are all On/Off status.
+#                Built at the client's direction to match QNL, which is in the
+#                same position. Every one renders empty until a kWh tag exists.
+#   UPS        - no inputs at all. Client direction.
+#   HW         - ELIMINATED: SSC's heating is electric (5 AHU heater commands,
+#                14 CRAC heater statuses). No hot-water loop, 0 hot-water tags.
+SSC_MATRIX = [
+    ("para:Utility_Meter",      "Utility-Virtual-Meter",               "B",     ELEC),
+    ("para:UPS_Meter",          "UPS-Util-Electrical-Virtual-Meter",   "B",     ELEC),
+    ("para:SPWR_Meter",         "SPWR-Util-Electrical-Virtual-Meter",  "BF",    ELEC),
+    ("para:Common_Util_Meter",  "Common-Util-Electrical-Virtual-Meter","BF",    ELEC),
+    ("para:CHW_Meter",          "CHW-Power-Thermal-Virtual-Meter",     "BFR",   THERMAL),
+    ("para:HVAC_Meter",         "HVAC-Util-Electrical-Virtual-Meter",  "BFR",   ELEC),
+    ("para:LTG_Meter",          "LTG-Util-Electrical-Virtual-Meter",   "BFR",   ELEC),
+    ("brick:Electrical_Meter",  "Electrical-Virtual-Meter",            "BFR",   ELEC),
+]
+
+BUILDINGS = {
+    "QNL": {
+        "ontology": ROOT / "projects/QNL/QNL_Ontology.csv",
+        "out":      ROOT / "projects/QNL/QNL_Ontology.csv",
+        "pending":  ROOT / "projects/QNL/QNL_virtual_meter_timeseries_pending.csv",
+        "matrix":   None,          # filled with METER_TYPES below
+        "overlap":  None,          # filled with PHYSICAL_OVERLAP below
+        "contribution": True,      # client asked for it (QNL-036)
+    },
+    "SSC": {
+        "ontology": ROOT / "reference-models/QF_SSC_Ontology_V04.xlsx",
+        "out":      ROOT / "reference-models/QF_SSC_Ontology_V04.xlsx",
+        "pending":  ROOT / "projects/SSC/SSC_virtual_meter_timeseries_pending.csv",
+        "matrix":   SSC_MATRIX,
+        # SSC's 45 existing meters are equipment-tier and NOT ONE carries a
+        # brick:meters row, so the graph cannot say what any of them covers and
+        # no overlap can be computed. Reported in the handover instead of guessed.
+        "overlap":  {},
+        # para:contributionFraction is a SEPARATE question the client has to be
+        # asked (virtual-meters.md, "Ask first" question 2), not a side effect of
+        # asking for meters. It is what would give SSC's 61 VAV-served rooms a
+        # real chilled-water input; without it the room-tier CHW meters there sum
+        # nothing. Off until asked.
+        "contribution": False,
+    },
+}
+
 DECLARATIONS = [
     ("para:Metering_System",     "brick:System",              "Metering System"),
+    # QNL already carried this one, which is why it was originally omitted;
+    # build_declarations() skips a class the sheet already declares, so naming
+    # it here is a no-op for QNL and the difference between a working and a
+    # dangling reference for any building that does not.
+    ("para:Utility_Meter",       "brick:Electrical_Meter",    "Utility Electrical Meter"),
     ("para:UPS_Meter",           "brick:Electrical_Meter",    "UPS Electrical Meter"),
     ("para:SPWR_Meter",          "brick:Electrical_Meter",    "Small Power Electrical Meter"),
     ("para:Common_Util_Meter",   "brick:Electrical_Meter",    "Common Utilities Electrical Meter"),
@@ -141,6 +209,9 @@ DECLARATIONS = [
     ("para:contributionFraction", "brick:Point",              "Contribution Fraction"),
 ]
 UNIT_DECLARATIONS = [("para:KiloWt", "kWt"), ("para:KiloWt-HR", "kWt·hr")]
+
+BUILDINGS["QNL"]["matrix"] = METER_TYPES
+BUILDINGS["QNL"]["overlap"] = PHYSICAL_OVERLAP
 
 
 # Which side a property belongs on is a property of the ROW, not of the property
@@ -167,9 +238,45 @@ def label_of(identifier):
     return identifier.split(":", 1)[1].replace("_", " ").replace("-", " ")
 
 
+def ontology_sheet(wb):
+    """The triples sheet, picked by its header - never by tab name or .active."""
+    head = ("subject", "subjecttype", "predicate", "object", "objecttype")
+    for ws in wb.worksheets:
+        first = next(ws.iter_rows(min_row=1, max_row=1, values_only=True))
+        if tuple(str(c or "").strip().lower() for c in first[:5]) == head:
+            return ws
+    raise SystemExit("no ontology sheet in the workbook")
+
+
 def read_ontology(path):
+    """Rows from a .csv or .xlsx sheet, padded to the sheet width."""
+    if str(path).lower().endswith(".xlsx"):
+        import openpyxl
+        ws = ontology_sheet(openpyxl.load_workbook(path, read_only=True, data_only=True))
+        rows = [["" if c is None else str(c).strip() for c in r]
+                for r in ws.iter_rows(values_only=True)]
+        width = max(len(r) for r in rows)
+        return [r + [""] * (width - len(r)) for r in rows]
     with open(path, encoding="utf-8-sig", newline="") as fh:
         return list(csv.reader(fh))
+
+
+def write_ontology(path, header, body):
+    """Write back in the format the sheet arrived in."""
+    if str(path).lower().endswith(".xlsx"):
+        import openpyxl
+        wb = openpyxl.Workbook()
+        ws = wb.active
+        ws.title = "Sheet1"
+        ws.append(header)
+        for r in body:
+            ws.append(r + [""] * (len(header) - len(r)) if len(r) < len(header) else r)
+        wb.save(path)
+        return
+    with open(path, "w", encoding="utf-8-sig", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(header)
+        w.writerows(body)
 
 
 def index(rows):
@@ -213,13 +320,13 @@ def spatial_targets(etype):
     return {k: sorted(v) for k, v in tiers.items()}
 
 
-def build_meters(tiers):
+def build_meters(tiers, matrix, overlap):
     """The metering layer. Returns (rows, pending timeseries, physical overlaps)."""
     out, pending, overlaps = [], [], []
-    for cls, segment, applies, kind in METER_TYPES:
+    for cls, segment, applies, kind in matrix:
         for tier in applies:
             for target, target_type in tiers[tier]:
-                covered = PHYSICAL_OVERLAP.get((cls, target))
+                covered = overlap.get((cls, target))
                 if covered:
                     overlaps.append((f"{target}_{segment}", cls, covered))
                 meter = f"{target}_{segment}"
@@ -296,31 +403,52 @@ def build_declarations(declared):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--ontology", default=str(ONTOLOGY))
-    ap.add_argument("--out", default=str(ROOT / "projects/QNL/QNL_Ontology.csv"))
-    ap.add_argument("--pending", default=str(ROOT / "projects/QNL/QNL_virtual_meter_timeseries_pending.csv"))
+    ap.add_argument("--code", default="QNL", choices=sorted(BUILDINGS),
+                    help="which building's tier matrix and paths to use")
+    ap.add_argument("--ontology")
+    ap.add_argument("--out")
+    ap.add_argument("--pending")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
-    rows = read_ontology(args.ontology)
+    b = BUILDINGS[args.code]
+    ontology = args.ontology or str(b["ontology"])
+    out_path = args.out or str(b["out"])
+    pending_path = args.pending or str(b["pending"])
+
+    rows = read_ontology(ontology)
     header = rows[0]
     etype, located, fedby, entity_id, declared = index(rows)
 
-    if any("Virtual-Meter" in r[0] for r in rows[1:]):
-        raise SystemExit("sheet already carries a metering layer - rerun on a clean ontology")
+    # Narrowed to the SPACE-tier segments this script writes. The bare string
+    # "Virtual-Meter" also matches equipment-tier meters a delivered sheet may
+    # already carry - SSC has 27 of them, on AHU coil valves and FCUs - and those
+    # are a different family that this layer neither replaces nor duplicates.
+    segments = tuple(seg for _, seg, _, _ in b["matrix"])
+    existing = {r[0] for r in rows[1:]
+                if any(r[0].endswith("_" + g) for g in segments)}
+    if existing:
+        raise SystemExit("sheet already carries a space-tier metering layer "
+                         f"({len(existing)} meters) - rerun on a clean ontology")
 
     tiers = spatial_targets(etype)
     decls = build_declarations(declared)
-    meters, pending, overlaps = build_meters(tiers)
-    contrib, fed, skipped, derived = build_contribution(etype, located, fedby, entity_id)
+    meters, pending, overlaps = build_meters(tiers, b["matrix"], b["overlap"])
+    if b["contribution"]:
+        contrib, fed, skipped, derived = build_contribution(etype, located, fedby, entity_id)
+    else:
+        contrib, fed, skipped, derived = [], [], [], []
 
     print(f"spatial targets   building {len(tiers['B'])}  levels {len(tiers['F'])}  rooms {len(tiers['R'])}")
     print(f"declarations      {len(decls)} rows")
-    print(f"virtual meters    {len(meters) // 6} meters, {len(meters)} rows")
+    print(f"virtual meters    {len(meters) // 8} meters, {len(meters)} rows")
     for m, cls, covered in overlaps:
         print(f"  note: {m} overlaps physical {covered} - both kept, they are not duplicates")
-    print(f"contributionFraction  {len(contrib) // 2} of {len(fed)} AHU-fed units"
-          f"  (skipped in shafts: {len(skipped)})")
+    if b["contribution"]:
+        print(f"contributionFraction  {len(contrib) // 2} of {len(fed)} AHU-fed units"
+              f"  (skipped in shafts: {len(skipped)})")
+    else:
+        print("contributionFraction  not requested for this building - skipped")
     if derived:
         print(f"  entityId derived rather than reused for: {[u for u, _ in derived]}")
     if skipped:
@@ -334,18 +462,15 @@ def main():
     # Declarations have to precede their first use, and the converter reads the
     # sheet top to bottom.
     body.sort(key=lambda r: 0 if r[1] in ("owl:Class", "qudt:Unit") else 1)
-    with open(args.out, "w", encoding="utf-8-sig", newline="") as fh:
-        w = csv.writer(fh)
-        w.writerow(header)
-        w.writerows(body)
-    print(f"wrote {args.out}  ({len(body)} rows, was {len(rows) - 1})")
+    write_ontology(out_path, header, body)
+    print(f"wrote {out_path}  ({len(body)} rows, was {len(rows) - 1})")
 
-    with open(args.pending, "w", encoding="utf-8", newline="") as fh:
+    with open(pending_path, "w", encoding="utf-8", newline="") as fh:
         w = csv.writer(fh)
         w.writerow(["point", "point_class", "proposed_hasTimeseriesId",
                     "hasEntityId_TO_CONFIRM", "meters"])
         w.writerows(pending)
-    print(f"wrote {args.pending}  ({len(pending)} derived keys for the calculation engine to confirm)")
+    print(f"wrote {pending_path}  ({len(pending)} derived keys for the calculation engine to confirm)")
 
 
 if __name__ == "__main__":
