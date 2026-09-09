@@ -107,9 +107,11 @@ They only work where the calculation engine publishes those four series.
 
 **3. Where the telemetry keys come from.** Virtual meter points are calculated,
 so **the IO-list rule does not reach them** - a field IO list will never list
-`ELEC_KWH_CALC`. Their keys come from the calculation engine's register instead.
-Ask for it. If it does not exist yet, see "When the keys do not exist" below;
-do not write a reference row with a blank key.
+`ELEC_KWH_CALC`. Ask for the calculation engine's register. If it does not exist
+yet that is not a reason to defer: both halves are derivable from Dar Cairo's
+token and the metered space, so write the rows and hand over a checklist. See
+"The telemetry keys - derive them, do not defer them" below. What is never
+allowed is a reference row with a blank key.
 
 ## Resolve the meter class through the ladder
 
@@ -178,7 +180,7 @@ Derive the label from the identifier in the build script, one map, so the two
 cannot drift: strip the prefix, `_` and `-` become spaces. Point labels are the
 meter's label plus the point word.
 
-## The row block - six rows per meter
+## The row block - eight rows per meter
 
 ```
 <meter> | <class> | brick:isPartOf       | entity:Metering | para:Metering_System | rdfs:label_en <meter label>
@@ -186,10 +188,21 @@ meter's label plus the point word.
 <meter> | <class> | brick:isVirtualMeter | <blanknode> | <blanknode> | | | brick:value | TRUE
 <meter> | <class> | rec:locatedIn        | <metered entity> | <its rec: class>
 <meter> | <class> | brick:hasPoint       | <meter>-Consumption | <energy class> | | | rdfs:label_en … | brick:hasUnit …
+<meter>-Consumption | <energy class> | ref:hasExternalReference | <blanknode> | ref:TimeseriesReference | | | ref:hasTimeseriesId | <token> | | | para:hasEntityId | <metered space>
 <meter> | <class> | brick:hasPoint       | <meter>-Demand      | <power class>  | | | rdfs:label_en … | brick:hasUnit …
+<meter>-Demand | <power class> | ref:hasExternalReference | <blanknode> | ref:TimeseriesReference | | | ref:hasTimeseriesId | <token> | | | para:hasEntityId | <metered space>
 ```
 
-Four things about that block are easy to get wrong:
+Five things about that block are easy to get wrong:
+
+- **The two reference rows are part of the block, not an afterthought.** Leave
+  them out and each point is the object of one `brick:hasPoint` row and the
+  subject of nothing at all - it has no series, so the front end draws a tile
+  with nothing behind it. It validates as `W-PT-1` and nothing else, which is
+  easy to read past when there are thousands of them. QNL shipped 2,920 meter
+  points in exactly that state because this section said "six rows"; the fix was
+  2,920 rows added after the fact. Count the block: a meter with points is eight
+  rows, and a family of 1,460 meters is 11,680.
 
 - **`rdfs:label_en` on the `isPartOf` row is a SUBJECT property** - it labels the
   meter. On the `hasPoint` rows it is an OBJECT property, because it labels the
@@ -240,28 +253,58 @@ para:KiloWt    | qudt:Unit | rdf:type | qudt:Unit | | qudt:symbol | kWt
 para:KiloWt-HR | qudt:Unit | rdf:type | qudt:Unit | | qudt:symbol | kWt·hr
 ```
 
-## When the telemetry keys do not exist
+## The telemetry keys - derive them, do not defer them
 
-Common, because the calculation engine is usually commissioned after the
-ontology. **Do not write a reference row with blank keys.** The row asserts a
-working telemetry link, reads as finished to every reviewer, and the validator's
-`E-PAIR-1` is the only thing standing between it and a front-end tile with no
-data behind it.
+Both halves of a virtual meter point's key are derivable without the calculation
+engine's register, and Dar Cairo shows both:
 
-Write the points with no reference row, and put every one in a pending file -
-`<Building>_virtual_meter_timeseries_pending.csv`, columns
-`point, point_class, proposed_hasTimeseriesId, hasEntityId_TO_CONFIRM, meters`.
-The points show up as `W-PT-1`, which is the honest state. Propose the
-`hasTimeseriesId` from Dar Cairo's token per class - `ELEC_KWH_CALC` /
-`ELEC_KW_CALC`, `Utility_KWH` / `Utility_KW`, `UPS_KW_CALC`, `HVAC_KW_CALC`,
-`LTG_KW_CALC`, `SPWR_KW_CALC`, `CWPWR_KWT_CALC` / `CWPWR_KWTH_CALC` - and leave
-`hasEntityId` blank, because it is the historian's key for the *space* and
-nothing in the ontology can derive it.
+```
+entity:Dar-Cairo_UPS-Util-Electrical-Virtual-Meter-Consumption | brick:Electrical_Energy_Usage_Sensor |
+ref:hasExternalReference | <blanknode> | ref:TimeseriesReference |
+| | ref:hasTimeseriesId | UPS_KWH_CALC | para:hasEntityId | Smart Village
+```
 
-`para:contributionFraction` is the exception: both halves of its key are known
-without the register. The tsid is the literal `ContributionFraction`, and the
-entityId is the key the unit's own existing points already carry - **read it off
-them rather than deriving it**, and report any unit you had to derive.
+- **`ref:hasTimeseriesId`** is Dar Cairo's token for the meter class, the same
+  literal on every meter of that class: `ELEC_KWH_CALC` / `ELEC_KW_CALC`,
+  `Utility_KWH` / `Utility_KW`, `UPS_KWH_CALC` / `UPS_KW_CALC`,
+  `HVAC_KWH_CALC` / `HVAC_KW_CALC`, `LTG_KWH_CALC` / `LTG_KW_CALC`,
+  `SPWR_KWH_CALC` / `SPWR_KW_CALC`, `COMMON_KWH_CALC` / `COMMON_KW_CALC`,
+  `CWPWR_KWTH_CALC` / `CWPWR_KWT_CALC`, `HWPWR_KWTH_CALC` / `HWPWR_KWT_CALC`.
+- **`para:hasEntityId`** is the space the meter meters, taken from its own
+  `brick:meters` row and written the way the telemetry database writes ids -
+  underscores throughout: `QNL`, `QNL_L1`, `QNL_B_001A_Break_Out_Area`. Derive it
+  with the same helper the point layer uses, so the two cannot drift.
+
+Dar Cairo puts one **site constant** on all of them instead. That works there
+because it has one meter per class; it does not generalise. A multi-tier building
+has many meters sharing one class and therefore one token, so a single constant
+makes every room-tier CHW consumption point identical and the historian cannot
+tell 360 series apart. Use the metered space.
+
+**Derived is not confirmed.** Write the rows, and hand the calculation-engine
+team a checklist - `<Building>_virtual_meter_timeseries_pending.csv`, columns
+`point, point_class, hasTimeseriesId_TO_CONFIRM, hasEntityId_TO_CONFIRM, meters`
+- with both halves filled rather than the entityId blank. Say in the handover
+that the keys are derived from Dar Cairo's tokens and the metered space, not read
+off a register.
+
+**Only a class Dar Cairo has no token for genuinely defers.** There, and only
+there, write the point with no reference row and leave it `W-PT-1` in the pending
+file. **Never write a reference row with a blank key** - it asserts a working
+telemetry link, reads as finished to every reviewer, and `E-PAIR-1` is the only
+thing standing between it and a dead tile.
+
+`para:contributionFraction` is derived the other way round: its tsid is the
+literal `ContributionFraction` and its entityId is the key the unit's own
+existing points already carry - **read it off them rather than deriving it**, and
+report any unit you had to derive.
+
+**One more trap, once the rows exist.** A selected-datapoint reconciliation
+(`prune_to_selected.py` and its kin) matches on `ref:hasTimeseriesId`. Meter
+points are invisible to it only while they have no key; the moment they get one
+they look like unselected points and a re-run deletes the entire metering layer.
+Add every meter token to the named-exemption list in the same commit that adds
+the rows.
 
 ## Check it before handover
 

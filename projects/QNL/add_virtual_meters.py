@@ -18,13 +18,13 @@ Emits, in order:
      water consumption, which QNL has no point for: the backend replaces the
      ContributionFraction series with its own calculation
 
-Timeseries references for the meter points are NOT written - the historian
-carries no calculated tags yet (checked: zero *_CALC, zero ContributionFraction).
-They go to a pending file instead, with the Dar Cairo tsid proposed and the
-entityId left for the calculation-engine team. contributionFraction *is*
-referenced, because both halves of its key are known: the tsid is fixed at
-"ContributionFraction" and the entityId is the one the unit's existing points
-already carry.
+Timeseries references for the meter points ARE written, one per point. Both
+halves of the key are derivable without the calculation engine's register: the
+tsid is Dar Cairo's token for the meter class, and the entityId is the space the
+meter meters. They are still derived rather than confirmed, so the pending file
+remains as the checklist to hand that team. contributionFraction takes the same
+shape, its tsid fixed at "ContributionFraction" and its entityId read off the
+unit's existing points.
 
     python3 projects/QNL/add_virtual_meters.py
 """
@@ -34,8 +34,14 @@ import collections
 import csv
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+# One derivation of the telemetry entity id, shared with the air terminal layer,
+# so the two cannot drift. `entity_id` is already taken in this module for the
+# map of ids read off a unit's existing points, hence the alias.
+from add_air_terminal_points import entity_id as space_key
 ONTOLOGY = ROOT / "projects/QNL/QNL_Ontology.csv"
 WIDTH = 27
 
@@ -78,9 +84,16 @@ POINTS = {
     ],
 }
 
-# Dar Cairo's timeseries token per (meter class, point kind). Proposed only -
-# the entityId half is the historian's key for the metered space and does not
-# exist for QNL yet, so these go to the pending file, not into the sheet.
+# Dar Cairo's timeseries token per (meter class, point kind). These are WRITTEN
+# into the sheet, on the point's own ref:hasExternalReference row - Dar Cairo does
+# the same (entity:Dar-Cairo_UPS-Util-Electrical-Virtual-Meter-Consumption carries
+# UPS_KWH_CALC with para:hasEntityId "Smart Village"). The entityId half is the
+# space the meter meters, underscored: QNL, QNL_L1, QNL_B_001A_Break_Out_Area.
+# Dar Cairo puts one site constant on all of them, which only works where there
+# is a single meter per class; QNL has 360 room-tier CHW meters that would
+# collide on it. The pending file survives as the calculation-engine team's
+# confirmation checklist, now with both halves filled rather than the entityId
+# blank.
 TSID = {
     ("para:Utility_Meter",     "Consumption"): "Utility_KWH",
     ("para:Utility_Meter",     "Demand"):      "Utility_KW",
@@ -219,10 +232,21 @@ def build_meters(tiers):
                 out.append(row(meter, cls, "rec:locatedIn", target, target_type))
                 for kindname, pcls, unit in POINTS[kind]:
                     point = f"{meter}-{kindname}"
+                    key = TSID.get((cls, kindname), "")
+                    eid = space_key(target)
                     out.append(row(meter, cls, "brick:hasPoint", point, pcls,
                                    oprops=[("rdfs:label_en", f"{mlabel} {kindname}"),
                                            ("brick:hasUnit", unit)]))
-                    pending.append((point, pcls, TSID.get((cls, kindname), ""), "", target))
+                    # The point's own reference row. A meter block is EIGHT rows,
+                    # not six: without this the point is the object of one
+                    # hasPoint row and the subject of nothing, so the front end
+                    # draws a tile with no series behind it.
+                    if key:
+                        out.append(row(point, pcls, "ref:hasExternalReference",
+                                       "<blanknode>", "ref:TimeseriesReference",
+                                       oprops=[("ref:hasTimeseriesId", key),
+                                               ("para:hasEntityId", eid)]))
+                    pending.append((point, pcls, key, eid, target))
     return out, pending, overlaps
 
 
@@ -321,7 +345,7 @@ def main():
         w.writerow(["point", "point_class", "proposed_hasTimeseriesId",
                     "hasEntityId_TO_CONFIRM", "meters"])
         w.writerows(pending)
-    print(f"wrote {args.pending}  ({len(pending)} points awaiting telemetry keys)")
+    print(f"wrote {args.pending}  ({len(pending)} derived keys for the calculation engine to confirm)")
 
 
 if __name__ == "__main__":

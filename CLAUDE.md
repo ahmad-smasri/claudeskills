@@ -26,7 +26,7 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/naming-and-labels.md` | identifier patterns per level, character rules, the label rule, IFC references | naming anything |
 | `references/relationships.md` | predicate families, what Dar Cairo actually uses and how often, the spatial hierarchy, feeds, hasPart vs locatedIn | choosing a predicate |
 | `references/class-resolution.md` | the four-step ladder, extension rules, where the vocabularies come from | a class is missing or ambiguous |
-| `references/virtual-meters.md` | the virtual metering layer - the tier matrix to ask for, the nine meter classes and their Dar Cairo name segments, the six-row block, the thermal-unit trap, `para:contributionFraction`, and what to do when the calculation engine's telemetry keys do not exist yet | adding virtual meters, or `para:contributionFraction` |
+| `references/virtual-meters.md` | the virtual metering layer - the tier matrix to ask for, the nine meter classes and their Dar Cairo name segments, the **eight-row** block, the thermal-unit trap, `para:contributionFraction`, and how to derive both halves of a telemetry key when the calculation engine's register does not exist yet | adding virtual meters, or `para:contributionFraction` |
 | `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
 | `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
 | `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
@@ -211,9 +211,14 @@ measures the incoming municipal supply - while Electrical Meters sum across UPS,
 panels and generator and belong at any tier. Thermal meter points take
 `para:KiloWt` / `para:KiloWt-HR`, never `unit:KiloW`, or a demand rollup adds
 chilled-water kW to electrical kW. **Their points are calculated, so the IO-list
-rule below does not reach them** - the keys come from the calculation engine's
-register, and where that does not exist the points ship with no reference row and
-a pending file, never a blank one.
+rule below does not reach them** - but that is not licence to omit the reference
+row. Both halves are derivable: `ref:hasTimeseriesId` is Dar Cairo's token for
+the meter class, `para:hasEntityId` is the space the meter meters, underscored.
+Write the rows, list the derived keys for the calculation engine to confirm, and
+add every token to the selected-list exemptions in the same commit or the next
+reconciliation deletes the whole layer. **A meter block with points is eight rows,
+not six.** Only a class Dar Cairo has no token for ships with no reference row and
+a pending file - and never a blank one.
 
 **Where a selected-datapoint list exists, it outranks the IO list on scope.** An
 IO list says what the BMS publishes; a selected-points list says what the project

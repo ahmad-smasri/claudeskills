@@ -124,7 +124,7 @@ review is tractable.
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
 | Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, **from the IO list and nowhere else** | below |
-| Metering | virtual meters, if the client asked for them: the tier matrix, the six-row block per meter, `para:contributionFraction` on AHU-fed terminal units | `references/virtual-meters.md` |
+| Metering | virtual meters, if the client asked for them: the tier matrix, the eight-row block per meter, `para:contributionFraction` on AHU-fed terminal units | `references/virtual-meters.md` |
 | References | `ref:hasExternalReference`, one row per reference. `ref:IFCReference` on the physical thing, carrying `para:IFC_ID` and `ref:ifcName`. `ref:TimeseriesReference` **on the point, never on the equipment**, carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
@@ -145,9 +145,11 @@ because a `CHW-System` beneath it would hold the loop and nothing else.
 meter types at each is the client's call, and the count follows from it as
 arithmetic: room tier on a 354-room building is 1,440 meters, so say the total
 back before building. Their points are *calculated*, so the IO-list rule below
-does not reach them - the keys come from the calculation engine's register, and
-where that does not exist yet the points ship with no reference row and a pending
-file, never with a blank one.
+does not reach them - but the reference row is still written. Both halves are
+derivable without the register: `ref:hasTimeseriesId` from Dar Cairo's token per
+meter class, `para:hasEntityId` from the space the meter meters. A meter block
+with points is eight rows, not six. Only a class Dar Cairo has no token for ships
+with no reference row and a pending file, never with a blank one.
 
 **The points rule: every point traces back to a row in the IO list.** A point the
 BMS does not publish resolves to an empty timeseries - the front end draws a tile

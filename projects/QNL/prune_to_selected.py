@@ -50,6 +50,20 @@ KEEP_CALCULATED = {
     'AT_CWPWR_KWT_CALC', 'AT_CWPWR_KWHT_CALC',
     'AT_HEATPWR_KWT_CALC', 'AT_HEATPWR_KWHT_CALC',
     'AT_ELEC_KW_CALC', 'AT_ELEC_KWH_CALC',
+    # QNL-056: the virtual metering layer's 18 tokens, one pair per meter class.
+    # These became visible to this script the moment the meter points got their
+    # reference rows - before that they carried no tsid at all and were skipped
+    # by accident rather than by rule. Without this block a re-run deletes 2,920
+    # points and 5,840 rows, which is the whole metering layer.
+    'Utility_KWH', 'Utility_KW',
+    'UPS_KWH_CALC', 'UPS_KW_CALC',
+    'SPWR_KWH_CALC', 'SPWR_KW_CALC',
+    'COMMON_KWH_CALC', 'COMMON_KW_CALC',
+    'HVAC_KWH_CALC', 'HVAC_KW_CALC',
+    'LTG_KWH_CALC', 'LTG_KW_CALC',
+    'ELEC_KWH_CALC', 'ELEC_KW_CALC',
+    'CWPWR_KWHT_CALC', 'CWPWR_KWT_CALC',
+    'HWPWR_KWHT_CALC', 'HWPWR_KWT_CALC',
 }
 
 

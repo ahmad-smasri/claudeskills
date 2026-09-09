@@ -127,6 +127,12 @@ ref:hasExternalReference | <blanknode> | ref:TimeseriesReference |
 the IO list. `para:hasEntityId` is the entity those keys are grouped under - the
 **parent equipment's** tag, which is how the point row carries its owner.
 
+A **calculated** point takes the same row. Its key does not come from an IO list -
+a field list will never carry `ELEC_KW_CALC` - but it is still a point with a
+series, so it still gets the reference. Virtual meter points and `para:` container
+points are the common cases; `references/virtual-meters.md` says where their two
+key halves come from.
+
 So no IO list means no points, and no points means no timeseries references at
 all. Do not put a stub `ref:TimeseriesReference` on the equipment to stand in for
 the missing points: it asserts a telemetry key the equipment does not have, and
