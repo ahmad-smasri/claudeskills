@@ -70,7 +70,10 @@ METER_TYPES = [
     # sums UPS load, and neither building publishes a UPS datapoint. Removed
     # from both sheets on 2026-09-09 at the client's direction. Do not put it
     # back without an input to sum - it would render an empty tile.
-    ("para:HW_Meter",           "HW-Power-Thermal-Virtual-Meter",      "BF",    THERMAL),
+    # para:HW_Meter is deliberately absent: it measures DOMESTIC hot water and
+    # neither building has an energy point for any. QNL's only DHW asset is a
+    # calorifier carrying two alarms and a temperature, outside the selected
+    # scope; SSC's heating is electric. Removed 2026-09-09, client direction.
     ("para:SPWR_Meter",         "SPWR-Util-Electrical-Virtual-Meter",  "BF",    ELEC),
     ("para:Common_Util_Meter",  "Common-Util-Electrical-Virtual-Meter","BF",    ELEC),
     ("para:CHW_Meter",          "CHW-Power-Thermal-Virtual-Meter",     "BFR",   THERMAL),
@@ -206,7 +209,6 @@ DECLARATIONS = [
     ("para:HVAC_Meter",          "brick:Electrical_Meter",    "HVAC Electrical Meter"),
     ("para:LTG_Meter",           "brick:Electrical_Meter",    "Lighting Electrical Meter"),
     ("para:CHW_Meter",           "brick:Thermal_Power_Meter", "Chilled Water Thermal Power Meter"),
-    ("para:HW_Meter",            "brick:Thermal_Power_Meter", "Hot Water Thermal Power Meter"),
     ("para:contributionFraction", "brick:Point",              "Contribution Fraction"),
 ]
 UNIT_DECLARATIONS = [("para:KiloWt", "kWt"), ("para:KiloWt-HR", "kWt·hr")]
@@ -387,16 +389,30 @@ def build_contribution(etype, located, fedby, entity_id):
     return out, fed, skipped, derived
 
 
-def build_declarations(declared):
+def build_declarations(declared, matrix, contribution):
+    """Only what THIS building's matrix actually uses.
+
+    Declaring everything in DECLARATIONS regardless of the matrix is how SSC
+    ended up with a para:HW_Meter owl:Class row and no HW meter under it - a
+    dangling class that reads as a modelling decision and is really a leak. The
+    same bug had already put a para:UPS_Meter declaration in a sheet whose
+    matrix never asked for one. The matrix is the authority.
+    """
+    needed = {"para:Metering_System"} | {cls for cls, _, _, _ in matrix}
+    if contribution:
+        needed.add("para:contributionFraction")
     out = []
     for cls, parent, label in DECLARATIONS:
-        if cls in declared:
+        if cls in declared or cls not in needed:
             continue
         out.append(row(cls, "owl:Class", "rdfs:subClassOf", parent,
                        sprops=[("rdfs:label_en", label)]))
-    for unit, symbol in UNIT_DECLARATIONS:
-        out.append(row(unit, "qudt:Unit", "rdf:type", "qudt:Unit",
-                       sprops=[("qudt:symbol", symbol)]))
+    # The thermal units follow the matrix too: a building with no THERMAL row
+    # has no use for para:KiloWt and should not be handed one.
+    if any(kind == THERMAL for *_, kind in matrix):
+        for unit, symbol in UNIT_DECLARATIONS:
+            out.append(row(unit, "qudt:Unit", "rdf:type", "qudt:Unit",
+                           sprops=[("qudt:symbol", symbol)]))
     out.append(row(METERING, "para:Metering_System", "brick:isPartOf", SITE, "rec:Site",
                    sprops=[("rdfs:label_en", "Metering System")]))
     return out
@@ -452,7 +468,7 @@ def main():
         decls, meters, pending, overlaps = [], [], [], []
     else:
         tiers = spatial_targets(etype)
-        decls = build_declarations(declared)
+        decls = build_declarations(declared, b["matrix"], b["contribution"])
         meters, pending, overlaps = build_meters(tiers, b["matrix"], b["overlap"])
 
     if b["contribution"]:

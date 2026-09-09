@@ -551,15 +551,18 @@ introduce no findings of their own. Current totals are in "Validator result" abo
 
 ## Virtual metering layer — added 2026-09-03
 
-The sheet now carries a metering layer: **1,459 virtual meters, 11,672 rows**, plus
-`para:contributionFraction` on 299 terminal units. The sheet stands at 25,933 rows.
+The sheet now carries a metering layer: **1,453 virtual meters, 11,624 rows**, plus
+`para:contributionFraction` on 299 terminal units. The sheet stands at 25,884 rows.
 Regenerate it with `python3 projects/QNL/add_virtual_meters.py` (`--dry-run` to count first).
 
 Two later changes moved these figures, and this section carries both: the meter
 block grew from six rows to eight when the missing `ref:hasExternalReference`
-rows were added (QNL-056), and `para:UPS_Meter` was removed on 2026-09-09 —
-a UPS meter sums UPS load and QNL publishes no UPS datapoint, so it would have
-rendered an empty tile. Removal was `projects/QNL/remove_ups_meter.py`.
+rows were added (QNL-056), and two meter classes were removed on 2026-09-09 —
+`para:UPS_Meter`, because a UPS meter sums UPS load and QNL publishes no UPS
+datapoint, and `para:HW_Meter`, because it measures domestic hot water and QNL's
+only DHW asset is a calorifier with no energy point, outside the selected scope.
+Both would have rendered empty tiles. Removal was
+`projects/QNL/remove_meter_class.py`.
 
 **Where it came from.** `sources/VirtualMeters_QNL_manual_v1.xlsm`, the hand-built
 workbook, supplied the tier matrix on its `Sheet1` — 9 meter classes against
@@ -582,7 +585,7 @@ naming the physical meter that also measures that space.
 | Tier | Meter classes | Count |
 |---|---|---|
 | Building only | `para:Utility_Meter` | 1 |
-| Building + floor | `para:HW_Meter`, `para:SPWR_Meter`, `para:Common_Util_Meter` | 18 |
+| Building + floor | `para:SPWR_Meter`, `para:Common_Util_Meter` | 12 |
 | Building + floor + room | `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`, `brick:Electrical_Meter` | 1,440 |
 
 Each meter carries **eight** rows: `brick:isPartOf entity:Metering`,
@@ -590,17 +593,17 @@ Each meter carries **eight** rows: `brick:isPartOf entity:Metering`,
 Consumption/Demand point pair, and one `ref:hasExternalReference` row per point.
 The last two are not optional — a meter point without one has no series behind
 it, which is what QNL-056 fixed. Name segments are Dar Cairo's verbatim; the one
-coinage is `HW-Power-Thermal-Virtual-Meter`, mirroring the CHW segment.
+segments are Dar Cairo's verbatim throughout.
 
 **Thermal points take `para:KiloWt` / `para:KiloWt-HR`**, not `unit:KiloW`, on all
-732 CHW and HW points — client decision, so that a building demand rollup cannot
+720 CHW points — client decision, so that a building demand rollup cannot
 add chilled-water kW to electrical kW. Both units are declared as `qudt:Unit`
 rows. Note the 7 pre-existing QNL thermal rows still on `unit:KiloW`; they were
 left alone and want a separate pass.
 
 **Early declarations added:** `para:Metering_System`,
 `para:SPWR_Meter`, `para:Common_Util_Meter`, `para:HVAC_Meter`, `para:LTG_Meter`,
-`para:CHW_Meter`, `para:HW_Meter`, `para:contributionFraction`, `para:KiloWt`,
+`para:CHW_Meter`, `para:contributionFraction`, `para:KiloWt`,
 `para:KiloWt-HR`, and the `entity:Metering` system node under `entity:QF`.
 `para:Utility_Meter` was already declared. All sort ahead of first use.
 
@@ -647,7 +650,7 @@ derived — the derivation matches all 296 units that do have one.
 | | Before | After |
 |---|---|---|
 | Errors | 574 | **10** — the layer added none, and filling `para:IFC_ID` cleared 564 |
-| `W-BN-4` | 0 | 1,459 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
+| `W-BN-4` | 0 | 1,453 — `brick:value TRUE` with no unit, one per meter. Dar Cairo writes it bare; a boolean is not a dimensionless quantity, so do not "fix" it with `unit:UNITLESS` |
 | `W-PT-1` | 0 | 2,918 — the pending timeseries above |
 | `check_consistency` errors | 590 | 608 |
 
@@ -1093,7 +1096,7 @@ PARA team.
 
 **This is a QNL-only override and it is deliberately half-applied.** All three
 reference models use the plain Brick classes and the skill still says so. Scope
-is the air terminals alone, as instructed: the **732** CHW/HW virtual meter
+is the air terminals alone, as instructed: the **720** CHW virtual meter
 points and the **7** on `entity:QNL_CHWS-MAIN-LOOP_Energy-Meter` keep the Brick
 classes. So a query for `para:Cooling_Thermal_Power_Sensor` returns the terminals
 and not the CHW meters — worth knowing before someone reports it as a defect.

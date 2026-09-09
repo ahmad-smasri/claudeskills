@@ -1495,8 +1495,6 @@ entity:QNL_B_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_
 entity:QNL_B_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,QNL_B,entity:QNL_B
 entity:QNL_B_HVAC-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,HVAC_KWH_CALC,QNL_B,entity:QNL_B
 entity:QNL_B_HVAC-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,HVAC_KW_CALC,QNL_B,entity:QNL_B
-entity:QNL_B_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWHT_CALC,QNL_B,entity:QNL_B
-entity:QNL_B_HW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,HWPWR_KWT_CALC,QNL_B,entity:QNL_B
 entity:QNL_B_LTG-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,LTG_KWH_CALC,QNL_B,entity:QNL_B
 entity:QNL_B_LTG-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,LTG_KW_CALC,QNL_B,entity:QNL_B
 entity:QNL_B_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,QNL_B,entity:QNL_B
@@ -1509,8 +1507,6 @@ entity:QNL_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Se
 entity:QNL_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,QNL,entity:QNL
 entity:QNL_HVAC-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,HVAC_KWH_CALC,QNL,entity:QNL
 entity:QNL_HVAC-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,HVAC_KW_CALC,QNL,entity:QNL
-entity:QNL_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWHT_CALC,QNL,entity:QNL
-entity:QNL_HW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,HWPWR_KWT_CALC,QNL,entity:QNL
 entity:QNL_L1-001_Open-Reading-Area_CHW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,CWPWR_KWHT_CALC,QNL_L1_001_Open_Reading_Area,entity:QNL_L1-001_Open-Reading-Area
 entity:QNL_L1-001_Open-Reading-Area_CHW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,CWPWR_KWT_CALC,QNL_L1_001_Open_Reading_Area,entity:QNL_L1-001_Open-Reading-Area
 entity:QNL_L1-001_Open-Reading-Area_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,ELEC_KWH_CALC,QNL_L1_001_Open_Reading_Area,entity:QNL_L1-001_Open-Reading-Area
@@ -2383,8 +2379,6 @@ entity:QNL_L1_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage
 entity:QNL_L1_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,QNL_L1,entity:QNL_L1
 entity:QNL_L1_HVAC-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,HVAC_KWH_CALC,QNL_L1,entity:QNL_L1
 entity:QNL_L1_HVAC-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,HVAC_KW_CALC,QNL_L1,entity:QNL_L1
-entity:QNL_L1_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWHT_CALC,QNL_L1,entity:QNL_L1
-entity:QNL_L1_HW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,HWPWR_KWT_CALC,QNL_L1,entity:QNL_L1
 entity:QNL_L1_LTG-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,LTG_KWH_CALC,QNL_L1,entity:QNL_L1
 entity:QNL_L1_LTG-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,LTG_KW_CALC,QNL_L1,entity:QNL_L1
 entity:QNL_L1_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,QNL_L1,entity:QNL_L1
@@ -2789,8 +2783,6 @@ entity:QNL_L2_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage
 entity:QNL_L2_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,QNL_L2,entity:QNL_L2
 entity:QNL_L2_HVAC-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,HVAC_KWH_CALC,QNL_L2,entity:QNL_L2
 entity:QNL_L2_HVAC-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,HVAC_KW_CALC,QNL_L2,entity:QNL_L2
-entity:QNL_L2_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWHT_CALC,QNL_L2,entity:QNL_L2
-entity:QNL_L2_HW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,HWPWR_KWT_CALC,QNL_L2,entity:QNL_L2
 entity:QNL_L2_LTG-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,LTG_KWH_CALC,QNL_L2,entity:QNL_L2
 entity:QNL_L2_LTG-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,LTG_KW_CALC,QNL_L2,entity:QNL_L2
 entity:QNL_L2_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,QNL_L2,entity:QNL_L2
@@ -2837,8 +2829,6 @@ entity:QNL_P_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_
 entity:QNL_P_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,QNL_P,entity:QNL_P
 entity:QNL_P_HVAC-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,HVAC_KWH_CALC,QNL_P,entity:QNL_P
 entity:QNL_P_HVAC-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,HVAC_KW_CALC,QNL_P,entity:QNL_P
-entity:QNL_P_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWHT_CALC,QNL_P,entity:QNL_P
-entity:QNL_P_HW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,HWPWR_KWT_CALC,QNL_P,entity:QNL_P
 entity:QNL_P_LTG-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,LTG_KWH_CALC,QNL_P,entity:QNL_P
 entity:QNL_P_LTG-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,LTG_KW_CALC,QNL_P,entity:QNL_P
 entity:QNL_P_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,QNL_P,entity:QNL_P
@@ -2909,8 +2899,6 @@ entity:QNL_T1_Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage
 entity:QNL_T1_Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,ELEC_KW_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_HVAC-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,HVAC_KWH_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_HVAC-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,HVAC_KW_CALC,QNL_T1,entity:QNL_T1
-entity:QNL_T1_HW-Power-Thermal-Virtual-Meter-Consumption,brick:Thermal_Energy_Usage_Sensor,HWPWR_KWHT_CALC,QNL_T1,entity:QNL_T1
-entity:QNL_T1_HW-Power-Thermal-Virtual-Meter-Demand,brick:Thermal_Power_Sensor,HWPWR_KWT_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_LTG-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,LTG_KWH_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_LTG-Util-Electrical-Virtual-Meter-Demand,brick:Electric_Power_Sensor,LTG_KW_CALC,QNL_T1,entity:QNL_T1
 entity:QNL_T1_SPWR-Util-Electrical-Virtual-Meter-Consumption,brick:Electrical_Energy_Usage_Sensor,SPWR_KWH_CALC,QNL_T1,entity:QNL_T1

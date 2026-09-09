@@ -50,23 +50,30 @@ a matrix, because that is the shape of the answer:
 
 ```
                           Building  Floor  Room
-para:Utility_Meter            x
-para:UPS_Meter                x
-para:HW_Meter                 x       x
-para:SPWR_Meter               x       x
-para:Common_Util_Meter        x       x
-para:CHW_Meter                x       x      x
-para:HVAC_Meter               x       x      x
-para:LTG_Meter                x       x      x
-brick:Electrical_Meter        x       x      x
+para:Utility_Meter            .
+para:UPS_Meter                .
+para:HW_Meter                 .       .
+para:SPWR_Meter               .       .
+para:Common_Util_Meter        .       .
+para:CHW_Meter                .       .      .
+para:HVAC_Meter               .       .      .
+para:LTG_Meter                .       .      .
+brick:Electrical_Meter        .       .      .
 ```
 
-That matrix is QNL's, and it is a reasonable default to offer - but offer it as a
-starting point, not a checklist to complete: every tick has to survive the input test above -
-the points its formula would sum must exist. Once it is
+Those are the nine classes and the tiers each can sensibly occupy - the menu to
+put in front of the client, not a set of ticks. Offer it as a starting point,
+not a checklist to complete: every tick has to survive the input test above -
+the points its formula would sum must exist.
+
+**Neither delivered building ticks all nine.** QNL and SSC both eliminated
+`para:UPS_Meter` (no UPS datapoint) and `para:HW_Meter` (domestic hot water,
+no energy point for any), and SSC never had HW to begin with. QNL's answer is
+seven classes - Utility at building; SPWR and Common-Util at building and floor;
+CHW, HVAC, LTG and Electrical at all three. Once it is
 answered the count is fixed arithmetic - a `B` costs 1 meter, an `F` costs one
 per level, an `R` costs one per room - so **say the total back before building**:
-QNL's matrix over 1 building, 5 levels and 354 rooms is 1,459 meters and 11,672
+QNL's matrix over 1 building, 5 levels and 354 rooms is 1,453 meters and 11,624
 rows. A client who did not realise room tier meant 1,440 meters gets to say so while it
 is still a sentence rather than a sheet.
 
@@ -209,12 +216,12 @@ Five things about that block are easy to get wrong:
   easy to read past when there are thousands of them. QNL shipped 2,920 meter
   points in exactly that state because this section said "six rows"; the fix was
   2,920 rows added after the fact. Count the block: a meter with points is eight
-  rows, and a family of 1,459 meters is 11,672.
+  rows, and a family of 1,453 meters is 11,624.
 
 - **`rdfs:label_en` on the `isPartOf` row is a SUBJECT property** - it labels the
   meter. On the `hasPoint` rows it is an OBJECT property, because it labels the
   point. Same column name, different side, same block. A build script that maps
-  property names to sides globally will silently label `entity:Metering` 1,459
+  property names to sides globally will silently label `entity:Metering` 1,453
   times and leave every meter unlabelled.
 - **`brick:isVirtualMeter` carries `brick:value TRUE` and no unit.** It fires
   `W-BN-4`, which suggests `unit:UNITLESS`. Do not add one - a boolean is not a
