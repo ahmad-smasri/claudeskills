@@ -1,6 +1,6 @@
 ---
 name: building-ontology
-description: Author a PARA/Brick building ontology spreadsheet - the 9-column CSV/Excel of triples that the backend converts to .ttl. Use when asked to build, extend, review or validate a building ontology, a Brick model, a BrickSchema CSV, or an ontology sheet for a building, and when turning room schedules, asset registers, or BMS point lists into ontology rows.
+description: Author, validate or CORRECT a PARA/Brick building ontology spreadsheet - the 9-column CSV/Excel of triples that the backend converts to .ttl. Use when asked to build, extend, review, validate, reconcile or fix a building ontology, a Brick model, a BrickSchema CSV, or an ontology sheet for a building; when turning room schedules, asset registers, or BMS point lists into ontology rows; and when editing a sheet a previous pass or another team delivered.
 ---
 
 # Building an ontology sheet
@@ -11,6 +11,29 @@ Turtle; the front end reads the labels; the 3D viewer reads the IFC references.
 
 Work in this order. Do not skip the intake step - most bad sheets come from
 guessing at inputs rather than from getting the modelling wrong.
+
+## Which job is this?
+
+The skill has three, and they fail differently.
+
+| | you are | the failure mode |
+|---|---|---|
+| **Create** | writing a sheet from sources | rows that do not validate - the checkers catch it |
+| **Validate** | running the checkers over a sheet | a finding read past, or a rule that does not exist yet |
+| **Correct** | editing rows a previous pass or another team delivered | **a sheet that passes and is wrong** |
+
+Sections 0-5 below are the create path. **If you are editing a sheet you did not
+write in this session - fixing a defect, removing a family, retyping points,
+reconciling against an IO list - read `references/corrections.md` FIRST.** A
+correction bug deletes rows nobody asked to delete, or rewrites a live join key,
+and then validates clean. The checkers cannot save you there; the discipline in
+that file is what does.
+
+The short version, when there is no time for the file: **baseline the per-code
+finding census before you touch anything; match targets by exact equality in both
+the subject and object columns, never by substring or prefix; assert what must
+survive as well as what must go; dry-run and read the per-row output against what
+you predicted; compare the census afterwards code by code, not just the totals.**
 
 ## Scope: build what was asked for, and no more
 
@@ -41,7 +64,10 @@ user:
 6. What each piece of equipment feeds, and what feeds it
 7. **IO lists** - equipment carries data points, and the IO list is where the
    point names, signal types, units and telemetry IDs come from. Ask for it
-   before modelling any points. No IO list means no points for that equipment
+   before modelling any points. No IO list means no points for that equipment.
+   **Ask in the same breath whether a selected-datapoint list exists** - the
+   narrower "what we agreed to integrate" list that sits above the IO list and
+   overrides it on scope
 8. **Manufacturer standards and datasheets** - the source of nameplate
    properties: rated power, voltage, phase count, capacity, flow rates, head,
    model number, manufacturer. **Leave the property out when the datasheet was
@@ -121,6 +147,7 @@ review is tractable.
 | Feeds | `rec:feeds` / `rec:isFedBy` across the distribution chain | below |
 | Parts | `brick:hasPart` down to where points attach | |
 | Points | `brick:hasPoint` + class + `rdfs:label_en` + `brick:hasUnit`, **from the IO list and nowhere else** | below |
+| Metering | virtual meters, if the client asked for them: the tier matrix, the eight-row block per meter, `para:contributionFraction` on AHU-fed terminal units | `references/virtual-meters.md` |
 | References | `ref:hasExternalReference`, one row per reference. `ref:IFCReference` on the physical thing, carrying `para:IFC_ID` and `ref:ifcName`. `ref:TimeseriesReference` **on the point, never on the equipment**, carrying `ref:hasTimeseriesId` and `para:hasEntityId` | `references/csv-contract.md` |
 | Extensions | every `para:` class the sheet introduced, defined at the top | |
 
@@ -136,12 +163,39 @@ system that earns its place**: a node whose only child is one asset costs the
 user a click and tells them nothing. QNL declares `entity:HVAC` and stops,
 because a `CHW-System` beneath it would hold the loop and nothing else.
 
+**Virtual meters are asked for, never assumed** - see
+`references/virtual-meters.md`. Which tiers (Building, Floor, Room) and which
+meter types at each is the client's call, and the count follows from it as
+arithmetic: room tier on a 354-room building is 1,440 meters, so say the total
+back before building. Their points are *calculated*, so the IO-list rule below
+does not reach them - but the reference row is still written. Both halves are
+derivable without the register: `ref:hasTimeseriesId` from Dar Cairo's token per
+meter class, `para:hasEntityId` from the space the meter meters. A meter block
+with points is eight rows, not six. Only a class Dar Cairo has no token for ships
+with no reference row and a pending file, never with a blank one.
+
 **The points rule: every point traces back to a row in the IO list.** A point the
 BMS does not publish resolves to an empty timeseries - the front end draws a tile
 with no data behind it, and nobody can tell whether the sensor is broken or was
 never real. Over-inclusion is worse than omission here. Cross-check with
 `scripts/check_io_list.py` before handover, and never infer a point list from the
 equipment type.
+
+**And where a selected-datapoint list exists, that is the scope authority, not
+the IO list.** The two documents answer different questions. An IO list or
+historian export is an inventory of what the BMS *publishes*; a selected-points
+list - `Selected_..._Data_Points_v*.xlsx`, "Must Have" columns, an integration
+schedule - is what the project was *asked to deliver*, and it is always the
+smaller set. Ask for it at intake alongside the IO list, and if one exists, a
+point that is not on it does not go in the sheet however well the IO list
+evidences it. A tag the historian carries and the selection omits is not a gap
+you found; it is a decision someone already made. Reconcile both ways before
+handover - every selected tag present, and nothing present that is not selected -
+because a point that fails the second test still validates clean and still
+renders a dead tile. The one class of exception is a point the sheet invents on
+purpose, such as a `para:` container the backend fills by calculation: it is
+correctly absent from a list of BMS tags, so exempt it by name and say so in the
+handover note rather than letting it read as an overrun.
 
 ## 3. Naming and labels
 
@@ -173,9 +227,17 @@ every other punctuation mark is removed** - so `1.001_CORRIDOR` becomes
 `Coefficient of Performance COP`. Run the validator with the matching
 `--label-style` and name the choice in the handover.
 
-## 4. Validate before handing over
+## 4. Validate - before handing over, and before AND after any correction
 
-Two passes, and both matter. Neither writes anything into the sheet.
+Three passes, and all of them matter. None writes anything into the sheet.
+
+**When correcting rather than creating, run them twice**: once to record the
+baseline, once to compare. Compare the census **code by code**, not the totals -
+a total that does not move can hide one finding cleared and another created.
+
+```bash
+python3 scripts/check_consistency.py sheet.xlsx | grep -oE '\b[EWI]-CON-[0-9]+' | sort | uniq -c
+```
 
 ```
 python3 scripts/validate_ontology.py MyBuilding.xlsx --preflight
@@ -193,6 +255,16 @@ trusting a finding: a sheet can validate clean and still model the wrong buildin
   term existence, deprecation, units, blank-node shape, spatial connectivity,
   terminal units with no feeds, points with no reference. `--label-style verbatim`
   turns `E-LBL-1` off, every other rule stays.
+
+  **Three of its rules exist because this project shipped the defect first**, and
+  all three describe rows that are individually well-formed:
+  `E-REF-2` a timeseries reference whose subject nothing declares - a real tag
+  wired to nothing, the mirror of `W-PT-1` and the harder half to see;
+  `E-REF-3` a `ref:hasTimeseriesId` naming a **different entity of the same
+  class** than the row's `para:hasEntityId` - the point shows another unit's
+  reading as its own, and two delivered AHUs did exactly that;
+  `W-CLS-1` an `owl:Class` declared and used by nothing, which reads as a
+  modelling decision and is really a leak.
 - **`check_consistency.py`** puts every unit of a class beside its siblings and
   finds what a row read cannot - a missing point, a divergent type, a `#N/A` in an
   object cell, a child whose separators drifted. Run it per family while building
@@ -222,13 +294,19 @@ stdout or `--report`. `.xlsx` needs `openpyxl`; `.csv` needs nothing extra.
 in the assumption log** - a deliverable in its own right, what lets a reviewer see
 months later why the sheet differs from the register they hold.
 
-One workbook for the estate, `Assumption_Log.xlsx`, **one sheet per building**
-(`SSC`, `HQ`, `QNL`, …), columns `ID · Date · Category · Layer · Entity/Scope ·
-What the source says · What we did · Why/basis · Rows affected`. Categories:
-`Identifier`, `Location`, `Units`, `Spelling`, `Class`, `Structure`, `Scope`,
-`Source defect`. It is **hand-maintained** in Excel; `projects/format_assumption_log.py`
-only propagates the shared format (`--add <NAME>` scaffolds a new building's sheet),
-never row content.
+One workbook for the estate, `projects/Assumption_Log.xlsx`, **one sheet per
+building** (`SSC`, `HQ`, `QNL`, …), columns `ID · Date · Category · Layer ·
+Entity/Scope · What the source says · What we did · Why/basis · Rows affected`.
+Categories: `Identifier`, `Location`, `Units`, `Spelling`, `Class`, `Structure`,
+`Scope`, `Source defect`.
+
+**The CSVs are the source; the workbook is output.** `projects/assumption-log/`
+holds one CSV per building and `build.py` regenerates the workbook from them
+(`--add <NAME>` starts a new building, `--check` says whether the workbook is
+stale and exits non-zero if it is). Edit the CSV and rebuild - an edit made in
+Excel is overwritten by the next build. The workbook was the source until a
+binary merge nearly discarded thirteen QNL entries: git cannot merge an `.xlsx`,
+so two people editing one meant a silent loss.
 
 Log anything where the sheet and the source diverge: a unit changed and why the
 class outranked it; a spelling/separator corrected with the sibling that proves
@@ -274,7 +352,9 @@ extension `.ttl`. Flag them explicitly - do not let them arrive unannounced.
 | `references/csv-contract.md` | Unsure which column a value belongs in |
 | `references/naming-and-labels.md` | Naming an entity or writing a label |
 | `references/relationships.md` | Choosing a predicate |
+| `references/virtual-meters.md` | Adding a virtual metering layer, or `para:contributionFraction` |
 | `references/class-resolution.md` | A class is missing or ambiguous |
+| `references/corrections.md` | **Editing a sheet you did not write in this session - always** |
 | `references/known-issues.md` | A rule code needs explaining, or the sources disagree |
 
 | Script | Does |
@@ -295,7 +375,7 @@ timeseries references, an aggregation and two `para:` classes - that validates
 clean. Copy its shapes rather than reinventing them.
 
 `reference-models/` holds the source of truth: `DarCairo_V98.csv` (primary),
-`QF_SSC_Ontology_V03.xlsx` and `QF_HQ_Ontology_V02.xlsx` (the two
+`QF_SSC_Ontology_V04.xlsx` and `QF_HQ_Ontology_V02.xlsx` (the two
 delivered previous-project ontologies - the step-3 reference in the class ladder;
 read HQ for structure, not units, and pick its sheet by header not by its
 misspelled tab name) and `Ontology_headers.xlsx` (the 9 canonical column names).

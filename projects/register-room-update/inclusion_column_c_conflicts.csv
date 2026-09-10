@@ -1,0 +1,385 @@
+building,tag,room,the register said,the old file says - and this is what the sheet now carries
+HQ,AHU12_0002,RF.001 ROOF,Included,Not Included
+HQ,AHU12_0003,RF.001 ROOF,Included,Not Included
+HQ,AHUB_0001,B1.001 AHU 4,Included,Not Included
+HQ,AHUB_0002,B1.001 AHU 4,Included,Not Included
+HQ,AHUB_0003,B1.006 AHU 1,Included,Not Included
+HQ,AHUB_0004,B1.006 AHU 1,Included,Not Included
+HQ,AHUB_0005,B1.016 AHU 2,Included,Not Included
+HQ,AHUB_0006,B1.016 AHU 2,Included,Not Included
+HQ,AHUB_0007,B1.022 AHU 3,Included,Not Included
+HQ,AHUB_0009,B1.019 AHU,Included,Not Included
+HQ,AHUB_0010,B1.019 AHU,Included,Not Included
+HQ,AHUB_0011,B1.019 AHU,Included,Not Included
+HQ,FCU0003,B1.107 DOCK MASTER OFFICE,Included,Not Included
+HQ,FCU0006,B1.122 SUPPORT SPACE FOOD STORAGE,Included,Not Included
+HQ,FCU0007,B1.123 SUPPORT SPACE FOOD STORAGE,Included,Not Included
+HQ,FCU0008,B1.015 SUPPORT SPACE LOADING,Included,Not Included
+HQ,FCU0009,B1.014 SUPPORT SPACE DRY WASTE STORAGE,Included,Not Included
+HQ,FCU0010,B1.124 WASTE BIN WASH UP,Included,Not Included
+HQ,FCU0015,G.031 PR AND MARKET STAFF,Not Included,Included
+HQ,FCU0067,5.602 BRIDGE,Included,Not Included
+HQ,FCU0068,5.602 BRIDGE,Included,Not Included
+HQ,FCU0069,5.602 BRIDGE,Included,Not Included
+HQ,FCU0070,5.602 BRIDGE,Included,Not Included
+HQ,FCU0077,4.701 VP ADM TERRACE,Included,Not Included
+HQ,FCU0078,4.701 VP ADM TERRACE,Included,Not Included
+HQ,FCU0079,4.701 VP ADM TERRACE,Included,Not Included
+HQ,FCU0080,4.701 VP ADM TERRACE,Included,Not Included
+HQ,FCU0121,11.110 ELECTRIC CLOSET,Included,Not Included
+HQ,VAV0001,B1.103 STAFF LOBBY,Not Included,Included
+HQ,VAV0002,B1.103 STAFF LOBBY,Not Included,Included
+HQ,VAV0003,B1.103 STAFF LOBBY,Not Included,Included
+HQ,VAV0011,G.011 PR AND MARKET MANAGER,Included,Not Included
+HQ,VAV0083,1.101 STAFF LOUNGE,Not Included,Included
+HQ,VAV0084,1.101 STAFF LOUNGE,Not Included,Included
+HQ,VAV0085,1.101 STAFF LOUNGE,Not Included,Included
+HQ,VAV0086,1.101 STAFF LOUNGE,Not Included,Included
+HQ,VAV0091,1.105 PRAYER ROOM,Not Included,Included
+HQ,VAV0094,1.117 FINANCE AUDITOR,Included,Not Included
+HQ,VAV0095,1.115 FINANCE AUDITOR,Included,Not Included
+HQ,VAV0096,1.101 STAFF LOUNGE,Not Included,Included
+HQ,VAV0099,1.601 CORRIDOR,Included,Not Included
+HQ,VAV0107,1.701 STAFF CAFETERIA,Not Included,Included
+HQ,VAV0108,1.701 STAFF CAFETERIA,Not Included,Included
+HQ,VAV0131,2.109 SHELL SPACE,Not Included,Included
+HQ,VAV0178,3.105A FEMALE PRAYER ROOM,Not Included,Included
+HQ,VAV0256,4.208 VP ADM EXECSECRET,Included,Not Included
+HQ,VAV0257,4.208 VP ADM EXECSECRET,Included,Not Included
+HQ,VAV0284,5.109 ELECTRICAL CABINET,Included,Not Included
+HQ,VAV0285,5.108 VP EDU ASSISTANT,Included,Not Included
+HQ,VAV0286,5.107 VP EDUCATION SUPPSECRET,Included,Not Included
+HQ,VAV0287,5.107 VP EDUCATION SUPPSECRET,Included,Not Included
+HQ,VAV0294,5.003 VP EDU SECRETARY,Included,Not Included
+HQ,VAV0315,5.211 VP EDU CHPEXECSECRET,Included,Not Included
+HQ,VAV0338,6.027 VP CAPITAL CONSULTANT,Included,Not Included
+HQ,VAV0339,6.028 VP CAPITAL CONSULTANT,Included,Not Included
+HQ,VAV0376,7.020 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0377,7.021 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0378,7.022 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0379,7.023 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0380,7.024 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0381,7.025 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0382,7.026 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0383,7.027 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0384,7.028 BD UNIT EXECUTIVE,Included,Not Included
+HQ,VAV0421,7.208 PRESIDENT SUPPORT SECRET,Included,Not Included
+HQ,VAV0423,7.209 PRESIDENT EXECSECRET,Included,Not Included
+HQ,VAV0424,7.210 PRESIDENT EXECSECRET,Included,Not Included
+HQ,VAV0427,7.213 VICE CHAIRPERSON ENSULT,Included,Not Included
+HQ,VAV0428,7.214 VICE CHAIRSECRETARY,Included,Not Included
+HQ,VAV0429,7.215 VICE CHAIRPERSON MEETING ROOM,Included,Not Included
+HQ,VAV0451,9.018 BMO EXECSECRET,Included,Not Included
+HQ,VAV0452,9.019 BMO EXECSECRET,Included,Not Included
+HQ,VAV0453,9.020 BMO EXECSECRET,Included,Not Included
+HQ,VAV0456,9.023 BMO EXECSECRET,Included,Not Included
+HQ,VAV0457,9.024 BMO EXECSECRET,Included,Not Included
+HQ,VAV0458,9.025 BMO EXECSECRET,Included,Not Included
+HQ,VAV0459,9.025 BMO EXECSECRET,Included,Not Included
+HQ,VAV0460,9.026 BMO SUPPSECRET,Included,Not Included
+HQ,VAV0461,9.027 BMO SUPPSECRET,Included,Not Included
+HQ,VAV0462,9.028 BMO SUPPSECRET,Included,Not Included
+HQ,VAV0463,9.029 BMO SUPPSECRET,Included,Not Included
+HQ,VAV0464,9.030 BMO SUPPSECRET,Included,Not Included
+HQ,VAV0471,9.037 BOD SECRETARY,Included,Not Included
+HQ,VAV0486,9.008 LEGAL LEGSUPSEC,Included,Not Included
+HQ,VAV0487,9.009 LEGAL LEGSUPSEC,Included,Not Included
+HQ,VAV0488,9.010 LEGAL LEGADVENSUIT,Included,Not Included
+HQ,VAV0496,9.108 SUPPORT SPACE PREP KITCHEN,Included,Not Included
+HQ,VAV0576,11.008 EXEC DIR CONSULTANT,Included,Not Included
+HQ,VAV0577,11.009 SECRETARY,Included,Not Included
+HQ,VAV0579,11.011 SECRETARY,Included,Not Included
+QNL,AHUB002,B.063 PLANT ROOM 01,Not Included,Included
+QNL,AHUB003,B.070 PLANT ROOM 02,Not Included,Included
+QNL,AHUB004,B.110 PLANT ROOM 03,Not Included,Included
+QNL,AHUB005,B.220 PLANT ROOM 04,Not Included,Included
+QNL,AHUB006,B.220 PLANT ROOM 04,Not Included,Included
+QNL,AHUB007,B.220 PLANT ROOM 04,Not Included,Included
+QNL,AHUB009,B.110 PLANT ROOM 03,Not Included,Included
+QNL,FCU_1F_002,L1.030 ICT ROOM 02,Included,Not Included
+QNL,FCU_1F_057,L1.144 ILL DIRECTOR,Included,Not Included
+QNL,FCU_1F_058,L1.145 ILL DIRECTOR,Included,Not Included
+QNL,FCU_B_002,B.085 FUMIGATION ROOM,Included,Not Included
+QNL,FCU_B_009,B.088 PEOPLE MOVER PLANT,Included,Not Included
+QNL,FCU_B_030,B.226 PUMP RM 4,Included,Not Included
+QNL,VAV_B_S11_024,B.002 KITCHEN,Included,Not Included
+QNL,VAV_B_S13_006,B.085 FUMIGATION ROOM,Included,Not Included
+QNL,VAV_B_S15_002,B.145 LOBY AND CSECURITY,Not Included,Included
+QNL,VAV_B_S15_003,B.145 LOBY AND CSECURITY,Not Included,Included
+QNL,VAV_B_S15_004,B.145 LOBY AND CSECURITY,Not Included,Included
+RDC,RDC_SB_GF_AHU8031,Mech S-0136,Not Included,Included
+RDC,RDC_SB_GF_AHU8032,Mech S-0136,Not Included,Included
+RDC,RDC_SB_GF_AHU8033,Mech S-0136,Not Included,Included
+RDC,RDC_SB_GF_AHU8034,Mech S-0136,Not Included,Included
+RDC,RDC_SB_GF_AHU8035,MECH S-0136,Not Included,Included
+RDC,RDC_SB_GF_AHU8036,COMPUTER RESEARCH LAB S-1112,Not Included,Included
+RDC,RDC_SB_GF_AHU8037,Cyber Server S-0138,Not Included,Included
+RDC,RDC_NB_GF_VAV4070A_VEV4073A,Open High Bay Lab N-0215D,Not Included,Included
+RDC,RDC_NB_GF_VAV4070B_VEV4073B,Open High Bay Lab N-0215D,Not Included,Included
+RDC,RDC_NB_GF_VAV4071A_VEV4074A,Open High Bay Lab N-0215D,Not Included,Included
+RDC,RDC_NB_GF_VAV4071B_VEV4074B,Open High Bay Lab N-0215D,Not Included,Included
+RDC,RDC_NB_GF_VAV4072A_VEV4075A,Open High Bay Lab N-0215D,Not Included,Included
+RDC,RDC_NB_GF_VAV4072B_VEV4075B,Open High Bay Lab N-0215D,Not Included,Included
+RDC,RDC_NB_GF_VAV4080A_VEV4082A,Desal High Bay Lab N-0215E,Not Included,Included
+RDC,RDC_NB_GF_VAV4080B_VEV4082B,Desal High Bay Lab N-0215E,Not Included,Included
+RDC,RDC_NB_GF_VAV4081A_VEV4083A,Desal High Bay Lab N-0215E,Not Included,Included
+RDC,RDC_NB_GF_VAV4081B_VEV4083B,Desal High Bay Lab N-0215E,Not Included,Included
+RDC,RDC_NB_GF_VAV4090_VEV4091,Support Lab N-0215F,Not Included,Included
+RDC,RDC_NB_GF_VAV4180_VEV4181,Test Room N-0240A,Not Included,Included
+RDC,RDC_NB_GF_VAV4190_VEV4192,CSP Lab N-0240B,Not Included,Included
+RDC,RDC_NB_GF_VAV4191,CSP Lab N-0240B,Not Included,Included
+RDC,RDC_NB_GF_VAV4200_VEV4201,Test Room 1 N-0240C,Not Included,Included
+RDC,RDC_NB_GF_VAV4210,Desalination Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_VAV4211,Desalination Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_VAV4212,Desalination Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_VAV5050,Analytical Core Lab 1 N-0114A,Not Included,Included
+RDC,RDC_NB_GF_VAV5051,Analytical Core Lab 1 N-0114A,Not Included,Included
+RDC,RDC_NB_GF_VAV5054,Clean Lab N-0114B,Not Included,Included
+RDC,RDC_NB_GF_VAV5060_CEV5061,Clean Lab N-0114B,Not Included,Included
+RDC,RDC_NB_GF_VAV5070,Dirty Lab N-0114C,Not Included,Included
+RDC,RDC_NB_GF_VAV5080_VEV5081,Bio Analyt N-0114D,Not Included,Included
+RDC,RDC_NB_GF_VAV5090,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_VAV5091,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_VAV5180,Analytical Core Lab 2 N-0140A,Not Included,Included
+RDC,RDC_NB_GF_VAV5181,Analytical Core Lab 2 N-0140A,Not Included,Included
+RDC,RDC_NB_GF_VAV5200,Prep Lab N-0140C,Not Included,Included
+RDC,RDC_NB_GF_VAV5210,Sputter Room N-0140D,Not Included,Included
+RDC,RDC_NB_GF_VAV5220,MBE/Evap Room N-0140E,Not Included,Included
+RDC,RDC_NB_GF_VAV5230,ALD Room N-0140F,Not Included,Included
+RDC,RDC_NB_GF_VAV5260_VEV5261,PLD Room N-0140J,Not Included,Included
+RDC,RDC_NB_GF_VAV5270A,Organic Chemistry Lab N-0140K,Not Included,Included
+RDC,RDC_NB_GF_VAV5270B,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_VAV7020A,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VAV7020B,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VAV7021A,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VAV7021B,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VAV7040,Service Equipm. Room N-0404C,Not Included,Included
+RDC,RDC_NB_GF_VAV7050_VEV7051,EM Prep 1 - MAT N-0404D,Not Included,Included
+RDC,RDC_NB_GF_VAV7060_VEV7061,EM Prep 2 - BIO N-0404E,Not Included,Included
+RDC,RDC_NB_GF_VAV7070A,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_VAV7070B,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_VAV7071A,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_VAV7071B,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_VAV7230_VEV7231,Inter Lab N-0442A,Not Included,Included
+RDC,RDC_NB_GF_VAV7240_VEV7241A,Optical Lab N-0442B,Not Included,Included
+RDC,RDC_NB_GF_VAV7260_VEV7261,SEM 1 Room N-0442D,Not Included,Included
+RDC,RDC_NB_GF_VAV7270_VEV7271,SERV 1 N-0442E,Not Included,Included
+RDC,RDC_NB_GF_VAV7280_VEV7281,Confocal 2 Room N-0442F,Not Included,Included
+RDC,RDC_NB_GF_VAV7290_VEV7291,SEM 2 N-0442G,Not Included,Included
+RDC,RDC_NB_GF_VAV7300,Air Lock 1 N-0442H,Not Included,Included
+RDC,RDC_NB_GF_VAV7310_VEV7311,SEM 3 N-0442J,Not Included,Included
+RDC,RDC_NB_GF_VAV7320_VEV7321,SEM 4 N-0442K,Not Included,Included
+RDC,RDC_NB_GF_VAV7330_VEV7331,SEM 5 N-0442L,Not Included,Included
+RDC,RDC_NB_GF_VAV7340_VEV7341,SERV 2 N-0442M,Not Included,Included
+RDC,RDC_NB_GF_VAV7350_VEV7351,SEM Lab N-0442N,Not Included,Included
+RDC,RDC_NB_GF_VAV7360_VEV7361,SEM Lab N-0442p,Not Included,Included
+RDC,RDC_NB_GF_VAV7370_VEV7371,A/L 2 N-0442R,Not Included,Included
+RDC,RDC_SB_1F_VAV0507,Computer Research Lab-4 S-1112,Not Included,Included
+RDC,RDC_SB_1F_VAV0531,Immersive Viz Lab S-1176,Not Included,Included
+RDC,RDC_SB_1F_VAV1520,Data Analytic Office S-1135,Not Included,Included
+RDC,RDC_SB_1F_VAV1521,Data Analytic Office S-1136,Not Included,Included
+RDC,RDC_SB_1F_VAV1523,Data Analytic Office S-1137,Not Included,Included
+RDC,RDC_SB_1F_VAV1524,Data Analytic Office S-1138,Not Included,Included
+RDC,RDC_SB_GF_VAV0008,Computer Research Lab 3 S-0110,Not Included,Included
+RDC,RDC_SB_GF_VAV0012,Computer Research Lab 2 S-0114,Not Included,Included
+RDC,RDC_SB_GF_VAV0017,Computer Research Lab 1 S-0119,Not Included,Included
+RDC,RDC_SB_GF_VAV1003_VEV1002,NOC Lab S-0140A,Not Included,Included
+RDC,RDC_NB_1F_VAV4580,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_VAV4600,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_VAV4601,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_VAV4620_VEV4621,EL Shop N-1216C,Not Included,Included
+RDC,RDC_NB_1F_VAV4630_VEV4631,GIS N-1216D,Not Included,Included
+RDC,RDC_NB_1F_VAV5550_VEV5551,PCR N-1115A,Not Included,Included
+RDC,RDC_NB_1F_VAV5560_VEV5561,PRE-PCR N-1115B,Not Included,Included
+RDC,RDC_NB_1F_VAV5570,Met/Prot Lab N-1115C,Not Included,Included
+RDC,RDC_NB_1F_VAV5571,Met/Prot Lab N-1115C,Not Included,Included
+RDC,RDC_NB_1F_VAV5580_VEV5581,DNA/RNA N-1115D,Not Included,Included
+RDC,RDC_NB_1F_VAV5590,Cell Culture N-1115E,Not Included,Included
+RDC,RDC_NB_1F_VAV5610_VEV5611,Cold Room N-1115F,Not Included,Included
+RDC,RDC_NB_1F_VAV5620_VEV5622,Sequence Lab N-1115K,Not Included,Included
+RDC,RDC_NB_1F_VAV5621_VEV5623,Sequence Lab N-1115K,Not Included,Included
+RDC,RDC_NB_1F_VAV5630_VEV5631,Genom Med Lab N-1115K1,Not Included,Included
+RDC,RDC_NB_1F_VAV5770_VEV5771,Histology N-1144A,Not Included,Included
+RDC,RDC_NB_1F_VAV5780_VEV5781,Culture & Gel Rm N-1144B,Not Included,Included
+RDC,RDC_NB_1F_VAV5790,Shafallah N-1144C,Not Included,Included
+RDC,RDC_NB_1F_VAV5792_VEV5793,Sample Accession N-1144C1,Not Included,Included
+RDC,RDC_NB_1F_VAV5800_VEV5801,Pre-PCR N-1144D,Not Included,Included
+RDC,RDC_NB_1F_VAV5810,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_VAV5814,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_VAV6530_VEV6531,AAV N-1316A,Not Included,Included
+RDC,RDC_NB_1F_VAV6540,Tissure Culture 1 N-1316B,Not Included,Included
+RDC,RDC_NB_1F_VAV6550,Gene Therapy Lab N-1316C,Not Included,Included
+RDC,RDC_NB_1F_VAV6551,Gene Therapy Lab N-1316C,Not Included,Included
+RDC,RDC_NB_1F_VAV6560_VEV6561,TC2 N-1316D,Not Included,Included
+RDC,RDC_NB_1F_VAV6590_VEV6591,LENTIV N-1316G,Not Included,Included
+RDC,RDC_NB_1F_VAV6600_VEV6601,Analytical Core N-1316H,Not Included,Included
+RDC,RDC_NB_1F_VAV6610_VEV6611,Microscope Room N-1316H,Not Included,Included
+RDC,RDC_NB_1F_VAV6620_VEV6621,Mscopy1 N-1316K,Not Included,Included
+RDC,RDC_NB_1F_VAV6630A,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_VAV6630B,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_VAV6631A,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_VAV6631B,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_VAV6750,Tissue Culture 1 N-1345A,Not Included,Included
+RDC,RDC_NB_1F_VAV6760,Diabetes Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_VAV6761,Diabetes Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_VAV6800_VEV6801,Tissue Culture 3 N-1345D,Not Included,Included
+RDC,RDC_NB_1F_VAV6810_VEV6811,Calc Imaging N-1345E,Not Included,Included
+RDC,RDC_NB_1F_VAV6820_VEV6821,Electro Physics N-1345F,Not Included,Included
+RDC,RDC_NB_1F_VAV6830_VEV6831,Shared Cold Lab N-1345G,Not Included,Included
+RDC,RDC_NB_1F_VAV6840_VEV6841,Bacterlgy Lab N-1345H,Not Included,Included
+RDC,RDC_NB_1F_VAV6850,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_VAV6851,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_VAV7510_VEV7511,TC1 N-1404A,Not Included,Included
+RDC,RDC_NB_1F_VAV7530_VEV7532,Cell Bio N-1404C,Not Included,Included
+RDC,RDC_NB_1F_VAV7531_VEV7533,Cell Bio N-1404C,Not Included,Included
+RDC,RDC_NB_1F_VAV7540_VEV7541,Shared Eq Rm N-1404D,Not Included,Included
+RDC,RDC_NB_1F_VAV7550_VEV7551,TC2 N-1404E,Not Included,Included
+RDC,RDC_NB_1F_VAV7560_VEV7561,Imaging N-1404F,Not Included,Included
+RDC,RDC_NB_1F_VAV7570_VEV7571,Cell Bio Lab2 N-1404G,Not Included,Included
+RDC,RDC_NB_1F_VAV7580_VEV7581,TC3 N-1404H,Not Included,Included
+RDC,RDC_NB_1F_VAV7600_VEV7601,Cell Bio Lab3 N-1404K,Not Included,Included
+RDC,RDC_NB_1F_VAV7730_VEV7731,Microscope 2 N-1450A,Not Included,Included
+RDC,RDC_NB_1F_VAV7740_VEV7741,LN2 Stor N-1450B,Not Included,Included
+RDC,RDC_NB_1F_VAV7750_VEV7751,Flow Cyto N-1450C,Not Included,Included
+RDC,RDC_NB_1F_VAV7770_VEV7771,Qurnt N-1450E,Not Included,Included
+RDC,RDC_NB_1F_VAV7780_VEV7781,iPS-TC N-1450F,Not Included,Included
+RDC,RDC_NB_1F_VAV7800_VEV7801,IPS TISSUE CULTURE N-1450J,Not Included,Included
+RDC,RDC_NB_1F_VAV7810_VEV7811,TC1 N-1450L,Not Included,Included
+RDC,RDC_NB_1F_VAV7820_VEV7822,STEM/PCR Open Lab N-1450M,Not Included,Included
+RDC,RDC_NB_1F_VAV7821_VEV7823,STEM/PCR Open Lab N-1450M,Not Included,Included
+RDC,RDC_NB_1F_VAV7830_VEV7831,TC2 N-1450N,Not Included,Included
+RDC,RDC_NB_1F_FCU5984,ROBOTICS N-115J,Not Included,Included
+RDC,RDC_NB_GF_FCU5980,Serv Core N-0136,Not Included,Included
+RDC,RDC_NB_GF_FCU5981,Serv Core N-0136,Not Included,Included
+RDC,RDC_NB_GF_FCU7981,SURF ANALYSIS LAB N-0404F,Not Included,Included
+RDC,RDC_NB_GF_FCU7982,SURF ANALYSIS LAB N-0404F,Not Included,Included
+RDC,RDC_UB_GF_FCU8001,GENERAL STORAGE ROOM U-0129,Included,Not Included
+RDC,RDC_UB_GF_FCU8004,GENERAL STORAGE U-0108,Included,Not Included
+RDC,RDC_UB_GF_FCU8005,RECYCLING ROOM U-0109,Included,Not Included
+RDC,RDC_UB_GF_FCU8006,CYLINDER STORAGE U-0105,Included,Not Included
+RDC,RDC_UB_GF_FCU8008,FLAMMABLE STORAGE U-0103,Included,Not Included
+RDC,RDC_UB_GF_FCU8009,FLAMMABLE WASTE STORAGE U-0102,Included,Not Included
+RDC,RDC_NB_GF_VEV-4041,Air Quality High Bay N-0215A,Not Included,Included
+RDC,RDC_NB_GF_FEV-4193,CSP Lab N-0240B,Not Included,Included
+RDC,RDC_NB_GF_FEV-4194,CSP Lab N-0240B,Not Included,Included
+RDC,RDC_NB_GF_VEV-4213A,Desal Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_VEV-4213B,Desal Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_FEV-4214,Desal Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_FEV-4215,Desal Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_FEV-4216,Desal Lab N-0240D,Not Included,Included
+RDC,RDC_NB_GF_VEV-5052A,Analytical Core Lab 1 N-0114A,Not Included,Included
+RDC,RDC_NB_GF_VEV-5052B,Analytical Core Lab 1 N-0114A,Not Included,Included
+RDC,RDC_NB_GF_FEV-5053,Analytical Core Lab 1 N-0114A,Not Included,Included
+RDC,RDC_NB_GF_VEV-5055,Analytical Core Lab 1 N-0114A,Not Included,Included
+RDC,RDC_NB_GF_FEV-5062,Clean Lab N-0114B,Not Included,Included
+RDC,RDC_NB_GF_VEV-5071,Dirty Lab N-0114C,Not Included,Included
+RDC,RDC_NB_GF_FEV-5072,Dirty Lab N-0114C,Not Included,Included
+RDC,RDC_NB_GF_FEV-5073,Dirty Lab N-0114C,Not Included,Included
+RDC,RDC_NB_GF_FEV-5074,Dirty Lab N-0114C,Not Included,Included
+RDC,RDC_NB_GF_FEV-5082,Bio Analyt N-0114D,Not Included,Included
+RDC,RDC_NB_GF_FEV-5083,Bio Analyt N-0114D,Not Included,Included
+RDC,RDC_NB_GF_VEV-5092,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_FEV-5093,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_FEV-5094,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_FEV-5095A,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_FEV-5095B,Air Quality N-0114F,Not Included,Included
+RDC,RDC_NB_GF_VEV-5182A,Analyt Core-2 N-0140A,Not Included,Included
+RDC,RDC_NB_GF_VEV-5182B,Analyt Core-2 N-0140A,Not Included,Included
+RDC,RDC_NB_GF_FEV-5183,Analytical Core Lab 2 N-0140A,Not Included,Included
+RDC,RDC_NB_GF_FEV-5203,Prep Lab N-0140C,Not Included,Included
+RDC,RDC_NB_GF_VEV-5211,MBE EVAP Room N-0140E,Not Included,Included
+RDC,RDC_NB_GF_VEV-5221,MBE/Evap Room N-0140E,Not Included,Included
+RDC,RDC_NB_GF_FEV-5222,Evap Room N-0140E,Not Included,Included
+RDC,RDC_NB_GF_FEV-5223,Evap Room N-0140E,Not Included,Included
+RDC,RDC_NB_GF_VEV-5231,ALD Room N-0140F,Not Included,Included
+RDC,RDC_NB_GF_CAV5240_CEV5241,Air Lock N-0140G,Not Included,Included
+RDC,RDC_NB_GF_FEV-5271,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_FEV-5272,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_FEV-5273,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_FEV-5274,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_FEV-5275,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_FEV-5276,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_FEV-5277,Org Chem N-0140K,Not Included,Included
+RDC,RDC_NB_GF_VEV-7022A,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VEV-7022B,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VEV-7023A,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VEV-7023B,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VEV-7024A,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_VEV-7024B,NMR Lab N-0404A,Not Included,Included
+RDC,RDC_NB_GF_FEV-7052,EM Prep 1 - MAT N-0404D,Not Included,Included
+RDC,RDC_NB_GF_FEV-7053,EM Prep 1 - MAT N-0404D,Not Included,Included
+RDC,RDC_NB_GF_FEV-7062,EM Prep 2 - BIO N-0404E,Not Included,Included
+RDC,RDC_NB_GF_VEV-7072A,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_VEV-7072B,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_VEV-7073,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_FEV-7074,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_FEV-7075,Surf Analysis Lab N-0404F,Not Included,Included
+RDC,RDC_NB_GF_FEV-7232,Inter Lab N-0442A,Not Included,Included
+RDC,RDC_NB_GF_VEV-7241B,Optical Lab N-0442B,Not Included,Included
+RDC,RDC_NB_GF_VEV-7301,A/L 1 N-0442H,Not Included,Included
+RDC,RDC_NB_1F_VEV-4602,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_FEV-4603,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_FEV-4604,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_FEV-4605,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_FEV-4606,Testing Room N-1216B,Not Included,Included
+RDC,RDC_NB_1F_FEV-4622,EL Shop N-1216C,Not Included,Included
+RDC,RDC_NB_1F_CAV-4581B,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_VEV-4585A,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_VEV-4585B,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_VEV-4586A,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_VEV-4586B,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_FEV-4587,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_FEV-4588,Photovoltaic Lab N-1216A,Not Included,Included
+RDC,RDC_NB_1F_FEV-5624,Robotics N-1115J,Not Included,Included
+RDC,RDC_NB_1F_VEV-5572,Met/Prot Lab N-1115C,Not Included,Included
+RDC,RDC_NB_1F_VEV-5573A,Met/Prot Lab N-1115C,Not Included,Included
+RDC,RDC_NB_1F_VEV-5573B,Met/Prot Lab N-1115C,Not Included,Included
+RDC,RDC_NB_1F_FEV-5574,PRe-PCR N-1115B,Not Included,Included
+RDC,RDC_NB_1F_FEV-5575,Cell Culture N-1115E,Not Included,Included
+RDC,RDC_NB_1F_VEV-5591,Cell Culture N-1115E,Not Included,Included
+RDC,RDC_NB_1F_FEV-5772,Histology N-1144A,Not Included,Included
+RDC,RDC_NB_1F_VEV-5791,Culture & Gel Rm N-1144B,Not Included,Included
+RDC,RDC_NB_1F_FEV-5796,PRE-PCR N-1144D,Not Included,Included
+RDC,RDC_NB_1F_VEV-5811A,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_VEV-5811B,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_FEV-5812,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_FEV-5813,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_VEV-5821,Nano Lab N-1144E,Not Included,Included
+RDC,RDC_NB_1F_VEV-6541,TC1 N-1316B,Not Included,Included
+RDC,RDC_NB_1F_VEV-6552,Gene Therapy Lab N-1316C,Not Included,Included
+RDC,RDC_NB_1F_VEV-6553,Gene Therapy Lab N-1316C,Not Included,Included
+RDC,RDC_NB_1F_FEV-6554,Gene Therapy Lab N-1316C,Not Included,Included
+RDC,RDC_NB_1F_FEV-6555,Gene Therapy Lab N-1316C,Not Included,Included
+RDC,RDC_NB_1F_CEV-6581,TC3 N-1316F,Not Included,Included
+RDC,RDC_NB_1F_FEV-6602,Analytical Core N-1316H,Not Included,Included
+RDC,RDC_NB_1F_FEV-6632,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6633,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6634,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6635,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6636,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6637,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6638,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_FEV-6639,Bio-Med Chem Lab 1 N-1316L,Not Included,Included
+RDC,RDC_NB_1F_VEV-6751,TC1 N-1345A,Not Included,Included
+RDC,RDC_NB_1F_VEV-6762,Diabetes Lab / Open Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_VEV-6763,Diabetes Lab / Open Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_FEV-6764,Diabetes Lab / Open Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_FEV-6765,Diabetes Lab / Open Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_FEV-6766,Diabetes Lab / Open Lab N-1345B,Not Included,Included
+RDC,RDC_NB_1F_CAV6790_CEV6791,TC2 N-1345C,Not Included,Included
+RDC,RDC_NB_1F_FEV-6852,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6853,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6854,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6855,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6856,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6857,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6858,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_FEV-6859,Bio-Med Chem Lab 2 N-1345J,Not Included,Included
+RDC,RDC_NB_1F_CAV7520_CEV7521,Isotope N-1404B,Not Included,Included
+RDC,RDC_NB_1F_FEV-7522,Isotope N-1404B,Not Included,Included
+RDC,RDC_NB_1F_CAV7590_CEV7591,HY Room N-1404J,Not Included,Included
+RDC,RDC_NB_1F_FEV-7602,CELL BIO LABS N-1404K,Not Included,Included
+RDC,RDC_NB_1F_CAV7610_CEV7611,TC1 N-1404L,Not Included,Included
+RDC,RDC_NB_1F_CAV7760_CEV7761,A/L N-1450D,Not Included,Included
+RDC,RDC_NB_1F_CAV7790_CEV7791,A/L N-1450G,Not Included,Included
+RDC,RDC_NB_1F_FEV-7824,STEM/PCR Open Lab N-1450M,Not Included,Included

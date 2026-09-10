@@ -26,7 +26,9 @@ ontology task; this file is the index, the skill is the procedure.
 | `references/naming-and-labels.md` | identifier patterns per level, character rules, the label rule, IFC references | naming anything |
 | `references/relationships.md` | predicate families, what Dar Cairo actually uses and how often, the spatial hierarchy, feeds, hasPart vs locatedIn | choosing a predicate |
 | `references/class-resolution.md` | the four-step ladder, extension rules, where the vocabularies come from | a class is missing or ambiguous |
-| `references/known-issues.md` | all 30 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
+| `references/corrections.md` | **the third job: editing a sheet you did not write.** Baseline the per-code census first; match by exact equality in both columns, never substring or prefix; assert what must survive; count the block not the row; a class lives in two cells per point; type maps read both columns; guards assert no-new not none; dry-run and read the per-row output | **before editing any delivered sheet - always** |
+| `references/virtual-meters.md` | the virtual metering layer - the tier matrix to ask for, the nine meter classes and their Dar Cairo name segments, the **eight-row** block, the thermal-unit trap, `para:contributionFraction`, and how to derive both halves of a telemetry key when the calculation engine's register does not exist yet | adding virtual meters, or `para:contributionFraction` |
+| `references/known-issues.md` | all 47 validator rule codes, 9 source conflicts with the resolution taken, defect inventories for both reference models | a code needs explaining, or the sources disagree |
 | `references/data/brick-vocab.txt` | 2,587 Brick 1.4 / REC / ref terms with deprecation and alias status | generated - do not hand-edit |
 | `references/data/brick-rec-vocab.txt` | the 193 terms with actual precedent in Dar Cairo | generated |
 | `references/data/para-classes.csv` | 242 `para:` classes and their parents | generated |
@@ -36,13 +38,14 @@ ontology task; this file is the index, the skill is the procedure.
 | `assets/example-minimal.csv` | a small complete building that validates clean - copy its shapes | writing any row shape for the first time |
 | `scripts/lookup_reference.py` | precedent search over Dar Cairo; Brick 1.4 term check | before inventing any class |
 | `scripts/align_naming.py` | retrofits a sheet's identifiers to Dar Cairo's convention - dashed-English datapoints, `_`-segments/`-`-words, no camelCase - keeping the timeseries join keys and writing an old → new crosswalk; one-shot | a sheet built with raw/BMS ids needs Dar-Cairo naming |
-| `scripts/validate_ontology.py` | the row-level validator, 30 rule codes | before every handover |
+| `scripts/validate_ontology.py` | the row-level validator, 47 rule codes. Three of them exist because this project shipped the defect first: `E-REF-2` a series with no point, `E-REF-3` a tag belonging to another unit of the same class, `W-CLS-1` a class declared and used by nothing | before every handover |
 | `scripts/io_list.py` | shared IO-list loader; answers "does this unit have this point" and "what is its key" for all three checkers | changing how an IO list is read |
 | `scripts/highlight_findings.py` | writes a copy of a workbook with unresolved findings filled yellow and written into `validator_code` / `validator_finding` columns past the data, for a manual pass | findings need a human |
 | `references/data/accepted-terms.txt` | terms that override the generated Brick extract, each with the reason it is there | a real term reads as a typo, or a deliberate alias floods the warnings |
 | `scripts/check_io_list.py` | the point cross-check, 5 `-IO-` codes: every point in the sheet must trace back to a row in the IO list, or its timeseries resolves empty | whenever an IO list exists |
 | `scripts/check_consistency.py` | the cross-unit checker, 17 `-CON-` codes: compares every unit of a class against its siblings and finds what a row-level read cannot - a missing point, a divergent class, a `#N/A` in an object cell, a child whose separators drifted from its parent's | before every handover, and per family while building |
 | `scripts/build_review_workbook.py` | runs both checkers plus eight checks neither covers, then writes the client review workbook - a `START HERE` tab, the ontology sheet with flagged rows filled yellow/orange, one plain-English tab per entity family, and a `Technical detail` tab holding the coded findings. Findings are collapsed to one line per kind of problem and every rule code is rewritten in ordinary English, because the reader is usually not the person who built the sheet. The tabs and the data sheet are cross-linked: clickable row numbers on every tab, and review columns AB-AD past the data naming each flagged row's problem with a link back to its tab | a delivered sheet needs reviewing, or a client asks what is wrong with a draft |
+| `scripts/check_io_list.py` (see also) | reconciling a sheet against a *selected*-datapoint list is a different job from the IO cross-check - `projects/QNL/prune_to_selected.py` is the worked example | a project supplies an integration-scope sheet |
 | `scripts/build_vocab.py` | regenerates the para registry and unit list from `reference-models/` | a new reference model lands - drop the file in and rerun, the scripts resolve `DarCairo_V*.csv` by version |
 | `scripts/build_brick_vocab.py` | regenerates the Brick term list from `Brick.ttl` | targeting a new Brick release |
 | `tests/run_tests.sh` | checks both scripts still catch what they should | after touching either |
@@ -52,8 +55,8 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V98.csv` | **the primary reference for any ontology we build.** 25,722 rows, 33 columns (V93's 27 plus two more property groups). Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_V03.xlsx` | the current SSC sheet, 5,083 rows on `Sheet1`, 33 columns. Its rooms carry the Dar Cairo shape (`entity:SSC_01-024_Corridor`). This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
-| `QF_HQ_Ontology_V02.xlsx` | the QF HQ sheet, 64,426 rows on `HQ_Onotlogy` (note the misspelled tab - pick the sheet by its header, never by name). Its rooms carry the Dar Cairo shape (`entity:HQ_10-002C_Office-Space`) and each one carries three virtual meters - HVAC, CHW and LTG, 24 rows apiece, part of `entity:Metering`. A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
+| `QF_SSC_Ontology_V04.xlsx` | the current SSC sheet, 12,144 rows on `Sheet1`, 33 columns. It carries the virtual metering layer - `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter` and `brick:Electrical_Meter` on all 166 rooms, plus SPWR/Common-Util at building and floor. Its rooms carry the Dar Cairo shape (`entity:SSC_01-024_Corridor`). This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
+| `QF_HQ_Ontology_V02.xlsx` | the QF HQ sheet, 64,426 rows and 23 columns on `HQ_Onotlogy` (note the misspelled tab - pick the sheet by its header, never by name). Its rooms carry the Dar Cairo shape (`entity:HQ_10-002C_Office-Space`) and each of the 1,050 carries three virtual meters - HVAC, CHW and LTG, eight rows each, 24 rows a room, all `brick:isPartOf entity:Metering`. Unlike QNL and SSC it has no room-tier `brick:Electrical_Meter` - that is the client's delivered scope, not an omission to fill in. A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
 ### Source documents - repo root
@@ -72,6 +75,19 @@ they carry the resolutions.
 
 Each rule appears once. If you need the reasoning or the worked examples, the
 skill's reference file named beside it carries them.
+
+**Editing a sheet you did not write is a different job with a different failure
+mode** - `references/corrections.md`. A creation bug fails validation; a
+correction bug **passes** it and is wrong. Substring matching is the recurring
+killer: `CHW-Power-Thermal-Virtual-Meter` contains `HW-Power`, rooms are named
+UPS and carry meters of their own, and `..._RA_P-Static` is a prefix of
+`..._RA_P-Static_01`. Match by exact equality in both the subject and object
+columns against a named list, assert what must survive as well as what must go,
+count the block (8 rows a meter, 2 a point) rather than the row, remember a class
+lives in two cells per point, build type maps from both columns because an entity
+can be declared only as an object, make guards assert *no new* rather than none,
+and read the `--dry-run` output row by row against what you predicted. Baseline
+the per-code finding census before, compare it code by code after.
 
 **Scope.** If the user named what to create, create exactly that and nothing
 more. If they did not narrow it, build everything the building requires. Say
@@ -96,7 +112,7 @@ onto the equipment; any source column whose meaning is ambiguous.
 2. Is it in Brick? `lookup_reference.py --term ...` or ontology.brickschema.org -
    use the preferred class, never an alias.
 3. Is it in a previous project's ontology? Check the delivered sheets in
-   `reference-models/` (`QF_SSC_Ontology_V03.xlsx` and `QF_HQ_Ontology_V02.xlsx`) - reuse the class a
+   `reference-models/` (`QF_SSC_Ontology_V04.xlsx` and `QF_HQ_Ontology_V02.xlsx`) - reuse the class a
    prior project already gave the concept, and reuse a `para:` class it already
    coined rather than minting a parallel one.
 4. Not anywhere above? Define a `para:` subclass of the closest Brick parent.
@@ -188,6 +204,45 @@ IFC: `ref:IFCReference` with both `para:IFC_ID` (the BIM GUID) and `ref:ifcName`
 `ref:TimeseriesReference` with `ref:hasTimeseriesId` and `para:hasEntityId` -
 **on the point, never on the equipment.**
 
+**A physical meter does not rule out a virtual one** - they answer different
+questions, and the gap between an imported reading and a calculated roll-up is
+losses and unmetered load, which is worth seeing. Report the overlap, never
+suppress it. Expect to need a hand-written list of what each physical meter
+measures: they routinely carry no `brick:meters` row, so the graph cannot say.
+
+**A virtual meter is a formula, so it needs inputs.** Before generating a tier,
+check the sheet carries the points its formula would sum; where it does not,
+defer the meter and say so. A duplicate meter is visible to a reviewer, but a
+meter with no inputs validates clean, renders a tile and returns nothing. On QNL
+this ruled out water metering (no potable-water point exists) and the
+Occupant-Wellbeing bundle (no CO2, TVOC, PM, lux, noise or occupancy points).
+
+**Virtual meters are asked for, never assumed** - `references/virtual-meters.md`.
+Which tiers (Building, Floor, Room) and which meter types at each is the client's
+decision, put to them as a matrix; the count then follows as arithmetic, so say
+the total back before building. `para:Utility_Meter` is building-tier only - it
+measures the incoming municipal supply - while Electrical Meters sum across UPS,
+panels and generator and belong at any tier. Thermal meter points take
+`para:KiloWt` / `para:KiloWt-HR`, never `unit:KiloW`, or a demand rollup adds
+chilled-water kW to electrical kW. **Their points are calculated, so the IO-list
+rule below does not reach them** - but that is not licence to omit the reference
+row. Both halves are derivable: `ref:hasTimeseriesId` is Dar Cairo's token for
+the meter class, `para:hasEntityId` is the space the meter meters, underscored.
+Write the rows, list the derived keys for the calculation engine to confirm, and
+add every token to the selected-list exemptions in the same commit or the next
+reconciliation deletes the whole layer. **A meter block with points is eight rows,
+not six.** Only a class Dar Cairo has no token for ships with no reference row and
+a pending file - and never a blank one.
+
+**Where a selected-datapoint list exists, it outranks the IO list on scope.** An
+IO list says what the BMS publishes; a selected-points list says what the project
+agreed to deliver, and it is always smaller. Ask for it at intake. A tag the
+historian carries and the selection omits is a decision someone already made, not
+a gap you found - so reconcile both ways before handover, every selected tag
+present and nothing present that is not selected. Exempt by name only the points
+the sheet invents on purpose, such as a `para:` container the backend fills by
+calculation.
+
 **Points come from IO lists, and only from IO lists.** Never infer a point list
 from the equipment type. No IO list means no points for that equipment, and a
 line in the handover note. **Cross-check both directions before handover** with
@@ -234,6 +289,10 @@ python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx --
 # one family at a time while building, and findings to their own file
 python3 skills/building-ontology/scripts/check_consistency.py MyBuilding.xlsx \
     --family brick:Fan_Coil_Unit --report findings.xlsx
+
+# add the virtual metering layer to a building - --code picks the tier matrix,
+# paths and physical-meter overlaps from the BUILDINGS registry in the script
+python3 projects/QNL/add_virtual_meters.py --code SSC --dry-run
 
 # hand the remaining findings to a human, in the sheet itself
 python3 skills/building-ontology/scripts/highlight_findings.py In.xlsx \

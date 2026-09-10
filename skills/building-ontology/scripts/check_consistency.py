@@ -41,8 +41,12 @@ CHILD_PREDICATES = ("brick:hasPoint", "brick:hasPart")
 # the structural comparison - otherwise every room a VAV feeds reads as a
 # missing relation on the other 245 VAVs - but checked separately for
 # cardinality and placeholder smells.
+# The metering three belong here for the same reason: a virtual meter names the
+# one space it measures, so a 360-meter family otherwise reports 720 errors
+# saying each meter is missing the 359 targets its siblings carry.
 VARYING_PREDICATES = ("rec:locatedIn", "rec:feeds", "rec:isFedBy",
-                      "rec:isPartOf", "brick:isPartOf")
+                      "rec:isPartOf", "brick:isPartOf",
+                      "brick:meters", "brick:isMeteredBy", "brick:isSubMeterOf")
 
 # Share of a family's rows that must agree before a predicate's object shape is
 # taken as the expected shape.

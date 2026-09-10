@@ -1,0 +1,705 @@
+building,tag in the register,tag in the old file,what happened
+QNL,DX_B01,,no row in the old file
+QNL,DX_B02,,no row in the old file
+QNL,DX_B03,,no row in the old file
+QNL,DX_B04,,no row in the old file
+QNL,DX_B05,,no row in the old file
+QNL,DX_B06,,no row in the old file
+QNL,DX_B07,,no row in the old file
+QNL,DX_B08,,no row in the old file
+QNL,DX_B09,,no row in the old file
+QNL,DX_B10,,no row in the old file
+QNL,DX_B11,,no row in the old file
+QNL,DX_B12,,no row in the old file
+QNL,DX_B13,,no row in the old file
+QNL,DX_B14,,no row in the old file
+QNL,DX_B15,,no row in the old file
+QNL,DX_B16,,no row in the old file
+QNL,DX_B17,,no row in the old file
+QNL,DX_B18,,no row in the old file
+QNL,DX_B19,,no row in the old file
+QNL,DX_B20,,no row in the old file
+QNL,DX_B21,,no row in the old file
+QNL,DX_B22,,no row in the old file
+QNL,DX_B23,,no row in the old file
+QNL,DX_B24,,no row in the old file
+QNL,HEX01,,no row in the old file
+QNL,HEX02,,no row in the old file
+QNL,HEX03,,no row in the old file
+QNL,HEX04,,no row in the old file
+QNL,HEX05,,no row in the old file
+QNL,EF_201,,no row in the old file
+QNL,EF_B05,,no row in the old file
+QNL,EF_B06,,no row in the old file
+QNL,EF_B07,,no row in the old file
+QNL,EF_B08,,no row in the old file
+QNL,EF_B09,,no row in the old file
+QNL,EF_B10,,no row in the old file
+QNL,EF_B11,,no row in the old file
+QNL,EF_B12,,no row in the old file
+QNL,EF_B13,,no row in the old file
+QNL,EF_B14,,no row in the old file
+QNL,EF_B15,,no row in the old file
+QNL,EF_B16,,no row in the old file
+QNL,EF_BBV01,,no row in the old file
+QNL,EF_BBV02,,no row in the old file
+QNL,EF_RP01,,no row in the old file
+QNL,EF_RP02,,no row in the old file
+QNL,EF_RP03,,no row in the old file
+QNL,KEF_101,,no row in the old file
+QNL,KEF_B019,,no row in the old file
+QNL,KEF_B020,,no row in the old file
+QNL,KEF_B04,,no row in the old file
+QNL,SEF_RP04,,no row in the old file
+QNL,SEF_RP05,,no row in the old file
+QNL,SEF_RP06,,no row in the old file
+QNL,SEF_RP07,,no row in the old file
+QNL,SEF_RP08,,no row in the old file
+QNL,SEF_RP09,,no row in the old file
+QNL,SEF_RP10,,no row in the old file
+QNL,SEF_RP11,,no row in the old file
+QNL,SEF_RP12,,no row in the old file
+QNL,SEF_ZoneA,,no row in the old file
+QNL,SEF_ZoneB,,no row in the old file
+QNL,SEF_ZoneC,,no row in the old file
+QNL,TEF_101C,,no row in the old file
+QNL,TEF_102C,,no row in the old file
+QNL,TEF_B01A,,no row in the old file
+QNL,TEF_B01B,,no row in the old file
+QNL,TEF_B02A,,no row in the old file
+QNL,TEF_B02B,,no row in the old file
+QNL,TEF_B03A,,no row in the old file
+QNL,TEF_B03B,,no row in the old file
+QNL,CCU_B01,,no row in the old file
+QNL,CCU_B02,,no row in the old file
+QNL,CCU_B03,,no row in the old file
+QNL,CCU_B04,,no row in the old file
+QNL,CCU_B05,,no row in the old file
+QNL,CCU_B06,,no row in the old file
+QNL,CCU_B07,,no row in the old file
+QNL,CCU_B08,,no row in the old file
+QNL,CCU_B09,,no row in the old file
+QNL,CCU_B10,,no row in the old file
+QNL,CCU_B11,,no row in the old file
+QNL,CCU_8081,,no row in the old file
+QNL,CCU_8082,,no row in the old file
+QNL,CCU_8083,,no row in the old file
+QNL,CCU_8084,,no row in the old file
+QNL,CCU_8085,,no row in the old file
+QNL,CCU_8086,,no row in the old file
+QNL,CCU_MDFRm,,no row in the old file
+QNL,CCU_Qtel,,no row in the old file
+QNL,CCU_Server_Rm,,no row in the old file
+QNL,CCU_AVServer_Rm,,no row in the old file
+QNL,CCU_HeritageVault,,no row in the old file
+QNL,CHW_P01,,no row in the old file
+QNL,CHW_P02,,no row in the old file
+QNL,CHW_P03,,no row in the old file
+QNL,CHW_P04,,no row in the old file
+QNL,CHWPU_P01,,no row in the old file
+QNL,CHWPU_P02,,no row in the old file
+QNL,ELEC_Gen,,no row in the old file
+RDC,,RDC_SB_L0_AT-1002,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-1003,old row with no unit to land on
+RDC,,RDC_SB_L0_EV-1002,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-1004,old row with no unit to land on
+RDC,,RDC_SB_L0_EV-1003,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-1008,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4005,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4100,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4105,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4110,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4115,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4120,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4125,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4130,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4135,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4140,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4145,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4165,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4225,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4230,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4235,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4240,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4245,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4250,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4255,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4260,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4265,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4270,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4275,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4280,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4285,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4290,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4295,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4300,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4305,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4310,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0003,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0007,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0008,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0009,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0010,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0011,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0012,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0013,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0014,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0016,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0017,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0018,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0019,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0025,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4001,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-4312,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5025,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5100,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5105,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5110,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5115,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5120,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5125,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5130,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5135,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5140,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5145,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5150,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5152,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5155,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5156,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5165,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5295,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5300,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5305,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5310,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5315,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5325,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5330,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5335,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5340,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5345,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5355,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5360,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5365,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5370,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5380,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5385,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5390,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5415,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0001,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0002,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5010,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5015,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5030,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5040,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5045,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5395,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5400,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5405,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5410,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5000,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-5001,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6000,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6010,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6025,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6240,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6300,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6305,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6310,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6315,old row with no unit to land on
+RDC,,RDC_NB_GF_EV-6316,old row with no unit to land on
+RDC,,RDC_NB_GF_EV-5035,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2002,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2003,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2004,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2006,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2007,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2008,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2009,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2010,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2011,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2012,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2013,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2014,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2015,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2016,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2017,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2018,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2019,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2020,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2021,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2022,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2023,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2024,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2025,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2026,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2027,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2028,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2029,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2030,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2031,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2032,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2033,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2034,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2035,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2036,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2037,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2038,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2039,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2040,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2041,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2042,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2043,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2044,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2045,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2046,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-2047,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0115,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0116,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0117,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0118,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0120,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0122,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0123,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0124,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6130,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6135,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6140,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6145,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6150,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6155,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6160,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6170,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6175,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6180,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6185,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7000,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6195,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6190,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6200,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6220,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6205,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6285,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6210,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6295,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6320,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6325,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6330,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6335,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6340,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6345,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6350,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6355,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6360,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6365,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6370,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6375,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6380,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6390,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6395,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6400,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6405,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-6410,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7385,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7390,old row with no unit to land on
+RDC,,RDC_NB_GF_VEV-6053,old row with no unit to land on
+RDC,,RDC_NB_GF_VEV-6061,old row with no unit to land on
+RDC,,RDC_NB_GF_VEV-6071,old row with no unit to land on
+RDC,,RDC_NB_GF_VEV-6081,old row with no unit to land on
+RDC,,RDC_NB_GF_VEV-6091,old row with no unit to land on
+RDC,,RDC_NB_GF_VAV-6080,old row with no unit to land on
+RDC,,RDC_NB_GF_FCU6997,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3001,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3002,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3003,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3004,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3005,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3006,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3007,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3010,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3011,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3012,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3013,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3014,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3015,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3016,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3017,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3018,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3019,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3020,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3021,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3022,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3023,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3024,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3025,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3026,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3027,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3028,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3031,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3032,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3033,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3034,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3035,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-3036,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0101,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0102,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0103,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0104,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0105,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0107,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0108,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0109,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0110,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0111,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0112,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0113,old row with no unit to land on
+RDC,,RDC_SB_L0_AT-0114,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7080,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7085,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7095,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7100,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7110,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7115,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7125,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7130,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7135,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7140,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7145,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7155,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7165,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7180,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7185,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7195,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7205,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7215,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7395,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7400,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7405,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7410,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7415,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7425,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7430,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7435,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7440,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7445,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7460,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7465,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7470,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7475,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7480,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7485,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7490,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7496,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7498,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7499,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7090-N1,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7090-N2,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7105-N1,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7105-N2,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N1,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N2,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N3,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N4,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N5,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N6,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N7,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N8,old row with no unit to land on
+RDC,,RDC_NB_GF_AT-7120-N9,old row with no unit to land on
+RDC,,RDC_NB_GF_FCU7993,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1507,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1508,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1509,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1510,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1511,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1512,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1513,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1514,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1515,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1516,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1517,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1518,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1519,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1520,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1521,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1522,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1523,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1524,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1525,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1526,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1527,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1528,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1529,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1530,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1531,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1532,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1533,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1534,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1536,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1542,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1546,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1548,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1549,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1550,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1551,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1552,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1553,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1554,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1555,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1556,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1557,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1558,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1559,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1560,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1561,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0538,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4660,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4665,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4680,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4690,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4705,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4720,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4730,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4745,old row with no unit to land on
+RDC,,RDC_NB_1F_FCU2004,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0506,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0507,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0508,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0509,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0510,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0511,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0512,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0513,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0514,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0518,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0519,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0520,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0521,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0522,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0523,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0526,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0527,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0528,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0529,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0530,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0531,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0532,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0533,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1501,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1502,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1503,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1505,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1506,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1539,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1540,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1543,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1544,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1545,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-1547,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5650,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5655,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5660,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5665,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5670,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5675,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5680,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5685,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5690,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5695,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5700,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5705,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5710,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5715,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5730,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5735,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5740,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5745,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5760,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5835,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5840,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5860,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5865,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5870,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5875,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5880,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5885,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5890,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5895,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5900,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5905,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5910,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5915,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5920,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5925,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5930,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5935,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-5940,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-4650,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2501,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2502,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2503,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2504,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2505,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2506,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2508,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2509,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2510,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2511,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2512,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2513,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2514,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2515,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2516,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2517,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2518,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2519,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2520,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2521,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2522,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2523,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2524,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2525,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2526,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2527,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2528,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2529,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2530,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2531,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2532,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2533,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2534,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2535,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2536,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2538,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2539,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2540,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2541,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2542,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2543,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2544,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2545,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2546,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2547,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2548,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2549,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2550,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2551,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2552,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-2553,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-4260,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6650,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6655,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6660,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6665,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6670,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6675,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6680,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6685,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6690,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6695,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6700,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6705,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6710,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6715,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6720,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6725,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6900,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6905,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6910,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6915,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6920,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6925,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6930,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6935,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6940,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6945,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6950,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6955,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6960,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6965,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6967,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6968,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6970,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7865,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6372,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6374,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6376,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-6378,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3501,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3502,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3503,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3504,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3505,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3506,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3507,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3508,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3509,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3510,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3511,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3512,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3513,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3514,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3515,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3516,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3517,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3518,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3520,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3521,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3522,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3523,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-3524,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0207,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0208,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0201A,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0201B,old row with no unit to land on
+RDC,,RDC_SB_1F_AT-0206,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7620,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7625,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7630,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7635,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7640,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7645,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7650,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7655,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7660,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7665,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7670,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7675,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7680,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7685,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7690,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7695,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7700,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7705,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7710,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7840,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7845,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7850,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7860,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7870,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7875,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7880,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7885,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7890,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7895,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7900,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7905,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7910,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7915,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7920,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7925,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7930,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7935,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7940,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7945,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7950,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7955,old row with no unit to land on
+RDC,,RDC_NB_1F_AT-7960,old row with no unit to land on
+RDC,,RDC_NB_1F_CEV-7581,old row with no unit to land on
+RDC,,RDC_NB_1F_CEV-6831,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-4900,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-4910,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-5930,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-5940,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-6979,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-6980,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-7975,old row with no unit to land on
+RDC,,RDC_NB_2F_AT-7980,old row with no unit to land on

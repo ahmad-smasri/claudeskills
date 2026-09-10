@@ -1,0 +1,731 @@
+action,tag,type,room,detail
+removed - not in historian,RDC_NB_GF_EV-5035,EV,Confr Room N-0112,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0115,AT,Office S-0233A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0116,AT,Office S-0232A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0117,AT,Open Plan S-0228,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0118,AT,Open Plan S-0228B,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0120,AT,Open Plan S-0228A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0122,AT,Office S-0211A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0123,AT,Office S-0211B,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0124,AT,Technical Open Plan S-0211,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_VEV-6053,VEV,Open Lab 1 N-0310C,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_VEV-6061,VEV,Lab Support 3 N-0310D,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_VEV-6071,VEV,Lab Support 4 N-0310E,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_VEV-6081,VEV,Lab Support 5 N-0310F,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_VEV-6091,VEV,Lab Support 6 N-0310G,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_VAV-6080,VAV,Lab Support 5 N-0310F,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_FCU6997,FCU,Lab Sup 2 N-0310B,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0101,AT,Office S-0244A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0102,AT,Office S-0244B,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0103,AT,Office S-0244C,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0104,AT,Office S-0244D,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0105,AT,Office S-0244E,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0107,AT,Office S-0262A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0108,AT,Office S-0262B,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0109,AT,Office S-0262C,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0110,AT,Office S-0262H,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0111,AT,Office S-0262E,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0112,AT,Office S-0262F,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0113,AT,Office S-0262G,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_L0_AT-0114,AT,Office S-0262D,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_GF_FCU7993,FCU,Stair 5 N-0ST05,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_1F_FCU2004,FCU,Corridor N-1202,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_1F_AT-4260,AT,Office 05 -8WS- N-0255,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_1F_AT-6372,AT,Office N-1374,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_1F_AT-6374,AT,Office N-1375,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_1F_AT-6376,AT,Office N-1376,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_1F_AT-6378,AT,Office N-1377,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_1F_AT-0207,AT,Open Plan S-1293A,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_1F_AT-0208,AT,Open Plan S-1293,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_1F_AT-0201A,AT,Policy Executive Director Office S-1240,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_1F_AT-0201B,AT,Open Plan S-1229,neither - nothing in the historian knows this number
+removed - not in historian,RDC_SB_1F_AT-0206,AT,Policy Executive Director Office S-1240,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_2F_AT-4900,AT,Normal Electric N-2102,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_2F_AT-4910,AT,Emergency Electr N-2103,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_2F_AT-6979,AT,Normal Elec. N-2107,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_2F_AT-6980,AT,Emer. Elec. N-2108,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_2F_AT-7975,AT,Normal Elec. N-2111,neither - nothing in the historian knows this number
+removed - not in historian,RDC_NB_2F_AT-7980,AT,Emer. Elec. N-2112,neither - nothing in the historian knows this number
+removed - part,RDC_SB_L0_AT-1002,AT,Computer Lab S-0139,part of RDC_SB_GF_CAV1002 / RDC_SB_GF_VAV1003_VEV1002
+removed - part,RDC_SB_L0_EV-1001,EV,Computer Lab S-0139,part of RDC_SB_GF_CAV1001
+removed - part,RDC_SB_L0_AT-1003,AT,NOC S-0140A,part of RDC_SB_GF_VAV1003_VEV1002
+removed - part,RDC_SB_L0_EV-1002,EV,NOC S-0140A,part of RDC_SB_GF_CAV1002 / RDC_SB_GF_VAV1003_VEV1002
+removed - part,RDC_SB_L0_AT-1004,AT,Dedicated Cyber SOC/NOC Lab S-0141,part of RDC_SB_GF_VAV1004
+removed - part,RDC_SB_L0_EV-1003,EV,UPS S-0145,part of RDC_SB_GF_VAV1003_VEV1002
+removed - part,RDC_SB_L0_AT-1008,AT,Cyber/Embedded/Dist System Electrical Lab S-0146,part of RDC_SB_GF_VAV1008
+removed - part,RDC_NB_GF_AT-4005,AT,Electrical N-0202,part of RDC_NB_GF_VAV4005_EV4006
+removed - part,RDC_NB_GF_AT-4100,AT,Emergency Elec. Room N-0225,part of RDC_NB_GF_VAV4100_EV4101
+removed - part,RDC_NB_GF_AT-4105,AT,Normal Electrical Room N-0225,part of RDC_NB_GF_VAV4105_EV4106
+removed - part,RDC_NB_GF_AT-4110,AT,Conference Room N-0227,part of RDC_NB_GF_VAV4110_EV4111
+removed - part,RDC_NB_GF_AT-4115,AT,Office N-0228,part of RDC_NB_GF_VAV4115_EV4116
+removed - part,RDC_NB_GF_AT-4120,AT,Office N-0229,part of RDC_NB_GF_VAV4120_EV4121
+removed - part,RDC_NB_GF_AT-4125,AT,Office N-0230,part of RDC_NB_GF_VAV4125_EV4126
+removed - part,RDC_NB_GF_AT-4130,AT,Office N-0231,part of RDC_NB_GF_VAV4130_EV4131
+removed - part,RDC_NB_GF_AT-4135,AT,Office N-0232,part of RDC_NB_GF_VAV4135_EV4136
+removed - part,RDC_NB_GF_AT-4140,AT,Conference Room N-0233,part of RDC_NB_GF_VAV4140_EV4141
+removed - part,RDC_NB_GF_AT-4145,AT,Office N-0234,part of RDC_NB_GF_VAV4145_EV4146
+removed - part,RDC_NB_GF_AT-4165,AT,Office N-0236,part of RDC_NB_GF_VAV4165_EV4166
+removed - part,RDC_NB_GF_AT-4225,AT,Office N-0247,part of RDC_NB_GF_VAV4225
+removed - part,RDC_NB_GF_AT-4230,AT,Office N-0248,part of RDC_NB_GF_VAV4230
+removed - part,RDC_NB_GF_AT-4235,AT,Workstation N-0250,part of RDC_NB_GF_VAV4235
+removed - part,RDC_NB_GF_AT-4240,AT,Office N-0251,part of RDC_NB_GF_VAV4240
+removed - part,RDC_NB_GF_AT-4245,AT,Office N-0252,part of RDC_NB_GF_VAV4245
+removed - part,RDC_NB_GF_AT-4250,AT,Office N-0253,part of RDC_NB_GF_VAV4250
+removed - part,RDC_NB_GF_AT-4255,AT,Office N-0254,part of RDC_NB_GF_VAV4255
+removed - part,RDC_NB_GF_AT-4260,AT,Workstation N-0255,part of RDC_NB_GF_VAV4260
+removed - part,RDC_NB_GF_AT-4265,AT,Office N-0256,part of RDC_NB_GF_VAV4265
+removed - part,RDC_NB_GF_AT-4270,AT,Office N-0257,part of RDC_NB_GF_VAV4270
+removed - part,RDC_NB_GF_AT-4275,AT,Office N-0258,part of RDC_NB_GF_VAV4275
+removed - part,RDC_NB_GF_AT-4280,AT,Office N-0259,part of RDC_NB_GF_VAV4280
+removed - part,RDC_NB_GF_AT-4285,AT,Workstation N-0260,part of RDC_NB_GF_VAV4285
+removed - part,RDC_NB_GF_AT-4290,AT,Office N-0261,part of RDC_NB_GF_VAV4290
+removed - part,RDC_NB_GF_AT-4295,AT,Office N-0262,part of RDC_NB_GF_VAV4295
+removed - part,RDC_NB_GF_AT-4300,AT,Office N-0263,part of RDC_NB_GF_VAV4300
+removed - part,RDC_NB_GF_AT-4305,AT,Office N-0264,part of RDC_NB_GF_VAV4305
+removed - part,RDC_NB_GF_AT-4310,AT,Workstation N-0265,part of RDC_NB_GF_VAV4310
+removed - part,RDC_SB_L0_AT-0003,AT,Entrance Lobby S-0102,part of RDC_SB_GF_VAV0003
+removed - part,RDC_SB_L0_AT-0007,AT,Conf S-0109,part of RDC_SB_GF_VAV0007
+removed - part,RDC_SB_L0_AT-0008,AT,Computer Research Lab 3 S-0110,part of RDC_SB_GF_VAV0008
+removed - part,RDC_SB_L0_AT-0009,AT,Phone Booth S-0111,part of RDC_SB_GF_VAV0009
+removed - part,RDC_SB_L0_AT-0010,AT,Phone Booth S-0112,part of RDC_SB_GF_VAV0010
+removed - part,RDC_SB_L0_AT-0011,AT,Conference Room S-0113,part of RDC_SB_GF_VAV0011
+removed - part,RDC_SB_L0_AT-0012,AT,Computer Research Lab 2 S-0114,part of RDC_SB_GF_VAV0012
+removed - part,RDC_SB_L0_AT-0013,AT,Phone Booth S-0115,part of RDC_SB_GF_VAV0013
+removed - part,RDC_SB_L0_AT-0014,AT,Phone Booth S-0116,part of RDC_SB_GF_VAV0014
+removed - part,RDC_SB_L0_AT-0016,AT,Conf S-0118,part of RDC_SB_GF_VAV0016
+removed - part,RDC_SB_L0_AT-0017,AT,Computer Research Lab 1 S-0119,part of RDC_SB_GF_VAV0017
+removed - part,RDC_SB_L0_AT-0018,AT,Restaurant S-0123,part of RDC_SB_GF_VAV0018
+removed - part,RDC_SB_L0_AT-0019,AT,Restaurant S-0123,part of RDC_SB_GF_VAV0019
+removed - part,RDC_SB_L0_AT-0025,AT,Alt Recording/Sound S-0135,part of RDC_SB_GF_VAV0025
+removed - part,RDC_NB_GF_AT-4001,AT,Store N-0201,part of RDC_NB_GF_VAV4001
+removed - part,RDC_NB_GF_AT-4312,AT,Breakout N-0265B,part of RDC_NB_GF_VAV4312
+removed - part,RDC_NB_GF_AT-5025,AT,Corridor N-0110,part of RDC_NB_GF_VAV5025
+removed - part,RDC_NB_GF_AT-5100,AT,Office N-0115,part of RDC_NB_GF_VAV5100_EV5101
+removed - part,RDC_NB_GF_AT-5105,AT,Office N-0116,part of RDC_NB_GF_VAV5105
+removed - part,RDC_NB_GF_AT-5110,AT,Office N-0117,part of RDC_NB_GF_VAV5110
+removed - part,RDC_NB_GF_AT-5115,AT,Office N-0118,part of RDC_NB_GF_VAV5115
+removed - part,RDC_NB_GF_AT-5120,AT,Office N-0119,part of RDC_NB_GF_VAV5120
+removed - part,RDC_NB_GF_AT-5125,AT,Office N-0120,part of RDC_NB_GF_VAV5125
+removed - part,RDC_NB_GF_AT-5130,AT,Office N-0121,part of RDC_NB_GF_VAV5130
+removed - part,RDC_NB_GF_AT-5135,AT,Office N-0122,part of RDC_NB_GF_VAV5135
+removed - part,RDC_NB_GF_AT-5140,AT,Office N-0123,part of RDC_NB_GF_VAV5140
+removed - part,RDC_NB_GF_AT-5145,AT,Office N-0124,part of RDC_NB_GF_VAV5145
+removed - part,RDC_NB_GF_AT-5150,AT,Office N-0125,part of RDC_NB_GF_VAV5150
+removed - part,RDC_NB_GF_AT-5152,AT,Office N-0126,part of RDC_NB_GF_VAV5152
+removed - part,RDC_NB_GF_AT-5155,AT,Office N-0127,part of RDC_NB_GF_VAV5155
+removed - part,RDC_NB_GF_AT-5156,AT,Office 04 N-0129,part of RDC_NB_GF_VAV5156
+removed - part,RDC_NB_GF_AT-5165,AT,Corridor N-0134,part of RDC_NB_GF_VAV5165_EV5166
+removed - part,RDC_NB_GF_AT-5295,AT,Conference Room N-0149,part of RDC_NB_GF_VAV5295_EV5296
+removed - part,RDC_NB_GF_AT-5300,AT,Corridor N-0150,part of RDC_NB_GF_VAV5300
+removed - part,RDC_NB_GF_AT-5305,AT,Office N-0151,part of RDC_NB_GF_VAV5305
+removed - part,RDC_NB_GF_AT-5310,AT,Office N-0152,part of RDC_NB_GF_VAV5310
+removed - part,RDC_NB_GF_AT-5315,AT,Open Office N-0153,part of RDC_NB_GF_VAV5315
+removed - part,RDC_NB_GF_AT-5325,AT,Office N-0155,part of RDC_NB_GF_VAV5325
+removed - part,RDC_NB_GF_AT-5330,AT,Office N-0156,part of RDC_NB_GF_VAV5330
+removed - part,RDC_NB_GF_AT-5335,AT,Office N-0157,part of RDC_NB_GF_VAV5335
+removed - part,RDC_NB_GF_AT-5340,AT,Office N-0158,part of RDC_NB_GF_VAV5340
+removed - part,RDC_NB_GF_AT-5345,AT,Office N-0159,part of RDC_NB_GF_VAV5345
+removed - part,RDC_NB_GF_AT-5355,AT,Office N-0161,part of RDC_NB_GF_VAV5355
+removed - part,RDC_NB_GF_AT-5360,AT,Office N-0162,part of RDC_NB_GF_VAV5360
+removed - part,RDC_NB_GF_AT-5365,AT,Office N-0163,part of RDC_NB_GF_VAV5365
+removed - part,RDC_NB_GF_AT-5370,AT,Office N-0164,part of RDC_NB_GF_VAV5370
+removed - part,RDC_NB_GF_AT-5380,AT,Office N-0166,part of RDC_NB_GF_VAV5380
+removed - part,RDC_NB_GF_AT-5385,AT,Office N-0167A,part of RDC_NB_GF_VAV5385
+removed - part,RDC_NB_GF_AT-5390,AT,Office 04 N-0168,part of RDC_NB_GF_VAV5390
+removed - part,RDC_NB_GF_AT-5415,AT,Office 04 N-0174,part of RDC_NB_GF_VAV5415
+removed - part,RDC_NB_GF_EV-4316,EV,Vestibule N-0270A,part of RDC_NB_GF_CAV4315_EV4316
+removed - part,RDC_NB_GF_EV-5161,EV,Womens+N-0130A+N-0132 JC N-0130,part of RDC_NB_GF_CAV5160_EV5161
+removed - part,RDC_NB_GF_EV-5291,EV,Pantry N-0148,part of RDC_NB_GF_CAV5290_EV5291
+removed - part,RDC_SB_L0_AT-0001,AT,Vestibule S-0101,part of RDC_SB_GF_VAV0001
+removed - part,RDC_SB_L0_AT-0002,AT,Employee Entry Lobby S-0102,part of RDC_SB_GF_VAV0002
+removed - part,RDC_SB_L0_A1.3_AT-2001,AT,WOMEN S-0205,part of RDC_SB_GF_CAV2001
+removed - part,RDC_NB_GF_AT-5010,AT,Conf N-0106,part of RDC_NB_GF_VAV5010_EV5011
+removed - part,RDC_NB_GF_AT-5015,AT,Conference N-0107,part of RDC_NB_GF_VAV5015_EV5016
+removed - part,RDC_NB_GF_AT-5030,AT,Confr Room N-0112,part of RDC_NB_GF_VAV5030_EV5031
+removed - part,RDC_NB_GF_AT-5040,AT,Normal Elec. N-0113,part of RDC_NB_GF_VAV5040_EV5041
+removed - part,RDC_NB_GF_AT-5045,AT,Emergency Elec. N-0114,part of RDC_NB_GF_VAV5045_EV5046
+removed - part,RDC_NB_GF_AT-5395,AT,Exp. Office N-0169,part of RDC_NB_GF_VAV5395
+removed - part,RDC_NB_GF_AT-5400,AT,Reception Area N-0170,part of RDC_NB_GF_VAV5400
+removed - part,RDC_NB_GF_AT-5405,AT,Exp. Office N-0172,part of RDC_NB_GF_VAV5405
+removed - part,RDC_NB_GF_AT-5410,AT,Conf Room N-0173,part of RDC_NB_GF_VAV5410_EV5411
+removed - part,RDC_NB_GF_AT-5000,AT,Lobby North N-0101,part of RDC_NB_GF_VAV5000_EV5002
+removed - part,RDC_NB_GF_AT-5001,AT,Lobby North N-0101,part of RDC_NB_GF_VAV5001_EV5003
+removed - part,RDC_NB_GF_AT-6000,AT,Conf Room N-0301,part of RDC_NB_GF_VAV6000_EV6001
+removed - part,RDC_NB_GF_AT-6010,AT,Conf N-0304,part of RDC_NB_GF_VAV6010_EV6011
+removed - part,RDC_NB_GF_AT-6025,AT,Normal Elec. N-0310,part of RDC_NB_GF_VAV6025_EV6026
+removed - part,RDC_NB_GF_AT-6240,AT,Emergency Electrical N-0350A,part of RDC_NB_GF_VAV6240_EV6241
+removed - part,RDC_NB_GF_AT-6300,AT,Store N-0362B,part of RDC_NB_GF_VAV6300
+removed - part,RDC_NB_GF_AT-6305,AT,Office N-0363,part of RDC_NB_GF_VAV6305
+removed - part,RDC_NB_GF_AT-6310,AT,Office N-0364,part of RDC_NB_GF_VAV6310
+removed - part,RDC_NB_GF_AT-6315,AT,Conf Room N-0364A,part of RDC_NB_GF_VAV6315_EV6316
+removed - part,RDC_NB_GF_EV-6316,EV,Conf Room N-0364A,part of RDC_NB_GF_VAV6315_EV6316
+removed - part,RDC_NB_GF_EV-5021,EV,Mens + Vestibule + N-0109 N-0108,part of RDC_NB_GF_CAV5020_EV5021
+removed - part,RDC_NB_GF_EV-6016,EV,Men N-0306,part of RDC_NB_GF_CAV6015_EV6016
+removed - part,RDC_SB_L0_AT-2002,AT,Conference Room S-0207,part of RDC_SB_GF_VAV2002
+removed - part,RDC_SB_L0_AT-2003,AT,Multi Purpose Hall S-0208,part of RDC_SB_GF_VAV2003
+removed - part,RDC_SB_L0_AT-2004,AT,Multi Purpose Hall S-0208,part of RDC_SB_GF_VAV2004
+removed - part,RDC_SB_L0_AT-2006,AT,Meeting Room S-0212,part of RDC_SB_GF_VAV2006
+removed - part,RDC_SB_L0_AT-2007,AT,Office S-0213,part of RDC_SB_GF_VAV2007
+removed - part,RDC_SB_L0_AT-2008,AT,Office S-0214,part of RDC_SB_GF_VAV2008
+removed - part,RDC_SB_L0_AT-2009,AT,Office S-0215,part of RDC_SB_GF_VAV2009
+removed - part,RDC_SB_L0_AT-2010,AT,Office S-0216,part of RDC_SB_GF_VAV2010
+removed - part,RDC_SB_L0_AT-2011,AT,Office S-0217,part of RDC_SB_GF_VAV2011
+removed - part,RDC_SB_L0_AT-2012,AT,Director Office S-0218,part of RDC_SB_GF_VAV2012
+removed - part,RDC_SB_L0_AT-2013,AT,Office S-0219,part of RDC_SB_GF_VAV2013
+removed - part,RDC_SB_L0_AT-2014,AT,Office S-0220,part of RDC_SB_GF_VAV2014
+removed - part,RDC_SB_L0_AT-2015,AT,Director Office S-0221,part of RDC_SB_GF_VAV2015
+removed - part,RDC_SB_L0_AT-2016,AT,Director Office S-0222,part of RDC_SB_GF_VAV2016
+removed - part,RDC_SB_L0_AT-2017,AT,Meeting Room S-0223,part of RDC_SB_GF_VAV2017
+removed - part,RDC_SB_L0_AT-2018,AT,PANTRY S-0226,part of RDC_SB_GF_VAV2018
+removed - part,RDC_SB_L0_AT-2019,AT,Office S-0227,part of RDC_SB_GF_VAV2019
+removed - part,RDC_SB_L0_AT-2020,AT,Informal Meeting S-0231,part of RDC_SB_GF_VAV2020
+removed - part,RDC_SB_L0_AT-2021,AT,Open Plan S-0228,part of RDC_SB_GF_VAV2021
+removed - part,RDC_SB_L0_AT-2022,AT,Director Office S-0229,part of RDC_SB_GF_VAV2022
+removed - part,RDC_SB_L0_AT-2023,AT,Office S-0230,part of RDC_SB_GF_VAV2023
+removed - part,RDC_SB_L0_AT-2024,AT,Executive Director Office S-0232,part of RDC_SB_GF_VAV2024
+removed - part,RDC_SB_L0_AT-2025,AT,Executive Director Office S-0233,part of RDC_SB_GF_VAV2025
+removed - part,RDC_SB_L0_AT-2026,AT,Office S-0234,part of RDC_SB_GF_VAV2026
+removed - part,RDC_SB_L0_AT-2027,AT,Office S-0235,part of RDC_SB_GF_VAV2027
+removed - part,RDC_SB_L0_AT-2028,AT,Office S-0236,part of RDC_SB_GF_VAV2028
+removed - part,RDC_SB_L0_AT-2029,AT,Waiting Area S-0251,part of RDC_SB_GF_VAV2029
+removed - part,RDC_SB_L0_AT-2030,AT,Office S-0259,part of RDC_SB_GF_VAV2030
+removed - part,RDC_SB_L0_AT-2031,AT,Office S-0260,part of RDC_SB_GF_VAV2031
+removed - part,RDC_SB_L0_AT-2032,AT,Open Plan S-0269,part of RDC_SB_GF_VAV2032
+removed - part,RDC_SB_L0_AT-2033,AT,CORRIDOR S-0273,part of RDC_SB_GF_VAV2033
+removed - part,RDC_SB_L0_AT-2034,AT,Meeting Room S-0274,part of RDC_SB_GF_VAV2034
+removed - part,RDC_SB_L0_AT-2035,AT,MECH S-0272,part of RDC_SB_GF_VAV2035
+removed - part,RDC_SB_L0_AT-2036,AT,Emergency Elec. Room S-0278,part of RDC_SB_GF_VAV2036
+removed - part,RDC_SB_L0_AT-2037,AT,Men S-0284,part of RDC_SB_GF_VAV2037
+removed - part,RDC_SB_L0_AT-2038,AT,Informal Meeting S-0285,part of RDC_SB_GF_VAV2038
+removed - part,RDC_SB_L0_AT-2039,AT,Meeting Room S-0286,part of RDC_SB_GF_VAV2039
+removed - part,RDC_SB_L0_AT-2040,AT,Open Plan S-0289,part of RDC_SB_GF_VAV2040
+removed - part,RDC_SB_L0_AT-2041,AT,Open Plan S-0289,part of RDC_SB_GF_VAV2041
+removed - part,RDC_SB_L0_AT-2042,AT,Lobby S-0294,part of RDC_SB_GF_VAV2042
+removed - part,RDC_SB_L0_AT-2043,AT,Lobby S-0294,part of RDC_SB_GF_VAV2043
+removed - part,RDC_SB_L0_AT-2044,AT,Lobby S-0294,part of RDC_SB_GF_VAV2044
+removed - part,RDC_SB_L0_AT-2045,AT,Lobby S-0294,part of RDC_SB_GF_VAV2045
+removed - part,RDC_SB_L0_AT-2046,AT,Lobby S-0294,part of RDC_SB_GF_VAV2046
+removed - part,RDC_SB_L0_AT-2047,AT,Lobby S-0294,part of RDC_SB_GF_VAV2047
+removed - part,RDC_NB_GF_AT-6130,AT,Store N-0315,part of RDC_NB_GF_VAV6130_EV6131
+removed - part,RDC_NB_GF_AT-6135,AT,Store N-0316,part of RDC_NB_GF_VAV6135
+removed - part,RDC_NB_GF_AT-6140,AT,Workstation N-0317,part of RDC_NB_GF_VAV6140
+removed - part,RDC_NB_GF_AT-6145,AT,Office N-0318,part of RDC_NB_GF_VAV6145
+removed - part,RDC_NB_GF_AT-6150,AT,Office N-0319,part of RDC_NB_GF_VAV6150
+removed - part,RDC_NB_GF_AT-6155,AT,Workstation N-0320,part of RDC_NB_GF_VAV6155
+removed - part,RDC_NB_GF_AT-6160,AT,Office N-0321,part of RDC_NB_GF_VAV6160
+removed - part,RDC_NB_GF_AT-6170,AT,Office N-0323,part of RDC_NB_GF_VAV6170
+removed - part,RDC_NB_GF_AT-6175,AT,Workstation N-0324,part of RDC_NB_GF_VAV6175
+removed - part,RDC_NB_GF_AT-6180,AT,Office N-0325,part of RDC_NB_GF_VAV6180
+removed - part,RDC_NB_GF_AT-6185,AT,Office N-0326,part of RDC_NB_GF_VAV6185_EV6186
+removed - part,RDC_NB_GF_AT-7000,AT,Vestibule / Staging N-0401,part of RDC_NB_GF_VAV7000
+removed - part,RDC_NB_GF_AT-6195,AT,Store N-0329,part of RDC_NB_GF_VAV6195
+removed - part,RDC_NB_GF_AT-6190,AT,Normal Elec. N-0328,part of RDC_NB_GF_VAV6190_EV6191
+removed - part,RDC_NB_GF_AT-6200,AT,Conf N-0330,part of RDC_NB_GF_VAV6200_EV6201
+removed - part,RDC_NB_GF_AT-6220,AT,Emergency Elec. N-0333,part of RDC_NB_GF_VAV6220_EV6221
+removed - part,RDC_NB_GF_AT-6205,AT,Conference N-0331,part of RDC_NB_GF_VAV6205_EV6206
+removed - part,RDC_NB_GF_AT-6285,AT,Conference N-0358,part of RDC_NB_GF_VAV6285_EV6286
+removed - part,RDC_NB_GF_AT-6210,AT,Corridor N-0332C,part of RDC_NB_GF_VAV6210
+removed - part,RDC_NB_GF_AT-6295,AT,Conference N-0360,part of RDC_NB_GF_VAV6295_EV6296
+removed - part,RDC_NB_GF_AT-6320,AT,Corridor N-0365,part of RDC_NB_GF_VAV6320
+removed - part,RDC_NB_GF_AT-6325,AT,Office N-0366,part of RDC_NB_GF_VAV6325
+removed - part,RDC_NB_GF_AT-6330,AT,Office 04 N-0367,part of RDC_NB_GF_VAV6330
+removed - part,RDC_NB_GF_AT-6335,AT,Office N-0368,part of RDC_NB_GF_VAV6335
+removed - part,RDC_NB_GF_AT-6340,AT,Office N-0369,part of RDC_NB_GF_VAV6340
+removed - part,RDC_NB_GF_AT-6345,AT,Office N-0370,part of RDC_NB_GF_VAV6345
+removed - part,RDC_NB_GF_AT-6350,AT,Office N-0371,part of RDC_NB_GF_VAV6350
+removed - part,RDC_NB_GF_AT-6355,AT,Workstation N-0372,part of RDC_NB_GF_VAV6355
+removed - part,RDC_NB_GF_AT-6360,AT,Office N-0374,part of RDC_NB_GF_VAV6360
+removed - part,RDC_NB_GF_AT-6365,AT,Office N-0375,part of RDC_NB_GF_VAV6365
+removed - part,RDC_NB_GF_AT-6370,AT,Office N-0376,part of RDC_NB_GF_VAV6370
+removed - part,RDC_NB_GF_AT-6375,AT,Office N-0377,part of RDC_NB_GF_VAV6375
+removed - part,RDC_NB_GF_AT-6380,AT,Workstation N-0378,part of RDC_NB_GF_VAV6380
+removed - part,RDC_NB_GF_AT-6390,AT,Office N-0379,part of RDC_NB_GF_VAV6390
+removed - part,RDC_NB_GF_AT-6395,AT,Office N-0380,part of RDC_NB_GF_VAV6395
+removed - part,RDC_NB_GF_AT-6400,AT,Workstation N-0381,part of RDC_NB_GF_VAV6400
+removed - part,RDC_NB_GF_AT-6405,AT,Office N-0382,part of RDC_NB_GF_VAV6405
+removed - part,RDC_NB_GF_AT-6410,AT,Office N-0383,part of RDC_NB_GF_VAV6410
+removed - part,RDC_NB_GF_AT-7385,AT,Office N-0444,part of RDC_NB_GF_VAV7385
+removed - part,RDC_NB_GF_AT-7390,AT,Office 04 N-0445,part of RDC_NB_GF_VAV7390
+removed - part,RDC_NB_GF_EV-6281,EV,Pantry N-0356,part of RDC_NB_GF_CAV6280_EV6281
+removed - part,RDC_NB_GF_EV-7006,EV,WOMEN N-0402,part of RDC_NB_GF_CAV7005_EV7006
+removed - part,RDC_NB_GF_EV-7381,EV,Pipe Chase N-0443B,part of RDC_NB_GF_CAV7380_EV7381
+removed - part,RDC_SB_L0_AT-3001,AT,Director Office S-0237,part of RDC_SB_GF_VAV3001
+removed - part,RDC_SB_L0_AT-3002,AT,Office S-0238,part of RDC_SB_GF_VAV3002
+removed - part,RDC_SB_L0_AT-3003,AT,Office S-0239,part of RDC_SB_GF_VAV3003
+removed - part,RDC_SB_L0_AT-3004,AT,Office S-0240,part of RDC_SB_GF_VAV3004
+removed - part,RDC_SB_L0_AT-3005,AT,Office S-0241,part of RDC_SB_GF_VAV3005
+removed - part,RDC_SB_L0_AT-3006,AT,Office S-0242,part of RDC_SB_GF_VAV3006
+removed - part,RDC_SB_L0_AT-3007,AT,Director Office S-0243,part of RDC_SB_GF_VAV3007
+removed - part,RDC_SB_L0_AT-3010,AT,Open Plan S-0244,part of RDC_SB_GF_VAV3010
+removed - part,RDC_SB_L0_AT-3011,AT,Meeting Room S-0245,part of RDC_SB_GF_VAV3011
+removed - part,RDC_SB_L0_AT-3012,AT,Office S-0246,part of RDC_SB_GF_VAV3012
+removed - part,RDC_SB_L0_AT-3013,AT,Office S-0247,part of RDC_SB_GF_VAV3013
+removed - part,RDC_SB_L0_AT-3014,AT,Office S-0248,part of RDC_SB_GF_VAV3014
+removed - part,RDC_SB_L0_AT-3015,AT,Security S-0249,part of RDC_SB_GF_VAV3015
+removed - part,RDC_SB_L0_AT-3016,AT,Corridor S-0250,part of RDC_SB_GF_VAV3016
+removed - part,RDC_SB_L0_AT-3017,AT,Office S-0251,part of RDC_SB_GF_VAV3017
+removed - part,RDC_SB_L0_AT-3018,AT,Corridor S-0251B,part of RDC_SB_GF_VAV3018
+removed - part,RDC_SB_L0_AT-3019,AT,Corridor S-0251B,part of RDC_SB_GF_VAV3019
+removed - part,RDC_SB_L0_AT-3020,AT,Office S-0252,part of RDC_SB_GF_VAV3020
+removed - part,RDC_SB_L0_AT-3021,AT,Office S-0252,part of RDC_SB_GF_VAV3021
+removed - part,RDC_SB_L0_AT-3022,AT,Office S-0253,part of RDC_SB_GF_VAV3022
+removed - part,RDC_SB_L0_AT-3023,AT,Office S-0253,part of RDC_SB_GF_VAV3023
+removed - part,RDC_SB_L0_AT-3024,AT,Office S-0254,part of RDC_SB_GF_VAV3024
+removed - part,RDC_SB_L0_AT-3025,AT,Office S-0255,part of RDC_SB_GF_VAV3025
+removed - part,RDC_SB_L0_AT-3026,AT,Office S-0256,part of RDC_SB_GF_VAV3026
+removed - part,RDC_SB_L0_AT-3027,AT,Office S-0257,part of RDC_SB_GF_VAV3027
+removed - part,RDC_SB_L0_AT-3028,AT,Office S-0258,part of RDC_SB_GF_VAV3028
+removed - part,RDC_SB_L0_AT-3031,AT,IT Server S-0264,part of RDC_SB_GF_VAV3031
+removed - part,RDC_SB_L0_AT-3032,AT,Open Plan S-0265,part of RDC_SB_GF_VAV3032
+removed - part,RDC_SB_L0_AT-3033,AT,Emergency Elec. S-0266,part of RDC_SB_GF_VAV3033
+removed - part,RDC_SB_L0_AT-3034,AT,Reception / Vestibule S-0293,part of RDC_SB_GF_VAV3034
+removed - part,RDC_SB_L0_AT-3035,AT,Lobby S-0294,part of RDC_SB_GF_VAV3035
+removed - part,RDC_SB_L0_AT-3036,AT,Lobby S-0294,part of RDC_SB_GF_VAV3036
+removed - part,RDC_NB_GF_AT-7080,AT,Exp. Office N-0410,part of RDC_NB_GF_VAV7080
+removed - part,RDC_NB_GF_AT-7085,AT,Office N-0411,part of RDC_NB_GF_VAV7085
+removed - part,RDC_NB_GF_AT-7095,AT,Office N-0413,part of RDC_NB_GF_VAV7095
+removed - part,RDC_NB_GF_AT-7100,AT,Office N-0414,part of RDC_NB_GF_VAV7100
+removed - part,RDC_NB_GF_AT-7110,AT,Office N-0416,part of RDC_NB_GF_VAV7110
+removed - part,RDC_NB_GF_AT-7115,AT,Office N-0417,part of RDC_NB_GF_VAV7115
+removed - part,RDC_NB_GF_AT-7125,AT,NORMAL ELEC. ROOM N-0420,part of RDC_NB_GF_VAV7125_EV7126
+removed - part,RDC_NB_GF_AT-7130,AT,Office N-0421,part of RDC_NB_GF_VAV7130
+removed - part,RDC_NB_GF_AT-7135,AT,Office N-0422,part of RDC_NB_GF_VAV7135
+removed - part,RDC_NB_GF_AT-7140,AT,Conference N-0423,part of RDC_NB_GF_VAV7140_EV7141
+removed - part,RDC_NB_GF_AT-7145,AT,Office N-0425,part of RDC_NB_GF_VAV7145
+removed - part,RDC_NB_GF_AT-7155,AT,Office N-0427,part of RDC_NB_GF_VAV7155
+removed - part,RDC_NB_GF_AT-7165,AT,Office N-0429,part of RDC_NB_GF_VAV7165
+removed - part,RDC_NB_GF_AT-7180,AT,Corridor N-0432,part of RDC_NB_GF_VAV7180
+removed - part,RDC_NB_GF_AT-7185,AT,Emer. Elec. Room N-0433,part of RDC_NB_GF_VAV7185_EV7186
+removed - part,RDC_NB_GF_AT-7195,AT,OFFICE N-0436,part of RDC_NB_GF_VAV7195
+removed - part,RDC_NB_GF_AT-7205,AT,Office 04 N-0438,part of RDC_NB_GF_VAV7205
+removed - part,RDC_NB_GF_AT-7215,AT,CONFERENCE ROOM N-0440,part of RDC_NB_GF_VAV7215_EV7216
+removed - part,RDC_NB_GF_AT-7395,AT,Workstation N-0446,part of RDC_NB_GF_VAV7395
+removed - part,RDC_NB_GF_AT-7400,AT,Office N-0447,part of RDC_NB_GF_VAV7400
+removed - part,RDC_NB_GF_AT-7405,AT,Office N-0448,part of RDC_NB_GF_VAV7405
+removed - part,RDC_NB_GF_AT-7410,AT,Office N-0449,part of RDC_NB_GF_VAV7410
+removed - part,RDC_NB_GF_AT-7415,AT,Office N-0450,part of RDC_NB_GF_VAV7415
+removed - part,RDC_NB_GF_AT-7425,AT,Workstation N-0452,part of RDC_NB_GF_VAV7425
+removed - part,RDC_NB_GF_AT-7430,AT,Office N-0453,part of RDC_NB_GF_VAV7430
+removed - part,RDC_NB_GF_AT-7435,AT,Office N-0454,part of RDC_NB_GF_VAV7435
+removed - part,RDC_NB_GF_AT-7440,AT,Office N-0455,part of RDC_NB_GF_VAV7440
+removed - part,RDC_NB_GF_AT-7445,AT,Office N-0456,part of RDC_NB_GF_VAV7445
+removed - part,RDC_NB_GF_AT-7460,AT,Workstation N-0457,part of RDC_NB_GF_VAV7460
+removed - part,RDC_NB_GF_AT-7465,AT,Office N-0458,part of RDC_NB_GF_VAV7465
+removed - part,RDC_NB_GF_AT-7470,AT,Office N-0459,part of RDC_NB_GF_VAV7470
+removed - part,RDC_NB_GF_AT-7475,AT,Office N-0460,part of RDC_NB_GF_VAV7475
+removed - part,RDC_NB_GF_AT-7480,AT,Office N-0461,part of RDC_NB_GF_VAV7480
+removed - part,RDC_NB_GF_AT-7485,AT,WORKSTATION N-0462,part of RDC_NB_GF_VAV7485
+removed - part,RDC_NB_GF_AT-7490,AT,Confer N-0463,part of RDC_NB_GF_VAV7490_EV7495
+removed - part,RDC_NB_GF_AT-7496,AT,Office N-0464,part of RDC_NB_GF_VAV7496
+removed - part,RDC_NB_GF_AT-7498,AT,Office N-0465,part of RDC_NB_GF_VAV7498
+removed - part,RDC_NB_GF_AT-7499,AT,Office N-0466,part of RDC_NB_GF_VAV7499
+removed - part,RDC_NB_GF_AT-7090-N1,AT,Office N-0412,part of RDC_NB_GF_VAV7090
+removed - part,RDC_NB_GF_AT-7090-N2,AT,Office N-0412A,part of RDC_NB_GF_VAV7090
+removed - part,RDC_NB_GF_AT-7105-N1,AT,Office N-0415,part of RDC_NB_GF_VAV7105
+removed - part,RDC_NB_GF_AT-7105-N2,AT,Office N-0415A,part of RDC_NB_GF_VAV7105
+removed - part,RDC_NB_GF_AT-7120-N1,AT,Office N-0418,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N2,AT,Office N-0418A,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N3,AT,Office N-0430A,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N4,AT,Office N-0430B,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N5,AT,Office N-0430C,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N6,AT,Office N-0430D,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N7,AT,Office N-0430E,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N8,AT,Office N-0430F,part of RDC_NB_GF_VAV7120
+removed - part,RDC_NB_GF_AT-7120-N9,AT,Corridor N-0418A,part of RDC_NB_GF_VAV7120
+removed - part,RDC_SB_1F_AT-1507,AT,Workstation S-1124A,part of RDC_SB_1F_VAV1507
+removed - part,RDC_SB_1F_AT-1508,AT,Scientific Comp. Office 1 S-1125,part of RDC_SB_1F_VAV1508
+removed - part,RDC_SB_1F_AT-1509,AT,Scientific Comp. Office S-1126,part of RDC_SB_1F_VAV1509
+removed - part,RDC_SB_1F_AT-1510,AT,ALT Office 2 S-1127,part of RDC_SB_1F_VAV1510
+removed - part,RDC_SB_1F_AT-1511,AT,ALT Office 3 S-1128,part of RDC_SB_1F_VAV1511
+removed - part,RDC_SB_1F_AT-1512,AT,Workstation S-1128A,part of RDC_SB_1F_VAV1512
+removed - part,RDC_SB_1F_AT-1513,AT,ALT Office 1 S-1129,part of RDC_SB_1F_VAV1513
+removed - part,RDC_SB_1F_AT-1514,AT,ALT Office S-1130,part of RDC_SB_1F_VAV1514
+removed - part,RDC_SB_1F_AT-1515,AT,Distub. Syst Office 1 S-1131,part of RDC_SB_1F_VAV1515
+removed - part,RDC_SB_1F_AT-1516,AT,Distub. Syst Office S-1132,part of RDC_SB_1F_VAV1516
+removed - part,RDC_SB_1F_AT-1517,AT,Workstation S-1132A,part of RDC_SB_1F_VAV1517
+removed - part,RDC_SB_1F_AT-1518,AT,Distub. Syst Office S-1133,part of RDC_SB_1F_VAV1518
+removed - part,RDC_SB_1F_AT-1519,AT,Distub. Syst Office S-1134,part of RDC_SB_1F_VAV1519
+removed - part,RDC_SB_1F_AT-1520,AT,Data Analytic Office S-1135,part of RDC_SB_1F_VAV1520
+removed - part,RDC_SB_1F_AT-1521,AT,Data Analytic Office S-1136,part of RDC_SB_1F_VAV1521
+removed - part,RDC_SB_1F_AT-1522,AT,Workstation S-1136A,part of RDC_SB_1F_VAV1522
+removed - part,RDC_SB_1F_AT-1523,AT,Data Analytic Office S-1137,part of RDC_SB_1F_VAV1523
+removed - part,RDC_SB_1F_AT-1524,AT,Data Analytic Office S-1138,part of RDC_SB_1F_VAV1524
+removed - part,RDC_SB_1F_AT-1525,AT,Office S-1139,part of RDC_SB_1F_VAV1525
+removed - part,RDC_SB_1F_AT-1526,AT,Office S-1140,part of RDC_SB_1F_VAV1526
+removed - part,RDC_SB_1F_AT-1527,AT,Conference Room S-1141,part of RDC_SB_1F_VAV1527
+removed - part,RDC_SB_1F_AT-1528,AT,Office S-1142,part of RDC_SB_1F_VAV1528
+removed - part,RDC_SB_1F_AT-1529,AT,Office S-1144,part of RDC_SB_1F_VAV1529
+removed - part,RDC_SB_1F_AT-1530,AT,Office S-1145,part of RDC_SB_1F_VAV1530
+removed - part,RDC_SB_1F_AT-1531,AT,Office S-1146,part of RDC_SB_1F_VAV1531
+removed - part,RDC_SB_1F_AT-1532,AT,Workstation S-1146A,part of RDC_SB_1F_VAV1532
+removed - part,RDC_SB_1F_AT-1533,AT,Office S-1148,part of RDC_SB_1F_VAV1533
+removed - part,RDC_SB_1F_AT-1534,AT,Office S-1149,part of RDC_SB_1F_VAV1534
+removed - part,RDC_SB_1F_AT-1536,AT,Office S-1150,part of RDC_SB_1F_VAV1536
+removed - part,RDC_SB_1F_AT-1542,AT,Office S-1182,part of RDC_SB_1F_VAV1542
+removed - part,RDC_SB_1F_AT-1546,AT,Office S-1182E,part of RDC_SB_1F_VAV1546
+removed - part,RDC_SB_1F_AT-1548,AT,Office S-1183,part of RDC_SB_1F_VAV1548
+removed - part,RDC_SB_1F_AT-1549,AT,Workstation S-1183A,part of RDC_SB_1F_VAV1549
+removed - part,RDC_SB_1F_AT-1550,AT,Office S-1184,part of RDC_SB_1F_VAV1550
+removed - part,RDC_SB_1F_AT-1551,AT,Social Comp Office S-1185,part of RDC_SB_1F_VAV1551
+removed - part,RDC_SB_1F_AT-1552,AT,Social Comp Office S-1186,part of RDC_SB_1F_VAV1552
+removed - part,RDC_SB_1F_AT-1553,AT,Workstation S-1186A,part of RDC_SB_1F_VAV1553
+removed - part,RDC_SB_1F_AT-1554,AT,Social Comp Office S-1187,part of RDC_SB_1F_VAV1554
+removed - part,RDC_SB_1F_AT-1555,AT,Social Comp Office S-1188,part of RDC_SB_1F_VAV1555
+removed - part,RDC_SB_1F_AT-1556,AT,Cyber Sec Office S-1189,part of RDC_SB_1F_VAV1556
+removed - part,RDC_SB_1F_AT-1557,AT,Cyber Sec Office S-1190,part of RDC_SB_1F_VAV1557
+removed - part,RDC_SB_1F_AT-1558,AT,Workstation S-1190A,part of RDC_SB_1F_VAV1558
+removed - part,RDC_SB_1F_AT-1559,AT,Office S-1191,part of RDC_SB_1F_VAV1559
+removed - part,RDC_SB_1F_AT-1560,AT,Cyber Sec Office S-1192,part of RDC_SB_1F_VAV1560
+removed - part,RDC_SB_1F_AT-1561,AT,Cyber Sec Office S-1193,part of RDC_SB_1F_VAV1561
+removed - part,RDC_SB_1F_AT-0538,AT,Workstation S-1151A,part of RDC_SB_1F_VAV0538
+removed - part,RDC_NB_1F_AT-4660,AT,Expansion Workstation N-1227,part of RDC_NB_1F_VAV4660
+removed - part,RDC_NB_1F_AT-4665,AT,Office N-1228,part of RDC_NB_1F_VAV4665
+removed - part,RDC_NB_1F_AT-4680,AT,Office N-1231,part of RDC_NB_1F_VAV4680
+removed - part,RDC_NB_1F_AT-4690,AT,Office N-1233,part of RDC_NB_1F_VAV4690
+removed - part,RDC_NB_1F_AT-4705,AT,Office N-1236,part of RDC_NB_1F_VAV4705
+removed - part,RDC_NB_1F_AT-4720,AT,Office N-1239,part of RDC_NB_1F_VAV4720
+removed - part,RDC_NB_1F_AT-4730,AT,Office N-1241,part of RDC_NB_1F_VAV4730
+removed - part,RDC_NB_1F_AT-4745,AT,Office N-1244,part of RDC_NB_1F_VAV4745
+removed - part,RDC_SB_1F_AT-0506,AT,Conf. S-1110,part of RDC_SB_1F_VAV0506
+removed - part,RDC_SB_1F_AT-0507,AT,Computer Research Lab-4 S-1112,part of RDC_SB_1F_VAV0507
+removed - part,RDC_SB_1F_AT-0508,AT,Conf S-1113,part of RDC_SB_1F_VAV0508
+removed - part,RDC_SB_1F_AT-0509,AT,NCIR OFFICE S-1115,part of RDC_SB_1F_VAV0509
+removed - part,RDC_SB_1F_AT-0510,AT,Workstation S-1115A,part of RDC_SB_1F_VAV0510
+removed - part,RDC_SB_1F_AT-0511,AT,NCIR Office S-1116,part of RDC_SB_1F_VAV0511
+removed - part,RDC_SB_1F_AT-0512,AT,NCIR Office S-1117,part of RDC_SB_1F_VAV0512
+removed - part,RDC_SB_1F_AT-0513,AT,NCIR Office S-1118,part of RDC_SB_1F_VAV0513
+removed - part,RDC_SB_1F_AT-0514,AT,NCIR Office S-1119,part of RDC_SB_1F_VAV0514
+removed - part,RDC_SB_1F_AT-0518,AT,Office S-1161,part of RDC_SB_1F_VAV0518
+removed - part,RDC_SB_1F_AT-0519,AT,Office S-1162,part of RDC_SB_1F_VAV0519
+removed - part,RDC_SB_1F_AT-0520,AT,Office S-1163,part of RDC_SB_1F_VAV0520
+removed - part,RDC_SB_1F_AT-0521,AT,Office S-1164,part of RDC_SB_1F_VAV0521
+removed - part,RDC_SB_1F_AT-0522,AT,Office S-1165,part of RDC_SB_1F_VAV0522
+removed - part,RDC_SB_1F_AT-0523,AT,Office S-1166,part of RDC_SB_1F_VAV0523
+removed - part,RDC_SB_1F_AT-0526,AT,Office S-1171,part of RDC_SB_1F_VAV0526
+removed - part,RDC_SB_1F_AT-0527,AT,Office S-1172,part of RDC_SB_1F_VAV0527
+removed - part,RDC_SB_1F_AT-0528,AT,Office S-1173,part of RDC_SB_1F_VAV0528
+removed - part,RDC_SB_1F_AT-0529,AT,Corridor S-1174,part of RDC_SB_1F_VAV0529
+removed - part,RDC_SB_1F_AT-0530,AT,Situation Room S-1175,part of RDC_SB_1F_VAV0530
+removed - part,RDC_SB_1F_AT-0531,AT,Immersive Viz Lab S-1176,part of RDC_SB_1F_VAV0531
+removed - part,RDC_SB_1F_AT-0532,AT,Conference Room S-1177,part of RDC_SB_1F_VAV0532
+removed - part,RDC_SB_1F_AT-0533,AT,Telepresence S-1179,part of RDC_SB_1F_VAV0533
+removed - part,RDC_SB_1F_AT-1501,AT,Workstation S-1119A,part of RDC_SB_1F_VAV1501
+removed - part,RDC_SB_1F_AT-1502,AT,NCIR Office S-1120,part of RDC_SB_1F_VAV1502
+removed - part,RDC_SB_1F_AT-1503,AT,NCIR Office S-1121,part of RDC_SB_1F_VAV1503
+removed - part,RDC_SB_1F_AT-1505,AT,SC. Comp Office 2 S-1123,part of RDC_SB_1F_VAV1505
+removed - part,RDC_SB_1F_AT-1506,AT,SC. Comp Office 3 S-1124,part of RDC_SB_1F_VAV1506
+removed - part,RDC_SB_1F_AT-1539,AT,Video Conf. Room S-1154,part of RDC_SB_1F_VAV1539
+removed - part,RDC_SB_1F_AT-1540,AT,Conf S-1159,part of RDC_SB_1F_VAV1540
+removed - part,RDC_SB_1F_AT-1543,AT,Workstation S-1182A,part of RDC_SB_1F_VAV1543
+removed - part,RDC_SB_1F_AT-1544,AT,Office S-1182C,part of RDC_SB_1F_VAV1544
+removed - part,RDC_SB_1F_AT-1545,AT,Office S-1182D,part of RDC_SB_1F_VAV1545
+removed - part,RDC_SB_1F_AT-1547,AT,Office S-1182F,part of RDC_SB_1F_VAV1547
+removed - part,RDC_NB_1F_AT-5650,AT,Office N-1120,part of RDC_NB_1F_VAV5650
+removed - part,RDC_NB_1F_AT-5655,AT,Store N-1120B,part of RDC_NB_1F_VAV5655_EV5656
+removed - part,RDC_NB_1F_AT-5660,AT,Office N-1121,part of RDC_NB_1F_VAV5660
+removed - part,RDC_NB_1F_AT-5665,AT,Office N-1122,part of RDC_NB_1F_VAV5665
+removed - part,RDC_NB_1F_AT-5670,AT,Office N-1123,part of RDC_NB_1F_VAV5670
+removed - part,RDC_NB_1F_AT-5675,AT,Office N-1124,part of RDC_NB_1F_VAV5675
+removed - part,RDC_NB_1F_AT-5680,AT,Office N-1125,part of RDC_NB_1F_VAV5680
+removed - part,RDC_NB_1F_AT-5685,AT,Corridor N-1126,part of RDC_NB_1F_VAV5685
+removed - part,RDC_NB_1F_AT-5690,AT,Office N-1127,part of RDC_NB_1F_VAV5690
+removed - part,RDC_NB_1F_AT-5695,AT,Office N-1128,part of RDC_NB_1F_VAV5695
+removed - part,RDC_NB_1F_AT-5700,AT,Office N-1129,part of RDC_NB_1F_VAV5700
+removed - part,RDC_NB_1F_AT-5705,AT,Office N-1130,part of RDC_NB_1F_VAV5705
+removed - part,RDC_NB_1F_AT-5710,AT,Office N-1131,part of RDC_NB_1F_VAV5710
+removed - part,RDC_NB_1F_AT-5715,AT,Conf Rm N-1132,part of RDC_NB_1F_VAV5715_EV5716
+removed - part,RDC_NB_1F_AT-5730,AT,Store N-1135,part of RDC_NB_1F_VAV5730_EV5731
+removed - part,RDC_NB_1F_AT-5735,AT,Normal Elec. N-1136,part of RDC_NB_1F_VAV5735_EV5736
+removed - part,RDC_NB_1F_AT-5740,AT,Emer. Elec. N-1137,part of RDC_NB_1F_VAV5740_EV5741
+removed - part,RDC_NB_1F_AT-5745,AT,Corridor N-1138,part of RDC_NB_1F_VAV5745
+removed - part,RDC_NB_1F_AT-5760,AT,Conf N-1143,part of RDC_NB_1F_VAV5760_EV5761
+removed - part,RDC_NB_1F_AT-5835,AT,P/C/S Pantry N-1146,part of RDC_NB_1F_VAV5835_EV5836
+removed - part,RDC_NB_1F_AT-5840,AT,Corridor N-1150,part of RDC_NB_1F_VAV5840
+removed - part,RDC_NB_1F_AT-5860,AT,Office N-1154,part of RDC_NB_1F_VAV5860
+removed - part,RDC_NB_1F_AT-5865,AT,Office N-1155,part of RDC_NB_1F_VAV5865
+removed - part,RDC_NB_1F_AT-5870,AT,Exp Office N-1156,part of RDC_NB_1F_VAV5870
+removed - part,RDC_NB_1F_AT-5875,AT,Office N-1157,part of RDC_NB_1F_VAV5875
+removed - part,RDC_NB_1F_AT-5880,AT,Office N-1158,part of RDC_NB_1F_VAV5880
+removed - part,RDC_NB_1F_AT-5885,AT,Office N-1159,part of RDC_NB_1F_VAV5885
+removed - part,RDC_NB_1F_AT-5890,AT,Workstation N-1160,part of RDC_NB_1F_VAV5890
+removed - part,RDC_NB_1F_AT-5895,AT,Office N-1161,part of RDC_NB_1F_VAV5895
+removed - part,RDC_NB_1F_AT-5900,AT,Office N-1162,part of RDC_NB_1F_VAV5900
+removed - part,RDC_NB_1F_AT-5905,AT,Office N-1163,part of RDC_NB_1F_VAV5905
+removed - part,RDC_NB_1F_AT-5910,AT,Office N-1164,part of RDC_NB_1F_VAV5910
+removed - part,RDC_NB_1F_AT-5915,AT,Office N-1167,part of RDC_NB_1F_VAV5915
+removed - part,RDC_NB_1F_AT-5920,AT,Workstation N-1168,part of RDC_NB_1F_VAV5920
+removed - part,RDC_NB_1F_AT-5925,AT,Office N-1169,part of RDC_NB_1F_VAV5925
+removed - part,RDC_NB_1F_AT-5930,AT,Office N-1170,part of RDC_NB_1F_VAV5930
+removed - part,RDC_NB_1F_AT-5935,AT,Office N-1166,part of RDC_NB_1F_VAV5935
+removed - part,RDC_NB_1F_AT-5940,AT,Workstation N-1165,part of RDC_NB_1F_VAV5940
+removed - part,RDC_NB_1F_AT-4650,AT,Breakout N-1225,part of RDC_NB_1F_VAV4650
+removed - part,RDC_NB_1F_EV-5721,EV,Men N-1134,part of RDC_NB_1F_CAV5720_EV5721
+removed - part,RDC_NB_1F_EV-4641,EV,Women N-1221,part of RDC_NB_1F_CAV4640_EV4641
+removed - part,RDC_SB_1F_AT-2501,AT,Lobby S-1201,part of RDC_SB_1F_VAV2501
+removed - part,RDC_SB_1F_AT-2502,AT,Lobby S-1202,part of RDC_SB_1F_VAV2502
+removed - part,RDC_SB_1F_AT-2503,AT,Lobby S-1202,part of RDC_SB_1F_VAV2503
+removed - part,RDC_SB_1F_AT-2504,AT,Lobby S-1202,part of RDC_SB_1F_VAV2504
+removed - part,RDC_SB_1F_AT-2505,AT,Lobby S-1202,part of RDC_SB_1F_VAV2505
+removed - part,RDC_SB_1F_AT-2506,AT,Lobby S-1202,part of RDC_SB_1F_VAV2506
+removed - part,RDC_SB_1F_AT-2508,AT,Female Prayer S-1207,part of RDC_SB_1F_VAV2508
+removed - part,RDC_SB_1F_AT-2509,AT,Open Plan S-1210,part of RDC_SB_1F_VAV2509
+removed - part,RDC_SB_1F_AT-2510,AT,Exc. Dir. Office S-1211,part of RDC_SB_1F_VAV2510
+removed - part,RDC_SB_1F_AT-2511,AT,Office S-1212,part of RDC_SB_1F_VAV2511
+removed - part,RDC_SB_1F_AT-2512,AT,Office S-1213,part of RDC_SB_1F_VAV2512
+removed - part,RDC_SB_1F_AT-2513,AT,Office S-1214,part of RDC_SB_1F_VAV2513
+removed - part,RDC_SB_1F_AT-2514,AT,Office S-1215,part of RDC_SB_1F_VAV2514
+removed - part,RDC_SB_1F_AT-2515,AT,Office S-1216,part of RDC_SB_1F_VAV2515
+removed - part,RDC_SB_1F_AT-2516,AT,Executive Director Office S-1217,part of RDC_SB_1F_VAV2516
+removed - part,RDC_SB_1F_AT-2517,AT,Executive Director Office S-1218,part of RDC_SB_1F_VAV2517
+removed - part,RDC_SB_1F_AT-2518,AT,Office S-1219,part of RDC_SB_1F_VAV2518
+removed - part,RDC_SB_1F_AT-2519,AT,Office S-1220,part of RDC_SB_1F_VAV2519
+removed - part,RDC_SB_1F_AT-2520,AT,Office S-1221,part of RDC_SB_1F_VAV2520
+removed - part,RDC_SB_1F_AT-2521,AT,Office S-1222,part of RDC_SB_1F_VAV2521
+removed - part,RDC_SB_1F_AT-2522,AT,Office S-1223,part of RDC_SB_1F_VAV2522
+removed - part,RDC_SB_1F_AT-2523,AT,Office S-1224,part of RDC_SB_1F_VAV2523
+removed - part,RDC_SB_1F_AT-2524,AT,Office S-1225,part of RDC_SB_1F_VAV2524
+removed - part,RDC_SB_1F_AT-2525,AT,Office S-1226,part of RDC_SB_1F_VAV2525
+removed - part,RDC_SB_1F_AT-2526,AT,Open Plan S-1227,part of RDC_SB_1F_VAV2526
+removed - part,RDC_SB_1F_AT-2527,AT,Director Office S-1228,part of RDC_SB_1F_VAV2527
+removed - part,RDC_SB_1F_AT-2528,AT,Director Office S-1230,part of RDC_SB_1F_VAV2528
+removed - part,RDC_SB_1F_AT-2529,AT,Office S-1231,part of RDC_SB_1F_VAV2529
+removed - part,RDC_SB_1F_AT-2530,AT,Office S-1232,part of RDC_SB_1F_VAV2530
+removed - part,RDC_SB_1F_AT-2531,AT,Director Ofice S-1241,part of RDC_SB_1F_VAV2531
+removed - part,RDC_SB_1F_AT-2532,AT,Office S-1242,part of RDC_SB_1F_VAV2532
+removed - part,RDC_SB_1F_AT-2533,AT,Cooridor S-1246,part of RDC_SB_1F_VAV2533
+removed - part,RDC_SB_1F_AT-2534,AT,Meeting Room S-1247,part of RDC_SB_1F_VAV2534
+removed - part,RDC_SB_1F_AT-2535,AT,Store S-1248,part of RDC_SB_1F_VAV2535
+removed - part,RDC_SB_1F_AT-2536,AT,Normal Elec. S-1251,part of RDC_SB_1F_VAV2536
+removed - part,RDC_SB_1F_AT-2538,AT,Office S-1257,part of RDC_SB_1F_VAV2538
+removed - part,RDC_SB_1F_AT-2539,AT,Office S-1257B,part of RDC_SB_1F_VAV2539
+removed - part,RDC_SB_1F_AT-2540,AT,Executive Director S-1260,part of RDC_SB_1F_VAV2540
+removed - part,RDC_SB_1F_AT-2541,AT,Assistant S-1261,part of RDC_SB_1F_VAV2541
+removed - part,RDC_SB_1F_AT-2542,AT,Open Plan S-1263,part of RDC_SB_1F_VAV2542
+removed - part,RDC_SB_1F_AT-2543,AT,Office S-1264,part of RDC_SB_1F_VAV2543
+removed - part,RDC_SB_1F_AT-2544,AT,Office S-1265,part of RDC_SB_1F_VAV2544
+removed - part,RDC_SB_1F_AT-2545,AT,Office S-1266,part of RDC_SB_1F_VAV2545
+removed - part,RDC_SB_1F_AT-2546,AT,Office S-1267,part of RDC_SB_1F_VAV2546
+removed - part,RDC_SB_1F_AT-2547,AT,Office S-1268,part of RDC_SB_1F_VAV2547
+removed - part,RDC_SB_1F_AT-2548,AT,Office S-1269,part of RDC_SB_1F_VAV2548
+removed - part,RDC_SB_1F_AT-2549,AT,Office S-1270,part of RDC_SB_1F_VAV2549
+removed - part,RDC_SB_1F_AT-2550,AT,Office S-1271,part of RDC_SB_1F_VAV2550
+removed - part,RDC_SB_1F_AT-2551,AT,Meeting Room S-1272,part of RDC_SB_1F_VAV2551
+removed - part,RDC_SB_1F_AT-2552,AT,Vestibule S-1273,part of RDC_SB_1F_VAV2552
+removed - part,RDC_SB_1F_AT-2553,AT,Male Prayer S-1278,part of RDC_SB_1F_VAV2553
+removed - part,RDC_NB_1F_AT-6650,AT,Office N-1319,part of RDC_NB_1F_VAV6650
+removed - part,RDC_NB_1F_AT-6655,AT,Office N-1320,part of RDC_NB_1F_VAV6655
+removed - part,RDC_NB_1F_AT-6660,AT,Workstation N-1321,part of RDC_NB_1F_VAV6660
+removed - part,RDC_NB_1F_AT-6665,AT,Office N-1322,part of RDC_NB_1F_VAV6665
+removed - part,RDC_NB_1F_AT-6670,AT,Office N-1323,part of RDC_NB_1F_VAV6670
+removed - part,RDC_NB_1F_AT-6675,AT,Workstation N-1324,part of RDC_NB_1F_VAV6675
+removed - part,RDC_NB_1F_AT-6680,AT,Office N-1325,part of RDC_NB_1F_VAV6680
+removed - part,RDC_NB_1F_AT-6685,AT,Office N-1326,part of RDC_NB_1F_VAV6685
+removed - part,RDC_NB_1F_AT-6690,AT,Exp. Workstation N-1327,part of RDC_NB_1F_VAV6690
+removed - part,RDC_NB_1F_AT-6695,AT,Office N-1328,part of RDC_NB_1F_VAV6695
+removed - part,RDC_NB_1F_AT-6700,AT,NORMAL ELEC. N-1329,part of RDC_NB_1F_VAV6700_EV6701
+removed - part,RDC_NB_1F_AT-6705,AT,Office N-1330,part of RDC_NB_1F_VAV6705
+removed - part,RDC_NB_1F_AT-6710,AT,Office N-1331,part of RDC_NB_1F_VAV6710
+removed - part,RDC_NB_1F_AT-6715,AT,Office N-1332,part of RDC_NB_1F_VAV6715
+removed - part,RDC_NB_1F_AT-6720,AT,Corridor N-1335,part of RDC_NB_1F_VAV6720
+removed - part,RDC_NB_1F_AT-6725,AT,Emer. Elec. N-1336,part of RDC_NB_1F_VAV6725_EV6726
+removed - part,RDC_NB_1F_AT-6900,AT,Office N-1357,part of RDC_NB_1F_VAV6900
+removed - part,RDC_NB_1F_AT-6905,AT,Open Plan N-1358,part of RDC_NB_1F_VAV6905
+removed - part,RDC_NB_1F_AT-6910,AT,Office N-1359,part of RDC_NB_1F_VAV6910
+removed - part,RDC_NB_1F_AT-6915,AT,Office N-1360,part of RDC_NB_1F_VAV6915
+removed - part,RDC_NB_1F_AT-6920,AT,Office N-1360B,part of RDC_NB_1F_VAV6920
+removed - part,RDC_NB_1F_AT-6925,AT,Office N-1361,part of RDC_NB_1F_VAV6925
+removed - part,RDC_NB_1F_AT-6930,AT,Office N-1362,part of RDC_NB_1F_VAV6930
+removed - part,RDC_NB_1F_AT-6935,AT,Workstation N-1363,part of RDC_NB_1F_VAV6935
+removed - part,RDC_NB_1F_AT-6940,AT,Office N-1364,part of RDC_NB_1F_VAV6940
+removed - part,RDC_NB_1F_AT-6945,AT,Office N-1365,part of RDC_NB_1F_VAV6945
+removed - part,RDC_NB_1F_AT-6950,AT,Office N-1366,part of RDC_NB_1F_VAV6950
+removed - part,RDC_NB_1F_AT-6955,AT,Office N-1367,part of RDC_NB_1F_VAV6955
+removed - part,RDC_NB_1F_AT-6960,AT,Workstation N-1368,part of RDC_NB_1F_VAV6960
+removed - part,RDC_NB_1F_AT-6965,AT,Office N-1369,part of RDC_NB_1F_VAV6965
+removed - part,RDC_NB_1F_AT-6967,AT,Office N-1370,part of RDC_NB_1F_VAV6967
+removed - part,RDC_NB_1F_AT-6968,AT,Workstation N-1371,part of RDC_NB_1F_VAV6968
+removed - part,RDC_NB_1F_AT-6970,AT,PANTRY N-1372,part of RDC_NB_1F_VAV6970_EV6971
+removed - part,RDC_NB_1F_AT-7865,AT,Workstation N-1461A,part of RDC_NB_1F_VAV7865
+removed - part,RDC_NB_1F_EV-6741,EV,Men N-1340,part of RDC_NB_1F_CAV6740_EV6741
+removed - part,RDC_NB_1F_EV-7501,EV,Women N-1403,part of RDC_NB_1F_CAV7500_EV7501
+removed - part,RDC_SB_1F_AT-3501,AT,Lobby S-0294,part of RDC_SB_GF_VAV3501
+removed - part,RDC_SB_1F_AT-3502,AT,Lobby S-0294,part of RDC_SB_GF_VAV3502
+removed - part,RDC_SB_1F_AT-3503,AT,Reception S-0293,part of RDC_SB_GF_VAV3503
+removed - part,RDC_SB_1F_AT-3504,AT,Open Plan S-1229,part of RDC_SB_1F_VAV3504
+removed - part,RDC_SB_1F_AT-3505,AT,Open Plan S-1229,part of RDC_SB_1F_VAV3505
+removed - part,RDC_SB_1F_AT-3506,AT,Office S-1233,part of RDC_SB_1F_VAV3506
+removed - part,RDC_SB_1F_AT-3507,AT,Office S-1234,part of RDC_SB_1F_VAV3507
+removed - part,RDC_SB_1F_AT-3508,AT,Office S-1235,part of RDC_SB_1F_VAV3508
+removed - part,RDC_SB_1F_AT-3509,AT,Policy Director Office S-1237,part of RDC_SB_1F_VAV3509
+removed - part,RDC_SB_1F_AT-3510,AT,Policy Executive Director Office S-1240,part of RDC_SB_1F_VAV3510
+removed - part,RDC_SB_1F_AT-3511,AT,CORRIDOR S-1280,part of RDC_SB_1F_VAV3511
+removed - part,RDC_SB_1F_AT-3512,AT,Pantry S-1282,part of RDC_SB_1F_VAV3512
+removed - part,RDC_SB_1F_AT-3513,AT,Office S-1283,part of RDC_SB_1F_VAV3513
+removed - part,RDC_SB_1F_AT-3514,AT,Office S-1284,part of RDC_SB_1F_VAV3514
+removed - part,RDC_SB_1F_AT-3515,AT,S-1285 VP R&D,part of RDC_SB_1F_VAV3515
+removed - part,RDC_SB_1F_AT-3516,AT,Meeting Room S-1288,part of RDC_SB_1F_VAV3516
+removed - part,RDC_SB_1F_AT-3517,AT,Dressing Room S-1290,part of RDC_SB_1F_VAV3517
+removed - part,RDC_SB_1F_AT-3518,AT,Waiting Area S-1292,part of RDC_SB_1F_VAV3518
+removed - part,RDC_SB_1F_AT-3520,AT,Office S-1294,part of RDC_SB_1F_VAV3520
+removed - part,RDC_SB_1F_AT-3521,AT,Office S-1295,part of RDC_SB_1F_VAV3521
+removed - part,RDC_SB_1F_AT-3522,AT,Conference Room S-1296,part of RDC_SB_1F_VAV3522
+removed - part,RDC_SB_1F_AT-3523,AT,Office S-1299,part of RDC_SB_1F_VAV3523
+removed - part,RDC_SB_1F_AT-3524,AT,Normal Elec. S-1238,part of RDC_SB_1F_VAV3524
+removed - part,RDC_NB_1F_AT-7620,AT,Office N-1415,part of RDC_NB_1F_VAV7620
+removed - part,RDC_NB_1F_AT-7625,AT,Office N-1416,part of RDC_NB_1F_VAV7625
+removed - part,RDC_NB_1F_AT-7630,AT,Office 05 - 2 WKS- N-1407,part of RDC_NB_1F_VAV7630
+removed - part,RDC_NB_1F_AT-7635,AT,Office N-1418,part of RDC_NB_1F_VAV7635
+removed - part,RDC_NB_1F_AT-7640,AT,Office N-1419,part of RDC_NB_1F_VAV7640
+removed - part,RDC_NB_1F_AT-7645,AT,Exp. Workstation N-1420,part of RDC_NB_1F_VAV7645
+removed - part,RDC_NB_1F_AT-7650,AT,Office N-1421,part of RDC_NB_1F_VAV7650
+removed - part,RDC_NB_1F_AT-7655,AT,Office N-1422,part of RDC_NB_1F_VAV7655
+removed - part,RDC_NB_1F_AT-7660,AT,Office 05 - 2 WKS- N-1401,part of RDC_NB_1F_VAV7660
+removed - part,RDC_NB_1F_AT-7665,AT,Normal Elec. N-1425,part of RDC_NB_1F_VAV7665_EV7666
+removed - part,RDC_NB_1F_AT-7670,AT,Office N-1426,part of RDC_NB_1F_VAV7670
+removed - part,RDC_NB_1F_AT-7675,AT,Office N-1428,part of RDC_NB_1F_VAV7675
+removed - part,RDC_NB_1F_AT-7680,AT,Conf N-1429,part of RDC_NB_1F_VAV7680_EV7681
+removed - part,RDC_NB_1F_AT-7685,AT,Office N-1433,part of RDC_NB_1F_VAV7685
+removed - part,RDC_NB_1F_AT-7690,AT,Office N-1435,part of RDC_NB_1F_VAV7690
+removed - part,RDC_NB_1F_AT-7695,AT,Office N-1437,part of RDC_NB_1F_VAV7695
+removed - part,RDC_NB_1F_AT-7700,AT,Emer. Elec. N-1438,part of RDC_NB_1F_VAV7700_EV7701
+removed - part,RDC_NB_1F_AT-7705,AT,Expansion WORKstation N-1442,part of RDC_NB_1F_VAV7705
+removed - part,RDC_NB_1F_AT-7710,AT,Office 05 - 24 WKS + N-1441 Room N-1442,part of RDC_NB_1F_VAV7710
+removed - part,RDC_NB_1F_AT-7840,AT,Conf N-1458,part of RDC_NB_1F_VAV7840_EV7841
+removed - part,RDC_NB_1F_AT-7845,AT,Conf N-1459,part of RDC_NB_1F_VAV7845_EV7846
+removed - part,RDC_NB_1F_AT-7850,AT,Office N-1459A,part of RDC_NB_1F_VAV7850
+removed - part,RDC_NB_1F_AT-7860,AT,Exp. Workstation N-1461,part of RDC_NB_1F_VAV7860
+removed - part,RDC_NB_1F_AT-7870,AT,Office N-1462,part of RDC_NB_1F_VAV7870
+removed - part,RDC_NB_1F_AT-7875,AT,Office N-1463,part of RDC_NB_1F_VAV7875
+removed - part,RDC_NB_1F_AT-7880,AT,Office N-1464,part of RDC_NB_1F_VAV7880
+removed - part,RDC_NB_1F_AT-7885,AT,Office N-1465,part of RDC_NB_1F_VAV7885
+removed - part,RDC_NB_1F_AT-7890,AT,Workstation N-1466,part of RDC_NB_1F_VAV7890
+removed - part,RDC_NB_1F_AT-7895,AT,Office N-1467,part of RDC_NB_1F_VAV7895
+removed - part,RDC_NB_1F_AT-7900,AT,Office N-1468,part of RDC_NB_1F_VAV7900
+removed - part,RDC_NB_1F_AT-7905,AT,Office N-1469,part of RDC_NB_1F_VAV7905
+removed - part,RDC_NB_1F_AT-7910,AT,Office N-1470,part of RDC_NB_1F_VAV7910
+removed - part,RDC_NB_1F_AT-7915,AT,Workstation N-1471,part of RDC_NB_1F_VAV7915
+removed - part,RDC_NB_1F_AT-7920,AT,Office N-1472,part of RDC_NB_1F_VAV7920
+removed - part,RDC_NB_1F_AT-7925,AT,Office N-1473,part of RDC_NB_1F_VAV7925
+removed - part,RDC_NB_1F_AT-7930,AT,Office N-1474,part of RDC_NB_1F_VAV7930
+removed - part,RDC_NB_1F_AT-7935,AT,Office N-1475,part of RDC_NB_1F_VAV7935
+removed - part,RDC_NB_1F_AT-7940,AT,Workstation N-1476,part of RDC_NB_1F_VAV7940
+removed - part,RDC_NB_1F_AT-7945,AT,Office N-1477,part of RDC_NB_1F_VAV7945
+removed - part,RDC_NB_1F_AT-7950,AT,Office N-1478,part of RDC_NB_1F_VAV7950
+removed - part,RDC_NB_1F_AT-7955,AT,Office N-1479,part of RDC_NB_1F_VAV7955
+removed - part,RDC_NB_1F_AT-7960,AT,Office N-1480,part of RDC_NB_1F_VAV7960
+removed - part,RDC_NB_1F_CEV-7581,CEV,TC3 N-1404H,part of RDC_NB_1F_VAV7580_VEV7581
+removed - part,RDC_NB_1F_CEV-6831,CEV,SHARED COLD LAB N-1345G,part of RDC_NB_1F_VAV6830_VEV6831
+removed - part,RDC_NB_2F_AT-5930,AT,Office 04 N-1170,part of RDC_NB_1F_VAV5930
+removed - part,RDC_NB_2F_AT-5940,AT,Office 05 - 8 WKS- N-1165,part of RDC_NB_1F_VAV5940
+kept - already the assembly,RDC_NB_1F_VAV7830_VEV7831,VEV,TC2 N-1450N,the register already names the whole assembly; the historian spells it RDC_NB_1F_VAV7830_7831
+renamed in place - unit,RDC_SB_GF_CAV1001,CAV,,"its parts named 2 different rooms - left blank; was RDC_SB_L0_AT-1001, and takes the place of RDC_SB_L0_AT-1001, RDC_SB_L0_EV-1001"
+renamed in place - unit,RDC_SB_GF_CAV1005,CAV,Normal & Emergency Elec. Landing S-0142,"room kept from its 1 part row(s); was RDC_SB_L0_AT-1005, and takes the place of RDC_SB_L0_AT-1005"
+renamed in place - unit,RDC_SB_GF_CAV1006,CAV,Corridor S-0137,"room kept from its 1 part row(s); was RDC_SB_L0_AT-1006, and takes the place of RDC_SB_L0_AT-1006"
+renamed in place - unit,RDC_SB_GF_CAV1007,CAV,UPS S-0145,"room kept from its 1 part row(s); was RDC_SB_L0_AT-1007, and takes the place of RDC_SB_L0_AT-1007"
+renamed in place - unit,RDC_SB_GF_CAV1009,CAV,Service Dock S-0151,"room kept from its 1 part row(s); was RDC_SB_L0_AT-1009, and takes the place of RDC_SB_L0_AT-1009"
+renamed in place - unit,RDC_NB_GF_CAV4035,CAV,Corridor N-0207A,"room kept from its 1 part row(s); was RDC_NB_GF_AT-4035, and takes the place of RDC_NB_GF_AT-4035"
+renamed in place - unit,RDC_NB_GF_CAV4170,CAV,Storage Room N-0237,"room kept from its 1 part row(s); was RDC_NB_GF_AT-4170, and takes the place of RDC_NB_GF_AT-4170"
+renamed in place - unit,RDC_NB_GF_EAV4028,EAV,MDF ROOM N-0206A,"room kept from its 1 part row(s); was RDC_NB_GF_EV-4028, and takes the place of RDC_NB_GF_EV-4028"
+renamed in place - unit,RDC_NB_GF_EAV4236,EAV,Office 05 -8WS- N-0250,"room kept from its 1 part row(s); was RDC_NB_GF_EV-4236, and takes the place of RDC_NB_GF_EV-4236"
+renamed in place - unit,RDC_NB_GF_EAV4261,EAV,Office 05 -8WS- N-0255,"room kept from its 1 part row(s); was RDC_NB_GF_EV-4261, and takes the place of RDC_NB_GF_EV-4261"
+renamed in place - unit,RDC_NB_GF_EAV4286,EAV,Office 05 -8WS- N-0260,"room kept from its 1 part row(s); was RDC_NB_GF_EV-4286, and takes the place of RDC_NB_GF_EV-4286"
+renamed in place - unit,RDC_NB_GF_EAV4311,EAV,WORKSTATION N-0265,"room kept from its 1 part row(s); was RDC_NB_GF_EV-4311, and takes the place of RDC_NB_GF_EV-4311"
+renamed in place - unit,RDC_SB_GF_CAV0006,CAV,Normal Elec. S-0107,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0006, and takes the place of RDC_SB_L0_AT-0006"
+renamed in place - unit,RDC_SB_GF_CAV0015,CAV,Corridor S-0117,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0015, and takes the place of RDC_SB_L0_AT-0015"
+renamed in place - unit,RDC_SB_GF_CAV0020,CAV,Storage S-0120B,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0020, and takes the place of RDC_SB_L0_AT-0020"
+renamed in place - unit,RDC_SB_GF_CAV0021,CAV,Vestibule S-0125,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0021, and takes the place of RDC_SB_L0_AT-0021"
+renamed in place - unit,RDC_SB_GF_CAV0022,CAV,Men S-0126,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0022, and takes the place of RDC_SB_L0_AT-0022"
+renamed in place - unit,RDC_SB_GF_CAV0023,CAV,Women S-0127,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0023, and takes the place of RDC_SB_L0_AT-0023"
+renamed in place - unit,RDC_SB_GF_CAV0024,CAV,NORM. ELEC. S-0129,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0024, and takes the place of RDC_SB_L0_AT-0024"
+renamed in place - unit,RDC_NB_GF_CAV4315_EV4316,CAV,Vestibule N-0270A,"room kept from its 2 part row(s); was RDC_NB_GF_AT-4315, and takes the place of RDC_NB_GF_AT-4315, RDC_NB_GF_EV-4316"
+renamed in place - unit,RDC_NB_GF_CAV5160_EV5161,CAV,,"its parts named 2 different rooms - left blank; was RDC_NB_GF_AT-5160, and takes the place of RDC_NB_GF_AT-5160, RDC_NB_GF_EV-5161"
+renamed in place - unit,RDC_NB_GF_CAV5280,CAV,Store N-0146,"room kept from its 1 part row(s); was RDC_NB_GF_AT-5280, and takes the place of RDC_NB_GF_AT-5280"
+renamed in place - unit,RDC_NB_GF_CAV5290_EV5291,CAV,Pantry N-0148,"room kept from its 2 part row(s); was RDC_NB_GF_AT-5290, and takes the place of RDC_NB_GF_AT-5290, RDC_NB_GF_EV-5291"
+renamed in place - unit,RDC_NB_GF_CAV5320,CAV,Office N-0154,"room kept from its 1 part row(s); was RDC_NB_GF_AT-5320, and takes the place of RDC_NB_GF_AT-5320"
+renamed in place - unit,RDC_NB_GF_CAV5350,CAV,Open Office N-0160,"room kept from its 1 part row(s); was RDC_NB_GF_AT-5350, and takes the place of RDC_NB_GF_AT-5350"
+renamed in place - unit,RDC_NB_GF_CAV5375,CAV,Open Office N-0165,"room kept from its 1 part row(s); was RDC_NB_GF_AT-5375, and takes the place of RDC_NB_GF_AT-5375"
+renamed in place - unit,RDC_NB_GF_EAV5026,EAV,Corridor N-0110,"room kept from its 1 part row(s); was RDC_NB_GF_EV-5026, and takes the place of RDC_NB_GF_EV-5026"
+renamed in place - unit,RDC_NB_GF_EAV5163,EAV,IDF N-0133,"room kept from its 1 part row(s); was RDC_NB_GF_EV-5163, and takes the place of RDC_NB_GF_EV-5163"
+renamed in place - unit,RDC_NB_GF_FEV5192A,FEV,Furnace Room N-0140B,"room kept from its 1 part row(s); was RDC_NB_GF_VEV-5192a, and takes the place of RDC_NB_GF_VEV-5192a"
+renamed in place - unit,RDC_NB_GF_FEV5192B,FEV,Furnace Room N-0140B,"room kept from its 1 part row(s); was RDC_NB_GF_VEV-5192b, and takes the place of RDC_NB_GF_VEV-5192b"
+renamed in place - unit,RDC_NB_GF_CAV5240_CEV5241,CAV,Air Lock N-0140G,"room kept from its 1 part row(s); was RDC_NB_GF_CEV-5241, and takes the place of RDC_NB_GF_CEV-5241"
+renamed in place - unit,RDC_SB_GF_CAV0004,CAV,Corridor S-0104,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0004, and takes the place of RDC_SB_L0_AT-0004"
+renamed in place - unit,RDC_SB_GF_CAV0005,CAV,Men S-0105,"room kept from its 1 part row(s); was RDC_SB_L0_AT-0005, and takes the place of RDC_SB_L0_AT-0005"
+renamed in place - unit,RDC_SB_GF_CAV2001,CAV,,"its parts named 2 different rooms - left blank; was RDC_SB_L0_A1.2_AT-2001, and takes the place of RDC_SB_L0_A1.2_AT-2001, RDC_SB_L0_A1.3_AT-2001"
+renamed in place - unit,RDC_NB_GF_CAV5005,CAV,Vestibule N-0105,"room kept from its 1 part row(s); was RDC_NB_GF_AT-5005, and takes the place of RDC_NB_GF_AT-5005"
+renamed in place - unit,RDC_NB_GF_CAV5020_EV5021,CAV,Mens + Vestibule + N-0109 N-0108,"room kept from its 2 part row(s); was RDC_NB_GF_AT-5020, and takes the place of RDC_NB_GF_AT-5020, RDC_NB_GF_EV-5021"
+renamed in place - unit,RDC_NB_GF_CAV6005,CAV,Vestibule N-0302,"room kept from its 1 part row(s); was RDC_NB_GF_AT-6005, and takes the place of RDC_NB_GF_AT-6005"
+renamed in place - unit,RDC_NB_GF_CAV6015_EV6016,CAV,Men N-0306,"room kept from its 2 part row(s); was RDC_NB_GF_AT-6015, and takes the place of RDC_NB_GF_AT-6015, RDC_NB_GF_EV-6016"
+renamed in place - unit,RDC_NB_GF_CAV6020,CAV,Vestibule N-0308,"room kept from its 1 part row(s); was RDC_NB_GF_AT-6020, and takes the place of RDC_NB_GF_AT-6020"
+renamed in place - unit,RDC_NB_GF_EAV6127,EAV,IDF N-0311,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6127, and takes the place of RDC_NB_GF_EV-6127"
+renamed in place - unit,RDC_NB_GF_CAV7005_EV7006,CAV,WOMEN N-0402,"room kept from its 2 part row(s); was RDC_NB_GF_AT-7005, and takes the place of RDC_NB_GF_AT-7005, RDC_NB_GF_EV-7006"
+renamed in place - unit,RDC_NB_GF_CAV7380_EV7381,CAV,Pipe Chase N-0443B,"room kept from its 2 part row(s); was RDC_NB_GF_AT-7380, and takes the place of RDC_NB_GF_AT-7380, RDC_NB_GF_EV-7381"
+renamed in place - unit,RDC_NB_GF_CAV6280_EV6281,CAV,Pantry N-0356,"room kept from its 2 part row(s); was RDC_NB_GF_AT-6280, and takes the place of RDC_NB_GF_AT-6280, RDC_NB_GF_EV-6281"
+renamed in place - unit,RDC_NB_GF_EAV6141,EAV,Workstation N-0317,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6141, and takes the place of RDC_NB_GF_EV-6141"
+renamed in place - unit,RDC_NB_GF_EAV6156,EAV,Workstation N-0320,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6156, and takes the place of RDC_NB_GF_EV-6156"
+renamed in place - unit,RDC_NB_GF_EAV6176,EAV,Workstation N-0324,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6176, and takes the place of RDC_NB_GF_EV-6176"
+renamed in place - unit,RDC_NB_GF_EAV6356,EAV,Office 05-8-WKS N-0372,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6356, and takes the place of RDC_NB_GF_EV-6356"
+renamed in place - unit,RDC_NB_GF_EAV6381,EAV,Office 05-8-WKS N-0378,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6381, and takes the place of RDC_NB_GF_EV-6381"
+renamed in place - unit,RDC_NB_GF_EAV6401,EAV,Office 05-8-WKS N-0381,"room kept from its 1 part row(s); was RDC_NB_GF_EV-6401, and takes the place of RDC_NB_GF_EV-6401"
+renamed in place - unit,RDC_NB_GF_EAV7091,EAV,Office N-0412A,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7091, and takes the place of RDC_NB_GF_EV-7091"
+renamed in place - unit,RDC_NB_GF_EAV7106,EAV,Office N-0415A,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7106, and takes the place of RDC_NB_GF_EV-7106"
+renamed in place - unit,RDC_NB_GF_EAV7121,EAV,Office 05-4-WS N-0418,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7121, and takes the place of RDC_NB_GF_EV-7121"
+renamed in place - unit,RDC_NB_GF_EAV7122,EAV,IDF Room N-0419,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7122, and takes the place of RDC_NB_GF_EV-7122"
+renamed in place - unit,RDC_NB_GF_EAV7396,EAV,Office 05-8-WKS N-0446,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7396, and takes the place of RDC_NB_GF_EV-7396"
+renamed in place - unit,RDC_NB_GF_EAV7426,EAV,Office 05-8-WKS N-0452,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7426, and takes the place of RDC_NB_GF_EV-7426"
+renamed in place - unit,RDC_NB_GF_EAV7461,EAV,Office 05-8-WKS N-0457,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7461, and takes the place of RDC_NB_GF_EV-7461"
+renamed in place - unit,RDC_NB_GF_EAV7486,EAV,Office 05-8-WKS N-0462,"room kept from its 1 part row(s); was RDC_NB_GF_EV-7486, and takes the place of RDC_NB_GF_EV-7486"
+renamed in place - unit,RDC_SB_1F_CAV1504,CAV,Corridor S-1122,"room kept from its 1 part row(s); was RDC_SB_1F_AT-1504, and takes the place of RDC_SB_1F_AT-1504"
+renamed in place - unit,RDC_SB_1F_CAV1535,CAV,Pantry S-1149A,"room kept from its 1 part row(s); was RDC_SB_1F_AT-1535, and takes the place of RDC_SB_1F_AT-1535"
+renamed in place - unit,RDC_SB_1F_CAV1537,CAV,Normal Elec. S-1147,"room kept from its 1 part row(s); was RDC_SB_1F_AT-1537, and takes the place of RDC_SB_1F_AT-1537"
+renamed in place - unit,RDC_NB_1F_EAV4500,EAV,MDF N-1201,"room kept from its 1 part row(s); was RDC_NB_1F_EV-4500, and takes the place of RDC_NB_1F_EV-4500"
+renamed in place - unit,RDC_NB_1F_EAV4661,EAV,Office 05 - 8 WKS- N-1227,"room kept from its 1 part row(s); was RDC_NB_1F_EV-4661, and takes the place of RDC_NB_1F_EV-4661"
+renamed in place - unit,RDC_NB_1F_EAV4686,EAV,Office 05 - 8 WKS- N-1232,"room kept from its 1 part row(s); was RDC_NB_1F_EV-4686, and takes the place of RDC_NB_1F_EV-4686"
+renamed in place - unit,RDC_NB_1F_EAV4711,EAV,Office 05 - 8 WKS- N-1237,"room kept from its 1 part row(s); was RDC_NB_1F_EV-4711, and takes the place of RDC_NB_1F_EV-4711"
+renamed in place - unit,RDC_NB_1F_EAV4736,EAV,Office 05 - 8 WKS- N-1242,"room kept from its 1 part row(s); was RDC_NB_1F_EV-4736, and takes the place of RDC_NB_1F_EV-4736"
+renamed in place - unit,RDC_SB_1F_CAV0501,CAV,Lobby S-1102,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0501, and takes the place of RDC_SB_1F_AT-0501"
+renamed in place - unit,RDC_SB_1F_CAV0502,CAV,Vestibule S-1105,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0502, and takes the place of RDC_SB_1F_AT-0502"
+renamed in place - unit,RDC_SB_1F_CAV0503,CAV,Women S-1106B,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0503, and takes the place of RDC_SB_1F_AT-0503"
+renamed in place - unit,RDC_SB_1F_CAV0504,CAV,Vestibule S-1107,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0504, and takes the place of RDC_SB_1F_AT-0504"
+renamed in place - unit,RDC_SB_1F_CAV0505,CAV,EMERGENCY Elec. S-1107B,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0505, and takes the place of RDC_SB_1F_AT-0505"
+renamed in place - unit,RDC_SB_1F_CAV0515,CAV,Corridor S-1122,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0515, and takes the place of RDC_SB_1F_AT-0515"
+renamed in place - unit,RDC_SB_1F_CAV0516,CAV,Pantry S-1158,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0516, and takes the place of RDC_SB_1F_AT-0516"
+renamed in place - unit,RDC_SB_1F_CAV0517,CAV,Normal Elec. S-1160,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0517, and takes the place of RDC_SB_1F_AT-0517"
+renamed in place - unit,RDC_SB_1F_CAV0524,CAV,Women S-1169,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0524, and takes the place of RDC_SB_1F_AT-0524"
+renamed in place - unit,RDC_SB_1F_CAV0525,CAV,Men S-1170,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0525, and takes the place of RDC_SB_1F_AT-0525"
+renamed in place - unit,RDC_SB_1F_CAV0534,CAV,CORRIDOR S-1180,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0534, and takes the place of RDC_SB_1F_AT-0534"
+renamed in place - unit,RDC_SB_1F_CAV0535,CAV,Cooridor S-1180,"room kept from its 1 part row(s); was RDC_SB_1F_AT-0535, and takes the place of RDC_SB_1F_AT-0535"
+renamed in place - unit,RDC_SB_1F_CAV1541,CAV,Cooridor S-1181,"room kept from its 1 part row(s); was RDC_SB_1F_AT-1541, and takes the place of RDC_SB_1F_AT-1541"
+renamed in place - unit,RDC_NB_1F_CAV5720_EV5721,CAV,Men N-1134,"room kept from its 2 part row(s); was RDC_NB_1F_AT-5720, and takes the place of RDC_NB_1F_AT-5720, RDC_NB_1F_EV-5721"
+renamed in place - unit,RDC_NB_1F_CAV5750,CAV,Store N-1141,"room kept from its 1 part row(s); was RDC_NB_1F_AT-5750, and takes the place of RDC_NB_1F_AT-5750"
+renamed in place - unit,RDC_NB_1F_CAV4640_EV4641,CAV,Women N-1221,"room kept from its 2 part row(s); was RDC_NB_1F_AT-4640, and takes the place of RDC_NB_1F_AT-4640, RDC_NB_1F_EV-4641"
+renamed in place - unit,RDC_NB_1F_EAV5686,EAV,Corridor N-1126,"room kept from its 1 part row(s); was RDC_NB_1F_EV-5686, and takes the place of RDC_NB_1F_EV-5686"
+renamed in place - unit,RDC_NB_1F_EAV5747,EAV,IDF N-1140,"room kept from its 1 part row(s); was RDC_NB_1F_EV-5747, and takes the place of RDC_NB_1F_EV-5747"
+renamed in place - unit,RDC_NB_1F_EAV5891,EAV,Office 05 - 8 WKS- North N-1160,"room kept from its 1 part row(s); was RDC_NB_1F_EV-5891, and takes the place of RDC_NB_1F_EV-5891"
+renamed in place - unit,RDC_NB_1F_EAV5921,EAV,Office 05 - 8 WKS- N-1168,"room kept from its 1 part row(s); was RDC_NB_1F_EV-5921, and takes the place of RDC_NB_1F_EV-5921"
+renamed in place - unit,RDC_NB_1F_EAV5941,EAV,Office 05 - 8 WKS- N-1165,"room kept from its 1 part row(s); was RDC_NB_1F_EV-5941, and takes the place of RDC_NB_1F_EV-5941"
+renamed in place - unit,RDC_SB_1F_CAV2507,CAV,Female S-1204,"room kept from its 1 part row(s); was RDC_SB_1F_AT-2507, and takes the place of RDC_SB_1F_AT-2507"
+renamed in place - unit,RDC_NB_1F_CAV6740_EV6741,CAV,Men N-1340,"room kept from its 2 part row(s); was RDC_NB_1F_AT-6740, and takes the place of RDC_NB_1F_AT-6740, RDC_NB_1F_EV-6741"
+renamed in place - unit,RDC_NB_1F_CAV7500_EV7501,CAV,Women N-1403,"room kept from its 2 part row(s); was RDC_NB_1F_AT-7500, and takes the place of RDC_NB_1F_AT-7500, RDC_NB_1F_EV-7501"
+renamed in place - unit,RDC_NB_1F_EAV6661,EAV,Workstation N-1321,"room kept from its 1 part row(s); was RDC_NB_1F_EV-6661, and takes the place of RDC_NB_1F_EV-6661"
+renamed in place - unit,RDC_NB_1F_EAV6676,EAV,Workstation N-1324,"room kept from its 1 part row(s); was RDC_NB_1F_EV-6676, and takes the place of RDC_NB_1F_EV-6676"
+renamed in place - unit,RDC_NB_1F_EAV6691,EAV,Exp. Workstation N-1327,"room kept from its 1 part row(s); was RDC_NB_1F_EV-6691, and takes the place of RDC_NB_1F_EV-6691"
+renamed in place - unit,RDC_NB_1F_EAV6936,EAV,Workstation N-1363,"room kept from its 1 part row(s); was RDC_NB_1F_EV-6936, and takes the place of RDC_NB_1F_EV-6936"
+renamed in place - unit,RDC_NB_1F_EAV6961,EAV,Workstation N-1368,"room kept from its 1 part row(s); was RDC_NB_1F_EV-6961, and takes the place of RDC_NB_1F_EV-6961"
+renamed in place - unit,RDC_NB_1F_EAV6969,EAV,Workstation N-1371,"room kept from its 1 part row(s); was RDC_NB_1F_EV-6969, and takes the place of RDC_NB_1F_EV-6969"
+renamed in place - unit,RDC_NB_1F_CAV6790_CEV6791,CAV,TC2 N-1345C,"room kept from its 1 part row(s); was RDC_NB_1F_CEV-6791, and takes the place of RDC_NB_1F_CEV-6791"
+renamed in place - unit,RDC_NB_1F_EAV7631,EAV,Office 05 - 2 WKS- N-1407,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7631, and takes the place of RDC_NB_1F_EV-7631"
+renamed in place - unit,RDC_NB_1F_EAV7646,EAV,Exp. Workstation N-1420,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7646, and takes the place of RDC_NB_1F_EV-7646"
+renamed in place - unit,RDC_NB_1F_EAV7661,EAV,Office 05 - 2 WKS- N-1401,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7661, and takes the place of RDC_NB_1F_EV-7661"
+renamed in place - unit,RDC_NB_1F_EAV7663,EAV,IDF N-1424,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7663, and takes the place of RDC_NB_1F_EV-7663"
+renamed in place - unit,RDC_NB_1F_EAV7711,EAV,Workstation N-1442,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7711, and takes the place of RDC_NB_1F_EV-7711"
+renamed in place - unit,RDC_NB_1F_EAV7712,EAV,Workstation N-1442,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7712, and takes the place of RDC_NB_1F_EV-7712"
+renamed in place - unit,RDC_NB_1F_EAV7861,EAV,Office 05 - 9 WKS N-1461,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7861, and takes the place of RDC_NB_1F_EV-7861"
+renamed in place - unit,RDC_NB_1F_EAV7916,EAV,Office 05 - 8 WKS N-1471,"room kept from its 1 part row(s); was RDC_NB_1F_EV-7916, and takes the place of RDC_NB_1F_EV-7916"
+renamed in place - unit,RDC_NB_1F_CAV7520_CEV7521,CAV,Isotope N-1404B,"room kept from its 1 part row(s); was RDC_NB_1F_CEV-7521, and takes the place of RDC_NB_1F_CEV-7521"
+renamed in place - unit,RDC_NB_1F_CAV7590_CEV7591,CAV,HY Room N-1404J,"room kept from its 1 part row(s); was RDC_NB_1F_CEV-7591, and takes the place of RDC_NB_1F_CEV-7591"
+renamed in place - unit,RDC_NB_1F_CAV7610_CEV7611,CAV,TC1 N-1404L,"room kept from its 1 part row(s); was RDC_NB_1F_CEV-7611, and takes the place of RDC_NB_1F_CEV-7611"
+renamed in place - unit,RDC_NB_1F_CAV7760_CEV7761,CAV,A/L N-1450D,"room kept from its 1 part row(s); was RDC_NB_1F_CEV-7761, and takes the place of RDC_NB_1F_CEV-7761"
+renamed in place - unit,RDC_NB_1F_CAV7790_CEV7791,CAV,A/L N-1450G,"room kept from its 1 part row(s); was RDC_NB_1F_CEV-7791, and takes the place of RDC_NB_1F_CEV-7791"
+renamed in place - unit,RDC_NB_2F_EAV4920,EAV,IDF N-2104,"room kept from its 1 part row(s); was RDC_NB_2F_EV-4920, and takes the place of RDC_NB_2F_EV-4920"
+renamed in place - unit,RDC_NB_2F_EAV6981,EAV,IDF N-2110,"room kept from its 1 part row(s); was RDC_NB_2F_EV-6981, and takes the place of RDC_NB_2F_EV-6981"

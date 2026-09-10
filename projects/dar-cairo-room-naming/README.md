@@ -1,4 +1,4 @@
-# Dar Cairo-shaped room subjects for SSC and HQ
+# Dar Cairo-shaped room subjects for SSC, HQ and QNL
 
 One workbook out, one sheet per building, derived from the BMS room-allocation
 registers by `build_room_names.py`.
@@ -22,7 +22,7 @@ types, and how many of them are in scope.
 
 SSC: 165 asset rows, 85 rooms, 1 unresolved.
 HQ: 868 asset rows, 610 rooms, 75 unresolved.
-QNL: 551 asset rows, 197 rooms, 14 unresolved.
+QNL: 551 asset rows, 195 rooms, 14 unresolved.
 
 That is the whole controllable estate for the three buildings: the AHU/VAV/FCU
 pass plus the remaining equipment. `RDC`, a fourth building of 1,759 rows in the

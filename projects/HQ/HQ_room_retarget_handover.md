@@ -31,11 +31,16 @@ python3 projects/QNL/update_ontology_rooms.py --code HQ \
 `entity:HQ_10_002C_OFFICE_SPACE` is now `entity:HQ_10-002C_Office-Space`. The
 rename is shape-only - every room name and every label is the one V02 carried.
 
-Validated in HQ's verbatim label style: **11,884 errors and 18,189 advisories,
+Validated in HQ's verbatim label style: **11,887 errors and 18,189 advisories,
 identical to V02**, and every warning code identical but one - `W-BN-4` goes
-from 3,212 to 3,224, which is three per new room, the `brick:isVirtualMeter`
+from 3,200 to 3,212, which is three per new room, the `brick:isVirtualMeter`
 blank-node row that all 1,045 existing rooms already produce. The new rooms are
 indistinguishable from the old ones to the validator, which is the point.
+
+Those figures are the validator as it stands after the merge with `main`; an
+earlier cut of this note quoted 11,884 / 3,212 -> 3,224, which was the same
+comparison under the older validator. The relationship is what matters and it
+did not change: errors and advisories identical, warnings up by exactly twelve.
 
 ## The virtual meters
 

@@ -1,0 +1,88 @@
+different room number,tag,room in column D
+yes,RDC_NB_GF_AT-6210,Corridor N-0332C
+yes,RDC_NB_GF_VAV6210,Corr. +N-033B N-0332C
+
+yes,RDC_SB_GF_VAV1003_VEV1002,NOC Lab S-0140A
+yes,RDC_SB_L0_AT-1002,Computer Lab S-0139
+yes,RDC_SB_L0_AT-1003,NOC S-0140A
+yes,RDC_SB_L0_EV-1002,NOC S-0140A
+yes,RDC_SB_L0_EV-1003,UPS S-0145
+
+yes,RDC_SB_GF_VAV1004,Corridor S-0137 / S-0143
+yes,RDC_SB_L0_AT-1004,Dedicated Cyber SOC/NOC Lab S-0141
+
+yes,RDC_SB_GF_VAV2018,Print Hub S-0225
+yes,RDC_SB_L0_AT-2018,PANTRY S-0226
+
+yes,RDC_SB_GF_VAV2033,Store S-0275
+yes,RDC_SB_L0_AT-2033,CORRIDOR S-0273
+
+yes,RDC_SB_GF_VAV2035,Pantry S-0270
+yes,RDC_SB_L0_AT-2035,MECH S-0272
+
+yes,RDC_SB_GF_VAV2042,Corridor S-0273
+yes,RDC_SB_L0_AT-2042,Lobby S-0294
+
+yes,RDC_SB_GF_VAV2043,Women S-0281
+yes,RDC_SB_L0_AT-2043,Lobby S-0294
+
+yes,RDC_SB_GF_VAV3018,Corridor S-0251
+yes,RDC_SB_L0_AT-3018,Corridor S-0251B
+
+yes,RDC_SB_GF_VAV3019,Corridor S-0251
+yes,RDC_SB_L0_AT-3019,Corridor S-0251B
+
+yes,RDC_SB_GF_VAV3033,Corridor / Print / Emergency Elec Rm / Normal Elec Rm S-0251 / S-0263 / S-0266 / S-0267
+yes,RDC_SB_L0_AT-3033,Emergency Elec. S-0266
+
+yes,RDC_NB_1F_AT-7705,Expansion WORKstation N-1442
+yes,RDC_NB_1F_VAV7705,Office 05 - 24 WKS + N-1441 Room N-1442
+
+yes,RDC_NB_1F_AT-7710,Office 05 - 24 WKS + N-1441 Room N-1442
+yes,RDC_NB_1F_VAV7710,Workstation N-1442
+
+yes,RDC_SB_L0_AT-1001,Corridor S-0137
+yes,RDC_SB_L0_EV-1001,Computer Lab S-0139
+
+wording only,RDC_NB_GF_AT-4235,Workstation N-0250
+wording only,RDC_NB_GF_VAV4235,Office 05 -8WS- N-0250
+
+wording only,RDC_NB_GF_AT-4260,Workstation N-0255
+wording only,RDC_NB_GF_VAV4260,Office 05 -8WS- N-0255
+
+wording only,RDC_NB_GF_AT-6205,Conference N-0331
+wording only,RDC_NB_GF_VAV6205_EV6206,Conf N-0331
+
+wording only,RDC_NB_GF_AT-6285,Conference N-0358
+wording only,RDC_NB_GF_VAV6285_EV6286,Conf N-0358
+
+wording only,RDC_NB_GF_AT-7425,Workstation N-0452
+wording only,RDC_NB_GF_VAV7425,Office 05-8-WKS N-0452
+
+wording only,RDC_NB_GF_AT-7460,Workstation N-0457
+wording only,RDC_NB_GF_VAV7460,Office 05-8-WKS N-0457
+
+wording only,RDC_NB_GF_AT-7485,WORKSTATION N-0462
+wording only,RDC_NB_GF_VAV7485,Office 05-8-WKS N-0462
+
+wording only,RDC_SB_1F_AT-2531,Director Ofice S-1241
+wording only,RDC_SB_1F_VAV2531,Director Office S-1241
+
+wording only,RDC_SB_GF_VAV0002,Main Lobby S-0102
+wording only,RDC_SB_L0_AT-0002,Employee Entry Lobby S-0102
+
+wording only,RDC_SB_GF_VAV0007,Conference S-0109
+wording only,RDC_SB_L0_AT-0007,Conf S-0109
+
+wording only,RDC_SB_GF_VAV0016,Conference S-0118
+wording only,RDC_SB_L0_AT-0016,Conf S-0118
+
+wording only,RDC_SB_GF_VAV1008,Cyber Embedded Sys. S-0146
+wording only,RDC_SB_L0_AT-1008,Cyber/Embedded/Dist System Electrical Lab S-0146
+
+wording only,RDC_SB_GF_VAV3031,Server S-0264
+wording only,RDC_SB_L0_AT-3031,IT Server S-0264
+
+wording only,RDC_SB_GF_VAV3034,Vestibule S-0293
+wording only,RDC_SB_L0_AT-3034,Reception / Vestibule S-0293
+

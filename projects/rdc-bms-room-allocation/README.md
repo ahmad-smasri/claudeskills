@@ -1,0 +1,134 @@
+# Reading equipment-to-room allocation off the RDC BMS screens
+
+The RDC AVEVA screens draw a dotted leader from every unit widget to a small
+filled grey dot inside the room it serves. The leader turns square corners,
+often several. That leader is the equipment-to-room link, and these scripts
+follow it.
+
+```
+./run_all.sh                       # trace all 47 screens -> out/
+python3 tags.py <screen> t.png 4   # the tag above each unit, in a numbered grid
+python3 build.py                   # write the RDC-only workbook
+```
+
+## How the screens differ from QNL, SSC and HQ
+
+**The tag is printed above the widget.** On QNL the tag had to be recovered from
+a strip and matched back to the register by position; here it can simply be
+read, which is why the readings are keyed by tag rather than by widget number.
+
+**The leader is dashed at two weights**, and telling either from a wall is the
+whole problem. The thin one runs 154 dark against 188 light - and 154 is exactly
+the grey the walls are drawn in, so no brightness threshold separates them. The
+first mask used a band between the two weights and found eight leaders out of
+forty-three: every thin leader had been classified as wall and erased.
+
+What separates them is direction. A leader is dashed *along its own length*, so
+a short window laid along it spans both phases and sees a range of about fifty
+grey levels; a wall is solid along its own length and the same window sees
+nothing. `rdc_trace.masks` is that test, plus a second one - a leader is
+one-dimensional and text is not, so a stroke that fills its window in both axes
+is a letter and is dropped. Without that, a walk leaving a widget climbs into
+the widget's own printed tag and lands on the bowl of a letter.
+
+**Every screen carries a section-cut line** - dashed, full height, just inside
+the outer wall - and most leaders cross it. `_resume` carries a walk straight
+through a crossing before it will consider a turn; without it five of the twelve
+widgets down the right-hand side of the first screen finished on the cut line.
+
+## The files
+
+| File | What it does |
+|---|---|
+| `rdc_trace.py` | the stroke mask and the walker: straight runs, corners, wall crossings |
+| `rdc_dots.py` | the grey dot that ends a leader - candidates only, the walk confirms them |
+| `rdc_widgets.py` | sliders and equipment tiles, plus the tag printed above each |
+| `annotate.py` | traces one screen, writes the annotated image, the endpoint JSON and a tag strip |
+| `tags.py` | the tags in a numbered grid, so a marker number can be turned into a tag |
+| `crop.py` | crop and upscale, for checking a leader by eye |
+| `readings.csv` | screen, tag, room, confidence, note - **the readings** |
+| `blanks.csv` | screen, tag, reason - the units whose room could not be read |
+| `build.py` | joins the readings to the register and writes the workbook |
+
+## Two detectors, because neither finds every widget
+
+A slider is a black bar with a bordered white box to its right, and a red cross
+badge when the unit is in alarm. Anchoring on the cross finds every unit in
+alarm and no other, so the screens whose units are all healthy came back empty.
+Anchoring on the box loses units whose box is partly covered by its own badge.
+`rdc_widgets.find` takes the union and deduplicates by position: on the ground
+floor screens that is a third more widgets than the structural pass alone.
+
+## Reading, not inferring
+
+The tracer says where to look. The room is named by reading the annotated image,
+and where the screen does not settle it - the dot on a wall between two rooms,
+or in open floor that carries a name but has no wall - the row goes in
+`blanks.csv` with the reason instead. A guessed room reads exactly like a read
+one once it is in the sheet, and nobody can tell them apart afterwards.
+
+`confidence` is `ok` where the dot sits clearly inside one named room and
+`check` where it is on a boundary or in unbounded floor. `check` rows are filled
+green with the rest.
+
+## The join
+
+The screens and the register do not spell a tag the same way, and `build.py`
+handles four differences, each of which is documented where it is applied:
+the register hyphenates some families (`FEV-5272` against `NB-FEV5272`); it
+writes `AHU8601` where the screen writes `AHU-8601`; AHUs carry no level
+segment; and the screens label constant-volume terminals CAV where the register
+labels them AT. That last one is an inference - one CAV row against 510 AT rows
+- so every row joined across it says so in column M.
+
+---
+
+# The section each unit sits in
+
+The section - `A1.1`, `A2.3`, `B2.2 Part1` - is printed in the **title bar of
+the screen** and nowhere else on it. `tag_sheets.py` packs the tag printed above
+every widget on all forty-seven screens into twenty-two sheets, three screens
+side by side, so the whole building can be read in a dozen passes rather than
+forty-seven.
+
+```
+python3 tag_sheets.py out/sections
+```
+
+Two files come out of reading them:
+
+| file | what it holds |
+|---|---|
+| `sections.csv` | the 47 screens and the section in each title bar |
+| `screen_tags.csv` | 1,022 tags and the screen each is printed on |
+
+Two things the titles show that the file names do not: North Building GF-3 and
+GF-4 both say `Section A2.2 Part1`, and South Building GF-4 says `Groung Floor`.
+Both are recorded as printed.
+
+## What could not be derived instead
+
+Equipment numbers do **not** partition by section. On every building and floor
+the ranges overlap - North Building GF has A2.1 running 4005-4920 and A2.2
+running 4041-6982 - so a unit cannot be placed by its number, and interpolating
+one would be indistinguishable from a reading.
+
+## Chasing the units the box detector missed
+
+`rdc_widgets.py` finds a unit by its box - a red alarm badge or a bordered white
+rectangle - and a box another graphic overlaps is a box it does not find. That
+cost 165 register rows their section.
+
+`tag_text.py` finds the tag instead of the box. The tag is near-black text on
+the grey plan, one line, and does not care what is drawn under it, so this
+thresholds the dark **neutral** pixels - the alarm pane below the plan is blue
+on yellow and the Wonderware mark is teal - closes them horizontally into words
+and then into lines, keeps every line shaped like a tag, and drops the ones a
+detected widget already accounts for.
+
+```
+python3 tag_text.py out/missed
+```
+
+It found **140 more tags**, almost all EAV and CAV units whose box sits under a
+duct or a room outline. `screen_tags.csv` is now 1,162 rows.

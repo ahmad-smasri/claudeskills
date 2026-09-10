@@ -1,0 +1,1585 @@
+row,tag,type,room in column D,verdict,room proposed,from which row,assembly
+1480,RDC_NB_GF_VAV4001,VAV,Store N-0201,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4001
+1481,RDC_NB_GF_VAV4005_EV4006,EV,Electrical N-0202,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4005
+1482,RDC_NB_GF_VAV4040,VAV,Air Quality High Bay N-0215A,no reading anywhere in the assembly,,,
+1483,RDC_NB_GF_VAV4050_VEV4051,VEV,CSP High Bay N-0215B,has its own reading,CSP High Bay N-0215B,RDC_NB_GF_VAV4050_VEV4051,
+1484,RDC_NB_GF_VAV4060_VEV4061,VEV,Machine Shop N-0215C,has its own reading,Machine Shop N-0215C,RDC_NB_GF_VAV4060_VEV4061,
+1485,RDC_NB_GF_VAV4070A_VEV4073A,VAV,Open High Bay Lab N-0215D,has its own reading,Open High Bay Lab N-0215D,RDC_NB_GF_VAV4070A_VEV4073A,
+1486,RDC_NB_GF_VAV4070B_VEV4073B,VAV,Open High Bay Lab N-0215D,no reading anywhere in the assembly,,,
+1487,RDC_NB_GF_VAV4071A_VEV4074A,VAV,Open High Bay Lab N-0215D,no reading anywhere in the assembly,,,
+1488,RDC_NB_GF_VAV4071B_VEV4074B,VAV,Open High Bay Lab N-0215D,no reading anywhere in the assembly,,,
+1489,RDC_NB_GF_VAV4072A_VEV4075A,VAV,Open High Bay Lab N-0215D,no reading anywhere in the assembly,,,
+1490,RDC_NB_GF_VAV4072B_VEV4075B,VAV,Open High Bay Lab N-0215D,no reading anywhere in the assembly,,,
+1491,RDC_NB_GF_VAV4080A_VEV4082A,VAV,Desal High Bay Lab N-0215E,has its own reading,Desal High Bay Lab N-0215E,RDC_NB_GF_VAV4080A_VEV4082A,
+1492,RDC_NB_GF_VAV4080B_VEV4082B,VAV,Desal High Bay Lab N-0215E,no reading anywhere in the assembly,,,
+1493,RDC_NB_GF_VAV4081A_VEV4083A,VAV,Desal High Bay Lab N-0215E,no reading anywhere in the assembly,,,
+1494,RDC_NB_GF_VAV4081B_VEV4083B,VAV,Desal High Bay Lab N-0215E,has its own reading,Desal High Bay Lab N-0215E,RDC_NB_GF_VAV4081B_VEV4083B,
+1495,RDC_NB_GF_VAV4090_VEV4091,VEV,Support Lab N-0215F,no reading anywhere in the assembly,,,
+1496,RDC_NB_GF_VAV4100_EV4101,EV,Emergency Elec. Room N-0225,has its own reading,Emergency Elec. Room N-0225,RDC_NB_GF_VAV4100_EV4101,RDC_NB_GF_AT-4100
+1497,RDC_NB_GF_VAV4105_EV4106,EV,Normal Electrical Room N-0225,has its own reading,Normal Elec. Room N-0226,RDC_NB_GF_VAV4105_EV4106,RDC_NB_GF_AT-4105
+1498,RDC_NB_GF_VAV4110_EV4111,EV,Conference Room N-0227,has its own reading,Conference Room N-0227,RDC_NB_GF_VAV4110_EV4111,RDC_NB_GF_AT-4110
+1499,RDC_NB_GF_VAV4115_EV4116,EV,Office N-0228,has its own reading,Office N-0228,RDC_NB_GF_VAV4115_EV4116,RDC_NB_GF_AT-4115
+1500,RDC_NB_GF_VAV4120_EV4121,EV,Office N-0229,has its own reading,Office N-0229,RDC_NB_GF_VAV4120_EV4121,RDC_NB_GF_AT-4120
+1501,RDC_NB_GF_VAV4125_EV4126,EV,Office N-0230,has its own reading,Office N-0230,RDC_NB_GF_VAV4125_EV4126,RDC_NB_GF_AT-4125
+1502,RDC_NB_GF_VAV4130_EV4131,EV,Office N-0231,has its own reading,Office N-0231,RDC_NB_GF_VAV4130_EV4131,RDC_NB_GF_AT-4130
+1503,RDC_NB_GF_VAV4135_EV4136,EV,Office N-0232,has its own reading,Office N-0232,RDC_NB_GF_VAV4135_EV4136,RDC_NB_GF_AT-4135
+1504,RDC_NB_GF_VAV4140_EV4141,EV,Conference Room N-0233,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4140
+1505,RDC_NB_GF_VAV4145_EV4146,EV,Office N-0234,has its own reading,Office N-0234,RDC_NB_GF_VAV4145_EV4146,RDC_NB_GF_AT-4145
+1506,RDC_NB_GF_VAV4165_EV4166,EV,Office N-0236,has its own reading,Office N-0236,RDC_NB_GF_VAV4165_EV4166,RDC_NB_GF_AT-4165
+1507,RDC_NB_GF_VAV4180_VEV4181,VEV,Test Room N-0240A,no reading anywhere in the assembly,,,
+1508,RDC_NB_GF_VAV4190_VEV4192,VEV,CSP Lab N-0240B,no reading anywhere in the assembly,,,
+1509,RDC_NB_GF_VAV4191,VAV,CSP Lab N-0240B,no reading anywhere in the assembly,,,
+1510,RDC_NB_GF_VAV4200_VEV4201,VEV,Test Room 1 N-0240C,no reading anywhere in the assembly,,,
+1511,RDC_NB_GF_VAV4210,VAV,Desalination Lab N-0240D,no reading anywhere in the assembly,,,
+1512,RDC_NB_GF_VAV4211,VAV,Desalination Lab N-0240D,no reading anywhere in the assembly,,,
+1513,RDC_NB_GF_VAV4212,VAV,Desalination Lab N-0240D,no reading anywhere in the assembly,,,
+1514,RDC_NB_GF_VAV4225,VAV,Office N-0247,has its own reading,Office N-0247,RDC_NB_GF_VAV4225,RDC_NB_GF_AT-4225
+1515,RDC_NB_GF_VAV4230,VAV,Office N-0248,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4230
+1516,RDC_NB_GF_VAV4235,VAV,Office 05 -8WS- N-0250,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4235
+1517,RDC_NB_GF_VAV4240,VAV,Office 04 N-0251,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4240
+1518,RDC_NB_GF_VAV4245,VAV,Office N-0252,has its own reading,Office N-0252,RDC_NB_GF_VAV4245,RDC_NB_GF_AT-4245
+1519,RDC_NB_GF_VAV4250,VAV,Office N-0253,has its own reading,Office N-0253,RDC_NB_GF_VAV4250,RDC_NB_GF_AT-4250
+1520,RDC_NB_GF_VAV4255,VAV,Office N-0254,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4255
+1521,RDC_NB_GF_VAV4260,VAV,Office 05 -8WS- N-0255,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4260
+1522,RDC_NB_GF_VAV4265,VAV,Office N-0256,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4265
+1523,RDC_NB_GF_VAV4270,VAV,Office N-0257,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4270
+1524,RDC_NB_GF_VAV4275,VAV,Office N-0258,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4275
+1525,RDC_NB_GF_VAV4280,VAV,Office N-0259,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4280
+1526,RDC_NB_GF_VAV4285,VAV,Workstation N-0260,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4285
+1527,RDC_NB_GF_VAV4290,VAV,Office 04 N-0261,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4290
+1528,RDC_NB_GF_VAV4295,VAV,Office N-0262,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4295
+1529,RDC_NB_GF_VAV4300,VAV,Office N-0263,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4300
+1530,RDC_NB_GF_VAV4305,VAV,Office N-0264,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4305
+1531,RDC_NB_GF_VAV4310,VAV,Workstation N-0265,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4310
+1532,RDC_NB_GF_VAV4312,VAV,Breakout N-0265B,no reading anywhere in the assembly,,,RDC_NB_GF_AT-4312
+1533,RDC_NB_GF_VAV5000_EV5002,EV,Lobby North N-0101,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5000
+1534,RDC_NB_GF_VAV5001_EV5003,EV,Lobby North N-0101,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5001
+1535,RDC_NB_GF_VAV5010_EV5011,EV,Conf N-0106,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5010
+1536,RDC_NB_GF_VAV5015_EV5016,EV,Conference N-0107,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5015
+1537,RDC_NB_GF_VAV5025,VAV,Corridor N-0110,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5025
+1538,RDC_NB_GF_VAV5030_EV5031,EV,Confr Room N-0112,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5030
+1539,RDC_NB_GF_VAV5040_EV5041,EV,Normal Elec. N-0113,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5040
+1540,RDC_NB_GF_VAV5045_EV5046,EV,Emergency Elec. N-0114,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5045
+1541,RDC_NB_GF_VAV5050,VAV,Analytical Core Lab 1 N-0114A,no reading anywhere in the assembly,,,
+1542,RDC_NB_GF_VAV5051,VAV,Analytical Core Lab 1 N-0114A,no reading anywhere in the assembly,,,
+1543,RDC_NB_GF_VAV5054,VAV,Clean Lab N-0114B,no reading anywhere in the assembly,,,
+1544,RDC_NB_GF_VAV5060_CEV5061,CEV,Clean Lab N-0114B,no reading anywhere in the assembly,,,
+1545,RDC_NB_GF_VAV5070,VAV,Dirty Lab N-0114C,no reading anywhere in the assembly,,,
+1546,RDC_NB_GF_VAV5080_VEV5081,VEV,Bio Analyt N-0114D,no reading anywhere in the assembly,,,
+1547,RDC_NB_GF_VAV5090,VAV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+1548,RDC_NB_GF_VAV5091,VAV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+1549,RDC_NB_GF_VAV5100_EV5101,EV,Office N-0115,has its own reading,Office N-0115,RDC_NB_GF_VAV5100_EV5101,RDC_NB_GF_AT-5100
+1550,RDC_NB_GF_VAV5105,VAV,Office N-0116,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5105
+1551,RDC_NB_GF_VAV5110,VAV,Office N-0117,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5110
+1552,RDC_NB_GF_VAV5115,VAV,Office N-0118,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5115
+1553,RDC_NB_GF_VAV5120,VAV,Office N-0119,has its own reading,Office N-0119,RDC_NB_GF_VAV5120,RDC_NB_GF_AT-5120
+1554,RDC_NB_GF_VAV5125,VAV,Office N-0120,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5125
+1555,RDC_NB_GF_VAV5130,VAV,Office N-0121,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5130
+1556,RDC_NB_GF_VAV5135,VAV,Office N-0122,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5135
+1557,RDC_NB_GF_VAV5140,VAV,Office N-0123,has its own reading,Office N-0123,RDC_NB_GF_VAV5140,RDC_NB_GF_AT-5140
+1558,RDC_NB_GF_VAV5145,VAV,Office N-0124,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5145
+1559,RDC_NB_GF_VAV5150,VAV,Office N-0125,has its own reading,Office N-0125,RDC_NB_GF_VAV5150,RDC_NB_GF_AT-5150
+1560,RDC_NB_GF_VAV5152,VAV,Office N-0126,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5152
+1561,RDC_NB_GF_VAV5155,VAV,Office N-0127,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5155
+1562,RDC_NB_GF_VAV5156,VAV,Office 04 N-0129,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5156
+1563,RDC_NB_GF_VAV5165_EV5166,EV,Corridor N-0134,has its own reading,Serv Core N-0136,RDC_NB_GF_VAV5165_EV5166,RDC_NB_GF_AT-5165
+1564,RDC_NB_GF_VAV5180,VAV,Analytical Core Lab 2 N-0140A,no reading anywhere in the assembly,,,
+1565,RDC_NB_GF_VAV5181,VAV,Analytical Core Lab 2 N-0140A,no reading anywhere in the assembly,,,
+1566,RDC_NB_GF_VAV5190,VAV,Furnace Room N-0140B,no reading anywhere in the assembly,,,
+1567,RDC_NB_GF_VAV5200,VAV,Prep Lab N-0140C,no reading anywhere in the assembly,,,
+1568,RDC_NB_GF_VAV5210,VAV,Sputter Room N-0140D,no reading anywhere in the assembly,,,
+1569,RDC_NB_GF_VAV5220,VAV,MBE/Evap Room N-0140E,no reading anywhere in the assembly,,,
+1570,RDC_NB_GF_VAV5230,VAV,ALD Room N-0140F,no reading anywhere in the assembly,,,
+1571,RDC_NB_GF_VAV5250_VEV5251,VEV,Support Room N-0140H,no reading anywhere in the assembly,,,
+1572,RDC_NB_GF_VAV5260_VEV5261,VEV,PLD Room N-0140J,no reading anywhere in the assembly,,,
+1573,RDC_NB_GF_VAV5270A,VAV,Organic Chemistry Lab N-0140K,no reading anywhere in the assembly,,,
+1574,RDC_NB_GF_VAV5270B,VAV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+1575,RDC_NB_GF_VAV5295_EV5296,EV,Conference Room N-0149,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5295
+1576,RDC_NB_GF_VAV5300,VAV,Corridor N-0150,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5300
+1577,RDC_NB_GF_VAV5305,VAV,Office N-0151,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5305
+1578,RDC_NB_GF_VAV5310,VAV,Office N-0152,has its own reading,Office N-0152,RDC_NB_GF_VAV5310,RDC_NB_GF_AT-5310
+1579,RDC_NB_GF_VAV5315,VAV,Open Office N-0153,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5315
+1580,RDC_NB_GF_VAV5325,VAV,Office N-0155,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5325
+1581,RDC_NB_GF_VAV5330,VAV,Office N-0156,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5330
+1582,RDC_NB_GF_VAV5335,VAV,Office N-0157,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5335
+1583,RDC_NB_GF_VAV5340,VAV,Office N-0158,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5340
+1584,RDC_NB_GF_VAV5345,VAV,Office N-0159,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5345
+1585,RDC_NB_GF_VAV5355,VAV,Office N-0161,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5355
+1586,RDC_NB_GF_VAV5360,VAV,Office N-0162,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5360
+1587,RDC_NB_GF_VAV5365,VAV,Office N-0163,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5365
+1588,RDC_NB_GF_VAV5370,VAV,Office N-0164,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5370
+1589,RDC_NB_GF_VAV5380,VAV,Office N-0166,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5380
+1590,RDC_NB_GF_VAV5385,VAV,Office N-0167A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5385
+1591,RDC_NB_GF_VAV5390,VAV,Office 04 N-0168,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5390
+1592,RDC_NB_GF_VAV5395,VAV,Exp. Office N-0169,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5395
+1593,RDC_NB_GF_VAV5400,VAV,Reception Area N-0170,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5400
+1594,RDC_NB_GF_VAV5405,VAV,Exp. Office N-0172,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5405
+1595,RDC_NB_GF_VAV5410_EV5411,EV,Conf Room N-0173,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5410
+1596,RDC_NB_GF_VAV5415,VAV,Office 04 N-0174,no reading anywhere in the assembly,,,RDC_NB_GF_AT-5415
+1597,RDC_NB_GF_VAV6000_EV6001,EV,Conf Room N-0301,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6000
+1598,RDC_NB_GF_VAV6010_EV6011,EV,Conf N-0304,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6010
+1599,RDC_NB_GF_VAV6025_EV6026,EV,Normal Elec. N-0310,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6025
+1600,RDC_NB_GF_VAV6130_EV6131,EV,Store N-0315,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6130
+1601,RDC_NB_GF_VAV6135,VAV,Store N-0316,has its own reading,Store N-0316,RDC_NB_GF_VAV6135,RDC_NB_GF_AT-6135
+1602,RDC_NB_GF_VAV6140,VAV,Workstation N-0317,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6140
+1603,RDC_NB_GF_VAV6145,VAV,Office N-0318,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6145
+1604,RDC_NB_GF_VAV6150,VAV,Office N-0319,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6150
+1605,RDC_NB_GF_VAV6155,VAV,Workstation N-0320,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6155
+1606,RDC_NB_GF_VAV6160,VAV,Office N-0321,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6160
+1607,RDC_NB_GF_VAV6170,VAV,Office N-0323,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6170
+1608,RDC_NB_GF_VAV6175,VAV,Workstation N-0324,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6175
+1609,RDC_NB_GF_VAV6180,VAV,Office N-0325,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6180
+1610,RDC_NB_GF_VAV6185_EV6186,EV,Office N-0326,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6185
+1611,RDC_NB_GF_VAV6190_EV6191,EV,Normal Elec. N-0328,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6190
+1612,RDC_NB_GF_VAV6195,VAV,Store N-0329,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6195
+1613,RDC_NB_GF_VAV6200_EV6201,EV,Conf N-0330,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6200
+1614,RDC_NB_GF_VAV6205_EV6206,EV,Conf N-0331,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6205
+1615,RDC_NB_GF_VAV6210,VAV,Corr. +N-033B N-0332C,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6210
+1616,RDC_NB_GF_VAV6220_EV6221,EV,Emergency Elec. N-0333,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6220
+1617,RDC_NB_GF_VAV6240_EV6241,EV,Emergency Electrical N-0350A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6240
+1618,RDC_NB_GF_VAV6285_EV6286,EV,Conf N-0358,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6285
+1619,RDC_NB_GF_VAV6295_EV6296,EV,Conference N-0360,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6295
+1620,RDC_NB_GF_VAV6300,VAV,Store N-0362B,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6300
+1621,RDC_NB_GF_VAV6305,VAV,Office N-0363,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6305
+1622,RDC_NB_GF_VAV6310,VAV,Office N-0364,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6310
+1623,RDC_NB_GF_VAV6315_EV6316,EV,Conf Room N-0364A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6315 RDC_NB_GF_EV-6316
+1624,RDC_NB_GF_VAV6320,VAV,Corridor N-0365,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6320
+1625,RDC_NB_GF_VAV6325,VAV,Office N-0366,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6325
+1626,RDC_NB_GF_VAV6330,VAV,Office 04 N-0367,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6330
+1627,RDC_NB_GF_VAV6335,VAV,Office N-0368,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6335
+1628,RDC_NB_GF_VAV6340,VAV,Office N-0369,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6340
+1629,RDC_NB_GF_VAV6345,VAV,Office N-0370,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6345
+1630,RDC_NB_GF_VAV6350,VAV,Office N-0371,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6350
+1631,RDC_NB_GF_VAV6355,VAV,Workstation N-0372,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6355
+1632,RDC_NB_GF_VAV6360,VAV,Office N-0374,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6360
+1633,RDC_NB_GF_VAV6365,VAV,Office N-0375,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6365
+1634,RDC_NB_GF_VAV6370,VAV,Office N-0376,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6370
+1635,RDC_NB_GF_VAV6375,VAV,Office N-0377,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6375
+1636,RDC_NB_GF_VAV6380,VAV,Workstation N-0378,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6380
+1637,RDC_NB_GF_VAV6390,VAV,Office N-0379,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6390
+1638,RDC_NB_GF_VAV6395,VAV,Office N-0380,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6395
+1639,RDC_NB_GF_VAV6400,VAV,Workstation N-0381,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6400
+1640,RDC_NB_GF_VAV6405,VAV,Office N-0382,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6405
+1641,RDC_NB_GF_VAV6410,VAV,Office N-0383,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6410
+1642,RDC_NB_GF_VAV7000,VAV,Vestibule Staging N-0401,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7000
+1643,RDC_NB_GF_VAV7020A,VAV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+1644,RDC_NB_GF_VAV7020B,VAV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+1645,RDC_NB_GF_VAV7021A,VAV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+1646,RDC_NB_GF_VAV7021B,VAV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+1647,RDC_NB_GF_VAV7030_VEV7031,VEV,CONTROL ROOM N-0404B,no reading anywhere in the assembly,,,
+1648,RDC_NB_GF_VAV7040,VAV,Service Equipm. Room N-0404C,no reading anywhere in the assembly,,,
+1649,RDC_NB_GF_VAV7050_VEV7051,VEV,EM Prep 1 - MAT N-0404D,no reading anywhere in the assembly,,,
+1650,RDC_NB_GF_VAV7060_VEV7061,VEV,EM Prep 2 - BIO N-0404E,no reading anywhere in the assembly,,,
+1651,RDC_NB_GF_VAV7070A,VAV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+1652,RDC_NB_GF_VAV7070B,VAV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+1653,RDC_NB_GF_VAV7071A,VAV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+1654,RDC_NB_GF_VAV7071B,VAV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+1655,RDC_NB_GF_VAV7080,VAV,Exp. Office N-0410,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7080
+1656,RDC_NB_GF_VAV7085,VAV,Office N-0411,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7085
+1657,RDC_NB_GF_VAV7090,VAV,Office N-0412,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7090-N1 RDC_NB_GF_AT-7090-N2
+1658,RDC_NB_GF_VAV7095,VAV,Office N-0413,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7095
+1659,RDC_NB_GF_VAV7100,VAV,Office N-0414,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7100
+1660,RDC_NB_GF_VAV7105,VAV,Office N-0415,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7105-N1 RDC_NB_GF_AT-7105-N2
+1661,RDC_NB_GF_VAV7110,VAV,Office N-0416,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7110
+1662,RDC_NB_GF_VAV7115,VAV,Office N-0417,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7115
+1663,RDC_NB_GF_VAV7120,VAV,Office N-0418,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9
+1664,RDC_NB_GF_VAV7125_EV7126,EV,Normal Elec. Room N-0420,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7125
+1665,RDC_NB_GF_VAV7130,VAV,Office N-0421,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7130
+1666,RDC_NB_GF_VAV7135,VAV,Office N-0422,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7135
+1667,RDC_NB_GF_VAV7140_EV7141,EV,Conference N-0423,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7140
+1668,RDC_NB_GF_VAV7145,VAV,Office N-0425,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7145
+1669,RDC_NB_GF_VAV7155,VAV,Office N-0427,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7155
+1670,RDC_NB_GF_VAV7165,VAV,Office N-0429,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7165
+1671,RDC_NB_GF_VAV7175,VAV,Office 05-15-WS N-0431,has its own reading,Corridor N-0432,RDC_NB_GF_VAV7175,
+1672,RDC_NB_GF_VAV7176,VAV,Office 05-15-WS N-0431,no reading anywhere in the assembly,,,
+1673,RDC_NB_GF_VAV7180,VAV,Corridor N-0432,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7180
+1674,RDC_NB_GF_VAV7185_EV7186,EV,Emer. Elec. Room N-0433,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7185
+1675,RDC_NB_GF_VAV7195,VAV,Office 04 N-0436,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7195
+1676,RDC_NB_GF_VAV7205,VAV,Office 04 N-0438,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7205
+1677,RDC_NB_GF_VAV7215_EV7216,EV,Conference Room N-0440,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7215
+1678,RDC_NB_GF_VAV7220_CEV7221,CEV,Service Corridor N-0441,no reading anywhere in the assembly,,,
+1679,RDC_NB_GF_VAV7230_VEV7231,VEV,Inter Lab N-0442A,no reading anywhere in the assembly,,,
+1680,RDC_NB_GF_VAV7240_VEV7241A,VAV,Optical Lab N-0442B,no reading anywhere in the assembly,,,
+1681,RDC_NB_GF_VAV7250_VEV7251,VEV,CONF N-0442C,no reading anywhere in the assembly,,,
+1682,RDC_NB_GF_VAV7260_VEV7261,VEV,SEM 1 Room N-0442D,no reading anywhere in the assembly,,,
+1683,RDC_NB_GF_VAV7270_VEV7271,VEV,SERV 1 N-0442E,no reading anywhere in the assembly,,,
+1684,RDC_NB_GF_VAV7280_VEV7281,VEV,Confocal 2 Room N-0442F,no reading anywhere in the assembly,,,
+1685,RDC_NB_GF_VAV7290_VEV7291,VEV,SEM 2 N-0442G,no reading anywhere in the assembly,,,
+1686,RDC_NB_GF_VAV7300,VAV,Air Lock 1 N-0442H,no reading anywhere in the assembly,,,
+1687,RDC_NB_GF_VAV7310_VEV7311,VEV,SEM 3 N-0442J,no reading anywhere in the assembly,,,
+1688,RDC_NB_GF_VAV7320_VEV7321,VEV,SEM 4 N-0442K,no reading anywhere in the assembly,,,
+1689,RDC_NB_GF_VAV7330_VEV7331,VEV,SEM 5 N-0442L,no reading anywhere in the assembly,,,
+1690,RDC_NB_GF_VAV7340_VEV7341,VEV,SERV 2 N-0442M,no reading anywhere in the assembly,,,
+1691,RDC_NB_GF_VAV7350_VEV7351,VEV,SEM Lab N-0442N,no reading anywhere in the assembly,,,
+1692,RDC_NB_GF_VAV7360_VEV7361,VEV,SEM Lab N-0442p,no reading anywhere in the assembly,,,
+1693,RDC_NB_GF_VAV7370_VEV7371,VEV,A/L 2 N-0442R,no reading anywhere in the assembly,,,
+1694,RDC_NB_GF_VAV7385,VAV,Office N-0444,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7385
+1695,RDC_NB_GF_VAV7390,VAV,Office 04 N-0445,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7390
+1696,RDC_NB_GF_VAV7395,VAV,Workstation N-0446,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7395
+1697,RDC_NB_GF_VAV7400,VAV,Office N-0447,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7400
+1698,RDC_NB_GF_VAV7405,VAV,Office N-0448,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7405
+1699,RDC_NB_GF_VAV7410,VAV,Office N-0449,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7410
+1700,RDC_NB_GF_VAV7415,VAV,Office N-0450,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7415
+1701,RDC_NB_GF_VAV7425,VAV,Office 05-8-WKS N-0452,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7425
+1702,RDC_NB_GF_VAV7430,VAV,Office N-0453,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7430
+1703,RDC_NB_GF_VAV7435,VAV,Office N-0454,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7435
+1704,RDC_NB_GF_VAV7440,VAV,Office N-0455,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7440
+1705,RDC_NB_GF_VAV7445,VAV,Office 04 N-0456,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7445
+1706,RDC_NB_GF_VAV7460,VAV,Office 05-8-WKS N-0457,has its own reading,Workstation N-0457,RDC_NB_GF_VAV7460,RDC_NB_GF_AT-7460
+1707,RDC_NB_GF_VAV7465,VAV,Office N-0458,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7465
+1708,RDC_NB_GF_VAV7470,VAV,Office N-0459,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7470
+1709,RDC_NB_GF_VAV7475,VAV,Office N-0460,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7475
+1710,RDC_NB_GF_VAV7480,VAV,Office N-0461,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7480
+1711,RDC_NB_GF_VAV7485,VAV,Office 05-8-WKS N-0462,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7485
+1712,RDC_NB_GF_VAV7490_EV7495,EV,Confer N-0463,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7490
+1713,RDC_NB_GF_VAV7496,VAV,Office 04 N-0464,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7496
+1714,RDC_NB_GF_VAV7498,VAV,Office N-0465,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7498
+1715,RDC_NB_GF_VAV7499,VAV,Office 04 N-0466,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7499
+1716,RDC_SB_1F_VAV0506,VAV,Conf. S-1110,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0506
+1717,RDC_SB_1F_VAV0507,VAV,Computer Research Lab-4 S-1112,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0507
+1718,RDC_SB_1F_VAV0508,VAV,Conf S-1113,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0508
+1719,RDC_SB_1F_VAV0509,VAV,NCIR Office S-1115,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0509
+1720,RDC_SB_1F_VAV0510,VAV,Workstation S-1115A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0510
+1721,RDC_SB_1F_VAV0511,VAV,NCIR Office S-1116,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0511
+1722,RDC_SB_1F_VAV0512,VAV,NCIR Office S-1117,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0512
+1723,RDC_SB_1F_VAV0513,VAV,NCIR Office S-1118,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0513
+1724,RDC_SB_1F_VAV0514,VAV,NCIR Office S-1119,has its own reading,Sc.Comp.Office3 S-1119,RDC_SB_1F_VAV0514,RDC_SB_1F_AT-0514
+1725,RDC_SB_1F_VAV0518,VAV,Office S-1161,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0518
+1726,RDC_SB_1F_VAV0519,VAV,Office S-1162,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0519
+1727,RDC_SB_1F_VAV0520,VAV,Office S-1163,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0520
+1728,RDC_SB_1F_VAV0521,VAV,Office S-1164,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0521
+1729,RDC_SB_1F_VAV0522,VAV,Office S-1165,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0522
+1730,RDC_SB_1F_VAV0523,VAV,Office S-1166,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0523
+1731,RDC_SB_1F_VAV0526,VAV,Office S-1171,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0526
+1732,RDC_SB_1F_VAV0527,VAV,Office S-1172,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0527
+1733,RDC_SB_1F_VAV0528,VAV,Office S-1173,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0528
+1734,RDC_SB_1F_VAV0529,VAV,Corridor S-1174,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0529
+1735,RDC_SB_1F_VAV0530,VAV,Situation Room S-1175,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0530
+1736,RDC_SB_1F_VAV0531,VAV,Immersive Viz Lab S-1176,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0531
+1737,RDC_SB_1F_VAV0532,VAV,Conference Room S-1177,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0532
+1738,RDC_SB_1F_VAV0533,VAV,Telepresence S-1179,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0533
+1739,RDC_SB_1F_VAV0538,VAV,Workstation S-1151A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-0538
+1740,RDC_SB_1F_VAV1501,VAV,Workstation S-1119A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1501
+1741,RDC_SB_1F_VAV1502,VAV,NCIR Office S-1120,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1502
+1742,RDC_SB_1F_VAV1503,VAV,NCIR Office S-1121,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1503
+1743,RDC_SB_1F_VAV1505,VAV,SC. Comp Office 2 S-1123,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1505
+1744,RDC_SB_1F_VAV1506,VAV,SC. Comp Office 3 S-1124,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1506
+1745,RDC_SB_1F_VAV1507,VAV,Workstation S-1124A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1507
+1746,RDC_SB_1F_VAV1508,VAV,Scientific Comp. Office 1 S-1125,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1508
+1747,RDC_SB_1F_VAV1509,VAV,Scientific Comp. Office S-1126,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1509
+1748,RDC_SB_1F_VAV1510,VAV,ALT Office 2 S-1127,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1510
+1749,RDC_SB_1F_VAV1511,VAV,ALT Office 3 S-1128,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1511
+1750,RDC_SB_1F_VAV1512,VAV,Workstation S-1128A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1512
+1751,RDC_SB_1F_VAV1513,VAV,ALT Office 1 S-1129,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1513
+1752,RDC_SB_1F_VAV1514,VAV,ALT Office S-1130,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1514
+1753,RDC_SB_1F_VAV1515,VAV,Distub. Syst Office 1 S-1131,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1515
+1754,RDC_SB_1F_VAV1516,VAV,Distub. Syst Office S-1132,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1516
+1755,RDC_SB_1F_VAV1517,VAV,Workstation S-1132A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1517
+1756,RDC_SB_1F_VAV1518,VAV,Distub. Syst Office S-1133,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1518
+1757,RDC_SB_1F_VAV1519,VAV,Distub. Syst Office S-1134,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1519
+1758,RDC_SB_1F_VAV1520,VAV,Data Analytic Office S-1135,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1520
+1759,RDC_SB_1F_VAV1521,VAV,Data Analytic Office S-1136,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1521
+1760,RDC_SB_1F_VAV1522,VAV,Workstation S-1136A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1522
+1761,RDC_SB_1F_VAV1523,VAV,Data Analytic Office S-1137,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1523
+1762,RDC_SB_1F_VAV1524,VAV,Data Analytic Office S-1138,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1524
+1763,RDC_SB_1F_VAV1525,VAV,Office S-1139,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1525
+1764,RDC_SB_1F_VAV1526,VAV,Office S-1140,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1526
+1765,RDC_SB_1F_VAV1527,VAV,Conference Room S-1141,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1527
+1766,RDC_SB_1F_VAV1528,VAV,Office S-1142,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1528
+1767,RDC_SB_1F_VAV1529,VAV,Office S-1144,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1529
+1768,RDC_SB_1F_VAV1530,VAV,Office S-1145,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1530
+1769,RDC_SB_1F_VAV1531,VAV,Office S-1146,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1531
+1770,RDC_SB_1F_VAV1532,VAV,Workstation S-1146A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1532
+1771,RDC_SB_1F_VAV1533,VAV,Office S-1148,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1533
+1772,RDC_SB_1F_VAV1534,VAV,Office S-1149,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1534
+1773,RDC_SB_1F_VAV1536,VAV,Office S-1150,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1536
+1774,RDC_SB_1F_VAV1539,VAV,Video Conf. Room S-1154,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1539
+1775,RDC_SB_1F_VAV1540,VAV,Conf S-1159,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1540
+1776,RDC_SB_1F_VAV1542,VAV,Office S-1182,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1542
+1777,RDC_SB_1F_VAV1543,VAV,Workstation S-1182A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1543
+1778,RDC_SB_1F_VAV1544,VAV,Office S-1182C,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1544
+1779,RDC_SB_1F_VAV1545,VAV,Office S-1182D,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1545
+1780,RDC_SB_1F_VAV1546,VAV,Office S-1182E,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1546
+1781,RDC_SB_1F_VAV1547,VAV,Office S-1182F,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1547
+1782,RDC_SB_1F_VAV1548,VAV,Office S-1183,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1548
+1783,RDC_SB_1F_VAV1549,VAV,Workstation S-1183A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1549
+1784,RDC_SB_1F_VAV1550,VAV,Office S-1184,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1550
+1785,RDC_SB_1F_VAV1551,VAV,Social Comp Office S-1185,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1551
+1786,RDC_SB_1F_VAV1552,VAV,Social Comp Office S-1186,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1552
+1787,RDC_SB_1F_VAV1553,VAV,Workstation S-1186A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1553
+1788,RDC_SB_1F_VAV1554,VAV,Social Comp Office S-1187,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1554
+1789,RDC_SB_1F_VAV1555,VAV,Social Comp Office S-1188,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1555
+1790,RDC_SB_1F_VAV1556,VAV,Cyber Sec Office S-1189,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1556
+1791,RDC_SB_1F_VAV1557,VAV,Cyber Sec Office S-1190,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1557
+1792,RDC_SB_1F_VAV1558,VAV,Workstation S-1190A,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1558
+1793,RDC_SB_1F_VAV1559,VAV,Office S-1191,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1559
+1794,RDC_SB_1F_VAV1560,VAV,Cyber Sec Office S-1192,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1560
+1795,RDC_SB_1F_VAV1561,VAV,Cyber Sec Office S-1193,no reading anywhere in the assembly,,,RDC_SB_1F_AT-1561
+1796,RDC_SB_1F_VAV2501,VAV,Lobby S-1201,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2501
+1797,RDC_SB_1F_VAV2502,VAV,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2502
+1798,RDC_SB_1F_VAV2503,VAV,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2503
+1799,RDC_SB_1F_VAV2504,VAV,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2504
+1800,RDC_SB_1F_VAV2505,VAV,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2505
+1801,RDC_SB_1F_VAV2506,VAV,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2506
+1802,RDC_SB_1F_VAV2508,VAV,Female Prayer S-1207,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2508
+1803,RDC_SB_1F_VAV2509,VAV,Open Plan S-1210,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2509
+1804,RDC_SB_1F_VAV2510,VAV,Exc. Dir. Office S-1211,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2510
+1805,RDC_SB_1F_VAV2511,VAV,Office S-1212,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2511
+1806,RDC_SB_1F_VAV2512,VAV,Office S-1213,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2512
+1807,RDC_SB_1F_VAV2513,VAV,Office S-1214,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2513
+1808,RDC_SB_1F_VAV2514,VAV,Office S-1215,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2514
+1809,RDC_SB_1F_VAV2515,VAV,Office S-1216,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2515
+1810,RDC_SB_1F_VAV2516,VAV,Executive Director Office S-1217,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2516
+1811,RDC_SB_1F_VAV2517,VAV,Executive Director Office S-1218,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2517
+1812,RDC_SB_1F_VAV2518,VAV,Office S-1219,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2518
+1813,RDC_SB_1F_VAV2519,VAV,Office S-1220,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2519
+1814,RDC_SB_1F_VAV2520,VAV,Office S-1221,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2520
+1815,RDC_SB_1F_VAV2521,VAV,Office S-1222,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2521
+1816,RDC_SB_1F_VAV2522,VAV,Office S-1223,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2522
+1817,RDC_SB_1F_VAV2523,VAV,Office S-1224,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2523
+1818,RDC_SB_1F_VAV2524,VAV,Office S-1225,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2524
+1819,RDC_SB_1F_VAV2525,VAV,Office S-1226,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2525
+1820,RDC_SB_1F_VAV2526,VAV,Open Plan S-1227,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2526
+1821,RDC_SB_1F_VAV2527,VAV,Director Office S-1228,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2527
+1822,RDC_SB_1F_VAV2528,VAV,Director Office S-1230,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2528
+1823,RDC_SB_1F_VAV2529,VAV,Office S-1231,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2529
+1824,RDC_SB_1F_VAV2530,VAV,Office S-1232,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2530
+1825,RDC_SB_1F_VAV2531,VAV,Director Office S-1241,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2531
+1826,RDC_SB_1F_VAV2532,VAV,Office S-1242,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2532
+1827,RDC_SB_1F_VAV2533,VAV,Cooridor S-1246,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2533
+1828,RDC_SB_1F_VAV2534,VAV,Meeting Room S-1247,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2534
+1829,RDC_SB_1F_VAV2535,VAV,Store S-1248,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2535
+1830,RDC_SB_1F_VAV2536,VAV,Normal Elec. S-1251,has its own reading,Mech. Chasing S-1249,RDC_SB_1F_VAV2536,RDC_SB_1F_AT-2536
+1831,RDC_SB_1F_VAV2538,VAV,Office S-1257,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2538
+1832,RDC_SB_1F_VAV2539,VAV,Office S-1257B,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2539
+1833,RDC_SB_1F_VAV2540,VAV,Executive Director S-1260,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2540
+1834,RDC_SB_1F_VAV2541,VAV,Assistant S-1261,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2541
+1835,RDC_SB_1F_VAV2542,VAV,Open Plan S-1263,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2542
+1836,RDC_SB_1F_VAV2543,VAV,Office S-1264,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2543
+1837,RDC_SB_1F_VAV2544,VAV,Office S-1265,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2544
+1838,RDC_SB_1F_VAV2545,VAV,Office S-1266,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2545
+1839,RDC_SB_1F_VAV2546,VAV,Office S-1267,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2546
+1840,RDC_SB_1F_VAV2547,VAV,Office S-1268,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2547
+1841,RDC_SB_1F_VAV2548,VAV,Office S-1269,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2548
+1842,RDC_SB_1F_VAV2549,VAV,Office S-1270,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2549
+1843,RDC_SB_1F_VAV2550,VAV,Office S-1271,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2550
+1844,RDC_SB_1F_VAV2551,VAV,Meeting Room S-1272,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2551
+1845,RDC_SB_1F_VAV2552,VAV,Vestibule S-1273,has its own reading,FPC S-1277,RDC_SB_1F_VAV2552,RDC_SB_1F_AT-2552
+1846,RDC_SB_1F_VAV2553,VAV,Male Prayer S-1278,no reading anywhere in the assembly,,,RDC_SB_1F_AT-2553
+1847,RDC_SB_1F_VAV3504,VAV,Open Plan S-1229,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3504
+1848,RDC_SB_1F_VAV3505,VAV,Open Plan S-1229,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3505
+1849,RDC_SB_1F_VAV3506,VAV,Office S-1233,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3506
+1850,RDC_SB_1F_VAV3507,VAV,Office S-1234,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3507
+1851,RDC_SB_1F_VAV3508,VAV,Office S-1235,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3508
+1852,RDC_SB_1F_VAV3509,VAV,Policy Director Office S-1237,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3509
+1853,RDC_SB_1F_VAV3510,VAV,Policy Executive Director Office S-1240,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3510
+1854,RDC_SB_1F_VAV3511,VAV,Corridor S-1280,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3511
+1855,RDC_SB_1F_VAV3512,VAV,Pantry S-1282,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3512
+1856,RDC_SB_1F_VAV3513,VAV,Office S-1283,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3513
+1857,RDC_SB_1F_VAV3514,VAV,Office S-1284,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3514
+1858,RDC_SB_1F_VAV3515,VAV,S-1285 VP R&D,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3515
+1859,RDC_SB_1F_VAV3516,VAV,Meeting Room S-1288,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3516
+1860,RDC_SB_1F_VAV3517,VAV,Dressing Room S-1290,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3517
+1861,RDC_SB_1F_VAV3518,VAV,Waiting Area S-1292,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3518
+1862,RDC_SB_1F_VAV3519,VAV,Open Plan S-1293,no reading anywhere in the assembly,,,
+1863,RDC_SB_1F_VAV3520,VAV,Office S-1294,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3520
+1864,RDC_SB_1F_VAV3521,VAV,Office S-1295,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3521
+1865,RDC_SB_1F_VAV3522,VAV,Conference Room S-1296,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3522
+1866,RDC_SB_1F_VAV3523,VAV,Office S-1299,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3523
+1867,RDC_SB_1F_VAV3524,VAV,Normal Elec. S-1238,no reading anywhere in the assembly,,,RDC_SB_1F_AT-3524
+1868,RDC_SB_GF_VAV0001,VAV,Vestibule S-0101,has its own reading,Vestbule S-0101,RDC_SB_GF_VAV0001,RDC_SB_L0_AT-0001
+1869,RDC_SB_GF_VAV0002,VAV,Main Lobby S-0102,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0002
+1870,RDC_SB_GF_VAV0003,VAV,Entrance Lobby S-0102,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0003
+1871,RDC_SB_GF_VAV0007,VAV,Conference S-0109,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0007
+1872,RDC_SB_GF_VAV0008,VAV,Computer Research Lab 3 S-0110,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0008
+1873,RDC_SB_GF_VAV0009,VAV,Phone Booth S-0111,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0009
+1874,RDC_SB_GF_VAV0010,VAV,Phone Booth S-0112,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0010
+1875,RDC_SB_GF_VAV0011,VAV,Conference S-0113,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0011
+1876,RDC_SB_GF_VAV0012,VAV,Computer Research Lab 2 S-0114,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0012
+1877,RDC_SB_GF_VAV0013,VAV,Phone Booth S-0115,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0013
+1878,RDC_SB_GF_VAV0014,VAV,Phone Booth S-0116,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0014
+1879,RDC_SB_GF_VAV0016,VAV,Conference S-0118,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0016
+1880,RDC_SB_GF_VAV0017,VAV,Computer Research Lab 1 S-0119,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0017
+1881,RDC_SB_GF_VAV0018,VAV,Restaurant S-0123,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0018
+1882,RDC_SB_GF_VAV0019,VAV,Restaurant S-0123,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0019
+1883,RDC_SB_GF_VAV0025,VAV,Alt Recording Sound S-0135,no reading anywhere in the assembly,,,RDC_SB_L0_AT-0025
+1884,RDC_SB_GF_VAV1003_VEV1002,VEV,NOC Lab S-0140A,no reading anywhere in the assembly,,,RDC_SB_L0_AT-1002 RDC_SB_L0_AT-1003 RDC_SB_L0_EV-1002 RDC_SB_L0_EV-1003
+1885,RDC_SB_GF_VAV1004,VAV,Corridor S-0137 / S-0143,has its own reading,Dedicated Cyber SOC/NOC Lab S-0141,RDC_SB_GF_VAV1004,RDC_SB_L0_AT-1004
+1886,RDC_SB_GF_VAV1008,VAV,Cyber Embedded Sys. S-0146,no reading anywhere in the assembly,,,RDC_SB_L0_AT-1008
+1887,RDC_SB_GF_VAV2002,VAV,Conference Room S-0207,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2002
+1888,RDC_SB_GF_VAV2003,VAV,Multi Purpose Hall S-0208,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2003
+1889,RDC_SB_GF_VAV2004,VAV,Multi Purpose Hall S-0208,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2004
+1890,RDC_SB_GF_VAV2005,VAV,Technical Open Plan S-0211,no reading anywhere in the assembly,,,
+1891,RDC_SB_GF_VAV2006,VAV,Meeting Room S-0212,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2006
+1892,RDC_SB_GF_VAV2007,VAV,Office S-0213,has its own reading,Office S-0213,RDC_SB_GF_VAV2007,RDC_SB_L0_AT-2007
+1893,RDC_SB_GF_VAV2008,VAV,Office S-0214,has its own reading,Office S-0214,RDC_SB_GF_VAV2008,RDC_SB_L0_AT-2008
+1894,RDC_SB_GF_VAV2009,VAV,Office S-0215,has its own reading,Office S-0215,RDC_SB_GF_VAV2009,RDC_SB_L0_AT-2009
+1895,RDC_SB_GF_VAV2010,VAV,Office S-0216,has its own reading,Office S-0216,RDC_SB_GF_VAV2010,RDC_SB_L0_AT-2010
+1896,RDC_SB_GF_VAV2011,VAV,Office S-0217,has its own reading,Office S-0217,RDC_SB_GF_VAV2011,RDC_SB_L0_AT-2011
+1897,RDC_SB_GF_VAV2012,VAV,Director Office S-0218,has its own reading,Director Office S-0218,RDC_SB_GF_VAV2012,RDC_SB_L0_AT-2012
+1898,RDC_SB_GF_VAV2013,VAV,Office S-0219,has its own reading,Office S-0219,RDC_SB_GF_VAV2013,RDC_SB_L0_AT-2013
+1899,RDC_SB_GF_VAV2014,VAV,Office S-0220,has its own reading,Office S-0220,RDC_SB_GF_VAV2014,RDC_SB_L0_AT-2014
+1900,RDC_SB_GF_VAV2015,VAV,Director Office S-0221,has its own reading,Director Office S-0221,RDC_SB_GF_VAV2015,RDC_SB_L0_AT-2015
+1901,RDC_SB_GF_VAV2016,VAV,Director Office S-0222,has its own reading,Director Office S-0222,RDC_SB_GF_VAV2016,RDC_SB_L0_AT-2016
+1902,RDC_SB_GF_VAV2017,VAV,Meeting Room S-0223,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2017
+1903,RDC_SB_GF_VAV2018,VAV,Print Hub S-0225,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2018
+1904,RDC_SB_GF_VAV2019,VAV,Office S-0227,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2019
+1905,RDC_SB_GF_VAV2020,VAV,Informal Meeting S-0231,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2020
+1906,RDC_SB_GF_VAV2021,VAV,Open Plan S-0228,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2021
+1907,RDC_SB_GF_VAV2022,VAV,Director Office S-0229,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2022
+1908,RDC_SB_GF_VAV2023,VAV,Office S-0230,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2023
+1909,RDC_SB_GF_VAV2024,VAV,Executive Director Office S-0232,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2024
+1910,RDC_SB_GF_VAV2025,VAV,Executive Director Office S-0233,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2025
+1911,RDC_SB_GF_VAV2026,VAV,Office S-0234,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2026
+1912,RDC_SB_GF_VAV2027,VAV,Office S-0235,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2027
+1913,RDC_SB_GF_VAV2028,VAV,Office S-0236,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2028
+1914,RDC_SB_GF_VAV2029,VAV,Waiting Area S-0251,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2029
+1915,RDC_SB_GF_VAV2030,VAV,Office S-0259,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2030
+1916,RDC_SB_GF_VAV2031,VAV,Office S-0260,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2031
+1917,RDC_SB_GF_VAV2032,VAV,Open Plan S-0269,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2032
+1918,RDC_SB_GF_VAV2033,VAV,Store S-0275,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2033
+1919,RDC_SB_GF_VAV2034,VAV,Meeting Room S-0274,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2034
+1920,RDC_SB_GF_VAV2035,VAV,Pantry S-0270,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2035
+1921,RDC_SB_GF_VAV2036,VAV,Emergency Elec. Room S-0278,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2036
+1922,RDC_SB_GF_VAV2037,VAV,Men S-0284,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2037
+1923,RDC_SB_GF_VAV2038,VAV,Informal Meeting S-0285,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2038
+1924,RDC_SB_GF_VAV2039,VAV,Meeting Room S-0286,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2039
+1925,RDC_SB_GF_VAV2040,VAV,Open Plan S-0289,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2040
+1926,RDC_SB_GF_VAV2041,VAV,Open Plan S-0289,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2041
+1927,RDC_SB_GF_VAV2042,VAV,Corridor S-0273,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2042
+1928,RDC_SB_GF_VAV2043,VAV,Women S-0281,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2043
+1929,RDC_SB_GF_VAV2044,VAV,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2044
+1930,RDC_SB_GF_VAV2045,VAV,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2045
+1931,RDC_SB_GF_VAV2046,VAV,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2046
+1932,RDC_SB_GF_VAV2047,VAV,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_L0_AT-2047
+1933,RDC_SB_GF_VAV3001,VAV,Director Office S-0237,has its own reading,Director Office S-0237,RDC_SB_GF_VAV3001,RDC_SB_L0_AT-3001
+1934,RDC_SB_GF_VAV3002,VAV,Office S-0238,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3002
+1935,RDC_SB_GF_VAV3003,VAV,Office S-0239,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3003
+1936,RDC_SB_GF_VAV3004,VAV,Office S-0240,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3004
+1937,RDC_SB_GF_VAV3005,VAV,Office S-0241,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3005
+1938,RDC_SB_GF_VAV3006,VAV,Office S-0242,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3006
+1939,RDC_SB_GF_VAV3007,VAV,Director Office S-0243,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3007
+1940,RDC_SB_GF_VAV3008,VAV,Open Plan S-0244,no reading anywhere in the assembly,,,
+1941,RDC_SB_GF_VAV3009,VAV,Open Plan S-0244,no reading anywhere in the assembly,,,
+1942,RDC_SB_GF_VAV3010,VAV,Open Plan S-0244,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3010
+1943,RDC_SB_GF_VAV3011,VAV,Meeting Room S-0245,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3011
+1944,RDC_SB_GF_VAV3012,VAV,Office S-0246,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3012
+1945,RDC_SB_GF_VAV3013,VAV,Office S-0247,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3013
+1946,RDC_SB_GF_VAV3014,VAV,Office S-0248,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3014
+1947,RDC_SB_GF_VAV3015,VAV,Security S-0249,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3015
+1948,RDC_SB_GF_VAV3016,VAV,Corridor S-0250,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3016
+1949,RDC_SB_GF_VAV3017,VAV,Office S-0251,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3017
+1950,RDC_SB_GF_VAV3018,VAV,Corridor S-0251,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3018
+1951,RDC_SB_GF_VAV3019,VAV,Corridor S-0251,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3019
+1952,RDC_SB_GF_VAV3020,VAV,Office S-0252,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3020
+1953,RDC_SB_GF_VAV3021,VAV,Office S-0252,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3021
+1954,RDC_SB_GF_VAV3022,VAV,Office S-0253,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3022
+1955,RDC_SB_GF_VAV3023,VAV,Office S-0253,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3023
+1956,RDC_SB_GF_VAV3024,VAV,Office S-0254,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3024
+1957,RDC_SB_GF_VAV3025,VAV,Office S-0255,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3025
+1958,RDC_SB_GF_VAV3026,VAV,Office S-0256,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3026
+1959,RDC_SB_GF_VAV3027,VAV,Office S-0257,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3027
+1960,RDC_SB_GF_VAV3028,VAV,Office S-0258,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3028
+1961,RDC_SB_GF_VAV3029,VAV,Open Plan S-0261,no reading anywhere in the assembly,,,
+1962,RDC_SB_GF_VAV3030,VAV,Open Plan S-0262,no reading anywhere in the assembly,,,
+1963,RDC_SB_GF_VAV3031,VAV,Server S-0264,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3031
+1964,RDC_SB_GF_VAV3032,VAV,Open Plan S-0265,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3032
+1965,RDC_SB_GF_VAV3033,VAV,Corridor / Print / Emergency Elec Rm / Normal Elec Rm S-0251 / S-0263 / S-0266 / S-0267,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3033
+1966,RDC_SB_GF_VAV3034,VAV,Vestibule S-0293,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3034
+1967,RDC_SB_GF_VAV3035,VAV,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3035
+1968,RDC_SB_GF_VAV3036,VAV,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_L0_AT-3036
+1969,RDC_SB_GF_VAV3501,VAV,Lobby S-0294,no reading anywhere in the assembly,,,
+1970,RDC_SB_GF_VAV3502,VAV,Lobby S-0294,no reading anywhere in the assembly,,,
+1971,RDC_SB_GF_VAV3503,VAV,Vestibule S-0293,no reading anywhere in the assembly,,,
+1972,RDC_NB_1F_VAV4510,VAV,Corridor N-1202A,no reading anywhere in the assembly,,,
+1973,RDC_NB_1F_VAV4515_EV4516,EV,Emergency Electrical Room N-1203,no reading anywhere in the assembly,,,
+1974,RDC_NB_1F_VAV4520_EV4521,EV,Normal Electrical Room N-1204,no reading anywhere in the assembly,,,
+1975,RDC_NB_1F_VAV4525_EV4526,EV,Conference Room N-1205,has its own reading,Conference Room N-1205,RDC_NB_1F_VAV4525_EV4526,
+1976,RDC_NB_1F_VAV4530_EV4531,EV,Office N-1206,has its own reading,Office N-1206,RDC_NB_1F_VAV4530_EV4531,
+1977,RDC_NB_1F_VAV4535_EV4536,EV,Office N-1207,has its own reading,Office N-1207,RDC_NB_1F_VAV4535_EV4536,
+1978,RDC_NB_1F_VAV4540_EV4541,EV,Office N-1208,has its own reading,Office N-1208,RDC_NB_1F_VAV4540_EV4541,
+1979,RDC_NB_1F_VAV4545_EV4546,EV,Office N-1209,has its own reading,Office N-1209,RDC_NB_1F_VAV4545_EV4546,
+1980,RDC_NB_1F_VAV4550_EV4551,EV,Office N-1210,has its own reading,Office N-1210,RDC_NB_1F_VAV4550_EV4551,
+1981,RDC_NB_1F_VAV4555_EV4556,EV,Confer Room N-1211,no reading anywhere in the assembly,,,
+1982,RDC_NB_1F_VAV4560_EV4561,EV,Office N-1212,has its own reading,Office N-1212,RDC_NB_1F_VAV4560_EV4561,
+1983,RDC_NB_1F_VAV4565_EV4566,EV,Conference N-1213,has its own reading,Storage Room N-1215,RDC_NB_1F_VAV4565_EV4566,
+1984,RDC_NB_1F_VAV4570_EV4571,EV,Office 04 N-1214,has its own reading,Office N-1214,RDC_NB_1F_VAV4570_EV4571,
+1985,RDC_NB_1F_VAV4575_EV4576,EV,Storage N-1215,no reading anywhere in the assembly,,,
+1986,RDC_NB_1F_VAV4580,VAV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+1987,RDC_NB_1F_VAV4600,VAV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+1988,RDC_NB_1F_VAV4601,VAV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+1989,RDC_NB_1F_VAV4620_VEV4621,VEV,EL Shop N-1216C,no reading anywhere in the assembly,,,
+1990,RDC_NB_1F_VAV4630_VEV4631,VEV,GIS N-1216D,has its own reading,GIS N-1216D,RDC_NB_1F_VAV4630_VEV4631,
+1991,RDC_NB_1F_VAV4650,VAV,Breakout N-1225,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4650
+1992,RDC_NB_1F_VAV4660,VAV,Expansion Workstation N-1227,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4660
+1993,RDC_NB_1F_VAV4665,VAV,Office N-1228,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4665
+1994,RDC_NB_1F_VAV4670,VAV,Office N-1229,no reading anywhere in the assembly,,,
+1995,RDC_NB_1F_VAV4675,VAV,Office N-1230,no reading anywhere in the assembly,,,
+1996,RDC_NB_1F_VAV4680,VAV,Office N-1231,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4680
+1997,RDC_NB_1F_VAV4685,VAV,Workstation N-1232,no reading anywhere in the assembly,,,
+1998,RDC_NB_1F_VAV4690,VAV,Office N-1233,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4690
+1999,RDC_NB_1F_VAV4695,VAV,Office N-1234,no reading anywhere in the assembly,,,
+2000,RDC_NB_1F_VAV4700,VAV,Office N-1235,no reading anywhere in the assembly,,,
+2001,RDC_NB_1F_VAV4705,VAV,Office N-1236,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4705
+2002,RDC_NB_1F_VAV4710,VAV,Workstation N-1237,no reading anywhere in the assembly,,,
+2003,RDC_NB_1F_VAV4715,VAV,Office N-1238,no reading anywhere in the assembly,,,
+2004,RDC_NB_1F_VAV4720,VAV,Office N-1239,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4720
+2005,RDC_NB_1F_VAV4725,VAV,Office N-1240,no reading anywhere in the assembly,,,
+2006,RDC_NB_1F_VAV4730,VAV,Office N-1241,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4730
+2007,RDC_NB_1F_VAV4735,VAV,Workstation N-1242,has its own reading,Work Station N-1242,RDC_NB_1F_VAV4735,
+2008,RDC_NB_1F_VAV4740,VAV,Exp Office N-1243,has its own reading,Office N-1244,RDC_NB_1F_VAV4740,
+2009,RDC_NB_1F_VAV4745,VAV,Office N-1244,no reading anywhere in the assembly,,,RDC_NB_1F_AT-4745
+2010,RDC_NB_1F_VAV4900P,VAV,Normal Electric N-2102,no reading anywhere in the assembly,,,
+2011,RDC_NB_1F_VAV4910P,VAV,Emergency Electr N-2103,has its own reading,Emer. Elec. N-2104,RDC_NB_1F_VAV4910P,
+2012,RDC_NB_1F_VAV5500,VAV,Lobby N-1101,no reading anywhere in the assembly,,,
+2013,RDC_NB_1F_VAV5501,VAV,Lobby N-1101,no reading anywhere in the assembly,,,
+2014,RDC_NB_1F_VAV5510_EV5511,EV,Conference N-1101A,has its own reading,Conference Room N-1101A,RDC_NB_1F_VAV5510_EV5511,
+2015,RDC_NB_1F_VAV5515_EV5516,EV,Emergency Electrical Room N-1102,no reading anywhere in the assembly,,,
+2016,RDC_NB_1F_VAV5520_EV5521,EV,Conference N-1106,no reading anywhere in the assembly,,,
+2017,RDC_NB_1F_VAV5525_EV5526,EV,Conference N-1107,no reading anywhere in the assembly,,,
+2018,RDC_NB_1F_VAV5535_EV5536,EV,Conference N-1112,no reading anywhere in the assembly,,,
+2019,RDC_NB_1F_VAV5540_EV5541,EV,Normal Electrical Room N-1113,no reading anywhere in the assembly,,,
+2020,RDC_NB_1F_VAV5550_VEV5551,VEV,PCR N-1115A,no reading anywhere in the assembly,,,
+2021,RDC_NB_1F_VAV5560_VEV5561,VEV,PRE-PCR N-1115B,no reading anywhere in the assembly,,,
+2022,RDC_NB_1F_VAV5570,VAV,Met/Prot Lab N-1115C,no reading anywhere in the assembly,,,
+2023,RDC_NB_1F_VAV5571,VAV,Met/Prot Lab N-1115C,no reading anywhere in the assembly,,,
+2024,RDC_NB_1F_VAV5580_VEV5581,VEV,DNA/RNA N-1115D,no reading anywhere in the assembly,,,
+2025,RDC_NB_1F_VAV5590,VAV,Cell Culture N-1115E,no reading anywhere in the assembly,,,
+2026,RDC_NB_1F_VAV5600_VEV5601,VEV,Library N-1115H,no reading anywhere in the assembly,,,
+2027,RDC_NB_1F_VAV5610_VEV5611,VEV,Robotics N-1115J,has its own reading,Cold Room N-1115F,RDC_NB_1F_VAV5610_VEV5611,
+2028,RDC_NB_1F_VAV5620_VEV5622,VEV,Sequence Lab N-1115K,no reading anywhere in the assembly,,,
+2029,RDC_NB_1F_VAV5621_VEV5623,VEV,Sequence Lab N-1115K,no reading anywhere in the assembly,,,
+2030,RDC_NB_1F_VAV5630_VEV5631,VEV,Genom Med Lab N-1115K1,no reading anywhere in the assembly,,,
+2031,RDC_NB_1F_VAV5650,VAV,Office N-1120,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5650
+2032,RDC_NB_1F_VAV5655_EV5656,EV,Store N-1120B,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5655
+2033,RDC_NB_1F_VAV5660,VAV,Office N-1121,has its own reading,Office N-1121,RDC_NB_1F_VAV5660,RDC_NB_1F_AT-5660
+2034,RDC_NB_1F_VAV5665,VAV,Office N-1122,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5665
+2035,RDC_NB_1F_VAV5670,VAV,Office N-1123,has its own reading,Office N-1123,RDC_NB_1F_VAV5670,RDC_NB_1F_AT-5670
+2036,RDC_NB_1F_VAV5675,VAV,Office N-1124,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5675
+2037,RDC_NB_1F_VAV5680,VAV,Office N-1125,has its own reading,Office N-1125,RDC_NB_1F_VAV5680,RDC_NB_1F_AT-5680
+2038,RDC_NB_1F_VAV5685,VAV,Corridor N-1126,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5685
+2039,RDC_NB_1F_VAV5690,VAV,Office N-1127,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5690
+2040,RDC_NB_1F_VAV5695,VAV,Office N-1128,has its own reading,Office N-1128,RDC_NB_1F_VAV5695,RDC_NB_1F_AT-5695
+2041,RDC_NB_1F_VAV5700,VAV,Office N-1129,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5700
+2042,RDC_NB_1F_VAV5705,VAV,Office N-1130,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5705
+2043,RDC_NB_1F_VAV5710,VAV,Office N-1131,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5710
+2044,RDC_NB_1F_VAV5715_EV5716,EV,Conf Rm N-1132,has its own reading,Conf. Rm N-1132,RDC_NB_1F_VAV5715_EV5716,RDC_NB_1F_AT-5715
+2045,RDC_NB_1F_VAV5730_EV5731,EV,Store N-1135,has its own reading,Store N-1135,RDC_NB_1F_VAV5730_EV5731,RDC_NB_1F_AT-5730
+2046,RDC_NB_1F_VAV5735_EV5736,EV,Normal Elec. N-1136,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5735
+2047,RDC_NB_1F_VAV5740_EV5741,EV,Emer. Elec. N-1137,has its own reading,Emer. Elec. N-1137,RDC_NB_1F_VAV5740_EV5741,RDC_NB_1F_AT-5740
+2048,RDC_NB_1F_VAV5745,VAV,Corridor N-1138,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5745
+2049,RDC_NB_1F_VAV5760_EV5761,EV,Conf N-1143,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5760
+2050,RDC_NB_1F_VAV5770_VEV5771,VEV,Histology N-1144A,no reading anywhere in the assembly,,,
+2051,RDC_NB_1F_VAV5780_VEV5781,VEV,Culture & Gel Rm N-1144B,no reading anywhere in the assembly,,,
+2052,RDC_NB_1F_VAV5790,VAV,Shafallah N-1144C,no reading anywhere in the assembly,,,
+2053,RDC_NB_1F_VAV5792_VEV5793,VEV,Sample Accession N-1144C1,no reading anywhere in the assembly,,,
+2054,RDC_NB_1F_VAV5794_VEV5795A,VAV,Storage and Archives N-1144C2,no reading anywhere in the assembly,,,
+2055,RDC_NB_1F_VAV5800_VEV5801,VEV,Pre-PCR N-1144D,no reading anywhere in the assembly,,,
+2056,RDC_NB_1F_VAV5810,VAV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2057,RDC_NB_1F_VAV5814,VAV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2058,RDC_NB_1F_VAV5835_EV5836,EV,P/C/S Pantry N-1146,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5835
+2059,RDC_NB_1F_VAV5840,VAV,Corridor N-1150,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5840
+2060,RDC_NB_1F_VAV5845,VAV,Reception+N-1151B Storage N-1151,no reading anywhere in the assembly,,,
+2061,RDC_NB_1F_VAV5850,VAV,Office 04 N-1151A,no reading anywhere in the assembly,,,
+2062,RDC_NB_1F_VAV5855,VAV,Office 04 N-1152,no reading anywhere in the assembly,,,
+2063,RDC_NB_1F_VAV5860,VAV,Office N-1154,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5860
+2064,RDC_NB_1F_VAV5865,VAV,Office N-1155,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5865
+2065,RDC_NB_1F_VAV5870,VAV,Exp Office N-1156,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5870
+2066,RDC_NB_1F_VAV5875,VAV,Office N-1157,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5875
+2067,RDC_NB_1F_VAV5880,VAV,Office N-1158,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5880
+2068,RDC_NB_1F_VAV5885,VAV,Office N-1159,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5885
+2069,RDC_NB_1F_VAV5890,VAV,Workstation N-1160,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5890
+2070,RDC_NB_1F_VAV5895,VAV,Office N-1161,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5895
+2071,RDC_NB_1F_VAV5900,VAV,Office N-1162,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5900
+2072,RDC_NB_1F_VAV5905,VAV,Office N-1163,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5905
+2073,RDC_NB_1F_VAV5910,VAV,Office N-1164,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5910
+2074,RDC_NB_1F_VAV5915,VAV,Office N-1167,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5915
+2075,RDC_NB_1F_VAV5920,VAV,Workstation N-1168,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5920
+2076,RDC_NB_1F_VAV5925,VAV,Office N-1169,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5925
+2077,RDC_NB_1F_VAV5930,VAV,Office N-1170,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5930
+2078,RDC_NB_1F_VAV5930P,VAV,Normal Elec. N-2105,no reading anywhere in the assembly,,,
+2079,RDC_NB_1F_VAV5935,VAV,Office N-1166,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5935
+2080,RDC_NB_1F_VAV5940,VAV,Workstation N-1165,no reading anywhere in the assembly,,,RDC_NB_1F_AT-5940
+2081,RDC_NB_1F_VAV5940P,VAV,Emer. Elec. N-2106,no reading anywhere in the assembly,,,
+2082,RDC_NB_1F_VAV6505_EV6506,EV,Conference N-1302,no reading anywhere in the assembly,,,
+2083,RDC_NB_1F_VAV6510_EV6511,EV,Conference N-1303,no reading anywhere in the assembly,,,
+2084,RDC_NB_1F_VAV6525_EV6526,EV,Normal Electrical Room N-1310,no reading anywhere in the assembly,,,
+2085,RDC_NB_1F_VAV6530_VEV6531,VEV,AAV N-1316A,no reading anywhere in the assembly,,,
+2086,RDC_NB_1F_VAV6540,VAV,Tissure Culture 1 N-1316B,no reading anywhere in the assembly,,,
+2087,RDC_NB_1F_VAV6550,VAV,Gene Therapy Lab N-1316C,no reading anywhere in the assembly,,,
+2088,RDC_NB_1F_VAV6551,VAV,Gene Therapy Lab N-1316C,no reading anywhere in the assembly,,,
+2089,RDC_NB_1F_VAV6560_VEV6561,VEV,TC2 N-1316D,no reading anywhere in the assembly,,,
+2090,RDC_NB_1F_VAV6570_VEV6571,VEV,STORE ROOM N-1316E,no reading anywhere in the assembly,,,
+2091,RDC_NB_1F_VAV6590_VEV6591,VEV,LENTIV N-1316G,no reading anywhere in the assembly,,,
+2092,RDC_NB_1F_VAV6600_VEV6601,VEV,Analytical Core N-1316H,no reading anywhere in the assembly,,,
+2093,RDC_NB_1F_VAV6610_VEV6611,VEV,Microscope Room N-1316H,no reading anywhere in the assembly,,,
+2094,RDC_NB_1F_VAV6620_VEV6621,VEV,Mscopy1 N-1316K,no reading anywhere in the assembly,,,
+2095,RDC_NB_1F_VAV6630A,VAV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+2096,RDC_NB_1F_VAV6630B,VAV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+2097,RDC_NB_1F_VAV6631A,VAV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+2098,RDC_NB_1F_VAV6631B,VAV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+2099,RDC_NB_1F_VAV6650,VAV,Office N-1319,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6650
+2100,RDC_NB_1F_VAV6655,VAV,Office N-1320,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6655
+2101,RDC_NB_1F_VAV6660,VAV,Workstation N-1321,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6660
+2102,RDC_NB_1F_VAV6665,VAV,Office N-1322,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6665
+2103,RDC_NB_1F_VAV6670,VAV,Office N-1323,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6670
+2104,RDC_NB_1F_VAV6675,VAV,Workstation N-1324,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6675
+2105,RDC_NB_1F_VAV6680,VAV,Office N-1325,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6680
+2106,RDC_NB_1F_VAV6685,VAV,Office N-1326,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6685
+2107,RDC_NB_1F_VAV6690,VAV,Exp. Workstation N-1327,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6690
+2108,RDC_NB_1F_VAV6695,VAV,Office N-1328,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6695
+2109,RDC_NB_1F_VAV6700_EV6701,EV,NORMAL ELEC. N-1329,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6700
+2110,RDC_NB_1F_VAV6705,VAV,Office N-1330,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6705
+2111,RDC_NB_1F_VAV6710,VAV,Office N-1331,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6710
+2112,RDC_NB_1F_VAV6715,VAV,Office N-1332,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6715
+2113,RDC_NB_1F_VAV6720,VAV,Corridor N-1335,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6720
+2114,RDC_NB_1F_VAV6725_EV6726,EV,Emer. Elec. N-1336,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6725
+2115,RDC_NB_1F_VAV6750,VAV,Tissue Culture 1 N-1345A,no reading anywhere in the assembly,,,
+2116,RDC_NB_1F_VAV6760,VAV,Diabetes Lab N-1345B,no reading anywhere in the assembly,,,
+2117,RDC_NB_1F_VAV6761,VAV,Diabetes Lab N-1345B,no reading anywhere in the assembly,,,
+2118,RDC_NB_1F_VAV6800_VEV6801,VEV,Tissue Culture 3 N-1345D,no reading anywhere in the assembly,,,
+2119,RDC_NB_1F_VAV6810_VEV6811,VEV,Calc Imaging N-1345E,no reading anywhere in the assembly,,,
+2120,RDC_NB_1F_VAV6820_VEV6821,VEV,Electro Physics N-1345F,no reading anywhere in the assembly,,,
+2121,RDC_NB_1F_VAV6830_VEV6831,VEV,Shared Cold Lab N-1345G,no reading anywhere in the assembly,,,RDC_NB_1F_CEV-6831
+2122,RDC_NB_1F_VAV6840_VEV6841,VEV,Bacterlgy Lab N-1345H,no reading anywhere in the assembly,,,
+2123,RDC_NB_1F_VAV6850,VAV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+2124,RDC_NB_1F_VAV6851,VAV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+2125,RDC_NB_1F_VAV6870_EV6871,EV,Emergency Electrical Room N-1353,no reading anywhere in the assembly,,,
+2126,RDC_NB_1F_VAV6880,VAV,Reception+N-1355C Storage N-1355,no reading anywhere in the assembly,,,
+2127,RDC_NB_1F_VAV6885,VAV,Office 04 N-1355A,no reading anywhere in the assembly,,,
+2128,RDC_NB_1F_VAV6890_EV6891,EV,Conference Room N-1355B,no reading anywhere in the assembly,,,
+2129,RDC_NB_1F_VAV6895,VAV,Office 04 N-1356,no reading anywhere in the assembly,,,
+2130,RDC_NB_1F_VAV6900,VAV,Office N-1357,has its own reading,Office N-357,RDC_NB_1F_VAV6900,RDC_NB_1F_AT-6900
+2131,RDC_NB_1F_VAV6905,VAV,Open Plan N-1358,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6905
+2132,RDC_NB_1F_VAV6910,VAV,Office N-1359,has its own reading,Office N-359,RDC_NB_1F_VAV6910,RDC_NB_1F_AT-6910
+2133,RDC_NB_1F_VAV6915,VAV,Office N-1360,has its own reading,Office N-360,RDC_NB_1F_VAV6915,RDC_NB_1F_AT-6915
+2134,RDC_NB_1F_VAV6920,VAV,Office N-1360B,has its own reading,Office N-360B,RDC_NB_1F_VAV6920,RDC_NB_1F_AT-6920
+2135,RDC_NB_1F_VAV6925,VAV,Office N-1361,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6925
+2136,RDC_NB_1F_VAV6930,VAV,Office N-1362,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6930
+2137,RDC_NB_1F_VAV6935,VAV,Workstation N-1363,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6935
+2138,RDC_NB_1F_VAV6940,VAV,Office N-1364,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6940
+2139,RDC_NB_1F_VAV6945,VAV,Office N-1365,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6945
+2140,RDC_NB_1F_VAV6950,VAV,Office N-1366,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6950
+2141,RDC_NB_1F_VAV6955,VAV,Office N-1367,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6955
+2142,RDC_NB_1F_VAV6960,VAV,Workstation N-1368,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6960
+2143,RDC_NB_1F_VAV6965,VAV,Office N-1369,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6965
+2144,RDC_NB_1F_VAV6967,VAV,Office N-1370,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6967
+2145,RDC_NB_1F_VAV6968,VAV,Workstation N-1371,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6968
+2146,RDC_NB_1F_VAV6970_EV6971,EV,PANTRY N-1372,no reading anywhere in the assembly,,,RDC_NB_1F_AT-6970
+2147,RDC_NB_1F_VAV6972,VAV,Office N-1374,no reading anywhere in the assembly,,,
+2148,RDC_NB_1F_VAV6974,VAV,Office N-1375,no reading anywhere in the assembly,,,
+2149,RDC_NB_1F_VAV6976,VAV,Office N-1376,no reading anywhere in the assembly,,,
+2150,RDC_NB_1F_VAV6978,VAV,Office N-1377,no reading anywhere in the assembly,,,
+2151,RDC_NB_1F_VAV6979P,VAV,Normal Elec. N-2107,no reading anywhere in the assembly,,,
+2152,RDC_NB_1F_VAV6980P,VAV,Emer. Elec. N-2108,has its own reading,IDF N-2110,RDC_NB_1F_VAV6980P,
+2153,RDC_NB_1F_VAV7510_VEV7511,VEV,TC1 N-1404A,no reading anywhere in the assembly,,,
+2154,RDC_NB_1F_VAV7530_VEV7532,VEV,Cell Bio N-1404C,no reading anywhere in the assembly,,,
+2155,RDC_NB_1F_VAV7531_VEV7533,VEV,Cell Bio N-1404C,no reading anywhere in the assembly,,,
+2156,RDC_NB_1F_VAV7540_VEV7541,VEV,Shared Eq Rm N-1404D,no reading anywhere in the assembly,,,
+2157,RDC_NB_1F_VAV7550_VEV7551,VEV,TC2 N-1404E,no reading anywhere in the assembly,,,
+2158,RDC_NB_1F_VAV7560_VEV7561,VEV,Imaging N-1404F,has its own reading,Imaging N-404F,RDC_NB_1F_VAV7560_VEV7561,
+2159,RDC_NB_1F_VAV7570_VEV7571,VEV,Cell Bio Lab2 N-1404G,no reading anywhere in the assembly,,,
+2160,RDC_NB_1F_VAV7580_VEV7581,VEV,TC3 N-1404H,no reading anywhere in the assembly,,,RDC_NB_1F_CEV-7581
+2161,RDC_NB_1F_VAV7600_VEV7601,VEV,Cell Bio Lab3 N-1404K,no reading anywhere in the assembly,,,
+2162,RDC_NB_1F_VAV7620,VAV,Office N-1415,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7620
+2163,RDC_NB_1F_VAV7625,VAV,Office N-1416,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7625
+2164,RDC_NB_1F_VAV7630,VAV,Office 05 - 2 WKS- N-1407,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7630
+2165,RDC_NB_1F_VAV7635,VAV,Office N-1418,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7635
+2166,RDC_NB_1F_VAV7640,VAV,Office N-1419,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7640
+2167,RDC_NB_1F_VAV7645,VAV,Exp. Workstation N-1420,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7645
+2168,RDC_NB_1F_VAV7650,VAV,Office N-1421,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7650
+2169,RDC_NB_1F_VAV7655,VAV,Office N-1422,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7655
+2170,RDC_NB_1F_VAV7660,VAV,Office 05 - 2 WKS- N-1401,has its own reading,Workstation N-1423,RDC_NB_1F_VAV7660,RDC_NB_1F_AT-7660
+2171,RDC_NB_1F_VAV7665_EV7666,EV,Normal Elec. N-1425,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7665
+2172,RDC_NB_1F_VAV7670,VAV,Office N-1426,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7670
+2173,RDC_NB_1F_VAV7675,VAV,Office N-1428,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7675
+2174,RDC_NB_1F_VAV7680_EV7681,EV,Conf N-1429,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7680
+2175,RDC_NB_1F_VAV7685,VAV,Office N-1433,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7685
+2176,RDC_NB_1F_VAV7690,VAV,Office N-1435,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7690
+2177,RDC_NB_1F_VAV7695,VAV,Office N-1437,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7695
+2178,RDC_NB_1F_VAV7700_EV7701,EV,Emer. Elec. N-1438,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7700
+2179,RDC_NB_1F_VAV7705,VAV,Office 05 - 24 WKS + N-1441 Room N-1442,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7705
+2180,RDC_NB_1F_VAV7710,VAV,Workstation N-1442,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7710
+2181,RDC_NB_1F_VAV7730_VEV7731,VEV,Microscope 2 N-1450A,no reading anywhere in the assembly,,,
+2182,RDC_NB_1F_VAV7740_VEV7741,VEV,LN2 Stor N-1450B,no reading anywhere in the assembly,,,
+2183,RDC_NB_1F_VAV7750_VEV7751,VEV,Flow Cyto N-1450C,no reading anywhere in the assembly,,,
+2184,RDC_NB_1F_VAV7770_VEV7771,VEV,Qurnt N-1450E,no reading anywhere in the assembly,,,
+2185,RDC_NB_1F_VAV7780_VEV7781,VEV,iPS-TC N-1450F,no reading anywhere in the assembly,,,
+2186,RDC_NB_1F_VAV7800_VEV7801,VEV,IPS TISSUE CULTURE N-1450J,has its own reading,IPS Tissue Culture N-450J,RDC_NB_1F_VAV7800_VEV7801,
+2187,RDC_NB_1F_VAV7810_VEV7811,VEV,TC1 N-1450L,no reading anywhere in the assembly,,,
+2188,RDC_NB_1F_VAV7820_VEV7822,VEV,STEM/PCR Open Lab N-1450M,no reading anywhere in the assembly,,,
+2189,RDC_NB_1F_VAV7821_VEV7823,VEV,STEM/PCR Open Lab N-1450M,has its own reading,STEM/PCR Open Lab N-450M,RDC_NB_1F_VAV7821_VEV7823,
+2190,RDC_NB_1F_VAV7830_VEV7831,VEV,TC2 N-1450N,no reading anywhere in the assembly,,,
+2191,RDC_NB_1F_VAV7840_EV7841,EV,Conf N-1458,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7840
+2192,RDC_NB_1F_VAV7845_EV7846,EV,Conf N-1459,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7845
+2193,RDC_NB_1F_VAV7850,VAV,Office N-1459A,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7850
+2194,RDC_NB_1F_VAV7860,VAV,Exp. Workstation N-1461,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7860
+2195,RDC_NB_1F_VAV7865,VAV,Workstation N-1461A,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7865
+2196,RDC_NB_1F_VAV7870,VAV,Office N-1462,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7870
+2197,RDC_NB_1F_VAV7875,VAV,Office N-1463,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7875
+2198,RDC_NB_1F_VAV7880,VAV,Office N-1464,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7880
+2199,RDC_NB_1F_VAV7885,VAV,Office N-1465,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7885
+2200,RDC_NB_1F_VAV7890,VAV,Workstation N-1466,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7890
+2201,RDC_NB_1F_VAV7895,VAV,Office N-1467,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7895
+2202,RDC_NB_1F_VAV7900,VAV,Office N-1468,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7900
+2203,RDC_NB_1F_VAV7905,VAV,Office N-1469,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7905
+2204,RDC_NB_1F_VAV7910,VAV,Office N-1470,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7910
+2205,RDC_NB_1F_VAV7915,VAV,Workstation N-1471,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7915
+2206,RDC_NB_1F_VAV7920,VAV,Office N-1472,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7920
+2207,RDC_NB_1F_VAV7925,VAV,Office N-1473,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7925
+2208,RDC_NB_1F_VAV7930,VAV,Office N-1474,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7930
+2209,RDC_NB_1F_VAV7935,VAV,Office N-1475,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7935
+2210,RDC_NB_1F_VAV7940,VAV,Workstation N-1476,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7940
+2211,RDC_NB_1F_VAV7945,VAV,Office N-1477,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7945
+2212,RDC_NB_1F_VAV7950,VAV,Office N-1478,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7950
+2213,RDC_NB_1F_VAV7955,VAV,Office N-1479,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7955
+2214,RDC_NB_1F_VAV7960,VAV,Office N-1480,no reading anywhere in the assembly,,,RDC_NB_1F_AT-7960
+2215,RDC_NB_1F_VAV7975P,VAV,Normal Elec. N-2111,no reading anywhere in the assembly,,,
+2216,RDC_NB_1F_VAV7980P,VAV,Emer. Elec. N-2112,no reading anywhere in the assembly,,,
+2352,RDC_SB_L0_AT-1001,AT,Corridor S-0137,no reading anywhere in the assembly,,,RDC_SB_L0_EV-1001
+2353,RDC_SB_L0_AT-1002,AT,Computer Lab S-0139,no reading anywhere in the assembly,,,RDC_SB_GF_VAV1003_VEV1002 RDC_SB_L0_AT-1003 RDC_SB_L0_EV-1002 RDC_SB_L0_EV-1003
+2354,RDC_SB_L0_EV-1001,EV,Computer Lab S-0139,no reading anywhere in the assembly,,,RDC_SB_L0_AT-1001
+2355,RDC_SB_L0_AT-1003,AT,NOC S-0140A,no reading anywhere in the assembly,,,RDC_SB_GF_VAV1003_VEV1002 RDC_SB_L0_AT-1002 RDC_SB_L0_EV-1002 RDC_SB_L0_EV-1003
+2356,RDC_SB_L0_EV-1002,EV,NOC S-0140A,no reading anywhere in the assembly,,,RDC_SB_GF_VAV1003_VEV1002 RDC_SB_L0_AT-1002 RDC_SB_L0_AT-1003 RDC_SB_L0_EV-1003
+2357,RDC_SB_L0_AT-1004,AT,Dedicated Cyber SOC/NOC Lab S-0141,inherits from the assembly,Dedicated Cyber SOC/NOC Lab S-0141,RDC_SB_GF_VAV1004,RDC_SB_GF_VAV1004
+2358,RDC_SB_L0_AT-1005,AT,Normal & Emergency Elec. Landing S-0142,no reading anywhere in the assembly,,,
+2359,RDC_SB_L0_AT-1006,AT,Corridor S-0137,no reading anywhere in the assembly,,,
+2360,RDC_SB_L0_AT-1007,AT,UPS S-0145,no reading anywhere in the assembly,,,
+2361,RDC_SB_L0_EV-1003,EV,UPS S-0145,no reading anywhere in the assembly,,,RDC_SB_GF_VAV1003_VEV1002 RDC_SB_L0_AT-1002 RDC_SB_L0_AT-1003 RDC_SB_L0_EV-1002
+2362,RDC_SB_L0_AT-1008,AT,Cyber/Embedded/Dist System Electrical Lab S-0146,no reading anywhere in the assembly,,,RDC_SB_GF_VAV1008
+2363,RDC_SB_L0_AT-1009,AT,Service Dock S-0151,no reading anywhere in the assembly,,,
+2364,RDC_NB_GF_AT-4005,AT,Electrical N-0202,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4005_EV4006
+2365,RDC_NB_GF_AT-4035,AT,Corridor N-0207A,no reading anywhere in the assembly,,,
+2366,RDC_NB_GF_AT-4100,AT,Emergency Elec. Room N-0225,inherits from the assembly,Emergency Elec. Room N-0225,RDC_NB_GF_VAV4100_EV4101,RDC_NB_GF_VAV4100_EV4101
+2367,RDC_NB_GF_AT-4105,AT,Normal Electrical Room N-0225,inherits from the assembly,Normal Elec. Room N-0226,RDC_NB_GF_VAV4105_EV4106,RDC_NB_GF_VAV4105_EV4106
+2368,RDC_NB_GF_AT-4110,AT,Conference Room N-0227,inherits from the assembly,Conference Room N-0227,RDC_NB_GF_VAV4110_EV4111,RDC_NB_GF_VAV4110_EV4111
+2369,RDC_NB_GF_AT-4115,AT,Office N-0228,inherits from the assembly,Office N-0228,RDC_NB_GF_VAV4115_EV4116,RDC_NB_GF_VAV4115_EV4116
+2370,RDC_NB_GF_AT-4120,AT,Office N-0229,inherits from the assembly,Office N-0229,RDC_NB_GF_VAV4120_EV4121,RDC_NB_GF_VAV4120_EV4121
+2371,RDC_NB_GF_AT-4125,AT,Office N-0230,inherits from the assembly,Office N-0230,RDC_NB_GF_VAV4125_EV4126,RDC_NB_GF_VAV4125_EV4126
+2372,RDC_NB_GF_AT-4130,AT,Office N-0231,inherits from the assembly,Office N-0231,RDC_NB_GF_VAV4130_EV4131,RDC_NB_GF_VAV4130_EV4131
+2373,RDC_NB_GF_AT-4135,AT,Office N-0232,inherits from the assembly,Office N-0232,RDC_NB_GF_VAV4135_EV4136,RDC_NB_GF_VAV4135_EV4136
+2374,RDC_NB_GF_AT-4140,AT,Conference Room N-0233,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4140_EV4141
+2375,RDC_NB_GF_AT-4145,AT,Office N-0234,inherits from the assembly,Office N-0234,RDC_NB_GF_VAV4145_EV4146,RDC_NB_GF_VAV4145_EV4146
+2376,RDC_NB_GF_AT-4165,AT,Office N-0236,inherits from the assembly,Office N-0236,RDC_NB_GF_VAV4165_EV4166,RDC_NB_GF_VAV4165_EV4166
+2377,RDC_NB_GF_AT-4170,AT,Storage Room N-0237,no reading anywhere in the assembly,,,
+2378,RDC_NB_GF_AT-4225,AT,Office N-0247,inherits from the assembly,Office N-0247,RDC_NB_GF_VAV4225,RDC_NB_GF_VAV4225
+2379,RDC_NB_GF_AT-4230,AT,Office N-0248,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4230
+2380,RDC_NB_GF_AT-4235,AT,Workstation N-0250,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4235
+2381,RDC_NB_GF_AT-4240,AT,Office N-0251,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4240
+2382,RDC_NB_GF_AT-4245,AT,Office N-0252,inherits from the assembly,Office N-0252,RDC_NB_GF_VAV4245,RDC_NB_GF_VAV4245
+2383,RDC_NB_GF_AT-4250,AT,Office N-0253,inherits from the assembly,Office N-0253,RDC_NB_GF_VAV4250,RDC_NB_GF_VAV4250
+2384,RDC_NB_GF_AT-4255,AT,Office N-0254,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4255
+2385,RDC_NB_GF_AT-4260,AT,Workstation N-0255,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4260
+2386,RDC_NB_GF_AT-4265,AT,Office N-0256,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4265
+2387,RDC_NB_GF_AT-4270,AT,Office N-0257,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4270
+2388,RDC_NB_GF_AT-4275,AT,Office N-0258,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4275
+2389,RDC_NB_GF_AT-4280,AT,Office N-0259,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4280
+2390,RDC_NB_GF_AT-4285,AT,Workstation N-0260,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4285
+2391,RDC_NB_GF_AT-4290,AT,Office N-0261,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4290
+2392,RDC_NB_GF_AT-4295,AT,Office N-0262,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4295
+2393,RDC_NB_GF_AT-4300,AT,Office N-0263,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4300
+2394,RDC_NB_GF_AT-4305,AT,Office N-0264,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4305
+2395,RDC_NB_GF_AT-4310,AT,Workstation N-0265,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4310
+2396,RDC_NB_GF_CEV-4031,CEV,Service Corridor N-0207,no reading anywhere in the assembly,,,
+2397,RDC_NB_GF_EV-4028,EV,MDF ROOM N-0206A,no reading anywhere in the assembly,,,
+2398,RDC_NB_GF_EV-4236,EV,Office 05 -8WS- N-0250,no reading anywhere in the assembly,,,
+2399,RDC_NB_GF_EV-4261,EV,Office 05 -8WS- N-0255,no reading anywhere in the assembly,,,
+2400,RDC_NB_GF_EV-4286,EV,Office 05 -8WS- N-0260,no reading anywhere in the assembly,,,
+2401,RDC_NB_GF_EV-4311,EV,WORKSTATION N-0265,no reading anywhere in the assembly,,,
+2402,RDC_NB_GF_VEV-4041,VEV,Air Quality High Bay N-0215A,no reading anywhere in the assembly,,,
+2403,RDC_NB_GF_FEV-4193,FEV,CSP Lab N-0240B,no reading anywhere in the assembly,,,
+2404,RDC_NB_GF_FEV-4194,FEV,CSP Lab N-0240B,no reading anywhere in the assembly,,,
+2405,RDC_NB_GF_VEV-4213A,VEV,Desal Lab N-0240D,no reading anywhere in the assembly,,,
+2406,RDC_NB_GF_VEV-4213B,VEV,Desal Lab N-0240D,no reading anywhere in the assembly,,,
+2407,RDC_NB_GF_FEV-4214,FEV,Desal Lab N-0240D,no reading anywhere in the assembly,,,
+2408,RDC_NB_GF_FEV-4215,FEV,Desal Lab N-0240D,no reading anywhere in the assembly,,,
+2409,RDC_NB_GF_FEV-4216,FEV,Desal Lab N-0240D,no reading anywhere in the assembly,,,
+2410,RDC_SB_L0_AT-0003,AT,Entrance Lobby S-0102,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0003
+2411,RDC_SB_L0_AT-0006,AT,Normal Elec. S-0107,no reading anywhere in the assembly,,,
+2412,RDC_SB_L0_AT-0007,AT,Conf S-0109,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0007
+2413,RDC_SB_L0_AT-0008,AT,Computer Research Lab 3 S-0110,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0008
+2414,RDC_SB_L0_AT-0009,AT,Phone Booth S-0111,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0009
+2415,RDC_SB_L0_AT-0010,AT,Phone Booth S-0112,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0010
+2416,RDC_SB_L0_AT-0011,AT,Conference Room S-0113,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0011
+2417,RDC_SB_L0_AT-0012,AT,Computer Research Lab 2 S-0114,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0012
+2418,RDC_SB_L0_AT-0013,AT,Phone Booth S-0115,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0013
+2419,RDC_SB_L0_AT-0014,AT,Phone Booth S-0116,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0014
+2420,RDC_SB_L0_AT-0015,AT,Corridor S-0117,no reading anywhere in the assembly,,,
+2421,RDC_SB_L0_AT-0016,AT,Conf S-0118,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0016
+2422,RDC_SB_L0_AT-0017,AT,Computer Research Lab 1 S-0119,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0017
+2423,RDC_SB_L0_AT-0018,AT,Restaurant S-0123,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0018
+2424,RDC_SB_L0_AT-0019,AT,Restaurant S-0123,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0019
+2425,RDC_SB_L0_AT-0020,AT,Storage S-0120B,no reading anywhere in the assembly,,,
+2426,RDC_SB_L0_AT-0021,AT,Vestibule S-0125,no reading anywhere in the assembly,,,
+2427,RDC_SB_L0_AT-0022,AT,Men S-0126,no reading anywhere in the assembly,,,
+2428,RDC_SB_L0_AT-0023,AT,Women S-0127,no reading anywhere in the assembly,,,
+2429,RDC_SB_L0_AT-0024,AT,NORM. ELEC. S-0129,no reading anywhere in the assembly,,,
+2430,RDC_SB_L0_AT-0025,AT,Alt Recording/Sound S-0135,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0025
+2431,RDC_NB_GF_AT-4001,AT,Store N-0201,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4001
+2432,RDC_NB_GF_AT-4312,AT,Breakout N-0265B,no reading anywhere in the assembly,,,RDC_NB_GF_VAV4312
+2433,RDC_NB_GF_AT-4315,AT,Vestibule N-0270A,no reading anywhere in the assembly,,,
+2434,RDC_NB_GF_AT-5025,AT,Corridor N-0110,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5025
+2435,RDC_NB_GF_AT-5100,AT,Office N-0115,inherits from the assembly,Office N-0115,RDC_NB_GF_VAV5100_EV5101,RDC_NB_GF_VAV5100_EV5101
+2436,RDC_NB_GF_AT-5105,AT,Office N-0116,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5105
+2437,RDC_NB_GF_AT-5110,AT,Office N-0117,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5110
+2438,RDC_NB_GF_AT-5115,AT,Office N-0118,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5115
+2439,RDC_NB_GF_AT-5120,AT,Office N-0119,inherits from the assembly,Office N-0119,RDC_NB_GF_VAV5120,RDC_NB_GF_VAV5120
+2440,RDC_NB_GF_AT-5125,AT,Office N-0120,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5125
+2441,RDC_NB_GF_AT-5130,AT,Office N-0121,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5130
+2442,RDC_NB_GF_AT-5135,AT,Office N-0122,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5135
+2443,RDC_NB_GF_AT-5140,AT,Office N-0123,inherits from the assembly,Office N-0123,RDC_NB_GF_VAV5140,RDC_NB_GF_VAV5140
+2444,RDC_NB_GF_AT-5145,AT,Office N-0124,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5145
+2445,RDC_NB_GF_AT-5150,AT,Office N-0125,inherits from the assembly,Office N-0125,RDC_NB_GF_VAV5150,RDC_NB_GF_VAV5150
+2446,RDC_NB_GF_AT-5152,AT,Office N-0126,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5152
+2447,RDC_NB_GF_AT-5155,AT,Office N-0127,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5155
+2448,RDC_NB_GF_AT-5156,AT,Office 04 N-0129,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5156
+2449,RDC_NB_GF_AT-5160,AT,MENS ROOM N-0130,no reading anywhere in the assembly,,,
+2450,RDC_NB_GF_AT-5165,AT,Corridor N-0134,inherits from the assembly,Serv Core N-0136,RDC_NB_GF_VAV5165_EV5166,RDC_NB_GF_VAV5165_EV5166
+2451,RDC_NB_GF_AT-5280,AT,Store N-0146,has its own reading,Serv Core N-0136,RDC_NB_GF_AT-5280,
+2452,RDC_NB_GF_AT-5290,AT,Pantry N-0148,no reading anywhere in the assembly,,,
+2453,RDC_NB_GF_AT-5295,AT,Conference Room N-0149,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5295_EV5296
+2454,RDC_NB_GF_AT-5300,AT,Corridor N-0150,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5300
+2455,RDC_NB_GF_AT-5305,AT,Office N-0151,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5305
+2456,RDC_NB_GF_AT-5310,AT,Office N-0152,inherits from the assembly,Office N-0152,RDC_NB_GF_VAV5310,RDC_NB_GF_VAV5310
+2457,RDC_NB_GF_AT-5315,AT,Open Office N-0153,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5315
+2458,RDC_NB_GF_AT-5320,AT,Office N-0154,no reading anywhere in the assembly,,,
+2459,RDC_NB_GF_AT-5325,AT,Office N-0155,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5325
+2460,RDC_NB_GF_AT-5330,AT,Office N-0156,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5330
+2461,RDC_NB_GF_AT-5335,AT,Office N-0157,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5335
+2462,RDC_NB_GF_AT-5340,AT,Office N-0158,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5340
+2463,RDC_NB_GF_AT-5345,AT,Office N-0159,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5345
+2464,RDC_NB_GF_AT-5350,AT,Open Office N-0160,no reading anywhere in the assembly,,,
+2465,RDC_NB_GF_AT-5355,AT,Office N-0161,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5355
+2466,RDC_NB_GF_AT-5360,AT,Office N-0162,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5360
+2467,RDC_NB_GF_AT-5365,AT,Office N-0163,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5365
+2468,RDC_NB_GF_AT-5370,AT,Office N-0164,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5370
+2469,RDC_NB_GF_AT-5375,AT,Open Office N-0165,no reading anywhere in the assembly,,,
+2470,RDC_NB_GF_AT-5380,AT,Office N-0166,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5380
+2471,RDC_NB_GF_AT-5385,AT,Office N-0167A,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5385
+2472,RDC_NB_GF_AT-5390,AT,Office 04 N-0168,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5390
+2473,RDC_NB_GF_AT-5415,AT,Office 04 N-0174,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5415
+2474,RDC_NB_GF_EV-4316,EV,Vestibule N-0270A,no reading anywhere in the assembly,,,
+2475,RDC_NB_GF_EV-5026,EV,Corridor N-0110,no reading anywhere in the assembly,,,
+2476,RDC_NB_GF_EV-5161,EV,Womens+N-0130A+N-0132 JC N-0130,no reading anywhere in the assembly,,,
+2477,RDC_NB_GF_EV-5163,EV,IDF N-0133,no reading anywhere in the assembly,,,
+2478,RDC_NB_GF_EV-5291,EV,Pantry N-0148,no reading anywhere in the assembly,,,
+2479,RDC_NB_GF_VEV-5052A,VEV,Analytical Core Lab 1 N-0114A,no reading anywhere in the assembly,,,
+2480,RDC_NB_GF_VEV-5052B,VEV,Analytical Core Lab 1 N-0114A,no reading anywhere in the assembly,,,
+2481,RDC_NB_GF_FEV-5053,FEV,Analytical Core Lab 1 N-0114A,no reading anywhere in the assembly,,,
+2482,RDC_NB_GF_VEV-5055,VEV,Analytical Core Lab 1 N-0114A,no reading anywhere in the assembly,,,
+2483,RDC_NB_GF_FEV-5062,FEV,Clean Lab N-0114B,no reading anywhere in the assembly,,,
+2484,RDC_NB_GF_VEV-5071,VEV,Dirty Lab N-0114C,no reading anywhere in the assembly,,,
+2485,RDC_NB_GF_FEV-5072,FEV,Dirty Lab N-0114C,no reading anywhere in the assembly,,,
+2486,RDC_NB_GF_FEV-5073,FEV,Dirty Lab N-0114C,no reading anywhere in the assembly,,,
+2487,RDC_NB_GF_FEV-5074,FEV,Dirty Lab N-0114C,no reading anywhere in the assembly,,,
+2488,RDC_NB_GF_FEV-5082,FEV,Bio Analyt N-0114D,no reading anywhere in the assembly,,,
+2489,RDC_NB_GF_FEV-5083,FEV,Bio Analyt N-0114D,no reading anywhere in the assembly,,,
+2490,RDC_NB_GF_VEV-5092,VEV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+2491,RDC_NB_GF_FEV-5093,FEV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+2492,RDC_NB_GF_FEV-5094,FEV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+2493,RDC_NB_GF_FEV-5095A,FEV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+2494,RDC_NB_GF_FEV-5095B,FEV,Air Quality N-0114F,no reading anywhere in the assembly,,,
+2495,RDC_NB_GF_VEV-5182A,VEV,Analyt Core-2 N-0140A,no reading anywhere in the assembly,,,
+2496,RDC_NB_GF_VEV-5182B,VEV,Analyt Core-2 N-0140A,no reading anywhere in the assembly,,,
+2497,RDC_NB_GF_FEV-5183,FEV,Analytical Core Lab 2 N-0140A,no reading anywhere in the assembly,,,
+2498,RDC_NB_GF_VEV-5192a,VEV,Furnace Room N-0140B,no reading anywhere in the assembly,,,
+2499,RDC_NB_GF_VEV-5192b,VEV,Furnace Room N-0140B,no reading anywhere in the assembly,,,
+2500,RDC_NB_GF_FEV-5203,FEV,Prep Lab N-0140C,no reading anywhere in the assembly,,,
+2501,RDC_NB_GF_VEV-5211,VEV,Sputter Room N-0140D,has its own reading,MBE EVAP Room N-0140E,RDC_NB_GF_VEV-5211,
+2502,RDC_NB_GF_VEV-5221,VEV,MBE/Evap Room N-0140E,no reading anywhere in the assembly,,,
+2503,RDC_NB_GF_FEV-5222,FEV,Evap Room N-0140E,no reading anywhere in the assembly,,,
+2504,RDC_NB_GF_FEV-5223,FEV,Evap Room N-0140E,no reading anywhere in the assembly,,,
+2505,RDC_NB_GF_VEV-5231,VEV,ALD Room N-0140F,no reading anywhere in the assembly,,,
+2506,RDC_NB_GF_CEV-5241,CEV,Air Lock N-0140G,no reading anywhere in the assembly,,,
+2507,RDC_NB_GF_FEV-5271,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2508,RDC_NB_GF_FEV-5272,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2509,RDC_NB_GF_FEV-5273,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2510,RDC_NB_GF_FEV-5274,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2511,RDC_NB_GF_FEV-5275,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2512,RDC_NB_GF_FEV-5276,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2513,RDC_NB_GF_FEV-5277,FEV,Org Chem N-0140K,no reading anywhere in the assembly,,,
+2514,RDC_SB_L0_AT-0001,AT,Vestibule S-0101,inherits from the assembly,Vestbule S-0101,RDC_SB_GF_VAV0001,RDC_SB_GF_VAV0001
+2515,RDC_SB_L0_AT-0002,AT,Employee Entry Lobby S-0102,no reading anywhere in the assembly,,,RDC_SB_GF_VAV0002
+2516,RDC_SB_L0_AT-0004,AT,Corridor S-0104,no reading anywhere in the assembly,,,
+2517,RDC_SB_L0_AT-0005,AT,Men S-0105,no reading anywhere in the assembly,,,
+2518,RDC_SB_L0_A1.2_AT-2001,AT,High-Density Room S-0206,no reading anywhere in the assembly,,,
+2519,RDC_SB_L0_A1.3_AT-2001,AT,WOMEN S-0205,no reading anywhere in the assembly,,,
+2520,RDC_NB_GF_AT-5005,AT,Vestibule N-0105,no reading anywhere in the assembly,,,
+2521,RDC_NB_GF_AT-5010,AT,Conf N-0106,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5010_EV5011
+2522,RDC_NB_GF_AT-5015,AT,Conference N-0107,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5015_EV5016
+2523,RDC_NB_GF_AT-5020,AT,Mens + Vestibule + N-0109 N-0108,no reading anywhere in the assembly,,,
+2524,RDC_NB_GF_AT-5030,AT,Confr Room N-0112,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5030_EV5031
+2525,RDC_NB_GF_AT-5040,AT,Normal Elec. N-0113,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5040_EV5041
+2526,RDC_NB_GF_AT-5045,AT,Emergency Elec. N-0114,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5045_EV5046
+2527,RDC_NB_GF_AT-5395,AT,Exp. Office N-0169,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5395
+2528,RDC_NB_GF_AT-5400,AT,Reception Area N-0170,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5400
+2529,RDC_NB_GF_AT-5405,AT,Exp. Office N-0172,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5405
+2530,RDC_NB_GF_AT-5410,AT,Conf Room N-0173,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5410_EV5411
+2531,RDC_NB_GF_AT-5000,AT,Lobby North N-0101,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5000_EV5002
+2532,RDC_NB_GF_AT-5001,AT,Lobby North N-0101,no reading anywhere in the assembly,,,RDC_NB_GF_VAV5001_EV5003
+2533,RDC_NB_GF_AT-6000,AT,Conf Room N-0301,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6000_EV6001
+2534,RDC_NB_GF_AT-6005,AT,Vestibule N-0302,no reading anywhere in the assembly,,,
+2535,RDC_NB_GF_AT-6010,AT,Conf N-0304,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6010_EV6011
+2536,RDC_NB_GF_AT-6015,AT,Men N-0306,no reading anywhere in the assembly,,,
+2537,RDC_NB_GF_AT-6020,AT,Vestibule N-0308,no reading anywhere in the assembly,,,
+2538,RDC_NB_GF_AT-6025,AT,Normal Elec. N-0310,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6025_EV6026
+2539,RDC_NB_GF_AT-6240,AT,Emergency Electrical N-0350A,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6240_EV6241
+2540,RDC_NB_GF_AT-6300,AT,Store N-0362B,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6300
+2541,RDC_NB_GF_AT-6305,AT,Office N-0363,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6305
+2542,RDC_NB_GF_AT-6310,AT,Office N-0364,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6310
+2543,RDC_NB_GF_AT-6315,AT,Conf Room N-0364A,no reading anywhere in the assembly,,,RDC_NB_GF_EV-6316 RDC_NB_GF_VAV6315_EV6316
+2544,RDC_NB_GF_EV-6316,EV,Conf Room N-0364A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-6315 RDC_NB_GF_VAV6315_EV6316
+2545,RDC_NB_GF_EV-5021,EV,Mens + Vestibule + N-0109 N-0108,no reading anywhere in the assembly,,,
+2546,RDC_NB_GF_EV-5035,EV,Confr Room N-0112,no reading anywhere in the assembly,,,
+2547,RDC_NB_GF_EV-6016,EV,Men N-0306,no reading anywhere in the assembly,,,
+2548,RDC_NB_GF_EV-6127,EV,IDF N-0311,no reading anywhere in the assembly,,,
+2549,RDC_SB_L0_AT-2002,AT,Conference Room S-0207,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2002
+2550,RDC_SB_L0_AT-2003,AT,Multi Purpose Hall S-0208,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2003
+2551,RDC_SB_L0_AT-2004,AT,Multi Purpose Hall S-0208,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2004
+2552,RDC_SB_L0_AT-2006,AT,Meeting Room S-0212,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2006
+2553,RDC_SB_L0_AT-2007,AT,Office S-0213,inherits from the assembly,Office S-0213,RDC_SB_GF_VAV2007,RDC_SB_GF_VAV2007
+2554,RDC_SB_L0_AT-2008,AT,Office S-0214,inherits from the assembly,Office S-0214,RDC_SB_GF_VAV2008,RDC_SB_GF_VAV2008
+2555,RDC_SB_L0_AT-2009,AT,Office S-0215,inherits from the assembly,Office S-0215,RDC_SB_GF_VAV2009,RDC_SB_GF_VAV2009
+2556,RDC_SB_L0_AT-2010,AT,Office S-0216,inherits from the assembly,Office S-0216,RDC_SB_GF_VAV2010,RDC_SB_GF_VAV2010
+2557,RDC_SB_L0_AT-2011,AT,Office S-0217,inherits from the assembly,Office S-0217,RDC_SB_GF_VAV2011,RDC_SB_GF_VAV2011
+2558,RDC_SB_L0_AT-2012,AT,Director Office S-0218,inherits from the assembly,Director Office S-0218,RDC_SB_GF_VAV2012,RDC_SB_GF_VAV2012
+2559,RDC_SB_L0_AT-2013,AT,Office S-0219,inherits from the assembly,Office S-0219,RDC_SB_GF_VAV2013,RDC_SB_GF_VAV2013
+2560,RDC_SB_L0_AT-2014,AT,Office S-0220,inherits from the assembly,Office S-0220,RDC_SB_GF_VAV2014,RDC_SB_GF_VAV2014
+2561,RDC_SB_L0_AT-2015,AT,Director Office S-0221,inherits from the assembly,Director Office S-0221,RDC_SB_GF_VAV2015,RDC_SB_GF_VAV2015
+2562,RDC_SB_L0_AT-2016,AT,Director Office S-0222,inherits from the assembly,Director Office S-0222,RDC_SB_GF_VAV2016,RDC_SB_GF_VAV2016
+2563,RDC_SB_L0_AT-2017,AT,Meeting Room S-0223,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2017
+2564,RDC_SB_L0_AT-2018,AT,PANTRY S-0226,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2018
+2565,RDC_SB_L0_AT-2019,AT,Office S-0227,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2019
+2566,RDC_SB_L0_AT-2020,AT,Informal Meeting S-0231,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2020
+2567,RDC_SB_L0_AT-2021,AT,Open Plan S-0228,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2021
+2568,RDC_SB_L0_AT-2022,AT,Director Office S-0229,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2022
+2569,RDC_SB_L0_AT-2023,AT,Office S-0230,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2023
+2570,RDC_SB_L0_AT-2024,AT,Executive Director Office S-0232,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2024
+2571,RDC_SB_L0_AT-2025,AT,Executive Director Office S-0233,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2025
+2572,RDC_SB_L0_AT-2026,AT,Office S-0234,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2026
+2573,RDC_SB_L0_AT-2027,AT,Office S-0235,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2027
+2574,RDC_SB_L0_AT-2028,AT,Office S-0236,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2028
+2575,RDC_SB_L0_AT-2029,AT,Waiting Area S-0251,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2029
+2576,RDC_SB_L0_AT-2030,AT,Office S-0259,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2030
+2577,RDC_SB_L0_AT-2031,AT,Office S-0260,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2031
+2578,RDC_SB_L0_AT-2032,AT,Open Plan S-0269,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2032
+2579,RDC_SB_L0_AT-2033,AT,CORRIDOR S-0273,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2033
+2580,RDC_SB_L0_AT-2034,AT,Meeting Room S-0274,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2034
+2581,RDC_SB_L0_AT-2035,AT,MECH S-0272,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2035
+2582,RDC_SB_L0_AT-2036,AT,Emergency Elec. Room S-0278,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2036
+2583,RDC_SB_L0_AT-2037,AT,Men S-0284,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2037
+2584,RDC_SB_L0_AT-2038,AT,Informal Meeting S-0285,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2038
+2585,RDC_SB_L0_AT-2039,AT,Meeting Room S-0286,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2039
+2586,RDC_SB_L0_AT-2040,AT,Open Plan S-0289,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2040
+2587,RDC_SB_L0_AT-2041,AT,Open Plan S-0289,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2041
+2588,RDC_SB_L0_AT-2042,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2042
+2589,RDC_SB_L0_AT-2043,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2043
+2590,RDC_SB_L0_AT-2044,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2044
+2591,RDC_SB_L0_AT-2045,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2045
+2592,RDC_SB_L0_AT-2046,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2046
+2593,RDC_SB_L0_AT-2047,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV2047
+2594,RDC_SB_L0_AT-0115,AT,Office S-0233A,no reading anywhere in the assembly,,,
+2595,RDC_SB_L0_AT-0116,AT,Office S-0232A,no reading anywhere in the assembly,,,
+2596,RDC_SB_L0_AT-0117,AT,Open Plan S-0228,no reading anywhere in the assembly,,,
+2597,RDC_SB_L0_AT-0118,AT,Open Plan S-0228B,no reading anywhere in the assembly,,,
+2598,RDC_SB_L0_AT-0120,AT,Open Plan S-0228A,no reading anywhere in the assembly,,,
+2599,RDC_SB_L0_AT-0122,AT,Office S-0211A,no reading anywhere in the assembly,,,
+2600,RDC_SB_L0_AT-0123,AT,Office S-0211B,no reading anywhere in the assembly,,,
+2601,RDC_SB_L0_AT-0124,AT,Technical Open Plan S-0211,no reading anywhere in the assembly,,,
+2602,RDC_NB_GF_AT-6130,AT,Store N-0315,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6130_EV6131
+2603,RDC_NB_GF_AT-6135,AT,Store N-0316,inherits from the assembly,Store N-0316,RDC_NB_GF_VAV6135,RDC_NB_GF_VAV6135
+2604,RDC_NB_GF_AT-6140,AT,Workstation N-0317,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6140
+2605,RDC_NB_GF_AT-6145,AT,Office N-0318,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6145
+2606,RDC_NB_GF_AT-6150,AT,Office N-0319,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6150
+2607,RDC_NB_GF_AT-6155,AT,Workstation N-0320,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6155
+2608,RDC_NB_GF_AT-6160,AT,Office N-0321,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6160
+2609,RDC_NB_GF_AT-6170,AT,Office N-0323,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6170
+2610,RDC_NB_GF_AT-6175,AT,Workstation N-0324,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6175
+2611,RDC_NB_GF_AT-6180,AT,Office N-0325,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6180
+2612,RDC_NB_GF_AT-6185,AT,Office N-0326,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6185_EV6186
+2613,RDC_NB_GF_AT-7000,AT,Vestibule / Staging N-0401,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7000
+2614,RDC_NB_GF_AT-6195,AT,Store N-0329,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6195
+2615,RDC_NB_GF_AT-6190,AT,Normal Elec. N-0328,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6190_EV6191
+2616,RDC_NB_GF_AT-6200,AT,Conf N-0330,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6200_EV6201
+2617,RDC_NB_GF_AT-7005,AT,WOMEN N-0402,no reading anywhere in the assembly,,,
+2618,RDC_NB_GF_AT-6220,AT,Emergency Elec. N-0333,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6220_EV6221
+2619,RDC_NB_GF_AT-6205,AT,Conference N-0331,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6205_EV6206
+2620,RDC_NB_GF_AT-6285,AT,Conference N-0358,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6285_EV6286
+2621,RDC_NB_GF_AT-7380,AT,Pipe Chase N-0443B,no reading anywhere in the assembly,,,
+2622,RDC_NB_GF_AT-6210,AT,Corridor N-0332C,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6210
+2623,RDC_NB_GF_AT-6280,AT,Pantry N-0356,no reading anywhere in the assembly,,,
+2624,RDC_NB_GF_AT-6295,AT,Conference N-0360,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6295_EV6296
+2625,RDC_NB_GF_AT-6320,AT,Corridor N-0365,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6320
+2626,RDC_NB_GF_AT-6325,AT,Office N-0366,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6325
+2627,RDC_NB_GF_AT-6330,AT,Office 04 N-0367,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6330
+2628,RDC_NB_GF_AT-6335,AT,Office N-0368,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6335
+2629,RDC_NB_GF_AT-6340,AT,Office N-0369,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6340
+2630,RDC_NB_GF_AT-6345,AT,Office N-0370,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6345
+2631,RDC_NB_GF_AT-6350,AT,Office N-0371,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6350
+2632,RDC_NB_GF_AT-6355,AT,Workstation N-0372,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6355
+2633,RDC_NB_GF_AT-6360,AT,Office N-0374,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6360
+2634,RDC_NB_GF_AT-6365,AT,Office N-0375,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6365
+2635,RDC_NB_GF_AT-6370,AT,Office N-0376,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6370
+2636,RDC_NB_GF_AT-6375,AT,Office N-0377,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6375
+2637,RDC_NB_GF_AT-6380,AT,Workstation N-0378,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6380
+2638,RDC_NB_GF_AT-6390,AT,Office N-0379,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6390
+2639,RDC_NB_GF_AT-6395,AT,Office N-0380,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6395
+2640,RDC_NB_GF_AT-6400,AT,Workstation N-0381,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6400
+2641,RDC_NB_GF_AT-6405,AT,Office N-0382,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6405
+2642,RDC_NB_GF_AT-6410,AT,Office N-0383,no reading anywhere in the assembly,,,RDC_NB_GF_VAV6410
+2643,RDC_NB_GF_AT-7385,AT,Office N-0444,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7385
+2644,RDC_NB_GF_AT-7390,AT,Office 04 N-0445,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7390
+2645,RDC_NB_GF_EV-6141,EV,Workstation N-0317,no reading anywhere in the assembly,,,
+2646,RDC_NB_GF_EV-6156,EV,Workstation N-0320,no reading anywhere in the assembly,,,
+2647,RDC_NB_GF_EV-6176,EV,Workstation N-0324,no reading anywhere in the assembly,,,
+2648,RDC_NB_GF_EV-6281,EV,Pantry N-0356,no reading anywhere in the assembly,,,
+2649,RDC_NB_GF_EV-6356,EV,Office 05-8-WKS N-0372,no reading anywhere in the assembly,,,
+2650,RDC_NB_GF_EV-6381,EV,Office 05-8-WKS N-0378,no reading anywhere in the assembly,,,
+2651,RDC_NB_GF_EV-6401,EV,Office 05-8-WKS N-0381,no reading anywhere in the assembly,,,
+2652,RDC_NB_GF_EV-7006,EV,WOMEN N-0402,no reading anywhere in the assembly,,,
+2653,RDC_NB_GF_EV-7381,EV,Pipe Chase N-0443B,no reading anywhere in the assembly,,,
+2654,RDC_NB_GF_VEV-6053,VEV,Open Lab 1 N-0310C,no reading anywhere in the assembly,,,
+2655,RDC_NB_GF_VEV-6061,VEV,Lab Support 3 N-0310D,no reading anywhere in the assembly,,,
+2656,RDC_NB_GF_VEV-6071,VEV,Lab Support 4 N-0310E,no reading anywhere in the assembly,,,
+2657,RDC_NB_GF_VEV-6081,VEV,Lab Support 5 N-0310F,no reading anywhere in the assembly,,,
+2658,RDC_NB_GF_VEV-6091,VEV,Lab Support 6 N-0310G,no reading anywhere in the assembly,,,
+2659,RDC_NB_GF_VAV-6080,VAV,Lab Support 5 N-0310F,no reading anywhere in the assembly,,,
+2661,RDC_SB_L0_AT-3001,AT,Director Office S-0237,inherits from the assembly,Director Office S-0237,RDC_SB_GF_VAV3001,RDC_SB_GF_VAV3001
+2662,RDC_SB_L0_AT-3002,AT,Office S-0238,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3002
+2663,RDC_SB_L0_AT-3003,AT,Office S-0239,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3003
+2664,RDC_SB_L0_AT-3004,AT,Office S-0240,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3004
+2665,RDC_SB_L0_AT-3005,AT,Office S-0241,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3005
+2666,RDC_SB_L0_AT-3006,AT,Office S-0242,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3006
+2667,RDC_SB_L0_AT-3007,AT,Director Office S-0243,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3007
+2668,RDC_SB_L0_AT-3010,AT,Open Plan S-0244,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3010
+2669,RDC_SB_L0_AT-3011,AT,Meeting Room S-0245,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3011
+2670,RDC_SB_L0_AT-3012,AT,Office S-0246,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3012
+2671,RDC_SB_L0_AT-3013,AT,Office S-0247,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3013
+2672,RDC_SB_L0_AT-3014,AT,Office S-0248,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3014
+2673,RDC_SB_L0_AT-3015,AT,Security S-0249,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3015
+2674,RDC_SB_L0_AT-3016,AT,Corridor S-0250,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3016
+2675,RDC_SB_L0_AT-3017,AT,Office S-0251,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3017
+2676,RDC_SB_L0_AT-3018,AT,Corridor S-0251B,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3018
+2677,RDC_SB_L0_AT-3019,AT,Corridor S-0251B,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3019
+2678,RDC_SB_L0_AT-3020,AT,Office S-0252,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3020
+2679,RDC_SB_L0_AT-3021,AT,Office S-0252,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3021
+2680,RDC_SB_L0_AT-3022,AT,Office S-0253,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3022
+2681,RDC_SB_L0_AT-3023,AT,Office S-0253,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3023
+2682,RDC_SB_L0_AT-3024,AT,Office S-0254,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3024
+2683,RDC_SB_L0_AT-3025,AT,Office S-0255,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3025
+2684,RDC_SB_L0_AT-3026,AT,Office S-0256,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3026
+2685,RDC_SB_L0_AT-3027,AT,Office S-0257,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3027
+2686,RDC_SB_L0_AT-3028,AT,Office S-0258,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3028
+2687,RDC_SB_L0_AT-3031,AT,IT Server S-0264,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3031
+2688,RDC_SB_L0_AT-3032,AT,Open Plan S-0265,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3032
+2689,RDC_SB_L0_AT-3033,AT,Emergency Elec. S-0266,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3033
+2690,RDC_SB_L0_AT-3034,AT,Reception / Vestibule S-0293,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3034
+2691,RDC_SB_L0_AT-3035,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3035
+2692,RDC_SB_L0_AT-3036,AT,Lobby S-0294,no reading anywhere in the assembly,,,RDC_SB_GF_VAV3036
+2693,RDC_SB_L0_AT-0101,AT,Office S-0244A,no reading anywhere in the assembly,,,
+2694,RDC_SB_L0_AT-0102,AT,Office S-0244B,no reading anywhere in the assembly,,,
+2695,RDC_SB_L0_AT-0103,AT,Office S-0244C,no reading anywhere in the assembly,,,
+2696,RDC_SB_L0_AT-0104,AT,Office S-0244D,no reading anywhere in the assembly,,,
+2697,RDC_SB_L0_AT-0105,AT,Office S-0244E,no reading anywhere in the assembly,,,
+2698,RDC_SB_L0_AT-0107,AT,Office S-0262A,no reading anywhere in the assembly,,,
+2699,RDC_SB_L0_AT-0108,AT,Office S-0262B,no reading anywhere in the assembly,,,
+2700,RDC_SB_L0_AT-0109,AT,Office S-0262C,no reading anywhere in the assembly,,,
+2701,RDC_SB_L0_AT-0110,AT,Office S-0262H,no reading anywhere in the assembly,,,
+2702,RDC_SB_L0_AT-0111,AT,Office S-0262E,no reading anywhere in the assembly,,,
+2703,RDC_SB_L0_AT-0112,AT,Office S-0262F,no reading anywhere in the assembly,,,
+2704,RDC_SB_L0_AT-0113,AT,Office S-0262G,no reading anywhere in the assembly,,,
+2705,RDC_SB_L0_AT-0114,AT,Office S-0262D,no reading anywhere in the assembly,,,
+2706,RDC_NB_GF_AT-7080,AT,Exp. Office N-0410,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7080
+2707,RDC_NB_GF_AT-7085,AT,Office N-0411,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7085
+2708,RDC_NB_GF_AT-7095,AT,Office N-0413,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7095
+2709,RDC_NB_GF_AT-7100,AT,Office N-0414,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7100
+2710,RDC_NB_GF_AT-7110,AT,Office N-0416,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7110
+2711,RDC_NB_GF_AT-7115,AT,Office N-0417,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7115
+2712,RDC_NB_GF_AT-7125,AT,NORMAL ELEC. ROOM N-0420,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7125_EV7126
+2713,RDC_NB_GF_AT-7130,AT,Office N-0421,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7130
+2714,RDC_NB_GF_AT-7135,AT,Office N-0422,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7135
+2715,RDC_NB_GF_AT-7140,AT,Conference N-0423,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7140_EV7141
+2716,RDC_NB_GF_AT-7145,AT,Office N-0425,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7145
+2717,RDC_NB_GF_AT-7155,AT,Office N-0427,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7155
+2718,RDC_NB_GF_AT-7165,AT,Office N-0429,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7165
+2719,RDC_NB_GF_AT-7180,AT,Corridor N-0432,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7180
+2720,RDC_NB_GF_AT-7185,AT,Emer. Elec. Room N-0433,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7185_EV7186
+2721,RDC_NB_GF_AT-7195,AT,OFFICE N-0436,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7195
+2722,RDC_NB_GF_AT-7205,AT,Office 04 N-0438,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7205
+2723,RDC_NB_GF_AT-7215,AT,CONFERENCE ROOM N-0440,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7215_EV7216
+2724,RDC_NB_GF_AT-7395,AT,Workstation N-0446,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7395
+2725,RDC_NB_GF_AT-7400,AT,Office N-0447,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7400
+2726,RDC_NB_GF_AT-7405,AT,Office N-0448,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7405
+2727,RDC_NB_GF_AT-7410,AT,Office N-0449,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7410
+2728,RDC_NB_GF_AT-7415,AT,Office N-0450,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7415
+2729,RDC_NB_GF_AT-7425,AT,Workstation N-0452,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7425
+2730,RDC_NB_GF_AT-7430,AT,Office N-0453,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7430
+2731,RDC_NB_GF_AT-7435,AT,Office N-0454,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7435
+2732,RDC_NB_GF_AT-7440,AT,Office N-0455,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7440
+2733,RDC_NB_GF_AT-7445,AT,Office N-0456,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7445
+2734,RDC_NB_GF_AT-7460,AT,Workstation N-0457,inherits from the assembly,Workstation N-0457,RDC_NB_GF_VAV7460,RDC_NB_GF_VAV7460
+2735,RDC_NB_GF_AT-7465,AT,Office N-0458,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7465
+2736,RDC_NB_GF_AT-7470,AT,Office N-0459,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7470
+2737,RDC_NB_GF_AT-7475,AT,Office N-0460,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7475
+2738,RDC_NB_GF_AT-7480,AT,Office N-0461,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7480
+2739,RDC_NB_GF_AT-7485,AT,WORKSTATION N-0462,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7485
+2740,RDC_NB_GF_AT-7490,AT,Confer N-0463,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7490_EV7495
+2741,RDC_NB_GF_AT-7496,AT,Office N-0464,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7496
+2742,RDC_NB_GF_AT-7498,AT,Office N-0465,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7498
+2743,RDC_NB_GF_AT-7499,AT,Office N-0466,no reading anywhere in the assembly,,,RDC_NB_GF_VAV7499
+2744,RDC_NB_GF_AT-7090-N1,AT,Office N-0412,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7090-N2 RDC_NB_GF_VAV7090
+2745,RDC_NB_GF_AT-7090-N2,AT,Office N-0412A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7090-N1 RDC_NB_GF_VAV7090
+2746,RDC_NB_GF_AT-7105-N1,AT,Office N-0415,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7105-N2 RDC_NB_GF_VAV7105
+2747,RDC_NB_GF_AT-7105-N2,AT,Office N-0415A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7105-N1 RDC_NB_GF_VAV7105
+2748,RDC_NB_GF_AT-7120-N1,AT,Office N-0418,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2749,RDC_NB_GF_AT-7120-N2,AT,Office N-0418A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2750,RDC_NB_GF_AT-7120-N3,AT,Office N-0430A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2751,RDC_NB_GF_AT-7120-N4,AT,Office N-0430B,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2752,RDC_NB_GF_AT-7120-N5,AT,Office N-0430C,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2753,RDC_NB_GF_AT-7120-N6,AT,Office N-0430D,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2754,RDC_NB_GF_AT-7120-N7,AT,Office N-0430E,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2755,RDC_NB_GF_AT-7120-N8,AT,Office N-0430F,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N9 RDC_NB_GF_VAV7120
+2756,RDC_NB_GF_AT-7120-N9,AT,Corridor N-0418A,no reading anywhere in the assembly,,,RDC_NB_GF_AT-7120-N1 RDC_NB_GF_AT-7120-N2 RDC_NB_GF_AT-7120-N3 RDC_NB_GF_AT-7120-N4 RDC_NB_GF_AT-7120-N5 RDC_NB_GF_AT-7120-N6 RDC_NB_GF_AT-7120-N7 RDC_NB_GF_AT-7120-N8 RDC_NB_GF_VAV7120
+2757,RDC_NB_GF_EV-7091,EV,Office N-0412A,no reading anywhere in the assembly,,,
+2758,RDC_NB_GF_EV-7106,EV,Office N-0415A,no reading anywhere in the assembly,,,
+2759,RDC_NB_GF_EV-7121,EV,Office 05-4-WS N-0418,no reading anywhere in the assembly,,,
+2760,RDC_NB_GF_EV-7122,EV,IDF Room N-0419,no reading anywhere in the assembly,,,
+2761,RDC_NB_GF_EV-7396,EV,Office 05-8-WKS N-0446,no reading anywhere in the assembly,,,
+2762,RDC_NB_GF_EV-7426,EV,Office 05-8-WKS N-0452,no reading anywhere in the assembly,,,
+2763,RDC_NB_GF_EV-7461,EV,Office 05-8-WKS N-0457,no reading anywhere in the assembly,,,
+2764,RDC_NB_GF_EV-7486,EV,Office 05-8-WKS N-0462,no reading anywhere in the assembly,,,
+2765,RDC_NB_GF_VEV-7022A,VEV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+2766,RDC_NB_GF_VEV-7022B,VEV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+2767,RDC_NB_GF_VEV-7023A,VEV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+2768,RDC_NB_GF_VEV-7023B,VEV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+2769,RDC_NB_GF_VEV-7024A,VEV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+2770,RDC_NB_GF_VEV-7024B,VEV,NMR Lab N-0404A,no reading anywhere in the assembly,,,
+2771,RDC_NB_GF_FEV-7052,FEV,EM Prep 1 - MAT N-0404D,no reading anywhere in the assembly,,,
+2772,RDC_NB_GF_FEV-7053,FEV,EM Prep 1 - MAT N-0404D,no reading anywhere in the assembly,,,
+2773,RDC_NB_GF_FEV-7062,FEV,EM Prep 2 - BIO N-0404E,no reading anywhere in the assembly,,,
+2774,RDC_NB_GF_VEV-7072A,VEV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+2775,RDC_NB_GF_VEV-7072B,VEV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+2776,RDC_NB_GF_VEV-7073,VEV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+2777,RDC_NB_GF_FEV-7074,FEV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+2778,RDC_NB_GF_FEV-7075,FEV,Surf Analysis Lab N-0404F,no reading anywhere in the assembly,,,
+2779,RDC_NB_GF_FEV-7232,FEV,Inter Lab N-0442A,no reading anywhere in the assembly,,,
+2780,RDC_NB_GF_VEV-7241B,VEV,Optical Lab N-0442B,no reading anywhere in the assembly,,,
+2781,RDC_NB_GF_VEV-7301,VEV,A/L 1 N-0442H,no reading anywhere in the assembly,,,
+2783,RDC_SB_1F_AT-1504,AT,Corridor S-1122,no reading anywhere in the assembly,,,
+2784,RDC_SB_1F_AT-1507,AT,Workstation S-1124A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1507
+2785,RDC_SB_1F_AT-1508,AT,Scientific Comp. Office 1 S-1125,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1508
+2786,RDC_SB_1F_AT-1509,AT,Scientific Comp. Office S-1126,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1509
+2787,RDC_SB_1F_AT-1510,AT,ALT Office 2 S-1127,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1510
+2788,RDC_SB_1F_AT-1511,AT,ALT Office 3 S-1128,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1511
+2789,RDC_SB_1F_AT-1512,AT,Workstation S-1128A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1512
+2790,RDC_SB_1F_AT-1513,AT,ALT Office 1 S-1129,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1513
+2791,RDC_SB_1F_AT-1514,AT,ALT Office S-1130,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1514
+2792,RDC_SB_1F_AT-1515,AT,Distub. Syst Office 1 S-1131,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1515
+2793,RDC_SB_1F_AT-1516,AT,Distub. Syst Office S-1132,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1516
+2794,RDC_SB_1F_AT-1517,AT,Workstation S-1132A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1517
+2795,RDC_SB_1F_AT-1518,AT,Distub. Syst Office S-1133,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1518
+2796,RDC_SB_1F_AT-1519,AT,Distub. Syst Office S-1134,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1519
+2797,RDC_SB_1F_AT-1520,AT,Data Analytic Office S-1135,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1520
+2798,RDC_SB_1F_AT-1521,AT,Data Analytic Office S-1136,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1521
+2799,RDC_SB_1F_AT-1522,AT,Workstation S-1136A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1522
+2800,RDC_SB_1F_AT-1523,AT,Data Analytic Office S-1137,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1523
+2801,RDC_SB_1F_AT-1524,AT,Data Analytic Office S-1138,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1524
+2802,RDC_SB_1F_AT-1525,AT,Office S-1139,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1525
+2803,RDC_SB_1F_AT-1526,AT,Office S-1140,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1526
+2804,RDC_SB_1F_AT-1527,AT,Conference Room S-1141,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1527
+2805,RDC_SB_1F_AT-1528,AT,Office S-1142,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1528
+2806,RDC_SB_1F_AT-1529,AT,Office S-1144,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1529
+2807,RDC_SB_1F_AT-1530,AT,Office S-1145,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1530
+2808,RDC_SB_1F_AT-1531,AT,Office S-1146,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1531
+2809,RDC_SB_1F_AT-1532,AT,Workstation S-1146A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1532
+2810,RDC_SB_1F_AT-1533,AT,Office S-1148,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1533
+2811,RDC_SB_1F_AT-1534,AT,Office S-1149,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1534
+2812,RDC_SB_1F_AT-1535,AT,Pantry S-1149A,no reading anywhere in the assembly,,,
+2813,RDC_SB_1F_AT-1536,AT,Office S-1150,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1536
+2814,RDC_SB_1F_AT-1537,AT,Normal Elec. S-1147,no reading anywhere in the assembly,,,
+2815,RDC_SB_1F_AT-1542,AT,Office S-1182,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1542
+2816,RDC_SB_1F_AT-1546,AT,Office S-1182E,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1546
+2817,RDC_SB_1F_AT-1548,AT,Office S-1183,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1548
+2818,RDC_SB_1F_AT-1549,AT,Workstation S-1183A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1549
+2819,RDC_SB_1F_AT-1550,AT,Office S-1184,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1550
+2820,RDC_SB_1F_AT-1551,AT,Social Comp Office S-1185,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1551
+2821,RDC_SB_1F_AT-1552,AT,Social Comp Office S-1186,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1552
+2822,RDC_SB_1F_AT-1553,AT,Workstation S-1186A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1553
+2823,RDC_SB_1F_AT-1554,AT,Social Comp Office S-1187,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1554
+2824,RDC_SB_1F_AT-1555,AT,Social Comp Office S-1188,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1555
+2825,RDC_SB_1F_AT-1556,AT,Cyber Sec Office S-1189,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1556
+2826,RDC_SB_1F_AT-1557,AT,Cyber Sec Office S-1190,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1557
+2827,RDC_SB_1F_AT-1558,AT,Workstation S-1190A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1558
+2828,RDC_SB_1F_AT-1559,AT,Office S-1191,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1559
+2829,RDC_SB_1F_AT-1560,AT,Cyber Sec Office S-1192,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1560
+2830,RDC_SB_1F_AT-1561,AT,Cyber Sec Office S-1193,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1561
+2831,RDC_SB_1F_AT-0538,AT,Workstation S-1151A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0538
+2832,RDC_NB_1F_AT-4660,AT,Expansion Workstation N-1227,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4660
+2833,RDC_NB_1F_AT-4665,AT,Office N-1228,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4665
+2834,RDC_NB_1F_AT-4680,AT,Office N-1231,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4680
+2835,RDC_NB_1F_AT-4690,AT,Office N-1233,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4690
+2836,RDC_NB_1F_AT-4705,AT,Office N-1236,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4705
+2837,RDC_NB_1F_AT-4720,AT,Office N-1239,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4720
+2838,RDC_NB_1F_AT-4730,AT,Office N-1241,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4730
+2839,RDC_NB_1F_AT-4745,AT,Office N-1244,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4745
+2840,RDC_NB_1F_EV-4500,EV,MDF N-1201,no reading anywhere in the assembly,,,
+2841,RDC_NB_1F_CEV-4502,CEV,Corridor N-1202,no reading anywhere in the assembly,,,
+2842,RDC_NB_1F_EV-4661,EV,Office 05 - 8 WKS- N-1227,no reading anywhere in the assembly,,,
+2843,RDC_NB_1F_EV-4686,EV,Office 05 - 8 WKS- N-1232,no reading anywhere in the assembly,,,
+2844,RDC_NB_1F_EV-4711,EV,Office 05 - 8 WKS- N-1237,no reading anywhere in the assembly,,,
+2845,RDC_NB_1F_EV-4736,EV,Office 05 - 8 WKS- N-1242,no reading anywhere in the assembly,,,
+2846,RDC_NB_1F_VEV-4602,VEV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+2847,RDC_NB_1F_FEV-4603,FEV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+2848,RDC_NB_1F_FEV-4604,FEV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+2849,RDC_NB_1F_FEV-4605,FEV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+2850,RDC_NB_1F_FEV-4606,FEV,Testing Room N-1216B,no reading anywhere in the assembly,,,
+2851,RDC_NB_1F_FEV-4622,FEV,EL Shop N-1216C,no reading anywhere in the assembly,,,
+2852,RDC_NB_1F_CAV-4581B,CAV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2853,RDC_NB_1F_VEV-4585A,VEV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2854,RDC_NB_1F_VEV-4585B,VEV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2855,RDC_NB_1F_VEV-4586A,VEV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2856,RDC_NB_1F_VEV-4586B,VEV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2857,RDC_NB_1F_FEV-4587,FEV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2858,RDC_NB_1F_FEV-4588,FEV,Photovoltaic Lab N-1216A,no reading anywhere in the assembly,,,
+2860,RDC_SB_1F_AT-0501,AT,Lobby S-1102,no reading anywhere in the assembly,,,
+2861,RDC_SB_1F_AT-0502,AT,Vestibule S-1105,no reading anywhere in the assembly,,,
+2862,RDC_SB_1F_AT-0503,AT,Women S-1106B,no reading anywhere in the assembly,,,
+2863,RDC_SB_1F_AT-0504,AT,Vestibule S-1107,no reading anywhere in the assembly,,,
+2864,RDC_SB_1F_AT-0505,AT,EMERGENCY Elec. S-1107B,no reading anywhere in the assembly,,,
+2865,RDC_SB_1F_AT-0515,AT,Corridor S-1122,no reading anywhere in the assembly,,,
+2866,RDC_SB_1F_AT-0516,AT,Pantry S-1158,no reading anywhere in the assembly,,,
+2867,RDC_SB_1F_AT-0517,AT,Normal Elec. S-1160,no reading anywhere in the assembly,,,
+2868,RDC_SB_1F_AT-0524,AT,Women S-1169,no reading anywhere in the assembly,,,
+2869,RDC_SB_1F_AT-0525,AT,Men S-1170,no reading anywhere in the assembly,,,
+2870,RDC_SB_1F_AT-0534,AT,CORRIDOR S-1180,no reading anywhere in the assembly,,,
+2871,RDC_SB_1F_AT-0535,AT,Cooridor S-1180,no reading anywhere in the assembly,,,
+2872,RDC_SB_1F_AT-1541,AT,Cooridor S-1181,no reading anywhere in the assembly,,,
+2873,RDC_SB_1F_AT-0506,AT,Conf. S-1110,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0506
+2874,RDC_SB_1F_AT-0507,AT,Computer Research Lab-4 S-1112,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0507
+2875,RDC_SB_1F_AT-0508,AT,Conf S-1113,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0508
+2876,RDC_SB_1F_AT-0509,AT,NCIR OFFICE S-1115,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0509
+2877,RDC_SB_1F_AT-0510,AT,Workstation S-1115A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0510
+2878,RDC_SB_1F_AT-0511,AT,NCIR Office S-1116,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0511
+2879,RDC_SB_1F_AT-0512,AT,NCIR Office S-1117,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0512
+2880,RDC_SB_1F_AT-0513,AT,NCIR Office S-1118,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0513
+2881,RDC_SB_1F_AT-0514,AT,NCIR Office S-1119,inherits from the assembly,Sc.Comp.Office3 S-1119,RDC_SB_1F_VAV0514,RDC_SB_1F_VAV0514
+2882,RDC_SB_1F_AT-0518,AT,Office S-1161,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0518
+2883,RDC_SB_1F_AT-0519,AT,Office S-1162,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0519
+2884,RDC_SB_1F_AT-0520,AT,Office S-1163,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0520
+2885,RDC_SB_1F_AT-0521,AT,Office S-1164,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0521
+2886,RDC_SB_1F_AT-0522,AT,Office S-1165,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0522
+2887,RDC_SB_1F_AT-0523,AT,Office S-1166,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0523
+2888,RDC_SB_1F_AT-0526,AT,Office S-1171,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0526
+2889,RDC_SB_1F_AT-0527,AT,Office S-1172,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0527
+2890,RDC_SB_1F_AT-0528,AT,Office S-1173,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0528
+2891,RDC_SB_1F_AT-0529,AT,Corridor S-1174,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0529
+2892,RDC_SB_1F_AT-0530,AT,Situation Room S-1175,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0530
+2893,RDC_SB_1F_AT-0531,AT,Immersive Viz Lab S-1176,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0531
+2894,RDC_SB_1F_AT-0532,AT,Conference Room S-1177,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0532
+2895,RDC_SB_1F_AT-0533,AT,Telepresence S-1179,no reading anywhere in the assembly,,,RDC_SB_1F_VAV0533
+2896,RDC_SB_1F_AT-1501,AT,Workstation S-1119A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1501
+2897,RDC_SB_1F_AT-1502,AT,NCIR Office S-1120,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1502
+2898,RDC_SB_1F_AT-1503,AT,NCIR Office S-1121,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1503
+2899,RDC_SB_1F_AT-1505,AT,SC. Comp Office 2 S-1123,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1505
+2900,RDC_SB_1F_AT-1506,AT,SC. Comp Office 3 S-1124,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1506
+2901,RDC_SB_1F_AT-1539,AT,Video Conf. Room S-1154,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1539
+2902,RDC_SB_1F_AT-1540,AT,Conf S-1159,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1540
+2903,RDC_SB_1F_AT-1543,AT,Workstation S-1182A,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1543
+2904,RDC_SB_1F_AT-1544,AT,Office S-1182C,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1544
+2905,RDC_SB_1F_AT-1545,AT,Office S-1182D,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1545
+2906,RDC_SB_1F_AT-1547,AT,Office S-1182F,no reading anywhere in the assembly,,,RDC_SB_1F_VAV1547
+2907,RDC_NB_1F_AT-5650,AT,Office N-1120,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5650
+2908,RDC_NB_1F_AT-5655,AT,Store N-1120B,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5655_EV5656
+2909,RDC_NB_1F_AT-5660,AT,Office N-1121,inherits from the assembly,Office N-1121,RDC_NB_1F_VAV5660,RDC_NB_1F_VAV5660
+2910,RDC_NB_1F_AT-5665,AT,Office N-1122,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5665
+2911,RDC_NB_1F_AT-5670,AT,Office N-1123,inherits from the assembly,Office N-1123,RDC_NB_1F_VAV5670,RDC_NB_1F_VAV5670
+2912,RDC_NB_1F_AT-5675,AT,Office N-1124,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5675
+2913,RDC_NB_1F_AT-5680,AT,Office N-1125,inherits from the assembly,Office N-1125,RDC_NB_1F_VAV5680,RDC_NB_1F_VAV5680
+2914,RDC_NB_1F_AT-5685,AT,Corridor N-1126,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5685
+2915,RDC_NB_1F_AT-5690,AT,Office N-1127,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5690
+2916,RDC_NB_1F_AT-5695,AT,Office N-1128,inherits from the assembly,Office N-1128,RDC_NB_1F_VAV5695,RDC_NB_1F_VAV5695
+2917,RDC_NB_1F_AT-5700,AT,Office N-1129,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5700
+2918,RDC_NB_1F_AT-5705,AT,Office N-1130,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5705
+2919,RDC_NB_1F_AT-5710,AT,Office N-1131,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5710
+2920,RDC_NB_1F_AT-5715,AT,Conf Rm N-1132,inherits from the assembly,Conf. Rm N-1132,RDC_NB_1F_VAV5715_EV5716,RDC_NB_1F_VAV5715_EV5716
+2921,RDC_NB_1F_AT-5730,AT,Store N-1135,inherits from the assembly,Store N-1135,RDC_NB_1F_VAV5730_EV5731,RDC_NB_1F_VAV5730_EV5731
+2922,RDC_NB_1F_AT-5735,AT,Normal Elec. N-1136,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5735_EV5736
+2923,RDC_NB_1F_AT-5740,AT,Emer. Elec. N-1137,inherits from the assembly,Emer. Elec. N-1137,RDC_NB_1F_VAV5740_EV5741,RDC_NB_1F_VAV5740_EV5741
+2924,RDC_NB_1F_AT-5745,AT,Corridor N-1138,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5745
+2925,RDC_NB_1F_AT-5760,AT,Conf N-1143,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5760_EV5761
+2926,RDC_NB_1F_AT-5835,AT,P/C/S Pantry N-1146,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5835_EV5836
+2927,RDC_NB_1F_AT-5840,AT,Corridor N-1150,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5840
+2928,RDC_NB_1F_AT-5860,AT,Office N-1154,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5860
+2929,RDC_NB_1F_AT-5865,AT,Office N-1155,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5865
+2930,RDC_NB_1F_AT-5870,AT,Exp Office N-1156,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5870
+2931,RDC_NB_1F_AT-5875,AT,Office N-1157,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5875
+2932,RDC_NB_1F_AT-5880,AT,Office N-1158,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5880
+2933,RDC_NB_1F_AT-5885,AT,Office N-1159,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5885
+2934,RDC_NB_1F_AT-5890,AT,Workstation N-1160,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5890
+2935,RDC_NB_1F_AT-5895,AT,Office N-1161,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5895
+2936,RDC_NB_1F_AT-5900,AT,Office N-1162,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5900
+2937,RDC_NB_1F_AT-5905,AT,Office N-1163,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5905
+2938,RDC_NB_1F_AT-5910,AT,Office N-1164,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5910
+2939,RDC_NB_1F_AT-5915,AT,Office N-1167,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5915
+2940,RDC_NB_1F_AT-5920,AT,Workstation N-1168,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5920
+2941,RDC_NB_1F_AT-5925,AT,Office N-1169,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5925
+2942,RDC_NB_1F_AT-5930,AT,Office N-1170,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5930
+2943,RDC_NB_1F_AT-5935,AT,Office N-1166,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5935
+2944,RDC_NB_1F_AT-5940,AT,Workstation N-1165,no reading anywhere in the assembly,,,RDC_NB_1F_VAV5940
+2945,RDC_NB_1F_AT-5720,AT,Men N-1134,no reading anywhere in the assembly,,,
+2946,RDC_NB_1F_AT-5750,AT,Store N-1141,no reading anywhere in the assembly,,,
+2947,RDC_NB_1F_AT-4640,AT,Women N-1221,no reading anywhere in the assembly,,,
+2948,RDC_NB_1F_AT-4650,AT,Breakout N-1225,no reading anywhere in the assembly,,,RDC_NB_1F_VAV4650
+2949,RDC_NB_1F_EV-5686,EV,Corridor N-1126,no reading anywhere in the assembly,,,
+2950,RDC_NB_1F_EV-5721,EV,Men N-1134,no reading anywhere in the assembly,,,
+2951,RDC_NB_1F_EV-5747,EV,IDF N-1140,no reading anywhere in the assembly,,,
+2952,RDC_NB_1F_EV-4641,EV,Women N-1221,no reading anywhere in the assembly,,,
+2953,RDC_NB_1F_EV-5891,EV,Office 05 - 8 WKS- North N-1160,no reading anywhere in the assembly,,,
+2954,RDC_NB_1F_EV-5921,EV,Office 05 - 8 WKS- N-1168,no reading anywhere in the assembly,,,
+2955,RDC_NB_1F_EV-5941,EV,Office 05 - 8 WKS- N-1165,no reading anywhere in the assembly,,,
+2956,RDC_NB_1F_FEV-5624,FEV,Sequence Lab N-1115K,has its own reading,Robotics N-1115J,RDC_NB_1F_FEV-5624,
+2957,RDC_NB_1F_VEV-5572,VEV,Met/Prot Lab N-1115C,no reading anywhere in the assembly,,,
+2958,RDC_NB_1F_VEV-5573A,VEV,Met/Prot Lab N-1115C,no reading anywhere in the assembly,,,
+2959,RDC_NB_1F_VEV-5573B,VEV,Met/Prot Lab N-1115C,no reading anywhere in the assembly,,,
+2960,RDC_NB_1F_FEV-5574,FEV,Met/Prot Lab N-1115C,has its own reading,PRe-PCR N-1115B,RDC_NB_1F_FEV-5574,
+2961,RDC_NB_1F_FEV-5575,FEV,Met/Prot Lab N-1115C,has its own reading,Cell Culture N-1115E,RDC_NB_1F_FEV-5575,
+2962,RDC_NB_1F_VEV-5591,VEV,Cell Culture N-1115E,no reading anywhere in the assembly,,,
+2963,RDC_NB_1F_FEV-5772,FEV,Histology N-1144A,no reading anywhere in the assembly,,,
+2964,RDC_NB_1F_VEV-5791,VEV,Shafallah N-1144C,has its own reading,Culture & Gel Rm N-1144B,RDC_NB_1F_VEV-5791,
+2965,RDC_NB_1F_VEV-5795B,VEV,Storage and Archives N-1144C2,has its own reading,PRE-PCR N-1144D,RDC_NB_1F_VEV-5795B,
+2966,RDC_NB_1F_FEV-5796,FEV,Shafallah N-1144C,has its own reading,PRE-PCR N-1144D,RDC_NB_1F_FEV-5796,
+2967,RDC_NB_1F_VEV-5811A,VEV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2968,RDC_NB_1F_VEV-5811B,VEV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2969,RDC_NB_1F_FEV-5812,FEV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2970,RDC_NB_1F_FEV-5813,FEV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2971,RDC_NB_1F_VEV-5821,VEV,Nano Lab N-1144E,no reading anywhere in the assembly,,,
+2972,RDC_SB_1F_AT-2501,AT,Lobby S-1201,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2501
+2973,RDC_SB_1F_AT-2507,AT,Female S-1204,no reading anywhere in the assembly,,,
+2974,RDC_SB_1F_AT-2502,AT,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2502
+2975,RDC_SB_1F_AT-2503,AT,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2503
+2976,RDC_SB_1F_AT-2504,AT,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2504
+2977,RDC_SB_1F_AT-2505,AT,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2505
+2978,RDC_SB_1F_AT-2506,AT,Lobby S-1202,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2506
+2979,RDC_SB_1F_AT-2508,AT,Female Prayer S-1207,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2508
+2980,RDC_SB_1F_AT-2509,AT,Open Plan S-1210,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2509
+2981,RDC_SB_1F_AT-2510,AT,Exc. Dir. Office S-1211,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2510
+2982,RDC_SB_1F_AT-2511,AT,Office S-1212,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2511
+2983,RDC_SB_1F_AT-2512,AT,Office S-1213,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2512
+2984,RDC_SB_1F_AT-2513,AT,Office S-1214,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2513
+2985,RDC_SB_1F_AT-2514,AT,Office S-1215,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2514
+2986,RDC_SB_1F_AT-2515,AT,Office S-1216,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2515
+2987,RDC_SB_1F_AT-2516,AT,Executive Director Office S-1217,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2516
+2988,RDC_SB_1F_AT-2517,AT,Executive Director Office S-1218,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2517
+2989,RDC_SB_1F_AT-2518,AT,Office S-1219,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2518
+2990,RDC_SB_1F_AT-2519,AT,Office S-1220,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2519
+2991,RDC_SB_1F_AT-2520,AT,Office S-1221,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2520
+2992,RDC_SB_1F_AT-2521,AT,Office S-1222,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2521
+2993,RDC_SB_1F_AT-2522,AT,Office S-1223,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2522
+2994,RDC_SB_1F_AT-2523,AT,Office S-1224,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2523
+2995,RDC_SB_1F_AT-2524,AT,Office S-1225,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2524
+2996,RDC_SB_1F_AT-2525,AT,Office S-1226,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2525
+2997,RDC_SB_1F_AT-2526,AT,Open Plan S-1227,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2526
+2998,RDC_SB_1F_AT-2527,AT,Director Office S-1228,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2527
+2999,RDC_SB_1F_AT-2528,AT,Director Office S-1230,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2528
+3000,RDC_SB_1F_AT-2529,AT,Office S-1231,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2529
+3001,RDC_SB_1F_AT-2530,AT,Office S-1232,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2530
+3002,RDC_SB_1F_AT-2531,AT,Director Ofice S-1241,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2531
+3003,RDC_SB_1F_AT-2532,AT,Office S-1242,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2532
+3004,RDC_SB_1F_AT-2533,AT,Cooridor S-1246,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2533
+3005,RDC_SB_1F_AT-2534,AT,Meeting Room S-1247,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2534
+3006,RDC_SB_1F_AT-2535,AT,Store S-1248,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2535
+3007,RDC_SB_1F_AT-2536,AT,Normal Elec. S-1251,inherits from the assembly,Mech. Chasing S-1249,RDC_SB_1F_VAV2536,RDC_SB_1F_VAV2536
+3008,RDC_SB_1F_AT-2538,AT,Office S-1257,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2538
+3009,RDC_SB_1F_AT-2539,AT,Office S-1257B,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2539
+3010,RDC_SB_1F_AT-2540,AT,Executive Director S-1260,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2540
+3011,RDC_SB_1F_AT-2541,AT,Assistant S-1261,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2541
+3012,RDC_SB_1F_AT-2542,AT,Open Plan S-1263,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2542
+3013,RDC_SB_1F_AT-2543,AT,Office S-1264,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2543
+3014,RDC_SB_1F_AT-2544,AT,Office S-1265,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2544
+3015,RDC_SB_1F_AT-2545,AT,Office S-1266,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2545
+3016,RDC_SB_1F_AT-2546,AT,Office S-1267,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2546
+3017,RDC_SB_1F_AT-2547,AT,Office S-1268,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2547
+3018,RDC_SB_1F_AT-2548,AT,Office S-1269,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2548
+3019,RDC_SB_1F_AT-2549,AT,Office S-1270,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2549
+3020,RDC_SB_1F_AT-2550,AT,Office S-1271,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2550
+3021,RDC_SB_1F_AT-2551,AT,Meeting Room S-1272,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2551
+3022,RDC_SB_1F_AT-2552,AT,Vestibule S-1273,inherits from the assembly,FPC S-1277,RDC_SB_1F_VAV2552,RDC_SB_1F_VAV2552
+3023,RDC_SB_1F_AT-2553,AT,Male Prayer S-1278,no reading anywhere in the assembly,,,RDC_SB_1F_VAV2553
+3024,RDC_SB_1F_AT-4260,AT,Office 05 -8WS- N-0255,no reading anywhere in the assembly,,,
+3025,RDC_NB_1F_AT-6650,AT,Office N-1319,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6650
+3026,RDC_NB_1F_AT-6655,AT,Office N-1320,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6655
+3027,RDC_NB_1F_AT-6660,AT,Workstation N-1321,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6660
+3028,RDC_NB_1F_AT-6665,AT,Office N-1322,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6665
+3029,RDC_NB_1F_AT-6670,AT,Office N-1323,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6670
+3030,RDC_NB_1F_AT-6675,AT,Workstation N-1324,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6675
+3031,RDC_NB_1F_AT-6680,AT,Office N-1325,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6680
+3032,RDC_NB_1F_AT-6685,AT,Office N-1326,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6685
+3033,RDC_NB_1F_AT-6690,AT,Exp. Workstation N-1327,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6690
+3034,RDC_NB_1F_AT-6695,AT,Office N-1328,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6695
+3035,RDC_NB_1F_AT-6700,AT,NORMAL ELEC. N-1329,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6700_EV6701
+3036,RDC_NB_1F_AT-6705,AT,Office N-1330,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6705
+3037,RDC_NB_1F_AT-6710,AT,Office N-1331,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6710
+3038,RDC_NB_1F_AT-6715,AT,Office N-1332,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6715
+3039,RDC_NB_1F_AT-6720,AT,Corridor N-1335,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6720
+3040,RDC_NB_1F_AT-6725,AT,Emer. Elec. N-1336,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6725_EV6726
+3041,RDC_NB_1F_AT-6740,AT,Men N-1340,no reading anywhere in the assembly,,,
+3042,RDC_NB_1F_AT-7500,AT,Women N-1403,no reading anywhere in the assembly,,,
+3043,RDC_NB_1F_AT-6900,AT,Office N-1357,inherits from the assembly,Office N-357,RDC_NB_1F_VAV6900,RDC_NB_1F_VAV6900
+3044,RDC_NB_1F_AT-6905,AT,Open Plan N-1358,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6905
+3045,RDC_NB_1F_AT-6910,AT,Office N-1359,inherits from the assembly,Office N-359,RDC_NB_1F_VAV6910,RDC_NB_1F_VAV6910
+3046,RDC_NB_1F_AT-6915,AT,Office N-1360,inherits from the assembly,Office N-360,RDC_NB_1F_VAV6915,RDC_NB_1F_VAV6915
+3047,RDC_NB_1F_AT-6920,AT,Office N-1360B,inherits from the assembly,Office N-360B,RDC_NB_1F_VAV6920,RDC_NB_1F_VAV6920
+3048,RDC_NB_1F_AT-6925,AT,Office N-1361,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6925
+3049,RDC_NB_1F_AT-6930,AT,Office N-1362,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6930
+3050,RDC_NB_1F_AT-6935,AT,Workstation N-1363,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6935
+3051,RDC_NB_1F_AT-6940,AT,Office N-1364,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6940
+3052,RDC_NB_1F_AT-6945,AT,Office N-1365,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6945
+3053,RDC_NB_1F_AT-6950,AT,Office N-1366,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6950
+3054,RDC_NB_1F_AT-6955,AT,Office N-1367,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6955
+3055,RDC_NB_1F_AT-6960,AT,Workstation N-1368,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6960
+3056,RDC_NB_1F_AT-6965,AT,Office N-1369,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6965
+3057,RDC_NB_1F_AT-6967,AT,Office N-1370,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6967
+3058,RDC_NB_1F_AT-6968,AT,Workstation N-1371,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6968
+3059,RDC_NB_1F_AT-6970,AT,PANTRY N-1372,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6970_EV6971
+3060,RDC_NB_1F_AT-7865,AT,Workstation N-1461A,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7865
+3061,RDC_NB_1F_AT-6372,AT,Office N-1374,no reading anywhere in the assembly,,,
+3062,RDC_NB_1F_AT-6374,AT,Office N-1375,no reading anywhere in the assembly,,,
+3063,RDC_NB_1F_AT-6376,AT,Office N-1376,no reading anywhere in the assembly,,,
+3064,RDC_NB_1F_AT-6378,AT,Office N-1377,no reading anywhere in the assembly,,,
+3065,RDC_NB_1F_EV-6661,EV,Workstation N-1321,no reading anywhere in the assembly,,,
+3066,RDC_NB_1F_EV-6676,EV,Workstation N-1324,no reading anywhere in the assembly,,,
+3067,RDC_NB_1F_EV-6691,EV,Exp. Workstation N-1327,no reading anywhere in the assembly,,,
+3068,RDC_NB_1F_EV-6741,EV,Men N-1340,no reading anywhere in the assembly,,,
+3069,RDC_NB_1F_EV-7501,EV,Women N-1403,no reading anywhere in the assembly,,,
+3070,RDC_NB_1F_EV-6936,EV,Workstation N-1363,no reading anywhere in the assembly,,,
+3071,RDC_NB_1F_EV-6961,EV,Workstation N-1368,no reading anywhere in the assembly,,,
+3072,RDC_NB_1F_EV-6969,EV,Workstation N-1371,no reading anywhere in the assembly,,,
+3073,RDC_NB_1F_VEV-6541,VEV,TC1 N-1316B,no reading anywhere in the assembly,,,
+3074,RDC_NB_1F_VEV-6552,VEV,Gene Therapy Lab N-1316C,no reading anywhere in the assembly,,,
+3075,RDC_NB_1F_VEV-6553,VEV,Gene Therapy Lab N-1316C,no reading anywhere in the assembly,,,
+3076,RDC_NB_1F_FEV-6554,FEV,Gene Therapy Lab N-1316C,no reading anywhere in the assembly,,,
+3077,RDC_NB_1F_FEV-6555,FEV,Gene Therapy Lab N-1316C,no reading anywhere in the assembly,,,
+3078,RDC_NB_1F_CEV-6581,CEV,TC3 N-1316F,no reading anywhere in the assembly,,,
+3079,RDC_NB_1F_FEV-6602,FEV,Analytical Core N-1316H,no reading anywhere in the assembly,,,
+3080,RDC_NB_1F_FEV-6632,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3081,RDC_NB_1F_FEV-6633,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3082,RDC_NB_1F_FEV-6634,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3083,RDC_NB_1F_FEV-6635,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3084,RDC_NB_1F_FEV-6636,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3085,RDC_NB_1F_FEV-6637,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3086,RDC_NB_1F_FEV-6638,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3087,RDC_NB_1F_FEV-6639,FEV,Bio-Med Chem Lab 1 N-1316L,no reading anywhere in the assembly,,,
+3088,RDC_NB_1F_FEV-6731,FEV,SERIVICE CORRRIDOR N-1337,no reading anywhere in the assembly,,,
+3089,RDC_NB_1F_VEV-6751,VEV,TC1 N-1345A,no reading anywhere in the assembly,,,
+3090,RDC_NB_1F_VEV-6762,VEV,Diabetes Lab / Open Lab N-1345B,no reading anywhere in the assembly,,,
+3091,RDC_NB_1F_VEV-6763,VEV,Diabetes Lab / Open Lab N-1345B,no reading anywhere in the assembly,,,
+3092,RDC_NB_1F_FEV-6764,FEV,Diabetes Lab / Open Lab N-1345B,no reading anywhere in the assembly,,,
+3093,RDC_NB_1F_FEV-6765,FEV,Diabetes Lab / Open Lab N-1345B,no reading anywhere in the assembly,,,
+3094,RDC_NB_1F_FEV-6766,FEV,Diabetes Lab / Open Lab N-1345B,no reading anywhere in the assembly,,,
+3095,RDC_NB_1F_CEV-6791,CEV,TC2 N-1345C,no reading anywhere in the assembly,,,
+3096,RDC_NB_1F_FEV-6852,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3097,RDC_NB_1F_FEV-6853,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3098,RDC_NB_1F_FEV-6854,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3099,RDC_NB_1F_FEV-6855,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3100,RDC_NB_1F_FEV-6856,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3101,RDC_NB_1F_FEV-6857,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3102,RDC_NB_1F_FEV-6858,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3103,RDC_NB_1F_FEV-6859,FEV,Bio-Med Chem Lab 2 N-1345J,no reading anywhere in the assembly,,,
+3104,RDC_SB_1F_AT-3501,AT,Lobby S-0294,no reading anywhere in the assembly,,,
+3105,RDC_SB_1F_AT-3502,AT,Lobby S-0294,no reading anywhere in the assembly,,,
+3106,RDC_SB_1F_AT-3503,AT,Reception S-0293,no reading anywhere in the assembly,,,
+3107,RDC_SB_1F_AT-3504,AT,Open Plan S-1229,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3504
+3108,RDC_SB_1F_AT-3505,AT,Open Plan S-1229,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3505
+3109,RDC_SB_1F_AT-3506,AT,Office S-1233,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3506
+3110,RDC_SB_1F_AT-3507,AT,Office S-1234,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3507
+3111,RDC_SB_1F_AT-3508,AT,Office S-1235,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3508
+3112,RDC_SB_1F_AT-3509,AT,Policy Director Office S-1237,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3509
+3113,RDC_SB_1F_AT-3510,AT,Policy Executive Director Office S-1240,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3510
+3114,RDC_SB_1F_AT-3511,AT,CORRIDOR S-1280,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3511
+3115,RDC_SB_1F_AT-3512,AT,Pantry S-1282,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3512
+3116,RDC_SB_1F_AT-3513,AT,Office S-1283,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3513
+3117,RDC_SB_1F_AT-3514,AT,Office S-1284,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3514
+3118,RDC_SB_1F_AT-3515,AT,S-1285 VP R&D,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3515
+3119,RDC_SB_1F_AT-3516,AT,Meeting Room S-1288,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3516
+3120,RDC_SB_1F_AT-3517,AT,Dressing Room S-1290,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3517
+3121,RDC_SB_1F_AT-3518,AT,Waiting Area S-1292,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3518
+3122,RDC_SB_1F_AT-3520,AT,Office S-1294,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3520
+3123,RDC_SB_1F_AT-3521,AT,Office S-1295,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3521
+3124,RDC_SB_1F_AT-3522,AT,Conference Room S-1296,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3522
+3125,RDC_SB_1F_AT-3523,AT,Office S-1299,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3523
+3126,RDC_SB_1F_AT-3524,AT,Normal Elec. S-1238,no reading anywhere in the assembly,,,RDC_SB_1F_VAV3524
+3127,RDC_SB_1F_AT-0207,AT,Open Plan S-1293A,no reading anywhere in the assembly,,,
+3128,RDC_SB_1F_AT-0208,AT,Open Plan S-1293,no reading anywhere in the assembly,,,
+3129,RDC_SB_1F_AT-0201A,AT,Policy Executive Director Office S-1240,no reading anywhere in the assembly,,,
+3130,RDC_SB_1F_AT-0201B,AT,Open Plan S-1229,no reading anywhere in the assembly,,,
+3131,RDC_SB_1F_AT-0206,AT,Policy Executive Director Office S-1240,no reading anywhere in the assembly,,,
+3132,RDC_NB_1F_AT-7620,AT,Office N-1415,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7620
+3133,RDC_NB_1F_AT-7625,AT,Office N-1416,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7625
+3134,RDC_NB_1F_AT-7630,AT,Office 05 - 2 WKS- N-1407,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7630
+3135,RDC_NB_1F_AT-7635,AT,Office N-1418,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7635
+3136,RDC_NB_1F_AT-7640,AT,Office N-1419,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7640
+3137,RDC_NB_1F_AT-7645,AT,Exp. Workstation N-1420,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7645
+3138,RDC_NB_1F_AT-7650,AT,Office N-1421,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7650
+3139,RDC_NB_1F_AT-7655,AT,Office N-1422,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7655
+3140,RDC_NB_1F_AT-7660,AT,Office 05 - 2 WKS- N-1401,inherits from the assembly,Workstation N-1423,RDC_NB_1F_VAV7660,RDC_NB_1F_VAV7660
+3141,RDC_NB_1F_AT-7665,AT,Normal Elec. N-1425,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7665_EV7666
+3142,RDC_NB_1F_AT-7670,AT,Office N-1426,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7670
+3143,RDC_NB_1F_AT-7675,AT,Office N-1428,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7675
+3144,RDC_NB_1F_AT-7680,AT,Conf N-1429,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7680_EV7681
+3145,RDC_NB_1F_AT-7685,AT,Office N-1433,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7685
+3146,RDC_NB_1F_AT-7690,AT,Office N-1435,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7690
+3147,RDC_NB_1F_AT-7695,AT,Office N-1437,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7695
+3148,RDC_NB_1F_AT-7700,AT,Emer. Elec. N-1438,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7700_EV7701
+3149,RDC_NB_1F_AT-7705,AT,Expansion WORKstation N-1442,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7705
+3150,RDC_NB_1F_AT-7710,AT,Office 05 - 24 WKS + N-1441 Room N-1442,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7710
+3151,RDC_NB_1F_AT-7840,AT,Conf N-1458,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7840_EV7841
+3152,RDC_NB_1F_AT-7845,AT,Conf N-1459,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7845_EV7846
+3153,RDC_NB_1F_AT-7850,AT,Office N-1459A,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7850
+3154,RDC_NB_1F_AT-7860,AT,Exp. Workstation N-1461,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7860
+3155,RDC_NB_1F_AT-7870,AT,Office N-1462,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7870
+3156,RDC_NB_1F_AT-7875,AT,Office N-1463,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7875
+3157,RDC_NB_1F_AT-7880,AT,Office N-1464,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7880
+3158,RDC_NB_1F_AT-7885,AT,Office N-1465,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7885
+3159,RDC_NB_1F_AT-7890,AT,Workstation N-1466,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7890
+3160,RDC_NB_1F_AT-7895,AT,Office N-1467,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7895
+3161,RDC_NB_1F_AT-7900,AT,Office N-1468,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7900
+3162,RDC_NB_1F_AT-7905,AT,Office N-1469,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7905
+3163,RDC_NB_1F_AT-7910,AT,Office N-1470,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7910
+3164,RDC_NB_1F_AT-7915,AT,Workstation N-1471,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7915
+3165,RDC_NB_1F_AT-7920,AT,Office N-1472,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7920
+3166,RDC_NB_1F_AT-7925,AT,Office N-1473,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7925
+3167,RDC_NB_1F_AT-7930,AT,Office N-1474,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7930
+3168,RDC_NB_1F_AT-7935,AT,Office N-1475,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7935
+3169,RDC_NB_1F_AT-7940,AT,Workstation N-1476,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7940
+3170,RDC_NB_1F_AT-7945,AT,Office N-1477,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7945
+3171,RDC_NB_1F_AT-7950,AT,Office N-1478,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7950
+3172,RDC_NB_1F_AT-7955,AT,Office N-1479,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7955
+3173,RDC_NB_1F_AT-7960,AT,Office N-1480,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7960
+3174,RDC_NB_1F_EV-7631,EV,Office 05 - 2 WKS- N-1407,no reading anywhere in the assembly,,,
+3175,RDC_NB_1F_EV-7646,EV,Exp. Workstation N-1420,no reading anywhere in the assembly,,,
+3176,RDC_NB_1F_EV-7661,EV,Office 05 - 2 WKS- N-1401,no reading anywhere in the assembly,,,
+3177,RDC_NB_1F_EV-7663,EV,IDF N-1424,no reading anywhere in the assembly,,,
+3178,RDC_NB_1F_EV-7711,EV,Workstation N-1442,no reading anywhere in the assembly,,,
+3179,RDC_NB_1F_EV-7712,EV,Workstation N-1442,no reading anywhere in the assembly,,,
+3180,RDC_NB_1F_EV-7861,EV,Office 05 - 9 WKS N-1461,no reading anywhere in the assembly,,,
+3181,RDC_NB_1F_EV-7916,EV,Office 05 - 8 WKS N-1471,no reading anywhere in the assembly,,,
+3182,RDC_NB_1F_CEV-7521,CEV,Isotope N-1404B,no reading anywhere in the assembly,,,
+3183,RDC_NB_1F_FEV-7522,FEV,Isotope N-1404B,no reading anywhere in the assembly,,,
+3184,RDC_NB_1F_CEV-7591,CEV,HY Room N-1404J,no reading anywhere in the assembly,,,
+3185,RDC_NB_1F_CEV-7581,CEV,TC3 N-1404H,no reading anywhere in the assembly,,,RDC_NB_1F_VAV7580_VEV7581
+3186,RDC_NB_1F_FEV-7602,FEV,CELL BIO LABS N-1404K,no reading anywhere in the assembly,,,
+3187,RDC_NB_1F_CEV-7611,CEV,TC1 N-1404L,no reading anywhere in the assembly,,,
+3188,RDC_NB_1F_CEV-6831,CEV,SHARED COLD LAB N-1345G,no reading anywhere in the assembly,,,RDC_NB_1F_VAV6830_VEV6831
+3189,RDC_NB_1F_CEV-7761,CEV,A/L N-1450D,no reading anywhere in the assembly,,,
+3190,RDC_NB_1F_CEV-7791,CEV,A/L N-1450G,no reading anywhere in the assembly,,,
+3191,RDC_NB_1F_FEV-7824,FEV,STEM/PCR Open Lab N-1450M,no reading anywhere in the assembly,,,
+3192,RDC_NB_2F_AT-4900,AT,Normal Electric N-2102,no reading anywhere in the assembly,,,
+3193,RDC_NB_2F_AT-4910,AT,Emergency Electr N-2103,no reading anywhere in the assembly,,,
+3194,RDC_NB_2F_EV-4920,EV,IDF N-2104,no reading anywhere in the assembly,,,
+3195,RDC_NB_2F_AT-5930,AT,Office 04 N-1170,no reading anywhere in the assembly,,,
+3196,RDC_NB_2F_AT-5940,AT,Office 05 - 8 WKS- N-1165,no reading anywhere in the assembly,,,
+3197,RDC_NB_2F_AT-6979,AT,Normal Elec. N-2107,no reading anywhere in the assembly,,,
+3198,RDC_NB_2F_AT-6980,AT,Emer. Elec. N-2108,no reading anywhere in the assembly,,,
+3199,RDC_NB_2F_EV-6981,EV,IDF N-2110,no reading anywhere in the assembly,,,
+3200,RDC_NB_2F_AT-7975,AT,Normal Elec. N-2111,no reading anywhere in the assembly,,,
+3201,RDC_NB_2F_AT-7980,AT,Emer. Elec. N-2112,no reading anywhere in the assembly,,,

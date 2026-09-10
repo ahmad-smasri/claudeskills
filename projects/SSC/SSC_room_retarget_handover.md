@@ -1,3 +1,7 @@
+> **Naming note (2026-09-09).** The paths below say `QF_SSC_Ontology_V03.xlsx`
+> because that is what the file was called when this was written. It is now
+> `QF_SSC_Ontology_V04.xlsx`; the content is unchanged. See SSC-007.
+
 # SSC ontology - room subjects and equipment locations
 
 `reference-models/QF_SSC_Ontology_V03.xlsx` **is** this change: the converted

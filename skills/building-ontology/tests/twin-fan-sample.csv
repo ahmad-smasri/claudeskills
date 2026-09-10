@@ -1,0 +1,12 @@
+subject,subjectType,predicate,object,objectType,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val,object_prop_name,object_prop_val,subject_prop_name,subject_prop_val
+entity:X,rec:Building,rec:isPartOf,entity:QF,rec:Site,rdfs:label_en,X Building,,,,,,,,,,,,,,,,,,,,
+entity:X_B,rec:BasementLevel,rec:isPartOf,entity:X,rec:Building,rdfs:label_en,Basement,,,,,,,,,,,,,,,,,,,,
+entity:X_B-001_Plant-Room,rec:Room,rec:isPartOf,entity:X_B,rec:BasementLevel,rdfs:label_en,B.001 PLANT ROOM,,,,,,,,,,,,,,,,,,,,
+entity:X_B-002_Rest-Room-Men,rec:Room,rec:isPartOf,entity:X_B,rec:BasementLevel,rdfs:label_en,B.002 REST ROOM MEN,,,,,,,,,,,,,,,,,,,,
+entity:X_B-003_Rest-Room-Women,rec:Room,rec:isPartOf,entity:X_B,rec:BasementLevel,rdfs:label_en,B.003 REST ROOM WOMEN,,,,,,,,,,,,,,,,,,,,
+entity:X_TEF-B01,brick:Exhaust_Fan,brick:isPartOf,entity:HVAC,brick:HVAC_System,rdfs:label_en,X TEF B01,,,,,,,,,,,,,,,,,,,,
+entity:X_TEF-B01,brick:Exhaust_Fan,rec:locatedIn,entity:X_B-001_Plant-Room,rec:Room,,,,,,,,,,,,,,,,,,,,,,
+entity:X_TEF-B01,brick:Exhaust_Fan,rec:feeds,entity:X_B-002_Rest-Room-Men,rec:Room,,,,,,,,,,,,,,,,,,,,,,
+entity:X_TEF-B01,brick:Exhaust_Fan,rec:feeds,entity:X_B-003_Rest-Room-Women,rec:Room,,,,,,,,,,,,,,,,,,,,,,
+entity:X_TEF-B01,brick:Exhaust_Fan,brick:hasPart,entity:X_TEF-B01A,brick:Exhaust_Fan,,,rdfs:label_en,X TEF B01A,,,,,,,,,,,,,,,,,,
+entity:X_TEF-B01,brick:Exhaust_Fan,brick:hasPart,entity:X_TEF-B01B,brick:Exhaust_Fan,,,rdfs:label_en,X TEF B01B,,,,,,,,,,,,,,,,,,

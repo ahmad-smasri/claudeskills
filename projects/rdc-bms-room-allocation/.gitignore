@@ -1,0 +1,6 @@
+# The screens are the client's input, unzipped here to be read; the annotated
+# copies and tag strips are regenerated from them by run_all.sh in a minute.
+# Neither belongs in the repo - together they are 81 MB.
+screens/
+out/
+__pycache__/

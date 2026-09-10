@@ -1,0 +1,111 @@
+building,room,the register says,the rule says,note
+HQ,B1.001 AHU 4,Not Included,Included,rule includes it
+HQ,B1.006 AHU 1,Not Included,Included,rule includes it
+HQ,B1.016 AHU 2,Not Included,Included,rule includes it
+HQ,B1.022 AHU 3,Not Included,Included,rule includes it
+HQ,B1.019 AHU,Not Included,Included,rule includes it
+HQ,B1.107 DOCK MASTER OFFICE,Not Included,Included,rule includes it
+HQ,B1.122 SUPPORT SPACE FOOD STORAGE,Not Included,Included,rule includes it
+HQ,B1.123 SUPPORT SPACE FOOD STORAGE,Not Included,Included,rule includes it
+HQ,B1.015 SUPPORT SPACE LOADING,Not Included,Included,rule includes it
+HQ,B1.014 SUPPORT SPACE DRY WASTE STORAGE,Not Included,Included,rule includes it
+HQ,B1.124 WASTE BIN WASH UP,Not Included,Included,rule includes it
+HQ,10.111 AV ROOM,Included,Not Included,rule excludes it as technical
+HQ,11.108 PRINT COPY ROOM,Not Included,Included,rule includes it
+HQ,11.106 MCC ELEC ROOM,Included,Not Included,rule excludes it as technical
+HQ,B1.103 STAFF LOBBY,Included,Not Included,rule excludes it as common area
+HQ,1.027 FINANCE AUDITOR,Not Included,Included,rule includes it
+HQ,1.101 STAFF LOUNGE,Included,Not Included,rule excludes it as common area
+HQ,1.105 PRAYER ROOM,Included,Not Included,rule excludes it as common area
+HQ,1.117 FINANCE AUDITOR,Not Included,Included,rule includes it
+HQ,1.115 FINANCE AUDITOR,Not Included,Included,rule includes it
+HQ,1.701 STAFF CAFETERIA,Included,Not Included,rule excludes it as common area
+HQ,3.105A FEMALE PRAYER ROOM,Included,Not Included,rule excludes it as common area
+HQ,3.214 IT SECRETARY,Not Included,Included,rule includes it
+HQ,4.208 VP ADM EXECSECRET,Not Included,Included,rule includes it
+HQ,5.013 VP EDU SECRETARY,Not Included,Included,rule includes it
+HQ,5.108 VP EDU ASSISTANT,Not Included,Included,rule includes it
+HQ,5.107 VP EDUCATION SUPPSECRET,Not Included,Included,rule includes it
+HQ,5.009 VP1 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.010 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.003 VP EDU SECRETARY,Not Included,Included,rule includes it
+HQ,5.005 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.006 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.007 VP EDU OFFICERS,Included,Not Included,rule excludes it as executive
+HQ,5.205 VP EDU MEETING ROOM,Included,Not Included,rule excludes it as executive
+HQ,5.211 VP EDU CHPEXECSECRET,Not Included,Included,rule includes it
+HQ,6.027 VP CAPITAL CONSULTANT,Not Included,Included,rule includes it
+HQ,6.028 VP CAPITAL CONSULTANT,Not Included,Included,rule includes it
+HQ,6.205 VP CAPITAL CONSULTANT,Not Included,Included,rule includes it
+HQ,7.017 CA ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,7.020 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.021 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.022 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.023 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.024 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.025 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.026 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.027 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.028 BD UNIT EXECUTIVE,Not Included,Included,rule includes it
+HQ,7.208 PRESIDENT SUPPORT SECRET,Not Included,Included,rule includes it
+HQ,7.209 PRESIDENT EXECSECRET,Not Included,Included,rule includes it
+HQ,7.210 PRESIDENT EXECSECRET,Not Included,Included,rule includes it
+HQ,7.213 VICE CHAIRPERSON ENSULT,Not Included,Included,rule includes it
+HQ,7.214 VICE CHAIRSECRETARY,Not Included,Included,rule includes it
+HQ,7.215 VICE CHAIRPERSON MEETING ROOM,Not Included,Included,rule includes it
+HQ,8.002 VISITORS CENTER OFFICE,Not Included,Included,rule includes it
+HQ,9.018 BMO EXECSECRET,Not Included,Included,rule includes it
+HQ,9.019 BMO EXECSECRET,Not Included,Included,rule includes it
+HQ,9.020 BMO EXECSECRET,Not Included,Included,rule includes it
+HQ,9.023 BMO EXECSECRET,Not Included,Included,rule includes it
+HQ,9.024 BMO EXECSECRET,Not Included,Included,rule includes it
+HQ,9.025 BMO EXECSECRET,Not Included,Included,rule includes it
+HQ,9.026 BMO SUPPSECRET,Not Included,Included,rule includes it
+HQ,9.027 BMO SUPPSECRET,Not Included,Included,rule includes it
+HQ,9.028 BMO SUPPSECRET,Not Included,Included,rule includes it
+HQ,9.029 BMO SUPPSECRET,Not Included,Included,rule includes it
+HQ,9.030 BMO SUPPSECRET,Not Included,Included,rule includes it
+HQ,9.033 HR EDUADVADVISOR ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,9.034 HR EDUADVADVISOR ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,9.035 HR EDUADVADVISOR ENSUIT,Included,Not Included,rule excludes it as executive
+HQ,9.037 BOD SECRETARY,Not Included,Included,rule includes it
+HQ,9.008 LEGAL LEGSUPSEC,Not Included,Included,rule includes it
+HQ,9.009 LEGAL LEGSUPSEC,Not Included,Included,rule includes it
+HQ,9.010 LEGAL LEGADVENSUIT,Not Included,Included,rule includes it
+HQ,9.108 SUPPORT SPACE PREP KITCHEN,Not Included,Included,rule includes it
+HQ,10.007 EXEC DIR PROT ASSIS,Included,Not Included,rule excludes it as executive
+HQ,10.017 PLANNING DIR STRAT PLANNER,Included,Not Included,rule excludes it as executive
+HQ,10.023 SHSERVDIR HR OFFICER,Included,Not Included,rule excludes it as executive
+HQ,10.025 SHSERVDIR PROCUR REPRESENT,Included,Not Included,rule excludes it as executive
+HQ,10.026 SHSERVDIR SERVICE COORD,Included,Not Included,rule excludes it as executive
+HQ,10.027 SHSERVDIRGENSERVSUPERV,Included,Not Included,rule excludes it as executive
+HQ,10.035 SHSERVDIR IT SUPPORT OFFICER,Included,Not Included,rule excludes it as executive
+HQ,10.004 EXECDIRARCH COORD,Included,Not Included,rule excludes it as executive
+HQ,10.112 TRANSLATOR ROOM,Not Included,Included,rule includes it
+HQ,11.017 EXECDIR LEGAL ADVISOR,Included,Not Included,rule excludes it as executive
+HQ,11.020 EXECDIREXECASSIST,Not Included,Included,rule includes it
+HQ,11.002 COMMUNICDIR MED REL OFFICER,Included,Not Included,rule excludes it as executive
+HQ,11.008 EXEC DIR CONSULTANT,Not Included,Included,rule includes it
+HQ,11.009 SECRETARY,Not Included,Included,rule includes it
+HQ,11.011 SECRETARY,Not Included,Included,rule includes it
+HQ,8.400 VISITORS CENTER,Not Included,Included,rule includes it
+QNL,L1.030 ICT ROOM 02,Not Included,Included,rule includes it
+QNL,B.155 FACULTY CARRELS,Not Included,Included,rule includes it
+QNL,B.085 FUMIGATION ROOM,Not Included,Included,rule includes it
+QNL,L1.003 TUTORING HEAD,Included,Not Included,rule excludes it as executive
+QNL,B.002 KITCHEN,Not Included,Included,rule includes it
+QNL,B.003 FINANCE COORDINATOR AND BUSINESS SUPPORT OFCR,Not Included,Included,rule includes it
+SSC,B.030 CORRIDOR,Not Included,Included,rule includes it
+SSC,3.030 ASSOC DIRECTORS MEETING ROOM,Not Included,Included,rule includes it
+RDC,Mech S-0136,Included,Not Included,rule excludes it as technical
+RDC,MECH S-0136,Included,Not Included,rule excludes it as technical
+RDC,Cyber Server S-0138,Included,Not Included,rule excludes it as technical
+RDC,Corridor S-0143,Not Included,Included,rule includes it
+RDC,Air Quality High Bay N-0215A,Not Included,Included,rule includes it
+RDC,CSP High Bay N-0215B,Not Included,Included,rule includes it
+RDC,FPC S-1277,Included,Not Included,rule excludes it as technical
+RDC,NOC Lab S-0140A,Included,Not Included,rule excludes it as technical
+RDC,Dedicated Cyber SOC/NOC Lab S-0141,Included,Not Included,rule excludes it as technical
+RDC,EL Shop N-1216C,Included,Not Included,rule excludes it as technical
+RDC,Shared Eq Rm N-1404D,Included,Not Included,rule excludes it as technical
+RDC,LN2 DISPENSER U-0104,Not Included,Included,rule includes it
