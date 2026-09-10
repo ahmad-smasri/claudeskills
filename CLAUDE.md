@@ -55,8 +55,8 @@ ontology task; this file is the index, the skill is the procedure.
 | File | What it is |
 |---|---|
 | `DarCairo_V98.csv` | **the primary reference for any ontology we build.** 25,722 rows, 33 columns (V93's 27 plus two more property groups). Site → building → levels → zones → rooms → HVAC, electrical, water systems → equipment → parts → points → timeseries. When in doubt, match Dar Cairo. |
-| `QF_SSC_Ontology_V04.xlsx` | the current SSC sheet, 5,083 rows on `Sheet1`, 33 columns. Its rooms carry the Dar Cairo shape (`entity:SSC_01-024_Corridor`). This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
-| `QF_HQ_Ontology_draft0.4.xlsx` | the QF HQ draft, 28,929 rows on `HQ_Onotlogy_Draft_v0.4` (note the misspelled tab - pick the sheet by its header, never by name). A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
+| `QF_SSC_Ontology_V04.xlsx` | the current SSC sheet, 12,144 rows on `Sheet1`, 33 columns. It carries the virtual metering layer - `para:CHW_Meter`, `para:HVAC_Meter`, `para:LTG_Meter` and `brick:Electrical_Meter` on all 166 rooms, plus SPWR/Common-Util at building and floor. Its rooms carry the Dar Cairo shape (`entity:SSC_01-024_Corridor`). This is a delivered previous-project ontology and is step 3 of the class ladder - check it for precedent before minting `para:`. Pick the ontology sheet by its header, never by `.active`. It already coins reusable `para:` classes (`para:Fail_Start_Alarm`, `para:Fail_Stop_Alarm`, `para:Summary_Alarm`, `para:Scheduled_Hrs_Duration`, `para:UnScheduled_Hrs_Duration`) - reuse them rather than re-coining. |
+| `QF_HQ_Ontology_V02.xlsx` | the QF HQ sheet, 64,426 rows and 23 columns on `HQ_Onotlogy` (note the misspelled tab - pick the sheet by its header, never by name). Its rooms carry the Dar Cairo shape (`entity:HQ_10-002C_Office-Space`) and each of the 1,050 carries three virtual meters - HVAC, CHW and LTG, eight rows each, 24 rows a room, all `brick:isPartOf entity:Metering`. Unlike QNL and SSC it has no room-tier `brick:Electrical_Meter` - that is the client's delivered scope, not an omission to fill in. A third delivered-project ontology and another step-3 precedent alongside SSC. Read for structure, not for units: several rows carry a wrong `brick:hasUnit` (air flow tagged `unit:V`, cooling capacity `unit:HZ`), so Dar Cairo stays the unit authority. |
 | `Ontology_headers.xlsx` | the nine canonical column names, nothing else |
 
 ### Source documents - repo root
@@ -112,7 +112,7 @@ onto the equipment; any source column whose meaning is ambiguous.
 2. Is it in Brick? `lookup_reference.py --term ...` or ontology.brickschema.org -
    use the preferred class, never an alias.
 3. Is it in a previous project's ontology? Check the delivered sheets in
-   `reference-models/` (`QF_SSC_Ontology_V04.xlsx` and `QF_HQ_Ontology_draft0.4.xlsx`) - reuse the class a
+   `reference-models/` (`QF_SSC_Ontology_V04.xlsx` and `QF_HQ_Ontology_V02.xlsx`) - reuse the class a
    prior project already gave the concept, and reuse a `para:` class it already
    coined rather than minting a parallel one.
 4. Not anywhere above? Define a `para:` subclass of the closest Brick parent.

@@ -867,7 +867,7 @@ def load(paths, building, code=None):
 
 
 DELIVERED = {"SSC": "QF_SSC_Ontology_V04.xlsx",
-             "HQ": "QF_HQ_Ontology_draft0.4.xlsx",
+             "HQ": "QF_HQ_Ontology_V02.xlsx",
              "QNL": "../projects/QNL/QNL_Ontology.xlsx"}
 
 # Which of those may respell a room. Only QNL: its ontology is delivered and

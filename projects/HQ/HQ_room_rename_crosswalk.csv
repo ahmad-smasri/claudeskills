@@ -1,0 +1,1047 @@
+old_subject,new_subject,named_by
+entity:HQ_10_001_SHEIKHA_WING_STORAGE,entity:HQ_10-001_Sheikha-Wing-Storage,naming sheet
+entity:HQ_10_002A_OFFICE_SPACE,entity:HQ_10-002A_Office-Space,naming sheet
+entity:HQ_10_002B_OFFICE_SPACE,entity:HQ_10-002B_Office-Space,naming sheet
+entity:HQ_10_002C_OFFICE_SPACE,entity:HQ_10-002C_Office-Space,naming sheet
+entity:HQ_10_002D_OFFICE_SPACE,entity:HQ_10-002D_Office-Space,naming sheet
+entity:HQ_10_002E_OFFICE_SPACE,entity:HQ_10-002E_Office-Space,naming sheet
+entity:HQ_10_003_BOARD_ROOM_WAITING_AREA,entity:HQ_10-003_Board-Room-Waiting-Area,naming sheet
+entity:HQ_10_004_EXECDIRARCHCOORD,entity:HQ_10-004_Execdirarchcoord,naming sheet
+entity:HQ_10_005_SHEIKHA_WING_ARCHIVE,entity:HQ_10-005_Sheikha-Wing-Archive,naming sheet
+entity:HQ_10_006_EXECDIRARCHCOORD,entity:HQ_10-006_Execdirarchcoord,naming sheet
+entity:HQ_10_007_EXECDIR_PROTASSIST,entity:HQ_10-007_Execdir-Protassist,naming sheet
+entity:HQ_10_008_PROTOCOL_DIR_SCHED_OFFICER,entity:HQ_10-008_Protocol-Dir-Sched-Officer,naming sheet
+entity:HQ_10_009_PROTOCOL_DIR_CEREMOFF,entity:HQ_10-009_Protocol-Dir-Ceremoff,naming sheet
+entity:HQ_10_011_PROTOCOL_DIR_CEREMOFF,entity:HQ_10-011_Protocol-Dir-Ceremoff,naming sheet
+entity:HQ_10_012_PROTOCOL_DIR_TR_&_VIS_OFF,entity:HQ_10-012_Protocol-Dir-Tr-And-Vis-Off,naming sheet
+entity:HQ_10_013_PROTOCOL_DIR_TR_&_VIS_OFF,entity:HQ_10-013_Protocol-Dir-Tr-And-Vis-Off,naming sheet
+entity:HQ_10_014_PRINT_COPY,entity:HQ_10-014_Print-Copy,naming sheet
+entity:HQ_10_015_PROTOCOL_DIRSCHED_OFFICER,entity:HQ_10-015_Protocol-Dirsched-Officer,naming sheet
+entity:HQ_10_016_PLANNING_DIRPLANNING_ANALYST,entity:HQ_10-016_Planning-Dirplanning-Analyst,naming sheet
+entity:HQ_10_017_PLANNING_DIRSTRATPLANNER,entity:HQ_10-017_Planning-Dirstratplanner,naming sheet
+entity:HQ_10_018_PLANNING_DIR_EXTCOORD,entity:HQ_10-018_Planning-Dir-Extcoord,naming sheet
+entity:HQ_10_019_POLICY_DIRSENPOLANALYST,entity:HQ_10-019_Policy-Dirsenpolanalyst,naming sheet
+entity:HQ_10_01_PROTOCOL_DIR_CEREMOFF,entity:HQ_10-010_Protocol-Dir-Ceremoff,naming sheet
+entity:HQ_10_021_POLICY_DIRRESANALYST,entity:HQ_10-021_Policy-Dirresanalyst,naming sheet
+entity:HQ_10_022_POLICY_DIRRESANALYST,entity:HQ_10-022_Policy-Dirresanalyst,naming sheet
+entity:HQ_10_023_SHSERVDIR_HR_OFFICER,entity:HQ_10-023_Shservdir-Hr-Officer,naming sheet
+entity:HQ_10_024_SHSERVDIRHR_ASSISTANT,entity:HQ_10-024_Shservdirhr-Assistant,naming sheet
+entity:HQ_10_025_SHSERVDIRPROCURREPRESENT,entity:HQ_10-025_Shservdirprocurrepresent,naming sheet
+entity:HQ_10_026_SHSERVDIRSERVICE_COORD,entity:HQ_10-026_Shservdirservice-Coord,naming sheet
+entity:HQ_10_027_SHSERVDIRGENSERVSUPERV,entity:HQ_10-027_Shservdirgenservsuperv,naming sheet
+entity:HQ_10_028_SHSERVDIRFINANCCONTROL,entity:HQ_10-028_Shservdirfinanccontrol,naming sheet
+entity:HQ_10_029_SHSERVDIRTR&_GUSERV,entity:HQ_10-029_Shservdirtr-And-Guserv,naming sheet
+entity:HQ_10_02_POLICY_DIR_SENRESEARCH_ANALYST,entity:HQ_10-020_Policy-Dir-Senresearch-Analyst,naming sheet
+entity:HQ_10_030_PANTRY,entity:HQ_10-030_Pantry,ontology (reference holds several rooms)
+entity:HQ_10_031_COMMUNICDIRCOMMDESIGNER,entity:HQ_10-031_Communicdircommdesigner,naming sheet
+entity:HQ_10_032_COMMUNICDIRSPEECH_EDITOR,entity:HQ_10-032_Communicdirspeech-Editor,naming sheet
+entity:HQ_10_033_COMMUNICDIR_TRANSLATOR,entity:HQ_10-033_Communicdir-Translator,naming sheet
+entity:HQ_10_034_COMMUNICDIRPUBCOMMCOORD,entity:HQ_10-034_Communicdirpubcommcoord,naming sheet
+entity:HQ_10_035_SHSERVDIR_IT_SUPPORT_OFFICER,entity:HQ_10-035_Shservdir-IT-Support-Officer,naming sheet
+entity:HQ_10_036_SHSERVDIR_ACCOUNT,entity:HQ_10-036_Shservdir-Account,naming sheet
+entity:HQ_10_037_SHSERVDIRSENACCOUNTANT,entity:HQ_10-037_Shservdirsenaccountant,naming sheet
+entity:HQ_10_038_PRINT_COPY,entity:HQ_10-038_Print-Copy,naming sheet
+entity:HQ_10_03_PANTRY,entity:HQ_10-03_Pantry,ontology (reference holds several rooms)
+entity:HQ_10_101_CONSULTANTS_SPACE,entity:HQ_10-101_Consultants-Space,naming sheet
+entity:HQ_10_102_SHEIKHA_WING_MULTIPURPOSE_ROOM,entity:HQ_10-102_Sheikha-Wing-Multipurpose-Room,naming sheet
+entity:HQ_10_103_HH_WING_PANTRY,entity:HQ_10-103_Hh-Wing-Pantry,ontology (reference holds several rooms)
+entity:HQ_10_104_HH_WING_STORAGE,entity:HQ_10-104_Hh-Wing-Storage,ontology (reference holds several rooms)
+entity:HQ_10_105_HH_WING_STORAGE,entity:HQ_10-105_Hh-Wing-Storage,ontology (reference holds several rooms)
+entity:HQ_10_106_LOUNGE,entity:HQ_10-106_Lounge,naming sheet
+entity:HQ_10_107_STORAGE,entity:HQ_10-107_Storage,ontology (reference holds several rooms)
+entity:HQ_10_108_JANITORS_CLOSET,entity:HQ_10-108_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_10_109_BOARD_PREPROOM,entity:HQ_10-109_Board-Preproom,naming sheet
+entity:HQ_10_111_AV_ROOM,entity:HQ_10-111_AV-Room,naming sheet
+entity:HQ_10_112_TRANSLATOR_ROOM,entity:HQ_10-112_Translator-Room,naming sheet
+entity:HQ_10_11_SHEIKHA_WING_BOARD_ROOM,entity:HQ_10-110_Sheikha-Wing-Board-Room,ontology (reference holds several rooms)
+entity:HQ_10_401_FEMALE_TOILET,entity:HQ_10-401_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_10_402_MALE_TOILET,entity:HQ_10-402_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_10_403_MALE_TOILET,entity:HQ_10-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_10_404_FEMALE_TOILET,entity:HQ_10-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_10_405_MALE_TOILET,entity:HQ_10-405_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_10_406_FEMALE_TOILET,entity:HQ_10-406_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_10_511_VESTIBULE,entity:HQ_10-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_10_512_IDF_ROOM,entity:HQ_10-512_IDF-Room,naming sheet
+entity:HQ_10_521_VESTIBULE,entity:HQ_10-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_10_531_IDF_ROOM,entity:HQ_10-531_IDF-Room,naming sheet
+entity:HQ_10_532_ELECTRICAL_CLOSET_1,entity:HQ_10-532_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_10_533_ELECTRICAL_CLOSET_2,entity:HQ_10-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_10_541_VESTIBULE,entity:HQ_10-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_10_601_HH-WING_CORRIDOR,entity:HQ_10-601_Hh-Wing-Corridor,naming sheet
+entity:HQ_10_701_TERRACE,entity:HQ_10-701_Terrace,ontology (reference holds several rooms)
+entity:HQ_10_P-1,entity:HQ_10_P-1,ontology (reference holds several rooms)
+entity:HQ_10_P-2,entity:HQ_10_P-2,ontology (reference holds several rooms)
+entity:HQ_10_P-3,entity:HQ_10_P-3,ontology (reference holds several rooms)
+entity:HQ_10_P-4,entity:HQ_10_P-4,ontology (reference holds several rooms)
+entity:HQ_10_P-5,entity:HQ_10_P-5,ontology (reference holds several rooms)
+entity:HQ_10_P-6,entity:HQ_10_P-6,ontology (reference holds several rooms)
+entity:HQ_10_S-1,entity:HQ_10_S-1,ontology (reference holds several rooms)
+entity:HQ_10_ST-1,entity:HQ_10_ST-1,ontology (reference holds several rooms)
+entity:HQ_10_ST-2,entity:HQ_10_ST-2,ontology (reference holds several rooms)
+entity:HQ_10_ST-3,entity:HQ_10_ST-3,ontology (reference holds several rooms)
+entity:HQ_10_ST-4,entity:HQ_10_ST-4,ontology (reference holds several rooms)
+entity:HQ_11_001_COMMUNICDIR_COMMUNICATION_DIRECTOR,entity:HQ_11-001_Communicdir-Communication-Director,naming sheet
+entity:HQ_11_002_COMMUNICDIRMEDRELOFFICER,entity:HQ_11-002_Communicdirmedrelofficer,naming sheet
+entity:HQ_11_003_SHSERVDIR_DIRSHARED_SERVICES,entity:HQ_11-003_Shservdir-Dirshared-Services,naming sheet
+entity:HQ_11_004_EXECDIRECTOR_ADMASSIST,entity:HQ_11-004_Execdirector-Admassist,naming sheet
+entity:HQ_11_005_PROTOCOL_DIRPROTOCOL_DIRECTOR,entity:HQ_11-005_Protocol-Dirprotocol-Director,naming sheet
+entity:HQ_11_006_PROTOCOL_DIRGIFTS_DIRECTOR,entity:HQ_11-006_Protocol-Dirgifts-Director,naming sheet
+entity:HQ_11_007_EXECDIRCONSULTANT,entity:HQ_11-007_Execdirconsultant,naming sheet
+entity:HQ_11_008_EXECDIRCONSULTANT,entity:HQ_11-008_Execdirconsultant,naming sheet
+entity:HQ_11_009_SECRETARY,entity:HQ_11-009_Secretary,naming sheet
+entity:HQ_11_011_SECRETARY,entity:HQ_11-011_Secretary,naming sheet
+entity:HQ_11_012_PLANNING_DIRDIRPLANNING,entity:HQ_11-012_Planning-Dirdirplanning,naming sheet
+entity:HQ_11_013_EXECDIRCORRF-UP,entity:HQ_11-013_Execdircorrf-Up,naming sheet
+entity:HQ_11_014_EXECDIRCORRMANAGER,entity:HQ_11-014_Execdircorrmanager,naming sheet
+entity:HQ_11_015_EXECDIRCORRF-UP,entity:HQ_11-015_Execdircorrf-Up,naming sheet
+entity:HQ_11_016_EXECDIRLEGAL_ASSIST,entity:HQ_11-016_Execdirlegal-Assist,naming sheet
+entity:HQ_11_017_EXECDIRLEGAL_ADVISOR,entity:HQ_11-017_Execdirlegal-Advisor,naming sheet
+entity:HQ_11_018_EXECDIREXECASSIST,entity:HQ_11-018_Execdirexecassist,naming sheet
+entity:HQ_11_019_EXECDIR_DEPEXECDIRECTOR,entity:HQ_11-019_Execdir-Depexecdirector,naming sheet
+entity:HQ_11_01_POLICY_DIRDIROF_POL&_RES,entity:HQ_11-010_Policy-Dirdirof-Pol-And-Res,naming sheet
+entity:HQ_11_021_EXECDIREXECDIRECTOR,entity:HQ_11-021_Execdirexecdirector,naming sheet
+entity:HQ_11_022_SHEIKHA_WING_WAITING_ROOM,entity:HQ_11-022_Sheikha-Wing-Waiting-Room,naming sheet
+entity:HQ_11_023_SHEIKHA_WING_SECURITY_ROOM,entity:HQ_11-023_Sheikha-Wing-Security-Room,naming sheet
+entity:HQ_11_02_EXECDIREXECASSIST,entity:HQ_11-020_Execdirexecassist,naming sheet
+entity:HQ_11_101_AV_ROOM,entity:HQ_11-101_AV-Room,ontology (reference holds several rooms)
+entity:HQ_11_102_HH_WING_BUSINESS_LOUNGE,entity:HQ_11-102_Hh-Wing-Business-Lounge,naming sheet
+entity:HQ_11_103_SHEIKHA_WING_BUSINESS_LOUNGE,entity:HQ_11-103_Sheikha-Wing-Business-Lounge,naming sheet
+entity:HQ_11_104_PANTRY,entity:HQ_11-104_Pantry,ontology (reference holds several rooms)
+entity:HQ_11_105_JANITORS_CLOSET,entity:HQ_11-105_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_11_106_ELECTRICAL_ROOM,entity:HQ_11-106_Electrical-Room,naming sheet
+entity:HQ_11_107_AV_IT,entity:HQ_11-107_AV-IT,naming sheet
+entity:HQ_11_108_PRINT_COPY,entity:HQ_11-108_Print-Copy,naming sheet
+entity:HQ_11_11_ELECTRICAL_CABINET,entity:HQ_11-110_Electrical-Cabinet,naming sheet
+entity:HQ_11_201_SHEIKHA_WING_LOBBY,entity:HQ_11-201_Sheikha-Wing-Lobby,naming sheet
+entity:HQ_11_202_SHEIKHA_WING_SHEIKHA_ENSUIT,entity:HQ_11-202_Sheikha-Wing-Sheikha-Ensuit,ontology (reference holds several rooms)
+entity:HQ_11_203_SHEIKHA_WING_RELAX_AREA,entity:HQ_11-203_Sheikha-Wing-Relax-Area,naming sheet
+entity:HQ_11_204_SHEIKHA_WING_MEETING_ROOM,entity:HQ_11-204_Sheikha-Wing-Meeting-Room,naming sheet
+entity:HQ_11_401_MALE_TOILET,entity:HQ_11-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_11_402_FEMALE_TOILET,entity:HQ_11-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_11_403_SHEIKHA_WING_BATHROOM,entity:HQ_11-403_Sheikha-Wing-Bathroom,ontology (reference holds several rooms)
+entity:HQ_11_404_TOILET,entity:HQ_11-404_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_405_TOILET,entity:HQ_11-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_406_TOILET,entity:HQ_11-406_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_407_TOILET,entity:HQ_11-407_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_408_TOILET,entity:HQ_11-408_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_409_TOILET,entity:HQ_11-409_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_411_TOILET,entity:HQ_11-411_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_412_TOILET,entity:HQ_11-412_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_41_TOILET,entity:HQ_11-410_Toilet,ontology (reference holds several rooms)
+entity:HQ_11_511_VESTIBULE,entity:HQ_11-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_11_512_IDF_ROOM,entity:HQ_11-512_IDF-Room,naming sheet
+entity:HQ_11_521_VESTIBULE,entity:HQ_11-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_11_531_IDF_ROOM,entity:HQ_11-531_IDF-Room,naming sheet
+entity:HQ_11_532_ELECTRICAL_CLOSET,entity:HQ_11-532_Electrical-Closet,ontology (reference holds several rooms)
+entity:HQ_11_533_ELECTRICAL_CLOSET_2,entity:HQ_11-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_11_541_VESTIBULE,entity:HQ_11-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_11_601_SHEIKHA_WING_CORRIDOR,entity:HQ_11-601_Sheikha-Wing-Corridor,naming sheet
+entity:HQ_11_701_SHEIKHA_WING_TERRACE,entity:HQ_11-701_Sheikha-Wing-Terrace,ontology (reference holds several rooms)
+entity:HQ_11_702_TERRACE,entity:HQ_11-702_Terrace,ontology (reference holds several rooms)
+entity:HQ_11_709_SHEIKHA_WING_CONFERENCE_ROOM,entity:HQ_11-709_Sheikha-Wing-Conference-Room,ontology (reference holds several rooms)
+entity:HQ_11_P-1,entity:HQ_11_P-1,ontology (reference holds several rooms)
+entity:HQ_11_P-2,entity:HQ_11_P-2,ontology (reference holds several rooms)
+entity:HQ_11_P-3,entity:HQ_11_P-3,ontology (reference holds several rooms)
+entity:HQ_11_P-4,entity:HQ_11_P-4,ontology (reference holds several rooms)
+entity:HQ_11_P-5,entity:HQ_11_P-5,ontology (reference holds several rooms)
+entity:HQ_11_P-6,entity:HQ_11_P-6,ontology (reference holds several rooms)
+entity:HQ_11_ST-2,entity:HQ_11_ST-2,ontology (reference holds several rooms)
+entity:HQ_11_ST-3,entity:HQ_11_ST-3,ontology (reference holds several rooms)
+entity:HQ_11_ST-4,entity:HQ_11_ST-4,ontology (reference holds several rooms)
+entity:HQ_12_001_COMMUNIC_DIR_COMMUNICATION_DIRECTOR,entity:HQ_12-001_Communic-Dir-Communication-Director,ontology (reference holds several rooms)
+entity:HQ_12_002_MCC_CLOSET,entity:HQ_12-002_MCC-Closet,naming sheet
+entity:HQ_12_003_MCC_CLOSET,entity:HQ_12-003_MCC-Closet,naming sheet
+entity:HQ_12_004_MCC_CLOSET,entity:HQ_12-004_MCC-Closet,naming sheet
+entity:HQ_12_201_SHEIKHA_WING_SHEIKHA_ENSUIT,entity:HQ_12-201_Sheikha-Wing-Sheikha-Ensuit,ontology (reference holds several rooms)
+entity:HQ_12_202_SHEIKHA_WING_SHEIKHA_ENSUIT,entity:HQ_12-202_Sheikha-Wing-Sheikha-Ensuit,ontology (reference holds several rooms)
+entity:HQ_12_203_SHEIKHA_WING_RELAX_AREA,entity:HQ_12-203_Sheikha-Wing-Relax-Area,ontology (reference holds several rooms)
+entity:HQ_12_204_SHEIKHA_WING_RELAX_AREA,entity:HQ_12-204_Sheikha-Wing-Relax-Area,ontology (reference holds several rooms)
+entity:HQ_12_405_TOILET,entity:HQ_12-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_1_001_FINANCE_CLERICAL_SECRETARIES,entity:HQ_1-001_Finance-Clerical-Secretaries,naming sheet
+entity:HQ_1_002_FINANCE_MANAGERS,entity:HQ_1-002_Finance-Managers,naming sheet
+entity:HQ_1_003_FINANCE_MANAGER,entity:HQ_1-003_Finance-Manager,naming sheet
+entity:HQ_1_004_FINANCE_MANAGER,entity:HQ_1-004_Finance-Manager,naming sheet
+entity:HQ_1_005_FINANCE_SECRETARY,entity:HQ_1-005_Finance-Secretary,naming sheet
+entity:HQ_1_006_FINANCE_PROFSTAFF,entity:HQ_1-006_Finance-Profstaff,naming sheet
+entity:HQ_1_007_FINANCE_CLERICAL_PROFSTAFF,entity:HQ_1-007_Finance-Clerical-Profstaff,naming sheet
+entity:HQ_1_009_FINANCE_MANAGER,entity:HQ_1-009_Finance-Manager,ontology (reference holds several rooms)
+entity:HQ_1_011_FINANCE_MANAGER,entity:HQ_1-011_Finance-Manager,naming sheet
+entity:HQ_1_012_FINANCE_MANAGER,entity:HQ_1-012_Finance-Manager,naming sheet
+entity:HQ_1_013_FINANCE_MANAGER,entity:HQ_1-013_Finance-Manager,naming sheet
+entity:HQ_1_014_FINANCE_PROFSTAFF,entity:HQ_1-014_Finance-Profstaff,naming sheet
+entity:HQ_1_015_FINANCE_PROFSTAFF,entity:HQ_1-015_Finance-Profstaff,naming sheet
+entity:HQ_1_016_FINANCE_SECRETARY,entity:HQ_1-016_Finance-Secretary,naming sheet
+entity:HQ_1_017_FINANCE_DIRECTOR_ENSUIT,entity:HQ_1-017_Finance-Director-Ensuit,naming sheet
+entity:HQ_1_018_FINANCE_MANAGER,entity:HQ_1-018_Finance-Manager,naming sheet
+entity:HQ_1_019_FINANCE_MANAGER,entity:HQ_1-019_Finance-Manager,naming sheet
+entity:HQ_1_021_FINANCE_SECRETARY,entity:HQ_1-021_Finance-Secretary,naming sheet
+entity:HQ_1_022_FINANCE_SECRETARY,entity:HQ_1-022_Finance-Secretary,naming sheet
+entity:HQ_1_023_FINANCE_AUDITOR,entity:HQ_1-023_Finance-Auditor,naming sheet
+entity:HQ_1_024_FINANCE_AUDITOR,entity:HQ_1-024_Finance-Auditor,naming sheet
+entity:HQ_1_025_FINANCE_PROFSTAFF,entity:HQ_1-025_Finance-Profstaff,naming sheet
+entity:HQ_1_026_FINANCE_PROFSTAFF,entity:HQ_1-026_Finance-Profstaff,naming sheet
+entity:HQ_1_027_FINANCE_AUDITOR,entity:HQ_1-027_Finance-Auditor,naming sheet
+entity:HQ_1_028_FINANCE_MANAGER,entity:HQ_1-028_Finance-Manager,naming sheet
+entity:HQ_1_029_FINANCE_MANAGER,entity:HQ_1-029_Finance-Manager,naming sheet
+entity:HQ_1_02_FINANCE_MANAGER,entity:HQ_1-020_Finance-Manager,naming sheet
+entity:HQ_1_101_STAFF_LOUNGE,entity:HQ_1-101_Staff-Lounge,naming sheet
+entity:HQ_1_102_PRAYER_ROOM_VESTIBULE,entity:HQ_1-102_Prayer-Room-Vestibule,ontology (reference holds several rooms)
+entity:HQ_1_103_ABLUTION_ROOM,entity:HQ_1-103_Ablution-Room,ontology (reference holds several rooms)
+entity:HQ_1_104_ABLUTION_ROOM,entity:HQ_1-104_Ablution-Room,ontology (reference holds several rooms)
+entity:HQ_1_105_PRAYER_ROOM,entity:HQ_1-105_Prayer-Room,naming sheet
+entity:HQ_1_106_FINANCE_CASHIER,entity:HQ_1-106_Finance-Cashier,naming sheet
+entity:HQ_1_108_FINANCE_MEETING_ROOM,entity:HQ_1-108_Finance-Meeting-Room,naming sheet
+entity:HQ_1_109_CONSULTANT_SPACE_TRAINEES,entity:HQ_1-109_Consultant-Space-Trainees,naming sheet
+entity:HQ_1_111_FINANCE_RECORD_STORAGE,entity:HQ_1-111_Finance-Record-Storage,naming sheet
+entity:HQ_1_112_PRINT_COPY,entity:HQ_1-112_Print-Copy,naming sheet
+entity:HQ_1_113_PANTRY,entity:HQ_1-113_Pantry,ontology (reference holds several rooms)
+entity:HQ_1_114_STAFF_LOUNGE_STORAGE,entity:HQ_1-114_Staff-Lounge-Storage,naming sheet
+entity:HQ_1_115_FINANCE_AUDITOR,entity:HQ_1-115_Finance-Auditor,naming sheet
+entity:HQ_1_116_FINANCE_SECURE_ROOM,entity:HQ_1-116_Finance-Secure-Room,naming sheet
+entity:HQ_1_117_FINANCE_AUDITOR,entity:HQ_1-117_Finance-Auditor,naming sheet
+entity:HQ_1_11_CONFERENCE_ROOM,entity:HQ_1-110_Conference-Room,ontology (reference holds several rooms)
+entity:HQ_1_401_GROUND_FLOOR_VIP_ENTRANCE,entity:HQ_1-401_Ground-Floor-VIP-Entrance,naming sheet
+entity:HQ_1_403_MALE_TOILET,entity:HQ_1-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_1_404_FEMALE_TOILET,entity:HQ_1-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_1_405_TOILET,entity:HQ_1-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_1_512_IDF_ROOM,entity:HQ_1-512_IDF-Room,naming sheet
+entity:HQ_1_521_VESTIBULE,entity:HQ_1-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_1_531_IDF_ROOM,entity:HQ_1-531_IDF-Room,naming sheet
+entity:HQ_1_532_ELECTRICAL_CLOSET_1,entity:HQ_1-532_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_1_533_ELECTRICAL_CLOSET_2,entity:HQ_1-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_1_541_VESTIBULE,entity:HQ_1-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_1_601_CORRIDOR,entity:HQ_1-601_Corridor,naming sheet
+entity:HQ_1_602_CORRIDOR,entity:HQ_1-602_Corridor,naming sheet
+entity:HQ_1_603_CORRIDOR,entity:HQ_1-603_Corridor,ontology (reference holds several rooms)
+entity:HQ_1_701_STAFF_CAFETERIA,entity:HQ_1-701_Staff-Cafeteria,naming sheet
+entity:HQ_1_702_FOOD_HEAT_UP,entity:HQ_1-702_Food-Heat-Up,naming sheet
+entity:HQ_1_703_COSHSTORE,entity:HQ_1-703_Coshstore,ontology (reference holds several rooms)
+entity:HQ_1_704_REFUSE_HOLDING_A,entity:HQ_1-704_Refuse-Holding-A,ontology (reference holds several rooms)
+entity:HQ_1_705_PREP,entity:HQ_1-705_Prep,ontology (reference holds several rooms)
+entity:HQ_1_706_WASHING_AREA,entity:HQ_1-706_Washing-Area,naming sheet
+entity:HQ_1_FF-1,entity:HQ_1_Ff-1,ontology (reference holds several rooms)
+entity:HQ_1_P-1,entity:HQ_1_P-1,ontology (reference holds several rooms)
+entity:HQ_1_P-2,entity:HQ_1_P-2,ontology (reference holds several rooms)
+entity:HQ_1_P-3,entity:HQ_1_P-3,ontology (reference holds several rooms)
+entity:HQ_1_P-4,entity:HQ_1_P-4,ontology (reference holds several rooms)
+entity:HQ_1_P-5,entity:HQ_1_P-5,ontology (reference holds several rooms)
+entity:HQ_1_P-6,entity:HQ_1_P-6,ontology (reference holds several rooms)
+entity:HQ_1_S-1,entity:HQ_1_S-1,ontology (reference holds several rooms)
+entity:HQ_1_ST-1,entity:HQ_1_ST-1,ontology (reference holds several rooms)
+entity:HQ_1_ST-2,entity:HQ_1_ST-2,ontology (reference holds several rooms)
+entity:HQ_1_ST-3,entity:HQ_1_ST-3,ontology (reference holds several rooms)
+entity:HQ_1_ST-4,entity:HQ_1_ST-4,ontology (reference holds several rooms)
+entity:HQ_2_001_STORAGE_ROOM,entity:HQ_2-001_Storage-Room,naming sheet
+entity:HQ_2_002_DOHA_DEBATE_EXECUTIVE,entity:HQ_2-002_Doha-Debate-Executive,naming sheet
+entity:HQ_2_003_DOHA_DEBATE_EXECUTIVE,entity:HQ_2-003_Doha-Debate-Executive,naming sheet
+entity:HQ_2_004_DOHA_DEBATE_SECRETARY,entity:HQ_2-004_Doha-Debate-Secretary,naming sheet
+entity:HQ_2_005_DOHA_DEBATE_EXECUTIVE,entity:HQ_2-005_Doha-Debate-Executive,naming sheet
+entity:HQ_2_006_DOHA_DEBATE_EXECUTIVE,entity:HQ_2-006_Doha-Debate-Executive,naming sheet
+entity:HQ_2_007_DOHA_DEBATE_EXECUTIVE,entity:HQ_2-007_Doha-Debate-Executive,naming sheet
+entity:HQ_2_008_DOHA_DEBATE_EXECUTIVE,entity:HQ_2-008_Doha-Debate-Executive,naming sheet
+entity:HQ_2_009_SUPPSERVSECRETARY,entity:HQ_2-009_Suppservsecretary,naming sheet
+entity:HQ_2_011_SUPPSERVADMINIST,entity:HQ_2-011_Suppservadminist,naming sheet
+entity:HQ_2_012_SUPPSERVADMINIST,entity:HQ_2-012_Suppservadminist,naming sheet
+entity:HQ_2_013_SUPPSERVSECRETARY,entity:HQ_2-013_Suppservsecretary,naming sheet
+entity:HQ_2_014_SUPPSERVADMINIST,entity:HQ_2-014_Suppservadminist,naming sheet
+entity:HQ_2_015_SUPPSERVADMINIST,entity:HQ_2-015_Suppservadminist,naming sheet
+entity:HQ_2_016_SUPPSERVADMINIST,entity:HQ_2-016_Suppservadminist,naming sheet
+entity:HQ_2_017_SUPPSERVSECRETARY,entity:HQ_2-017_Suppservsecretary,naming sheet
+entity:HQ_2_018_SUPPSERVDIRECTOR_ENSUIT,entity:HQ_2-018_Suppservdirector-Ensuit,naming sheet
+entity:HQ_2_019_SUPPSERVADMINIST,entity:HQ_2-019_Suppservadminist,naming sheet
+entity:HQ_2_01_SUPPSERVADMINIST,entity:HQ_2-010_Suppservadminist,naming sheet
+entity:HQ_2_021_SUPPSERVADMINIST,entity:HQ_2-021_Suppservadminist,naming sheet
+entity:HQ_2_022_SUPPSERVSECRETARY,entity:HQ_2-022_Suppservsecretary,naming sheet
+entity:HQ_2_023_SUPPSERVADMINIST,entity:HQ_2-023_Suppservadminist,naming sheet
+entity:HQ_2_024_SUPPSERVADMINIST,entity:HQ_2-024_Suppservadminist,naming sheet
+entity:HQ_2_025_SUPPSERVADMINIST,entity:HQ_2-025_Suppservadminist,naming sheet
+entity:HQ_2_026_SUPPSERVSECRETARY,entity:HQ_2-026_Suppservsecretary,naming sheet
+entity:HQ_2_027_SUPPSERVADMINIST,entity:HQ_2-027_Suppservadminist,naming sheet
+entity:HQ_2_028_SUPPSERVADMINIST,entity:HQ_2-028_Suppservadminist,naming sheet
+entity:HQ_2_029_SUPPSERVADMINIST,entity:HQ_2-029_Suppservadminist,naming sheet
+entity:HQ_2_02_SUPPSERVADMINIST,entity:HQ_2-020_Suppservadminist,naming sheet
+entity:HQ_2_031_SUPPSERVADMINIST,entity:HQ_2-031_Suppservadminist,naming sheet
+entity:HQ_2_032_SUPPSERVADMINIST,entity:HQ_2-032_Suppservadminist,naming sheet
+entity:HQ_2_033_SUPPSERVADMINIST,entity:HQ_2-033_Suppservadminist,naming sheet
+entity:HQ_2_034_SUPPSERVSECRETARY,entity:HQ_2-034_Suppservsecretary,naming sheet
+entity:HQ_2_035_SUPPSERVADMINIST,entity:HQ_2-035_Suppservadminist,naming sheet
+entity:HQ_2_036_SUPPSERVADMINIST,entity:HQ_2-036_Suppservadminist,naming sheet
+entity:HQ_2_03_SUPPSERVSECRETARY,entity:HQ_2-030_Suppservsecretary,naming sheet
+entity:HQ_2_101A_OFFICE_SPACE,entity:HQ_2-101A_Office-Space,naming sheet
+entity:HQ_2_102_CONSULTANTS_SPACE-OTHERS,entity:HQ_2-102_Consultants-Space-Others,naming sheet
+entity:HQ_2_103_PRINT_COPY,entity:HQ_2-103_Print-Copy,naming sheet
+entity:HQ_2_104_CONSULTANTS_SPACE-OTHERS,entity:HQ_2-104_Consultants-Space-Others,naming sheet
+entity:HQ_2_105_LOUNGE,entity:HQ_2-105_Lounge,naming sheet
+entity:HQ_2_106_PANTRY,entity:HQ_2-106_Pantry,ontology (reference holds several rooms)
+entity:HQ_2_107_JANITORS_CLOSET,entity:HQ_2-107_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_2_108_SUPPSERVMEETING_ROOM,entity:HQ_2-108_Suppservmeeting-Room,naming sheet
+entity:HQ_2_109_SHELL_SPACE,entity:HQ_2-109_Shell-Space,naming sheet
+entity:HQ_2_110A_OFFICE_SPACE,entity:HQ_2-110A_Office-Space,naming sheet
+entity:HQ_2_111_ELECTRICAL_CABINET,entity:HQ_2-111_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_2_11_SHELL_SPACE,entity:HQ_2-110_Shell-Space,ontology (reference holds several rooms)
+entity:HQ_2_201_SPA_MALE_RELAXATION,entity:HQ_2-201_Spa-Male-Relaxation,naming sheet
+entity:HQ_2_202_SPA_MALE_TREATMENT_3,entity:HQ_2-202_Spa-Male-Treatment-3,naming sheet
+entity:HQ_2_203_SPA_MALE_TREATMENT_2,entity:HQ_2-203_Spa-Male-Treatment-2,naming sheet
+entity:HQ_2_204_SPA_MALE_TREATMENT_1,entity:HQ_2-204_Spa-Male-Treatment-1,naming sheet
+entity:HQ_2_205_SPA_MALE_CHANGING_ROOM,entity:HQ_2-205_Spa-Male-Changing-Room,naming sheet
+entity:HQ_2_206_SPA_ENTRANCE,entity:HQ_2-206_Spa-Entrance,naming sheet
+entity:HQ_2_207_SPA_LOUNGE_BAR,entity:HQ_2-207_Spa-Lounge-Bar,naming sheet
+entity:HQ_2_208_SPA_FITNESS_DTUDIO,entity:HQ_2-208_Spa-Fitness-Dtudio,naming sheet
+entity:HQ_2_209_SPA_OFFICE,entity:HQ_2-209_Spa-Office,naming sheet
+entity:HQ_2_211_SPA_FEMALE_BEAUTY_SALON,entity:HQ_2-211_Spa-Female-Beauty-Salon,naming sheet
+entity:HQ_2_212_SPA_FM_TREATMENT_1,entity:HQ_2-212_Spa-Fm-Treatment-1,naming sheet
+entity:HQ_2_213_SPA_CHANGING_ROOM,entity:HQ_2-213_Spa-Changing-Room,naming sheet
+entity:HQ_2_214_SPA_FM_TREATMENT_2,entity:HQ_2-214_Spa-Fm-Treatment-2,naming sheet
+entity:HQ_2_215_SPA_FM_TREATMENT_3,entity:HQ_2-215_Spa-Fm-Treatment-3,naming sheet
+entity:HQ_2_216_SPA_FM_RELAXATION,entity:HQ_2-216_Spa-Fm-Relaxation,naming sheet
+entity:HQ_2_217_SPA_STORAGE,entity:HQ_2-217_Spa-Storage,ontology (reference holds several rooms)
+entity:HQ_2_218_SPA_STORAGE,entity:HQ_2-218_Spa-Storage,ontology (reference holds several rooms)
+entity:HQ_2_219_SPA_STORAGE,entity:HQ_2-219_Spa-Storage,ontology (reference holds several rooms)
+entity:HQ_2_21_SPA_STAFF_WAITING_AREA,entity:HQ_2-210_Spa-Staff-Waiting-Area,naming sheet
+entity:HQ_2_22_SPA_STERILIZATION_ROOM,entity:HQ_2-220_Spa-Sterilization-Room,ontology (reference holds several rooms)
+entity:HQ_2_301_SPA_LAUNDRY,entity:HQ_2-301_Spa-Laundry,ontology (reference holds several rooms)
+entity:HQ_2_302_SPA_PLANTROOM,entity:HQ_2-302_Spa-Plantroom,naming sheet
+entity:HQ_2_303_SPA_LAUNDRY,entity:HQ_2-303_Spa-Laundry,ontology (reference holds several rooms)
+entity:HQ_2_304_SPA_MALE_HEAT_EXP,entity:HQ_2-304_Spa-Male-Heat-Exp,ontology (reference holds several rooms)
+entity:HQ_2_305_SPA_JACUZZI,entity:HQ_2-305_Spa-Jacuzzi,ontology (reference holds several rooms)
+entity:HQ_2_306_SPA_HAMMAM,entity:HQ_2-306_Spa-Hammam,ontology (reference holds several rooms)
+entity:HQ_2_307_SPA_SHOWER,entity:HQ_2-307_Spa-Shower,ontology (reference holds several rooms)
+entity:HQ_2_308_SPA_SCRUB,entity:HQ_2-308_Spa-Scrub,ontology (reference holds several rooms)
+entity:HQ_2_309_SPA_SAUNA,entity:HQ_2-309_Spa-Sauna,ontology (reference holds several rooms)
+entity:HQ_2_311_SPA_FM_HEAT_EXP,entity:HQ_2-311_Spa-Fm-Heat-Exp,naming sheet
+entity:HQ_2_312_SPA_SAUNA,entity:HQ_2-312_Spa-Sauna,ontology (reference holds several rooms)
+entity:HQ_2_313_SPA_SCRUB,entity:HQ_2-313_Spa-Scrub,ontology (reference holds several rooms)
+entity:HQ_2_314_SPA_SHOWER,entity:HQ_2-314_Spa-Shower,ontology (reference holds several rooms)
+entity:HQ_2_315_SPA_HAMMAM,entity:HQ_2-315_Spa-Hammam,ontology (reference holds several rooms)
+entity:HQ_2_316_SPA_JACUZZI,entity:HQ_2-316_Spa-Jacuzzi,ontology (reference holds several rooms)
+entity:HQ_2_317_SPA_TECHNIC,entity:HQ_2-317_Spa-Technic,ontology (reference holds several rooms)
+entity:HQ_2_318_SPA_TECHNIC,entity:HQ_2-318_Spa-Technic,ontology (reference holds several rooms)
+entity:HQ_2_31_SPA_TECHNIC,entity:HQ_2-310_Spa-Technic,ontology (reference holds several rooms)
+entity:HQ_2_401_MALE_TOILET,entity:HQ_2-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_2_402_FEMALE_TOILET,entity:HQ_2-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_2_403_MALE_TOILET,entity:HQ_2-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_2_404_FEMALE_TOILET,entity:HQ_2-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_2_405_TOILET,entity:HQ_2-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_2_406_SPA_STAFF_FEMALE_WC,entity:HQ_2-406_Spa-Staff-Female-WC,ontology (reference holds several rooms)
+entity:HQ_2_407_SPA_STAFF_MALE_WC,entity:HQ_2-407_Spa-Staff-Male-WC,ontology (reference holds several rooms)
+entity:HQ_2_512_MECHANICAL_ROOM,entity:HQ_2-512_Mechanical-Room,naming sheet
+entity:HQ_2_521_VESTIBULE,entity:HQ_2-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_2_531_IDF_ROOM,entity:HQ_2-531_IDF-Room,naming sheet
+entity:HQ_2_532_ELECTRICAL_CLOSET_1,entity:HQ_2-532_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_2_533_ELECTRICAL_CLOSET_2,entity:HQ_2-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_2_541_VESTIBULE,entity:HQ_2-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_2_601_S-TOWER_CORRIDOR,entity:HQ_2-601_S-Tower-Corridor,naming sheet
+entity:HQ_2_602_SPA_CORRIDOR,entity:HQ_2-602_Spa-Corridor,ontology (reference holds several rooms)
+entity:HQ_2_603_SPA_LOBBY,entity:HQ_2-603_Spa-Lobby,naming sheet
+entity:HQ_2_604_SPA_CORRIDOR,entity:HQ_2-604_Spa-Corridor,ontology (reference holds several rooms)
+entity:HQ_2_701_TERRACE,entity:HQ_2-701_Terrace,naming sheet
+entity:HQ_2_FF-1,entity:HQ_2_Ff-1,ontology (reference holds several rooms)
+entity:HQ_2_P-1,entity:HQ_2_P-1,ontology (reference holds several rooms)
+entity:HQ_2_P-2,entity:HQ_2_P-2,ontology (reference holds several rooms)
+entity:HQ_2_P-3,entity:HQ_2_P-3,ontology (reference holds several rooms)
+entity:HQ_2_P-4,entity:HQ_2_P-4,ontology (reference holds several rooms)
+entity:HQ_2_P-5,entity:HQ_2_P-5,ontology (reference holds several rooms)
+entity:HQ_2_P-6,entity:HQ_2_P-6,ontology (reference holds several rooms)
+entity:HQ_2_S-1,entity:HQ_2_S-1,ontology (reference holds several rooms)
+entity:HQ_2_ST-1,entity:HQ_2_ST-1,ontology (reference holds several rooms)
+entity:HQ_2_ST-2,entity:HQ_2_ST-2,ontology (reference holds several rooms)
+entity:HQ_2_ST-3,entity:HQ_2_ST-3,ontology (reference holds several rooms)
+entity:HQ_2_ST-4,entity:HQ_2_ST-4,ontology (reference holds several rooms)
+entity:HQ_3_001_LOUNGE,entity:HQ_3-001_Lounge,naming sheet
+entity:HQ_3_002_HR_IMMIG_STAFF,entity:HQ_3-002_Hr-Immig-Staff,naming sheet
+entity:HQ_3_003_HR_IMMIG_STAFF,entity:HQ_3-003_Hr-Immig-Staff,naming sheet
+entity:HQ_3_004_HR_IMMIG_STAFF,entity:HQ_3-004_Hr-Immig-Staff,naming sheet
+entity:HQ_3_005_HR_IMMIG_STAFF,entity:HQ_3-005_Hr-Immig-Staff,naming sheet
+entity:HQ_3_006_HR_IMMIG_STAFF,entity:HQ_3-006_Hr-Immig-Staff,naming sheet
+entity:HQ_3_007_HR_IMMIG_STAFF,entity:HQ_3-007_Hr-Immig-Staff,naming sheet
+entity:HQ_3_008_HR_IMMIG_STAFF,entity:HQ_3-008_Hr-Immig-Staff,naming sheet
+entity:HQ_3_009_HR_IMMIG_STORAGE,entity:HQ_3-009_Hr-Immig-Storage,naming sheet
+entity:HQ_3_011_HR_IMMIG_STAFF,entity:HQ_3-011_Hr-Immig-Staff,naming sheet
+entity:HQ_3_012_HR_IMMIG_STAFF,entity:HQ_3-012_Hr-Immig-Staff,naming sheet
+entity:HQ_3_013_HR_IMMIG_STAFF,entity:HQ_3-013_Hr-Immig-Staff,naming sheet
+entity:HQ_3_014_HR_IMMIG_STAFF,entity:HQ_3-014_Hr-Immig-Staff,naming sheet
+entity:HQ_3_015_HR_IMMIG_STAFF,entity:HQ_3-015_Hr-Immig-Staff,naming sheet
+entity:HQ_3_016_HR_IMMIG_STAFF,entity:HQ_3-016_Hr-Immig-Staff,naming sheet
+entity:HQ_3_017_HR_IMMIG_STAFF,entity:HQ_3-017_Hr-Immig-Staff,naming sheet
+entity:HQ_3_018_HR_IMMIG_STAFF,entity:HQ_3-018_Hr-Immig-Staff,naming sheet
+entity:HQ_3_019_HR_IMMIG_STAFF,entity:HQ_3-019_Hr-Immig-Staff,naming sheet
+entity:HQ_3_01_HR_IMMIG_STAFF,entity:HQ_3-010_Hr-Immig-Staff,naming sheet
+entity:HQ_3_021_HR_IMMIG_STAFF,entity:HQ_3-021_Hr-Immig-Staff,naming sheet
+entity:HQ_3_022_HR_IMMIG_SECRETARY,entity:HQ_3-022_Hr-Immig-Secretary,naming sheet
+entity:HQ_3_023_HR_IMMIG_STAFF,entity:HQ_3-023_Hr-Immig-Staff,naming sheet
+entity:HQ_3_024_HR_IMMIG_STAFF,entity:HQ_3-024_Hr-Immig-Staff,naming sheet
+entity:HQ_3_025_HR_IMMIG_STAFF,entity:HQ_3-025_Hr-Immig-Staff,naming sheet
+entity:HQ_3_026_HR_IMMIG_STAFF,entity:HQ_3-026_Hr-Immig-Staff,naming sheet
+entity:HQ_3_027_HR_IMMIG_STAFF,entity:HQ_3-027_Hr-Immig-Staff,naming sheet
+entity:HQ_3_028_HR_IMMIG_STAFF,entity:HQ_3-028_Hr-Immig-Staff,naming sheet
+entity:HQ_3_029_HR_IMMIG_STAFF,entity:HQ_3-029_Hr-Immig-Staff,naming sheet
+entity:HQ_3_02_HR_IMMIG_STAFF,entity:HQ_3-020_Hr-Immig-Staff,naming sheet
+entity:HQ_3_031_HR_IMMIG_STAFF,entity:HQ_3-031_Hr-Immig-Staff,naming sheet
+entity:HQ_3_032_HR_IMMIG_SECRETARY,entity:HQ_3-032_Hr-Immig-Secretary,naming sheet
+entity:HQ_3_033_MEETING_ROOM,entity:HQ_3-033_Meeting-Room,naming sheet
+entity:HQ_3_03_HR_IMMIG_STAFF,entity:HQ_3-030_Hr-Immig-Staff,naming sheet
+entity:HQ_3_101_SHELL_SPACE,entity:HQ_3-101_Shell-Space,naming sheet
+entity:HQ_3_102_CONSULTANT_SPACE_TRAINEES,entity:HQ_3-102_Consultant-Space-Trainees,naming sheet
+entity:HQ_3_103_PRINT_COPY,entity:HQ_3-103_Print-Copy,naming sheet
+entity:HQ_3_104_HR_IMMIG_SECRETARY,entity:HQ_3-104_Hr-Immig-Secretary,naming sheet
+entity:HQ_3_105A_FEMALE_PRAYER_ROOM,entity:HQ_3-105A_Female-Prayer-Room,naming sheet
+entity:HQ_3_105B_OFFICE_SPACE,entity:HQ_3-105B_Office-Space,naming sheet
+entity:HQ_3_106_PANTRY,entity:HQ_3-106_Pantry,ontology (reference holds several rooms)
+entity:HQ_3_107_JANITORS_CLOSET,entity:HQ_3-107_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_3_108_SHELL_SPACE,entity:HQ_3-108_Shell-Space,ontology (reference holds several rooms)
+entity:HQ_3_109_ELECTRICAL_CABINET,entity:HQ_3-109_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_3_201_PROC&CONTRDIRENSUIT,entity:HQ_3-201_Proc-And-Contrdirensuit,naming sheet
+entity:HQ_3_202A_OFFICE_SPACE,entity:HQ_3-202A_Office-Space,naming sheet
+entity:HQ_3_202B_OFFICE_SPACE,entity:HQ_3-202B_Office-Space,naming sheet
+entity:HQ_3_203_COPYPRINT,entity:HQ_3-203_Copyprint,naming sheet
+entity:HQ_3_204_PANTRY,entity:HQ_3-204_Pantry,ontology (reference holds several rooms)
+entity:HQ_3_205_HR_IMMIG_IMMIGRATION,entity:HQ_3-205_Hr-Immig-Immigration,naming sheet
+entity:HQ_3_206_HR_IMMIG_MANAGER,entity:HQ_3-206_Hr-Immig-Manager,naming sheet
+entity:HQ_3_207_HR_IMMIG_MANAGER,entity:HQ_3-207_Hr-Immig-Manager,naming sheet
+entity:HQ_3_208_HR_IMMIG_MANAGER,entity:HQ_3-208_Hr-Immig-Manager,naming sheet
+entity:HQ_3_209_HR_IMMIG_MANAGER,entity:HQ_3-209_Hr-Immig-Manager,naming sheet
+entity:HQ_3_211_HR_IMMIG_MANAGER,entity:HQ_3-211_Hr-Immig-Manager,naming sheet
+entity:HQ_3_212_HR_IMMIG_SECRETARIES,entity:HQ_3-212_Hr-Immig-Secretaries,naming sheet
+entity:HQ_3_213_HR_IMMIG_DIRENSUIT,entity:HQ_3-213_Hr-Immig-Dirensuit,naming sheet
+entity:HQ_3_214_IT_SECRETARY,entity:HQ_3-214_IT-Secretary,naming sheet
+entity:HQ_3_215_IT_DIRENSUIT,entity:HQ_3-215_IT-Dirensuit,naming sheet
+entity:HQ_3_216_PROC&CONTRSECRETARY,entity:HQ_3-216_Proc-And-Contrsecretary,naming sheet
+entity:HQ_3_21_HR_IMMIG_OFFICERS,entity:HQ_3-210_Hr-Immig-Officers,naming sheet
+entity:HQ_3_301_PROC&CONTRMEETING_ROOM,entity:HQ_3-301_Proc-And-Contrmeeting-Room,naming sheet
+entity:HQ_3_302_HR_IMMIG_MEETING_ROOM,entity:HQ_3-302_Hr-Immig-Meeting-Room,naming sheet
+entity:HQ_3_36_ABLUTION_ROOM,entity:HQ_3-360_Ablution-Room,naming sheet
+entity:HQ_3_401_MALE_TOILET,entity:HQ_3-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_3_402_FEMALE_TOILET,entity:HQ_3-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_3_403_MALE_TOILET,entity:HQ_3-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_3_404_FEMALE_TOILET,entity:HQ_3-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_3_405_MALE_TOILET,entity:HQ_3-405_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_3_406_FEMALE_TOILET,entity:HQ_3-406_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_3_407_TOILET,entity:HQ_3-407_Toilet,ontology (reference holds several rooms)
+entity:HQ_3_408_TOILET,entity:HQ_3-408_Toilet,ontology (reference holds several rooms)
+entity:HQ_3_409_TOILET,entity:HQ_3-409_Toilet,ontology (reference holds several rooms)
+entity:HQ_3_511_VESTIBULE,entity:HQ_3-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_3_512_IDF_ROOM,entity:HQ_3-512_IDF-Room,naming sheet
+entity:HQ_3_521_VESTIBULE,entity:HQ_3-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_3_531_IDF_ROOM,entity:HQ_3-531_IDF-Room,naming sheet
+entity:HQ_3_532_ELECTRICAL_CLOSET_1,entity:HQ_3-532_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_3_533_ELECTRICAL_CLOSET_12,entity:HQ_3-533_Electrical-Closet-12,ontology (reference holds several rooms)
+entity:HQ_3_541_VESTIBULE,entity:HQ_3-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_3_601_S-TOWER_CORRIDOR,entity:HQ_3-601_S-Tower-Corridor,naming sheet
+entity:HQ_3_602_E-TOWER_CORRIDOR,entity:HQ_3-602_E-Tower-Corridor,naming sheet
+entity:HQ_3_603_CORRIDOR_BRIDGE,entity:HQ_3-603_Corridor-Bridge,ontology (reference holds several rooms)
+entity:HQ_3_FF-1,entity:HQ_3_Ff-1,ontology (reference holds several rooms)
+entity:HQ_3_P-1,entity:HQ_3_P-1,ontology (reference holds several rooms)
+entity:HQ_3_P-2,entity:HQ_3_P-2,ontology (reference holds several rooms)
+entity:HQ_3_P-3,entity:HQ_3_P-3,ontology (reference holds several rooms)
+entity:HQ_3_P-4,entity:HQ_3_P-4,ontology (reference holds several rooms)
+entity:HQ_3_P-5,entity:HQ_3_P-5,ontology (reference holds several rooms)
+entity:HQ_3_P-6,entity:HQ_3_P-6,ontology (reference holds several rooms)
+entity:HQ_3_S-1,entity:HQ_3_S-1,ontology (reference holds several rooms)
+entity:HQ_3_ST-1,entity:HQ_3_ST-1,ontology (reference holds several rooms)
+entity:HQ_3_ST-2,entity:HQ_3_ST-2,ontology (reference holds several rooms)
+entity:HQ_3_ST-3,entity:HQ_3_ST-3,ontology (reference holds several rooms)
+entity:HQ_3_ST-4,entity:HQ_3_ST-4,ontology (reference holds several rooms)
+entity:HQ_4_001A_OFFICE_SPACE,entity:HQ_4-001A_Office-Space,naming sheet
+entity:HQ_4_001B_OFFICE_SPACE,entity:HQ_4-001B_Office-Space,naming sheet
+entity:HQ_4_001C_OFFICE_SPACE,entity:HQ_4-001C_Office-Space,naming sheet
+entity:HQ_4_001D_OFFICE_SPACE,entity:HQ_4-001D_Office-Space,naming sheet
+entity:HQ_4_001E_OFFICE_SPACE,entity:HQ_4-001E_Office-Space,naming sheet
+entity:HQ_4_001F_OFFICE_SPACE,entity:HQ_4-001F_Office-Space,naming sheet
+entity:HQ_4_001G_OFFICE_SPACE,entity:HQ_4-001G_Office-Space,naming sheet
+entity:HQ_4_001H_OFFICE_SPACE,entity:HQ_4-001H_Office-Space,naming sheet
+entity:HQ_4_002_STRPLDIRMANAGER,entity:HQ_4-002_Strpldirmanager,naming sheet
+entity:HQ_4_003_STR_PL_DIR_EXEC_SECRE,entity:HQ_4-003_Str-Pl-Dir-Exec-Secre,naming sheet
+entity:HQ_4_004_ENS_STRPLDIRENSUIT,entity:HQ_4-004_Ens-Strpldirensuit,ontology (reference holds several rooms)
+entity:HQ_4_004_EXE_STRPLDIREXECSECRETARY,entity:HQ_4-004_Exe-Strpldirexecsecretary,ontology (reference holds several rooms)
+entity:HQ_4_004_STR_PL_DIR_ENSUIT,entity:HQ_4-004_Str-Pl-Dir-Ensuit,ontology (reference holds several rooms)
+entity:HQ_4_005_STRPLDIRMEETING_ROOM,entity:HQ_4-005_Strpldirmeeting-Room,naming sheet
+entity:HQ_4_006_STRPLDIRMANAGER,entity:HQ_4-006_Strpldirmanager,naming sheet
+entity:HQ_4_007_STRPLDIRMANAGER,entity:HQ_4-007_Strpldirmanager,naming sheet
+entity:HQ_4_008_STRPLDIRMANAGER,entity:HQ_4-008_Strpldirmanager,naming sheet
+entity:HQ_4_009_STRPLDIRHEAD_OF_PL,entity:HQ_4-009_Strpldirhead-Of-Pl,naming sheet
+entity:HQ_4_011_STRPLDIRHEAD_OF_PL,entity:HQ_4-011_Strpldirhead-Of-Pl,naming sheet
+entity:HQ_4_012_STRPLDIRHEAD_OF_PL,entity:HQ_4-012_Strpldirhead-Of-Pl,naming sheet
+entity:HQ_4_013_STRPLDIRHEAD_OF_PL,entity:HQ_4-013_Strpldirhead-Of-Pl,naming sheet
+entity:HQ_4_014_STRPLDIRMANAGER,entity:HQ_4-014_Strpldirmanager,naming sheet
+entity:HQ_4_015A_OFFICE_SPACE,entity:HQ_4-015A_Office-Space,naming sheet
+entity:HQ_4_015B_OFFICE_SPACE,entity:HQ_4-015B_Office-Space,naming sheet
+entity:HQ_4_015C_OFFICE_SPACE,entity:HQ_4-015C_Office-Space,naming sheet
+entity:HQ_4_01_STRPLDIRHEAD_OF_PL,entity:HQ_4-010_Strpldirhead-Of-Pl,naming sheet
+entity:HQ_4_101_SHELL_SPACE,entity:HQ_4-101_Shell-Space,naming sheet
+entity:HQ_4_102_SHELL_SPACE,entity:HQ_4-102_Shell-Space,naming sheet
+entity:HQ_4_103_ELE_ELECTRICAL_CABINET,entity:HQ_4-103_Ele-Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_4_103_STORAGE_SPACE,entity:HQ_4-103_Storage-Space,ontology (reference holds several rooms)
+entity:HQ_4_103_STO_STORAGE_SPACE,entity:HQ_4-103_Sto-Storage-Space,ontology (reference holds several rooms)
+entity:HQ_4_104_WAITING_LOUNGE,entity:HQ_4-104_Waiting-Lounge,naming sheet
+entity:HQ_4_105_JAN_JANITORS_CLOSET,entity:HQ_4-105_Jan-Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_4_105_PAN_PANTRY,entity:HQ_4-105_Pan-Pantry,ontology (reference holds several rooms)
+entity:HQ_4_107_STRPLDIRTECHNSTAFF,entity:HQ_4-107_Strpldirtechnstaff,naming sheet
+entity:HQ_4_108_STRPLDIRARCHIVE_ROOM,entity:HQ_4-108_Strpldirarchive-Room,naming sheet
+entity:HQ_4_109_VP_EDU_STORAGE,entity:HQ_4-109_Vp-Edu-Storage,naming sheet
+entity:HQ_4_110_PRINT_COPY,entity:HQ_4-110_Print-Copy,ontology (reference holds several rooms)
+entity:HQ_4_11_PRINT_COPY,entity:HQ_4-11_Print-Copy,ontology (reference holds several rooms)
+entity:HQ_4_201_SHELL_SPACE,entity:HQ_4-201_Shell-Space,naming sheet
+entity:HQ_4_202_PRINT_COPY,entity:HQ_4-202_Print-Copy,naming sheet
+entity:HQ_4_203_PANTRY,entity:HQ_4-203_Pantry,ontology (reference holds several rooms)
+entity:HQ_4_204_SHELL_SPACE,entity:HQ_4-204_Shell-Space,naming sheet
+entity:HQ_4_205_VP_ADM_MANAGER,entity:HQ_4-205_Vp-Adm-Manager,naming sheet
+entity:HQ_4_206_VP_ADM_MANAGER,entity:HQ_4-206_Vp-Adm-Manager,naming sheet
+entity:HQ_4_207_VP_ADM_SUPPSECRET,entity:HQ_4-207_Vp-Adm-Suppsecret,ontology (reference holds several rooms)
+entity:HQ_4_208_VP_ADM_EXECSECRET,entity:HQ_4-208_Vp-Adm-Execsecret,naming sheet
+entity:HQ_4_209_VP_ADM_MANAGER,entity:HQ_4-209_Vp-Adm-Manager,naming sheet
+entity:HQ_4_211_VP_ADM_MANAGER,entity:HQ_4-211_Vp-Adm-Manager,naming sheet
+entity:HQ_4_212_VP_ADM_PERSASSIST,entity:HQ_4-212_Vp-Adm-Persassist,naming sheet
+entity:HQ_4_213_VP_ADM_ENSUIT,entity:HQ_4-213_Vp-Adm-Ensuit,naming sheet
+entity:HQ_4_214_GSM_ROOM,entity:HQ_4-214_Gsm-Room,naming sheet
+entity:HQ_4_21_VP_ADM_MANAGER,entity:HQ_4-210_Vp-Adm-Manager,naming sheet
+entity:HQ_4_301_VP_ADM_MEETING_ROOM,entity:HQ_4-301_Vp-Adm-Meeting-Room,naming sheet
+entity:HQ_4_401_MALE_TOILET,entity:HQ_4-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_4_402_FEMALE_TOILET,entity:HQ_4-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_4_403_MALE_TOILET,entity:HQ_4-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_4_404_FEMALE_TOILET,entity:HQ_4-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_4_405_TOILET,entity:HQ_4-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_4_406_TOILET,entity:HQ_4-406_Toilet,ontology (reference holds several rooms)
+entity:HQ_4_511_VESTIBULE,entity:HQ_4-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_4_512_IDF_ROOM,entity:HQ_4-512_IDF-Room,naming sheet
+entity:HQ_4_514_VESTIBULE,entity:HQ_4-514_Vestibule,ontology (reference holds several rooms)
+entity:HQ_4_521_VESTIBULE,entity:HQ_4-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_4_531_IDF_ROOM,entity:HQ_4-531_IDF-Room,naming sheet
+entity:HQ_4_532_ELECTRICAL_CLOSET,entity:HQ_4-532_Electrical-Closet,ontology (reference holds several rooms)
+entity:HQ_4_533_ELECTRICAL_CLOSET_2,entity:HQ_4-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_4_601_S-TOWER_CORRIDOR,entity:HQ_4-601_S-Tower-Corridor,naming sheet
+entity:HQ_4_602_BRIDGE,entity:HQ_4-602_Bridge,ontology (reference holds several rooms)
+entity:HQ_4_603_E-TOWER_CORRIDOR,entity:HQ_4-603_E-Tower-Corridor,naming sheet
+entity:HQ_4_604_PRINT_COPY,entity:HQ_4-604_Print-Copy,ontology (reference holds several rooms)
+entity:HQ_4_701_VP_ADM_TERRACE,entity:HQ_4-701_Vp-Adm-Terrace,naming sheet
+entity:HQ_4_702_TERRACE,entity:HQ_4-702_Terrace,naming sheet
+entity:HQ_4_703_TERRACE,entity:HQ_4-703_Terrace,naming sheet
+entity:HQ_4_P-1,entity:HQ_4_P-1,ontology (reference holds several rooms)
+entity:HQ_4_P-2,entity:HQ_4_P-2,ontology (reference holds several rooms)
+entity:HQ_4_P-3,entity:HQ_4_P-3,ontology (reference holds several rooms)
+entity:HQ_4_P-4,entity:HQ_4_P-4,ontology (reference holds several rooms)
+entity:HQ_4_P-5,entity:HQ_4_P-5,ontology (reference holds several rooms)
+entity:HQ_4_P-6,entity:HQ_4_P-6,ontology (reference holds several rooms)
+entity:HQ_4_S-1,entity:HQ_4_S-1,ontology (reference holds several rooms)
+entity:HQ_4_ST-1,entity:HQ_4_ST-1,ontology (reference holds several rooms)
+entity:HQ_4_ST-2,entity:HQ_4_ST-2,ontology (reference holds several rooms)
+entity:HQ_4_ST-3,entity:HQ_4_ST-3,ontology (reference holds several rooms)
+entity:HQ_4_ST-4,entity:HQ_4_ST-4,ontology (reference holds several rooms)
+entity:HQ_5_001_VP_EDU_ASSISTANT,entity:HQ_5-001_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_002_VP_EDU_OFFDIRENSUIT,entity:HQ_5-002_Vp-Edu-Offdirensuit,naming sheet
+entity:HQ_5_003_VP_EDU_SECRETARY,entity:HQ_5-003_Vp-Edu-Secretary,naming sheet
+entity:HQ_5_004_VP_EDU_ASSISTANT,entity:HQ_5-004_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_005_VP_EDU_OFFICERS,entity:HQ_5-005_Vp-Edu-Officers,naming sheet
+entity:HQ_5_006_VP_EDU_OFFICERS,entity:HQ_5-006_Vp-Edu-Officers,naming sheet
+entity:HQ_5_007_VP_EDU_OFFICERS,entity:HQ_5-007_Vp-Edu-Officers,naming sheet
+entity:HQ_5_008_VP_EDU_ASSISTANT,entity:HQ_5-008_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_009_VP1_VP_EDU_ASSISTANT,entity:HQ_5-009_Vp1-Vp-Edu-Assistant,ontology (reference holds several rooms)
+entity:HQ_5_009_VP1_VP_EDU_OFFICERS,entity:HQ_5-009_Vp1-Vp-Edu-Officers,ontology (reference holds several rooms)
+entity:HQ_5_010_VP_EDU_OFFICERS,entity:HQ_5-010_Vp-Edu-Officers,naming sheet
+entity:HQ_5_011_VP_EDU_ASSISTANT,entity:HQ_5-011_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_012_VP_EDU_OFFICE_DIRECTOR_ENSUIT,entity:HQ_5-012_Vp-Edu-Office-Director-Ensuit,naming sheet
+entity:HQ_5_013_VP_EDU_SECRETARY,entity:HQ_5-013_Vp-Edu-Secretary,naming sheet
+entity:HQ_5_014_VP_EDU_ASSISTANT,entity:HQ_5-014_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_015_VP_EDU_ASSISTANT,entity:HQ_5-015_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_016_VP_EDU_ASSISTANT,entity:HQ_5-016_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_017_VP_EDU_ASSISTANT,entity:HQ_5-017_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_018_VP_EDU_OFFICERS,entity:HQ_5-018_Vp-Edu-Officers,naming sheet
+entity:HQ_5_019_VP_EDU_OFFICERS,entity:HQ_5-019_Vp-Edu-Officers,naming sheet
+entity:HQ_5_020_VP_EDU_OFFICERS,entity:HQ_5-020_Vp-Edu-Officers,naming sheet
+entity:HQ_5_021_VP_EDU_OFFICERS,entity:HQ_5-021_Vp-Edu-Officers,naming sheet
+entity:HQ_5_022_VP_EDU_OFFICERS,entity:HQ_5-022_Vp-Edu-Officers,naming sheet
+entity:HQ_5_023_VP_EDU_OFFICERS,entity:HQ_5-023_Vp-Edu-Officers,naming sheet
+entity:HQ_5_024_VP_EDU_SECRETARY,entity:HQ_5-024_Vp-Edu-Secretary,naming sheet
+entity:HQ_5_025_VP_EDU_OFFICE_DIRECTOR_ENSUIT,entity:HQ_5-025_Vp-Edu-Office-Director-Ensuit,naming sheet
+entity:HQ_5_026_VP_EDU_ASSISTANT,entity:HQ_5-026_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_027_VP_EDU_OFFICERS,entity:HQ_5-027_Vp-Edu-Officers,naming sheet
+entity:HQ_5_101_VP_EDU_SECRET,entity:HQ_5-101_Vp-Edu-Secret,naming sheet
+entity:HQ_5_102_MEETING_ROOM,entity:HQ_5-102_Meeting-Room,naming sheet
+entity:HQ_5_103_PRINT_COPY,entity:HQ_5-103_Print-Copy,naming sheet
+entity:HQ_5_104_VP_EDU_LOUNGE_WAITING,entity:HQ_5-104_Vp-Edu-Lounge-Waiting,naming sheet
+entity:HQ_5_105_PANTRY,entity:HQ_5-105_Pantry,ontology (reference holds several rooms)
+entity:HQ_5_106_JANITORS_CLOSET,entity:HQ_5-106_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_5_107_VP_EDUCATION_SUPPSECRET,entity:HQ_5-107_Vp-Education-Suppsecret,naming sheet
+entity:HQ_5_108_VP_EDU_ASSISTANT,entity:HQ_5-108_Vp-Edu-Assistant,naming sheet
+entity:HQ_5_109_ELECTRICAL_CABINET,entity:HQ_5-109_Electrical-Cabinet,naming sheet
+entity:HQ_5_110_VP_EDU_OFFICERS,entity:HQ_5-110_Vp-Edu-Officers,naming sheet
+entity:HQ_5_201_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-201_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_202_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-202_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_203_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-203_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_204_PANTRY,entity:HQ_5-204_Pantry,ontology (reference holds several rooms)
+entity:HQ_5_205_VP_EDU_MEETING_ROOM,entity:HQ_5-205_Vp-Edu-Meeting-Room,naming sheet
+entity:HQ_5_206_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-206_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_207_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-207_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_208_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-208_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_209_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-209_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_210_VP_EDU_ENSUIT,entity:HQ_5-210_Vp-Edu-Ensuit,naming sheet
+entity:HQ_5_211_VP_EDU_CHPEXECSECRET,entity:HQ_5-211_Vp-Edu-Chpexecsecret,naming sheet
+entity:HQ_5_212_VP_EDU_MEMBERS_OF_EDU,entity:HQ_5-212_Vp-Edu-Members-Of-Edu,naming sheet
+entity:HQ_5_213_VP_EDU_OFFICE_DIRECTOR_ENSUIT,entity:HQ_5-213_Vp-Edu-Office-Director-Ensuit,naming sheet
+entity:HQ_5_214_GSM_ROOM,entity:HQ_5-214_Gsm-Room,ontology (reference holds several rooms)
+entity:HQ_5_301_PLANT_ROOM,entity:HQ_5-301_Plant-Room,naming sheet
+entity:HQ_5_350_CORRIDOR,entity:HQ_5-350_Corridor,naming sheet
+entity:HQ_5_401_MALE_TOILET,entity:HQ_5-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_5_402_FEMALE_TOILET,entity:HQ_5-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_5_403_MALE_TOILET,entity:HQ_5-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_5_404_FEMALE_TOILET,entity:HQ_5-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_5_405_TOILET,entity:HQ_5-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_5_406_TOILET,entity:HQ_5-406_Toilet,ontology (reference holds several rooms)
+entity:HQ_5_407_TOILET,entity:HQ_5-407_Toilet,ontology (reference holds several rooms)
+entity:HQ_5_408_TOILET,entity:HQ_5-408_Toilet,ontology (reference holds several rooms)
+entity:HQ_5_409_TOILET,entity:HQ_5-409_Toilet,ontology (reference holds several rooms)
+entity:HQ_5_511_VESTIBULE,entity:HQ_5-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_5_512_IDF_ROOM,entity:HQ_5-512_IDF-Room,naming sheet
+entity:HQ_5_521_VESTIBULE,entity:HQ_5-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_5_531_IDF_ROOM,entity:HQ_5-531_IDF-Room,naming sheet
+entity:HQ_5_532_ELECTRICAL_CLOSET_1,entity:HQ_5-532_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_5_533_ELECTRICAL_CLOSET_2,entity:HQ_5-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_5_541_VESTIBULE,entity:HQ_5-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_5_601_S-TOWER_CORRIDOR,entity:HQ_5-601_S-Tower-Corridor,naming sheet
+entity:HQ_5_602_BRIDGE,entity:HQ_5-602_Bridge,naming sheet
+entity:HQ_5_604_BRIDGE,entity:HQ_5-604_Bridge,ontology (reference holds several rooms)
+entity:HQ_5_701_TERRACE,entity:HQ_5-701_Terrace,ontology (reference holds several rooms)
+entity:HQ_5_P-1,entity:HQ_5_P-1,ontology (reference holds several rooms)
+entity:HQ_5_P-2,entity:HQ_5_P-2,ontology (reference holds several rooms)
+entity:HQ_5_P-3,entity:HQ_5_P-3,ontology (reference holds several rooms)
+entity:HQ_5_P-4,entity:HQ_5_P-4,ontology (reference holds several rooms)
+entity:HQ_5_P-5,entity:HQ_5_P-5,ontology (reference holds several rooms)
+entity:HQ_5_P-6,entity:HQ_5_P-6,ontology (reference holds several rooms)
+entity:HQ_5_S-1,entity:HQ_5_S-1,ontology (reference holds several rooms)
+entity:HQ_5_ST-1,entity:HQ_5_ST-1,ontology (reference holds several rooms)
+entity:HQ_5_ST-2,entity:HQ_5_ST-2,ontology (reference holds several rooms)
+entity:HQ_5_ST-3,entity:HQ_5_ST-3,ontology (reference holds several rooms)
+entity:HQ_5_ST-4,entity:HQ_5_ST-4,ontology (reference holds several rooms)
+entity:HQ_6_001_ACA_AUDIT_ARCHIVE,entity:HQ_6-001_Aca-Audit-Archive,naming sheet
+entity:HQ_6_002_INTAUDIT_ARCHIVE_ROOM,entity:HQ_6-002_Intaudit-Archive-Room,naming sheet
+entity:HQ_6_003_INTAUDIT_SUPPAUDIT,entity:HQ_6-003_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_004_INTAUDIT_SUPPAUDIT,entity:HQ_6-004_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_005_INTAUDIT_SUPPAUDIT,entity:HQ_6-005_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_006_INTAUDIT_SUPPAUDIT,entity:HQ_6-006_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_007_INTAUDIT_SUPPAUDIT,entity:HQ_6-007_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_008_INTAUDIT_SUPPAUDIT,entity:HQ_6-008_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_009_INTAUDIT_SUPPAUDIT,entity:HQ_6-009_Intaudit-Suppaudit,naming sheet
+entity:HQ_6_011_INTAUDIT_SEN_JNTAUD,entity:HQ_6-011_Intaudit-Sen-Jntaud,naming sheet
+entity:HQ_6_012_INTAUDIT_SEN_JNTAUD,entity:HQ_6-012_Intaudit-Sen-Jntaud,naming sheet
+entity:HQ_6_013_INTAUDIT_SECRETARY,entity:HQ_6-013_Intaudit-Secretary,naming sheet
+entity:HQ_6_014_ACAAUDIT_SUPPAUDIT,entity:HQ_6-014_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_015_ACAAUDIT_SUPPAUDIT,entity:HQ_6-015_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_016_ACAAUDIT_SUPPAUDIT,entity:HQ_6-016_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_017_ACAAUDIT_SUPPAUDIT,entity:HQ_6-017_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_018_ACAAUDIT_SUPPAUDIT,entity:HQ_6-018_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_019_ACAAUDIT_SUPPAUDIT,entity:HQ_6-019_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_01_INTAUDIT_SECRETARY,entity:HQ_6-010_Intaudit-Secretary,naming sheet
+entity:HQ_6_021_ACAAUDIT_SECRETARY,entity:HQ_6-021_Acaaudit-Secretary,naming sheet
+entity:HQ_6_022_ACAAUDIT_SECRETARY,entity:HQ_6-022_Acaaudit-Secretary,naming sheet
+entity:HQ_6_023_ACAAUDIT_ACASENAUD,entity:HQ_6-023_Acaaudit-Acasenaud,naming sheet
+entity:HQ_6_024_ACAAUDIT_ACASENAUD,entity:HQ_6-024_Acaaudit-Acasenaud,naming sheet
+entity:HQ_6_025_FACILITY_MANAGSECRETARY,entity:HQ_6-025_Facility-Managsecretary,naming sheet
+entity:HQ_6_026_VACILITY_MANAGDIRENSUIT,entity:HQ_6-026_Vacility-Managdirensuit,naming sheet
+entity:HQ_6_027_VP_CAPITAL_CONSULTANT,entity:HQ_6-027_Vp-Capital-Consultant,naming sheet
+entity:HQ_6_028_VP_CAPITAL_CONSULTANT,entity:HQ_6-028_Vp-Capital-Consultant,naming sheet
+entity:HQ_6_02_ACAAUDIT_SUPPAUDIT,entity:HQ_6-020_Acaaudit-Suppaudit,naming sheet
+entity:HQ_6_101_SHELL_SPACE,entity:HQ_6-101_Shell-Space,naming sheet
+entity:HQ_6_102_SHELL_SPACE,entity:HQ_6-102_Shell-Space,naming sheet
+entity:HQ_6_103_SHELL_SPACE,entity:HQ_6-103_Shell-Space,naming sheet
+entity:HQ_6_104_PRINT_COPY,entity:HQ_6-104_Print-Copy,naming sheet
+entity:HQ_6_105_LOUNGE,entity:HQ_6-105_Lounge,naming sheet
+entity:HQ_6_106_PANTRY,entity:HQ_6-106_Pantry,ontology (reference holds several rooms)
+entity:HQ_6_107_JANITORS_CLOSET,entity:HQ_6-107_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_6_108_VP_CAPITAL_PROJCOORD,entity:HQ_6-108_Vp-Capital-Projcoord,naming sheet
+entity:HQ_6_109_VP_CAPITAL_WORK_ASSIST,entity:HQ_6-109_Vp-Capital-Work-Assist,naming sheet
+entity:HQ_6_11_ELECTRICAL_CABINET,entity:HQ_6-110_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_6_201_VP_CAPITAL_PROJMANAGER,entity:HQ_6-201_Vp-Capital-Projmanager,naming sheet
+entity:HQ_6_202_VP_CAPITAL_PROJMANAGER,entity:HQ_6-202_Vp-Capital-Projmanager,naming sheet
+entity:HQ_6_203_PANTRY,entity:HQ_6-203_Pantry,ontology (reference holds several rooms)
+entity:HQ_6_204_VP_CAPITAL_PROJMANAGER,entity:HQ_6-204_Vp-Capital-Projmanager,naming sheet
+entity:HQ_6_205_VP_CAPITAL_CONSULTANT,entity:HQ_6-205_Vp-Capital-Consultant,naming sheet
+entity:HQ_6_206_VP_CAPITAL_STORAGE,entity:HQ_6-206_Vp-Capital-Storage,naming sheet
+entity:HQ_6_207_VP_CAPITAL_SECRETARIES,entity:HQ_6-207_Vp-Capital-Secretaries,naming sheet
+entity:HQ_6_208_PRINT_COPY,entity:HQ_6-208_Print-Copy,naming sheet
+entity:HQ_6_209_VP_CAPITAL_ENSUIT,entity:HQ_6-209_Vp-Capital-Ensuit,naming sheet
+entity:HQ_6_211_VP_CAPITAL_SECRETARIES,entity:HQ_6-211_Vp-Capital-Secretaries,naming sheet
+entity:HQ_6_212_VP_CAPITAL_DIRECTOR_ENSUIT,entity:HQ_6-212_Vp-Capital-Director-Ensuit,naming sheet
+entity:HQ_6_21_VP_CAPITAL_SECRETARIES,entity:HQ_6-210_Vp-Capital-Secretaries,naming sheet
+entity:HQ_6_301_VP_CAPITAL_MEETING_ROOM,entity:HQ_6-301_Vp-Capital-Meeting-Room,ontology (reference holds several rooms)
+entity:HQ_6_401_MALE_TOILET,entity:HQ_6-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_6_402_FEMALE_TOILET,entity:HQ_6-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_6_403_MALE_TOILET,entity:HQ_6-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_6_404_FEMALE_TOILET,entity:HQ_6-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_6_405_TOILET,entity:HQ_6-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_6_406_TOILET,entity:HQ_6-406_Toilet,ontology (reference holds several rooms)
+entity:HQ_6_407_TOILET,entity:HQ_6-407_Toilet,ontology (reference holds several rooms)
+entity:HQ_6_511_VESTIBULE,entity:HQ_6-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_6_512_IDF_ROOM,entity:HQ_6-512_IDF-Room,naming sheet
+entity:HQ_6_521_VESTIBULE,entity:HQ_6-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_6_531_IDF_ROOM,entity:HQ_6-531_IDF-Room,naming sheet
+entity:HQ_6_532_ELECTRICAL_CLOSET,entity:HQ_6-532_Electrical-Closet,ontology (reference holds several rooms)
+entity:HQ_6_533_ELECTRICAL_CLOSET_2,entity:HQ_6-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_6_541_VESTIBULE,entity:HQ_6-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_6_601_S-TOWER_CORRIDOR,entity:HQ_6-601_S-Tower-Corridor,naming sheet
+entity:HQ_6_602_BRIDGE_CORRIDOR,entity:HQ_6-602_Bridge-Corridor,ontology (reference holds several rooms)
+entity:HQ_6_603_E-TOWER_CORRIDOR,entity:HQ_6-603_E-Tower-Corridor,naming sheet
+entity:HQ_6_604_BRIDGE_CORRIDOR,entity:HQ_6-604_Bridge-Corridor,naming sheet
+entity:HQ_6_P-1,entity:HQ_6_P-1,ontology (reference holds several rooms)
+entity:HQ_6_P-2,entity:HQ_6_P-2,ontology (reference holds several rooms)
+entity:HQ_6_P-3,entity:HQ_6_P-3,ontology (reference holds several rooms)
+entity:HQ_6_P-4,entity:HQ_6_P-4,ontology (reference holds several rooms)
+entity:HQ_6_P-5,entity:HQ_6_P-5,ontology (reference holds several rooms)
+entity:HQ_6_P-6,entity:HQ_6_P-6,ontology (reference holds several rooms)
+entity:HQ_6_S-1,entity:HQ_6_S-1,ontology (reference holds several rooms)
+entity:HQ_6_ST-1,entity:HQ_6_ST-1,ontology (reference holds several rooms)
+entity:HQ_6_ST-2,entity:HQ_6_ST-2,ontology (reference holds several rooms)
+entity:HQ_6_ST-3,entity:HQ_6_ST-3,ontology (reference holds several rooms)
+entity:HQ_6_ST-4,entity:HQ_6_ST-4,ontology (reference holds several rooms)
+entity:HQ_7_001_DOCUNIT_EMPLOYEE,entity:HQ_7-001_Docunit-Employee,naming sheet
+entity:HQ_7_002_DOCUNIT_MULTIMEDIA_STUDIO,entity:HQ_7-002_Docunit-Multimedia-Studio,naming sheet
+entity:HQ_7_003_DOCUNIT_EMPLOYEE,entity:HQ_7-003_Docunit-Employee,naming sheet
+entity:HQ_7_004_DOCUNIT_EMPLOYEE,entity:HQ_7-004_Docunit-Employee,naming sheet
+entity:HQ_7_005_DOCUNIT_EMPLOYEE,entity:HQ_7-005_Docunit-Employee,naming sheet
+entity:HQ_7_006_DOCUNIT_EMPLOYEE,entity:HQ_7-006_Docunit-Employee,naming sheet
+entity:HQ_7_007_CA_COORD,entity:HQ_7-007_Ca-Coord,naming sheet
+entity:HQ_7_008_CA_COORD,entity:HQ_7-008_Ca-Coord,naming sheet
+entity:HQ_7_009_CA_COORD,entity:HQ_7-009_Ca-Coord,naming sheet
+entity:HQ_7_011_CA_COORD,entity:HQ_7-011_Ca-Coord,naming sheet
+entity:HQ_7_012_CA_COORD,entity:HQ_7-012_Ca-Coord,naming sheet
+entity:HQ_7_013_CA_COORD,entity:HQ_7-013_Ca-Coord,naming sheet
+entity:HQ_7_014_CA_COORD,entity:HQ_7-014_Ca-Coord,naming sheet
+entity:HQ_7_015_CA_COORD,entity:HQ_7-015_Ca-Coord,naming sheet
+entity:HQ_7_016_CA_COORD,entity:HQ_7-016_Ca-Coord,naming sheet
+entity:HQ_7_017_CA_ENSUIT,entity:HQ_7-017_Ca-Ensuit,naming sheet
+entity:HQ_7_018_CA_SECRETARY,entity:HQ_7-018_Ca-Secretary,naming sheet
+entity:HQ_7_019_BD_UNIT_SECRETARY,entity:HQ_7-019_Bd-Unit-Secretary,naming sheet
+entity:HQ_7_01_CA_COORD,entity:HQ_7-010_Ca-Coord,naming sheet
+entity:HQ_7_021_BD_UNIT_EXECUTIVE,entity:HQ_7-021_Bd-Unit-Executive,naming sheet
+entity:HQ_7_022_BD_UNIT_EXECUTIVE,entity:HQ_7-022_Bd-Unit-Executive,naming sheet
+entity:HQ_7_023_BD_UNIT_EXECUTIVE,entity:HQ_7-023_Bd-Unit-Executive,naming sheet
+entity:HQ_7_024_BD_UNIT_EXECUTIVE,entity:HQ_7-024_Bd-Unit-Executive,naming sheet
+entity:HQ_7_025_BD_UNIT_EXECUTIVE,entity:HQ_7-025_Bd-Unit-Executive,naming sheet
+entity:HQ_7_026_BD_UNIT_EXECUTIVE,entity:HQ_7-026_Bd-Unit-Executive,naming sheet
+entity:HQ_7_027_BD_UNIT_EXECUTIVE,entity:HQ_7-027_Bd-Unit-Executive,naming sheet
+entity:HQ_7_028_BD_UNIT_EXECUTIVE,entity:HQ_7-028_Bd-Unit-Executive,naming sheet
+entity:HQ_7_029_MEETING_ROOM,entity:HQ_7-029_Meeting-Room,naming sheet
+entity:HQ_7_02_BD_UNIT_EXECUTIVE,entity:HQ_7-020_Bd-Unit-Executive,naming sheet
+entity:HQ_7_031A_OFFICE_SPACE,entity:HQ_7-031A_Office-Space,naming sheet
+entity:HQ_7_032_SHELL_SPACE,entity:HQ_7-032_Shell-Space,naming sheet
+entity:HQ_7_03_SHELL_SPACE,entity:HQ_7-030_Shell-Space,naming sheet
+entity:HQ_7_101_PRINT_COPY,entity:HQ_7-101_Print-Copy,naming sheet
+entity:HQ_7_102_CA_SECRETARY,entity:HQ_7-102_Ca-Secretary,naming sheet
+entity:HQ_7_103_CA_SECRETARY,entity:HQ_7-103_Ca-Secretary,naming sheet
+entity:HQ_7_104_PRINT_COPY,entity:HQ_7-104_Print-Copy,naming sheet
+entity:HQ_7_105_CA_SECRETARY,entity:HQ_7-105_Ca-Secretary,naming sheet
+entity:HQ_7_106_LOUNGE,entity:HQ_7-106_Lounge,naming sheet
+entity:HQ_7_107_PANTRY,entity:HQ_7-107_Pantry,ontology (reference holds several rooms)
+entity:HQ_7_108_JANITORS_CLOSET,entity:HQ_7-108_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_7_109_ELECTRICAL_CABINET,entity:HQ_7-109_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_7_11_VESTIBULE,entity:HQ_7-110_Vestibule,ontology (reference holds several rooms)
+entity:HQ_7_201_CONSULTANTS_SPACE,entity:HQ_7-201_Consultants-Space,naming sheet
+entity:HQ_7_202_PRESIDENT_EXECOFFICE,entity:HQ_7-202_President-Execoffice,naming sheet
+entity:HQ_7_203_PANTRY,entity:HQ_7-203_Pantry,ontology (reference holds several rooms)
+entity:HQ_7_204_PRESIDENT_EXECOFFICE,entity:HQ_7-204_President-Execoffice,naming sheet
+entity:HQ_7_205_PRESIDENT_EXECOFFICE,entity:HQ_7-205_President-Execoffice,naming sheet
+entity:HQ_7_206_PRESIDENT_EXECOFFICE,entity:HQ_7-206_President-Execoffice,ontology (reference holds several rooms)
+entity:HQ_7_207_PRESIDENT_EXECOFFICE,entity:HQ_7-207_President-Execoffice,ontology (reference holds several rooms)
+entity:HQ_7_208_PRESIDENT_SUPPORT_SECRET,entity:HQ_7-208_President-Support-Secret,naming sheet
+entity:HQ_7_209_PRESIDENT_EXECSECRET,entity:HQ_7-209_President-Execsecret,naming sheet
+entity:HQ_7_211_PRESIDENT_ENSUIT,entity:HQ_7-211_President-Ensuit,naming sheet
+entity:HQ_7_212_PRESIDENT_MEETING_ROOM,entity:HQ_7-212_President-Meeting-Room,naming sheet
+entity:HQ_7_213_VICE_CHAIRPERSON_ENSUIT,entity:HQ_7-213_Vice-Chairperson-Ensuit,naming sheet
+entity:HQ_7_214_VICE_CHAIRSECRETARY,entity:HQ_7-214_Vice-Chairsecretary,naming sheet
+entity:HQ_7_215_VICE_CHAIRPERSON_MEETING_ROOM,entity:HQ_7-215_Vice-Chairperson-Meeting-Room,naming sheet
+entity:HQ_7_21_PRESIDENT_EXECSECRET,entity:HQ_7-210_President-Execsecret,naming sheet
+entity:HQ_7_301_MEETING_ROOM,entity:HQ_7-301_Meeting-Room,naming sheet
+entity:HQ_7_401_FEMALE_TOILET,entity:HQ_7-401_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_7_402_MALE_TOILET,entity:HQ_7-402_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_7_403_MALE_TOILET,entity:HQ_7-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_7_404_FEMALE_TOILET,entity:HQ_7-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_7_405_MALE_TOILET,entity:HQ_7-405_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_7_406_FEMALE_TOILET,entity:HQ_7-406_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_7_407_TOILET,entity:HQ_7-407_Toilet,ontology (reference holds several rooms)
+entity:HQ_7_408_TOILET,entity:HQ_7-408_Toilet,ontology (reference holds several rooms)
+entity:HQ_7_409_TOILET,entity:HQ_7-409_Toilet,ontology (reference holds several rooms)
+entity:HQ_7_511_VESTIBULE,entity:HQ_7-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_7_512_IDF_ROOM,entity:HQ_7-512_IDF-Room,naming sheet
+entity:HQ_7_531_IDF_ROOM,entity:HQ_7-531_IDF-Room,naming sheet
+entity:HQ_7_532_ELECTRICAL_CLOSET,entity:HQ_7-532_Electrical-Closet,ontology (reference holds several rooms)
+entity:HQ_7_533_ELECTRICAL_CLOSET_2,entity:HQ_7-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_7_541_VESTIBULE,entity:HQ_7-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_7_601_S-TOWER_CORRIDOR,entity:HQ_7-601_S-Tower-Corridor,naming sheet
+entity:HQ_7_602_BRIDGE,entity:HQ_7-602_Bridge,naming sheet
+entity:HQ_7_603_E-TOWER_CORRIDOR,entity:HQ_7-603_E-Tower-Corridor,naming sheet
+entity:HQ_7_P-1,entity:HQ_7_P-1,ontology (reference holds several rooms)
+entity:HQ_7_P-2,entity:HQ_7_P-2,ontology (reference holds several rooms)
+entity:HQ_7_P-3,entity:HQ_7_P-3,ontology (reference holds several rooms)
+entity:HQ_7_P-4,entity:HQ_7_P-4,ontology (reference holds several rooms)
+entity:HQ_7_P-5,entity:HQ_7_P-5,ontology (reference holds several rooms)
+entity:HQ_7_P-6,entity:HQ_7_P-6,ontology (reference holds several rooms)
+entity:HQ_7_S-1,entity:HQ_7_S-1,ontology (reference holds several rooms)
+entity:HQ_7_ST-1,entity:HQ_7_ST-1,ontology (reference holds several rooms)
+entity:HQ_7_ST-2,entity:HQ_7_ST-2,ontology (reference holds several rooms)
+entity:HQ_7_ST-3,entity:HQ_7_ST-3,ontology (reference holds several rooms)
+entity:HQ_7_ST-4,entity:HQ_7_ST-4,ontology (reference holds several rooms)
+entity:HQ_8_001_OBSERVATION_SPACE,entity:HQ_8-001_Observation-Space,naming sheet
+entity:HQ_8_002_VISITORS_CENTER_OFFICE,entity:HQ_8-002_Visitors-Center-Office,naming sheet
+entity:HQ_8_101_PANTRY,entity:HQ_8-101_Pantry,ontology (reference holds several rooms)
+entity:HQ_8_102_MAINTENANCE_STORAGE,entity:HQ_8-102_Maintenance-Storage,ontology (reference holds several rooms)
+entity:HQ_8_103_ELECTRICAL_CABINET,entity:HQ_8-103_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_8_400_VISITORS_CENTER,entity:HQ_8-400_Visitors-Center,naming sheet
+entity:HQ_8_511_VESTIBULE,entity:HQ_8-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_8_512_IDF_ROOM,entity:HQ_8-512_IDF-Room,naming sheet
+entity:HQ_8_521_VESTIBULE,entity:HQ_8-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_8_531_ELECTRICAL_CLOSET_1,entity:HQ_8-531_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_8_532_ELECTRICAL_CLOSET_2,entity:HQ_8-532_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_8_541_VESTIBULE,entity:HQ_8-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_8_601_BRIDGE,entity:HQ_8-601_Bridge,ontology (reference holds several rooms)
+entity:HQ_8_602_VISITORS_CENTER_CORRIDOR,entity:HQ_8-602_Visitors-Center-Corridor,naming sheet
+entity:HQ_8_P-1,entity:HQ_8_P-1,ontology (reference holds several rooms)
+entity:HQ_8_P-2,entity:HQ_8_P-2,ontology (reference holds several rooms)
+entity:HQ_8_P-3,entity:HQ_8_P-3,ontology (reference holds several rooms)
+entity:HQ_8_P-4,entity:HQ_8_P-4,ontology (reference holds several rooms)
+entity:HQ_8_P-5,entity:HQ_8_P-5,ontology (reference holds several rooms)
+entity:HQ_8_P-6,entity:HQ_8_P-6,ontology (reference holds several rooms)
+entity:HQ_8_S-1,entity:HQ_8_S-1,ontology (reference holds several rooms)
+entity:HQ_8_ST-1,entity:HQ_8_ST-1,ontology (reference holds several rooms)
+entity:HQ_8_ST-2,entity:HQ_8_ST-2,ontology (reference holds several rooms)
+entity:HQ_8_ST-3,entity:HQ_8_ST-3,ontology (reference holds several rooms)
+entity:HQ_8_ST-4,entity:HQ_8_ST-4,ontology (reference holds several rooms)
+entity:HQ_9_001_LEGAL_ARCHIVE,entity:HQ_9-001_Legal-Archive,naming sheet
+entity:HQ_9_002_LEGAL_CONSULE,entity:HQ_9-002_Legal-Consule,naming sheet
+entity:HQ_9_003_LEGAL_LEGAL_CONSULE,entity:HQ_9-003_Legal-Legal-Consule,naming sheet
+entity:HQ_9_004_LEGAL_LEGAL_CONSULE,entity:HQ_9-004_Legal-Legal-Consule,naming sheet
+entity:HQ_9_005_LEGAL_LEGAL_CONSULE,entity:HQ_9-005_Legal-Legal-Consule,naming sheet
+entity:HQ_9_006_LEGAL_LEGAL_CONSULE,entity:HQ_9-006_Legal-Legal-Consule,naming sheet
+entity:HQ_9_007_LEGAL_LEGAL_CONSULE,entity:HQ_9-007_Legal-Legal-Consule,naming sheet
+entity:HQ_9_008_LEGAL_LEGSUPSEC,entity:HQ_9-008_Legal-Legsupsec,naming sheet
+entity:HQ_9_009_LEGAL_LEGSUPSEC,entity:HQ_9-009_Legal-Legsupsec,naming sheet
+entity:HQ_9_011_BMO_EXECASSIST,entity:HQ_9-011_Bmo-Execassist,naming sheet
+entity:HQ_9_012_BMO_EXECASSIST,entity:HQ_9-012_Bmo-Execassist,naming sheet
+entity:HQ_9_013_BMO_EXECASSIST,entity:HQ_9-013_Bmo-Execassist,naming sheet
+entity:HQ_9_014_BMO_EXECASSIST,entity:HQ_9-014_Bmo-Execassist,naming sheet
+entity:HQ_9_015_BMO_EXECASSIST,entity:HQ_9-015_Bmo-Execassist,naming sheet
+entity:HQ_9_016_BMO_EXECASSIST,entity:HQ_9-016_Bmo-Execassist,naming sheet
+entity:HQ_9_017_BMO_EXECASSIST,entity:HQ_9-017_Bmo-Execassist,naming sheet
+entity:HQ_9_018_BMO_EXECSECRET,entity:HQ_9-018_Bmo-Execsecret,naming sheet
+entity:HQ_9_019_BMO_EXECSECRET,entity:HQ_9-019_Bmo-Execsecret,naming sheet
+entity:HQ_9_01_LEGAL_LEGADVENSUIT,entity:HQ_9-010_Legal-Legadvensuit,naming sheet
+entity:HQ_9_021_BMO_OPERDIRENSUIT,entity:HQ_9-021_Bmo-Operdirensuit,naming sheet
+entity:HQ_9_022_BMO_EXECASSIST,entity:HQ_9-022_Bmo-Execassist,naming sheet
+entity:HQ_9_023_BMO_EXECSECRET,entity:HQ_9-023_Bmo-Execsecret,naming sheet
+entity:HQ_9_024_BMO_EXECSECRET,entity:HQ_9-024_Bmo-Execsecret,naming sheet
+entity:HQ_9_025_BMO_EXECSECRET,entity:HQ_9-025_Bmo-Execsecret,naming sheet
+entity:HQ_9_026_BMO_SUPPSECRET,entity:HQ_9-026_Bmo-Suppsecret,naming sheet
+entity:HQ_9_027_BMO_SUPPSECRET,entity:HQ_9-027_Bmo-Suppsecret,naming sheet
+entity:HQ_9_028_BMO_SUPPSECRET,entity:HQ_9-028_Bmo-Suppsecret,naming sheet
+entity:HQ_9_029_BMO_SUPPSECRET,entity:HQ_9-029_Bmo-Suppsecret,naming sheet
+entity:HQ_9_02_BMO_EXECSECRET,entity:HQ_9-020_Bmo-Execsecret,naming sheet
+entity:HQ_9_031_BMO_PRINT_COPY,entity:HQ_9-031_Bmo-Print-Copy,naming sheet
+entity:HQ_9_032_BMO_STORAGE,entity:HQ_9-032_Bmo-Storage,naming sheet
+entity:HQ_9_033_HR_EDUADVADVISOR_ENSUIT,entity:HQ_9-033_Hr-Eduadvadvisor-Ensuit,naming sheet
+entity:HQ_9_034_HR_EDUADVADVISOR_ENSUIT,entity:HQ_9-034_Hr-Eduadvadvisor-Ensuit,naming sheet
+entity:HQ_9_035_HR_EDUADVADVISOR_ENSUIT,entity:HQ_9-035_Hr-Eduadvadvisor-Ensuit,naming sheet
+entity:HQ_9_036_BOD_EXECUTIVE,entity:HQ_9-036_Bod-Executive,naming sheet
+entity:HQ_9_037_BOD_SECRETARY,entity:HQ_9-037_Bod-Secretary,naming sheet
+entity:HQ_9_038_BOD_EXECUTIVE,entity:HQ_9-038_Bod-Executive,naming sheet
+entity:HQ_9_039_MEETING_ROOM,entity:HQ_9-039_Meeting-Room,naming sheet
+entity:HQ_9_03_BMO_SUPPSECRET,entity:HQ_9-030_Bmo-Suppsecret,naming sheet
+entity:HQ_9_041_BMO_ARCHIVE_ROOM,entity:HQ_9-041_Bmo-Archive-Room,naming sheet
+entity:HQ_9_04_BMO_SAFE_ROOM,entity:HQ_9-040_Bmo-Safe-Room,naming sheet
+entity:HQ_9_101_VISITORS_CENTER,entity:HQ_9-101_Visitors-Center,ontology (reference holds several rooms)
+entity:HQ_9_102_BMO_STORAGE_TEA_GIRLS_ROOM,entity:HQ_9-102_Bmo-Storage-Tea-Girls-Room,ontology (reference holds several rooms)
+entity:HQ_9_103_BMO_PANTRY,entity:HQ_9-103_Bmo-Pantry,ontology (reference holds several rooms)
+entity:HQ_9_104_BMO_WAITING_AREA,entity:HQ_9-104_Bmo-Waiting-Area,naming sheet
+entity:HQ_9_105_LOUNGE,entity:HQ_9-105_Lounge,naming sheet
+entity:HQ_9_106_STORAGE,entity:HQ_9-106_Storage,ontology (reference holds several rooms)
+entity:HQ_9_107_JANITORS_CLOSET,entity:HQ_9-107_Janitors-Closet,ontology (reference holds several rooms)
+entity:HQ_9_108_SUPPORT_SPACE_PREPKITCHEN,entity:HQ_9-108_Support-Space-Prepkitchen,naming sheet
+entity:HQ_9_109_AHU_ROOM,entity:HQ_9-109_AHU-Room,naming sheet
+entity:HQ_9_111_PLANT_ROOM,entity:HQ_9-111_Plant-Room,naming sheet
+entity:HQ_9_112_STORAGE,entity:HQ_9-112_Storage,naming sheet
+entity:HQ_9_114_SUPPORT_SPACE_WASTE_REFUGE,entity:HQ_9-114_Support-Space-Waste-Refuge,ontology (reference holds several rooms)
+entity:HQ_9_115_ELECTRICAL_CABINET,entity:HQ_9-115_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_9_11_SHEIKA_WING_DINING_AREA,entity:HQ_9-110_Sheika-Wing-Dining-Area,naming sheet
+entity:HQ_9_401_MALE_TOILET,entity:HQ_9-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_9_402_FEMALE_TOILET,entity:HQ_9-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_9_403_MALE_TOILET,entity:HQ_9-403_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_9_404_FEMALE_TOILET,entity:HQ_9-404_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_9_405_TOILET,entity:HQ_9-405_Toilet,ontology (reference holds several rooms)
+entity:HQ_9_406_TOILET,entity:HQ_9-406_Toilet,ontology (reference holds several rooms)
+entity:HQ_9_407_TOILET,entity:HQ_9-407_Toilet,ontology (reference holds several rooms)
+entity:HQ_9_408_TOILET,entity:HQ_9-408_Toilet,ontology (reference holds several rooms)
+entity:HQ_9_409_TOILET,entity:HQ_9-409_Toilet,ontology (reference holds several rooms)
+entity:HQ_9_512_IDF_ROOM,entity:HQ_9-512_IDF-Room,naming sheet
+entity:HQ_9_521_VESTIBULE,entity:HQ_9-521_Vestibule,ontology (reference holds several rooms)
+entity:HQ_9_531_IDF_ROOM,entity:HQ_9-531_IDF-Room,naming sheet
+entity:HQ_9_532_ELECTRICAL_CLOSET,entity:HQ_9-532_Electrical-Closet,ontology (reference holds several rooms)
+entity:HQ_9_533_ELECTRICAL_CLOSET_2,entity:HQ_9-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_9_541_VESTIBULE,entity:HQ_9-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_9_542_SUPPLY_AND_RETURN_AIR,entity:HQ_9-542_Supply-And-Return-Air,ontology (reference holds several rooms)
+entity:HQ_9_543_RETURN-AIR,entity:HQ_9-543_Return-Air,ontology (reference holds several rooms)
+entity:HQ_9_544_SUPPLY-AIR,entity:HQ_9-544_Supply-Air,ontology (reference holds several rooms)
+entity:HQ_9_601_HH-WING_CORRIDOR,entity:HQ_9-601_Hh-Wing-Corridor,naming sheet
+entity:HQ_9_P-1,entity:HQ_9_P-1,ontology (reference holds several rooms)
+entity:HQ_9_P-2,entity:HQ_9_P-2,ontology (reference holds several rooms)
+entity:HQ_9_P-3,entity:HQ_9_P-3,ontology (reference holds several rooms)
+entity:HQ_9_P-4,entity:HQ_9_P-4,ontology (reference holds several rooms)
+entity:HQ_9_P-5,entity:HQ_9_P-5,ontology (reference holds several rooms)
+entity:HQ_9_P-6,entity:HQ_9_P-6,ontology (reference holds several rooms)
+entity:HQ_9_S-1,entity:HQ_9_S-1,ontology (reference holds several rooms)
+entity:HQ_9_ST-01,entity:HQ_9_ST-01,ontology (reference holds several rooms)
+entity:HQ_9_ST-04,entity:HQ_9_ST-04,ontology (reference holds several rooms)
+entity:HQ_9_ST-2,entity:HQ_9_ST-2,ontology (reference holds several rooms)
+entity:HQ_9_ST-3,entity:HQ_9_ST-3,ontology (reference holds several rooms)
+entity:HQ_B1_001_AHU_4,entity:HQ_B1-001_AHU-4,naming sheet
+entity:HQ_B1_002_SECURITY_UPS_ROOM,entity:HQ_B1-002_Security-UPS-Room,naming sheet
+entity:HQ_B1_003_CONTROL_ROOM,entity:HQ_B1-003_Control-Room,naming sheet
+entity:HQ_B1_004_STAFF_ENTRANCE,entity:HQ_B1-004_Staff-Entrance,ontology (reference holds several rooms)
+entity:HQ_B1_005_MDF_1_ROOM,entity:HQ_B1-005_MDF-1-Room,naming sheet
+entity:HQ_B1_006_AHU_1,entity:HQ_B1-006_AHU-1,naming sheet
+entity:HQ_B1_007_COOLING_EQUIPMENT,entity:HQ_B1-007_Cooling-Equipment,ontology (reference holds several rooms)
+entity:HQ_B1_008_FM_STORAGE,entity:HQ_B1-008_Fm-Storage,ontology (reference holds several rooms)
+entity:HQ_B1_009_MV_SWITCH_ROOM,entity:HQ_B1-009_MV-Switch-Room,naming sheet
+entity:HQ_B1_010_TRANSFORMER_SUBSTATION,entity:HQ_B1-010_Transformer-Substation,naming sheet
+entity:HQ_B1_011_HV_INTAKE,entity:HQ_B1-011_HV-Intake,naming sheet
+entity:HQ_B1_012_GENERATOR,entity:HQ_B1-012_Generator,naming sheet
+entity:HQ_B1_013_Q-TEL_INCOMING,entity:HQ_B1-013_Q-Tel-Incoming,ontology (reference holds several rooms)
+entity:HQ_B1_014_SUPPORT_SPACE_DRY_WASTE_STORAGE,entity:HQ_B1-014_Support-Space-Dry-Waste-Storage,naming sheet
+entity:HQ_B1_015_SUPPORT_SPACE_LOADING,entity:HQ_B1-015_Support-Space-Loading,naming sheet
+entity:HQ_B1_016_AHU_2,entity:HQ_B1-016_AHU-2,naming sheet
+entity:HQ_B1_017_WATER_SERVICES,entity:HQ_B1-017_Water-Services,ontology (reference holds several rooms)
+entity:HQ_B1_018_PA_ROOM,entity:HQ_B1-018_Pa-Room,ontology (reference holds several rooms)
+entity:HQ_B1_019_AHU,entity:HQ_B1-019_AHU,naming sheet
+entity:HQ_B1_020_CHILLED_WATER,entity:HQ_B1-020_Chilled-Water,ontology (reference holds several rooms)
+entity:HQ_B1_021_FILING_STORAGE,entity:HQ_B1-021_Filing-Storage,ontology (reference holds several rooms)
+entity:HQ_B1_022_AHU_3,entity:HQ_B1-022_AHU-3,naming sheet
+entity:HQ_B1_023_CBS_ROOM,entity:HQ_B1-023_Cbs-Room,naming sheet
+entity:HQ_B1_025_COOLING_EQUIPMENT_ROOM,entity:HQ_B1-025_Cooling-Equipment-Room,ontology (reference holds several rooms)
+entity:HQ_B1_026_UPS_ROOM,entity:HQ_B1-026_UPS-Room,naming sheet
+entity:HQ_B1_101_AUDITORIUM_BACKSTAGE,entity:HQ_B1-101_Auditorium-Backstage,ontology (reference holds several rooms)
+entity:HQ_B1_102_SERVER_ROOM,entity:HQ_B1-102_Server-Room,ontology (reference holds several rooms)
+entity:HQ_B1_103_STAFF_LOBBY,entity:HQ_B1-103_Staff-Lobby,naming sheet
+entity:HQ_B1_106_VVIP_PARKING_6_CAR_SPOTS,entity:HQ_B1-106_Vvip-Parking-6-Car-Spots,naming sheet
+entity:HQ_B1_107_DOCK_MASTER_OFFICE,entity:HQ_B1-107_Dock-Master-Office,naming sheet
+entity:HQ_B1_108_SUPPORT_SPACE_WET_WASTE_STORAGE,entity:HQ_B1-108_Support-Space-Wet-Waste-Storage,ontology (reference holds several rooms)
+entity:HQ_B1_109_ROOM,entity:HQ_B1-109_Room,ontology (reference holds several rooms)
+entity:HQ_B1_110_SUPPORT_SPACE_MAIL_ROOM,entity:HQ_B1-110_Support-Space-Mail-Room,naming sheet
+entity:HQ_B1_111_CHANGING_ROOM,entity:HQ_B1-111_Changing-Room,ontology (reference holds several rooms)
+entity:HQ_B1_112_CHANGING_ROOM,entity:HQ_B1-112_Changing-Room,ontology (reference holds several rooms)
+entity:HQ_B1_113_SHEIKHA_LOBBY_SECURITY_ROOM,entity:HQ_B1-113_Sheikha-Lobby-Security-Room,ontology (reference holds several rooms)
+entity:HQ_B1_115_VVIP_PARKING_4_CAR_SPOTS,entity:HQ_B1-115_Vvip-Parking-4-Car-Spots,naming sheet
+entity:HQ_B1_116_SHEIKHA_LOBBY,entity:HQ_B1-116_Sheikha-Lobby,naming sheet
+entity:HQ_B1_117_CHAUFFEUR_ROOM,entity:HQ_B1-117_Chauffeur-Room,naming sheet
+entity:HQ_B1_118_SHEIKHA_LOBBY_PANTRYRG_LOUNGE,entity:HQ_B1-118_Sheikha-Lobby-Pantryrg-Lounge,ontology (reference holds several rooms)
+entity:HQ_B1_119_ELECTRICAL_CABINET,entity:HQ_B1-119_Electrical-Cabinet,ontology (reference holds several rooms)
+entity:HQ_B1_120_MDF_2_ROOM,entity:HQ_B1-120_MDF-2-Room,ontology (reference holds several rooms)
+entity:HQ_B1_121_MAINTENANCE_ROOM,entity:HQ_B1-121_Maintenance-Room,ontology (reference holds several rooms)
+entity:HQ_B1_122_SUPPORT_SPACE_FOOD_STORAGE,entity:HQ_B1-122_Support-Space-Food-Storage,naming sheet
+entity:HQ_B1_123_SUPPORT_SPACE_FOOD_STORAGE,entity:HQ_B1-123_Support-Space-Food-Storage,naming sheet
+entity:HQ_B1_124_SUPPORT_SPACE_WASTE_BIN_WASH_UP_AREA,entity:HQ_B1-124_Support-Space-Waste-Bin-Wash-Up-Area,naming sheet
+entity:HQ_B1_401_MALE_TOILET,entity:HQ_B1-401_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_B1_402_FEMALE_TOILET,entity:HQ_B1-402_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_B1_403_TOILET,entity:HQ_B1-403_Toilet,ontology (reference holds several rooms)
+entity:HQ_B1_511_VESTIBULE,entity:HQ_B1-511_Vestibule,ontology (reference holds several rooms)
+entity:HQ_B1_512_IDF_ROOM,entity:HQ_B1-512_IDF-Room,naming sheet
+entity:HQ_B1_541_VESTIBULE,entity:HQ_B1-541_Vestibule,ontology (reference holds several rooms)
+entity:HQ_B1_542_VESTIBULE,entity:HQ_B1-542_Vestibule,ontology (reference holds several rooms)
+entity:HQ_B1_543_VESTIBULE,entity:HQ_B1-543_Vestibule,ontology (reference holds several rooms)
+entity:HQ_B1_544_SUPPORT_SPACE_STORAGE,entity:HQ_B1-544_Support-Space-Storage,ontology (reference holds several rooms)
+entity:HQ_B1_602_CORRIDOR,entity:HQ_B1-602_Corridor,ontology (reference holds several rooms)
+entity:HQ_B1_603_CORRIDOR,entity:HQ_B1-603_Corridor,ontology (reference holds several rooms)
+entity:HQ_B1_604_CORRIDOR,entity:HQ_B1-604_Corridor,ontology (reference holds several rooms)
+entity:HQ_B1_605_CORRIDOR,entity:HQ_B1-605_Corridor,ontology (reference holds several rooms)
+entity:HQ_B1_606_SECURE_STORAGE,entity:HQ_B1-606_Secure-Storage,ontology (reference holds several rooms)
+entity:HQ_B1_P-4,entity:HQ_B1_P-4,ontology (reference holds several rooms)
+entity:HQ_B1_P-5,entity:HQ_B1_P-5,ontology (reference holds several rooms)
+entity:HQ_B1_P-6,entity:HQ_B1_P-6,ontology (reference holds several rooms)
+entity:HQ_B1_P_1,entity:HQ_B1-P_1,ontology (reference holds several rooms)
+entity:HQ_B1_P_2,entity:HQ_B1-P_2,ontology (reference holds several rooms)
+entity:HQ_B1_P_3,entity:HQ_B1-P_3,ontology (reference holds several rooms)
+entity:HQ_B1_ST-1,entity:HQ_B1_ST-1,ontology (reference holds several rooms)
+entity:HQ_B1_ST-2,entity:HQ_B1_ST-2,ontology (reference holds several rooms)
+entity:HQ_B1_ST-4,entity:HQ_B1_ST-4,ontology (reference holds several rooms)
+entity:HQ_B1_ST-L6,entity:HQ_B1_ST-L6,ontology (reference holds several rooms)
+entity:HQ_B1_S_1,entity:HQ_B1-S_1,ontology (reference holds several rooms)
+entity:HQ_G_001_PR_&_MARKET_STAFF,entity:HQ_G-001_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_002_PR_&_MARKET_MANAGER,entity:HQ_G-002_Pr-And-Market-Manager,naming sheet
+entity:HQ_G_003_PR_&_MARKET_MANAGER,entity:HQ_G-003_Pr-And-Market-Manager,naming sheet
+entity:HQ_G_004_PR_&_MARKET_MANAGER,entity:HQ_G-004_Pr-And-Market-Manager,naming sheet
+entity:HQ_G_005_EMERGENCY_CONTROL_CENTER,entity:HQ_G-005_Emergency-Control-Center,naming sheet
+entity:HQ_G_006_AUDITORIUM_STAIRS_LOBBY,entity:HQ_G-006_Auditorium-Stairs-Lobby,ontology (reference holds several rooms)
+entity:HQ_G_007_VIP_DROP_OFF_ENTRANCE,entity:HQ_G-007_VIP-Drop-Off-Entrance,ontology (reference holds several rooms)
+entity:HQ_G_008_CONTROL_ROOM,entity:HQ_G-008_Control-Room,naming sheet
+entity:HQ_G_009_PR_&_MARKET_MANAGER,entity:HQ_G-009_Pr-And-Market-Manager,naming sheet
+entity:HQ_G_010_PR_&_MARKET_STAFF,entity:HQ_G-010_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_011_PR_&_MARKET_MANAGER,entity:HQ_G-011_Pr-And-Market-Manager,naming sheet
+entity:HQ_G_012_PR_&_MARKET_STAFF,entity:HQ_G-012_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_013_PR_&_MARKET_STAFF,entity:HQ_G-013_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_014_VISITOR_CENT_OFFICE,entity:HQ_G-014_Visitor-Cent-Office,naming sheet
+entity:HQ_G_015_PR_&_MARKET_STAFF,entity:HQ_G-015_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_016_PANTRY,entity:HQ_G-016_Pantry,ontology (reference holds several rooms)
+entity:HQ_G_017_COPY_PRINT,entity:HQ_G-017_Copy-Print,naming sheet
+entity:HQ_G_018_PR_&_MARKET_STAFF,entity:HQ_G-018_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_019_PR_&_MARKET_STAFF,entity:HQ_G-019_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_020_PR_&_MARKET_STAFF,entity:HQ_G-020_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_021_PR_&_MARKET_STAFF,entity:HQ_G-021_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_022_PR_&_MARKET!_SECRETARY,entity:HQ_G-022_Pr-And-Market-Secretary,naming sheet
+entity:HQ_G_023_PR_&_MARKET_STAFF,entity:HQ_G-023_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_024_PEDESTRIAN_ENTRANCE,entity:HQ_G-024_Pedestrian-Entrance,ontology (reference holds several rooms)
+entity:HQ_G_025_VIP_LOUNGE,entity:HQ_G-025_VIP-Lounge,naming sheet
+entity:HQ_G_026_FINANCE_CASHIER,entity:HQ_G-026_Finance-Cashier,naming sheet
+entity:HQ_G_027_PANTRY,entity:HQ_G-027_Pantry,ontology (reference holds several rooms)
+entity:HQ_G_028_PR_&_MARKET_DIRECTOR_ENSUIT,entity:HQ_G-028_Pr-And-Market-Director-Ensuit,naming sheet
+entity:HQ_G_029_PR_&_MARKET_STAFF,entity:HQ_G-029_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_030_STAFF,entity:HQ_G-030_Staff,ontology (reference holds several rooms)
+entity:HQ_G_031_PR_&_MARKET_STAFF,entity:HQ_G-031_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_032_PR_&_MARKET_STAFF,entity:HQ_G-032_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_033_PR_&_MARKET_STAFF,entity:HQ_G-033_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_034_PR_&_MARKET_STAFF,entity:HQ_G-034_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_035_PR_&_MARKET_STAFF,entity:HQ_G-035_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_036_PR_&_MARKET_STAFF,entity:HQ_G-036_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_037_PR_&_MARKET_STAFF,entity:HQ_G-037_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_038_PR_&_MARKET_STAFF,entity:HQ_G-038_Pr-And-Market-Staff,naming sheet
+entity:HQ_G_039_PR_&_MARKET_STAFF,entity:HQ_G-039_Pr-And-Market-Staff,ontology (reference holds several rooms)
+entity:HQ_G_03_PR_&_MARKET_STAFF,entity:HQ_G-030_Pr-And-Market-Staff,ontology (reference holds several rooms)
+entity:HQ_G_101_CONFERENCE_ROOM,entity:HQ_G-101_Conference-Room,naming sheet
+entity:HQ_G_102_AUDITORIUM,entity:HQ_G-102_Auditorium,ontology (reference holds several rooms)
+entity:HQ_G_103_BMS,entity:HQ_G-103_BMS,naming sheet
+entity:HQ_G_104_LOBBY,entity:HQ_G-104_Lobby,naming sheet
+entity:HQ_G_105_SHOP,entity:HQ_G-105_Shop,naming sheet
+entity:HQ_G_106_STORAGE_ROOM,entity:HQ_G-106_Storage-Room,ontology (reference holds several rooms)
+entity:HQ_G_107_E-TOWER_LOBBY,entity:HQ_G-107_E-Tower-Lobby,naming sheet
+entity:HQ_G_108_CONSULTANT_SPACE_TRAINEES,entity:HQ_G-108_Consultant-Space-Trainees,naming sheet
+entity:HQ_G_11_STORAGE_ROOM,entity:HQ_G-110_Storage-Room,ontology (reference holds several rooms)
+entity:HQ_G_400_CORRIDOR,entity:HQ_G-400_Corridor,naming sheet
+entity:HQ_G_401_FEMALE_TOILET,entity:HQ_G-401_Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_G_402_MALE_TOILET,entity:HQ_G-402_Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_G_403_FEM_FEMALE_TOILET,entity:HQ_G-403_Fem-Female-Toilet,ontology (reference holds several rooms)
+entity:HQ_G_403_MAL_MALE_TOILET,entity:HQ_G-403_Mal-Male-Toilet,ontology (reference holds several rooms)
+entity:HQ_G_405_TOILET,entity:HQ_G-405_Toilet,naming sheet
+entity:HQ_G_511_VESTIBULE,entity:HQ_G-511_Vestibule,naming sheet
+entity:HQ_G_512_IDF_ROOM,entity:HQ_G-512_IDF-Room,naming sheet
+entity:HQ_G_521_STAIR_VESTIBULE,entity:HQ_G-521_Stair-Vestibule,ontology (reference holds several rooms)
+entity:HQ_G_531_IDF_ROOM,entity:HQ_G-531_IDF-Room,naming sheet
+entity:HQ_G_532_ELECTRICAL_CLOSET_1,entity:HQ_G-532_Electrical-Closet-1,ontology (reference holds several rooms)
+entity:HQ_G_533_ELECTRICAL_CLOSET_2,entity:HQ_G-533_Electrical-Closet-2,ontology (reference holds several rooms)
+entity:HQ_G_541_STAIR_VESTIBULES,entity:HQ_G-541_Stair-Vestibules,ontology (reference holds several rooms)
+entity:HQ_G_542_STAIR_VESTIBULE,entity:HQ_G-542_Stair-Vestibule,ontology (reference holds several rooms)
+entity:HQ_G_544_VESTIBULE,entity:HQ_G-544_Vestibule,ontology (reference holds several rooms)
+entity:HQ_G_601_CORRIDOR,entity:HQ_G-601_Corridor,naming sheet
+entity:HQ_G_602_CORRIDOR_(SOUTH_EAST),entity:HQ_G-602_Corridor-South-East,naming sheet
+entity:HQ_G_603_CORRIDOR_(SOUTH_EAST),entity:HQ_G-603_Corridor-South-East,naming sheet
+entity:HQ_G_FF-1,entity:HQ_G_Ff-1,ontology (reference holds several rooms)
+entity:HQ_G_IRRIGATION_ROOM,entity:HQ_G-IRRIGATION_Room,ontology (reference holds several rooms)
+entity:HQ_G_P-1,entity:HQ_G_P-1,ontology (reference holds several rooms)
+entity:HQ_G_P-2,entity:HQ_G_P-2,ontology (reference holds several rooms)
+entity:HQ_G_P-3,entity:HQ_G_P-3,ontology (reference holds several rooms)
+entity:HQ_G_P-4,entity:HQ_G_P-4,ontology (reference holds several rooms)
+entity:HQ_G_P-5,entity:HQ_G_P-5,ontology (reference holds several rooms)
+entity:HQ_G_P-6,entity:HQ_G_P-6,ontology (reference holds several rooms)
+entity:HQ_G_S-1,entity:HQ_G_S-1,ontology (reference holds several rooms)
+entity:HQ_G_SECURITY_BOOTH_1,entity:HQ_G-SECURITY_Booth-1,ontology (reference holds several rooms)
+entity:HQ_G_SECURITY_BOOTH_2,entity:HQ_G-SECURITY_Booth-2,ontology (reference holds several rooms)
+entity:HQ_G_ST-1,entity:HQ_G_ST-1,ontology (reference holds several rooms)
+entity:HQ_G_ST-2,entity:HQ_G_ST-2,ontology (reference holds several rooms)
+entity:HQ_G_ST-3,entity:HQ_G_ST-3,ontology (reference holds several rooms)
+entity:HQ_G_ST-4,entity:HQ_G_ST-4,ontology (reference holds several rooms)
+entity:HQ_PLANT_ROOM,entity:HQ_PLANT_Room,ontology (reference holds several rooms)
+entity:HQ_PLAN_ROOM,entity:HQ_PLAN_Room,ontology (reference holds several rooms)
+entity:HQ_RF_001,entity:HQ_RF_001,ontology (reference holds several rooms)
+entity:HQ_RF_002_PLANT_WALKWAY,entity:HQ_RF-002_Plant-Walkway,naming sheet
